@@ -1,0 +1,264 @@
+/* =========================================================
+   jonathanwallace.ca — Georgian Bay Real Estate
+   Standalone personal brand. Editorial, photography-led.
+   ========================================================= */
+
+:root{
+  /* Brand palette — "Modern Slate" (Option 2) */
+  --navy:#1F2933;        /* primary / headers */
+  --navy-deep:#16202B;
+  --teal:#52606D;        /* secondary */
+  --sand:#F4F5F7;        /* cool light background */
+  --sand-dark:#E4E7EB;
+  --charcoal:#16202B;    /* body text */
+  --copper:#2F80ED;      /* accent — CTAs ONLY (electric blue) */
+  --copper-dark:#1F6FD6;
+  --white:#FFFFFF;
+  --muted:#5C6B75;
+  --line:rgba(19,49,74,.12);
+
+  --maxw:1180px;
+  --radius:14px;
+  --radius-sm:8px;
+  --shadow:0 18px 50px -22px rgba(14,37,56,.45);
+  --shadow-sm:0 8px 24px -14px rgba(14,37,56,.4);
+
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--sans);
+  color:var(--charcoal);
+  background:var(--white);
+  line-height:1.65;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+a{color:var(--teal);text-decoration:none;}
+a:hover{color:var(--navy);}
+
+h1,h2,h3,h4{font-family:var(--serif);color:var(--navy);line-height:1.12;font-weight:600;margin:0 0 .5em;letter-spacing:-.01em;}
+h1{font-size:clamp(2.4rem,5.5vw,4.1rem);font-weight:600;}
+h2{font-size:clamp(1.9rem,3.8vw,2.8rem);}
+h3{font-size:clamp(1.25rem,2vw,1.55rem);}
+p{margin:0 0 1.1em;}
+.lead{font-size:1.2rem;color:var(--muted);max-width:60ch;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+.section{padding:clamp(56px,8vw,110px) 0;}
+.section--sand{background:var(--sand);}
+.section--navy{background:var(--navy);color:rgba(255,255,255,.86);}
+.section--navy h2,.section--navy h3{color:var(--white);}
+.eyebrow{font-family:var(--sans);font-weight:600;text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;color:var(--copper);margin:0 0 14px;}
+.section--navy .eyebrow{color:#9CC2F5;}
+.center{text-align:center;}
+.center .lead{margin-left:auto;margin-right:auto;}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:.5em;
+  font-family:var(--sans);font-weight:600;font-size:1rem;
+  padding:15px 28px;border-radius:50px;border:2px solid transparent;
+  cursor:pointer;transition:.2s ease;line-height:1;white-space:nowrap;
+}
+.btn--primary{background:var(--copper);color:var(--white);border-color:var(--copper);}
+.btn--primary:hover{background:var(--copper-dark);border-color:var(--copper-dark);color:#fff;transform:translateY(-1px);}
+.btn--ghost{background:transparent;color:var(--navy);border-color:var(--navy);}
+.btn--ghost:hover{background:var(--navy);color:#fff;}
+.btn--light{background:#fff;color:var(--navy);border-color:#fff;}
+.btn--light:hover{background:transparent;color:#fff;}
+.btn--ghost-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.6);}
+.btn--ghost-light:hover{background:#fff;color:var(--navy);border-color:#fff;}
+.btn--block{width:100%;justify-content:center;}
+.btn--lg{padding:18px 36px;font-size:1.05rem;}
+
+/* ---------- Header ---------- */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line);}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px;}
+.brand{display:flex;flex-direction:column;justify-content:center;line-height:1;}
+.brand a{color:var(--navy);display:flex;flex-direction:column;line-height:1.1;}
+.brand__name{font-family:var(--sans);font-weight:700;font-size:1.4rem;letter-spacing:-.02em;line-height:1.15;}
+.brand__tag{font-family:var(--sans);font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:7px;opacity:.9;}
+.nav__links{display:flex;align-items:center;gap:30px;list-style:none;margin:0;padding:0;}
+.nav__links a{color:var(--navy);font-weight:500;font-size:.97rem;}
+.nav__links a:hover{color:var(--teal);}
+.nav__cta{margin-left:8px;}
+.nav__cta .btn{padding:10px 20px;font-size:.92rem;border-width:1.5px;}
+.nav__toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;}
+.nav__toggle span{display:block;width:26px;height:2px;background:var(--navy);margin:5px 0;transition:.25s;}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;color:#fff;overflow:hidden;}
+.hero__media{position:absolute;inset:0;background:
+   linear-gradient(180deg,rgba(14,37,56,.62),rgba(14,37,56,.78)),
+   linear-gradient(120deg,#2B3A47,#16202B);}
+.hero__media.placeholder-img::after{content:"⛰  HERO IMAGE — Georgian Bay at golden hour (replace)";}
+.placeholder-img{position:relative;}
+.placeholder-img::after{
+  content:"IMAGE PLACEHOLDER";
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:20px;font-family:var(--sans);font-size:.8rem;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:600;
+}
+.hero__inner{position:relative;padding:clamp(80px,13vw,150px) 0 clamp(70px,10vw,120px);max-width:760px;}
+.hero h1{color:#fff;}
+.hero p{color:rgba(255,255,255,.9);font-size:1.25rem;max-width:54ch;}
+.hero__actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;}
+.hero__trust{margin-top:34px;display:flex;gap:26px;flex-wrap:wrap;color:rgba(255,255,255,.78);font-size:.9rem;align-items:center;}
+.hero__trust strong{color:#fff;}
+
+/* ---------- Stat / proof band ---------- */
+.proof{background:var(--navy);color:#fff;}
+.proof__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+.stat__num{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);color:#fff;font-weight:600;line-height:1;}
+.stat__label{font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:8px;}
+.ph-note{color:#9CC2F5;font-size:.78rem;}
+
+/* ---------- Cards ---------- */
+.grid{display:grid;gap:26px;}
+.grid--3{grid-template-columns:repeat(3,1fr);}
+.grid--2{grid-template-columns:repeat(2,1fr);}
+.grid--4{grid-template-columns:repeat(4,1fr);}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);}
+.card h3{margin-top:6px;}
+.card__icon{width:46px;height:46px;border-radius:12px;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:8px;}
+
+/* ---------- Process steps ---------- */
+.steps{counter-reset:step;display:grid;gap:22px;grid-template-columns:repeat(4,1fr);}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative;}
+.step::before{counter-increment:step;content:"0" counter(step);font-family:var(--serif);font-size:2rem;color:var(--copper);display:block;margin-bottom:10px;font-weight:600;}
+.section--navy .step{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);}
+
+/* ---------- Video / home tours ---------- */
+.tours__head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px;}
+.cadence{display:inline-flex;gap:10px;flex-wrap:wrap;margin:6px 0 0;}
+.pill{background:var(--sand);color:var(--navy);border-radius:50px;padding:7px 16px;font-size:.85rem;font-weight:600;}
+.section--navy .pill{background:rgba(255,255,255,.1);color:#fff;}
+.video{border-radius:var(--radius);overflow:hidden;background:#16202B;border:1px solid var(--line);box-shadow:var(--shadow-sm);}
+.video__thumb{aspect-ratio:16/9;background:linear-gradient(135deg,#2B3A47,#16202B);position:relative;display:flex;align-items:center;justify-content:center;}
+.video__thumb::after{content:"▶  HOME TOUR THUMBNAIL — embed YouTube";position:absolute;color:rgba(255,255,255,.6);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;}
+.video__play{width:62px;height:62px;border-radius:50%;background:var(--copper);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;z-index:1;box-shadow:0 8px 24px rgba(0,0,0,.3);}
+.video__body{padding:18px 20px 22px;background:#fff;}
+.section--navy .video__body{background:rgba(255,255,255,.04);}
+.video__body h4{font-family:var(--serif);color:var(--navy);margin:0 0 4px;font-size:1.1rem;}
+.section--navy .video__body h4{color:#fff;}
+.video__meta{font-size:.85rem;color:var(--muted);}
+.section--navy .video__meta{color:rgba(255,255,255,.6);}
+
+/* ---------- Communities ---------- */
+.community{position:relative;border-radius:var(--radius);overflow:hidden;min-height:230px;display:flex;align-items:flex-end;color:#fff;box-shadow:var(--shadow-sm);background:linear-gradient(160deg,#52606D,#1F2933);}
+.community::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,37,56,.05),rgba(14,37,56,.72));}
+.community__label{position:relative;padding:22px;z-index:1;}
+.community__label h3{color:#fff;margin:0;}
+.community__label span{font-size:.85rem;color:rgba(255,255,255,.8);}
+
+/* ---------- Testimonials ---------- */
+.quote{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-sm);}
+.quote p{font-family:var(--serif);font-size:1.15rem;color:var(--navy);font-style:normal;line-height:1.55;}
+.quote__by{font-family:var(--sans);font-style:normal;font-size:.9rem;color:var(--muted);font-weight:600;}
+.stars{color:var(--copper);letter-spacing:3px;margin-bottom:10px;}
+
+/* ---------- Forms ---------- */
+.form{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:34px;box-shadow:var(--shadow);}
+.section--navy .form{color:var(--charcoal);}
+.form__row{display:grid;gap:16px;grid-template-columns:1fr 1fr;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px;color:var(--navy);}
+.field input,.field select,.field textarea{
+  width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:var(--radius-sm);
+  font-family:var(--sans);font-size:1rem;background:#fff;color:var(--charcoal);transition:.15s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(46,110,120,.15);}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:.85rem;color:var(--muted);margin:6px 0 18px;}
+.consent input{margin-top:4px;flex:0 0 auto;width:18px;height:18px;}
+.hp{position:absolute;left:-9999px;}
+.form__note{font-size:.8rem;color:var(--muted);margin-top:14px;}
+
+/* ---------- CTA band ---------- */
+.ctaband{background:linear-gradient(120deg,var(--teal),var(--navy));color:#fff;border-radius:var(--radius);padding:clamp(34px,5vw,60px);text-align:center;}
+.ctaband h2{color:#fff;}
+.ctaband p{color:rgba(255,255,255,.88);max-width:52ch;margin-left:auto;margin-right:auto;}
+
+/* ---------- Split / about ---------- */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+.split__media{aspect-ratio:4/5;border-radius:var(--radius);background:linear-gradient(160deg,#52606D,#1F2933);box-shadow:var(--shadow);}
+
+/* ---------- Listings ---------- */
+.listing{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow-sm);}
+.listing__img{aspect-ratio:4/3;background:linear-gradient(160deg,#52606D,#1F2933);}
+.listing__body{padding:20px;}
+.listing__price{font-family:var(--serif);font-size:1.4rem;color:var(--navy);font-weight:600;}
+.listing__addr{color:var(--muted);font-size:.92rem;margin:4px 0 10px;}
+.listing__specs{display:flex;gap:16px;font-size:.85rem;color:var(--charcoal);border-top:1px solid var(--line);padding-top:12px;}
+
+/* ---------- Footer ---------- */
+.footer{background:var(--navy-deep);color:rgba(255,255,255,.72);padding:64px 0 28px;}
+.footer a{color:rgba(255,255,255,.72);}
+.footer a:hover{color:#fff;}
+.footer__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr;gap:36px;}
+.footer h4{color:#fff;font-family:var(--sans);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px;}
+.footer ul{list-style:none;margin:0;padding:0;}
+.footer li{margin-bottom:10px;font-size:.95rem;}
+.footer__brand .brand__name{color:#fff;font-size:1.4rem;}
+.footer__social{display:flex;gap:14px;margin-top:16px;}
+.footer__social a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:.8rem;}
+.footer__legal{border-top:1px solid rgba(255,255,255,.14);margin-top:48px;padding-top:24px;font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.7;}
+.footer__legal strong{color:rgba(255,255,255,.75);}
+
+/* ---------- Page hero (inner) ---------- */
+.page-hero{background:linear-gradient(120deg,var(--navy),var(--teal));color:#fff;padding:clamp(70px,9vw,120px) 0 clamp(50px,7vw,90px);}
+.page-hero h1{color:#fff;}
+.page-hero p{color:rgba(255,255,255,.9);max-width:58ch;font-size:1.2rem;}
+
+/* ---------- Utilities ---------- */
+.mt-0{margin-top:0;}
+.mb-0{margin-bottom:0;}
+.stack-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px;}
+.faq{border-top:1px solid var(--line);}
+.faq__item{border-bottom:1px solid var(--line);padding:22px 0;}
+.faq__item h3{font-size:1.15rem;margin-bottom:8px;}
+.faq__item p{margin-bottom:0;color:var(--muted);}
+.placeholder-note{background:#FFF6ED;border:1px dashed var(--copper);border-radius:var(--radius-sm);padding:14px 18px;font-size:.85rem;color:var(--copper-dark);margin:0 0 24px;}
+
+/* ---------- Responsive ---------- */
+@media(max-width:920px){
+  .grid--3,.grid--4,.steps{grid-template-columns:repeat(2,1fr);}
+  .split{grid-template-columns:1fr;}
+  .footer__grid{grid-template-columns:1fr 1fr;}
+  .proof__grid{grid-template-columns:repeat(2,1fr);gap:32px;}
+}
+@media(max-width:720px){
+  .nav__links{
+    position:fixed;inset:74px 0 auto 0;background:#fff;flex-direction:column;
+    align-items:flex-start;gap:0;padding:10px 24px 24px;border-bottom:1px solid var(--line);
+    transform:translateY(-130%);transition:transform .28s ease;box-shadow:var(--shadow);
+  }
+  .nav__links.open{transform:translateY(0);}
+  .nav__links li{width:100%;border-bottom:1px solid var(--line);}
+  .nav__links li:last-child{border:0;padding-top:14px;}
+  .nav__links a{display:block;padding:14px 0;width:100%;}
+  .nav__cta{margin:0;}
+  .nav__toggle{display:block;}
+  .form__row{grid-template-columns:1fr;}
+}
+@media(max-width:560px){
+  .grid--3,.grid--4,.steps,.grid--2,.proof__grid{grid-template-columns:1fr;}
+  .hero__actions .btn,.stack-actions .btn{width:100%;justify-content:center;}
+}
+
+/* ---------- RateMyAgent award badge ---------- */
+.rma-badge{display:inline-flex;flex-direction:column;align-items:center;gap:3px;margin:28px auto 0;
+  background:var(--navy);color:#fff;border-radius:16px;padding:20px 30px;text-decoration:none;
+  box-shadow:var(--shadow-sm);border:1px solid rgba(255,255,255,.08);transition:transform .2s ease;max-width:280px;}
+.rma-badge:hover{transform:translateY(-2px);color:#fff;}
+.rma-badge__ribbon{font-size:1.7rem;line-height:1;margin-bottom:4px;}
+.rma-badge__top{font-family:var(--sans);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:#9CC2F5;font-weight:600;}
+.rma-badge__title{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:#fff;line-height:1.1;}
+.rma-badge__year{font-size:.78rem;letter-spacing:.06em;color:rgba(255,255,255,.7);}
+.rma-badge__stars{margin-top:6px;color:var(--copper);font-size:.95rem;letter-spacing:1px;}
+.rma-badge__stars b{color:#fff;margin-left:4px;}

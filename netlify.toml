@@ -1,0 +1,32 @@
+# Netlify configuration — jonathanwallace.ca
+# Static site: no build step, publish the repo root.
+
+[build]
+  publish = "."
+  command = ""
+  functions = "netlify/functions"
+
+# Pretty URLs / basic hardening headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache the latest-videos API at the edge (refresh hourly, serve stale meanwhile)
+[[headers]]
+  for = "/.netlify/functions/latest-videos"
+  [headers.values]
+    Cache-Control = "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400"
+
+# Example redirect (uncomment + edit if you add /listings via an IDX subdomain)
+# [[redirects]]
+#   from = "/listings"
+#   to = "https://your-idx-provider.example/search"
+#   status = 302
+
+# NOTE: Netlify Forms are auto-detected from the data-netlify="true" attribute
+# on each <form>. Submissions appear in the Netlify dashboard under "Forms".
+# Wire an outgoing webhook (Netlify > Forms > form > Settings > Outgoing webhook)
+# to a Make.com custom webhook to push leads into Follow Up Boss. See README.

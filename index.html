@@ -38,7 +38,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero__media placeholder-img"></div>
+  <div class="hero__media"></div>
   <div class="wrap hero__inner">
     <p class="eyebrow">Midland · Penetanguishene · Tay · Tiny · Wasaga Beach</p>
     <h1>Thinking of selling on Georgian Bay?</h1>
@@ -59,10 +59,10 @@
 <section class="proof section" style="padding-top:48px;padding-bottom:48px;">
   <div class="wrap">
     <div class="proof__grid">
-      <div><div class="stat__num">$300M+</div><div class="stat__label">In career sales volume</div></div>
-      <div><div class="stat__num">500+</div><div class="stat__label">Families served</div></div>
-      <div><div class="stat__num">4.95★</div><div class="stat__label">Rated on RateMyAgent</div></div>
-      <div><div class="stat__num">#1</div><div class="stat__label">Agent in Midland &amp; Penetanguishene, as rated on RateMyAgent</div></div>
+      <div><div class="stat__num" data-stat="volume">$300M+</div><div class="stat__label">In career sales volume</div></div>
+      <div><div class="stat__num" data-stat="families">500+</div><div class="stat__label">Families served</div></div>
+      <div><div class="stat__num" data-stat="rating">4.95★</div><div class="stat__label">Rated on RateMyAgent</div></div>
+      <div><div class="stat__num" data-stat="rank">#1</div><div class="stat__label">Agent in Midland &amp; Penetanguishene, as rated on RateMyAgent</div></div>
     </div>
   </div>
 </section>
@@ -144,31 +144,59 @@
 </section>
 
 <!-- FEATURED LISTINGS -->
-<section class="section">
-  <div class="wrap">
-    <div class="tours__head">
-      <div><p class="eyebrow">On the market</p><h2 class="mb-0">Featured Georgian Bay listings</h2></div>
-      <a class="btn btn--ghost" href="#" data-replace="Ruuster IDX search URL">View all listings</a>
-    </div>
-    <p class="placeholder-note">Listings powered by <strong>Ruuster IDX</strong> (already on your site). Embed your Ruuster feed here. (See README §Listings.)</p>
-    <div class="grid grid--3" style="margin-top:8px;">
-      <article class="listing">
-        <div class="listing__img placeholder-img"></div>
-        <div class="listing__body"><div class="listing__price">$[price]</div><div class="listing__addr">[Address], Midland</div><div class="listing__specs"><span>[#] bed</span><span>[#] bath</span><span>[#] sqft</span></div></div>
-      </article>
-      <article class="listing">
-        <div class="listing__img placeholder-img"></div>
-        <div class="listing__body"><div class="listing__price">$[price]</div><div class="listing__addr">[Address], Tay</div><div class="listing__specs"><span>[#] bed</span><span>[#] bath</span><span>[#] sqft</span></div></div>
-      </article>
-      <article class="listing">
-        <div class="listing__img placeholder-img"></div>
-        <div class="listing__body"><div class="listing__price">$[price]</div><div class="listing__addr">[Address], Tiny</div><div class="listing__specs"><span>[#] bed</span><span>[#] bath</span><span>[#] sqft</span></div></div>
-      </article>
-    </div>
-  </div>
-</section>
+    <section class="section">
+      <div class="wrap">
+        <div class="tours__head">
+          <div><p class="eyebrow">On the market</p><h2 class="mb-0">Georgian Bay listings</h2></div>
+          <a class="btn btn--ghost" href="communities.html">Browse by community</a>
+        </div>
+        <!-- RUUSTER IDX MOUNT: paste the Ruuster IDX embed snippet inside #ruuster-idx. See PR CONFIRM list for the exact snippet and search URL. -->
+        <div id="ruuster-idx" aria-live="polite">
+          <div class="ctaband" style="margin-top:8px;">
+            <h2 style="margin-bottom:8px;">See every Georgian Bay home for sale</h2>
+            <p>Current Midland, Penetanguishene, Tay, Tiny and Wasaga Beach listings, updated daily.</p>
+            <div class="stack-actions" style="justify-content:center;">
+              <a class="btn btn--light btn--lg" href="contact.html">Ask about a listing</a>
+              <a class="btn btn--ghost-light btn--lg" href="home-value.html">Price my home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- COMMUNITIES -->
+    <!-- RECENTLY SOLD -->
+    <section class="section section--sand" id="recently-sold-section" hidden>
+      <div class="wrap">
+        <div class="tours__head">
+          <div><p class="eyebrow">Recently sold</p><h2 class="mb-0">Homes I have sold on Georgian Bay</h2></div>
+          <a class="btn btn--ghost" href="contact.html">Thinking of selling?</a>
+        </div>
+        <p class="lead" style="max-width:60ch;">Real Georgian Bay homes, real results. Recent sales across Midland, Penetanguishene, Tay, Tiny and Wasaga Beach.</p>
+        <div class="grid grid--3" id="recentlySold" style="margin-top:8px;"></div>
+      </div>
+    </section>
+    <script>
+    (function(){
+      var grid=document.getElementById('recentlySold');
+      var section=document.getElementById('recently-sold-section');
+      if(!grid||!section) return;
+      function esc(t){return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      fetch('assets/data/recently-sold.json',{cache:'no-store'})
+        .then(function(r){return r.ok?r.json():null;})
+        .then(function(d){
+          var items=(d&&d.sold)||[];
+          if(!items.length) return;
+          grid.innerHTML=items.slice(0,6).map(function(s){
+            var img=s.image?('background-image:url('+JSON.stringify(s.image)+');background-size:cover;background-position:center;'):'';
+            return '<article class="listing"><div class="listing__img" style="'+img+'"></div><div class="listing__body"><div class="listing__price">'+esc(s.price||'Sold')+'</div><div class="listing__addr">'+esc(s.address||'')+'</div><div class="listing__specs"><span>'+esc(s.beds||'')+'</span><span>'+esc(s.baths||'')+'</span><span>'+esc(s.note||'Sold')+'</span></div></div></article>';
+          }).join('');
+          section.hidden=false;
+        })
+        .catch(function(){});
+    })();
+    </script>
+
+    <!-- COMMUNITIES -->
 <section class="section section--sand">
   <div class="wrap center">
     <p class="eyebrow">The communities I serve</p>
@@ -221,12 +249,12 @@
 <!-- ABOUT TEASER -->
 <section class="section section--sand">
   <div class="wrap split">
-    <div class="split__media placeholder-img"></div>
+    <div class="split__media"></div>
     <div>
       <p class="eyebrow">Meet Jonathan</p>
       <h2>The local who knows this market.</h2>
-      <p>I'm a full-time Georgian Bay REALTOR® based in Midland. I started filming home tours because buyers and sellers deserve a real, honest look at what's out there — not glossy guesswork. That same straight-talking, do-the-work approach is how I sell homes.</p>
-      <p class="ph-note">[Replace with your real bio — why Georgian Bay, your background, what you stand for.]</p>
+      <p>I'm a full-time Georgian Bay REALTOR® based in Midland. I started filming home tours because buyers and sellers deserve a real, honest look at what's out there, not glossy guesswork. That same straight-talking, do-the-work approach is how I sell homes.</p>
+      <p>That same straight talk is how I sell homes. I am a full-time Georgian Bay REALTOR with the Faris Team, and I know this water, these towns, the schools and the shoreline. When I am not on a listing I am usually out on the Bay with a fishing rod. 2025 Midland Readers' Choice, Best Realtor, and number one rated in Midland on RateMyAgent.</p>
       <a class="btn btn--ghost" href="about.html">More about me</a>
     </div>
   </div>
@@ -252,7 +280,7 @@
   <div class="wrap footer__grid">
     <div class="footer__brand">
       <span class="brand__name">Jonathan Wallace</span>
-      <p style="margin-top:12px;">Georgian Bay real estate — Midland, Penetanguishene, Tay, Tiny &amp; Wasaga Beach.</p>
+      <p style="margin-top:12px;">Georgian Bay real estate. Midland, Penetanguishene, Tay, Tiny &amp; Wasaga Beach.</p>
       <div class="footer__social">
         <a href="https://youtube.com/@jonathanwallaceRE" aria-label="YouTube" target="_blank" rel="noopener">YT</a>
         <a href="https://instagram.com/jonathanwallacerealestate" aria-label="Instagram" target="_blank" rel="noopener">IG</a>

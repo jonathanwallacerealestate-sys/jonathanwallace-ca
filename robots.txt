@@ -1,0 +1,7 @@
+# jonathanwallace.ca
+# Note: the site is currently held out of search by X-Robots-Tag noindex in _headers.
+# Remove that header at launch and these rules take effect.
+User-agent: *
+Allow: /
+
+Sitemap: https://jonathanwallace.ca/sitemap.xml

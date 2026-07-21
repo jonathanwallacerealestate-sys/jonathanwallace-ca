@@ -13,8 +13,10 @@ first home in Penetanguishene or a waterfront property in Tay.
 
 The work has been recognized. I was named Best Realtor in the 2025 Midland Readers' Choice
 Awards, and I am the number one rated agent in Midland on RateMyAgent with a 4.95 star
-average. Outside of real estate you will usually find me on the Bay with a fishing rod or
-my dog, or giving back through Bowl for Kids' Sake with Big Brothers Big Sisters of North
-Simcoe.
+average. Outside of real estate you will find me out on Georgian Bay at one of my two
+favourite spots, Beckwith or Giant's Tomb Island, or down on the dock at Wye Heritage,
+spending time with my partner Courtney and our two dogs. Some nights it is the local
+Midland billiard league instead. I also give back through Bowl for Kids' Sake with Big
+Brothers Big Sisters of North Simcoe.
 
 CONFIRM: dog's name if you want it named; any community lines you want added or removed.

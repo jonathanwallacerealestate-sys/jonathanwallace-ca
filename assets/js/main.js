@@ -45,7 +45,7 @@
 
   function card(v) {
     var thumb = v.thumbnail || ('https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg');
-    var art = node('<article class="video"><button class="video__thumb" style="background-image:url(' + JSON.stringify(thumb) + ');" aria-label="Play: ' + esc(v.title) + '"><span class="video__play">&#9658;</span></button><div class="video__body"><h4>' + esc(v.title) + '</h4><div class="video__meta">YouTube &middot; ' + fmtDate(v.published) + '</div></div></article>');
+    var art = node('<article class="video"><button class="video__thumb" style="background-image:url(\'' + esc(thumb) + '\');" aria-label="Play: ' + esc(v.title) + '"><span class="video__play">&#9658;</span></button><div class="video__body"><h4>' + esc(v.title) + '</h4><div class="video__meta">YouTube &middot; ' + fmtDate(v.published) + '</div></div></article>');
     var btn = art.querySelector('.video__thumb');
     btn.addEventListener('click', function () {
       var f = document.createElement('iframe');

@@ -6,7 +6,7 @@ Change them in one place and every page updates.
 
 - volume: $300M+ in career sales volume
 - families: 500+ families served
-- rating: 4.95 stars on RateMyAgent (9 verified reviews)
+- rating: 4.97 stars on RateMyAgent (13 verified reviews)
 - rank: number one rated agent in Midland and Penetanguishene on RateMyAgent
 - award: 2025 Midland Readers' Choice Award, Best Realtor
 

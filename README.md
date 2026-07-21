@@ -51,7 +51,7 @@ jonathanwallace-ca/
 Search the codebase for `[` to find every placeholder. Key ones:
 
 - **Stats** (`[XX]`, `[XXX]%`, `$[XX]M+`) on home + sell + community pages → your real, verifiable numbers. **Never publish invented figures.**
-- **Reviews** on `index.html` → swap the three sample testimonial cards for the **official RateMyAgent embed widget** (RateMyAgent dashboard → Marketing → Website widget), or paste your 9 real reviews verbatim. Correct the rating to **4.95** and the count to **9**. The hero currently says "5.0 (23 reviews)" as a sample — fix it.
+- **Reviews** on `index.html` → swap the three sample testimonial cards for the **official RateMyAgent embed widget** (RateMyAgent dashboard → Marketing → Website widget), or paste your 9 real reviews verbatim. Correct the rating to **4.97** and the count to **9**. The hero currently says "5.0 (23 reviews)" as a sample — fix it.
 - **Bio + headshot** on `about.html`.
 - **Photography**: replace every `.placeholder-img` with real Georgian Bay photos (hero, community, split sections). Optimize to `.webp`.
 - **Listings**: embed your **Ruuster IDX** feed where you see the `placeholder-note` blocks. Keep SOLD data behind a registration gate (Canadian VOW rules).

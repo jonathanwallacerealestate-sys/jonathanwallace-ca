@@ -1,4 +1,52 @@
 {
-  "_note": "Populate sold[] to power the homepage Recently Sold gallery. Section auto-shows when this array has entries. Do not invent sales.",
-  "sold": []
+  "sold": [
+    {
+      "image": "assets/img/sold-01.jpg",
+      "price": "Sold",
+      "address": "Georgian Bay area",
+      "beds": "",
+      "baths": "",
+      "note": " "
+    },
+    {
+      "image": "assets/img/sold-02.jpg",
+      "price": "Sold",
+      "address": "Georgian Bay area",
+      "beds": "",
+      "baths": "",
+      "note": " "
+    },
+    {
+      "image": "assets/img/sold-03.jpg",
+      "price": "Sold",
+      "address": "Georgian Bay area",
+      "beds": "",
+      "baths": "",
+      "note": " "
+    },
+    {
+      "image": "assets/img/sold-04.jpg",
+      "price": "Sold",
+      "address": "Georgian Bay area",
+      "beds": "",
+      "baths": "",
+      "note": " "
+    },
+    {
+      "image": "assets/img/sold-05.jpg",
+      "price": "Sold",
+      "address": "Georgian Bay area",
+      "beds": "",
+      "baths": "",
+      "note": " "
+    },
+    {
+      "image": "assets/img/sold-06.jpg",
+      "price": "Sold",
+      "address": "Georgian Bay area",
+      "beds": "",
+      "baths": "",
+      "note": " "
+    }
+  ]
 }

@@ -31,14 +31,8 @@
 # Wire an outgoing webhook (Netlify > Forms > form > Settings > Outgoing webhook)
 # to a Make.com custom webhook to push leads into Follow Up Boss. See README.
 
-# Print-safe domain URLs for the satellite pages. Future QR codes and bios
-# should use these; the netlify.app originals keep working untouched.
-[[redirects]]
-  from = "/newsletter"
-  to = "https://georgian-bay-newsletter.netlify.app/"
-  status = 302
-  force = true
-
+# /newsletter is now a real on-domain page (newsletter.html, pretty URL).
+# /resources still redirects to the resources hub until it moves on-domain.
 [[redirects]]
   from = "/resources"
   to = "https://jonathanwallace-resources.netlify.app/"

@@ -96,11 +96,16 @@
       if (fd.get('bot-field')) return; /* honeypot tripped: skip */
       var data = {};
       fd.forEach(function (v, k) { if (k !== 'bot-field') data[k] = v; });
+      var formName = form.getAttribute('name') || data['form-name'] || 'unknown';
+      var tags = ['Website Lead', 'Website: ' + formName];
+      if (formName === 'newsletter') tags.push('Newsletter: Weekly');
+      if (data.loc) tags.push('Poster: ' + data.loc);
       var payload = JSON.stringify({
-        form_name: form.getAttribute('name') || data['form-name'] || 'unknown',
+        form_name: formName,
         email: data.email || '',
         name: ((data.first_name || '') + ' ' + (data.last_name || '')).trim(),
         site_url: 'https://jonathanwallace.ca',
+        tags_json: JSON.stringify(tags),
         data: data
       });
       if (navigator.sendBeacon) {
@@ -110,4 +115,82 @@
       }
     } catch (err) { /* never interfere with the real submission */ }
   }, true);
+})();
+
+/* Google one-tap newsletter signup. Renders a "Sign up with Google" button
+   next to every newsletter form (and in #googleSignupSlot on the newsletter
+   page). One click sends the visitor's Google-verified name and email to the
+   Make webhook (-> Follow Up Boss, tagged Newsletter: Weekly) and records the
+   signup in Netlify Forms. The classic email form stays as the other option. */
+(function () {
+  var CLIENT_ID = '439239346088-n6pitcgg8uuin53uod0f79lfu7rqv6pp.apps.googleusercontent.com';
+  var HOOK = 'https://hook.us2.make.com/tcs6ih6kkol4mpni1umeh2v59i2krlg9';
+  var slots = [];
+  var slotEl = document.getElementById('googleSignupSlot');
+  if (slotEl) slots.push(slotEl);
+  var forms = document.querySelectorAll('form[name="newsletter"]');
+  for (var i = 0; i < forms.length; i++) {
+    if (slotEl && slotEl.getAttribute('data-form') === 'inline') break;
+    var wrap = document.createElement('div');
+    wrap.className = 'g-signup';
+    wrap.style.cssText = 'margin-top:12px;';
+    wrap.innerHTML = '<div style="font-size:.8rem;opacity:.75;margin-bottom:6px;">or one tap with Google:</div><div class="g-btn"></div><div style="font-size:.72rem;opacity:.6;margin-top:6px;">One tap signs you up for the weekly Georgian Bay email. Unsubscribe anytime.</div>';
+    forms[i].parentNode.insertBefore(wrap, forms[i].nextSibling);
+    slots.push(wrap.querySelector('.g-btn'));
+  }
+  if (!slots.length) return;
+
+  function loc() {
+    try { return new URLSearchParams(location.search).get('loc') || ''; } catch (e) { return ''; }
+  }
+  function decodeJwt(t) {
+    var p = t.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+    return JSON.parse(decodeURIComponent(atob(p).split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join('')));
+  }
+  function onCredential(resp) {
+    var claims;
+    try { claims = decodeJwt(resp.credential); } catch (e) { return; }
+    if (!claims || !claims.email) return;
+    var tags = ['Website Lead', 'Website: newsletter', 'Newsletter: Weekly', 'Signup: Google'];
+    if (loc()) tags.push('Poster: ' + loc());
+    var data = {
+      email: claims.email,
+      first_name: claims.given_name || '',
+      last_name: claims.family_name || '',
+      casl_consent: 'yes (Google one-tap signup)',
+      method: 'google',
+      loc: loc()
+    };
+    fetch(HOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        form_name: 'newsletter', email: claims.email,
+        name: claims.name || '', site_url: 'https://jonathanwallace.ca',
+        tags_json: JSON.stringify(tags), data: data
+      })
+    }).catch(function () {});
+    var record = new URLSearchParams();
+    record.set('form-name', 'newsletter');
+    record.set('email', claims.email);
+    record.set('casl_consent', 'yes');
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: record.toString() }).catch(function () {});
+    for (var j = 0; j < slots.length; j++) {
+      var host = slots[j].closest ? (slots[j].closest('.g-signup') || slots[j]) : slots[j];
+      host.innerHTML = '<div style="font-weight:600;">You are in, ' + (claims.given_name || 'neighbour') + '. Watch for Friday\'s issue.</div>';
+    }
+  }
+  function init() {
+    if (!(window.google && google.accounts && google.accounts.id)) return;
+    google.accounts.id.initialize({ client_id: CLIENT_ID, callback: onCredential });
+    for (var k = 0; k < slots.length; k++) {
+      google.accounts.id.renderButton(slots[k], { theme: 'outline', size: 'large', text: 'signup_with', shape: 'pill' });
+    }
+  }
+  var s = document.createElement('script');
+  s.src = 'https://accounts.google.com/gsi/client';
+  s.async = true; s.defer = true; s.onload = init;
+  document.head.appendChild(s);
 })();

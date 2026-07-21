@@ -81,3 +81,33 @@
     })
     .catch(function () { clearTimeout(timer); if (!settled) { settled = true; fallback(); } });
 })();
+
+/* Lead beacon: mirror every Netlify form submission to the Make.com
+   Website Leads webhook (Make -> Follow Up Boss). Netlify Forms stays
+   the system of record; this adds real-time CRM delivery. Fire-and-forget:
+   never blocks or breaks the normal form POST. */
+(function () {
+  var HOOK = 'https://hook.us2.make.com/tcs6ih6kkol4mpni1umeh2v59i2krlg9';
+  document.addEventListener('submit', function (e) {
+    var form = e.target;
+    if (!form || !form.hasAttribute('data-netlify')) return;
+    try {
+      var fd = new FormData(form);
+      if (fd.get('bot-field')) return; /* honeypot tripped: skip */
+      var data = {};
+      fd.forEach(function (v, k) { if (k !== 'bot-field') data[k] = v; });
+      var payload = JSON.stringify({
+        form_name: form.getAttribute('name') || data['form-name'] || 'unknown',
+        email: data.email || '',
+        name: ((data.first_name || '') + ' ' + (data.last_name || '')).trim(),
+        site_url: 'https://jonathanwallace.ca',
+        data: data
+      });
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(HOOK, new Blob([payload], { type: 'application/json' }));
+      } else {
+        fetch(HOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true });
+      }
+    } catch (err) { /* never interfere with the real submission */ }
+  }, true);
+})();

@@ -1,0 +1,4 @@
+{
+  "_note": "Populate sold[] to power the homepage Recently Sold gallery. Section auto-shows when this array has entries. Do not invent sales.",
+  "sold": []
+}

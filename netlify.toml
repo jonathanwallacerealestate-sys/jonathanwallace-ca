@@ -31,10 +31,4 @@
 # Wire an outgoing webhook (Netlify > Forms > form > Settings > Outgoing webhook)
 # to a Make.com custom webhook to push leads into Follow Up Boss. See README.
 
-# /newsletter is now a real on-domain page (newsletter.html, pretty URL).
-# /resources still redirects to the resources hub until it moves on-domain.
-[[redirects]]
-  from = "/resources"
-  to = "https://jonathanwallace-resources.netlify.app/"
-  status = 302
-  force = true
+# /newsletter and /resources are real on-domain pages (pretty URLs).

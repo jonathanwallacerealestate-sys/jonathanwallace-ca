@@ -100,6 +100,7 @@
       var tags = ['Website Lead', 'Website: ' + formName];
       if (formName === 'newsletter') tags.push('Newsletter: Weekly');
       if (data.loc) tags.push('Poster: ' + data.loc);
+      if (data.guide) tags.push('Guide: ' + data.guide);
       var payload = JSON.stringify({
         form_name: formName,
         email: data.email || '',
@@ -155,13 +156,16 @@
     if (!claims || !claims.email) return;
     var tags = ['Website Lead', 'Website: newsletter', 'Newsletter: Weekly', 'Signup: Google'];
     if (loc()) tags.push('Poster: ' + loc());
+    var guideEl = document.querySelector('input[name="guide"]');
+    if (guideEl && guideEl.value) tags.push('Guide: ' + guideEl.value);
     var data = {
       email: claims.email,
       first_name: claims.given_name || '',
       last_name: claims.family_name || '',
       casl_consent: 'yes (Google one-tap signup)',
       method: 'google',
-      loc: loc()
+      loc: loc(),
+      guide: guideEl ? guideEl.value : ''
     };
     fetch(HOOK, {
       method: 'POST',
@@ -181,6 +185,7 @@
       var host = slots[j].closest ? (slots[j].closest('.g-signup') || slots[j]) : slots[j];
       host.innerHTML = '<div style="font-weight:600;">You are in, ' + (claims.given_name || 'neighbour') + '. Watch for Friday\'s issue.</div>';
     }
+    try { document.dispatchEvent(new CustomEvent('jw:signup', { detail: claims })); } catch (e) {}
   }
   function init() {
     if (!(window.google && google.accounts && google.accounts.id)) return;

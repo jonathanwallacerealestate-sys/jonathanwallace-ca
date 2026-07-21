@@ -135,12 +135,18 @@
 
 <section class="section" id="listings">
   <div class="wrap">
-    <div class="tours__head"><div><p class="eyebrow">On the market</p><h2 class="mb-0">Georgian Bay listings</h2></div><a class="btn btn--ghost" href="#" data-replace="Ruuster IDX search URL">Search all homes</a></div>
-    <p class="placeholder-note">Listings powered by <strong>Ruuster IDX</strong>. Embed your Ruuster search/feed here. SOLD data should stay behind a registration gate (Canadian VOW rules), see README.</p>
-    <div class="grid grid--3" style="margin-top:8px;">
-      <article class="listing"><div class="listing__img placeholder-img"></div><div class="listing__body"><div class="listing__price">$[price]</div><div class="listing__addr">[Address], Midland</div><div class="listing__specs"><span>[#] bed</span><span>[#] bath</span><span>[#] sqft</span></div></div></article>
-      <article class="listing"><div class="listing__img placeholder-img"></div><div class="listing__body"><div class="listing__price">$[price]</div><div class="listing__addr">[Address], Penetanguishene</div><div class="listing__specs"><span>[#] bed</span><span>[#] bath</span><span>[#] sqft</span></div></div></article>
-      <article class="listing"><div class="listing__img placeholder-img"></div><div class="listing__body"><div class="listing__price">$[price]</div><div class="listing__addr">[Address], Wasaga Beach</div><div class="listing__specs"><span>[#] bed</span><span>[#] bath</span><span>[#] sqft</span></div></div></article>
+    <!-- IDX MOUNT (framework, keep): when listing search connectivity is ready,
+         embed the feed inside #idx-mount and remove the CTA band below.
+         SOLD data stays behind a registration gate (Canadian VOW rules). -->
+    <div id="idx-mount" hidden aria-live="polite"></div>
+    <div class="ctaband">
+      <p class="eyebrow" style="color:#C9A96A;">On the market</p>
+      <h2 style="margin-bottom:8px;">Every Georgian Bay listing, matched to you</h2>
+      <p>Tell Jonathan Wallace what you are looking for and get every matching home in Midland, Penetanguishene, Tay, Tiny and Wasaga Beach as it hits the market, plus honest video walkthroughs of the standouts.</p>
+      <div class="stack-actions" style="justify-content:center;">
+        <a class="btn btn--light btn--lg" href="contact.html">Tell me what you're looking for</a>
+        <a class="btn btn--ghost-light btn--lg" href="home-tours.html">Watch the home tours</a>
+      </div>
     </div>
   </div>
 </section>

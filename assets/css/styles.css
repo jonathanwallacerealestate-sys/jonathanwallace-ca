@@ -56,6 +56,7 @@ p{margin:0 0 1.1em;}
 .section--navy h2,.section--navy h3{color:var(--white);}
 .eyebrow{font-family:var(--sans);font-weight:600;text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;color:var(--copper);margin:0 0 14px;}
 .section--navy .eyebrow{color:#C9A96A;}
+.post-hero h1{color:#fff;}
 .center{text-align:center;}
 .center .lead{margin-left:auto;margin-right:auto;}
 

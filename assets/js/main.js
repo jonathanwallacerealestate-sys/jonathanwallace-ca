@@ -126,18 +126,30 @@
 (function () {
   var CLIENT_ID = '439239346088-n6pitcgg8uuin53uod0f79lfu7rqv6pp.apps.googleusercontent.com';
   var HOOK = 'https://hook.us2.make.com/tcs6ih6kkol4mpni1umeh2v59i2krlg9';
+
+  // Contact page: a "Continue with Google" button that PREFILLS the contact form
+  // (name + email) so the visitor only adds their message. Takes priority so the
+  // one initialize below uses the contact callback and never collides.
+  var contactSlot = document.getElementById('googleContactSlot');
+  var contactForm = document.querySelector('form[name="contact"]');
+  var CONTACT_MODE = !!(contactSlot && contactForm);
+
   var slots = [];
-  var slotEl = document.getElementById('googleSignupSlot');
-  if (slotEl) slots.push(slotEl);
-  var forms = document.querySelectorAll('form[name="newsletter"]');
-  for (var i = 0; i < forms.length; i++) {
-    if (slotEl && slotEl.getAttribute('data-form') === 'inline') break;
-    var wrap = document.createElement('div');
-    wrap.className = 'g-signup';
-    wrap.style.cssText = 'margin-top:12px;';
-    wrap.innerHTML = '<div style="font-size:.8rem;opacity:.75;margin-bottom:6px;">or one tap with Google:</div><div class="g-btn"></div><div style="font-size:.72rem;opacity:.6;margin-top:6px;">One tap signs you up for the weekly Georgian Bay email. Unsubscribe anytime.</div>';
-    forms[i].parentNode.insertBefore(wrap, forms[i].nextSibling);
-    slots.push(wrap.querySelector('.g-btn'));
+  if (CONTACT_MODE) {
+    slots.push(contactSlot);
+  } else {
+    var slotEl = document.getElementById('googleSignupSlot');
+    if (slotEl) slots.push(slotEl);
+    var forms = document.querySelectorAll('form[name="newsletter"]');
+    for (var i = 0; i < forms.length; i++) {
+      if (slotEl && slotEl.getAttribute('data-form') === 'inline') break;
+      var wrap = document.createElement('div');
+      wrap.className = 'g-signup';
+      wrap.style.cssText = 'margin-top:12px;';
+      wrap.innerHTML = '<div style="font-size:.8rem;opacity:.75;margin-bottom:6px;">or one tap with Google:</div><div class="g-btn"></div><div style="font-size:.72rem;opacity:.6;margin-top:6px;">One tap signs you up for the weekly Georgian Bay email. Unsubscribe anytime.</div>';
+      forms[i].parentNode.insertBefore(wrap, forms[i].nextSibling);
+      slots.push(wrap.querySelector('.g-btn'));
+    }
   }
   if (!slots.length) return;
 
@@ -187,11 +199,26 @@
     }
     try { document.dispatchEvent(new CustomEvent('jw:signup', { detail: claims })); } catch (e) {}
   }
+  function onContact(resp) {
+    var claims;
+    try { claims = decodeJwt(resp.credential); } catch (e) { return; }
+    if (!claims || !claims.email) return;
+    function fill(name, val) {
+      var el = contactForm.querySelector('[name="' + name + '"]');
+      if (el && !el.value && val) el.value = val;
+    }
+    fill('first_name', claims.given_name || '');
+    fill('last_name', claims.family_name || '');
+    fill('email', claims.email);
+    contactSlot.innerHTML = '<div style="font-weight:600;color:#1B1B1B;">Thanks, ' + (claims.given_name || 'there') + '. I filled in your name and email, just add your message below.</div>';
+    var msg = contactForm.querySelector('[name="message"]');
+    if (msg) { try { msg.focus(); } catch (e) {} }
+  }
   function init() {
     if (!(window.google && google.accounts && google.accounts.id)) return;
-    google.accounts.id.initialize({ client_id: CLIENT_ID, callback: onCredential });
+    google.accounts.id.initialize({ client_id: CLIENT_ID, callback: CONTACT_MODE ? onContact : onCredential });
     for (var k = 0; k < slots.length; k++) {
-      google.accounts.id.renderButton(slots[k], { theme: 'outline', size: 'large', text: 'signup_with', shape: 'pill' });
+      google.accounts.id.renderButton(slots[k], { theme: 'outline', size: 'large', text: CONTACT_MODE ? 'continue_with' : 'signup_with', shape: 'pill' });
     }
   }
   var s = document.createElement('script');

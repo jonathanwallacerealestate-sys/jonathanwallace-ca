@@ -4,4 +4,11 @@
 User-agent: *
 Allow: /
 
+# Google's search and AI/generative crawlers, explicitly welcomed
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://jonathanwallace.ca/sitemap.xml

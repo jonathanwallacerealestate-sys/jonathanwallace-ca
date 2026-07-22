@@ -32,3 +32,55 @@
 # to a Make.com custom webhook to push leads into Follow Up Boss. See README.
 
 # /newsletter and /resources are real on-domain pages (pretty URLs).
+
+# Pretty URLs for the community hub pages (serve the file, keep the clean URL)
+
+[[redirects]]
+  from = "/midland-real-estate"
+  to = "/communities/midland.html"
+  status = 200
+
+[[redirects]]
+  from = "/midland-real-estate/"
+  to = "/communities/midland.html"
+  status = 200
+
+[[redirects]]
+  from = "/penetanguishene-real-estate"
+  to = "/communities/penetanguishene.html"
+  status = 200
+
+[[redirects]]
+  from = "/penetanguishene-real-estate/"
+  to = "/communities/penetanguishene.html"
+  status = 200
+
+[[redirects]]
+  from = "/tay-township-real-estate"
+  to = "/communities/tay-township.html"
+  status = 200
+
+[[redirects]]
+  from = "/tay-township-real-estate/"
+  to = "/communities/tay-township.html"
+  status = 200
+
+[[redirects]]
+  from = "/tiny-township-real-estate"
+  to = "/communities/tiny-township.html"
+  status = 200
+
+[[redirects]]
+  from = "/tiny-township-real-estate/"
+  to = "/communities/tiny-township.html"
+  status = 200
+
+[[redirects]]
+  from = "/wasaga-beach-real-estate"
+  to = "/communities/wasaga-beach.html"
+  status = 200
+
+[[redirects]]
+  from = "/wasaga-beach-real-estate/"
+  to = "/communities/wasaga-beach.html"
+  status = 200

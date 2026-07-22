@@ -109,8 +109,15 @@ p{margin:0 0 1.1em;}
 .hero h1{color:#fff;}
 .hero p{color:rgba(255,255,255,.9);font-size:1.25rem;max-width:54ch;}
 .hero__actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;}
-.hero__trust{margin-top:34px;display:flex;gap:26px;flex-wrap:wrap;color:rgba(255,255,255,.78);font-size:.9rem;align-items:center;}
-.hero__trust strong{color:#fff;}
+.hero__trust{margin-top:38px;display:flex;flex-wrap:wrap;align-items:center;row-gap:12px;}
+.hero__trust>span{display:inline-flex;align-items:center;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);white-space:nowrap;}
+.hero__trust>span+span::before{content:"";width:1px;height:13px;background:rgba(201,169,106,.55);margin:0 20px;}
+.hero__trust strong{color:#fff;font-weight:600;margin-right:6px;letter-spacing:.06em;}
+.trust__stars{color:#C9A96A;font-size:.72rem;letter-spacing:.22em;margin-right:9px;}
+@media (max-width:720px){
+  .hero__trust{flex-direction:column;align-items:flex-start;row-gap:10px;}
+  .hero__trust>span+span::before{display:none;}
+}
 
 /* ---------- Stat / proof band ---------- */
 .proof{background:var(--navy);color:#fff;}

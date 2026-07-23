@@ -1,4 +1,4 @@
-# redeploy to activate GOOGLE_PLACES_API_KEY env var
+# redeploy to activate GOOGLE_PLACES_API_KEY env var (v2)
 # Netlify configuration — jonathanwallace.ca
 # Static site: no build step, publish the repo root.
 

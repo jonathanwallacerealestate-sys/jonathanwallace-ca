@@ -91,3 +91,55 @@
   from = "/wasaga-beach-real-estate/"
   to = "/communities/wasaga-beach.html"
   status = 200
+
+# Pretty URLs for the "Sell your home in [Town]" service pages (serve the file, keep the clean URL)
+
+[[redirects]]
+  from = "/sell-your-home-in-midland"
+  to = "/sell-midland.html"
+  status = 200
+
+[[redirects]]
+  from = "/sell-your-home-in-midland/"
+  to = "/sell-midland.html"
+  status = 200
+
+[[redirects]]
+  from = "/sell-your-home-in-penetanguishene"
+  to = "/sell-penetanguishene.html"
+  status = 200
+
+[[redirects]]
+  from = "/sell-your-home-in-penetanguishene/"
+  to = "/sell-penetanguishene.html"
+  status = 200
+
+[[redirects]]
+  from = "/sell-your-home-in-tiny-township"
+  to = "/sell-tiny-township.html"
+  status = 200
+
+[[redirects]]
+  from = "/sell-your-home-in-tiny-township/"
+  to = "/sell-tiny-township.html"
+  status = 200
+
+[[redirects]]
+  from = "/sell-your-home-in-tay-township"
+  to = "/sell-tay-township.html"
+  status = 200
+
+[[redirects]]
+  from = "/sell-your-home-in-tay-township/"
+  to = "/sell-tay-township.html"
+  status = 200
+
+[[redirects]]
+  from = "/sell-your-home-in-wasaga-beach"
+  to = "/sell-wasaga-beach.html"
+  status = 200
+
+[[redirects]]
+  from = "/sell-your-home-in-wasaga-beach/"
+  to = "/sell-wasaga-beach.html"
+  status = 200

@@ -40,7 +40,7 @@ exports.handler = async function () {
       const fr = await fetch(findUrl);
       const fj = await fr.json();
       if (fj && fj.candidates && fj.candidates[0]) placeId = fj.candidates[0].place_id;
-      if (!placeId) throw new Error('Could not resolve a Place ID (status ' + (fj && fj.status) + ')');
+      if (!placeId) throw new Error('Find Place ' + (fj && fj.status) + (fj && fj.error_message ? ': ' + fj.error_message : ''));
     }
 
     const detailsUrl = 'https://maps.googleapis.com/maps/api/place/details/json'

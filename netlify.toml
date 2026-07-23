@@ -20,6 +20,12 @@
   [headers.values]
     Cache-Control = "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400"
 
+# Cache the Google reviews API at the edge (refresh daily, serve stale meanwhile)
+[[headers]]
+  for = "/.netlify/functions/google-reviews"
+  [headers.values]
+    Cache-Control = "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+
 # Example redirect (uncomment + edit if you add /listings via an IDX subdomain)
 # [[redirects]]
 #   from = "/listings"

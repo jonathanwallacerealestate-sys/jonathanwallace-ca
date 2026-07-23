@@ -226,3 +226,30 @@
   s.async = true; s.defer = true; s.onload = init;
   document.head.appendChild(s);
 })();
+
+
+/* Live Google reviews (fetched server-side via the google-reviews Netlify function,
+   so the API key never touches the browser). Renders a small "Fresh from Google" row
+   into #googleReviews when reviews are available; stays hidden otherwise. */
+(function () {
+  var host = document.getElementById('googleReviews');
+  if (!host) return;
+  function esc(t){ var d=document.createElement('div'); d.textContent=t||''; return d.innerHTML; }
+  function stars(n){ n=Math.round(n||5); var s=''; for(var i=0;i<5;i++) s+=(i<n?'\u2605':'\u2606'); return s; }
+  fetch('/.netlify/functions/google-reviews').then(function(r){ return r.json(); }).then(function(d){
+    if (!d || !d.reviews || !d.reviews.length) return;
+    var cards = d.reviews.slice(0,3).map(function(rv){
+      var t = rv.text.length > 260 ? rv.text.slice(0,257).replace(/\s+\S*$/,'') + '\u2026' : rv.text;
+      var when = rv.relative_time ? ' \u00b7 ' + esc(rv.relative_time) : '';
+      return '<blockquote style="background:#F7F3EC;border:1px solid #EAE4D8;border-radius:14px;padding:22px;margin:0;">'
+        + '<div style="color:#C9A96A;letter-spacing:3px;font-size:.95rem;">' + stars(rv.rating) + '</div>'
+        + '<p style="font-family:\'Playfair Display\',Georgia,serif;font-size:1.02rem;line-height:1.55;color:#1B1B1B;margin:10px 0 14px;">\u201c' + esc(t) + '\u201d</p>'
+        + '<cite style="font-style:normal;font-size:.88rem;color:#8A8378;">' + esc(rv.author) + ' \u00b7 Google review' + when + '</cite>'
+        + '</blockquote>';
+    }).join('');
+    var mapsLink = d.maps_url ? '<div style="margin-top:16px;"><a class="btn btn--ghost" href="' + esc(d.maps_url) + '" target="_blank" rel="noopener">See all Google reviews \u2192</a></div>' : '';
+    host.innerHTML = '<p class="eyebrow" style="margin-top:44px;">Fresh from Google</p>'
+      + '<div class="grid grid--3" style="margin-top:16px;text-align:left;">' + cards + '</div>' + mapsLink;
+    host.style.display = '';
+  }).catch(function(){});
+})();

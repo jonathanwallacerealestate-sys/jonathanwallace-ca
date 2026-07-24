@@ -194,5 +194,37 @@
   </div>
 </footer>
 <script src="assets/js/main.js"></script>
+<script>
+(function(){
+  var form=document.querySelector('form[name="buyer-search"]');
+  if(!form) return;
+  form.addEventListener('submit',function(){
+    try{
+      var hp=form.querySelector('[name="bot-field"]'); if(hp&&hp.value){return;}
+      function vals(n){return Array.prototype.slice.call(form.querySelectorAll('input[name="'+n+'"]:checked')).map(function(x){return x.value;}).join(', ')||'None specified';}
+      function sel(n){var el=form.elements[n];return el?el.value:'';}
+      var notes='Communities: '+vals('communities')
+        +' | Style: '+vals('home_style')
+        +' | Beds: '+sel('bedrooms')+' | Baths: '+sel('bathrooms')
+        +' | Sqft: '+sel('sqft')+' | Price: '+sel('price_range')
+        +' | Wants/must-haves: '+vals('features')
+        +' | Timeline: '+sel('timeline')+' | Also selling: '+sel('also_selling')
+        +' | Notes: '+((form.elements['notes']||{}).value||'');
+      var payload={form_name:'buyer-search',email:(form.elements['email']||{}).value||'',
+        tags_json:'["Website Lead", "Buyer Search", "Buyer"]',
+        data:{first_name:(form.elements['first_name']||{}).value||'',
+          last_name:(form.elements['last_name']||{}).value||'',
+          phone:(form.elements['phone']||{}).value||'',
+          notes:notes,
+          casl_consent:(form.elements['casl_consent']&&form.elements['casl_consent'].checked)?'yes':'',
+          source_page:'find-your-home'}};
+      var url='https://hook.us2.make.com/tcs6ih6kkol4mpni1umeh2v59i2krlg9';
+      var blob=new Blob([JSON.stringify(payload)],{type:'application/json'});
+      if(navigator.sendBeacon){navigator.sendBeacon(url,blob);}
+      else{fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true});}
+    }catch(e){}
+  });
+})();
+</script>
 </body>
 </html>

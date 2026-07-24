@@ -50,7 +50,7 @@ p{margin:0 0 1.1em;}
 .lead{font-size:1.2rem;color:var(--muted);max-width:60ch;}
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
-.section{padding:clamp(56px,8vw,110px) 0;}
+.section{padding:clamp(40px,6vw,80px) 0;}
 .section--sand{background:var(--sand);}
 .section--navy{background:var(--navy);color:rgba(255,255,255,.86);}
 .section--navy h2,.section--navy h3{color:var(--white);}

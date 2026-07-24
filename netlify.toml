@@ -143,3 +143,14 @@
   from = "/sell-your-home-in-wasaga-beach/"
   to = "/sell-wasaga-beach.html"
   status = 200
+
+# Pretty URL for the buyer home-search page
+[[redirects]]
+  from = "/find-your-home"
+  to = "/find-your-home.html"
+  status = 200
+
+[[redirects]]
+  from = "/find-your-home/"
+  to = "/find-your-home.html"
+  status = 200

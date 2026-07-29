@@ -173,19 +173,96 @@
   }, true);
 })();
 
-/* Follow Up Boss Pixel — return-visit / page tracking for known contacts.
-   DISABLED until Jonathan pastes his pixel snippet from FUB (Admin ->
-   Integrations -> Pixel). To activate: set FUB_PIXEL_SRC to the exact script
-   src FUB provides. Loads site-wide from this one file. While the src is empty
-   no script loads and no tracking cookie is set, so this is a safe no-op. */
+/* Follow Up Boss Pixel + cookie-consent notice.
+   The pixel does return-visit / page tracking for anonymous visitors. Per CASL
+   and PIPEDA it sets a tracking cookie, so it never loads until the visitor
+   accepts. A site-wide consent notice (Midnight Estate styling) is injected on
+   every page from this one file. The choice is remembered so the notice shows
+   once, not on every page. Storage is best-effort: if it is blocked, the choice
+   holds for the current visit and the notice returns next time, which is safe.
+
+   The pixel is the Follow Up Boss Widget Tracker (FUB Admin -> Integrations ->
+   Pixel). It activates through the one FUB_PIXEL_CODE constant below. While the
+   code is empty no pixel loads, but the consent notice still behaves normally.
+   The site-wide lead beacon above is independent of this and is unaffected
+   either way. */
 (function () {
-  var FUB_PIXEL_SRC = ''; /* e.g. 'https://widgetbe.com/agent?code=XXXXXXXX' from FUB */
-  if (!FUB_PIXEL_SRC) return;
-  var s = document.createElement('script');
-  s.async = true;
-  s.src = FUB_PIXEL_SRC;
-  var f = document.getElementsByTagName('script')[0];
-  f.parentNode.insertBefore(s, f);
+  var FUB_PIXEL_CODE = 'WT-APBFKUQQ'; /* Follow Up Boss Widget Tracker code */
+  var STORE_KEY = 'jw_cookie_consent_v1';
+  var pixelLoaded = false;
+  var mem = null; /* in-memory fallback if storage is unavailable */
+
+  function readConsent() {
+    try { var v = localStorage.getItem(STORE_KEY); if (v) return v; } catch (e) {}
+    return mem;
+  }
+  function saveConsent(v) {
+    mem = v;
+    try { localStorage.setItem(STORE_KEY, v); } catch (e) {}
+  }
+
+  function loadPixel() {
+    if (pixelLoaded || !FUB_PIXEL_CODE) return;
+    pixelLoaded = true;
+    /* Official Follow Up Boss Widget Tracker bootstrap, run only after consent. */
+    (function (w, i, d, g, e, t) {
+      w['WidgetTrackerObject'] = g;
+      (w[g] = w[g] || function () { (w[g].q = w[g].q || []).push(arguments); }), (w[g].ds = 1 * new Date());
+      (e = 'script'), (t = d.createElement(e)), (e = d.getElementsByTagName(e)[0]);
+      t.async = 1; t.src = i; e.parentNode.insertBefore(t, e);
+    })(window, 'https://widgetbe.com/agent', document, 'widgetTracker');
+    window.widgetTracker('create', FUB_PIXEL_CODE);
+    window.widgetTracker('send', 'pageview');
+  }
+
+  function showBanner() {
+    if (document.getElementById('jwConsent')) return;
+    var bar = document.createElement('div');
+    bar.id = 'jwConsent';
+    bar.setAttribute('role', 'dialog');
+    bar.setAttribute('aria-label', 'Cookie notice');
+    bar.style.cssText = 'position:fixed;left:16px;right:16px;bottom:16px;z-index:2147483000;'
+      + 'max-width:560px;margin:0 auto;background:#1B1B1B;color:#F7F3EC;'
+      + 'border:1px solid rgba(201,169,106,.35);border-radius:14px;'
+      + 'box-shadow:0 14px 40px rgba(0,0,0,.4);padding:18px 20px;'
+      + 'font-family:\'Nunito Sans\',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;'
+      + 'font-size:.9rem;line-height:1.5;opacity:0;transform:translateY(8px);'
+      + 'transition:opacity .35s ease,transform .35s ease;';
+    bar.innerHTML =
+      '<div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;">'
+      + '<p style="margin:0;flex:1 1 260px;min-width:220px;">This site uses cookies to see what visitors find useful and to improve the experience. '
+      + 'You can accept or decline. Read the <a href="/privacy.html" style="color:#C9A96A;text-decoration:underline;">privacy policy</a> for details.</p>'
+      + '<div style="display:flex;gap:10px;flex:0 0 auto;">'
+      + '<button type="button" id="jwConsentDecline" style="cursor:pointer;background:transparent;color:#F7F3EC;'
+      + 'border:1px solid rgba(247,243,236,.4);border-radius:999px;padding:9px 18px;font:inherit;">Decline</button>'
+      + '<button type="button" id="jwConsentAccept" style="cursor:pointer;background:#C9A96A;color:#1B1B1B;'
+      + 'border:1px solid #C9A96A;border-radius:999px;padding:9px 18px;font:inherit;font-weight:600;">Accept</button>'
+      + '</div></div>';
+    document.body.appendChild(bar);
+    requestAnimationFrame(function () { bar.style.opacity = '1'; bar.style.transform = 'translateY(0)'; });
+
+    function close() {
+      bar.style.opacity = '0';
+      bar.style.transform = 'translateY(8px)';
+      setTimeout(function () { if (bar.parentNode) bar.parentNode.removeChild(bar); }, 350);
+    }
+    document.getElementById('jwConsentAccept').addEventListener('click', function () {
+      saveConsent('granted'); loadPixel(); close();
+    });
+    document.getElementById('jwConsentDecline').addEventListener('click', function () {
+      saveConsent('denied'); close();
+    });
+  }
+
+  function start() {
+    var choice = readConsent();
+    if (choice === 'granted') { loadPixel(); return; }
+    if (choice === 'denied') { return; }
+    showBanner();
+  }
+
+  if (document.body) { start(); }
+  else { document.addEventListener('DOMContentLoaded', start); }
 })();
 
 /* Google one-tap newsletter signup. Renders a "Sign up with Google" button

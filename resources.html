@@ -30,10 +30,10 @@
 <body>
 <header class="site-header">
   <div class="wrap nav">
-    <div class="brand"><a href="index.html"><span class="brand__name">Jonathan Wallace</span><span class="brand__tag">Your Georgian Bay Specialist</span></a></div>
+    <div class="brand"><a href='/'><span class="brand__name">Jonathan Wallace</span><span class="brand__tag">Your Georgian Bay Specialist</span></a></div>
     <nav><ul class="nav__links" id="navLinks">
-      <li><a href="sell.html">Sell</a></li><li><a href="buy.html">Buy</a></li><li><a href="home-tours.html">Home Tours</a></li><li><a href="communities.html">Communities</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li>
-      <li class="nav__cta"><a class="btn btn--primary" href="home-value.html">Price My Home</a></li>
+      <li><a href='/sell'>Sell</a></li><li><a href='/buy'>Buy</a></li><li><a href='/home-tours'>Home Tours</a></li><li><a href='/communities'>Communities</a></li><li><a href='/about'>About</a></li><li><a href='/contact'>Contact</a></li>
+      <li class="nav__cta"><a class='btn btn--primary' href='/home-value'>Price My Home</a></li>
     </ul></nav>
     <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -60,7 +60,7 @@
       <div id="guideGate" class="card" style="padding:28px;margin-top:24px;">
         <h3 style="margin-bottom:6px;">Get the guide free</h3>
         <p style="margin-bottom:14px;font-size:.95rem;">Sign up once and the download unlocks, plus you get the five-minute Friday email on the Georgian Bay market. Unsubscribe anytime.</p>
-        <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="guideForm">
+        <form id='guideForm' method='POST' name='newsletter'>
           <input type="hidden" name="form-name" value="newsletter">
           <input type="hidden" name="guide" value="vacant-land">
           <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
@@ -92,6 +92,19 @@
       </div>
     </article>
 
+    <article style="margin-top:56px;border-top:1px solid #EAE4D8;padding-top:40px;">
+      <img src="assets/img/midland-official-plan-hero.jpg" alt="A Georgian Bay harbour town at dusk, the market this Midland Official Plan investing guide covers" loading="lazy" style="border-radius:14px;box-shadow:var(--shadow);margin-bottom:22px;">
+      <p class="eyebrow">Guide No. 3</p>
+      <h2>Investing and Developing in Midland, Ontario: The Official Plan Guide</h2>
+      <p>A working guide for investors and developers, built from the Town of Midland's Official Plan. Inside: the 2031 growth targets, what you can build and how tall by designation, where the Town directs density through its Strategic Growth Areas, the Midland Bay Landing waterfront lands, and the Official Plan Amendment process from pre-consultation to approval.</p>
+      <p>Written by Jonathan Wallace from the current Official Plan, in plain language, for anyone weighing a project or a land purchase in Georgian Bay.</p>
+      <div class="ctaband" style="margin-top:24px;">
+        <h3 style="margin-bottom:8px;">Read the guide and get the download</h3>
+        <p style="margin-bottom:14px;">Read it on the site and download the full PDF: designations, heights, growth areas, and the amendment process in one document.</p>
+        <a class="btn btn--light btn--lg" href="/blog-midland-official-plan-investing-guide">Open the Midland guide &rarr;</a>
+      </div>
+    </article>
+
     <p style="margin-top:40px;font-size:.9rem;opacity:.8;">More Georgian Bay guides are on the way: waterfront buying, selling on the Bay, and moving to Georgian Bay. Newsletter subscribers get each one first.</p>
     <p style="font-size:.85rem;opacity:.7;">These guides are general information for the Simcoe County market and are not a substitute for professional soil, engineering, legal, or financial advice. Builder questions: Steve Feheley, Jameson Homes, 705-796-4638, <a href="https://jamesonhomesco.ca" target="_blank" rel="noopener">jamesonhomesco.ca</a>.</p>
 
@@ -101,7 +114,7 @@
 <footer class="footer">
   <div class="wrap footer__legal">
     <p><strong>Jonathan Wallace, Salesperson</strong> · Faris Team Real Estate, Brokerage · 705-433-2525 · <a href="mailto:jonathan@faristeam.ca">jonathan@faristeam.ca</a> · Midland, Ontario</p>
-    <p>© <span id="year">2026</span> Jonathan Wallace. All rights reserved. · <a href="privacy.html">Privacy Policy</a></p>
+    <p>© <span id="year">2026</span> Jonathan Wallace. All rights reserved. · <a href='/privacy'>Privacy Policy</a></p>
   </div>
 </footer>
 <script>

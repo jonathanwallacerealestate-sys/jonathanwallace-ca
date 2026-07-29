@@ -1,6 +1,4 @@
-# jonathanwallace.ca
-# Note: the site is currently held out of search by X-Robots-Tag noindex in _headers.
-# Remove that header at launch and these rules take effect.
+# jonathanwallace.ca — live and open to search (launched 2026-07-24).
 User-agent: *
 Allow: /
 

@@ -96,7 +96,7 @@
   <div class="wrap" style="max-width:840px;">
     <div class="center" style="margin-bottom:26px;"><p class="eyebrow">Your home search</p><h2>Tell me what you are looking for</h2><p class="lead" style="margin:0 auto;">The more you share, the sharper your matches. Nothing here is binding, it just helps me find the right homes for you.</p></div>
 
-    <form class="form" name="buyer-search" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thank-you.html">
+    <form class="form" name="buyer-search" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-beacon="off" action="thank-you.html">
       <input type="hidden" name="form-name" value="buyer-search">
       <input type="hidden" name="source_page" value="find-your-home">
       <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
@@ -211,7 +211,9 @@
         +' | Timeline: '+sel('timeline')+' | Also selling: '+sel('also_selling')
         +' | Notes: '+((form.elements['notes']||{}).value||'');
       var payload={form_name:'buyer-search',email:(form.elements['email']||{}).value||'',
-        tags_json:'["Website Lead", "Buyer Search", "Buyer"]',
+        name:(((form.elements['first_name']||{}).value||'')+' '+((form.elements['last_name']||{}).value||'')).trim(),
+        site_url:'https://jonathanwallace.ca',
+        tags_json:'["Website Lead", "Website: buyer-search", "Page: /find-your-home", "Buyer Search", "Intent: Buyer"]',
         data:{first_name:(form.elements['first_name']||{}).value||'',
           last_name:(form.elements['last_name']||{}).value||'',
           phone:(form.elements['phone']||{}).value||'',

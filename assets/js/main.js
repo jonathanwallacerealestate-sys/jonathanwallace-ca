@@ -82,40 +82,110 @@
     .catch(function () { clearTimeout(timer); if (!settled) { settled = true; fallback(); } });
 })();
 
-/* Lead beacon: mirror every Netlify form submission to the Make.com
-   Website Leads webhook (Make -> Follow Up Boss). Netlify Forms stays
-   the system of record; this adds real-time CRM delivery. Fire-and-forget:
-   never blocks or breaks the normal form POST. */
+/* Lead beacon + interaction tracking. Mirrors every Netlify form submission to
+   the Make.com Website Leads webhook (Make -> Follow Up Boss), tagging it by what
+   the visitor actually did (which form, which guide, which page, buyer vs seller
+   intent), and logs PDF/guide downloads for known leads. Netlify Forms stays the
+   system of record; this adds real-time CRM delivery. Fire-and-forget: never
+   blocks or breaks the normal form POST. */
 (function () {
   var HOOK = 'https://hook.us2.make.com/tcs6ih6kkol4mpni1umeh2v59i2krlg9';
+  /* Last visitor who identified themselves on THIS page (from a form submit).
+     Lets us attribute a subsequent PDF download to a real person. */
+  window.__jwLead = window.__jwLead || null;
+
+  function cleanPath() {
+    try {
+      var p = location.pathname.replace(/\.html$/, '').replace(/\/+$/, '');
+      return p === '' ? '/home' : p;
+    } catch (e) { return ''; }
+  }
+  function intentTag(hay) {
+    if (/(seller|home-valuation|home_value|selling|\bsell\b)/i.test(hay)) return 'Intent: Seller';
+    if (/(buyer|buying|\bbuy\b)/i.test(hay)) return 'Intent: Buyer';
+    return '';
+  }
+  function send(obj) {
+    var payload = JSON.stringify(obj);
+    try {
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(HOOK, new Blob([payload], { type: 'application/json' }));
+      } else {
+        fetch(HOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true });
+      }
+    } catch (e) {}
+  }
+  window.__jwSend = send;
+
+  /* Form submissions -> tagged lead event */
   document.addEventListener('submit', function (e) {
     var form = e.target;
     if (!form || !form.hasAttribute('data-netlify')) return;
+    if (form.getAttribute('data-beacon') === 'off') return; /* form sends its own beacon */
     try {
       var fd = new FormData(form);
       if (fd.get('bot-field')) return; /* honeypot tripped: skip */
       var data = {};
       fd.forEach(function (v, k) { if (k !== 'bot-field') data[k] = v; });
       var formName = form.getAttribute('name') || data['form-name'] || 'unknown';
-      var tags = ['Website Lead', 'Website: ' + formName];
+      var name = ((data.first_name || '') + ' ' + (data.last_name || '')).trim();
+      var tags = ['Website Lead', 'Website: ' + formName, 'Page: ' + cleanPath()];
       if (formName === 'newsletter') tags.push('Newsletter: Weekly');
       if (data.loc) tags.push('Poster: ' + data.loc);
       if (data.guide) tags.push('Guide: ' + data.guide);
-      var payload = JSON.stringify({
+      var it = intentTag(formName + ' ' + (data.topic || '') + ' ' + (data.source_page || ''));
+      if (it) tags.push(it);
+      if (data.email) window.__jwLead = { email: data.email, name: name };
+      send({
         form_name: formName,
         email: data.email || '',
-        name: ((data.first_name || '') + ' ' + (data.last_name || '')).trim(),
+        name: name,
         site_url: 'https://jonathanwallace.ca',
         tags_json: JSON.stringify(tags),
         data: data
       });
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon(HOOK, new Blob([payload], { type: 'application/json' }));
-      } else {
-        fetch(HOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true });
-      }
     } catch (err) { /* never interfere with the real submission */ }
   }, true);
+
+  /* PDF / guide downloads -> explicit "Downloaded" event for a known lead.
+     Anonymous downloads are left to the Follow Up Boss Pixel, since a CRM event
+     needs an email; without one it cannot attach to a person. */
+  document.addEventListener('click', function (e) {
+    try {
+      var a = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      var isDl = a.hasAttribute('download') || /\.pdf($|\?|#)/i.test(href);
+      if (!isDl) return;
+      var lead = window.__jwLead;
+      if (!lead || !lead.email) return; /* unknown visitor: pixel handles it */
+      var file = (href.split('/').pop() || 'file').split('?')[0].split('#')[0];
+      var label = (a.textContent || file).replace(/\s+/g, ' ').trim().slice(0, 80);
+      send({
+        form_name: 'download',
+        email: lead.email,
+        name: lead.name || '',
+        site_url: 'https://jonathanwallace.ca',
+        tags_json: JSON.stringify(['Website Lead', 'Downloaded PDF', 'File: ' + file, 'Page: ' + cleanPath()]),
+        data: { method: 'download', topic: 'PDF download: ' + label, file: file, label: label, email: lead.email, first_name: (lead.name || '').split(' ')[0] || '' }
+      });
+    } catch (err) {}
+  }, true);
+})();
+
+/* Follow Up Boss Pixel — return-visit / page tracking for known contacts.
+   DISABLED until Jonathan pastes his pixel snippet from FUB (Admin ->
+   Integrations -> Pixel). To activate: set FUB_PIXEL_SRC to the exact script
+   src FUB provides. Loads site-wide from this one file. While the src is empty
+   no script loads and no tracking cookie is set, so this is a safe no-op. */
+(function () {
+  var FUB_PIXEL_SRC = ''; /* e.g. 'https://widgetbe.com/agent?code=XXXXXXXX' from FUB */
+  if (!FUB_PIXEL_SRC) return;
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = FUB_PIXEL_SRC;
+  var f = document.getElementsByTagName('script')[0];
+  f.parentNode.insertBefore(s, f);
 })();
 
 /* Google one-tap newsletter signup. Renders a "Sign up with Google" button

@@ -154,3 +154,25 @@
   from = "/find-your-home/"
   to = "/find-your-home.html"
   status = 200
+
+# Pretty URL + branded path for the What's It Take market guide
+# (200 rewrites keep the clean URL and preserve ?src=newsletter for the free path)
+[[redirects]]
+  from = "/whats-it-take"
+  to = "/blog-whats-it-take.html"
+  status = 200
+
+[[redirects]]
+  from = "/whats-it-take/"
+  to = "/blog-whats-it-take.html"
+  status = 200
+
+[[redirects]]
+  from = "/Whats-It-Take"
+  to = "/blog-whats-it-take.html"
+  status = 200
+
+[[redirects]]
+  from = "/Whats-It-Take/"
+  to = "/blog-whats-it-take.html"
+  status = 200

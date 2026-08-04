@@ -1,121 +1,245 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-CA">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Best Neighbourhoods in Midland, Ontario: West vs East End</title>
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<title>Best Neighbourhoods in Midland, Ontario: West vs East End | Jonathan Wallace</title>
 <meta name="description" content="An honest local guide to the best neighbourhoods in Midland, Ontario. Compare West End and East End homes, schools, prices, and boating before you choose your side of King Street.">
 <link rel="canonical" href="https://jonathanwallace.ca/blog-west-end-vs-east-end-midland">
-<meta property="og:type" content="article">
 <meta property="og:title" content="Best Neighbourhoods in Midland, Ontario: West vs East End">
-<meta property="og:description" content="An honest local guide to choosing your side of King Street in Midland, Ontario: history, schools, boating, the Barrie commute, and where the money actually sits.">
-<meta property="og:url" content="https://jonathanwallace.ca/blog-west-end-vs-east-end-midland">
+<meta property="og:description" content="An honest local guide to the best neighbourhoods in Midland, Ontario. Compare West End and East End homes, schools, prices, and boating before you choose your side of King Street.">
+<meta property="og:type" content="article">
 <meta property="og:image" content="https://jonathanwallace.ca/blog-west-end-vs-east-end-midland-hero.jpg">
+<meta property="og:url" content="https://jonathanwallace.ca/blog-west-end-vs-east-end-midland">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Cormorant+Garamond:ital,wght@1,500&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
 <style>
-:root{--noir:#1b1b1b;--ivory:#f7f3ec;--gold:#c9a96a;--grey:#5c574e;--rule:#e2dbcd}
-*{box-sizing:border-box}
-body{margin:0;background:var(--ivory);color:var(--noir);font-family:"Nunito Sans",system-ui,sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
-a{color:#a8823f;text-decoration:none}a:hover{text-decoration:underline}
-.topbar{background:var(--noir);color:var(--ivory);padding:18px 24px;text-align:center}
-.topbar .name{font-family:"Playfair Display",serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:1.05rem}
-.topbar .role{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#c9a96a;margin-top:4px}
-.topbar a{color:var(--ivory)}
-.wrap{max-width:720px;margin:0 auto;padding:0 24px 72px}
-.hero{width:100%;height:auto;display:block;margin:0;border-bottom:3px solid var(--gold)}
-.kicker{font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:#a8823f;font-weight:700;margin:44px 0 10px}
-h1{font-family:"Playfair Display",serif;font-weight:800;font-size:2.35rem;line-height:1.15;margin:0 0 18px}
-.lead{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.5rem;line-height:1.5;color:var(--grey);margin:0 0 30px}
-h2{font-family:"Playfair Display",serif;font-weight:700;font-size:1.5rem;margin:42px 0 8px;padding-top:14px;border-top:1px solid var(--rule)}
-p{margin:0 0 18px}
-ul{padding-left:0;list-style:none;margin:0 0 22px}
-ul li{padding:12px 0 12px 26px;border-bottom:1px solid var(--rule);position:relative}
-ul li:before{content:"";position:absolute;left:0;top:20px;width:9px;height:9px;background:var(--gold);border-radius:50%}
-.faq h3{font-family:"Playfair Display",serif;font-weight:600;font-size:1.14rem;margin:26px 0 4px}
-.byline{margin-top:40px;padding-top:22px;border-top:1px solid var(--rule);font-size:.95rem;color:var(--grey)}
-.cta{background:var(--noir);color:var(--ivory);border-radius:6px;padding:34px 30px;margin:44px 0 0;text-align:center}
-.cta h2{border:0;padding:0;margin:0 0 10px;color:var(--ivory)}
-.cta p{color:#cfc7b6;margin:0 0 18px}
-.cta a{display:inline-block;color:var(--noir);background:var(--gold);padding:12px 26px;border-radius:4px;font-weight:700;letter-spacing:.03em}
-.cta a:hover{text-decoration:none;opacity:.92}
+  :root{
+    --charcoal:#1B1B1B; --gold:#C9A96A; --ivory:#F7F3EC; --warmgrey:#8A8378;
+    --ink:#2A2724; --line:#E3DCCF;
+  }
+  /* Midnight Estate treatment for this guide */
+  .mg-hero{background:var(--charcoal);color:var(--ivory);padding:76px 0 60px;}
+  .mg-hero .post{max-width:72ch;margin:0 auto;padding:0 22px;}
+  .mg-kicker{font-family:"Nunito Sans",system-ui,sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 18px;}
+  .mg-hero h1{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:clamp(2rem,4.4vw,3rem);line-height:1.12;letter-spacing:.01em;margin:0 0 18px;max-width:20ch;color:var(--ivory);}
+  .mg-hero .mg-standfirst{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:clamp(1.15rem,2.4vw,1.5rem);color:#D8D0C2;line-height:1.5;margin:0 0 22px;max-width:46ch;}
+  .mg-meta{display:flex;gap:16px;flex-wrap:wrap;font-family:"Nunito Sans",sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--warmgrey);}
+  .mg-figure{margin:0;background:var(--charcoal);}
+  .mg-figure img{display:block;width:100%;height:auto;}
+  .mg-figure figcaption{max-width:72ch;margin:0 auto;padding:10px 22px 0;font-family:"Nunito Sans",sans-serif;font-size:.78rem;letter-spacing:.04em;color:var(--warmgrey);}
+
+  .mg-wrap{background:var(--ivory);}
+  .mg-article{max-width:72ch;margin:0 auto;padding:46px 22px 8px;}
+  .mg-body{font-family:"Source Serif 4",Georgia,serif;color:var(--ink);font-size:1.13rem;line-height:1.75;}
+  .mg-body p{margin:0 0 1.15em;}
+  .mg-body h2{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:1.7rem;line-height:1.2;color:var(--charcoal);margin:2.5em 0 .2em;}
+  .mg-body h2 + .mg-kicker-line{margin-top:0;}
+  .mg-rule{width:54px;height:2px;background:var(--gold);border:0;margin:0 0 1.1em;}
+  .mg-body h3{font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:1.02rem;letter-spacing:.02em;color:var(--charcoal);margin:1.9em 0 .5em;}
+  .mg-body ul{margin:0 0 1.3em;padding-left:1.2em;}
+  .mg-body li{margin:0 0 .55em;}
+  .mg-body a{color:#7A6220;text-decoration:underline;text-underline-offset:2px;}
+  .mg-body strong{color:var(--charcoal);}
+  .mg-lead{font-size:1.28rem;line-height:1.6;color:var(--ink);}
+  .mg-inline-fig{margin:34px 0 10px;}
+  .mg-inline-fig img{display:block;width:100%;height:auto;border-radius:12px;}
+  .mg-inline-fig figcaption{font-family:"Nunito Sans",sans-serif;font-size:.78rem;letter-spacing:.03em;color:var(--warmgrey);margin-top:9px;}
+
+  /* Designation cards */
+  .mg-cards{display:grid;grid-template-columns:1fr;gap:14px;margin:14px 0 8px;}
+  @media(min-width:620px){.mg-cards{grid-template-columns:1fr 1fr;}}
+  .mg-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;}
+  .mg-card h4{font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--charcoal);margin:0 0 6px;}
+  .mg-card .mg-height{font-family:"Playfair Display",serif;font-weight:600;color:#7A6220;font-size:1.15rem;margin:0 0 6px;}
+  .mg-card p{font-family:"Source Serif 4",Georgia,serif;font-size:.98rem;line-height:1.55;color:var(--ink);margin:0;}
+
+  /* Process steps */
+  .mg-steps{counter-reset:step;list-style:none;padding:0;margin:12px 0 8px;}
+  .mg-steps li{position:relative;padding:0 0 1.1em 46px;margin:0;}
+  .mg-steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:50%;background:var(--charcoal);color:var(--gold);font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:.9rem;display:flex;align-items:center;justify-content:center;}
+  .mg-steps strong{display:block;font-family:"Nunito Sans",sans-serif;font-size:.95rem;letter-spacing:.01em;color:var(--charcoal);margin-bottom:2px;}
+  .mg-steps span{font-family:"Source Serif 4",Georgia,serif;color:var(--ink);}
+
+  .mg-note{background:#F1EADD;border-left:3px solid var(--gold);padding:16px 20px;margin:1.6em 0;font-family:"Source Serif 4",Georgia,serif;font-size:1rem;line-height:1.6;color:var(--ink);}
+
+  /* Gate / download */
+  .mg-gate{background:var(--charcoal);color:var(--ivory);margin-top:40px;}
+  .mg-gate-inner{max-width:60ch;margin:0 auto;padding:52px 22px 56px;text-align:center;}
+  .mg-gate .mg-kicker{color:var(--gold);}
+  .mg-gate h2{font-family:"Playfair Display",serif;font-weight:600;font-size:clamp(1.6rem,3.4vw,2.1rem);color:var(--ivory);margin:0 0 12px;}
+  .mg-gate p.mg-gsub{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.3rem;color:#D8D0C2;margin:0 0 26px;}
+  .mg-form{display:grid;gap:12px;text-align:left;max-width:440px;margin:0 auto;}
+  .mg-form .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:480px){.mg-form .row2{grid-template-columns:1fr;}}
+  .mg-form input[type=text],.mg-form input[type=email],.mg-form input[type=tel]{width:100%;padding:12px 14px;border-radius:8px;border:1px solid #3A3A38;background:#242422;color:var(--ivory);font-family:"Nunito Sans",sans-serif;font-size:1rem;}
+  .mg-form input::placeholder{color:#8A8378;}
+  .mg-consent{display:flex;gap:9px;align-items:flex-start;font-family:"Nunito Sans",sans-serif;font-size:.82rem;line-height:1.4;color:#B7AF9F;}
+  .mg-consent input{margin-top:3px;}
+  .mg-btn{display:inline-block;background:var(--gold);color:var(--charcoal);border:0;border-radius:8px;padding:13px 20px;font-family:"Nunito Sans",sans-serif;font-weight:700;font-size:.92rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-decoration:none;}
+  .mg-btn:hover{background:#D8BC82;}
+  .mg-hp{position:absolute;left:-5000px;}
+  .mg-fineprint{font-family:"Nunito Sans",sans-serif;font-size:.72rem;letter-spacing:.02em;color:var(--warmgrey);margin-top:16px;}
+  #mgFree{display:none;}
+  #mgFree .mg-btn{margin-top:6px;}
+
+  /* Author / contact band */
+  .mg-contact{background:#F1EADD;}
+  .mg-contact-inner{max-width:72ch;margin:0 auto;padding:34px 22px;font-family:"Source Serif 4",Georgia,serif;color:var(--ink);font-size:1.08rem;line-height:1.6;}
+  .mg-contact-inner strong{color:var(--charcoal);}
+  .mg-contact a{color:#7A6220;text-decoration:underline;text-underline-offset:2px;}
+
+  .mg-disclaimer{max-width:72ch;margin:0 auto;padding:24px 22px 44px;font-family:"Nunito Sans",sans-serif;font-size:.78rem;line-height:1.55;color:var(--warmgrey);}
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Where is the line between West and East End Midland?","acceptedAnswer":{"@type":"Answer","text":"King Street. West of it is the West End, east of it is the East End, the same split the MLS uses."}},
-{"@type":"Question","name":"Which side of Midland is more expensive?","acceptedAnswer":{"@type":"Answer","text":"Comparable in the core. The West holds more large historic homes at the top of the in-town market; the East gives more house for the money. Midland's highest prices are waterfront and Midland Point, on both sides of King."}},
-{"@type":"Question","name":"Can I commute to Barrie from Midland?","acceptedAnswer":{"@type":"Answer","text":"Yes, about forty minutes, which makes Midland a realistic option for buyers priced out of the Barrie market who still work there."}},
-{"@type":"Question","name":"Does Midland have deep-water boating?","acceptedAnswer":{"@type":"Answer","text":"Yes, at Bay Port Yachting Centre and Wye Heritage Marina, with access to the 30,000 Islands."}},
-{"@type":"Question","name":"What schools are in Midland, Ontario?","acceptedAnswer":{"@type":"Answer","text":"Georgian Bay District Secondary School and St. Theresa's Catholic High School serve the region, with a French Immersion pathway through Mundy's Bay and Huron Park public schools."}}
-]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Where is the line between West and East End Midland?", "acceptedAnswer": {"@type": "Answer", "text": "King Street. West of it is the West End, east of it is the East End, the same split the MLS uses."}}, {"@type": "Question", "name": "Which side of Midland is more expensive?", "acceptedAnswer": {"@type": "Answer", "text": "Comparable in the core. The West holds more large historic homes at the top of the in-town market; the East gives more house for the money. Midland's highest prices are waterfront and Midland Point, on both sides of King."}}, {"@type": "Question", "name": "Can I commute to Barrie from Midland?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, about forty minutes, which makes Midland a realistic option for buyers priced out of the Barrie market who still work there."}}, {"@type": "Question", "name": "Does Midland have deep-water boating?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, at Bay Port Yachting Centre and Wye Heritage Marina, with access to the 30,000 Islands."}}, {"@type": "Question", "name": "What schools are in Midland, Ontario?", "acceptedAnswer": {"@type": "Answer", "text": "Georgian Bay District Secondary School and St. Theresa's Catholic High School serve the region, with a French Immersion pathway through Mundy's Bay and Huron Park public schools."}}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Best Neighbourhoods in Midland, Ontario: West vs East End", "description": "An honest local guide to the best neighbourhoods in Midland, Ontario. Compare West End and East End homes, schools, prices, and boating before you choose your side of King Street.", "image": "https://jonathanwallace.ca/blog-west-end-vs-east-end-midland-hero.jpg", "author": {"@type": "Person", "name": "Jonathan Wallace"}, "publisher": {"@type": "Person", "name": "Jonathan Wallace"}, "mainEntityOfPage": "https://jonathanwallace.ca/blog-west-end-vs-east-end-midland"}
 </script>
 </head>
 <body>
-<div class="topbar">
-<div class="name"><a href="https://jonathanwallace.ca">Jonathan Wallace</a></div>
-<div class="role">REALTOR &middot; Faris Team Real Estate Brokerage</div>
-</div>
-<img class="hero" src="/blog-west-end-vs-east-end-midland-hero.jpg" alt="West End versus East End Midland, Ontario, a brick home at dusk">
-<div class="wrap">
-<div class="kicker">Midland, Ontario</div>
-<h1>West End or East End Midland: Which Side of King Street Fits You</h1>
-<p class="lead">Ask a local which side of Midland you are looking at and they mean King Street. It splits the town in two, and the two sides carry different histories, different housing, and different value.</p>
 
+<header class="site-header">
+  <div class="wrap nav">
+    <div class="brand">
+      <a href='/'>
+        <span class="brand__name">Jonathan Wallace</span>
+        <span class="brand__tag">Your Georgian Bay Specialist</span>
+      </a>
+    </div>
+    <nav>
+      <ul class="nav__links" id="navLinks">
+        <li><a href='/sell'>Sell</a></li>
+        <li><a href='/buy'>Buy</a></li>
+        <li><a href='/home-tours'>Home Tours</a></li>
+        <li><a href='/communities'>Communities</a></li>
+        <li><a href='/about'>About</a></li>
+        <li><a href='/contact'>Contact</a></li>
+        <li class="nav__cta"><a class='btn btn--primary' href='/home-value'>Price My Home</a></li>
+      </ul>
+    </nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="mg-hero">
+  <div class="post">
+    <p class="mg-kicker">Community Guide &middot; Midland, Ontario</p>
+    <h1>West End or East End Midland: Which Side of King Street Fits You</h1>
+    <p class="mg-standfirst">Ask a local which side of Midland you are looking at and they mean King Street. It splits the town in two, and the two sides carry different histories, different housing, and different value.</p>
+    <div class="mg-meta">
+      <span>Neighbourhood guide</span>
+      <span>&middot;</span>
+      <span>Midland, Ontario</span>
+    </div>
+  </div>
+</section>
+
+<figure class="mg-figure">
+  <img src="/blog-west-end-vs-east-end-midland-hero.jpg" alt="West End versus East End Midland, Ontario, a brick home at dusk on a subdivision street">
+</figure>
+
+<div class="mg-wrap">
+  <article class="mg-article">
+    <div class="mg-body">
 <p>West of King is the West End. East of King is the East End. The Multiple Listing Service draws the same line, so every agent who has priced a home here already thinks in those two zones. The sides are genuinely different. Here is the straight read on each.</p>
-
 <h2>The West End</h2>
+<hr class="mg-rule">
 <p>Heritage and walkability. This is where Midland's doctors and lawyers built along Hugel Avenue and the numbered streets a century ago. Third, Fifth, and Sixth still hold the largest character homes in town: redbrick, tall ceilings, mature trees, a short walk to downtown and the water.</p>
 <p>The West End also holds the newer family pockets. Wawinet, Dina, Keller, and Glen Howard offer recent construction, including the raised bungalows families want, closer to Georgian Bay General Hospital and feeding Mundy's Bay Public School and Georgian Bay District Secondary School.</p>
-<p>Choose the West End for a heritage address and walkability, or for a newer home near the hospital and schools.</p>
-
+<p><strong>Choose the West End</strong> for a heritage address and walkability, or for a newer home near the hospital and schools.</p>
 <h2>The East End</h2>
+<hr class="mg-rule">
 <p>More house for the money. Queen and Manly hold mature character near the core. The Galloway area, by St. Theresa's Catholic High School, is a family subdivision of raised bungalows and split entries with a school at the corner. Down near Lindsay, smaller wartime homes sit at the affordable end of the market.</p>
-<p>Choose the East End for value, newer family homes, and space.</p>
-
+<p><strong>Choose the East End</strong> for value, newer family homes, and space.</p>
 <h2>Schools</h2>
+<hr class="mg-rule">
 <p>Midland is the education hub of North Simcoe. It holds Georgian Bay District Secondary School, the public high school that draws students from Tay, Tiny, and Penetanguishene, and St. Theresa's Catholic High School. French Immersion runs from Mundy's Bay into Huron Park. Ratings shift year to year, so check the current <a href="https://www.compareschoolrankings.org/" rel="nofollow">Fraser Institute rankings</a> rather than a number that ages out. Tell me your priorities and I will match them to catchments.</p>
-
 <h2>Boating</h2>
+<hr class="mg-rule">
 <p>Midland is one of Canada's best freshwater boating towns. Two Maple Leaf Marinas anchor it: Bay Port Yachting Centre, a deep protected harbour on the northwest shore, and Wye Heritage Marina on Tiffin Basin to the east, the gateway to the 30,000 Islands. One sits west, one east. Deep water is a Midland advantage, not a West or East one.</p>
-
 <h2>The commute</h2>
+<hr class="mg-rule">
 <p>Barrie is about forty minutes, which makes Midland a real option for buyers priced out of the Barrie market who still work there. Toronto is roughly ninety minutes. For retirees maximizing equity and anyone trading city costs for the shoreline, the math favours Midland.</p>
-
 <h2>Price, straight</h2>
+<hr class="mg-rule">
 <p>Away from the water, West and East trade at comparable prices in the core, and the West End's edge is simply that it holds most of the large historic homes at the top of the in-town market. The real premium is waterfront, and it sits on both sides of King: the Bayport community to the west, Aberdeen to the east, and the Midland Point peninsula to the north, where homes reach and pass a million dollars. For current figures, see my weekly Midland market update on <a href="https://jonathanwallace.ca">jonathanwallace.ca</a>.</p>
-
 <h2>Which side fits you</h2>
+<hr class="mg-rule">
 <ul>
-<li>Heritage character and walkability: the West End core, Hugel and the numbered streets.</li>
-<li>Newer home near the hospital and schools: the West End pockets, Wawinet, Dina, Keller, Glen Howard.</li>
-<li>Value and family space: the East End around Galloway.</li>
-<li>The water and the top of the market: the Bayport, Aberdeen, and Midland Point waterfront, which is its own conversation, and one I am glad to have.</li>
+<li><strong>Heritage character and walkability:</strong> the West End core, Hugel and the numbered streets.</li>
+<li><strong>Newer home near the hospital and schools:</strong> the West End pockets, Wawinet, Dina, Keller, Glen Howard.</li>
+<li><strong>Value and family space:</strong> the East End around Galloway.</li>
+<li><strong>The water and the top of the market:</strong> the Bayport, Aberdeen, and Midland Point waterfront, which is its own conversation, and one I am glad to have.</li>
 </ul>
-
 <p>Weighing a specific street or home? That is the part I do best. Reach out and we will find where you want to wake up.</p>
-
-<div class="faq">
-<h2>FAQ</h2>
+<h2>Frequently asked questions</h2>
+<hr class="mg-rule">
 <h3>Where is the line between West and East End Midland?</h3>
 <p>King Street. West of it is the West End, east of it is the East End, the same split the MLS uses.</p>
-<h3>Which side is more expensive?</h3>
+<h3>Which side of Midland is more expensive?</h3>
 <p>Comparable in the core. The West holds more large historic homes at the top of the in-town market; the East gives more house for the money. Midland's highest prices are waterfront and Midland Point, on both sides of King.</p>
 <h3>Can I commute to Barrie from Midland?</h3>
-<p>Yes, about forty minutes.</p>
+<p>Yes, about forty minutes, which makes Midland a realistic option for buyers priced out of the Barrie market who still work there.</p>
 <h3>Does Midland have deep-water boating?</h3>
 <p>Yes, at Bay Port Yachting Centre and Wye Heritage Marina, with access to the 30,000 Islands.</p>
-<h3>What schools are in Midland?</h3>
-<p>Georgian Bay District Secondary School and St. Theresa's Catholic High School serve the region, with French Immersion through Mundy's Bay and Huron Park.</p>
+<h3>What schools are in Midland, Ontario?</h3>
+<p>Georgian Bay District Secondary School and St. Theresa's Catholic High School serve the region, with a French Immersion pathway through Mundy's Bay and Huron Park public schools.</p>
+
+    </div>
+  </article>
 </div>
 
-<div class="cta">
-<h2>Thinking about a move to Midland?</h2>
-<p>Let us talk through which side of King Street fits the life you are moving here to live.</p>
-<a href="tel:7054332525">Call or Text 705-433-2525</a>
-</div>
+<section class="mg-contact">
+  <div class="mg-contact-inner">
+    <p><strong>Weighing West against East, or looking at a specific street or home?</strong> Message me and I will give you a straight read before you make an offer. Text <a href="sms:+17054332525">705-433-2525</a> or <a href='/contact'>start the conversation here</a>.</p>
+  </div>
+</section>
 
-<p class="byline">Jonathan Wallace is a REALTOR and Sales Representative with Faris Team Real Estate Brokerage, serving Midland, Penetanguishene, Tay, Tiny, Wasaga Beach, and the surrounding Georgian Bay communities. More than $300 million in career sales, 500-plus families served, the number one rated agent in Midland and Penetanguishene on RateMyAgent, and the 2025 Midland Readers' Choice Best Realtor.</p>
-</div>
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <span class="brand__name">Jonathan Wallace</span>
+      <p style="margin-top:12px;">Georgian Bay real estate &mdash; Midland, Penetanguishene, Tay, Tiny &amp; Wasaga Beach.</p>
+      <div class="footer__social">
+        <a href="https://youtube.com/@jonathanwallaceRE" aria-label="YouTube" target="_blank" rel="noopener">YT</a>
+        <a href="https://instagram.com/jonathanwallacerealestate" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
+        <a href="https://www.linkedin.com/in/jonathanwallacerealestate" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
+      </div>
+    </div>
+    <div><h4>Explore</h4><ul><li><a href='/sell'>Sell your home</a></li><li><a href='/buy'>Buy a home</a></li><li><a href='/home-tours'>Home tours</a></li><li><a href='/communities'>Communities</a></li><li><a href='/home-value'>Home value</a></li><li><a href='/about'>About</a></li><li><a href='/contact'>Contact</a></li></ul></div>
+    <div>
+      <h4>Get in touch</h4>
+      <ul>
+        <li><a href="tel:+17054332525">705-433-2525</a></li>
+        <li><a href="mailto:jonathan@faristeam.ca">Email Jonathan</a></li>
+        <li>Midland, Ontario</li>
+      </ul>
+    </div>
+    <div>
+      <h4>New tours + market updates</h4>
+      <p style="font-size:.9rem;">Georgian Bay home tours and market notes &mdash; straight to your inbox.</p>
+      <form action='thank-you' method='POST' name='newsletter'>
+        <input type="hidden" name="form-name" value="newsletter">
+        <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
+        <div class="field" style="margin-bottom:10px;"><input type="email" name="email" placeholder="you@email.com" required></div>
+        <label class="consent" style="color:rgba(255,255,255,.6);"><input type="checkbox" name="casl_consent" required> I agree to receive emails from Jonathan Wallace and understand I can unsubscribe anytime.</label>
+        <button class="btn btn--primary btn--block" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="wrap footer__legal">
+    <p><strong>Jonathan Wallace, Salesperson</strong> &middot; Faris Team Real Estate, Brokerage</p>
+    <p>REALTOR&reg;, MLS&reg; and the associated logos are trademarks owned by The Canadian Real Estate Association (CREA) and identify real estate professionals who are members of CREA. Not intended to solicit properties already listed for sale or buyers/sellers under contract.</p>
+    <p>&copy; <span id="year">2026</span> Jonathan Wallace. All rights reserved. &middot; <a href='/privacy'>Privacy Policy</a></p>
+  </div>
+</footer>
+
+<script>var y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();</script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>

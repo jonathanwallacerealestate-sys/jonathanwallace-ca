@@ -164,6 +164,37 @@
         </noscript>
       </div>
       <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      <script>
+      // Booking capture: on a completed Calendly booking, hand the invitee URI to Make,
+      // which resolves it against the Calendly API and posts into the Website Leads pipe
+      // so the booking lands in Follow Up Boss tagged like any other website lead.
+      (function(){
+        var HOOK = 'https://hook.us2.make.com/1h1q40pdg5lok8d5i427toojpk4d4ioz';
+        var sent = false;
+        function fromCalendly(e){
+          return e && e.origin && e.origin.indexOf('calendly.com') > -1 &&
+                 e.data && typeof e.data.event === 'string' &&
+                 e.data.event.indexOf('calendly.') === 0;
+        }
+        window.addEventListener('message', function(e){
+          if (sent || !fromCalendly(e)) return;
+          if (e.data.event !== 'calendly.event_scheduled') return;
+          var p = e.data.payload || {};
+          var invitee = (p.invitee && p.invitee.uri) || '';
+          var evt = (p.event && p.event.uri) || '';
+          if (!invitee) return;
+          sent = true;
+          var url = HOOK +
+            '?invitee_uri=' + encodeURIComponent(invitee) +
+            '&event_uri=' + encodeURIComponent(evt) +
+            '&page=' + encodeURIComponent(location.pathname);
+          try {
+            if (navigator.sendBeacon) { navigator.sendBeacon(url); }
+            else { fetch(url, { method: 'POST', mode: 'no-cors', keepalive: true }); }
+          } catch (err) {}
+        }, false);
+      })();
+      </script>
     </section>
 
 <section class="section">

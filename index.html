@@ -369,6 +369,49 @@
     })();
     </script>
 
+    <!-- MARKET AND GUIDES
+         Slot 1 is always the newest market update.
+         Slot 2 rotates weekly through the curated evergreen pool.
+         Both slots are rewritten by the weekly market-post commit. -->
+    <section class="section section--navy" id="insights">
+      <style>
+        #insights .listing{background:#fff;transition:box-shadow .25s ease,transform .25s ease;}
+        #insights .listing:hover{box-shadow:0 16px 38px rgba(0,0,0,.36);transform:translateY(-3px);}
+        #insights .listing h3{color:var(--navy);}
+        #insights .listing__img{aspect-ratio:16/9;}
+      </style>
+      <div class="wrap">
+        <div class="tours__head">
+          <div>
+            <p class="eyebrow">Market updates and guides</p>
+            <h2 class="mb-0">Reading the Georgian Bay market</h2>
+            <p style="max-width:56ch;margin:14px 0 0;">New numbers every week from the Simcoe County board data, plus the guides worth reading before you buy or sell on the Bay.</p>
+          </div>
+          <a class="btn btn--ghost-light" href="blog.html">Read every update and guide</a>
+        </div>
+        <div class="grid grid--2">
+          <!-- SLOT 1: NEWEST MARKET UPDATE, replaced every week -->
+          <a class="listing" href="blog-market-update-jul-27-aug-2-2026.html" style="text-decoration:none;color:inherit;">
+            <div class="listing__img" style="background:url('assets/img/market-jul-27-aug-2-2026.jpg') center/cover no-repeat;"></div>
+            <div class="listing__body">
+              <div class="eyebrow" style="margin-bottom:6px;">Market update &middot; Week of July 27 to August 2, 2026</div>
+              <h3 style="font-size:1.15rem;line-height:1.35;margin:0 0 8px;">The Price Drop Is Not the Story This Week. Forty-Seven Days Is.</h3>
+              <p style="font-size:.92rem;margin:0;color:var(--muted);">Simcoe County sales and average price both eased this week, but the list to sale price ratio held at 96 percent. The number that actually moved was days on market, now 47.</p>
+            </div>
+          </a>
+          <!-- SLOT 2: ROTATING EVERGREEN, pool position 1 of 6 -->
+          <a class="listing" href="blog-who-owns-the-beach-tiny-township.html" style="text-decoration:none;color:inherit;">
+            <div class="listing__img" style="background:url('assets/img/blog-shoreline-ownership.jpg') center/cover no-repeat;"></div>
+            <div class="listing__body">
+              <div class="eyebrow" style="margin-bottom:6px;">Waterfront ownership</div>
+              <h3 style="font-size:1.15rem;line-height:1.35;margin:0 0 8px;">Who owns the beach? A guide to shoreline ownership in Tiny Township</h3>
+              <p style="font-size:.92rem;margin:0;color:var(--muted);">Six ways a Georgian Bay shoreline can be owned, the 66-foot shore road allowance, deeded access, and how to confirm exactly what you own before you buy.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- COMMUNITIES -->
 <section class="section section--sand">
   <div class="wrap center">

@@ -10,3 +10,5 @@ User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://jonathanwallace.ca/sitemap.xml
+
+Disallow: /assets/newsletter/

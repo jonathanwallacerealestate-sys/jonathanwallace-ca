@@ -64,7 +64,10 @@
           <input type="hidden" name="form-name" value="newsletter">
           <input type="hidden" name="guide" value="vacant-land">
           <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
-          <div class="field" style="margin-bottom:10px;"><input type="text" name="first_name" placeholder="First name (optional)"></div>
+          <div class="form__row" style="margin-bottom:10px;">
+            <div class="field" style="margin-bottom:0;"><input type="text" name="first_name" placeholder="First name" autocomplete="given-name" required></div>
+            <div class="field" style="margin-bottom:0;"><input type="text" name="last_name" placeholder="Last name" autocomplete="family-name" required></div>
+          </div>
           <div class="field" style="margin-bottom:10px;"><input type="email" name="email" placeholder="you@email.com" required></div>
           <label class="consent"><input type="checkbox" name="casl_consent" required> I agree to receive emails from Jonathan Wallace and understand I can unsubscribe anytime.</label>
           <button class="btn btn--primary btn--block" type="submit" style="margin-top:12px;">Unlock the guide</button>

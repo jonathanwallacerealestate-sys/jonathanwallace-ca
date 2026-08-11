@@ -25,6 +25,12 @@
 <style>
   /* Blog cards show the full 16:9 image frame: whole house, whole title lockup, no side crop. */
   .grid--3 .listing__img{aspect-ratio:16/9;height:auto;min-height:0;}
+  /* Card text blocks align across a row: two-line kicker, titles and decks clamped so every card in a row ends level. */
+  .grid--3 .listing{display:flex;flex-direction:column;}
+  .grid--3 .listing__body{display:flex;flex-direction:column;flex:1;}
+  .grid--3 .listing__body .eyebrow{min-height:2.3em;}
+  .grid--3 .listing__body h3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+  .grid--3 .listing__body p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
 </style>
 <meta name="geo.region" content="CA-ON">
 <meta name="geo.placename" content="Midland, Ontario, Canada">

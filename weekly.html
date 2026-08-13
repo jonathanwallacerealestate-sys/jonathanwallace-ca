@@ -67,7 +67,7 @@ section{padding:54px 0;border-bottom:1px solid var(--hair)}
 .meta{display:flex;gap:14px;align-items:baseline;margin-bottom:18px;flex-wrap:wrap}
 .post{display:block;color:inherit}
 .post:hover{text-decoration:none}
-.thumb{width:100%;display:block;border:1px solid var(--hair);border-radius:3px}
+.thumb{width:100%;height:auto;display:block;border:1px solid var(--hair);border-radius:3px}
 .post h2{font-size:clamp(25px,3.6vw,34px);line-height:1.22;margin:24px 0 0}
 .post:hover h2{color:var(--gold)}
 .stand{color:#cdc7bc;margin:15px 0 0}
@@ -94,9 +94,9 @@ section{padding:54px 0;border-bottom:1px solid var(--hair)}
 .btn:hover{text-decoration:none;background:#d8bb7f}
 
 footer{border-top:1px solid var(--hair);padding:40px 0 46px;text-align:center}
-footer .n{font-family:"Playfair Display",serif;font-size:20px;font-weight:600;letter-spacing:.05em}
-footer .r{font-size:11.5px;font-weight:800;letter-spacing:.19em;text-transform:uppercase;
-  color:var(--gold);margin-top:10px;line-height:1.7}
+footer .sig{line-height:1.7}
+footer .nm{font-family:"Playfair Display",serif;font-size:20px;font-weight:600;letter-spacing:.04em}
+footer .cr{font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
 footer .crea{font-size:11.5px;color:#5f5a53;line-height:1.6;max-width:660px;margin:22px auto 0}
 footer .l{margin-top:16px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6f6961}
 footer .l a{color:#6f6961}
@@ -139,7 +139,7 @@ footer .h{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6f
     <span class="kicker q">Week of August 3 to 9, 2026 &nbsp;&middot;&nbsp; new numbers every Wednesday</span>
   </div>
   <a class="post" href="blog-market-update-aug-3-9-2026.html">
-    <img class="thumb" src="assets/img/market-aug-3-9-2026.jpg" alt="Georgian Bay market update, week of August 3 to 9, 2026" width="1200" height="675">
+    <img class="thumb" src="assets/img/market-aug-3-9-2026.jpg" alt="Georgian Bay market update, week of August 3 to 9, 2026" loading="lazy" decoding="async">
     <h2>A Few High End Sales Lifted the Average 8.5 Percent. Sellers Still Settled One Point Lower.</h2>
     <p class="stand">Simcoe County recorded 129 sales in the week of August 3 to August 9, 2026, at an
       average sale price of $765,460, with 8.4 months of inventory. It remains a buyer's market.</p>
@@ -192,8 +192,7 @@ footer .h{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6f
 </div></div>
 
 <footer><div class="wrap">
-  <div class="n">Jonathan Wallace</div>
-  <div class="r">REALTOR&reg; &nbsp;&mdash;&nbsp; Faris Team Real Estate Brokerage</div>
+  <p class="sig"><span class="nm">Jonathan Wallace</span><span class="cr">, REALTOR&reg; - Faris Team Real Estate Brokerage</span></p>
   <p class="crea">REALTOR&reg;, MLS&reg; and the associated logos are trademarks owned by The Canadian
     Real Estate Association (CREA) and identify real estate professionals who are members of CREA.
     Not intended to solicit properties already listed for sale or buyers/sellers under contract.</p>

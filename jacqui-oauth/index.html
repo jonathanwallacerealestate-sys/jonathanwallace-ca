@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Jacqui Connected</title>
+<meta name="robots" content="noindex,nofollow"></head>
+<body style="font-family:sans-serif;padding:40px;background:#141414;color:#f5f1e8;text-align:center">
+<h2 id="h">Reading code</h2>
+<p id="msg"></p>
+<textarea id="code" readonly style="width:90%;height:120px;font-size:18px;padding:12px;background:#1f1f1f;color:#d9b877;border:1px solid #d9b877;border-radius:8px"></textarea>
+<br><br>
+<button onclick="navigator.clipboard.writeText(document.getElementById('code').value);document.getElementById('h').textContent='Copied. Paste it to Claude.'"
+style="font-size:18px;padding:14px 28px;background:#d9b877;color:#141414;border:none;border-radius:8px">Copy code</button>
+<script>
+var p = new URLSearchParams(location.search);
+var c = p.get("code");
+if (c) {
+  document.getElementById("h").textContent = "Approved. Here is your code.";
+  document.getElementById("msg").textContent = "Copy it and paste it into the Claude chat right away. It expires in minutes.";
+  document.getElementById("code").value = c;
+} else {
+  document.getElementById("h").textContent = "No code found.";
+  document.getElementById("msg").textContent = "Something went wrong: " + (p.get("error_description") || p.get("error") || "no parameters received.");
+}
+</script>
+</body></html>

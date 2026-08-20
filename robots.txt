@@ -1,14 +1,16 @@
 # jonathanwallace.ca — live and open to search (launched 2026-07-24).
 User-agent: *
 Allow: /
+Disallow: /assets/newsletter/
 
-# Google's search and AI/generative crawlers, explicitly welcomed
+# Google's search and AI/generative crawlers, explicitly welcomed.
+# A named group REPLACES the * group for that crawler, so each one repeats the rules.
 User-agent: Googlebot
 Allow: /
+Disallow: /assets/newsletter/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /assets/newsletter/
 
 Sitemap: https://jonathanwallace.ca/sitemap.xml
-
-Disallow: /assets/newsletter/

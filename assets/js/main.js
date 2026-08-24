@@ -434,7 +434,14 @@
         + '</blockquote>';
     }).join('');
     var mapsLink = d.maps_url ? '<div style="margin-top:16px;"><a class="btn btn--ghost" href="' + esc(d.maps_url) + '" target="_blank" rel="noopener">See all Google reviews \u2192</a></div>' : '';
-    host.innerHTML = '<p class="eyebrow" style="margin-top:44px;">Fresh from Google</p>'
+    /* Labelled aggregate. The page carries two independent ratings, RateMyAgent
+       and Google. Each one states its own source and count so the two figures
+       read as separate corroboration rather than as the page disagreeing with
+       itself. Google returns one decimal, RateMyAgent two. */
+    var agg = (d.rating && d.total)
+      ? '<p class="lead" style="margin-top:6px;">Rated <strong>' + (Math.round(d.rating * 10) / 10).toFixed(1) + ' \u2605</strong> from <strong>' + d.total + ' Google reviews</strong>, separate from the RateMyAgent reviews above.</p>'
+      : '';
+    host.innerHTML = '<p class="eyebrow" style="margin-top:44px;">Fresh from Google</p>' + agg
       + '<div class="grid grid--3" style="margin-top:16px;text-align:left;">' + cards + '</div>' + mapsLink;
     host.style.display = '';
   }).catch(function(){});

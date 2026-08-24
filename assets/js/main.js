@@ -188,6 +188,7 @@
    either way. */
 (function () {
   var FUB_PIXEL_CODE = 'WT-APBFKUQQ'; /* Follow Up Boss Widget Tracker code */
+  var GA4_MEASUREMENT_ID = 'G-VR80KZH0EX'; /* Google Analytics 4 */
   var STORE_KEY = 'jw_cookie_consent_v1';
   var pixelLoaded = false;
   var mem = null; /* in-memory fallback if storage is unavailable */
@@ -213,6 +214,24 @@
     })(window, 'https://widgetbe.com/agent', document, 'widgetTracker');
     window.widgetTracker('create', FUB_PIXEL_CODE);
     window.widgetTracker('send', 'pageview');
+  }
+
+  /* Google Analytics 4. Same consent gate as the FUB Pixel. Enhanced
+     Measurement (pageviews, scrolls, outbound clicks, file downloads) is
+     enabled by default in the GA4 property, so no extra event code needed. */
+  var ga4Loaded = false;
+  function loadGA4() {
+    if (ga4Loaded || !GA4_MEASUREMENT_ID) return;
+    ga4Loaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_MEASUREMENT_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA4_MEASUREMENT_ID, { send_page_view: true });
   }
 
   function showBanner() {
@@ -247,7 +266,9 @@
       setTimeout(function () { if (bar.parentNode) bar.parentNode.removeChild(bar); }, 350);
     }
     document.getElementById('jwConsentAccept').addEventListener('click', function () {
-      saveConsent('granted'); loadPixel(); close();
+      saveConsent('granted'); loadPixel(); loadGA4();
+      try { document.dispatchEvent(new CustomEvent('jw:consent:granted')); } catch (e) {}
+      close();
     });
     document.getElementById('jwConsentDecline').addEventListener('click', function () {
       saveConsent('denied'); close();
@@ -256,7 +277,11 @@
 
   function start() {
     var choice = readConsent();
-    if (choice === 'granted') { loadPixel(); return; }
+    if (choice === 'granted') {
+      loadPixel(); loadGA4();
+      try { document.dispatchEvent(new CustomEvent('jw:consent:granted')); } catch (e) {}
+      return;
+    }
     if (choice === 'denied') { return; }
     showBanner();
   }
@@ -368,10 +393,24 @@
       google.accounts.id.renderButton(slots[k], { theme: 'outline', size: 'large', text: CONTACT_MODE ? 'continue_with' : 'signup_with', shape: 'pill' });
     }
   }
-  var s = document.createElement('script');
-  s.src = 'https://accounts.google.com/gsi/client';
-  s.async = true; s.defer = true; s.onload = init;
-  document.head.appendChild(s);
+  /* GSI makes a third-party connection to Google, so it respects the same
+     cookie consent gate as the FUB Pixel and GA4. If consent is already
+     granted, load immediately. If not yet decided, wait for the Accept
+     event dispatched by the consent handler. If declined, never load. */
+  function loadGSI() {
+    var s = document.createElement('script');
+    s.src = 'https://accounts.google.com/gsi/client';
+    s.async = true; s.defer = true; s.onload = init;
+    document.head.appendChild(s);
+  }
+  var CONSENT_KEY = 'jw_cookie_consent_v1';
+  var consent;
+  try { consent = localStorage.getItem(CONSENT_KEY); } catch (e) {}
+  if (consent === 'granted') {
+    loadGSI();
+  } else if (consent !== 'denied') {
+    document.addEventListener('jw:consent:granted', function () { loadGSI(); }, { once: true });
+  }
 })();
 
 

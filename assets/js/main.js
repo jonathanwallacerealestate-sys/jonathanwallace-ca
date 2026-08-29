@@ -133,8 +133,21 @@
       if (formName === 'newsletter') tags.push('Newsletter: Weekly');
       if (data.loc) tags.push('Poster: ' + data.loc);
       if (data.guide) tags.push('Guide: ' + data.guide);
-      var it = intentTag(formName + ' ' + (data.topic || '') + ' ' + (data.source_page || ''));
-      if (it) tags.push(it);
+      if (formName === 'vendor-intro') {
+        /* Trades and preferred-vendor conduit. Per 02-playbooks/trusted-trades-bench-and-vendor-content.md
+           section 7: Website:trades-intro, Trade, Community, Intent: Homeowner-Improvement, Visit.
+           Intent: Seller is deliberately absent so these contacts enter the Past Client Service
+           Program seasonal calendar, never buyer or seller nurture. */
+        tags.push('Website:trades-intro');
+        tags.push('Intent: Homeowner-Improvement');
+        if (data.vendor) tags.push('Vendor: ' + data.vendor);
+        if (data.trade) tags.push('Trade: ' + data.trade);
+        if (data.community) tags.push('Community: ' + data.community);
+        if (data.visit) tags.push('Visit: ' + data.visit);
+      } else {
+        var it = intentTag(formName + ' ' + (data.topic || '') + ' ' + (data.source_page || ''));
+        if (it) tags.push(it);
+      }
       if (data.email) window.__jwLead = { email: data.email, name: name };
       send({
         form_name: formName,

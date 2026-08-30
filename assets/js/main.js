@@ -117,6 +117,48 @@
   }
   window.__jwSend = send;
 
+  /* Vendor-intro conduit alert: SMS + email to Jonathan Wallace so he can make the
+     introduction personally. Routes through the dedicated Vendor Intro Alert relay
+     (never the raw Infobip or Outlook gateways directly: those accept an arbitrary
+     destination and would let anyone reachable to this page send SMS/email through
+     Jonathan Wallace's own accounts). The relay hardcodes the destinations; only the
+     message CONTENT is client-composed, and it is JSON-escaped here before transport
+     so a quote or apostrophe typed into the form can never break the relay's request
+     body, the same class of fragility already documented for the Infobip proxy. */
+  var VENDOR_ALERT_HOOK = 'https://hook.us2.make.com/k1kjmt1jxe3ntx5ab4m9rfc52tk124by';
+  function jsonEscapeFragment(s) {
+    return JSON.stringify(String(s == null ? '' : s)).slice(1, -1);
+  }
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function sendVendorIntroAlert(data, fullName) {
+    try {
+      var vendor = data.vendor || '';
+      var smsText = (fullName + ' is looking for an intro to ' + vendor + '.' +
+        (data.phone ? ' ' + data.phone : '') + (data.email ? ' ' + data.email : '')).trim();
+      var subject = 'Vendor intro: ' + fullName + ' \u2192 ' + vendor;
+      var body = '<p><strong>' + escapeHtml(fullName) + '</strong> would like an introduction to <strong>' +
+        escapeHtml(vendor) + '</strong> (' + escapeHtml(data.trade || '') + ').</p>' +
+        '<p>Email: ' + escapeHtml(data.email || '') + '<br>Phone: ' + escapeHtml(data.phone || '') +
+        '<br>Community: ' + escapeHtml(data.community || '') + '<br>Timing: ' + escapeHtml(data.timeframe || '') +
+        '<br>Prefers: ' + escapeHtml(data.visit || '') + '</p>' +
+        '<p>What they said: ' + escapeHtml(data.message || '') + '</p>';
+      var payload = JSON.stringify({
+        sms_text_escaped: jsonEscapeFragment(smsText),
+        email_subject_escaped: jsonEscapeFragment(subject),
+        email_body_escaped: jsonEscapeFragment(body)
+      });
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(VENDOR_ALERT_HOOK, new Blob([payload], { type: 'application/json' }));
+      } else {
+        fetch(VENDOR_ALERT_HOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true });
+      }
+    } catch (e) {}
+  }
+
   /* Form submissions -> tagged lead event */
   document.addEventListener('submit', function (e) {
     var form = e.target;
@@ -144,6 +186,7 @@
         if (data.trade) tags.push('Trade: ' + data.trade);
         if (data.community) tags.push('Community: ' + data.community);
         if (data.visit) tags.push('Visit: ' + data.visit);
+        sendVendorIntroAlert(data, name || 'Someone');
       } else {
         var it = intentTag(formName + ' ' + (data.topic || '') + ' ' + (data.source_page || ''));
         if (it) tags.push(it);

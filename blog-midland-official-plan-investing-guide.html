@@ -107,7 +107,6 @@
   .mg-btn:hover{background:#D8BC82;}
   .mg-hp{position:absolute;left:-5000px;}
   .mg-fineprint{font-family:"Nunito Sans",sans-serif;font-size:.72rem;letter-spacing:.02em;color:var(--warmgrey);margin-top:16px;}
-  #mgFree{display:none;}
   #mgFree .mg-btn{margin-top:6px;}
 
   /* Author / contact band */
@@ -312,34 +311,16 @@
   </article>
 </div>
 
-<!-- Two-path download: free from the LinkedIn link, gated from the site -->
+<!-- Open download, no gate -->
 <section class="mg-gate" id="download">
   <div class="mg-gate-inner">
     <p class="mg-kicker">The Full Guide</p>
     <h2>Download the Midland Official Plan investing guide</h2>
     <p class="mg-gsub">Designations, heights, growth areas, and the amendment process, in one working document.</p>
 
-    <div id="mgGated">
-      <form class="mg-form" name="midland-guide" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thank-you-midland-guide.html">
-        <input type="hidden" name="form-name" value="midland-guide">
-        <input type="hidden" name="guide" value="Midland Official Plan">
-        <input type="hidden" name="tags_json" value='["Website Lead","Guide: Midland Official Plan","Website:midland-guide","Intent: Investor"]'>
-        <p class="mg-hp"><label>Leave this empty: <input name="bot-field"></label></p>
-        <div class="row2">
-          <input type="text" name="first_name" placeholder="First name" autocomplete="given-name" required>
-          <input type="text" name="last_name" placeholder="Last name" autocomplete="family-name" required>
-        </div>
-        <input type="email" name="email" placeholder="you@email.com" required autocomplete="email">
-        <input type="tel" name="phone" placeholder="Phone (optional)" autocomplete="tel">
-        <label class="mg-consent"><input type="checkbox" name="casl_consent" required> I agree to receive emails from Jonathan Wallace and understand I can unsubscribe anytime.</label>
-        <button class="mg-btn" type="submit">Send me the guide</button>
-      </form>
-      <p class="mg-fineprint">A working guide to investing and developing in Midland. No spam, unsubscribe anytime.</p>
-    </div>
-
     <div id="mgFree">
       <a class="mg-btn" href="assets/guides/midland-official-plan-investing-guide.pdf" download>Download the PDF</a>
-      <p class="mg-fineprint">Straight from the guide. Questions on a specific parcel? Message Jonathan Wallace below.</p>
+      <p class="mg-fineprint">Free, no sign-up needed. Questions on a specific parcel? Message Jonathan Wallace below.</p>
     </div>
   </div>
 </section>
@@ -391,20 +372,6 @@
   </div>
 </footer>
 
-<script>
-  // Two-path gate: a free-access source (LinkedIn, social, newsletter) skips the form.
-  (function(){
-    var params = new URLSearchParams(window.location.search);
-    var src = (params.get('src') || '').toLowerCase();
-    var freeSources = ['linkedin','li','social','newsletter','email'];
-    if (freeSources.indexOf(src) !== -1) {
-      var gated = document.getElementById('mgGated');
-      var free = document.getElementById('mgFree');
-      if (gated) gated.style.display = 'none';
-      if (free) free.style.display = 'block';
-    }
-  })();
-</script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

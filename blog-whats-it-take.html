@@ -266,37 +266,10 @@
       <p>It is the question I get more than any other right now, from both sides of the deal. Is this a good time to buy? Is this a good time to sell? The honest answer is that timing has less to do with the calendar than with your own situation. But there are real patterns in this market worth understanding before you decide. Here is my straight read on the Georgian Bay and Simcoe County market this summer, and how I would think about it if it were my own move.</p>
 
       <div class="guide-cta">
-        <!-- FREE block: shown to newsletter readers arriving with ?src=newsletter -->
-        <div id="guideFree" hidden>
-          <h3>Read the full guide</h3>
-          <p>As a thank you for reading the newsletter, here is the complete guide, no sign-up needed.</p>
-          <a class="btn btn--primary btn--lg" href="https://jonathanwallace-resources.netlify.app/Whats-It-Take-Buying-Selling-Simcoe-County.pdf" download>Download the guide (PDF)</a>
-        </div>
-
-        <!-- GATED block: shown to website visitors -->
-        <div id="guideGate">
-          <h3>Get the full guide free</h3>
-          <p>The complete write-up, including the numbers behind every point, is yours for an email. You also get the five-minute Friday Market Read on Georgian Bay. Unsubscribe anytime.</p>
-          <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="guideForm">
-            <input type="hidden" name="form-name" value="newsletter">
-            <input type="hidden" name="guide" value="whats-it-take">
-            <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
-            <div class="form__row" style="margin-bottom:10px;">
-              <div class="field" style="margin-bottom:0;"><input type="text" name="first_name" placeholder="First name" autocomplete="given-name" required></div>
-              <div class="field" style="margin-bottom:0;"><input type="text" name="last_name" placeholder="Last name" autocomplete="family-name" required></div>
-            </div>
-            <div class="field" style="margin-bottom:10px;"><input type="email" name="email" placeholder="you@email.com" required></div>
-            <label class="consent"><input type="checkbox" name="casl_consent" required> I agree to receive emails from Jonathan Wallace and understand I can unsubscribe anytime.</label>
-            <button class="btn btn--primary btn--block" type="submit" style="margin-top:12px;">Unlock the guide</button>
-          </form>
-        </div>
-
-        <!-- POST-SIGNUP download, revealed after the gated form is submitted -->
-        <div id="guideDownload" hidden>
-          <h3>Your guide is ready.</h3>
-          <p>Watch for the Market Read this Friday. Here is the download:</p>
-          <a class="btn btn--primary btn--lg" href="https://jonathanwallace-resources.netlify.app/Whats-It-Take-Buying-Selling-Simcoe-County.pdf" download>Download the guide (PDF)</a>
-        </div>
+        <h3>Download the full guide</h3>
+        <p>The complete write-up, including the numbers behind every point, free to keep. No sign-up needed.</p>
+        <a class="btn btn--primary btn--lg" href="https://jonathanwallace-resources.netlify.app/Whats-It-Take-Buying-Selling-Simcoe-County.pdf" download>Download the guide (PDF)</a>
+        <p style="margin-top:14px;font-size:.9rem;opacity:.8;">Want the five-minute Friday Market Read on Georgian Bay? <a href="/newsletter">Join the newsletter</a>. Optional, unsubscribe anytime.</p>
       </div>
 
       <h2>First, what summer actually looks like here</h2>
@@ -386,46 +359,6 @@
   </div>
 </footer>
 
-<script>
-/* Download gating: newsletter readers arrive with ?src=newsletter (or ?free=1)
-   and get a direct, no-form download. Everyone else sees the email gate, and
-   the download reveals only after the form is submitted. The global lead beacon
-   in main.js mirrors the gated submission to Make.com -> Follow Up Boss and
-   tags it "Guide: whats-it-take". */
-(function () {
-  var params;
-  try { params = new URLSearchParams(location.search); } catch (e) { params = null; }
-  var src = (params && (params.get('src') || '')).toLowerCase();
-  var isFree = src === 'newsletter' || src === 'nl' || src === 'email' || (params && params.get('free') === '1');
-
-  var free = document.getElementById('guideFree');
-  var gate = document.getElementById('guideGate');
-  var dl = document.getElementById('guideDownload');
-
-  if (isFree) {
-    if (free) free.hidden = false;
-    if (gate) gate.hidden = true;
-    if (dl) dl.hidden = true;
-    return;
-  }
-
-  function unlock() {
-    if (gate) gate.hidden = true;
-    if (dl) dl.hidden = false;
-    try { dl.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
-  }
-  document.addEventListener('jw:signup', unlock);
-  var form = document.getElementById('guideForm');
-  if (form) form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var fd = new FormData(form);
-    var body = new URLSearchParams();
-    fd.forEach(function (v, k) { body.set(k, v); });
-    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
-      .then(unlock).catch(unlock);
-  });
-})();
-</script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

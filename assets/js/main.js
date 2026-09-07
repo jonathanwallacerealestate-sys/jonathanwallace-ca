@@ -159,10 +159,31 @@
     } catch (e) {}
   }
 
+
+  /* Paid attribution: read UTMs and click ids from the landing URL, persist for the session
+     so a submit on a later page still carries them. Used by the lead beacon payload. */
+  function readAttribution() {
+    var keys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid'];
+    var out = {};
+    try {
+      var stored = JSON.parse(sessionStorage.getItem('jw_attr') || '{}');
+      var q = new URLSearchParams(location.search);
+      var fresh = false;
+      keys.forEach(function (k) { var v = q.get(k); if (v) { stored[k] = v; fresh = true; } });
+      if (fresh) { stored.landing_path = location.pathname; sessionStorage.setItem('jw_attr', JSON.stringify(stored)); }
+      out = stored;
+    } catch (e) {}
+    return out;
+  }
   /* Form submissions -> tagged lead event */
   document.addEventListener('submit', function (e) {
     var form = e.target;
-    if (!form || !form.hasAttribute('data-netlify')) return;
+    /* 2026-09-07 fix: Netlify strips data-netlify at build time and leaves the hidden
+       form-name input, so the old attribute guard never matched on the live site and no
+       lead beacon ever fired. Detect the Netlify form by the hidden input instead. */
+    if (!form || form.tagName !== 'FORM') return;
+    var isNetlifyForm = form.hasAttribute('data-netlify') || !!form.querySelector('input[name="form-name"]');
+    if (!isNetlifyForm) return;
     if (form.getAttribute('data-beacon') === 'off') return; /* form sends its own beacon */
     try {
       var fd = new FormData(form);
@@ -197,6 +218,7 @@
         email: data.email || '',
         name: name,
         site_url: 'https://jonathanwallace.ca',
+        attribution_json: JSON.stringify(readAttribution()),
         tags_json: JSON.stringify(tags),
         data: data
       });

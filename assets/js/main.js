@@ -193,6 +193,11 @@
       var formName = form.getAttribute('name') || data['form-name'] || 'unknown';
       var name = ((data.first_name || '') + ' ' + (data.last_name || '')).trim();
       var tags = ['Website Lead', 'Website: ' + formName, 'Page: ' + cleanPath()];
+      var attr = readAttribution();
+      if (attr.utm_medium === 'cpc' || attr.utm_medium === 'paid_social') {
+        /* Paid attribution tag, rolls monthly. Same rule lives in Make scenario 5888704 for Calendly bookings. */
+        tags.push('Ads:' + new Date().toISOString().slice(0, 7));
+      }
       if (formName === 'newsletter') tags.push('Newsletter: Weekly');
       if (data.loc) tags.push('Poster: ' + data.loc);
       if (data.guide) tags.push('Guide: ' + data.guide);
@@ -213,7 +218,6 @@
         if (it) tags.push(it);
       }
       if (data.email) window.__jwLead = { email: data.email, name: name };
-      var attr = readAttribution();
       send({
         form_name: formName,
         email: data.email || '',

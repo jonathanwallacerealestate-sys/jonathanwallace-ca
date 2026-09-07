@@ -213,12 +213,16 @@
         if (it) tags.push(it);
       }
       if (data.email) window.__jwLead = { email: data.email, name: name };
+      var attr = readAttribution();
       send({
         form_name: formName,
         email: data.email || '',
         name: name,
         site_url: 'https://jonathanwallace.ca',
-        attribution_json: JSON.stringify(readAttribution()),
+        attribution_json: JSON.stringify(attr),
+        utm_source: attr.utm_source || '', utm_medium: attr.utm_medium || '', utm_campaign: attr.utm_campaign || '',
+        utm_content: attr.utm_content || '', utm_term: attr.utm_term || '',
+        gclid: attr.gclid || '', fbclid: attr.fbclid || '', landing_path: attr.landing_path || '',
         tags_json: JSON.stringify(tags),
         data: data
       });

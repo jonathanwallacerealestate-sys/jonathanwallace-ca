@@ -284,3 +284,12 @@ p{margin:0 0 1.1em;}
 .rma-badge__year{font-size:.78rem;letter-spacing:.06em;color:rgba(255,255,255,.7);}
 .rma-badge__stars{margin-top:6px;color:var(--copper);font-size:.95rem;letter-spacing:1px;}
 .rma-badge__stars b{color:#fff;margin-left:4px;}
+
+/* ---------- Blog post proof exit block (2026-09-08) ---------- */
+.post-proof{margin:40px 0 28px;padding:28px 26px;background:var(--navy);color:#fff;border-radius:14px;border:1px solid rgba(201,169,106,.35);}
+.post-proof__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:center;margin-bottom:18px;}
+.post-proof__num{font-family:var(--serif);font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:600;line-height:1;color:#fff;}
+.post-proof__label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:7px;}
+.post-proof p{margin:0 0 16px;color:rgba(255,255,255,.88);font-size:.98rem;line-height:1.6;}
+.post-proof .btn{display:inline-block;}
+@media (max-width:640px){.post-proof__grid{grid-template-columns:repeat(2,1fr);}}

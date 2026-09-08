@@ -307,6 +307,7 @@
 (function () {
   var FUB_PIXEL_CODE = 'WT-APBFKUQQ'; /* Follow Up Boss Widget Tracker code */
   var GA4_MEASUREMENT_ID = 'G-VR80KZH0EX'; /* Google Analytics 4 */
+  var GOOGLE_ADS_ID = 'AW-18358697571'; /* Google Ads conversion measurement, thank-you page only */
   var STORE_KEY = 'jw_cookie_consent_v1';
   var pixelLoaded = false;
   var mem = null; /* in-memory fallback if storage is unavailable */
@@ -367,11 +368,26 @@
     document.head.appendChild(s);
     gtag('js', new Date());
     gtag('config', GA4_MEASUREMENT_ID, { send_page_view: true });
+    if (GOOGLE_ADS_ID) gtag('config', GOOGLE_ADS_ID); /* same gtag.js; conversions modeled until Accept */
   }
+  /* Fire a Google Ads conversion. Runs under Consent Mode: cookieless ping when
+     ads storage is denied, full conversion after Accept. Used on thank-you.html. */
+  window.jwFireAdsConversion = function (sendTo) {
+    if (typeof window.gtag !== 'function' || !GOOGLE_ADS_ID) return;
+    window.gtag('event', 'conversion', {
+      send_to: sendTo || (GOOGLE_ADS_ID + '/3m8SCJPwpfEcE0P8jbJE'),
+      value: 1.0,
+      currency: 'CAD'
+    });
+  };
   function grantGA4Consent() {
+    /* Accept grants analytics plus Google Ads conversion measurement.
+       ad_personalization stays denied: no remarketing on this site. Changed 2026-09-08. */
     gtag('consent', 'update', {
       analytics_storage: 'granted',
-      functionality_storage: 'granted'
+      functionality_storage: 'granted',
+      ad_storage: 'granted',
+      ad_user_data: 'granted'
     });
     gtag('event', 'consent_granted', { consent_version: STORE_KEY });
   }

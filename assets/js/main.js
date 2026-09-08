@@ -130,6 +130,17 @@
   }
   window.__jwGa4Event = ga4Event;
 
+  /* Internal link attribution. Any element carrying data-ga4="name" reports a
+     GA4 event on click (Enhanced Measurement only tracks outbound clicks). First
+     use: the blog proof exit block, data-ga4="post_proof_cta". */
+  document.addEventListener('click', function (e) {
+    try {
+      var el = e.target && e.target.closest ? e.target.closest('[data-ga4]') : null;
+      if (!el) return;
+      ga4Event(el.getAttribute('data-ga4'), { link_url: el.getAttribute('href') || '', page_path: cleanPath() });
+    } catch (err) {}
+  }, true);
+
   /* Vendor-intro conduit alert: SMS + email to Jonathan Wallace so he can make the
      introduction personally. Routes through the dedicated Vendor Intro Alert relay
      (never the raw Infobip or Outlook gateways directly: those accept an arbitrary

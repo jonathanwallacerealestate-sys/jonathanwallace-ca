@@ -117,6 +117,19 @@
   }
   window.__jwSend = send;
 
+  /* GA4 mirror. Every lead the beacon sends to Follow Up Boss is also pushed to
+     GA4 as generate_lead so the two systems count the same thing. The push goes
+     to the dataLayer, which queues safely whether or not gtag.js has loaded yet
+     (GA4 runs in Consent Mode: tag on every page, cookies only after Accept). */
+  function ga4Event(name, params) {
+    try {
+      if (typeof window.gtag === 'function') { window.gtag('event', name, params || {}); return; }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push((function () { return arguments; })('event', name, params || {}));
+    } catch (e) {}
+  }
+  window.__jwGa4Event = ga4Event;
+
   /* Vendor-intro conduit alert: SMS + email to Jonathan Wallace so he can make the
      introduction personally. Routes through the dedicated Vendor Intro Alert relay
      (never the raw Infobip or Outlook gateways directly: those accept an arbitrary
@@ -218,6 +231,13 @@
         if (it) tags.push(it);
       }
       if (data.email) window.__jwLead = { email: data.email, name: name };
+      ga4Event('generate_lead', {
+        form_name: formName,
+        lead_intent: (tags.filter(function (t) { return t.indexOf('Intent:') === 0; })[0] || '').replace('Intent: ', ''),
+        guide: data.guide || '',
+        page_path: cleanPath(),
+        utm_medium: attr.utm_medium || ''
+      });
       send({
         form_name: formName,
         email: data.email || '',
@@ -247,6 +267,7 @@
       if (!lead || !lead.email) return; /* unknown visitor: pixel handles it */
       var file = (href.split('/').pop() || 'file').split('?')[0].split('#')[0];
       var label = (a.textContent || file).replace(/\s+/g, ' ').trim().slice(0, 80);
+      ga4Event('guide_download_known_lead', { file: file, page_path: cleanPath() });
       send({
         form_name: 'download',
         email: lead.email,
@@ -302,22 +323,49 @@
     window.widgetTracker('send', 'pageview');
   }
 
-  /* Google Analytics 4. Same consent gate as the FUB Pixel. Enhanced
-     Measurement (pageviews, scrolls, outbound clicks, file downloads) is
-     enabled by default in the GA4 property, so no extra event code needed. */
+  /* Google Analytics 4, Consent Mode v2. Changed 2026-09-08.
+     Previously GA4 loaded only after Accept, so it counted consenters, not
+     visitors (13 users in four weeks). Now the tag loads on every page with
+     every consent signal defaulted to DENIED. In that state GA4 sets no cookies
+     and sends only cookieless, anonymous pings, which stays inside the PIPEDA
+     posture chosen for the FUB Pixel in DEC-057 (the Pixel itself is unchanged
+     and still never loads before Accept). Accept upgrades analytics_storage to
+     granted; Decline records the choice and leaves everything denied. */
   var ga4Loaded = false;
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  window.gtag = gtag;
   function loadGA4() {
     if (ga4Loaded || !GA4_MEASUREMENT_ID) return;
     ga4Loaded = true;
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      functionality_storage: 'denied',
+      personalization_storage: 'denied',
+      security_storage: 'granted',
+      wait_for_update: 500
+    });
+    gtag('set', 'url_passthrough', true);
+    gtag('set', 'ads_data_redaction', true);
     var s = document.createElement('script');
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_MEASUREMENT_ID;
     document.head.appendChild(s);
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { window.dataLayer.push(arguments); }
-    window.gtag = gtag;
     gtag('js', new Date());
     gtag('config', GA4_MEASUREMENT_ID, { send_page_view: true });
+  }
+  function grantGA4Consent() {
+    gtag('consent', 'update', {
+      analytics_storage: 'granted',
+      functionality_storage: 'granted'
+    });
+    gtag('event', 'consent_granted', { consent_version: STORE_KEY });
+  }
+  function denyGA4Consent() {
+    gtag('event', 'consent_denied', { consent_version: STORE_KEY });
   }
 
   function showBanner() {
@@ -352,19 +400,20 @@
       setTimeout(function () { if (bar.parentNode) bar.parentNode.removeChild(bar); }, 350);
     }
     document.getElementById('jwConsentAccept').addEventListener('click', function () {
-      saveConsent('granted'); loadPixel(); loadGA4();
+      saveConsent('granted'); loadPixel(); grantGA4Consent();
       try { document.dispatchEvent(new CustomEvent('jw:consent:granted')); } catch (e) {}
       close();
     });
     document.getElementById('jwConsentDecline').addEventListener('click', function () {
-      saveConsent('denied'); close();
+      saveConsent('denied'); denyGA4Consent(); close();
     });
   }
 
   function start() {
     var choice = readConsent();
+    loadGA4(); /* always: cookieless until consent is granted */
     if (choice === 'granted') {
-      loadPixel(); loadGA4();
+      loadPixel(); grantGA4Consent();
       try { document.dispatchEvent(new CustomEvent('jw:consent:granted')); } catch (e) {}
       return;
     }

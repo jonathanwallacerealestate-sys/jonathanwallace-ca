@@ -81,6 +81,15 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding:28px 0 44px;
   color:var(--warm-grey);font-size:.85rem}
 footer a{color:var(--warm-grey)}
 .reco{font-size:.76rem;line-height:1.6;margin-top:12px}
+
+/* Proof exit block, 2026-09-08 */
+.post-proof{margin:44px 0 0;padding:28px 26px;background:var(--charcoal);color:var(--ivory);border-radius:14px;border:1px solid rgba(201,169,106,.35)}
+.post-proof__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;text-align:center;margin-bottom:18px}
+.post-proof__num{font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:600;line-height:1;color:var(--ivory)}
+.post-proof__label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,243,236,.7);margin-top:7px}
+.post-proof p{margin:0 0 16px;color:rgba(247,243,236,.9);font-size:.98rem;line-height:1.6}
+.post-proof .btn{display:inline-block;background:var(--gold);color:var(--charcoal);border-radius:999px;padding:11px 22px;font-weight:600;text-decoration:none}
+@media (max-width:640px){.post-proof__grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 
 <!-- ===== JSON-LD 1: FAQPage ===== -->
@@ -260,6 +269,17 @@ footer a{color:var(--warm-grey)}
       <p>It depends which Muskoka. REALM MLS solds from July 5 to September 3, 2026 show Tiny Township's Georgian Bay shoreline at a $1,550,000 median, the Big Three Muskoka lakes, Joseph, Rosseau and Muskoka, at $2,675,000, and the Township of Georgian Bay's actual Georgian Bay frontage at $729,000.</p>
     </details>
   </div>
+
+  <aside class="post-proof" aria-label="About Jonathan Wallace">
+    <div class="post-proof__grid">
+      <div><div class="post-proof__num">$300M+</div><div class="post-proof__label">Career sales</div></div>
+      <div><div class="post-proof__num">500+</div><div class="post-proof__label">Families served</div></div>
+      <div><div class="post-proof__num">4.96&#9733;</div><div class="post-proof__label">RateMyAgent, 15 reviews</div></div>
+      <div><div class="post-proof__num">#1</div><div class="post-proof__label">Rated in Midland and Penetanguishene</div></div>
+    </div>
+    <p>Jonathan Wallace reads the Georgian Bay market the same way at a kitchen table as on this page, and has done it for more than 500 families, from in-town Midland to the Tiny Township shoreline. If you own a home in Midland, Penetanguishene, Tiny, Tay or Wasaga Beach, the first useful number is what it is worth today.</p>
+    <a class="btn" href="/home-value" data-ga4="post_proof_cta">What is my home worth</a>
+  </aside>
 
   <div class="cta">
     <h2>Thinking about Georgian Bay?</h2>

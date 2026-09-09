@@ -291,5 +291,11 @@ p{margin:0 0 1.1em;}
 .post-proof__num{font-family:var(--serif);font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:600;line-height:1;color:#fff;}
 .post-proof__label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:7px;}
 .post-proof p{margin:0 0 16px;color:rgba(255,255,255,.88);font-size:.98rem;line-height:1.6;}
-.post-proof .btn{display:inline-block;}
+.post-proof .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#1B1B1B;
+  text-decoration:none;
+}
 @media (max-width:640px){.post-proof__grid{grid-template-columns:repeat(2,1fr);}}

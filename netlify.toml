@@ -176,3 +176,520 @@
   from = "/Whats-It-Take/"
   to = "/blog-whats-it-take.html"
   status = 200
+
+# ---------------------------------------------------------------------------
+# Canonical consolidations (2026-09-16 audit)
+# Policy: <link rel=canonical> is the target of truth.
+#   - If canonical is *.html, 301 the extensionless pretty URL → .html
+#   - If canonical is extensionless, 301 the .html variant → bare
+#   - force=true overrides Netlify pretty-URL 200s so both variants do not stay live
+#   - Existing 200 rewrites (branded community / sell-your-home / find-your-home /
+#     whats-it-take) are left alone; we 301 only the non-canonical file path
+#   - /home-valuation and /home-valuation.html 301 to /home-value.html (canonical)
+#   - /index.html 301 to / (homepage canonical)
+#   - No redirect loops: source != target, and 200 rewrite sources are never 301'd
+# ---------------------------------------------------------------------------
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-bank-of-canada-rate-hold-july-2026"
+  to = "/blog-bank-of-canada-rate-hold-july-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-bank-of-canada-rate-hold-september-2026"
+  to = "/blog-bank-of-canada-rate-hold-september-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-buying-vacant-land-simcoe-county"
+  to = "/blog-buying-vacant-land-simcoe-county.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-buying-waterfront-georgian-bay"
+  to = "/blog-buying-waterfront-georgian-bay.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-cost-to-build-penetanguishene"
+  to = "/blog-cost-to-build-penetanguishene.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-eight-years-500-families-georgian-bay-real-estate"
+  to = "/blog-eight-years-500-families-georgian-bay-real-estate.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-first-time-buyers-guide-penetanguishene"
+  to = "/blog-first-time-buyers-guide-penetanguishene.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-how-your-home-gets-sold"
+  to = "/blog-how-your-home-gets-sold.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-is-georgian-bay-part-of-muskoka.html"
+  to = "/blog-is-georgian-bay-part-of-muskoka"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-is-tiny-township-a-good-place-to-live"
+  to = "/blog-is-tiny-township-a-good-place-to-live.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-aug-10-16-2026"
+  to = "/blog-market-update-aug-10-16-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-aug-17-23-2026"
+  to = "/blog-market-update-aug-17-23-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-aug-24-30-2026"
+  to = "/blog-market-update-aug-24-30-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-aug-3-9-2026"
+  to = "/blog-market-update-aug-3-9-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-aug-31-sep-6-2026"
+  to = "/blog-market-update-aug-31-sep-6-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-jul-13-19-2026"
+  to = "/blog-market-update-jul-13-19-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-jul-20-26-2026"
+  to = "/blog-market-update-jul-20-26-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-jul-27-aug-2-2026"
+  to = "/blog-market-update-jul-27-aug-2-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-jul-6-12-2026"
+  to = "/blog-market-update-jul-6-12-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-july-2026"
+  to = "/blog-market-update-july-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-jun-15-21-2026"
+  to = "/blog-market-update-jun-15-21-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-jun-22-28-2026"
+  to = "/blog-market-update-jun-22-28-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-jun-29-jul-5-2026"
+  to = "/blog-market-update-jun-29-jul-5-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-jun-8-14-2026"
+  to = "/blog-market-update-jun-8-14-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-june-2026"
+  to = "/blog-market-update-june-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-market-update-sep-7-13-2026"
+  to = "/blog-market-update-sep-7-13-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-midland-official-plan-investing-guide.html"
+  to = "/blog-midland-official-plan-investing-guide"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-midland-vs-penetanguishene"
+  to = "/blog-midland-vs-penetanguishene.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-moving-to-georgian-bay"
+  to = "/blog-moving-to-georgian-bay.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-offer-conditional-on-sale-of-buyers-property"
+  to = "/blog-offer-conditional-on-sale-of-buyers-property.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-questions-to-ask-midland-real-estate-agent"
+  to = "/blog-questions-to-ask-midland-real-estate-agent.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-research-georgian-bay-homes-before-you-visit"
+  to = "/blog-research-georgian-bay-homes-before-you-visit.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-right-time-to-buy-or-sell-midland"
+  to = "/blog-right-time-to-buy-or-sell-midland.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-selling-waterfront-tiny-township"
+  to = "/blog-selling-waterfront-tiny-township.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-selling-your-home-in-midland"
+  to = "/blog-selling-your-home-in-midland.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-septic-clauses-real-estate-offers"
+  to = "/blog-septic-clauses-real-estate-offers.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-top-rated-realtor-midland-ratemyagent"
+  to = "/blog-top-rated-realtor-midland-ratemyagent.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-west-end-vs-east-end-midland.html"
+  to = "/blog-west-end-vs-east-end-midland"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-what-boat-for-georgian-bay.html"
+  to = "/blog-what-boat-for-georgian-bay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-what-makes-jonathan-wallace-different"
+  to = "/blog-what-makes-jonathan-wallace-different.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-whats-it-take"
+  to = "/blog-whats-it-take.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-which-agent-penetanguishene.html"
+  to = "/blog-which-agent-penetanguishene"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-who-owns-the-beach-tiny-township"
+  to = "/blog-who-owns-the-beach-tiny-township.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/buy"
+  to = "/buy.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/communities/midland.html"
+  to = "/midland-real-estate/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/communities/midland"
+  to = "/midland-real-estate/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/communities/penetanguishene.html"
+  to = "/penetanguishene-real-estate/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/communities/penetanguishene"
+  to = "/penetanguishene-real-estate/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/communities/tay-township.html"
+  to = "/tay-township-real-estate/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/communities/tay-township"
+  to = "/tay-township-real-estate/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/communities/tiny-township.html"
+  to = "/tiny-township-real-estate/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/communities/tiny-township"
+  to = "/tiny-township-real-estate/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/communities/wasaga-beach.html"
+  to = "/wasaga-beach-real-estate/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/communities/wasaga-beach"
+  to = "/wasaga-beach-real-estate/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/communities"
+  to = "/communities.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/faq"
+  to = "/faq.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/find-your-home.html"
+  to = "/find-your-home"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/home-tours"
+  to = "/home-tours.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/home-value"
+  to = "/home-value.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/newsletter.html"
+  to = "/newsletter"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privacy.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/resources.html"
+  to = "/resources"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-midland.html"
+  to = "/sell-your-home-in-midland"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-midland"
+  to = "/sell-your-home-in-midland"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-penetanguishene.html"
+  to = "/sell-your-home-in-penetanguishene"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-penetanguishene"
+  to = "/sell-your-home-in-penetanguishene"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-tay-township.html"
+  to = "/sell-your-home-in-tay-township"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-tay-township"
+  to = "/sell-your-home-in-tay-township"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-tiny-township.html"
+  to = "/sell-your-home-in-tiny-township"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-tiny-township"
+  to = "/sell-your-home-in-tiny-township"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-wasaga-beach.html"
+  to = "/sell-your-home-in-wasaga-beach"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell-wasaga-beach"
+  to = "/sell-your-home-in-wasaga-beach"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sell"
+  to = "/sell.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/thank-you"
+  to = "/thank-you.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/vendors.html"
+  to = "/vendors"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/weekly"
+  to = "/weekly.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/which-real-estate-agent-should-you-interview-in-tiny-township.html"
+  to = "/which-real-estate-agent-should-you-interview-in-tiny-township"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/home-valuation"
+  to = "/home-value.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/home-valuation.html"
+  to = "/home-value.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/home-valuation/"
+  to = "/home-value.html"
+  status = 301
+  force = true

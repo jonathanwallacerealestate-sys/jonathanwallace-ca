@@ -449,8 +449,20 @@
   force = true
 
 [[redirects]]
+  from = "/blog-which-agent-penetanguishene"
+  to = "/which-real-estate-agent-should-you-interview-in-penetanguishene"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog-which-agent-penetanguishene.html"
-  to = "/blog-which-agent-penetanguishene"
+  to = "/which-real-estate-agent-should-you-interview-in-penetanguishene"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-which-agent-penetanguishene/"
+  to = "/which-real-estate-agent-should-you-interview-in-penetanguishene"
   status = 301
   force = true
 
@@ -667,6 +679,18 @@
 [[redirects]]
   from = "/weekly"
   to = "/weekly.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/which-real-estate-agent-should-you-interview-in-midland.html"
+  to = "/which-real-estate-agent-should-you-interview-in-midland"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/which-real-estate-agent-should-you-interview-in-penetanguishene.html"
+  to = "/which-real-estate-agent-should-you-interview-in-penetanguishene"
   status = 301
   force = true
 

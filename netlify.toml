@@ -27,6 +27,17 @@
   [headers.values]
     Cache-Control = "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
 
+# Keep llms.txt readable as plain text at both the root and well-known paths
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
+[[headers]]
+  for = "/.well-known/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
 # Example redirect (uncomment + edit if you add /listings via an IDX subdomain)
 # [[redirects]]
 #   from = "/listings"
@@ -699,6 +710,25 @@
   to = "/which-real-estate-agent-should-you-interview-in-tiny-township"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/which-real-estate-agent-should-you-interview-in-tay-township.html"
+  to = "/which-real-estate-agent-should-you-interview-in-tay-township"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/which-real-estate-agent-should-you-interview-in-wasaga-beach.html"
+  to = "/which-real-estate-agent-should-you-interview-in-wasaga-beach"
+  status = 301
+  force = true
+
+# AI crawlers that look up the well-known path get the same llms.txt
+# (200 rewrite keeps the requested URL and the text/plain content-type)
+[[redirects]]
+  from = "/.well-known/llms.txt"
+  to = "/llms.txt"
+  status = 200
 
 [[redirects]]
   from = "/home-valuation"

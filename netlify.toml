@@ -448,6 +448,12 @@
   force = true
 
 [[redirects]]
+  from = "/blog-when-home-stops-working-retirement-living.html"
+  to = "/blog-when-home-stops-working-retirement-living"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog-what-makes-jonathan-wallace-different"
   to = "/blog-what-makes-jonathan-wallace-different.html"
   status = 301

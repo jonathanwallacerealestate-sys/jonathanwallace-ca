@@ -238,6 +238,12 @@
   force = true
 
 [[redirects]]
+  from = "/blog-case-study-wahnekewening-beach-three-season-cottage"
+  to = "/blog-case-study-wahnekewening-beach-three-season-cottage.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog-cost-to-build-penetanguishene"
   to = "/blog-cost-to-build-penetanguishene.html"
   status = 301

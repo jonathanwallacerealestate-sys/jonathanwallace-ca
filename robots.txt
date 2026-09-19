@@ -13,4 +13,41 @@ User-agent: Google-Extended
 Allow: /
 Disallow: /assets/newsletter/
 
+# Major AI search and training crawlers. Named groups replace *, so rules are repeated.
+User-agent: GPTBot
+Allow: /
+Disallow: /assets/newsletter/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /assets/newsletter/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /assets/newsletter/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /assets/newsletter/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /assets/newsletter/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /assets/newsletter/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /assets/newsletter/
+
+User-agent: Bytespider
+Allow: /
+Disallow: /assets/newsletter/
+
+User-agent: CCBot
+Allow: /
+Disallow: /assets/newsletter/
+
 Sitemap: https://jonathanwallace.ca/sitemap.xml

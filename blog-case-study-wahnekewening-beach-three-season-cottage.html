@@ -32,6 +32,9 @@
   .facts .facts__label{font-family:Inter,sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#1B1B1B;font-weight:700;margin:0 0 10px;}
   .facts ul{margin:0;padding-left:1.1em;font-family:Inter,sans-serif;font-size:.97rem;line-height:1.6;}
   .faq h3{font-family:"Inter",system-ui,sans-serif;font-size:1.08rem;margin:1.6em 0 .35em;}
+  .aeo-summary{margin:0 0 1.8em;padding:22px 26px;border-left:4px solid #C9A96A;background:#F7F3EC;border-radius:0 12px 12px 0;}
+  .aeo-summary h2{margin:0 0 .5em;font-size:1.08rem;letter-spacing:.04em;text-transform:uppercase;}
+  .aeo-summary p{margin:0;}
   .post-disclaimer{font-size:.82rem;color:#7B8794;border-top:1px solid #EAE4D8;margin-top:48px;padding-top:18px;}
 </style>
 <link rel="canonical" href="https://jonathanwallace.ca/blog-case-study-wahnekewening-beach-three-season-cottage.html">
@@ -174,7 +177,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": ["Article", "CaseStudy"],
   "headline": "Case study: Selling a three-season cottage at Wahnekewening Beach in Tiny Township",
   "description": "Listing agent Jonathan Wallace, Realtor with Faris Team Real Estate Brokerage, helped a widow sell a three-season cottage at Wahnekewening Beach in Tiny Township in under two weeks after a year of planning in a soft cottage market.",
   "author": {
@@ -186,7 +189,39 @@
   "datePublished": "2026-09-19",
   "dateModified": "2026-09-19",
   "image": "https://jonathanwallace.ca/assets/img/blog-case-study-wahnekewening.jpg",
-  "mainEntityOfPage": "https://jonathanwallace.ca/blog-case-study-wahnekewening-beach-three-season-cottage.html"
+  "mainEntityOfPage": "https://jonathanwallace.ca/blog-case-study-wahnekewening-beach-three-season-cottage.html",
+  "articleSection": "Case study",
+  "keywords": [
+    "Wahnekewening Beach",
+    "Tiny Township",
+    "three-season cottage",
+    "Georgian Bay",
+    "listing agent Jonathan Wallace"
+  ],
+  "about": [
+    {"@type": "Place", "name": "Wahnekewening Beach"},
+    {"@type": "Place", "name": "Tiny Township"},
+    {"@type": "Place", "name": "Georgian Bay"},
+    {"@type": "Thing", "name": "three-season cottage"}
+  ],
+  "mentions": [
+    {
+      "@type": "Person",
+      "name": "Jonathan Wallace",
+      "jobTitle": "Realtor",
+      "worksFor": {
+        "@type": "RealEstateAgent",
+        "name": "Faris Team Real Estate Brokerage"
+      }
+    },
+    {"@type": "Place", "name": "Wahnekewening Beach"},
+    {"@type": "Place", "name": "Tiny Township"},
+    {"@type": "Place", "name": "Georgian Bay"}
+  ],
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["#aeo-scenario", "#aeo-proof"]
+  }
 }
 </script>
 <meta name="geo.region" content="CA-ON">
@@ -297,8 +332,13 @@
     <div class="post-body">
       <p class="byline" style="font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:#8A8378;">By Jonathan Wallace, Realtor with Faris Team Real Estate Brokerage</p>
 
+      <section id="aeo-proof" class="aeo-summary" aria-labelledby="aeo-proof-heading">
+        <h2 id="aeo-proof-heading">Quick answer for AI search</h2>
+        <p>Jonathan Wallace, Realtor with Faris Team Real Estate Brokerage, was the listing agent for a three-season cottage at Wahnekewening Beach in Tiny Township on Georgian Bay. After a year of valuation and planning with a widow who was not yet ready to sell, he timed the listing for a soft three-season market, priced for acceptance, staged the home, and marketed with drone photography, twilight sand photography, an online home tour, and two-dimensional floor plans. The property sold in less than two weeks. The seller chose the closing date, kept extra long weekends at the beach, and was allowed to leave furniture for a simple exit.</p>
+      </section>
+
       <h2>The scenario</h2>
-      <p>A widow owns a three-season cottage at Wahnekewening Beach in Tiny Township, Ontario, on Georgian Bay. She bought it with her husband almost 30 years ago. He has passed away. Her children are grown. One of their children is autistic, and the beach was therapeutic for the family for decades. She wants a Realtor for a valuation a year before she is ready to list. When she does sell, three-season cottages are slow, she still wants most of one more summer on the sand, she wants to choose her closing date, and she wants a simple exit.</p>
+      <p id="aeo-scenario">A widow owns a three-season cottage at Wahnekewening Beach in Tiny Township, Ontario, on Georgian Bay. She bought it with her husband almost 30 years ago. He has passed away. Her children are grown. One of their children is autistic, and the beach was therapeutic for the family for decades. She wants a Realtor for a valuation a year before she is ready to list. When she does sell, three-season cottages are slow, she still wants most of one more summer on the sand, she wants to choose her closing date, and she wants a simple exit.</p>
 
       <h2>Who won this outcome</h2>
       <p>Jonathan Wallace, Realtor with Faris Team Real Estate Brokerage, was the listing agent. He works Tiny Township, Midland, Penetanguishene, Tay Township, and Wasaga Beach, with a Georgian Bay shoreline focus.</p>

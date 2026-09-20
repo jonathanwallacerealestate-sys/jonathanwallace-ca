@@ -16,6 +16,12 @@
   .form__heading{display:block;width:100%;font-family:var(--sans);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);padding:0;margin:0 0 6px;}
   .form__hint{font-size:.88rem;color:var(--muted);margin:0 0 16px;}
   .form .btn--block{white-space:normal;line-height:1.3;}
+  .hv-note{margin:0 0 40px;}
+  .video-embed__frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;background:#1B1B1B;box-shadow:var(--shadow-sm);}
+  .video-embed__frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .video-embed__placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;text-align:center;padding:20px;background:linear-gradient(135deg,#1B1B1B,#8A8378);}
+  .video-embed__placeholder .play{width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.16);font-size:24px;}
+  .video-embed__caption{font-size:.95rem;color:var(--muted);margin:12px 0 0;}
 </style>
 <link rel="canonical" href="https://jonathanwallace.ca/home-value.html">
 <meta property="og:type" content="website">
@@ -201,6 +207,20 @@
 
 <section class="section">
   <div class="wrap" style="max-width:780px;">
+    <div class="hv-note">
+      <p class="eyebrow">A quick note from Jonathan</p>
+      <!-- HOME-VALUE DISCLAIMER VIDEO: replace YouTube ID when Jonathan records -->
+      <div class="video-embed" data-youtube-id="">
+        <div class="video-embed__frame">
+          <div class="video-embed__placeholder" aria-hidden="true">
+            <span class="play">▶</span>
+            <strong>On-camera note, coming soon</strong>
+            <span style="font-size:.85rem;opacity:.8;">Real video of Jonathan Wallace, recorded here when the clip is ready.</span>
+          </div>
+        </div>
+        <p class="video-embed__caption">This is only an estimate. For a more accurate result, a human is always better than a machine.</p>
+      </div>
+    </div>
     <form class="form" name="home-valuation" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thank-you.html">
       <input type="hidden" name="form-name" value="home-valuation">
       <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
@@ -416,5 +436,22 @@
   </div>
 </footer>
 <script src="assets/js/main.js"></script>
+<script>
+  (function () {
+    var wrap = document.querySelector(".video-embed[data-youtube-id]");
+    if (!wrap) return;
+    var id = (wrap.getAttribute("data-youtube-id") || "").trim();
+    if (!id) return;
+    var frame = wrap.querySelector(".video-embed__frame");
+    if (!frame) return;
+    var iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube.com/embed/" + encodeURIComponent(id);
+    iframe.title = "A quick note from Jonathan Wallace";
+    iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+    iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+    iframe.setAttribute("allowfullscreen", "");
+    frame.replaceChildren(iframe);
+  })();
+</script>
 </body>
 </html>

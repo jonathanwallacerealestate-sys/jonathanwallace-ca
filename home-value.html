@@ -5,22 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <title>What's My Home Worth? | Georgian Bay Valuation, Jonathan Wallace</title>
-<meta name="description" content="Get a real, local valuation of your Georgian Bay home from Jonathan Wallace. Free, no-obligation market analysis for Midland, Penetanguishene, Tiny, Tay and Wasaga Beach.">
+<meta name="description" content="Request a local conversation about your Georgian Bay home's value, based on nearby solds. Not an automated guess. A formal Letter of Opinion is only after a property visit, if you want one.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
+<style>
+  .form__block{border:0;margin:0;padding:0;min-width:0;}
+  .form__block + .form__block{margin-top:10px;padding-top:22px;border-top:1px solid var(--line);}
+  .form__heading{display:block;width:100%;font-family:var(--sans);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);padding:0;margin:0 0 6px;}
+  .form__hint{font-size:.88rem;color:var(--muted);margin:0 0 16px;}
+  .form .btn--block{white-space:normal;line-height:1.3;}
+</style>
 <link rel="canonical" href="https://jonathanwallace.ca/home-value.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jonathanwallace.ca/home-value.html">
 <meta property="og:title" content="What&#x27;s My Home Worth? | Georgian Bay Valuation, Jonathan Wallace">
-<meta property="og:description" content="Get a real, local valuation of your Georgian Bay home from Jonathan Wallace. Free, no-obligation market analysis for Midland, Penetanguishene, Tiny, Tay and Wasaga Beach.">
+<meta property="og:description" content="Request a local conversation about your Georgian Bay home's value, based on nearby solds. Not an automated guess. A formal Letter of Opinion is only after a property visit, if you want one.">
 <meta property="og:image" content="https://jonathanwallace.ca/assets/img/og-card.png">
 <meta property="og:locale" content="en_CA">
 <meta property="og:site_name" content="Jonathan Wallace, Your Georgian Bay Specialist">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="What&#x27;s My Home Worth? | Georgian Bay Valuation, Jonathan Wallace">
-<meta name="twitter:description" content="Get a real, local valuation of your Georgian Bay home from Jonathan Wallace. Free, no-obligation market analysis for Midland, Penetanguishene, Tiny, Tay and Wasaga Beach.">
+<meta name="twitter:description" content="Request a local conversation about your Georgian Bay home's value, based on nearby solds. Not an automated guess. A formal Letter of Opinion is only after a property visit, if you want one.">
 <meta name="twitter:image" content="https://jonathanwallace.ca/assets/img/og-card.png">
 <script type="application/ld+json">
 {
@@ -186,9 +193,9 @@
 
 <section class="page-hero" style="background:linear-gradient(120deg,rgba(20,18,13,.82),rgba(20,18,13,.55)),url('assets/img/hero-home-value.jpg') center/cover no-repeat;">
   <div class="wrap">
-    <p class="eyebrow" style="color:#C9A96A;">Free home valuation</p>
+    <p class="eyebrow" style="color:#C9A96A;">A local conversation about value</p>
     <h1>What's your Georgian Bay home worth today?</h1>
-    <p>Not an automated guess, a real analysis from a local agent who knows what's actually selling in your neighbourhood, and for how much.</p>
+    <p>Not an automated guess. You get a conversation based on what has actually sold nearby. A formal Letter of Opinion is only prepared after a property visit, if you want one.</p>
   </div>
 </section>
 
@@ -197,17 +204,188 @@
     <form class="form" name="home-valuation" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thank-you.html">
       <input type="hidden" name="form-name" value="home-valuation">
       <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
-      <div class="field"><label>Property address</label><input name="address" placeholder="123 Bayshore Dr, Midland, ON" required></div>
-      <div class="form__row"><div class="field"><label>Property type</label><select name="property_type"><option>Detached</option><option>Semi / townhouse</option><option>Condo</option><option>Waterfront</option><option>Vacant land</option><option>Other</option></select></div><div class="field"><label>Approx. square footage</label><input name="sqft" placeholder="e.g. 1,800"></div></div>
-      <div class="form__row"><div class="field"><label>Bedrooms</label><select name="beds"><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></div><div class="field"><label>Bathrooms</label><select name="baths"><option>1</option><option>2</option><option>3</option><option>4+</option></select></div></div>
-      <div class="field"><label>Anything that makes your home special? (optional)</label><textarea name="features" rows="3" placeholder="Renovations, waterfront, lot size, view…"></textarea></div>
-      <hr style="border:none;border-top:1px solid var(--line);margin:8px 0 22px;">
-      <div class="form__row"><div class="field"><label>First name</label><input name="first_name" required></div><div class="field"><label>Last name</label><input name="last_name" required></div></div>
-      <div class="form__row"><div class="field"><label>Email</label><input type="email" name="email" required></div><div class="field"><label>Phone</label><input type="tel" name="phone" required></div></div>
-      <div class="field"><label>Timeline to sell</label><select name="timeline"><option>ASAP</option><option>1–3 months</option><option>3–6 months</option><option>6–12 months</option><option>Just curious</option></select></div>
-      <label class="consent"><input type="checkbox" name="casl_consent" required> I agree to be contacted by Jonathan Wallace about my home's value and understand I can unsubscribe anytime. (CASL)</label>
-      <button class="btn btn--primary btn--block btn--lg" type="submit">Get my home valuation</button>
-      <p class="form__note">Free and no-obligation. Your details are private and never shared.</p>
+
+      <fieldset class="form__block">
+        <legend class="form__heading">Property</legend>
+        <p class="form__hint">Start with the address. Add the rest if you know it.</p>
+        <div class="field"><label for="hv-address">Property address</label><input id="hv-address" name="address" placeholder="123 Bayshore Dr, Midland, ON" required></div>
+        <div class="form__row">
+          <div class="field">
+            <label for="hv-property-type">Property type</label>
+            <select id="hv-property-type" name="property_type">
+              <option>Detached</option>
+              <option>Semi / townhouse</option>
+              <option>Condo</option>
+              <option>Waterfront</option>
+              <option>Vacant land</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hv-occupancy">How is it used?</label>
+            <select id="hv-occupancy" name="occupancy_type">
+              <option value="">Select</option>
+              <option>Year-round</option>
+              <option>Three-season / cottage</option>
+              <option>Seasonal other</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form__block">
+        <legend class="form__heading">About the home</legend>
+        <p class="form__hint">These details help compare nearby solds. Skip anything you are unsure about.</p>
+        <div class="form__row">
+          <div class="field">
+            <label for="hv-beds">Bedrooms</label>
+            <select id="hv-beds" name="beds">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5+</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hv-baths">Bathrooms</label>
+            <select id="hv-baths" name="baths">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4+</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="field"><label for="hv-sqft">Approx. square footage</label><input id="hv-sqft" name="sqft" placeholder="e.g. 1,800"></div>
+          <div class="field">
+            <label for="hv-lot-type">Lot type</label>
+            <select id="hv-lot-type" name="lot_type">
+              <option value="">Select</option>
+              <option>City / town lot</option>
+              <option>Large rural</option>
+              <option>Waterfront frontage</option>
+              <option>Condo / no lot</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="field">
+            <label for="hv-waterfront">Waterfront</label>
+            <select id="hv-waterfront" name="waterfront">
+              <option value="">Select</option>
+              <option>No</option>
+              <option>Yes, sand</option>
+              <option>Yes, rocky / mixed</option>
+              <option>Yes, other / not sure</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hv-winter-access">Winter access</label>
+            <select id="hv-winter-access" name="winter_access">
+              <option value="">Select</option>
+              <option>Year-round road</option>
+              <option>Seasonal / private</option>
+              <option>N/A</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="field">
+            <label for="hv-basement">Basement</label>
+            <select id="hv-basement" name="basement">
+              <option value="">Select</option>
+              <option>Finished</option>
+              <option>Partially finished</option>
+              <option>Unfinished</option>
+              <option>Crawl / none</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hv-garage">Garage</label>
+            <select id="hv-garage" name="garage">
+              <option value="">Select</option>
+              <option>None</option>
+              <option>1-car</option>
+              <option>2-car</option>
+              <option>3+</option>
+              <option>Detached / other</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="hv-condition">Condition</label>
+          <select id="hv-condition" name="condition">
+            <option value="">Select</option>
+            <option>Recently renovated</option>
+            <option>Updated in last 10 years</option>
+            <option>Mostly original</option>
+            <option>Work in progress</option>
+            <option>Not sure</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="hv-known-issues">Known issues (optional)</label>
+          <textarea id="hv-known-issues" name="known_issues" rows="3" placeholder="Septic, well, roof, foundation, shoreline, or anything that would come up on a home inspection."></textarea>
+        </div>
+        <div class="field">
+          <label for="hv-features">Anything that makes the home stand out? (optional)</label>
+          <textarea id="hv-features" name="features" rows="3" placeholder="Workshop, dock, view, recent kitchen, extra lot, or anything buyers would notice."></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset class="form__block">
+        <legend class="form__heading">Timing</legend>
+        <p class="form__hint">No pressure either way. This just helps me prepare for the conversation.</p>
+        <div class="form__row">
+          <div class="field">
+            <label for="hv-timeline">Timeline</label>
+            <select id="hv-timeline" name="timeline">
+              <option>Just curious</option>
+              <option>0–6 months</option>
+              <option>6–12 months</option>
+              <option>12+ months</option>
+              <option>Estate / refinance / other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hv-how-heard">How did you hear about Jonathan? (optional)</label>
+            <select id="hv-how-heard" name="how_heard">
+              <option value="">Select</option>
+              <option>Google</option>
+              <option>Instagram</option>
+              <option>Referral</option>
+              <option>Open house</option>
+              <option>Newsletter</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="hv-motivation">What's prompting the look at value? (optional)</label>
+          <textarea id="hv-motivation" name="motivation" rows="3" placeholder="Downsizing, estate, refinance, moving closer to town, or just checking the market."></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset class="form__block">
+        <legend class="form__heading">Your details</legend>
+        <p class="form__hint">I will reply personally. Your details stay private.</p>
+        <div class="form__row">
+          <div class="field"><label for="hv-first-name">First name</label><input id="hv-first-name" name="first_name" required></div>
+          <div class="field"><label for="hv-last-name">Last name</label><input id="hv-last-name" name="last_name" required></div>
+        </div>
+        <div class="form__row">
+          <div class="field"><label for="hv-email">Email</label><input id="hv-email" type="email" name="email" required></div>
+          <div class="field"><label for="hv-phone">Phone</label><input id="hv-phone" type="tel" name="phone" required></div>
+        </div>
+        <label class="consent"><input type="checkbox" name="casl_consent" required> I agree to be contacted by Jonathan Wallace about my home's value and understand I can unsubscribe anytime. (CASL)</label>
+        <button class="btn btn--primary btn--block btn--lg" type="submit">Request my home value conversation</button>
+        <p class="form__note">This starts a conversation about value, not a formal Letter of Opinion. Those are prepared after a visit, if you want one. Your details are private and never shared.</p>
+      </fieldset>
     </form>
   </div>
 </section>
@@ -217,7 +395,7 @@
   <div class="wrap grid grid--3" style="margin-top:40px;">
     <div class="card"><div class="card__icon">📊</div><h3>Real comparables</h3><p>I use what's actually sold near you, not a national averaging tool that's never seen your street.</p></div>
     <div class="card"><div class="card__icon">🌊</div><h3>Local factors</h3><p>Waterfront, views, lot, and neighbourhood nuances that automated estimates routinely miss.</p></div>
-    <div class="card"><div class="card__icon">💬</div><h3>A real conversation</h3><p>You'll get context and next steps, and zero pressure to list before you're ready.</p></div>
+    <div class="card"><div class="card__icon">💬</div><h3>Conversation first</h3><p>We start with a call about nearby solds, with no pressure to list. A formal Letter of Opinion comes only after a property visit, if you want one.</p></div>
   </div>
 </section>
 

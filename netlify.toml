@@ -274,6 +274,12 @@
   force = true
 
 [[redirects]]
+  from = "/blog-fixed-rates-confidence-georgian-bay-september-2026"
+  to = "/blog-fixed-rates-confidence-georgian-bay-september-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog-how-your-home-gets-sold"
   to = "/blog-how-your-home-gets-sold.html"
   status = 301

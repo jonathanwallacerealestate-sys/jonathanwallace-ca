@@ -199,6 +199,10 @@
     } catch (e) {}
     return out;
   }
+  /* 2026-09-23: persist UTMs/click ids on landing, not only at submit, so a visitor who
+     lands from Facebook and signs up on a later page (or via Google one-tap) keeps attribution. */
+  window.__jwReadAttr = readAttribution;
+  readAttribution();
   /* Form submissions -> tagged lead event */
   document.addEventListener('submit', function (e) {
     var form = e.target;
@@ -475,6 +479,9 @@
     var slotEl = document.getElementById('googleSignupSlot');
     if (slotEl) slots.push(slotEl);
     var forms = document.querySelectorAll('form[name="newsletter"]');
+    /* 2026-09-23: on posts with an in-article signup box, show one Google button (in the box), not two. */
+    var postCtaForm = document.querySelector('.post-cta form[name="newsletter"]');
+    if (postCtaForm) forms = [postCtaForm];
     for (var i = 0; i < forms.length; i++) {
       if (slotEl && slotEl.getAttribute('data-form') === 'inline') break;
       var wrap = document.createElement('div');
@@ -501,6 +508,12 @@
     try { claims = decodeJwt(resp.credential); } catch (e) { return; }
     if (!claims || !claims.email) return;
     var tags = ['Website Lead', 'Website: newsletter', 'Newsletter: Weekly', 'Signup: Google'];
+    var pagePath = '';
+    try { pagePath = location.pathname.replace(/\.html$/, '').replace(/\/+$/, '') || '/home'; } catch (e) {}
+    if (pagePath) tags.push('Page: ' + pagePath);
+    var attr = {};
+    try { attr = window.__jwReadAttr ? (window.__jwReadAttr() || {}) : JSON.parse(sessionStorage.getItem('jw_attr') || '{}'); } catch (e) { attr = {}; }
+    if (attr.utm_medium === 'cpc' || attr.utm_medium === 'paid_social') tags.push('Ads:' + new Date().toISOString().slice(0, 7));
     if (loc()) tags.push('Poster: ' + loc());
     var guideEl = document.querySelector('input[name="guide"]');
     if (guideEl && guideEl.value) tags.push('Guide: ' + guideEl.value);
@@ -519,6 +532,10 @@
       body: JSON.stringify({
         form_name: 'newsletter', email: claims.email,
         name: claims.name || '', site_url: 'https://jonathanwallace.ca',
+        attribution_json: JSON.stringify(attr),
+        utm_source: attr.utm_source || '', utm_medium: attr.utm_medium || '', utm_campaign: attr.utm_campaign || '',
+        utm_content: attr.utm_content || '', utm_term: attr.utm_term || '',
+        gclid: attr.gclid || '', fbclid: attr.fbclid || '', landing_path: attr.landing_path || '',
         tags_json: JSON.stringify(tags), data: data
       })
     }).catch(function () {});

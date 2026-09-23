@@ -15,6 +15,12 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+# Private home-value lab. Keep /lab/* out of search even if a URL is shared.
+[[headers]]
+  for = "/lab/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+
 # Cache the latest-videos API at the edge (refresh hourly, serve stale meanwhile)
 [[headers]]
   for = "/.netlify/functions/latest-videos"
@@ -48,6 +54,9 @@
 # on each <form>. Submissions appear in the Netlify dashboard under "Forms".
 # Wire an outgoing webhook (Netlify > Forms > form > Settings > Outgoing webhook)
 # to a Make.com custom webhook to push leads into Follow Up Boss. See README.
+# Lab only: form name home-valuation-lab on /lab/home-value.html.
+# Do not merge those submissions into the production form home-valuation.
+# See lab/README.md and lab/BACKEND.md. Notification email is set in the Netlify UI.
 
 # /newsletter and /resources are real on-domain pages (pretty URLs).
 

@@ -4,6 +4,85 @@
 (function () {
   var LAB_PASSPHRASE = "wallace-lab-2026";
   var STORAGE_KEY = "jw-lab-home-value";
+  var LEAD_KEY = "jw-lab-home-value-lead";
+  var CALENDLY_IN_HOME = "https://calendly.com/jonathan-faristeam/jonathan-wallace-in-home-evaluation-full-cma";
+  var CALENDLY_PHONE = "https://calendly.com/jonathan-faristeam/jonathan-wallace-quick-phone-call";
+
+  function trim(value) {
+    return String(value == null ? "" : value).replace(/^\s+|\s+$/g, "");
+  }
+
+  function fieldValue(formEl, name) {
+    var el = formEl.querySelector('[name="' + name + '"]');
+    return el ? trim(el.value) : "";
+  }
+
+  function saveLead(formEl) {
+    var lead = {
+      first_name: fieldValue(formEl, "first_name"),
+      last_name: fieldValue(formEl, "last_name"),
+      email: fieldValue(formEl, "email"),
+      phone: fieldValue(formEl, "phone"),
+      address: fieldValue(formEl, "address")
+    };
+    try { sessionStorage.setItem(LEAD_KEY, JSON.stringify(lead)); } catch (errLead) {}
+  }
+
+  function readLead() {
+    try {
+      var raw = sessionStorage.getItem(LEAD_KEY);
+      if (!raw) return null;
+      var lead = JSON.parse(raw);
+      if (!lead || typeof lead !== "object") return null;
+      return lead;
+    } catch (errRead) {
+      return null;
+    }
+  }
+
+  function queryPairs(pairs) {
+    var parts = [];
+    for (var i = 0; i < pairs.length; i++) {
+      if (!pairs[i][1]) continue;
+      parts.push(encodeURIComponent(pairs[i][0]) + "=" + encodeURIComponent(pairs[i][1]));
+    }
+    return parts.length ? "?" + parts.join("&") : "";
+  }
+
+  function calendlyQuery(lead, includePhone) {
+    var first = trim(lead.first_name);
+    var last = trim(lead.last_name);
+    var name = trim(first + " " + last);
+    var phoneTyped = trim(lead.phone);
+    var phoneDigits = phoneTyped.replace(/\D/g, "");
+    var pairs = [
+      ["name", name],
+      ["email", trim(lead.email)],
+      ["a1", trim(lead.address)]
+    ];
+    if (includePhone) {
+      pairs.push(["location", phoneDigits]);
+      pairs.push(["a2", phoneTyped]);
+    }
+    return queryPairs(pairs);
+  }
+
+  function applyCalendlyPrefill() {
+    var inHome = document.getElementById("labCalendlyInHome");
+    var phoneLink = document.getElementById("labCalendlyPhone");
+    if (!inHome && !phoneLink) return;
+    var lead = readLead();
+    if (!lead) return;
+    var queryInHome = calendlyQuery(lead, false);
+    var queryPhone = calendlyQuery(lead, true);
+    if (!queryInHome && !queryPhone) return;
+    if (inHome && queryInHome) inHome.href = CALENDLY_IN_HOME + queryInHome;
+    if (phoneLink && queryPhone) phoneLink.href = CALENDLY_PHONE + queryPhone;
+    var note = document.getElementById("labPrefillNote");
+    if (note && (trim(lead.first_name) || trim(lead.last_name) || trim(lead.email))) {
+      note.hidden = false;
+    }
+  }
 
   function unlock() {
     document.documentElement.classList.add("lab-unlocked");
@@ -97,9 +176,13 @@
       if (step2.hidden || step2.disabled) {
         e.preventDefault();
         advance();
+        return;
       }
+      saveLead(form);
     });
   }
+
+  applyCalendlyPrefill();
 
   var wrap = document.querySelector(".video-embed[data-youtube-id]");
   if (wrap) {

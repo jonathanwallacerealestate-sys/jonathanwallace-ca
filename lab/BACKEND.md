@@ -63,10 +63,12 @@ Shape:
 2. **What the market is showing.** Homes in this segment have been trading in about the `$low to $high` range. State that this is a preliminary read from local solds, not a formal Letter of Opinion, and that condition, updates, and a walk-through still move the number.
 3. Two or three sold examples: price, days on market, short why.
 4. **What would refine this.** One or two bullets from the form (waterfront type, septic, renovation status, and similar).
-5. In-home booking, always:
-   https://calendly.com/jonathan-faristeam/jonathan-wallace-in-home-evaluation-full-cma
-6. Optional phone booking:
-   https://calendly.com/jonathan-faristeam/jonathan-wallace-quick-phone-call
+5. In-home booking, always, with the same prefill the thank-you page uses:
+   `https://calendly.com/jonathan-faristeam/jonathan-wallace-in-home-evaluation-full-cma?name={First Last}&email={email}&a1={address}`
+6. Optional phone booking, same prefill plus phone:
+   `https://calendly.com/jonathan-faristeam/jonathan-wallace-quick-phone-call?name={First Last}&email={email}&a1={address}&location={phone digits}&a2={phone as typed}`
+
+   URL-encode every value. `a1` is the property address, so **Property address** must be the first invitee question on both Calendly event types. `location` is the phone-call location (digits only). `a2` repeats the phone as the visitor typed it, for a second custom question if the phone event does not use the location field. Empty values are omitted. A thank-you visit with no saved lead keeps the bare URLs.
 7. No pressure to list.
 8. Sign-off: Jonathan Wallace, REALTOR®, Faris Team Real Estate Brokerage, 705-433-2525, jonathan@faristeam.ca, jonathanwallace.ca.
 

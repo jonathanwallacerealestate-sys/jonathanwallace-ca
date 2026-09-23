@@ -8,7 +8,7 @@ Relative path: `lab/home-value.html`
 
 Passphrase: `wallace-lab-2026`
 
-The passphrase is the `LAB_PASSPHRASE` constant in `lab/lab.js`. The gate stores only an unlock flag in `sessionStorage` (`jw-lab-home-value`). It is a soft gate for obscurity and intentional access, not bank-grade authentication. Closing the tab locks it again.
+The passphrase is the `LAB_PASSPHRASE` constant in `lab/lab.js`. The gate stores an unlock flag in `sessionStorage` (`jw-lab-home-value`). A successful form submit also stores `jw-lab-home-value-lead` with first name, last name, email, phone, and property address only. CASL and the other answers are not in that blob. It is a soft gate for obscurity and intentional access, not bank-grade authentication. Closing the tab clears both keys.
 
 After the passphrase, a banner reads **LAB — internal testing**.
 
@@ -56,11 +56,29 @@ Netlify detects the form from the static HTML at deploy time, including while th
 
 1. Netlify stores the submission under **home-valuation-lab**.
 2. The visitor lands on the lab thank-you page: recent solds will be reviewed, a preliminary range and sold examples will be emailed, an in-home visit is the fuller evaluation, and numbers may change with fit and finish.
-3. Booking links on that page (also for the later email):
-   - In-home: https://calendly.com/jonathan-faristeam/jonathan-wallace-in-home-evaluation-full-cma
-   - Phone: https://calendly.com/jonathan-faristeam/jonathan-wallace-quick-phone-call
+3. Booking buttons on that page start as the bare Calendly URLs. If `jw-lab-home-value-lead` is present, the page rewrites them so the visitor does not type the same details again. A direct visit with an empty blob leaves the bare URLs. When name or email was saved, a line under the buttons reads: "We filled in your name and email from your request."
 
-Nothing is emailed to the visitor automatically. Jonathan signs off before any client email goes out. See `lab/BACKEND.md`.
+Bare bases:
+
+- In-home: https://calendly.com/jonathan-faristeam/jonathan-wallace-in-home-evaluation-full-cma
+- Phone: https://calendly.com/jonathan-faristeam/jonathan-wallace-quick-phone-call
+
+Prefill query (values are URL-encoded):
+
+- Both: `name` (first and last), `email`, `a1` (property address)
+- Phone only: `location` (digits from the phone field) and `a2` (phone as typed)
+
+Sample shape:
+
+`https://calendly.com/jonathan-faristeam/jonathan-wallace-in-home-evaluation-full-cma?name=Pat%20Tester&email=pat%40example.com&a1=12%20Bay%20Street%2C%20Midland%2C%20ON`
+
+`https://calendly.com/jonathan-faristeam/jonathan-wallace-quick-phone-call?name=Pat%20Tester&email=pat%40example.com&a1=12%20Bay%20Street%2C%20Midland%2C%20ON&location=7055550101&a2=705-555-0101`
+
+Calendly setup: on both event types, make **Property address** the first invitee question so `a1` lands on it. The phone event uses `location` for Calendly's phone-call location. If that event asks for phone as a custom question instead, make it the second invitee question so `a2` lands on it.
+
+Follow-up emails should use this same query pattern. See `lab/BACKEND.md`.
+
+Nothing is emailed to the visitor automatically. Jonathan signs off before any client email goes out.
 
 ### Manual Netlify step (once per site)
 

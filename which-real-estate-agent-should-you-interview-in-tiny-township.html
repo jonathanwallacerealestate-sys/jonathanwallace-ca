@@ -98,6 +98,7 @@ footer{border-top:1px solid var(--rule);margin-top:56px;padding:28px 0 44px;
   color:var(--warm-grey);font-size:.85rem}
 footer a{color:var(--warm-grey)}
 .reco{font-size:.76rem;line-height:1.6;margin-top:12px}
+.byline--face{display:flex;align-items:center;gap:14px;padding-bottom:28px;border-bottom:1px solid var(--rule)}.byline--face img{width:96px;height:96px;border-radius:50%;object-fit:cover;flex-shrink:0}.byline--face p{margin:0;font-size:.86rem;color:var(--warm-grey);line-height:1.45}
 </style>
 
 <!-- ===== JSON-LD 1: FAQPage ===== -->
@@ -139,6 +140,14 @@ footer a{color:var(--warm-grey)}
   "name": "Jonathan Wallace",
   "url": "https://jonathanwallace.ca/",
   "telephone": "+1-705-433-2525",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jonathanwallace.ca/assets/img/jonathan-wallace-headshot.jpg",
+    "contentUrl": "https://jonathanwallace.ca/assets/img/jonathan-wallace-headshot.jpg",
+    "caption": "Jonathan Wallace, REALTOR®, Faris Team Real Estate Brokerage",
+    "width": 1200,
+    "height": 1200
+  },
   "worksFor": {
     "@type": "RealEstateAgent",
     "name": "Faris Team Real Estate Brokerage"
@@ -169,6 +178,30 @@ footer a{color:var(--warm-grey)}
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://jonathanwallace.ca/#jonathan",
+  "name": "Jonathan Wallace",
+  "jobTitle": "REALTOR®",
+  "url": "https://jonathanwallace.ca/about.html",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://jonathanwallace.ca/assets/img/jonathan-wallace-headshot.jpg",
+    "contentUrl": "https://jonathanwallace.ca/assets/img/jonathan-wallace-headshot.jpg",
+    "caption": "Jonathan Wallace, REALTOR®, Faris Team Real Estate Brokerage",
+    "width": 1200,
+    "height": 1200
+  },
+  "worksFor": {
+    "@type": "RealEstateAgent",
+    "@id": "https://faristeam.ca/#organization",
+    "name": "Faris Team Real Estate Brokerage",
+    "url": "https://faristeam.ca/"
+  }
+}
+</script>
 <!-- ===== JSON-LD 3: Article ===== -->
 <script type="application/ld+json">
 {
@@ -180,7 +213,7 @@ footer a{color:var(--warm-grey)}
   "publisher":{"@id":"https://jonathanwallace.ca/#agent"},
   "image":"https://jonathanwallace.ca/assets/img/tiny-choose-wisely.jpg",
   "datePublished":"2026-08-05",
-  "dateModified":"2026-09-23",
+  "dateModified":"2026-09-25",
   "mainEntityOfPage":"https://jonathanwallace.ca/which-real-estate-agent-should-you-interview-in-tiny-township",
   "about":{"@type":"AdministrativeArea","name":"Tiny Township, Ontario"}
 }
@@ -225,7 +258,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <p class="kicker">Seller Guide &middot; Tiny Township, Ontario</p>
     <h1>Which real estate agent should you interview in Tiny Township?</h1>
-    <p class="byline">By Jonathan Wallace, REALTOR, Faris Team Real Estate Brokerage &middot; Updated September 2026 &middot; ~7 min read</p>
+    <div class="byline byline--face">
+      <img src="/assets/img/jonathan-wallace-headshot.jpg" width="1200" height="1200" alt="Jonathan Wallace, Tiny Township REALTOR®">
+      <p>By Jonathan Wallace, REALTOR®, Faris Team Real Estate Brokerage &middot; Updated September 2026 &middot; ~7 min read</p>
+    </div>
   </div>
 </header>
 

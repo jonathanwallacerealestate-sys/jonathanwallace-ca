@@ -472,6 +472,12 @@
   force = true
 
 [[redirects]]
+  from = "/farlain-lake-high-water.html"
+  to = "/farlain-lake-high-water"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog-when-home-stops-working-retirement-living.html"
   to = "/blog-when-home-stops-working-retirement-living"
   status = 301

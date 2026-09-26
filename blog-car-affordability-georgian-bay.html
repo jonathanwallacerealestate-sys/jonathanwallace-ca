@@ -105,6 +105,13 @@ footer a{color:var(--warm-grey)}
 .post-proof p{margin:0 0 16px;color:rgba(247,243,236,.9);font-size:.98rem;line-height:1.6}
 .post-proof .btn{display:inline-block;background:var(--gold);color:var(--charcoal);border-radius:999px;padding:11px 22px;font-weight:600;text-decoration:none}
 @media (max-width:640px){.post-proof__grid{grid-template-columns:repeat(2,1fr)}}
+
+/* Top-of-post newsletter button (.nl-top), on every blog post directly under the title block. Links to /newsletter. */
+.nl-top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:22px 0 4px;}
+.nl-top .nl-top__q{font-size:.95rem;opacity:.85;}
+.nl-top a.nl-top__btn{display:inline-block;background:#C9A96A;color:#1B1B1B;font-weight:700;font-size:.95rem;line-height:1.2;padding:11px 22px;border-radius:999px;text-decoration:none;transition:background .2s,transform .2s;}
+.nl-top a.nl-top__btn:hover{background:#B8955A;color:#1B1B1B;transform:translateY(-1px);}
+.nl-top a.nl-top__btn:focus-visible{outline:3px solid #C9A96A;outline-offset:3px;}
 </style>
 
 <!-- ===== JSON-LD 1: FAQPage ===== -->
@@ -267,6 +274,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="kicker">Lifestyle interview &middot; Georgian Bay, Ontario</p>
     <h1>How do you keep a car affordable around Georgian Bay right now?</h1>
     <p class="byline">By Jonathan Wallace, REALTOR, Faris Team Real Estate Brokerage &middot; Updated September 2026 &middot; ~6 min read</p>
+<div class="nl-top"><span class="nl-top__q">Like this article?</span> <a class="nl-top__btn" href="/newsletter" data-cta="post-top-newsletter">Join the weekly newsletter</a></div>
   </div>
 </header>
 

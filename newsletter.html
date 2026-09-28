@@ -2,6 +2,10 @@
 <html lang="en-CA">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -96,11 +100,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="section">
   <div class="wrap" style="max-width:640px;">
-    <h2 style="margin-bottom:8px;">Sign up in one tap</h2>
-    <p style="margin-bottom:10px;">Use your Google account and you are done. One tap signs you up for the weekly Georgian Bay email; unsubscribe anytime with one click.</p>
-    <div id="googleSignupSlot" style="margin-bottom:28px;"></div>
+    <div id="googleSignupBlock" hidden>
+      <h2 style="margin-bottom:8px;">Sign up in one tap</h2>
+      <p style="margin-bottom:10px;">Use your Google account and you are done. One tap signs you up for the weekly Georgian Bay email; unsubscribe anytime with one click.</p>
+      <div id="googleSignupSlot" style="margin-bottom:28px;"></div>
+    </div>
 
-    <h2 style="margin-bottom:8px;">Or sign up by email</h2>
+    <h2 style="margin-bottom:8px;">Sign up by email</h2>
     <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thank-you.html">
       <input type="hidden" name="form-name" value="newsletter">
       <input type="hidden" name="loc" id="locField" value="">

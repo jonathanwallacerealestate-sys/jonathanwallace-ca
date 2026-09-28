@@ -456,11 +456,12 @@
   else { document.addEventListener('DOMContentLoaded', start); }
 })();
 
-/* Google one-tap newsletter signup. Renders a "Sign up with Google" button
-   next to every newsletter form (and in #googleSignupSlot on the newsletter
-   page). One click sends the visitor's Google-verified name and email to the
+/* Google one-tap newsletter signup. The button is mounted only after cookie
+   Accept. Until then, and if the visitor Declines, the email form is the only
+   path: no "one tap" heading, no empty slot, and no Google script.
+   One click sends the visitor's Google-verified name and email to the
    Make webhook (-> Follow Up Boss, tagged Newsletter: Weekly) and records the
-   signup in Netlify Forms. The classic email form stays as the other option. */
+   signup in Netlify Forms. */
 (function () {
   var CLIENT_ID = '439239346088-n6pitcgg8uuin53uod0f79lfu7rqv6pp.apps.googleusercontent.com';
   var HOOK = 'https://hook.us2.make.com/tcs6ih6kkol4mpni1umeh2v59i2krlg9';
@@ -473,26 +474,38 @@
   var CONTACT_MODE = !!(contactSlot && contactForm);
 
   var slots = [];
-  if (CONTACT_MODE) {
-    slots.push(contactSlot);
-  } else {
-    var slotEl = document.getElementById('googleSignupSlot');
-    if (slotEl) slots.push(slotEl);
-    var forms = document.querySelectorAll('form[name="newsletter"]');
-    /* 2026-09-23: on posts with an in-article signup box, show one Google button (in the box), not two. */
-    var postCtaForm = document.querySelector('.post-cta form[name="newsletter"]');
-    if (postCtaForm) forms = [postCtaForm];
-    for (var i = 0; i < forms.length; i++) {
-      if (slotEl && slotEl.getAttribute('data-form') === 'inline') break;
-      var wrap = document.createElement('div');
-      wrap.className = 'g-signup';
-      wrap.style.cssText = 'margin-top:12px;';
-      wrap.innerHTML = '<div style="font-size:.8rem;opacity:.75;margin-bottom:6px;">or one tap with Google:</div><div class="g-btn"></div><div style="font-size:.72rem;opacity:.6;margin-top:6px;">One tap signs you up for the weekly Georgian Bay email. Unsubscribe anytime.</div>';
-      forms[i].parentNode.insertBefore(wrap, forms[i].nextSibling);
-      slots.push(wrap.querySelector('.g-btn'));
+  var chromeMounted = false;
+
+  /* Build the Google chrome only after consent. Calling this earlier leaves
+     empty slots on screen, which is what visitors saw before Accept. */
+  function mountChrome() {
+    if (chromeMounted) return slots.length > 0;
+    chromeMounted = true;
+    var signupBlock = document.getElementById('googleSignupBlock');
+    if (signupBlock) signupBlock.hidden = false;
+    var contactBlock = document.getElementById('googleContactBlock');
+    if (contactBlock) contactBlock.hidden = false;
+    if (CONTACT_MODE) {
+      slots.push(contactSlot);
+    } else {
+      var slotEl = document.getElementById('googleSignupSlot');
+      if (slotEl) slots.push(slotEl);
+      var forms = document.querySelectorAll('form[name="newsletter"]');
+      /* 2026-09-23: on posts with an in-article signup box, show one Google button (in the box), not two. */
+      var postCtaForm = document.querySelector('.post-cta form[name="newsletter"]');
+      if (postCtaForm) forms = [postCtaForm];
+      for (var i = 0; i < forms.length; i++) {
+        if (slotEl && slotEl.getAttribute('data-form') === 'inline') break;
+        var wrap = document.createElement('div');
+        wrap.className = 'g-signup';
+        wrap.style.cssText = 'margin-top:12px;';
+        wrap.innerHTML = '<div style="font-size:.8rem;opacity:.75;margin-bottom:6px;">or one tap with Google:</div><div class="g-btn"></div><div style="font-size:.72rem;opacity:.6;margin-top:6px;">One tap signs you up for the weekly Georgian Bay email. Unsubscribe anytime.</div>';
+        forms[i].parentNode.insertBefore(wrap, forms[i].nextSibling);
+        slots.push(wrap.querySelector('.g-btn'));
+      }
     }
+    return slots.length > 0;
   }
-  if (!slots.length) return;
 
   function loc() {
     try { return new URLSearchParams(location.search).get('loc') || ''; } catch (e) { return ''; }
@@ -573,10 +586,13 @@
     }
   }
   /* GSI makes a third-party connection to Google, so it respects the same
-     cookie consent gate as the FUB Pixel and GA4. If consent is already
-     granted, load immediately. If not yet decided, wait for the Accept
-     event dispatched by the consent handler. If declined, never load. */
+     cookie consent gate as the FUB Pixel. Chrome stays hidden, and this script
+     is not requested, until Accept. Decline leaves the email form only. */
+  var gsiStarted = false;
   function loadGSI() {
+    if (gsiStarted) return;
+    if (!mountChrome()) return;
+    gsiStarted = true;
     var s = document.createElement('script');
     s.src = 'https://accounts.google.com/gsi/client';
     s.async = true; s.defer = true; s.onload = init;

@@ -126,6 +126,14 @@ p{margin:0 0 1.1em;}
   .hero__trust>span+span::before{display:none;}
 }
 
+/* Dated market strip: one published week, linking to weekly.html */
+.market-strip{background:#fff;color:#1B1B1B;border-top:1px solid #EAE4D8;border-bottom:1px solid #EAE4D8;}
+.market-strip--contrast{background:#F7F3EC;border-top:0;border-bottom:0;}
+.market-strip .wrap{padding-top:12px;padding-bottom:12px;}
+.market-strip p{margin:0;font-size:.95rem;line-height:1.5;}
+.market-strip__date{display:inline-block;margin-right:8px;font-family:var(--sans);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.72rem;color:#8A6E32;}
+.market-strip a{font-weight:700;white-space:nowrap;}
+
 /* ---------- Stat / proof band ---------- */
 .proof{background:var(--navy);color:#fff;}
 .proof__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}

@@ -1,9 +1,5 @@
 # Recently Sold gallery intro
 
-Real Georgian Bay homes, real results. Here are recent sales across Midland,
-Penetanguishene, Tay, Tiny and Wasaga Beach. Each one started with a real plan and a
-buyer who wanted to be here.
+The homepage does not request `assets/data/recently-sold.json`. That file is not in the repo, and fetching it produced a 404 while the section stayed hidden.
 
-How it connects: the homepage gallery reads assets/data/recently-sold.json and shows
-itself automatically once that file has entries. Add objects to sold[] with price,
-address, beds, baths, note and image. No invented sales.
+When Jonathan has verified Faris Team sales to publish, add `assets/data/recently-sold.json` with real entries only, then restore the gallery. Each object in `sold[]` needs price, address, beds, baths, note and image. No invented sales, and no sold prices copied from anonymized case studies.

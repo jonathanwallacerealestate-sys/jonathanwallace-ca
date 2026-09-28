@@ -2,6 +2,10 @@
 <html lang="en-CA">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -374,14 +378,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <section class="section">
       <div class="wrap">
         <div class="tours__head">
-          <div><p class="eyebrow">On the market</p><h2 class="mb-0">Georgian Bay listings</h2></div>
+          <div><p class="eyebrow">Buying on the Bay</p><h2 class="mb-0">Tell me what you want</h2></div>
           <a class="btn btn--ghost" href="communities.html">Browse by community</a>
         </div>
         <!-- IDX MOUNT (framework, keep): embed the listing feed inside #idx-mount when listing search connectivity is ready. -->
         <div id="idx-mount" aria-live="polite">
           <div class="ctaband" style="margin-top:8px;">
-            <h2 style="margin-bottom:8px;">See every Georgian Bay home for sale</h2>
-            <p>Current Midland, Penetanguishene, Tiny, Tay and Wasaga Beach listings, updated daily.</p>
+            <h2 style="margin-bottom:8px;">Start a private home search</h2>
+            <p>Tell me what you want in Midland, Penetanguishene, Tiny, Tay and Wasaga Beach. I send matching homes as they come to market.</p>
             <div class="stack-actions" style="justify-content:center;">
               <a class="btn btn--light btn--lg" href="/find-your-home">Start your home search</a>
               <a class="btn btn--ghost-light btn--lg" href="home-value.html">Price my home</a>
@@ -391,37 +395,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </section>
 
-    <!-- RECENTLY SOLD -->
-    <section class="section section--sand" id="recently-sold-section" hidden>
-      <div class="wrap">
-        <div class="tours__head">
-          <div><p class="eyebrow">Recently sold</p><h2 class="mb-0">Homes I have sold on Georgian Bay</h2></div>
-          <a class="btn btn--ghost" href="contact.html">Thinking of selling?</a>
-        </div>
-        <p class="lead" style="max-width:60ch;">Real Georgian Bay homes, real results. Recent sales across Midland, Penetanguishene, Tiny, Tay and Wasaga Beach.</p>
-        <div class="grid grid--3" id="recentlySold" style="margin-top:8px;"></div>
-      </div>
-    </section>
-    <script>
-    (function(){
-      var grid=document.getElementById('recentlySold');
-      var section=document.getElementById('recently-sold-section');
-      if(!grid||!section) return;
-      function esc(t){return (t||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-      fetch('assets/data/recently-sold.json',{cache:'no-store'})
-        .then(function(r){return r.ok?r.json():null;})
-        .then(function(d){
-          var items=(d&&d.sold)||[];
-          if(!items.length) return;
-          grid.innerHTML=items.slice(0,6).map(function(s){
-            var img=s.image?('background-image:url('+JSON.stringify(s.image)+');background-size:cover;background-position:center;'):'';
-            return '<article class="listing"><div class="listing__img" style="'+img+'"></div><div class="listing__body"><div class="listing__price">'+esc(s.price||'Sold')+'</div><div class="listing__addr">'+esc(s.address||'')+'</div><div class="listing__specs"><span>'+esc(s.beds||'')+'</span><span>'+esc(s.baths||'')+'</span><span>'+esc(s.note||'Sold')+'</span></div></div></article>';
-          }).join('');
-          section.hidden=false;
-        })
-        .catch(function(){});
-    })();
-    </script>
+    <!-- Recently sold gallery is omitted until assets/data/recently-sold.json
+         exists with verified Faris Team / Jonathan Wallace sales (price, address,
+         beds, baths, note, image). Do not fetch a missing file, and do not invent sales. -->
 
     <!-- MARKET AND GUIDES
          Slot 1 is always the newest market update.

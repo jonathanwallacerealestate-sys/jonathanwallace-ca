@@ -577,11 +577,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div>
       <h4>New tours + market updates</h4>
       <p style="font-size:.9rem;">Georgian Bay home tours and market notes, straight to your inbox.</p>
-      <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thank-you.html">
+      <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you-newsletter.html">
         <input type="hidden" name="form-name" value="newsletter">
         <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
         <div class="field" style="margin-bottom:10px;"><input type="email" name="email" placeholder="you@email.com" required></div>
-        <label class="consent" style="color:rgba(255,255,255,.6);"><input type="checkbox" name="casl_consent" required> I agree to receive emails from Jonathan Wallace and understand I can unsubscribe anytime.</label>
+        <input type="hidden" name="consent_version" value="casl-v2-2026-09-29"><input type="hidden" name="consent_text" value="Yes, send me Jonathan Wallace's weekly Georgian Bay real estate email (new listings, local market info and events). Jonathan Wallace, Realtor, Faris Team Real Estate Brokerage, 531 King St, Midland, ON L4R 3N6 · jonathan@faristeam.ca · 705-433-2525. Unsubscribe anytime."><label class="consent" style="color:rgba(255,255,255,.6);"><input type="checkbox" name="casl_consent" value="yes" required> <span>Yes, send me Jonathan Wallace's weekly Georgian Bay real estate email (new listings, local market info and events). Jonathan Wallace, Realtor, Faris Team Real Estate Brokerage, 531 King St, Midland, ON L4R 3N6 · jonathan@faristeam.ca · 705-433-2525. Unsubscribe anytime. <a href="/privacy.html">Privacy policy</a></span></label>
         <button class="btn btn--primary btn--block" type="submit">Subscribe</button>
       </form>
     </div>

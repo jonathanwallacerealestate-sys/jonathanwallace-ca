@@ -107,7 +107,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="lead">New numbers publish here every Wednesday. Every Friday I send one email on
       what they actually mean across Midland, Penetanguishene, Tiny, Tay and Wasaga Beach.</p>
 
-    <form class="form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thank-you.html">
+    <form class="form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you-newsletter.html">
       <input type="hidden" name="form-name" value="newsletter">
       <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
       <div class="form__row">
@@ -115,7 +115,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="field"><label>Last name</label><input name="last_name" autocomplete="family-name" required></div>
       </div>
       <div class="field"><label>Email</label><input type="email" name="email" autocomplete="email" required></div>
-      <label class="consent"><input type="checkbox" name="casl_consent" required> I agree to be contacted by Jonathan Wallace and can unsubscribe anytime. (CASL)</label>
+      <input type="hidden" name="consent_version" value="casl-v2-2026-09-29"><input type="hidden" name="consent_text" value="Yes, send me Jonathan Wallace's weekly Georgian Bay real estate email (new listings, local market info and events). Jonathan Wallace, Realtor, Faris Team Real Estate Brokerage, 531 King St, Midland, ON L4R 3N6 · jonathan@faristeam.ca · 705-433-2525. Unsubscribe anytime."><label class="consent"><input type="checkbox" name="casl_consent" value="yes" required> <span>Yes, send me Jonathan Wallace's weekly Georgian Bay real estate email (new listings, local market info and events). Jonathan Wallace, Realtor, Faris Team Real Estate Brokerage, 531 King St, Midland, ON L4R 3N6 · jonathan@faristeam.ca · 705-433-2525. Unsubscribe anytime. <a href="/privacy.html">Privacy policy</a></span></label>
       <button class="btn btn--primary btn--block btn--lg" type="submit">Send it to me</button>
       <p class="form__note">One email a week. No listing blasts. Unsubscribe in one click.</p>
     </form>

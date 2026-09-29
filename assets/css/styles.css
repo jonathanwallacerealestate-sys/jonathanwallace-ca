@@ -203,6 +203,8 @@ p{margin:0 0 1.1em;}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(46,110,120,.15);}
 .consent{display:flex;gap:12px;align-items:flex-start;font-size:.85rem;color:var(--muted);margin:6px 0 18px;}
 .consent input{margin-top:4px;flex:0 0 auto;width:18px;height:18px;}
+.consent span{flex:1;min-width:0;}
+.consent a{color:inherit;text-decoration:underline;text-underline-offset:2px;}
 .hp{position:absolute;left:-9999px;}
 .form__note{font-size:.8rem;color:var(--muted);margin-top:14px;}
 

@@ -49,6 +49,21 @@
 # Wire an outgoing webhook (Netlify > Forms > form > Settings > Outgoing webhook)
 # to a Make.com custom webhook to push leads into Follow Up Boss. See README.
 
+# UPDATE WEEKLY: point to newest market update
+# First redirect rules, with force, so nothing later can shadow this path.
+# Change both "to" lines when a new market update is published.
+[[redirects]]
+  from = "/market-update-latest"
+  to = "/blog-market-update-sep-14-20-2026.html"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/market-update-latest/"
+  to = "/blog-market-update-sep-14-20-2026.html"
+  status = 302
+  force = true
+
 # /newsletter and /resources are real on-domain pages (pretty URLs).
 
 # Pretty URLs for the community hub pages (serve the file, keep the clean URL)
@@ -400,6 +415,12 @@
   force = true
 
 [[redirects]]
+  from = "/blog-market-update-sep-14-20-2026"
+  to = "/blog-market-update-sep-14-20-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog-midland-official-plan-investing-guide.html"
   to = "/blog-midland-official-plan-investing-guide"
   status = 301
@@ -720,6 +741,18 @@
 [[redirects]]
   from = "/thank-you"
   to = "/thank-you.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/thank-you-newsletter"
+  to = "/thank-you-newsletter.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/join"
+  to = "/join.html"
   status = 301
   force = true
 

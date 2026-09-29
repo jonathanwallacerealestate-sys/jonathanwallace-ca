@@ -465,6 +465,9 @@
 (function () {
   var CLIENT_ID = '439239346088-n6pitcgg8uuin53uod0f79lfu7rqv6pp.apps.googleusercontent.com';
   var HOOK = 'https://hook.us2.make.com/tcs6ih6kkol4mpni1umeh2v59i2krlg9';
+  /* Distinct from the checkbox wording (casl-v2-2026-09-29). This is the line under the button. */
+  var ONETAP_CONSENT_VERSION = 'casl-v2-2026-09-29-google-onetap';
+  var ONETAP_CONSENT_TEXT = 'One tap signs you up for the weekly Georgian Bay email. Unsubscribe anytime.';
 
   // Contact page: a "Continue with Google" button that PREFILLS the contact form
   // (name + email) so the visitor only adds their message. Takes priority so the
@@ -499,7 +502,7 @@
         var wrap = document.createElement('div');
         wrap.className = 'g-signup';
         wrap.style.cssText = 'margin-top:12px;';
-        wrap.innerHTML = '<div style="font-size:.8rem;opacity:.75;margin-bottom:6px;">or one tap with Google:</div><div class="g-btn"></div><div style="font-size:.72rem;opacity:.6;margin-top:6px;">One tap signs you up for the weekly Georgian Bay email. Unsubscribe anytime.</div>';
+        wrap.innerHTML = '<div style="font-size:.8rem;opacity:.75;margin-bottom:6px;">or one tap with Google:</div><div class="g-btn"></div><div style="font-size:.72rem;opacity:.6;margin-top:6px;">' + ONETAP_CONSENT_TEXT + '</div>';
         forms[i].parentNode.insertBefore(wrap, forms[i].nextSibling);
         slots.push(wrap.querySelector('.g-btn'));
       }
@@ -535,6 +538,8 @@
       first_name: claims.given_name || '',
       last_name: claims.family_name || '',
       casl_consent: 'yes (Google one-tap signup)',
+      consent_version: ONETAP_CONSENT_VERSION,
+      consent_text: ONETAP_CONSENT_TEXT,
       method: 'google',
       loc: loc(),
       guide: guideEl ? guideEl.value : ''
@@ -556,6 +561,8 @@
     record.set('form-name', 'newsletter');
     record.set('email', claims.email);
     record.set('casl_consent', 'yes');
+    record.set('consent_version', ONETAP_CONSENT_VERSION);
+    record.set('consent_text', ONETAP_CONSENT_TEXT);
     fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: record.toString() }).catch(function () {});
     for (var j = 0; j < slots.length; j++) {
       var host = slots[j].closest ? (slots[j].closest('.g-signup') || slots[j]) : slots[j];

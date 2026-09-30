@@ -1,0 +1,68 @@
+/* Home-value lab only. Public styles.css is unchanged. */
+
+.lab-banner{
+  margin:0;
+  background:#1B1B1B;
+  color:#C9A96A;
+  text-align:center;
+  font-family:var(--sans);
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-size:.75rem;
+  padding:10px 16px;
+}
+
+.lab-gate{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  background:var(--sand);
+  padding:48px 0;
+}
+.lab-gate__card{max-width:480px;margin:0 auto;}
+.lab-gate__error{color:#8C3A2F;font-size:.92rem;margin:0 0 14px;}
+html.lab-unlocked .lab-gate{display:none;}
+html:not(.lab-unlocked) #labApp{display:none;}
+
+.lab-byline{font-size:.95rem;letter-spacing:.02em;margin-top:18px;}
+.page-hero .lab-byline{color:rgba(255,255,255,.82);}
+.lab-promise{margin:22px 0 0;padding:0;list-style:none;max-width:62ch;}
+.lab-promise li{position:relative;padding-left:1.1em;margin:0 0 .45em;color:rgba(255,255,255,.92);font-size:1.02rem;}
+.lab-promise li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:#C9A96A;}
+
+.form__block{border:0;margin:0;padding:0;min-width:0;}
+.form__block + .form__block{margin-top:8px;padding-top:8px;}
+.form__heading{
+  display:block;width:100%;font-family:var(--sans);font-weight:700;font-size:.78rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--navy);padding:0;margin:0 0 6px;
+}
+.form__hint{font-size:.9rem;color:var(--muted);margin:0 0 16px;}
+.lab-step-label{font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--copper);margin:0 0 18px;}
+.form .btn--block{white-space:normal;line-height:1.35;}
+.lab-form__nav{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:6px;}
+.lab-form__nav .btn--primary{flex:1 1 220px;justify-content:center;white-space:normal;line-height:1.35;text-align:center;}
+
+.hv-note{margin:0 0 36px;}
+.video-embed__frame{
+  position:relative;width:100%;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;
+  background:#1B1B1B;box-shadow:var(--shadow-sm);
+}
+.video-embed__frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+.video-embed__placeholder{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;color:#fff;text-align:center;padding:20px;background:linear-gradient(135deg,#1B1B1B,#8A8378);
+}
+.video-embed__placeholder .play{
+  width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.16);font-size:22px;
+}
+.video-embed__caption{font-size:.95rem;color:var(--muted);margin:12px 0 0;}
+
+.lab-actions{justify-content:center;}
+.lab-actions .btn{white-space:normal;text-align:center;line-height:1.35;justify-content:center;}
+
+@media(max-width:720px){
+  html.lab-unlocked .nav__links{inset:112px 0 auto 0;}
+  .lab-form__nav .btn{width:100%;}
+}

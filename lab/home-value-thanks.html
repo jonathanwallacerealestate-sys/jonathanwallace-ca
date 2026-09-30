@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Lab page: no GTM, no GA4, no conversion tag. See lab/README.md. -->
+<script>
+try {
+  if (sessionStorage.getItem("jw-lab-home-value") === "1") {
+    document.documentElement.classList.add("lab-unlocked");
+  }
+} catch (e) {}
+</script>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="googlebot" content="noindex, nofollow, noarchive">
+<title>Request received | Home value lab</title>
+<meta name="description" content="Internal lab. We will review recent solds and email a preliminary range. Not a formal Letter of Opinion.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<link rel="stylesheet" href="/lab/lab.css">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Request received | Home value lab">
+<meta property="og:description" content="Internal testing page. Not for public indexing.">
+<meta property="og:locale" content="en_CA">
+<meta property="og:robots" content="noindex, nofollow, noarchive">
+</head>
+<body>
+<div class="lab-gate" id="labGate">
+  <div class="wrap">
+    <form id="labGateForm" class="form lab-gate__card" action="#lab" method="get" autocomplete="off">
+      <p class="eyebrow">Internal lab</p>
+      <h1 style="font-size:clamp(2rem,4vw,2.6rem);">Home value lab</h1>
+      <p>This page is for internal testing. Enter the lab passphrase to continue.</p>
+      <p class="lab-byline" style="color:var(--muted);">Jonathan Wallace, Realtor with Faris Team Real Estate Brokerage.</p>
+      <div class="field">
+        <label for="labPassphrase">Passphrase</label>
+        <input id="labPassphrase" type="password" autocomplete="off" spellcheck="false" required>
+      </div>
+      <p id="labGateError" class="lab-gate__error" hidden role="alert">That passphrase does not match. This page is for internal testing.</p>
+      <button class="btn btn--primary btn--block" type="submit">Unlock lab</button>
+    </form>
+  </div>
+</div>
+
+<div id="labApp">
+<header class="site-header">
+  <p class="lab-banner" role="status">LAB — internal testing</p>
+  <div class="wrap nav">
+    <div class="brand"><a href="/"><span class="brand__name">Jonathan Wallace</span><span class="brand__tag">Your Georgian Bay Specialist</span></a></div>
+    <nav><ul class="nav__links" id="navLinks">
+      <li><a href="/sell.html">Sell</a></li><li><a href="/buy.html">Buy</a></li><li><a href="/home-tours.html">Home Tours</a></li><li><a href="/communities.html">Communities</a></li><li><a href="/resources">Resources</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li>
+      <li class="nav__cta"><a class="btn btn--primary" href="/home-value.html">Price My Home</a></li>
+    </ul></nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="section" style="min-height:70vh;display:flex;align-items:center;">
+  <div class="wrap center" style="max-width:680px;">
+    <p class="eyebrow">Request received</p>
+    <h1 id="labHeading" tabindex="-1">We will email a preliminary range after a look at recent solds</h1>
+    <p class="lead" style="margin:0 auto 18px;">We will review recent solds in your area and email a preliminary range, plus sold examples with price, days on market, and a short note on why each one is relevant. You will hear back by email after that review. This is not instant.</p>
+    <p style="max-width:58ch;margin:0 auto 8px;">Book an in-home visit if you want a fuller evaluation. A formal Letter of Opinion comes only after that visit. Numbers may change with fit and finish.</p>
+    <p class="lab-byline" style="color:var(--muted);">Jonathan Wallace, Realtor with Faris Team Real Estate Brokerage.</p>
+    <div class="stack-actions lab-actions">
+      <a class="btn btn--primary btn--lg" id="labCalendlyInHome" href="https://calendly.com/jonathan-faristeam/jonathan-wallace-in-home-evaluation-full-cma" target="_blank" rel="noopener">Book an in-home evaluation</a>
+      <a class="btn btn--ghost btn--lg" id="labCalendlyPhone" href="https://calendly.com/jonathan-faristeam/jonathan-wallace-quick-phone-call" target="_blank" rel="noopener">Book a quick phone call</a>
+    </div>
+    <p id="labPrefillNote" class="form__note" hidden>We filled in your name and email from your request.</p>
+    <p class="form__note" style="margin-top:22px;">The follow-up email can use these same booking links. In-home is the fuller evaluation. The phone call is a shorter first conversation. No pressure to list.</p>
+    <p class="form__note"><a href="/lab/home-value.html">Back to the lab form</a></p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer__legal" style="margin-top:0;border-top:none;">
+    <p><strong>Jonathan Wallace, Realtor with Faris Team Real Estate Brokerage.</strong></p>
+    <p>REALTOR®, MLS® and the associated logos are trademarks owned by The Canadian Real Estate Association (CREA) and identify real estate professionals who are members of CREA.</p>
+    <p>© <span id="year">2026</span> Jonathan Wallace. All rights reserved. · <a href="/privacy.html">Privacy Policy</a></p>
+  </div>
+</footer>
+</div>
+<script src="/lab/lab.js"></script>
+</body>
+</html>

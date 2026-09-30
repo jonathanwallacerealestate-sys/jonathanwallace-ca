@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Lab page: no GTM, no GA4, no site main.js lead beacon. See lab/README.md. -->
+<script>
+try {
+  if (sessionStorage.getItem("jw-lab-home-value") === "1") {
+    document.documentElement.classList.add("lab-unlocked");
+  }
+} catch (e) {}
+</script>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="googlebot" content="noindex, nofollow, noarchive">
+<title>Neighbourhood solds read | Home value lab</title>
+<meta name="description" content="Internal lab. Request a neighbourhood solds read for Midland, Penetanguishene, Tiny, Tay, or Wasaga Beach. You will hear back by email after review. Not instant. Not a formal Letter of Opinion.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<link rel="stylesheet" href="/lab/lab.css">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Neighbourhood solds read | Home value lab">
+<meta property="og:description" content="Internal testing page. Not for public indexing.">
+<meta property="og:locale" content="en_CA">
+<meta property="og:robots" content="noindex, nofollow, noarchive">
+</head>
+<body>
+<div class="lab-gate" id="labGate">
+  <div class="wrap">
+    <form id="labGateForm" class="form lab-gate__card" action="#lab" method="get" autocomplete="off">
+      <p class="eyebrow">Internal lab</p>
+      <h1 style="font-size:clamp(2rem,4vw,2.6rem);">Home value lab</h1>
+      <p>This page is for internal testing. Enter the lab passphrase to open the form.</p>
+      <p class="lab-byline" style="color:var(--muted);">Jonathan Wallace, Realtor with Faris Team Real Estate Brokerage.</p>
+      <div class="field">
+        <label for="labPassphrase">Passphrase</label>
+        <input id="labPassphrase" type="password" autocomplete="off" spellcheck="false" required>
+      </div>
+      <p id="labGateError" class="lab-gate__error" hidden role="alert">That passphrase does not match. This page is for internal testing.</p>
+      <button class="btn btn--primary btn--block" type="submit">Unlock lab</button>
+    </form>
+  </div>
+</div>
+
+<div id="labApp">
+<header class="site-header">
+  <p class="lab-banner" role="status">LAB — internal testing</p>
+  <div class="wrap nav">
+    <div class="brand"><a href="/"><span class="brand__name">Jonathan Wallace</span><span class="brand__tag">Your Georgian Bay Specialist</span></a></div>
+    <nav><ul class="nav__links" id="navLinks">
+      <li><a href="/sell.html">Sell</a></li><li><a href="/buy.html">Buy</a></li><li><a href="/home-tours.html">Home Tours</a></li><li><a href="/communities.html">Communities</a></li><li><a href="/resources">Resources</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li>
+      <li class="nav__cta"><a class="btn btn--primary" href="/home-value.html">Price My Home</a></li>
+    </ul></nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-hero" style="background:linear-gradient(120deg,rgba(20,18,13,.82),rgba(20,18,13,.55)),url('/assets/img/hero-home-value.jpg') center/cover no-repeat;">
+  <div class="wrap">
+    <p class="eyebrow" style="color:#C9A96A;">Neighbourhood solds read</p>
+    <h1 id="labHeading" tabindex="-1">Request a conversation about what has sold nearby</h1>
+    <p>Share the property. Jonathan reviews recent solds in your area and emails a preliminary range with a few examples. You will hear back by email after that review.</p>
+    <ul class="lab-promise">
+      <li>A neighbourhood solds read, with price, days on market, and a short note on why each sale is relevant.</li>
+      <li>A preliminary discussion range. Interior condition, fit, and finish still move the number.</li>
+      <li>Not instant. Not a formal Letter of Opinion.</li>
+      <li>A formal Letter of Opinion only after an in-person visit.</li>
+    </ul>
+    <p class="lab-byline">Jonathan Wallace, Realtor with Faris Team Real Estate Brokerage. Midland, Penetanguishene, Tiny, Tay, and Wasaga Beach.</p>
+  </div>
+</section>
+
+<section class="section" id="request">
+  <div class="wrap" style="max-width:780px;">
+    <div class="hv-note">
+      <p class="eyebrow">A quick note from Jonathan</p>
+      <div class="video-embed" data-youtube-id="">
+        <div class="video-embed__frame">
+          <div class="video-embed__placeholder">
+            <span class="play" aria-hidden="true">&#9658;</span>
+            <strong>On-camera note, coming soon</strong>
+            <span style="font-size:.85rem;opacity:.8;">A real clip of Jonathan Wallace will sit here once it is recorded.</span>
+          </div>
+        </div>
+        <p class="video-embed__caption">This is only an estimate. For a more accurate result, a human is always better than a machine.</p>
+      </div>
+    </div>
+
+    <form class="form" id="labForm" name="home-valuation-lab" method="POST" action="/lab/home-value-thanks.html" data-netlify="true" netlify-honeypot="bot-field" data-beacon="off">
+      <input type="hidden" name="form-name" value="home-valuation-lab">
+      <input type="hidden" name="lab_mode" value="1">
+      <input type="hidden" name="source" value="home-value-lab">
+      <input type="hidden" name="subject" value="LAB home value request">
+      <p class="hp"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <p class="lab-step-label" id="labStepLabel">Step 1 of 2. Address and contact</p>
+
+      <fieldset class="form__block" id="labStep1">
+        <legend class="form__heading" id="labStep1Legend" tabindex="-1">Where to send the read</legend>
+        <p class="form__hint">Start with the address and how to reach you. Property details are the next step.</p>
+        <div class="field">
+          <label for="hv-address">Property address</label>
+          <input id="hv-address" name="address" autocomplete="street-address" placeholder="123 Bayshore Dr, Midland, ON" required>
+        </div>
+        <div class="field">
+          <label for="hv-property-type">Property type</label>
+          <select id="hv-property-type" name="property_type" required>
+            <option value="">Select</option>
+            <option>Detached</option>
+            <option>Semi / townhouse</option>
+            <option>Condo</option>
+            <option>Waterfront</option>
+            <option>Vacant land</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form__row">
+          <div class="field"><label for="hv-first-name">First name</label><input id="hv-first-name" name="first_name" autocomplete="given-name" required></div>
+          <div class="field"><label for="hv-last-name">Last name</label><input id="hv-last-name" name="last_name" autocomplete="family-name" required></div>
+        </div>
+        <div class="form__row">
+          <div class="field"><label for="hv-email">Email</label><input id="hv-email" type="email" name="email" autocomplete="email" required></div>
+          <div class="field"><label for="hv-phone">Phone</label><input id="hv-phone" type="tel" name="phone" autocomplete="tel" required></div>
+        </div>
+        <button class="btn btn--primary btn--block btn--lg" id="labContinue" type="button">Continue to property details</button>
+      </fieldset>
+
+      <fieldset class="form__block" id="labStep2" hidden disabled>
+        <legend class="form__heading" id="labStep2Legend" tabindex="-1">About the home</legend>
+        <p class="form__hint">These details help match neighbourhood solds. Not sure is a fine answer. Skip anything you do not know.</p>
+        <div class="form__row">
+          <div class="field">
+            <label for="hv-occupancy">How is it used?</label>
+            <select id="hv-occupancy" name="occupancy_type">
+              <option value="">Select</option>
+              <option>Year-round</option>
+              <option>Three-season / cottage</option>
+              <option>Seasonal other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hv-sqft">Approx. square footage</label>
+            <input id="hv-sqft" name="sqft" inputmode="numeric" placeholder="e.g. 1,800">
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="field">
+            <label for="hv-beds">Bedrooms</label>
+            <select id="hv-beds" name="beds">
+              <option value="">Select</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5+</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hv-baths">Bathrooms</label>
+            <select id="hv-baths" name="baths">
+              <option value="">Select</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4+</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="field">
+            <label for="hv-lot-type">Lot type</label>
+            <select id="hv-lot-type" name="lot_type">
+              <option value="">Select</option>
+              <option>City / town lot</option>
+              <option>Large rural</option>
+              <option>Waterfront frontage</option>
+              <option>Condo / no lot</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hv-waterfront">Waterfront</label>
+            <select id="hv-waterfront" name="waterfront">
+              <option value="">Select</option>
+              <option>No</option>
+              <option>Yes, sand</option>
+              <option>Yes, rocky / mixed</option>
+              <option>Yes, other / not sure</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="field">
+            <label for="hv-winter-access">Winter access</label>
+            <select id="hv-winter-access" name="winter_access">
+              <option value="">Select</option>
+              <option>Year-round road</option>
+              <option>Seasonal / private</option>
+              <option>N/A</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hv-basement">Basement</label>
+            <select id="hv-basement" name="basement">
+              <option value="">Select</option>
+              <option>Finished</option>
+              <option>Partially finished</option>
+              <option>Unfinished</option>
+              <option>Crawl / none</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="field">
+            <label for="hv-garage">Garage</label>
+            <select id="hv-garage" name="garage">
+              <option value="">Select</option>
+              <option>None</option>
+              <option>1-car</option>
+              <option>2-car</option>
+              <option>3+</option>
+              <option>Detached / other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hv-condition">Condition</label>
+            <select id="hv-condition" name="condition">
+              <option value="">Select</option>
+              <option>Recently renovated</option>
+              <option>Updated in last 10 years</option>
+              <option>Mostly original</option>
+              <option>Work in progress</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="hv-known-issues">Known issues (optional)</label>
+          <textarea id="hv-known-issues" name="known_issues" rows="3" placeholder="Septic, well, roof, foundation, shoreline, or anything a home inspection would surface."></textarea>
+        </div>
+        <div class="field">
+          <label for="hv-features">What makes it stand out? (optional)</label>
+          <textarea id="hv-features" name="features" rows="3" placeholder="Workshop, dock, view, recent kitchen, extra lot, or anything a buyer would notice."></textarea>
+        </div>
+
+        <p class="form__heading" style="margin-top:8px;">Timing</p>
+        <p class="form__hint">No pressure to list. This helps the email stay useful.</p>
+        <div class="form__row">
+          <div class="field">
+            <label for="hv-timeline">Timeline</label>
+            <select id="hv-timeline" name="timeline">
+              <option value="">Select</option>
+              <option>Just curious</option>
+              <option>0 to 6 months</option>
+              <option>6 to 12 months</option>
+              <option>12+ months</option>
+              <option>Estate / refinance / other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hv-how-heard">How did you hear about Jonathan? (optional)</label>
+            <select id="hv-how-heard" name="how_heard">
+              <option value="">Select</option>
+              <option>Google</option>
+              <option>Instagram</option>
+              <option>Referral</option>
+              <option>Open house</option>
+              <option>Newsletter</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="hv-motivation">What is prompting the look at value? (optional)</label>
+          <textarea id="hv-motivation" name="motivation" rows="3" placeholder="Downsizing, an estate, a refinance, a move closer to town, or a check on the market."></textarea>
+        </div>
+
+        <label class="consent"><input type="checkbox" name="preliminary_ack" value="yes" required> I understand this is a preliminary neighbourhood solds read and a conversation. It is not instant, and it is not a formal Letter of Opinion. A formal letter needs an in-person visit.</label>
+        <label class="consent"><input type="checkbox" name="casl_consent" value="yes" required> I agree to be contacted by Jonathan Wallace about this request and understand I can unsubscribe anytime. (CASL)</label>
+        <div class="lab-form__nav">
+          <button class="btn btn--ghost" id="labBack" type="button">Back</button>
+          <button class="btn btn--primary btn--lg" type="submit">Request my neighbourhood solds read</button>
+        </div>
+        <p class="form__note">You will hear back by email after a review of recent solds. The message includes a preliminary range and sold examples. It is not an instant number, and it is not a formal Letter of Opinion. Interior condition still moves the number.</p>
+        <p class="form__note">Prefer to start with a visit? <a href="https://calendly.com/jonathan-faristeam/jonathan-wallace-in-home-evaluation-full-cma">Book an in-home evaluation</a>, or <a href="https://calendly.com/jonathan-faristeam/jonathan-wallace-quick-phone-call">a quick phone call</a>. The same links can go in the follow-up email.</p>
+      </fieldset>
+    </form>
+  </div>
+</section>
+
+<section class="section section--sand">
+  <div class="wrap center">
+    <p class="eyebrow">What happens next</p>
+    <h2>A local read, after a person looks</h2>
+  </div>
+  <div class="wrap grid grid--3" style="margin-top:40px;">
+    <div class="card"><div class="card__icon">1</div><h3>Recent solds</h3><p>The read uses homes that have actually sold near you, including price, days on market, and a short reason each one belongs in the set.</p></div>
+    <div class="card"><div class="card__icon">2</div><h3>An email after review</h3><p>You hear back by email. The range is a discussion starting point. Fit, finish, and what is inside the house still move the number.</p></div>
+    <div class="card"><div class="card__icon">3</div><h3>A visit for a formal letter</h3><p>A formal Letter of Opinion comes only after an in-person visit. There is no pressure to list.</p></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand"><span class="brand__name">Jonathan Wallace</span><p style="margin-top:12px;">Georgian Bay real estate, Midland, Penetanguishene, Tiny, Tay &amp; Wasaga Beach.</p>
+      <div class="footer__social"><a href="https://youtube.com/@jonathanwallaceRE" target="_blank" rel="noopener">YT</a><a href="https://instagram.com/jonathanwallacerealestate" target="_blank" rel="noopener">IG</a><a href="https://www.linkedin.com/in/jonathanwallacerealestate" target="_blank" rel="noopener">in</a></div>
+    </div>
+    <div><h4>Explore</h4><ul><li><a href="/sell.html">Sell your home</a></li><li><a href="/buy.html">Buy a home</a></li><li><a href="/home-tours.html">Home tours</a></li><li><a href="/communities.html">Communities</a></li><li><a href="/home-value.html">Home value</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/faq.html">FAQ</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/weekly">Weekly market hub</a></li><li><a href="/resources">Free guides</a></li><li><a href="/vendors">Verified Vendors</a></li></ul></div>
+    <div><h4>Get in touch</h4><ul><li><a href="tel:+17054332525">705-433-2525</a></li><li><a href="mailto:jonathan@faristeam.ca">Email Jonathan</a></li><li>Midland, Ontario</li></ul></div>
+    <div><h4>Prefer to talk?</h4><p style="font-size:.9rem;">Call or text anytime.</p><a class="btn btn--primary" href="tel:+17054332525">705-433-2525</a></div>
+  </div>
+  <div class="wrap footer__legal">
+    <p><strong>Jonathan Wallace, Realtor with Faris Team Real Estate Brokerage.</strong></p>
+    <p>REALTOR®, MLS® and the associated logos are trademarks owned by The Canadian Real Estate Association (CREA) and identify real estate professionals who are members of CREA. Not intended to solicit properties already listed for sale or buyers/sellers under contract.</p>
+    <p>© <span id="year">2026</span> Jonathan Wallace. All rights reserved. · <a href="/privacy.html">Privacy Policy</a></p>
+  </div>
+</footer>
+</div>
+<script src="/lab/lab.js"></script>
+</body>
+</html>

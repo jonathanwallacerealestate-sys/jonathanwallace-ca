@@ -2,6 +2,8 @@
    Photos stay sharp and edge to edge: no blur, frost, gradient, or dark panel behind type. */
 
 .listing-page{padding-bottom:92px;}
+.listing-page .section{padding-top:20px;padding-bottom:20px;}
+.listing-page .section > .wrap > :last-child{margin-bottom:0;}
 #book{scroll-margin-top:90px;}
 .book-note{margin:12px 0 28px;max-width:62ch;}
 .book-form-lead{margin:0 0 14px;font-weight:700;}
@@ -165,6 +167,7 @@
   margin:8px 0 0;
   padding:0;
 }
+.listing-media li{margin:0;}
 .listing-media .btn{text-decoration:none;}
 
 .listing-disclosure p{max-width:68ch;font-size:.95rem;}
@@ -210,6 +213,7 @@
   .listing-sms{display:inline-flex;}
 }
 @media (min-width:800px){
+  .listing-page .section{padding-top:28px;padding-bottom:28px;}
   .facts{grid-template-columns:repeat(3,1fr);}
   .gallery__tools,.gallery__hint,.gallery__thumbs{padding-left:24px;padding-right:24px;}
 }

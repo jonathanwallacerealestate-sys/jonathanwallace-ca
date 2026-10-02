@@ -194,6 +194,43 @@
   to = "/find-your-home.html"
   status = 200
 
+# Listing landing pages (social links). Canonical is the extensionless path.
+# Copy this block for the next listing. Do not add these URLs to the nav,
+# sitemap.xml, or llms.txt. Each page carries noindex.
+[[redirects]]
+  from = "/listings/193-gouett-street-tay"
+  to = "/listings/193-gouett-street-tay.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/193-gouett-street-tay/"
+  to = "/listings/193-gouett-street-tay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/193-gouett-street-tay.html"
+  to = "/listings/193-gouett-street-tay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/4-charles-street-penetanguishene"
+  to = "/listings/4-charles-street-penetanguishene.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/4-charles-street-penetanguishene/"
+  to = "/listings/4-charles-street-penetanguishene"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/4-charles-street-penetanguishene.html"
+  to = "/listings/4-charles-street-penetanguishene"
+  status = 301
+  force = true
+
 # Pretty URL + branded path for the What's It Take market guide
 # (200 rewrites keep the clean URL and preserve ?src=newsletter for the free path)
 [[redirects]]

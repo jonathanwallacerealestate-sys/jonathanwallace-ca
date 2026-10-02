@@ -3,6 +3,8 @@
 
 .listing-page{padding-bottom:92px;}
 #book{scroll-margin-top:90px;}
+.book-note{margin:12px 0 28px;max-width:62ch;}
+.book-form-lead{margin:0 0 14px;font-weight:700;}
 
 .gallery{background:var(--sand);}
 .gallery__stage{

@@ -64,6 +64,19 @@
   status = 302
   force = true
 
+# Ben Poole's private review link now points at the published post
+[[redirects]]
+  from = "/review-ben-poole-wills-k7q2x9"
+  to = "/blog-wills-executors-powers-of-attorney"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/review-ben-poole-wills-k7q2x9.html"
+  to = "/blog-wills-executors-powers-of-attorney"
+  status = 301
+  force = true
+
 # /newsletter and /resources are real on-domain pages (pretty URLs).
 
 # Pretty URLs for the community hub pages (serve the file, keep the clean URL)

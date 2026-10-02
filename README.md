@@ -65,7 +65,7 @@ To add the next one:
 5. In `netlify.toml`, copy the three redirect rules for `/listings/193-gouett-street-tay` and change the slug. The clean URL (no `.html`) is the canonical. In `_headers`, copy the `X-Robots-Tag: noindex, follow` lines for the new path.
 6. Do not add the URL to the header, footer, `sitemap.xml`, or `llms.txt`.
 
-Book a showing posts to the Netlify form `showing-request` (name, email, phone, preferred times, hidden address and MLS). `assets/js/main.js` already mirrors that submit to the same Make.com lead webhook as the other forms. Call uses `tel:705-433-2525`. Text, on small screens, uses `sms:7054332525`.
+Book a showing posts to the Netlify form `showing-request` (name, email, phone, preferred times, hidden address and MLS). `assets/js/main.js` already mirrors that submit to the same Make.com lead webhook as the other forms. Call uses `tel:+17054332525`. Text, on small screens, uses `sms:+17054332525`.
 
 ## Before launch — replace these
 

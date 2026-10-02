@@ -46,6 +46,27 @@ jonathanwallace-ca/
 
 ---
 
+## Add a listing page
+
+Listing pages are plain static HTML. There is no build step. They stay out of the nav, `sitemap.xml`, and `llms.txt`, and each one sends `noindex, follow` because listing pages go stale.
+
+Shared pieces:
+
+- `assets/css/listing.css` for the gallery, facts grid, and sticky bar
+- `assets/js/listing.js` for swipe, click, keyboard arrows, and lazy thumbnails
+- `listings/_template.html` for the page shell
+
+To add the next one:
+
+1. Copy `listings/_template.html` to `listings/your-slug.html` (or copy `listings/193-gouett-street-tay.html` if you want a filled example).
+2. Copy the photos, already resized and EXIF-stripped, into `assets/img/listings/your-slug/`. Do not re-encode them. Include `og-1200x630.jpg` for the social preview.
+3. Replace the tokens in the head (title, description, canonical, Open Graph, Twitter) and the photo JSON in `#listing-photos`. The first `<img>` should match photo 1.
+4. Fill the address, price, facts, rooms, appliances, media links, and the showing form's hidden `address` and `mls` fields. Mirror the MLS® description word for word. You can split it at the numbered points. Show bathrooms as one total, with no full/half split, when the sources disagree. Keep waterfront length and lot frontage on their own labels.
+5. In `netlify.toml`, copy the three redirect rules for `/listings/193-gouett-street-tay` and change the slug. The clean URL (no `.html`) is the canonical. In `_headers`, copy the `X-Robots-Tag: noindex, follow` lines for the new path.
+6. Do not add the URL to the header, footer, `sitemap.xml`, or `llms.txt`.
+
+Book a showing posts to the Netlify form `showing-request` (name, email, phone, preferred times, hidden address and MLS). `assets/js/main.js` already mirrors that submit to the same Make.com lead webhook as the other forms. Call uses `tel:705-433-2525`. Text, on small screens, uses `sms:7054332525`.
+
 ## Before launch — replace these
 
 Search the codebase for `[` to find every placeholder. Key ones:

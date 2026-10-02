@@ -137,7 +137,12 @@
     try {
       var el = e.target && e.target.closest ? e.target.closest('[data-ga4]') : null;
       if (!el) return;
-      ga4Event(el.getAttribute('data-ga4'), { link_url: el.getAttribute('href') || '', page_path: cleanPath() });
+      var params = { link_url: el.getAttribute('href') || '', page_path: cleanPath() };
+      var listingAddress = el.getAttribute('data-listing-address');
+      var listingMls = el.getAttribute('data-listing-mls');
+      if (listingAddress) params.listing_address = listingAddress;
+      if (listingMls) params.listing_mls = listingMls;
+      ga4Event(el.getAttribute('data-ga4'), params);
     } catch (err) {}
   }, true);
 
@@ -220,6 +225,7 @@
       fd.forEach(function (v, k) { if (k !== 'bot-field') data[k] = v; });
       var formName = form.getAttribute('name') || data['form-name'] || 'unknown';
       var name = ((data.first_name || '') + ' ' + (data.last_name || '')).trim();
+      if (!name && data.name) name = String(data.name).trim();
       var tags = ['Website Lead', 'Website: ' + formName, 'Page: ' + cleanPath()];
       var attr = readAttribution();
       if (attr.utm_medium === 'cpc' || attr.utm_medium === 'paid_social') {
@@ -245,14 +251,20 @@
         var it = intentTag(formName + ' ' + (data.topic || '') + ' ' + (data.source_page || ''));
         if (it) tags.push(it);
       }
+      if (data.mls) tags.push('MLS: ' + data.mls);
       if (data.email) window.__jwLead = { email: data.email, name: name };
-      ga4Event('generate_lead', {
+      var leadParams = {
         form_name: formName,
         lead_intent: (tags.filter(function (t) { return t.indexOf('Intent:') === 0; })[0] || '').replace('Intent: ', ''),
         guide: data.guide || '',
         page_path: cleanPath(),
         utm_medium: attr.utm_medium || ''
-      });
+      };
+      if (data.mls) {
+        leadParams.listing_mls = data.mls;
+        if (data.address) leadParams.listing_address = data.address;
+      }
+      ga4Event('generate_lead', leadParams);
       send({
         form_name: formName,
         email: data.email || '',

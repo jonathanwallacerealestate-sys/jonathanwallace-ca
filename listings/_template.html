@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!--
+  Listing page template. Copy this file to listings/your-slug.html.
+  Do not link it from the nav, sitemap.xml, or llms.txt.
+  Replace every SLUG, ADDRESS, PRICE, and FACT token.
+  Photos go in assets/img/listings/SLUG/ and are committed as-is.
+  Then copy the three /listings/193-gouett-street-tay redirect rules in netlify.toml
+  and the X-Robots-Tag lines in _headers.
+  A filled example: listings/193-gouett-street-tay.html
+-->
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P36FJB8L');</script>
+<meta name="robots" content="noindex, follow">
+<title>ADDRESS | PRICE</title>
+<meta name="description" content="Short plain description. No em dashes.">
+<link rel="canonical" href="https://jonathanwallace.ca/listings/SLUG">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jonathanwallace.ca/listings/SLUG">
+<meta property="og:title" content="ADDRESS | PRICE">
+<meta property="og:description" content="Short plain description. No em dashes.">
+<meta property="og:image" content="https://jonathanwallace.ca/assets/img/listings/SLUG/og-1200x630.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_CA">
+<meta property="og:site_name" content="Jonathan Wallace, Your Georgian Bay Specialist">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ADDRESS | PRICE">
+<meta name="twitter:description" content="Short plain description. No em dashes.">
+<meta name="twitter:image" content="https://jonathanwallace.ca/assets/img/listings/SLUG/og-1200x630.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<link rel="stylesheet" href="/assets/css/listing.css">
+<link rel="preload" as="image" href="/assets/img/listings/SLUG/01-photo.jpg">
+</head>
+<body class="listing-page">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P36FJB8L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="site-header">
+  <div class="wrap nav">
+    <div class="brand"><a href="/"><span class="brand__name">Jonathan Wallace</span><span class="brand__tag">Your Georgian Bay Specialist</span></a></div>
+    <nav><ul class="nav__links" id="navLinks">
+      <li><a href="/sell.html">Sell</a></li><li><a href="/buy.html">Buy</a></li><li><a href="/home-tours.html">Home Tours</a></li><li><a href="/communities.html">Communities</a></li><li><a href="/resources">Resources</a></li><li><a href="/blog.html">Blog</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li>
+      <li class="nav__cta"><a class="btn btn--primary" href="/home-value.html">Price My Home</a></li>
+    </ul></nav>
+    <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<p class="wrap" style="margin:16px auto;">This is the listing template. Copy it, then replace SLUG, the photos, and the facts. Do not publish this file as a listing.</p>
+
+<div class="gallery" id="gallery" tabindex="0" aria-roledescription="carousel" aria-label="Photos of ADDRESS">
+  <div class="gallery__stage" id="galleryStage">
+    <img id="galleryImg" src="/assets/img/listings/SLUG/01-photo.jpg" width="1400" height="933" alt="Describe photo 1" fetchpriority="high" draggable="false">
+  </div>
+  <div class="gallery__tools">
+    <button type="button" class="gallery__nav" id="galleryPrev">Previous</button>
+    <p class="gallery__meta"><span class="gallery__count" id="galleryCount" aria-live="polite">1 of 1</span><span class="gallery__cap" id="galleryCaption">Describe photo 1</span></p>
+    <button type="button" class="gallery__nav" id="galleryNext">Next</button>
+  </div>
+  <p class="gallery__hint">Swipe the photo, tap either side, or choose a thumbnail.</p>
+  <div class="gallery__thumbs" id="galleryThumbs"></div>
+</div>
+<script type="application/json" id="listing-photos">
+[
+  {"src":"/assets/img/listings/SLUG/01-photo.jpg","w":1400,"h":933,"alt":"Describe photo 1"}
+]
+</script>
+
+<section class="section section--sand">
+  <div class="wrap">
+    <p class="eyebrow listing-kicker">COMMUNITY</p>
+    <h1 class="listing-address">STREET ADDRESS</h1>
+    <p class="listing-place">CITY, Ontario POSTAL</p>
+    <p class="listing-price">PRICE</p>
+    <p class="listing-mls">MLS® NUMBER</p>
+    <p class="listing-summary">One or two plain sentences from the listing facts.</p>
+    <div class="stack-actions">
+      <a class="btn btn--primary btn--lg" href="#book" data-ga4="book_showing" data-listing-address="FULL ADDRESS" data-listing-mls="MLSNUMBER">Book a showing</a>
+      <a class="btn btn--ghost btn--lg listing-call" href="tel:705-433-2525" data-ga4="click_to_call" data-listing-address="FULL ADDRESS" data-listing-mls="MLSNUMBER"><span class="listing-call__wide">Call or text</span><span class="listing-call__narrow">Call</span></a>
+      <a class="btn btn--ghost btn--lg listing-sms" href="sms:7054332525?body=Hi%20Jonathan%2C%20I%20would%20like%20to%20book%20a%20showing." data-ga4="click_to_text" data-listing-address="FULL ADDRESS" data-listing-mls="MLSNUMBER">Text</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">Key facts</p>
+    <h2>The details</h2>
+    <dl class="facts">
+      <div class="fact"><dt>Bedrooms</dt><dd>BEDS</dd></div>
+      <div class="fact"><dt>Bathrooms</dt><dd>N Bathrooms</dd></div>
+      <div class="fact"><dt>Finished area</dt><dd>FINISHED SQ FT</dd></div>
+      <div class="fact"><dt>Lot size</dt><dd>LOT</dd></div>
+      <div class="fact"><dt>Lot frontage</dt><dd>FRONTAGE</dd></div>
+      <div class="fact"><dt>Waterfront</dt><dd>WATERFRONT</dd></div>
+      <div class="fact"><dt>Property type</dt><dd>TYPE</dd></div>
+      <div class="fact"><dt>Storeys</dt><dd>STOREYS</dd></div>
+      <div class="fact"><dt>Annual taxes</dt><dd>TAXES</dd></div>
+      <div class="fact"><dt>Parking</dt><dd>PARKING</dd></div>
+      <div class="fact"><dt>Heating</dt><dd>HEATING</dd></div>
+      <div class="fact"><dt>Cooling</dt><dd>COOLING</dd></div>
+      <div class="fact"><dt>Water</dt><dd>WATER</dd></div>
+      <div class="fact"><dt>Sewer</dt><dd>SEWER</dd></div>
+      <div class="fact"><dt>Zoning</dt><dd>ZONING</dd></div>
+    </dl>
+    <p class="listing-note">Keep the waterfront length and the lot frontage on their own labels.</p>
+  </div>
+</section>
+
+<section class="section section--sand">
+  <div class="wrap">
+    <p class="eyebrow">MLS® description</p>
+    <h2>In the listing's words</h2>
+    <div class="listing-desc" id="mls-description">
+      <p>Paste the MLS description here, word for word. Split numbered points into their own paragraphs if you want. Do not edit the words.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--sand" id="book">
+  <div class="wrap" style="max-width:760px;">
+    <p class="eyebrow">Showings</p>
+    <h2>Book a showing</h2>
+    <p>Tell me when you would like to walk through STREET ADDRESS. I will confirm a time with you.</p>
+    <form class="form" name="showing-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html">
+      <input type="hidden" name="form-name" value="showing-request">
+      <input type="hidden" name="address" value="FULL ADDRESS">
+      <input type="hidden" name="mls" value="MLSNUMBER">
+      <input type="hidden" name="topic" value="Buying a home">
+      <input type="hidden" name="source_page" value="/listings/SLUG">
+      <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
+      <div class="field"><label for="showing-name">Name</label><input id="showing-name" name="name" autocomplete="name" required></div>
+      <div class="form__row">
+        <div class="field"><label for="showing-email">Email</label><input id="showing-email" type="email" name="email" autocomplete="email" required></div>
+        <div class="field"><label for="showing-phone">Phone</label><input id="showing-phone" type="tel" name="phone" autocomplete="tel" required></div>
+      </div>
+      <div class="field"><label for="showing-times">Preferred times</label><textarea id="showing-times" name="preferred_times" rows="4" required></textarea></div>
+      <label class="consent"><input type="checkbox" name="casl_consent" value="yes" required> <span>I agree to be contacted by Jonathan Wallace about this showing, and I can unsubscribe anytime. (CASL)</span></label>
+      <button class="btn btn--primary btn--block btn--lg" type="submit" data-ga4="book_showing" data-listing-address="FULL ADDRESS" data-listing-mls="MLSNUMBER">Request a showing</button>
+    </form>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap listing-disclosure">
+    <p class="eyebrow">Disclosure</p>
+    <h2>Listing information</h2>
+    <p>Listed by Mark Faris, Broker, Faris Team Real Estate Brokerage</p>
+    <p>Jonathan Wallace, Realtor, Faris Team Real Estate Brokerage</p>
+    <p>MLS® NUMBER</p>
+    <p>Information is deemed reliable but not guaranteed. Listing data courtesy of the MLS® System (Toronto Regional Real Estate Board).</p>
+    <p>REALTOR®, MLS® and the associated logos are trademarks owned by The Canadian Real Estate Association (CREA) and identify real estate professionals who are members of CREA. Not intended to solicit properties already listed for sale or buyers/sellers under contract.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap footer__legal">
+    <p><strong>Jonathan Wallace, REALTOR®</strong> · Faris Team Real Estate, Brokerage</p>
+    <p>REALTOR®, MLS® and the associated logos are trademarks owned by The Canadian Real Estate Association (CREA) and identify real estate professionals who are members of CREA. Not intended to solicit properties already listed for sale or buyers/sellers under contract.</p>
+    <p>© <span id="year">2026</span> Jonathan Wallace. All rights reserved. · <a href="/privacy.html">Privacy Policy</a></p>
+  </div>
+</footer>
+
+<div class="listing-bar" role="region" aria-label="Contact about this listing">
+  <div class="listing-bar__inner">
+    <a class="btn btn--primary" href="#book" data-ga4="book_showing" data-listing-address="FULL ADDRESS" data-listing-mls="MLSNUMBER">Book a showing</a>
+    <a class="btn btn--bar listing-call" href="tel:705-433-2525" data-ga4="click_to_call" data-listing-address="FULL ADDRESS" data-listing-mls="MLSNUMBER"><span class="listing-call__wide">Call or text</span><span class="listing-call__narrow">Call</span></a>
+    <a class="btn btn--bar listing-sms" href="sms:7054332525" data-ga4="click_to_text" data-listing-address="FULL ADDRESS" data-listing-mls="MLSNUMBER">Text</a>
+  </div>
+</div>
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/listing.js"></script>
+</body>
+</html>

@@ -54,13 +54,13 @@
 # Change both "to" lines when a new market update is published.
 [[redirects]]
   from = "/market-update-latest"
-  to = "/blog-market-update-sep-14-20-2026.html"
+  to = "/blog-market-update-sep-21-27-2026.html"
   status = 302
   force = true
 
 [[redirects]]
   from = "/market-update-latest/"
-  to = "/blog-market-update-sep-14-20-2026.html"
+  to = "/blog-market-update-sep-21-27-2026.html"
   status = 302
   force = true
 
@@ -429,7 +429,7 @@
 
 [[redirects]]
   from = "/blog-market-update-sep-14-20-2026"
-  to = "/blog-market-update-sep-14-20-2026.html"
+  to = "/blog-market-update-sep-21-27-2026.html"
   status = 301
   force = true
 

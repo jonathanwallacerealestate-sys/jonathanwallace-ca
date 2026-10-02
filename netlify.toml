@@ -201,6 +201,23 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/listings/4-charles-street-penetanguishene"
+  to = "/listings/4-charles-street-penetanguishene.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/4-charles-street-penetanguishene/"
+  to = "/listings/4-charles-street-penetanguishene"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/4-charles-street-penetanguishene.html"
+  to = "/listings/4-charles-street-penetanguishene"
+  status = 301
+  force = true
+
 # Pretty URL + branded path for the What's It Take market guide
 # (200 rewrites keep the clean URL and preserve ?src=newsletter for the free path)
 [[redirects]]

@@ -11,7 +11,6 @@
   if (!photos || !photos.length) return;
 
   var countEl = document.getElementById('galleryCount');
-  var capEl = document.getElementById('galleryCaption');
   var thumbsEl = document.getElementById('galleryThumbs');
   var prevBtn = document.getElementById('galleryPrev');
   var nextBtn = document.getElementById('galleryNext');
@@ -30,7 +29,6 @@
     img.width = photo.w;
     img.height = photo.h;
     if (countEl) countEl.textContent = (index + 1) + ' of ' + photos.length;
-    if (capEl) capEl.textContent = photo.alt;
     thumbButtons.forEach(function (btn, n) {
       if (n === index) btn.setAttribute('aria-current', 'true');
       else btn.removeAttribute('aria-current');

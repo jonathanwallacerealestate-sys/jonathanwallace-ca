@@ -62,6 +62,12 @@
   X-Robots-Tag: noindex, follow
 /listings/39-rosemary-road-tiny.html
   X-Robots-Tag: noindex, follow
+/listings/7-reynolds-road-tiny
+  X-Robots-Tag: noindex, follow
+/listings/7-reynolds-road-tiny/
+  X-Robots-Tag: noindex, follow
+/listings/7-reynolds-road-tiny.html
+  X-Robots-Tag: noindex, follow
 /listings/_template
   X-Robots-Tag: noindex, follow
 /listings/_template.html

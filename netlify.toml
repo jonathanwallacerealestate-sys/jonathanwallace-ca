@@ -231,6 +231,142 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/listings/lot-9-james-street-tiny"
+  to = "/listings/lot-9-james-street-tiny.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/lot-9-james-street-tiny/"
+  to = "/listings/lot-9-james-street-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/lot-9-james-street-tiny.html"
+  to = "/listings/lot-9-james-street-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/47-georgias-walk-tay"
+  to = "/listings/47-georgias-walk-tay.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/47-georgias-walk-tay/"
+  to = "/listings/47-georgias-walk-tay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/47-georgias-walk-tay.html"
+  to = "/listings/47-georgias-walk-tay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/421-midland-avenue-midland"
+  to = "/listings/421-midland-avenue-midland.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/421-midland-avenue-midland/"
+  to = "/listings/421-midland-avenue-midland"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/421-midland-avenue-midland.html"
+  to = "/listings/421-midland-avenue-midland"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/2554-champlain-road-tiny"
+  to = "/listings/2554-champlain-road-tiny.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/2554-champlain-road-tiny/"
+  to = "/listings/2554-champlain-road-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/2554-champlain-road-tiny.html"
+  to = "/listings/2554-champlain-road-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/1520-rosemount-road-tay"
+  to = "/listings/1520-rosemount-road-tay.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/1520-rosemount-road-tay/"
+  to = "/listings/1520-rosemount-road-tay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/1520-rosemount-road-tay.html"
+  to = "/listings/1520-rosemount-road-tay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/775-ontario-street-midland"
+  to = "/listings/775-ontario-street-midland.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/775-ontario-street-midland/"
+  to = "/listings/775-ontario-street-midland"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/775-ontario-street-midland.html"
+  to = "/listings/775-ontario-street-midland"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/8-joliet-crescent-tiny"
+  to = "/listings/8-joliet-crescent-tiny.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/8-joliet-crescent-tiny/"
+  to = "/listings/8-joliet-crescent-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/8-joliet-crescent-tiny.html"
+  to = "/listings/8-joliet-crescent-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/39-rosemary-road-tiny"
+  to = "/listings/39-rosemary-road-tiny.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/39-rosemary-road-tiny/"
+  to = "/listings/39-rosemary-road-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/39-rosemary-road-tiny.html"
+  to = "/listings/39-rosemary-road-tiny"
+  status = 301
+  force = true
+
 # Pretty URL + branded path for the What's It Take market guide
 # (200 rewrites keep the clean URL and preserve ?src=newsletter for the free path)
 [[redirects]]

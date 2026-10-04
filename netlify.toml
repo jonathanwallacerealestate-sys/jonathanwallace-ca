@@ -725,6 +725,12 @@
   force = true
 
 [[redirects]]
+  from = "/blog-midland-restaurant-picks.html"
+  to = "/blog-midland-restaurant-picks"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog-when-home-stops-working-retirement-living.html"
   to = "/blog-when-home-stops-working-retirement-living"
   status = 301

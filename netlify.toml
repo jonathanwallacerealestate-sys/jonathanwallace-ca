@@ -232,6 +232,23 @@
   force = true
 
 [[redirects]]
+  from = "/listings/20-rue-eric-tiny"
+  to = "/listings/20-rue-eric-tiny.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/20-rue-eric-tiny/"
+  to = "/listings/20-rue-eric-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/20-rue-eric-tiny.html"
+  to = "/listings/20-rue-eric-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/listings/lot-9-james-street-tiny"
   to = "/listings/lot-9-james-street-tiny.html"
   status = 200

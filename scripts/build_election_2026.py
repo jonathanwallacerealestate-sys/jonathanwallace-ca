@@ -5,7 +5,7 @@ Source of truth:
   content/elections-2026/candidates.json
   content/elections-2026/municipalities.json
 
-Photos live in assets/img/elections-2026/ as 600x600 squares (filenames from photo_file).
+Photos live in assets/img/elections-2026/ under the filename in photo_file. Circles use object-fit: cover so each headshot fills the frame.
 The hub opens on the title and Election Day, then the key dates and one link per town.
 The vote-signs image is an inline figure under those links. That same file is the
 OG image, Twitter image, and blog card thumbnail:

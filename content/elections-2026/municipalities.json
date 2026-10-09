@@ -1,0 +1,236 @@
+{
+  "as_of": "Oct 9, 2026",
+  "election_day_label": "Monday, October 26, 2026",
+  "term": "The new council term runs from November 15, 2026 to November 14, 2030.",
+  "intro": "This is a non-partisan resource guide to the council races in the Town of Midland, the Town of Penetanguishene, the Township of Tiny, the Township of Tay and the Town of Wasaga Beach. It sets out how to vote in each municipality and who is running for each office. It does not endorse any candidate.",
+  "voters_list_note": "Municipal voters' lists are prepared from the register kept by Elections Ontario. The Province's 2026 voters' guide says that on or after September 1, 2026, you apply to your municipal clerk to update or add your information, and you have until the close of voting on October 26, 2026. In Tiny, online registration closes Monday, October 12.",
+  "general_links": [
+    {
+      "label": "RegisterToVoteON.ca (Elections Ontario)",
+      "url": "https://www.registertovoteon.ca/"
+    },
+    {
+      "label": "2026 Voters' Guide (Government of Ontario)",
+      "url": "https://www.ontario.ca/document/2026-voters-guide-ontario-municipal-council-and-school-board-elections"
+    },
+    {
+      "label": "Voters' list section (Government of Ontario)",
+      "url": "https://www.ontario.ca/document/2026-voters-guide-ontario-municipal-council-and-school-board-elections/voters-list-and"
+    }
+  ],
+  "key_dates": [
+    {
+      "date": "Oct 1",
+      "text": "Wasaga Beach online voting opens",
+      "highlight": false
+    },
+    {
+      "date": "Oct 12",
+      "text": "Last day to update details online in Tiny",
+      "highlight": true
+    },
+    {
+      "date": "Oct 13",
+      "text": "Online and phone voting opens in Midland, Penetanguishene, Tiny and Tay",
+      "highlight": false
+    },
+    {
+      "date": "Oct 14",
+      "text": "Wasaga Beach advance poll, paper ballots at the RecPlex",
+      "highlight": false
+    },
+    {
+      "date": "Oct 17",
+      "text": "Wasaga Beach advance poll at Wasaga Stars Arena",
+      "highlight": false
+    },
+    {
+      "date": "Oct 26",
+      "text": "Election Day. Voting closes at 8 p.m.",
+      "highlight": false
+    }
+  ],
+  "municipalities": [
+    {
+      "slug": "midland",
+      "name": "Town of Midland",
+      "short": "Midland",
+      "kind": "Town",
+      "offices_blurb": "Mayor (1), Deputy Mayor (1) and Councillor (7), all elected at large. The Town adopted the at-large system for the 2022 election.",
+      "method": "Internet and telephone only",
+      "method_note": "No paper ballots.",
+      "rows": [
+        {
+          "label": "Vote online or by phone",
+          "value": "Tuesday, October 13 at 10 a.m. to Monday, October 26 at 8 p.m."
+        },
+        {
+          "label": "Voter help centre",
+          "value": "Voter Assistance Centre, 575 Dominion Avenue"
+        },
+        {
+          "label": "Help centre hours",
+          "value": "Tuesday, October 13, 10 a.m. to 4:30 p.m. October 14 to 16, 8:30 a.m. to 4:30 p.m. Saturday, October 17, noon to 4 p.m. October 19 to 23, 8:30 a.m. to 4:30 p.m. Saturday, October 24, noon to 4 p.m. Election Day, Monday, October 26, 8:30 a.m. to 8 p.m."
+        },
+        {
+          "label": "Voters' list",
+          "value": "Contact the Clerk's Department at elections@midland.ca or 705-526-4275, ext. 2212 or 2208, or bring ID to 575 Dominion Avenue to complete Form EL15. From October 13 to 26 the Voter Assistance Centre can also add or correct your information."
+        }
+      ],
+      "register_url": "https://www.midland.ca/your-government/2026-elections/information-for-voters/",
+      "election_url": "https://www.midland.ca/your-government/2026-elections/information-for-voters/",
+      "prominent": null,
+      "notes": [
+        "No council office was acclaimed. Every office is contested."
+      ],
+      "ballot_question": null
+    },
+    {
+      "slug": "penetanguishene",
+      "name": "Town of Penetanguishene",
+      "short": "Penetanguishene",
+      "kind": "Town",
+      "offices_blurb": "Mayor (1), Deputy Mayor (1) and Councillor (5), all elected at large.",
+      "method": "Internet and telephone, plus paper on Election Day",
+      "method_note": "Paper ballots are available on Election Day only.",
+      "rows": [
+        {
+          "label": "Vote online or by phone",
+          "value": "Tuesday, October 13 at 10 a.m. to Monday, October 26 at 8 p.m."
+        },
+        {
+          "label": "Paper ballot, Election Day only",
+          "value": "Monday, October 26, 10 a.m. to 8 p.m., James Keating Elementary School, 20 Lorne Avenue."
+        },
+        {
+          "label": "Voter help centre",
+          "value": "Voter Assistance Centre, Town Hall, 10 Robert Street West"
+        },
+        {
+          "label": "Help centre hours",
+          "value": "Tuesday, October 13, 10 a.m. to 4:30 p.m. October 14 to 16 and October 19 to 23, 8:30 a.m. to 4:30 p.m."
+        },
+        {
+          "label": "Voters' list",
+          "value": "Use the Town's Voter Services Portal to confirm, update or add your information (ID required), or contact the Clerk, Kelly Cole, at kcole@penetanguishene.ca or 705-549-7453."
+        }
+      ],
+      "register_url": "https://penetanguishene.voterservices.ca/",
+      "election_url": "https://www.penetanguishene.ca/townhall/elections",
+      "prominent": null,
+      "notes": [
+        "Mayor Doug Rawson was acclaimed (re-elected without a vote).",
+        "Michel (Mike) Mayotte filed for council and withdrew on August 18, 2026. He is not on the certified list."
+      ],
+      "ballot_question": null
+    },
+    {
+      "slug": "tiny",
+      "name": "Township of Tiny",
+      "short": "Tiny",
+      "kind": "Township",
+      "offices_blurb": "Mayor (1), Deputy Mayor (1) and Councillor (3), all elected at large.",
+      "method": "Internet and telephone only",
+      "method_note": "No paper ballots.",
+      "rows": [
+        {
+          "label": "Vote online or by phone",
+          "value": "Tuesday, October 13 at 10 a.m. to Monday, October 26 at 8 p.m."
+        },
+        {
+          "label": "Voter help centre",
+          "value": "Election Help Centre, 130 Balm Beach Road West"
+        },
+        {
+          "label": "Help centre hours",
+          "value": "Tuesday, October 13, 10 a.m. to 4:30 p.m. October 14 and 15, 9 a.m. to 4:30 p.m. Friday, October 16, 9 a.m. to 6 p.m. October 19 to 22, 9 a.m. to 4:30 p.m. Friday, October 23, 9 a.m. to 6 p.m. Saturday, October 24, 10 a.m. to 2 p.m. Election Day, Monday, October 26, 9 a.m. to 8 p.m."
+        },
+        {
+          "label": "Voters' list",
+          "value": "Online registration through the Township's Online Voter Services Tool closes Monday, October 12, 2026. From October 13, bring valid ID to the Election Help Centre to register or update your information, up to and including Election Day. Questions: elections@tiny.ca or 705-526-4204."
+        }
+      ],
+      "register_url": "https://www.tiny.ca/elections/online-voter-services-tool",
+      "election_url": "https://www.tiny.ca/elections",
+      "prominent": "Online registration closes Monday, October 12. After that date, bring ID to the Election Help Centre.",
+      "notes": [
+        "Replacement Voter Information Letters were mailed October 2. The PIN is unchanged. The Township says a printing error on the first letters left Jessie Garland's name off the candidate list, and that this does not affect any candidate's eligibility or the ballot.",
+        "Drew Ironstone filed for deputy mayor and later withdrew. The name is not on the certified list."
+      ],
+      "ballot_question": null
+    },
+    {
+      "slug": "tay",
+      "name": "Township of Tay",
+      "short": "Tay",
+      "kind": "Township",
+      "offices_blurb": "Mayor (1), Deputy Mayor (1) and Councillor (5), all elected at large.",
+      "method": "Internet and telephone only",
+      "method_note": "In-person help is available at Voter Assistance Centres. There is no paper ballot.",
+      "rows": [
+        {
+          "label": "Vote online or by phone",
+          "value": "Tuesday, October 13 at 10 a.m. to Monday, October 26 at 8 p.m."
+        },
+        {
+          "label": "Voter help centre",
+          "value": "Municipal Office, 450 Park Street, Victoria Harbour, plus pop-up centres in Waubaushene and Port McNicoll."
+        },
+        {
+          "label": "Help centre hours",
+          "value": "Pop-up centres: Tuesday, October 13, 5 to 8 p.m., Waubaushene Library. Saturday, October 17, 10 a.m. to 4 p.m., Port McNicoll Community Centre. Wednesday, October 21, 4:30 to 8 p.m. and Saturday, October 24, 10 a.m. to 4 p.m., Municipal Office."
+        },
+        {
+          "label": "Voters' list",
+          "value": "Contact a Township election official (Clerk Katelyn Johns, 705-534-7248 ext. 240, kjohns@tay.ca, or clerk@tay.ca) or visit a Voter Assistance Centre."
+        }
+      ],
+      "register_url": "https://tay.ca/municipal-government/elections/",
+      "election_url": "https://tay.ca/municipal-government/elections/",
+      "prominent": null,
+      "notes": [
+        "Mayor Ted Walker and Deputy Mayor Barry Norris were acclaimed. Only council seats are on the ballot."
+      ],
+      "ballot_question": null
+    },
+    {
+      "slug": "wasaga-beach",
+      "name": "Town of Wasaga Beach",
+      "short": "Wasaga Beach",
+      "kind": "Town",
+      "offices_blurb": "Mayor (1), Deputy Mayor (1) and Councillor (5), all elected at large.",
+      "method": "Online, plus paper ballots in person",
+      "method_note": "Paper ballots are used at the advance polls and on Election Day.",
+      "rows": [
+        {
+          "label": "Vote online",
+          "value": "Thursday, October 1 at 10 a.m. to Monday, October 26 at 8 p.m."
+        },
+        {
+          "label": "Advance polls (paper)",
+          "value": "Wednesday, October 14, 2 to 8 p.m., RecPlex, 1724 Mosley Street. Saturday, October 17, 10 a.m. to 6 p.m., Wasaga Stars Arena, 544 River Road West. A first advance day was held Monday, October 5."
+        },
+        {
+          "label": "Election Day (paper)",
+          "value": "Monday, October 26, 10 a.m. to 8 p.m., Wasaga Stars Arena, 544 River Road West."
+        },
+        {
+          "label": "Voters' list",
+          "value": "To confirm you are on the list, email election@wasagabeach.com with your name, qualifying address and date of birth. To be added or to correct your information, use the Town's Voter Amendment Form. Clerk's Department: 705-429-3844."
+        }
+      ],
+      "register_url": "https://www.wasagabeach.com/get-involved/elections/",
+      "election_url": "https://www.wasagabeach.com/get-involved/elections/",
+      "prominent": null,
+      "notes": [
+        "Christopher Stasoff registered for mayor and withdrew. He is not on the certified list."
+      ],
+      "ballot_question": {
+        "text": "Are you in favour of moving to a ward system?",
+        "detail": "Answers are Yes or No.",
+        "url": "https://engagewasaga.ca/2026ballotquestion",
+        "source_label": "Town of Wasaga Beach engagement page"
+      }
+    }
+  ]
+}

@@ -6,7 +6,9 @@ Source of truth:
   content/elections-2026/municipalities.json
 
 Photos live in assets/img/elections-2026/ (filenames from photo_file).
-The hero is assets/img/north-simcoe-votes-2026-hero.jpg.
+The hub opens on the title. The vote-signs image is an inline figure after the key dates.
+That same file is the OG image, Twitter image, and blog card thumbnail:
+assets/img/blog-north-simcoe-votes-2026.jpg.
 
 Run from the repo root:
 
@@ -31,7 +33,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "content" / "elections-2026" / "candidates.json"
 MUNIS = ROOT / "content" / "elections-2026" / "municipalities.json"
 PHOTO_DIR = ROOT / "assets" / "img" / "elections-2026"
-HERO = "/assets/img/north-simcoe-votes-2026-hero.jpg"
+HERO = "/assets/img/blog-north-simcoe-votes-2026.jpg"
 HUB_PATH = "/blog/north-simcoe-votes-2026/"
 SITE = "https://jonathanwallace.ca"
 AS_OF = "Oct 9, 2026"
@@ -382,8 +384,13 @@ def hub_page(guide: dict, candidates: list[dict]) -> str:
       <p class="el-muni-foot"><span>Candidates are listed alphabetically by surname within each office.</span> {ext_link(muni['election_url'], 'Official election page')}</p>
     </section>""")
 
-    body = f"""<img class="el-hero-img" src="{HERO}" alt="North Simcoe Votes 2026, a non-partisan guide to the municipal elections in Midland, Penetanguishene, Tiny, Tay and Wasaga Beach. Election Day Monday, October 26, 2026." width="1280" height="720">
-<main class="el">
+    figure = (
+        f'<figure class="el-figure"><img src="{HERO}" '
+        f'alt="Lawn signs on grass reading North Simcoe, Election Day, October 26, with a lake and town behind them." '
+        f'width="1920" height="1072">'
+        f'<figcaption>North Simcoe. Election Day, October 26.</figcaption></figure>'
+    )
+    body = f"""<main class="el">
   <div class="el-wrap el-intro">
     {byline_html()}
     <p class="el-eyebrow">2026 municipal election, voter guide</p>
@@ -399,6 +406,7 @@ def hub_page(guide: dict, candidates: list[dict]) -> str:
     <p class="el-regnote">{esc(guide['term'])} Candidates appear alphabetically by surname within each office. Information is current as of {esc(AS_OF)}.</p>
   </div>
   <div class="el-dates"><div class="el-wrap el-dates-grid"><div class="el-dates-label">Key dates</div>{''.join(dates)}</div></div>
+  {figure}
   <section class="el-sec" id="how-to-vote">
     <div class="el-wrap">
       <div class="el-sec-head">
@@ -657,7 +665,7 @@ def main() -> int:
         print("Missing municipality records:", ", ".join(missing), file=sys.stderr)
         return 1
     if not (ROOT / HERO.lstrip("/")).is_file():
-        print("Missing hero image", HERO, file=sys.stderr)
+        print("Missing social image", HERO, file=sys.stderr)
         return 1
     if not (PHOTO_DIR / "silhouette.png").is_file():
         print("Missing silhouette.png", file=sys.stderr)

@@ -41,13 +41,25 @@ body.election .el-eyebrow {
   margin: 0 0 10px;
 }
 
-body.election .el-hero-img {
+body.election .el-figure {
+  max-width: 1180px;
+  margin: 36px auto 0;
+  padding: 0 24px;
+}
+
+body.election .el-figure img {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 560px;
-  object-fit: cover;
-  background: var(--navy);
+  background: #1B1B1B;
+}
+
+body.election .el-figure figcaption {
+  margin-top: 10px;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--muted);
 }
 
 body.election .el-intro {

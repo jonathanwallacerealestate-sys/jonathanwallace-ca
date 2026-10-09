@@ -68,12 +68,10 @@ LISTINGS = [
         "region_name": "Tiny",
         "postal": "L9M 0J2",
         "featured": False,
-        "photo_mode": "realtor",
+        "photo_mode": "drive",
+        "zip": UPLOADS / "8-pinecone-avenue-tiny_f37b.zip",
         "agents": [("Mark Faris", "Broker"), ("Ryan Lesperance", None)],
         "waterfront_length": None,
-        "missing": [
-            "Drive originals are still incoming. Photos are the REALTOR.ca set until that folder is swapped.",
-        ],
     },
     {
         "id": "30372002",
@@ -203,7 +201,7 @@ LISTINGS = [
     },
 ]
 
-# Existing page, kept in place. Index links here. Drive originals arrive separately.
+# Existing page, kept in place. Index links here. Photos are the Drive set in this folder.
 EXISTING_1555 = {
     "slug": "1555-baseline-road-south-tiny",
     "alias": "1555-baseline-road-s-tiny",
@@ -216,7 +214,7 @@ EXISTING_1555 = {
     "beds": "3 + 2",
     "baths": "4",
     "summary": "3 + 2 bedrooms, 4 bathrooms, and 2,595 sq. ft. above grade plus a partially finished lower level, with a saltwater inground pool.",
-    "hero": "/assets/img/listings/1555-baseline-road-south-tiny/01-front-exterior.jpg",
+    "hero": "/assets/img/listings/1555-baseline-road-south-tiny/01.jpg",
     "realtor_url": "https://www.realtor.ca/real-estate/30251863/1555-baseline-road-s-tiny-rural-tiny",
 }
 
@@ -1201,7 +1199,7 @@ def main():
         "baths": EXISTING_1555["baths"],
         "summary": EXISTING_1555["summary"],
         "hero": EXISTING_1555["hero"],
-        "alt": "Front of the house at 1555 Baseline Road South in Tiny",
+        "alt": "Front exterior at 1555 Baseline Road South",
         "w": w,
         "h": h,
     })

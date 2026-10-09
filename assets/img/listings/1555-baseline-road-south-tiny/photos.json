@@ -1,5 +1,5 @@
 {
-  "slug": "8-pinecone-avenue-tiny",
+  "slug": "1555-baseline-road-south-tiny",
   "source": "drive",
   "hero": "01.jpg",
   "files": [
@@ -24,7 +24,10 @@
     "19.jpg",
     "20.jpg",
     "21.jpg",
-    "22.jpg"
+    "22.jpg",
+    "23.jpg",
+    "24.jpg",
+    "25.jpg"
   ],
   "swap": "Replace the numbered jpgs in this folder. 01.jpg is the hero. Then rerun scripts/build_newsletter_listings.py."
 }

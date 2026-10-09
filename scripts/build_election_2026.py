@@ -243,6 +243,28 @@ def reading_label(further: dict) -> str:
     return label
 
 
+def link_label(url: str) -> str:
+    """Visible label for a contact link. Never 'Open link'."""
+    parsed = urlparse(url)
+    host = (parsed.netloc or "").lower().removeprefix("www.")
+    path = (parsed.path or "").lower()
+    if host == "teamwasaga.ca" and path.startswith("/team/"):
+        return "Team Wasaga profile"
+    if host == "facebook.com" or host.endswith(".facebook.com") or host == "fb.com":
+        return "Facebook page"
+    if host == "instagram.com" or host.endswith(".instagram.com"):
+        return "Instagram"
+    if host == "linkedin.com" or host.endswith(".linkedin.com"):
+        return "LinkedIn"
+    if host in {"x.com", "twitter.com"}:
+        return "X"
+    if host == "tiktok.com" or host.endswith(".tiktok.com"):
+        return "TikTok"
+    if host in {"youtube.com", "m.youtube.com", "youtu.be"}:
+        return "YouTube"
+    return "Website"
+
+
 def person_card(candidate: dict) -> str:
     photo, placeholder = photo_web_path(candidate)
     alt = candidate["name"] if not placeholder else f"No photo on file for {candidate['name']}"
@@ -452,7 +474,7 @@ def contact_block(candidate: dict) -> str:
 
     website = candidate.get("website")
     if website:
-        add("Website", website)
+        add(link_label(website), website)
     phone = candidate.get("phone")
     email = candidate.get("email")
     if phone:
@@ -462,7 +484,7 @@ def contact_block(candidate: dict) -> str:
             f'<li><small>Email</small><div><a href="mailto:{esc(email)}">{esc(email)}</a></div></li>'
         )
     for key, label in (
-        ("facebook", "Facebook"),
+        ("facebook", "Facebook page"),
         ("instagram", "Instagram"),
         ("x", "X"),
         ("linkedin", "LinkedIn"),
@@ -484,9 +506,12 @@ def contact_block(candidate: dict) -> str:
     button = ""
     primary = website or candidate.get("primary_link")
     if primary and not website:
-        button = (
-            f'<p><a class="el-textlink" href="{esc(primary)}" target="_blank" rel="noopener noreferrer">Open link</a></p>'
-        )
+        label = link_label(primary)
+        # A Team Wasaga profile already listed with that label is not repeated.
+        if not (label == "Team Wasaga profile" and primary in seen):
+            button = (
+                f'<p><a class="el-textlink" href="{esc(primary)}" target="_blank" rel="noopener noreferrer">{esc(label)}</a></p>'
+            )
     listing = f'<ul class="el-clist">{"".join(items)}</ul>' if items else ""
     return f"""<section class="el-block"><h2>Contact</h2>
       {button}
@@ -610,6 +635,8 @@ def main() -> int:
             problems.append("Tiny page is missing the October 12 deadline")
         if muni["slug"] == "wasaga-beach" and "ward system" not in page:
             problems.append("Wasaga Beach page is missing the ward question")
+        if muni["slug"] == "wasaga-beach" and "https://www.registertovoteon.ca/" not in page:
+            problems.append("Wasaga Beach registration link should be registertovoteon.ca")
         if "el-mini" in page or "Help centre hours" in page or "Voter help centre" in page:
             problems.append(f"{muni['slug']} still has admin voting detail")
 
@@ -649,6 +676,26 @@ def main() -> int:
             problems.append(f"{candidate['slug']} has an empty contact section")
         if "silhouette.png" in page and candidate.get("photo_file"):
             problems.append(f"{candidate['slug']} still uses the silhouette")
+        if "Open link" in page:
+            problems.append(f"{candidate['slug']} still says Open link")
+        if "https://chuckstradling.ca" in page:
+            problems.append(f"{candidate['slug']} still uses https://chuckstradling.ca")
+        if 'href="https://richardwhite.ca' in page:
+            problems.append(f"{candidate['slug']} still links to richardwhite.ca without www")
+        slug = candidate["slug"]
+        primary = candidate.get("primary_link") or ""
+        if primary and not candidate.get("website") and "facebook.com" in primary and "Facebook page" not in page:
+            problems.append(f"{slug} is missing the Facebook page label")
+        if slug == "tiny/chuck-stradling":
+            if "http://chuckstradling.ca/" not in page or "http://chuckstradling.ca/priorities/" not in page:
+                problems.append("Chuck Stradling is missing the http site links")
+        if slug == "midland/jamie-lee-ball" and "https://www.instagram.com/jamielee.ball/" not in page:
+            problems.append("Jamie-Lee Ball is missing her Instagram link")
+        if slug in {"wasaga-beach/brian-smith", "wasaga-beach/joe-belanger"}:
+            if "Team Wasaga profile" not in page:
+                problems.append(f"{slug} is missing the Team Wasaga profile label")
+            if "<small>Website</small>" in page:
+                problems.append(f"{slug} still labels the Team Wasaga profile as Website")
 
     for rel in ("sitemap.xml", "llms.txt", "blog.html", "index.html", "robots.txt"):
         text = (ROOT / rel).read_text(encoding="utf-8")

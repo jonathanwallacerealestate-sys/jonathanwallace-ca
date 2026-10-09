@@ -240,7 +240,7 @@
       "acclaimed": false,
       "website": "https://www.team-jlb.com/",
       "facebook": "https://www.facebook.com/councillor.jamie.lee.ball/",
-      "instagram": null,
+      "instagram": "https://www.instagram.com/jamielee.ball/",
       "x": null,
       "linkedin": null,
       "tiktok": null,
@@ -282,7 +282,8 @@
         "https://www.team-jlb.com/",
         "https://www.team-jlb.com/platform",
         "https://media-003-ca.cdn.govstack.com/midland-ca/media/xfsjylxu/2026-election-candidate-contact-list.pdf",
-        "https://www.facebook.com/councillor.jamie.lee.ball/"
+        "https://www.facebook.com/councillor.jamie.lee.ball/",
+        "https://www.instagram.com/jamielee.ball/"
       ]
     },
     {
@@ -1111,7 +1112,7 @@
       "contact_note": "The Town's candidate table displays dougrawson2@gmail.com, but the clickable link behind it points to drawson@rogers.com",
       "photo_url": "https://www.penetanguishene.ca/media/y5go321p/doug-rawson.jpg",
       "photo_source_url": "https://www.penetanguishene.ca/townhall/council/council-members/",
-      "photo_file": "photos/penetanguishene-rawson.jpg",
+      "photo_file": "photos/penetanguisheneson.jpg",
       "photo_placeholder": null,
       "photo_verification": "Official headshot from the Town of Penetanguishene council page, shown with this member's name and office. Image alt text on the Town page: \"Mayor Doug Rawson\".",
       "photo_rejected_reason": null,
@@ -1831,7 +1832,7 @@
       "past_role": null,
       "past_role_source": null,
       "acclaimed": false,
-      "website": "https://chuckstradling.ca/",
+      "website": "http://chuckstradling.ca/",
       "facebook": null,
       "instagram": null,
       "x": null,
@@ -1840,14 +1841,14 @@
       "other_links": [
         {
           "label": "Priorities (campaign website)",
-          "url": "https://chuckstradling.ca/priorities/"
+          "url": "http://chuckstradling.ca/priorities/"
         }
       ],
-      "primary_link": "https://chuckstradling.ca/",
+      "primary_link": "http://chuckstradling.ca/",
       "phone": "416-666-3105",
       "email": "info@chuckstradling.ca",
-      "phone_source": "https://chuckstradling.ca/",
-      "email_source": "https://chuckstradling.ca/",
+      "phone_source": "http://chuckstradling.ca/",
+      "email_source": "http://chuckstradling.ca/",
       "contact_source": null,
       "contact_from_candidate": [
         "phone",
@@ -1874,8 +1875,8 @@
       "no_platform_found": false,
       "platform_source": "Candidate's own website or campaign materials",
       "sources": [
-        "https://chuckstradling.ca/",
-        "https://chuckstradling.ca/priorities/"
+        "http://chuckstradling.ca/",
+        "http://chuckstradling.ca/priorities/"
       ]
     },
     {
@@ -3564,13 +3565,17 @@
       "past_role": "Mayor of Wasaga Beach, 2014 to 2018",
       "past_role_source": "https://teamwasaga.ca/team/brian-smith",
       "acclaimed": false,
-      "website": "https://teamwasaga.ca/team/brian-smith",
+      "website": null,
       "facebook": null,
       "instagram": null,
       "x": null,
       "linkedin": null,
       "tiktok": null,
       "other_links": [
+        {
+          "label": "Team Wasaga profile",
+          "url": "https://teamwasaga.ca/team/brian-smith"
+        },
         {
           "label": "Team Wasaga",
           "url": "https://teamwasaga.ca/"
@@ -3865,13 +3870,17 @@
       "past_role": null,
       "past_role_source": null,
       "acclaimed": false,
-      "website": "https://teamwasaga.ca/team/joe-belanger",
+      "website": null,
       "facebook": null,
       "instagram": null,
       "x": null,
       "linkedin": null,
       "tiktok": null,
       "other_links": [
+        {
+          "label": "Team Wasaga profile",
+          "url": "https://teamwasaga.ca/team/joe-belanger"
+        },
         {
           "label": "Team Wasaga",
           "url": "https://teamwasaga.ca/"
@@ -3899,7 +3908,7 @@
       "contact_note": null,
       "photo_url": "https://media-001-ca.cdn.govstack.com/wasagabeach-006-ca/media/wjdnqpp4/joebelanger.png",
       "photo_source_url": "https://www.wasagabeach.com/mayor-council/",
-      "photo_file": "photos/wasaga-beach-belanger.png",
+      "photo_file": "photos/wasaga-beach-belanger.jpg",
       "photo_placeholder": null,
       "photo_verification": "Official headshot from the Town of Wasaga Beach council page, shown with this member's name and office. Matches his Team Wasaga campaign profile photo.",
       "photo_rejected_reason": null,
@@ -4511,7 +4520,7 @@
       "past_role": null,
       "past_role_source": null,
       "acclaimed": false,
-      "website": "https://richardwhite.ca/",
+      "website": "https://www.richardwhite.ca/",
       "facebook": "https://www.facebook.com/richardwhitewasagabeachcouncil/",
       "instagram": null,
       "x": null,
@@ -4535,7 +4544,7 @@
           "url": "https://www.instagram.com/teamwasaga"
         }
       ],
-      "primary_link": "https://richardwhite.ca/",
+      "primary_link": "https://www.richardwhite.ca/",
       "phone": "705-888-7936",
       "email": "richard@richardwhite.ca",
       "phone_source": "https://www.wasagabeach.com/get-involved/elections/",
@@ -4564,7 +4573,7 @@
       "platform_source": "Candidate's own website or campaign materials",
       "sources": [
         "https://www.wasagabeach.com/mayor-council/",
-        "https://richardwhite.ca/",
+        "https://www.richardwhite.ca/",
         "https://teamwasaga.ca/team/richard-white",
         "https://teamwasaga.ca/",
         "https://www.wasagabeach.com/get-involved/elections/"

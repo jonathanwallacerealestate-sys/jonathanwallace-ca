@@ -5,9 +5,10 @@ Source of truth:
   content/elections-2026/candidates.json
   content/elections-2026/municipalities.json
 
-Photos live in assets/img/elections-2026/ (filenames from photo_file).
-The hub opens on the title. The vote-signs image is an inline figure after the key dates.
-That same file is the OG image, Twitter image, and blog card thumbnail:
+Photos live in assets/img/elections-2026/ as 600x600 squares (filenames from photo_file).
+The hub opens on the title and Election Day, then the key dates and one link per town.
+The vote-signs image is an inline figure under those links. That same file is the
+OG image, Twitter image, and blog card thumbnail:
 assets/img/blog-north-simcoe-votes-2026.jpg.
 
 Run from the repo root:
@@ -180,7 +181,7 @@ def person_word(n: int) -> str:
     return "1 candidate" if n == 1 else f"{n} candidates"
 
 
-def shell(title: str, description: str, canonical_path: str, og_image: str, body: str) -> str:
+def shell(title: str, description: str, canonical_path: str, og_image: str, body: str, json_ld: str = "") -> str:
     canonical = SITE + canonical_path
     desc = description.strip()
     if len(desc) > 180:
@@ -215,7 +216,7 @@ def shell(title: str, description: str, canonical_path: str, og_image: str, body
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/styles.css">
 <link rel="stylesheet" href="/assets/css/election-2026.css">
-</head>
+{json_ld}</head>
 <body class="election">
 {GTM_BODY}
 {HEADER}
@@ -234,156 +235,148 @@ def disclaimer_html() -> str:
     return f'<p class="el-disclaimer">{esc(DISCLAIMER)}</p>'
 
 
-def vote_card(muni: dict, full: bool) -> str:
-    hot = " is-hot" if muni.get("prominent") else ""
-    rows = []
-    for row in muni["rows"]:
-        rows.append(f"<dt>{esc(row['label'])}</dt><dd>{esc(row['value'])}</dd>")
-    note = f'<p class="el-mnote">{esc(muni["method_note"])}</p>' if muni.get("method_note") else ""
-    alert = (
-        f'<p class="el-alert">{esc(muni["prominent"])}</p>'
-        if muni.get("prominent")
-        else ""
-    )
-    ballot = ""
-    if muni.get("ballot_question"):
-        q = muni["ballot_question"]
-        ballot = (
-            f'<dt>Ballot question</dt><dd>&quot;{esc(q["text"])}&quot; {esc(q["detail"])} '
-            f'{ext_link(q["url"], q["source_label"])}</dd>'
-        )
-    hours = ""
-    if not full:
-        # Profile cards keep method, first voting window, help centre and the alert.
-        keep = []
-        for row in muni["rows"]:
-            label = row["label"].lower()
-            if "hour" in label:
-                continue
-            if label.startswith("voters"):
-                continue
-            keep.append(f"<dt>{esc(row['label'])}</dt><dd>{esc(row['value'])}</dd>")
-        rows = keep
-        ballot = ""
-    return f"""<article class="el-vcard{hot}" id="vote-{esc(muni['slug'])}">
-      <h3>{esc(muni['short'])}</h3>
-      <div class="el-kind">{esc(muni['kind'])}</div>
-      <p class="el-method">{esc(muni['method'])}</p>
-      {note}
-      {alert}
-      <dl>{''.join(rows)}{ballot}</dl>
-      <div class="el-vfoot">
-        <a class="el-btn" href="{esc(muni['register_url'])}" target="_blank" rel="noopener noreferrer">Check you are registered</a>
-        <a class="el-textlink" href="{esc(muni['election_url'])}" target="_blank" rel="noopener noreferrer">Official election page</a>
-      </div>
-    </article>"""
+def reading_label(further: dict) -> str:
+    label = (further.get("label") or "Further reading").strip()
+    match = re.match(r"^(.*?)\s*\((.+)\)\s*$", label)
+    if match:
+        return f"{match.group(1).strip()}: {match.group(2).strip()}"
+    return label
 
 
-def card_html(candidate: dict) -> str:
+def person_card(candidate: dict) -> str:
     photo, placeholder = photo_web_path(candidate)
-    photo_class = " el-photo is-placeholder" if placeholder else " el-photo"
     alt = candidate["name"] if not placeholder else f"No photo on file for {candidate['name']}"
-    badge = ""
-    if candidate.get("acclaimed"):
-        badge = '<span class="el-badge el-badge-acc">Acclaimed</span>'
-    acc = " is-acc" if candidate.get("acclaimed") else ""
-    if candidate.get("no_platform_found"):
-        synopsis = NO_PLATFORM
-        syn_class = "el-syn is-muted"
-    else:
-        synopsis = candidate.get("synopsis") or ""
-        syn_class = "el-syn"
-    role = candidate["office"]
-    return f"""<a class="el-card{acc}" href="{esc(candidate_url(candidate))}">
-      <div class="{photo_class.strip()}"><img src="{esc(photo)}" alt="{esc(alt)}" width="184" height="230" loading="lazy"></div>
-      <div class="el-card-body">
+    badge = '<span class="el-badge">Acclaimed</span>' if candidate.get("acclaimed") else ""
+    return f"""<a class="el-person" href="{esc(candidate_url(candidate))}">
+      <img class="el-avatar" src="{esc(photo)}" alt="{esc(alt)}" width="600" height="600" loading="lazy">
+      <span class="el-person-copy">
+        <strong>{esc(candidate['name'])}</strong>
+        <span class="el-role">{esc(candidate['office'])}</span>
         {badge}
-        <h4>{esc(candidate['name'])}</h4>
-        <div class="el-role">{esc(role)}</div>
-        <p class="{syn_class}">{esc(synopsis)}</p>
-        <span class="el-textlink">View profile</span>
-      </div>
+      </span>
     </a>"""
 
 
-def hub_page(guide: dict, candidates: list[dict]) -> str:
-    by_muni: dict[str, list[dict]] = {}
-    for candidate in candidates:
-        by_muni.setdefault(candidate["municipality_slug"], []).append(candidate)
-    munis = {m["slug"]: m for m in guide["municipalities"]}
-    seats = 0
-    seen_offices = set()
-    acclaimed = 0
-    for candidate in candidates:
-        key = (candidate["municipality_slug"], candidate["office"])
-        if key not in seen_offices:
-            seen_offices.add(key)
-            seats += int(candidate["seats_for_office"])
-        if candidate.get("acclaimed"):
-            acclaimed += 1
+def muni_path(slug: str) -> str:
+    return f"/elections-2026/{slug}/"
 
+
+def vote_window(muni: dict) -> str:
+    for row in muni["rows"]:
+        label = row["label"].lower()
+        if "online" in label or "phone" in label:
+            return row["value"].rstrip(".")
+    return ""
+
+
+def how_sentences(muni: dict) -> str:
+    if muni.get("ballot_question"):
+        question = muni["ballot_question"]
+        return (
+            "You can vote online, or by paper ballot in person. "
+            f"The ballot also asks if you are in favour of moving to a ward system, "
+            f"and the answers are {question['detail'].rstrip('.').removeprefix('Answers are ')}."
+        )
+    method = muni["method"].rstrip(".")
+    note = (muni.get("method_note") or "").strip()
+    if note:
+        return f"{method}. {note if note.endswith('.') else note + '.'}"
+    return method + "."
+
+
+def list_sentence(muni: dict) -> str:
+    slug = muni["slug"]
+    if slug == "tiny":
+        return "Online registration closes Monday, October 12."
+    if slug == "penetanguishene":
+        return "Use the Town's Voter Services Portal to confirm or update your information."
+    if slug == "midland":
+        return "Use the Town's voter page to confirm or update your information."
+    if slug == "tay":
+        return "The Township election page explains how to confirm or update your voters' list information."
+    return "The Town's election page explains how to confirm you are on the list or correct your information."
+
+
+def need_sentence(muni: dict) -> str:
+    method = muni["method"].lower()
+    note = (muni.get("method_note") or "").lower()
+    uses_paper = "paper" in method or ("paper" in note and "no paper" not in note)
+    if uses_paper and ("internet" in method or "telephone" in method):
+        return "You need to be on the voters' list. You can vote by internet or telephone, or by paper ballot on Election Day."
+    if uses_paper:
+        return "You need to be on the voters' list. You can vote online, or by paper ballot at an advance poll or on Election Day."
+    return "You need to be on the voters' list. Voting is by internet and telephone, with no paper ballot."
+
+
+def faq_items(muni: dict) -> list[tuple[str, str, str]]:
+    """Question, visible HTML answer, plain-text answer for JSON-LD."""
+    day = "Election Day is Monday, October 26, 2026. Voting closes at 8 p.m."
+    how = how_sentences(muni)
+    how_html = esc(how)
+    if muni.get("ballot_question"):
+        question = muni["ballot_question"]
+        how_html = (
+            f'{esc(how)} {ext_link(question["url"], question["source_label"])}.'
+        )
+    window = vote_window(muni)
+    when = f"Voting runs from {window}." if window else day
+    listed = list_sentence(muni)
+    listed_html = (
+        f'{esc(listed)} '
+        f'<a href="{esc(muni["register_url"])}" target="_blank" rel="noopener noreferrer">Check you are registered</a>.'
+    )
+    need = need_sentence(muni)
+    help_text = f"{muni['name']}'s election page has voter help and who to contact."
+    help_html = (
+        f'{esc(help_text)} '
+        f'<a href="{esc(muni["election_url"])}" target="_blank" rel="noopener noreferrer">Official election page</a>.'
+    )
+    return [
+        ("When is Election Day?", f"<p>{esc(day)}</p>", day),
+        (f"How do I vote in {muni['short']}?", f"<p>{how_html}</p>", how),
+        ("When can I vote online or by phone?", f"<p>{esc(when)}</p>", when),
+        ("How do I check I'm on the voters' list?", f"<p>{listed_html}</p>", f"{listed} {muni['register_url']}"),
+        ("What do I need to vote?", f"<p>{esc(need)}</p>", need),
+        ("Where do I get help?", f"<p>{help_html}</p>", f"{help_text} {muni['election_url']}"),
+    ]
+
+
+def faq_html(muni: dict) -> tuple[str, str]:
+    items = faq_items(muni)
+    blocks = []
+    entities = []
+    for question, answer_html, answer_text in items:
+        blocks.append(f"<h3>{esc(question)}</h3>{answer_html}")
+        entities.append({
+            "@type": "Question",
+            "name": question,
+            "acceptedAnswer": {"@type": "Answer", "text": answer_text},
+        })
+    html_block = f'<section class="el-faq" id="faq"><h2>Questions</h2>{"".join(blocks)}</section>'
+    payload = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": entities,
+    }, ensure_ascii=False)
+    script = f'<script type="application/ld+json">{payload}</script>'
+    return html_block, script
+
+
+def hub_page(guide: dict, candidates: list[dict]) -> str:
     dates = []
     for item in guide["key_dates"]:
         hot = " is-hot" if item.get("highlight") else ""
         dates.append(
             f'<div class="el-date{hot}"><b>{esc(item["date"])}</b><span>{esc(item["text"])}</span></div>'
         )
-    jumps = []
+    towns = []
     for muni in guide["municipalities"]:
-        jumps.append(f'<a href="#{esc(muni["slug"])}">{esc(muni["short"])}</a>')
-    vote_cards = "".join(vote_card(m, True) for m in guide["municipalities"])
-    general = " ".join(ext_link(link["url"], link["label"]) for link in guide["general_links"])
-
-    sections = []
-    for muni in guide["municipalities"]:
-        group = by_muni.get(muni["slug"], [])
-        offices: dict[str, list[dict]] = {}
-        for candidate in group:
-            offices.setdefault(candidate["office"], []).append(candidate)
-        acc_count = sum(1 for c in group if c.get("acclaimed"))
-        acc_badge = (
-            f'<span class="el-badge el-badge-acc">{acc_count} acclaimed</span>'
-            if acc_count
-            else ""
+        towns.append(
+            f'<a class="el-town" href="{esc(muni_path(muni["slug"]))}">'
+            f'<span class="el-town-kind">{esc(muni["kind"])}</span>'
+            f'<span class="el-town-name">{esc(muni["short"])}</span>'
+            f'</a>'
         )
-        notes = []
-        for note in muni.get("notes") or []:
-            notes.append(f'<p class="el-note"><span class="el-badge el-badge-soft">Note</span><span>{esc(note)}</span></p>')
-        if muni.get("ballot_question"):
-            q = muni["ballot_question"]
-            notes.append(
-                '<p class="el-note"><span class="el-badge el-badge-soft">Ballot question</span>'
-                f'<span>The ballot also asks: &quot;{esc(q["text"])}&quot; {esc(q["detail"])} '
-                f'{ext_link(q["url"], q["source_label"])}.</span></p>'
-            )
-        blocks = []
-        for office in OFFICE_ORDER:
-            people = offices.get(office) or []
-            if not people:
-                continue
-            n_seats = int(people[0]["seats_for_office"])
-            all_acc = all(p.get("acclaimed") for p in people)
-            meta = f"{seat_word(n_seats)} / Acclaimed" if all_acc else f"{seat_word(n_seats)} / {person_word(len(people))}"
-            cards = "".join(card_html(p) for p in people)
-            blocks.append(
-                f'<div class="el-office"><div class="el-office-head"><h3>{esc(OFFICE_HEADING[office])}</h3>'
-                f'<span class="el-meta">{esc(meta)}</span></div>'
-                f'<div class="el-cards">{cards}</div></div>'
-            )
-        sections.append(f"""<section class="el-muni" id="{esc(muni['slug'])}">
-      <div class="el-muni-head">
-        <div>
-          <p class="el-eyebrow">{esc(muni['kind'])}, {len(group)} candidates</p>
-          <h2>{esc(muni['name'])}</h2>
-          <p>{esc(muni['offices_blurb'])}</p>
-        </div>
-        <div class="el-muni-meta">{acc_badge}<a class="el-textlink" href="#how-to-vote">How to vote in {esc(muni['short'])}</a></div>
-      </div>
-      {''.join(notes)}
-      {''.join(blocks)}
-      <p class="el-muni-foot"><span>Candidates are listed alphabetically by surname within each office.</span> {ext_link(muni['election_url'], 'Official election page')}</p>
-    </section>""")
-
     figure = (
         f'<figure class="el-figure"><img src="{HERO}" '
         f'alt="Lawn signs on grass reading North Simcoe, Election Day, October 26, with a lake and town behind them." '
@@ -393,53 +386,57 @@ def hub_page(guide: dict, candidates: list[dict]) -> str:
     body = f"""<main class="el">
   <div class="el-wrap el-intro">
     {byline_html()}
-    <p class="el-eyebrow">2026 municipal election, voter guide</p>
     <h1>North Simcoe Votes 2026</h1>
-    <p class="el-eday"><i></i>Election Day: {esc(guide['election_day_label'])}</p>
-    <p class="el-lede">{esc(guide['intro'])}</p>
-    <div class="el-jump">{''.join(jumps)}</div>
-    <div class="el-stats">
-      <div><b>{len(candidates)}</b><span>Candidates</span></div>
-      <div><b>{seats}</b><span>Seats to fill</span></div>
-      <div><b>{acclaimed}</b><span>Acclaimed</span></div>
-    </div>
-    <p class="el-regnote">{esc(guide['term'])} Candidates appear alphabetically by surname within each office. Information is current as of {esc(AS_OF)}.</p>
+    <p class="el-eday">Election Day<br>Monday, October 26, 2026</p>
+    <p class="el-lede">A non-partisan guide to the 2026 council elections in Midland, Penetanguishene, Tiny, Tay and Wasaga Beach.</p>
   </div>
   <div class="el-dates"><div class="el-wrap el-dates-grid"><div class="el-dates-label">Key dates</div>{''.join(dates)}</div></div>
+  <div class="el-wrap">
+    <nav class="el-towns" aria-label="Municipalities">{''.join(towns)}</nav>
+  </div>
   {figure}
-  <section class="el-sec" id="how-to-vote">
-    <div class="el-wrap">
-      <div class="el-sec-head">
-        <div>
-          <p class="el-eyebrow">Before you vote</p>
-          <h2>How to vote in your municipality</h2>
-        </div>
-        <p>Each municipality sets its own voting method. Check that you are on the voters' list before voting opens. Tiny's online registration closes Monday, October 12.</p>
-      </div>
-      <div class="el-vote-grid">{vote_cards}</div>
-      <p class="el-regnote">{esc(guide['voters_list_note'])} {general}</p>
-    </div>
-  </section>
-  <section class="el-sec">
-    <div class="el-wrap">
-      <div class="el-sec-head">
-        <div>
-          <p class="el-eyebrow">The candidates</p>
-          <h2>Who is running, by municipality</h2>
-        </div>
-        <p>Open a profile for contact details, priorities and sources. Summaries use the candidate's own materials. News coverage is not used as a source.</p>
-      </div>
-      {''.join(sections)}
-      {disclaimer_html()}
-    </div>
-  </section>
+  <div class="el-wrap">{disclaimer_html()}</div>
 </main>"""
     title = "North Simcoe Votes 2026 | Jonathan Wallace"
     description = (
-        "A non-partisan resource guide to the 2026 municipal elections in Midland, "
+        "A non-partisan guide to the 2026 council elections in Midland, "
         "Penetanguishene, Tiny, Tay and Wasaga Beach. Election Day is Monday, October 26, 2026."
     )
     return shell(title, description, HUB_PATH, HERO, body)
+
+
+def town_page(muni: dict, group: list[dict]) -> str:
+    offices: dict[str, list[dict]] = {}
+    for candidate in group:
+        offices.setdefault(candidate["office"], []).append(candidate)
+    blocks = []
+    for office in OFFICE_ORDER:
+        people = offices.get(office) or []
+        if not people:
+            continue
+        n_seats = int(people[0]["seats_for_office"])
+        all_acc = all(person.get("acclaimed") for person in people)
+        badge = '<span class="el-badge">Acclaimed</span>' if all_acc else ""
+        cards = "".join(person_card(person) for person in people)
+        blocks.append(
+            f'<section class="el-office"><div class="el-office-head"><h2>{esc(OFFICE_HEADING[office])}</h2>'
+            f'<p>{esc(seat_word(n_seats))} {badge}</p></div>'
+            f'<div class="el-people">{cards}</div></section>'
+        )
+    faq, json_ld = faq_html(muni)
+    body = f"""<main class="el">
+  <div class="el-wrap">
+    <p class="el-crumbs"><a href="{HUB_PATH}">North Simcoe Votes 2026</a></p>
+    <h1>{esc(muni['name'])}</h1>
+    {''.join(blocks)}
+    {faq}
+    {disclaimer_html()}
+    <p><a class="el-back" href="{HUB_PATH}">Back to North Simcoe Votes 2026</a></p>
+  </div>
+</main>"""
+    title = f"{muni['name']} candidates | North Simcoe Votes 2026"
+    description = f"Candidates for {muni['name']} in the 2026 municipal election. Election Day is Monday, October 26, 2026."
+    return shell(title, description, muni_path(muni["slug"]), HERO, body, json_ld)
 
 
 def contact_block(candidate: dict) -> str:
@@ -477,173 +474,81 @@ def contact_block(candidate: dict) -> str:
         if link.get("url"):
             add(link.get("label") or "Link", link["url"])
 
+    notes = []
+    if candidate.get("contact_note"):
+        notes.append(f'<p class="el-note">{esc(candidate["contact_note"])}</p>')
+    if candidate.get("link_note"):
+        notes.append(f'<p class="el-note">{esc(candidate["link_note"])}</p>')
+    if not items and not notes:
+        return ""
     button = ""
     primary = website or candidate.get("primary_link")
-    if primary:
-        button_label = "Visit website" if website else "Open link"
+    if primary and not website:
         button = (
-            f'<a class="el-btn" href="{esc(primary)}" target="_blank" rel="noopener noreferrer">{button_label}</a>'
-        )
-    notes = []
-    if not phone and not email:
-        notes.append("<p class=\"el-csrc\">No phone or email was published for this candidate.</p>")
-    if candidate.get("contact_note"):
-        notes.append(f'<p class="el-csrc">{esc(candidate["contact_note"])}</p>')
-    if candidate.get("link_note"):
-        notes.append(f'<p class="el-csrc">{esc(candidate["link_note"])}</p>')
-    if candidate.get("contact_source"):
-        notes.append(
-            f'<p class="el-csrc">Contact source: {ext_link(candidate["contact_source"])}</p>'
+            f'<p><a class="el-textlink" href="{esc(primary)}" target="_blank" rel="noopener noreferrer">Open link</a></p>'
         )
     listing = f'<ul class="el-clist">{"".join(items)}</ul>' if items else ""
-    return f"""<div class="el-side">
-      <h2>Contact</h2>
+    return f"""<section class="el-block"><h2>Contact</h2>
       {button}
       {listing}
       {''.join(notes)}
-    </div>"""
+    </section>"""
 
 
-def profile_vote(muni: dict) -> str:
-    rows = []
-    for row in muni["rows"]:
-        label = row["label"].lower()
-        if "hour" in label or label.startswith("voters"):
-            continue
-        rows.append(f"<dt>{esc(row['label'])}</dt><dd>{esc(row['value'])}</dd>")
-    alert = (
-        f'<p class="el-alert">{esc(muni["prominent"])}</p>' if muni.get("prominent") else ""
-    )
-    return f"""<div class="el-mini">
-      <div>
-        <p class="el-eyebrow">How to vote in {esc(muni['short'])}</p>
-        <h3>{esc(muni['method'])}</h3>
-        {alert}
-        <dl>{''.join(rows)}<dt>Election Day</dt><dd>Monday, October 26, 2026</dd></dl>
-      </div>
-      <div class="el-mini-acts">
-        <a class="el-btn el-btn-gold" href="{esc(muni['register_url'])}" target="_blank" rel="noopener noreferrer">Check you are registered</a>
-        <a class="el-btn el-btn-line" href="{HUB_PATH}#how-to-vote">All voting details</a>
-      </div>
-    </div>"""
-
-
-def candidate_page(candidate: dict, peers: list[dict], muni: dict) -> str:
+def candidate_page(candidate: dict, muni: dict) -> str:
     photo, placeholder = photo_web_path(candidate)
     alt = candidate["name"] if not placeholder else f"No photo on file for {candidate['name']}"
-    photo_class = "el-portrait is-placeholder" if placeholder else "el-portrait"
-    credit = ""
-    if not placeholder and candidate.get("photo_source_url"):
-        credit = f'<p class="el-credit">Photo source: {ext_link(candidate["photo_source_url"])}</p>'
-    pills = [
-        f'<span class="el-pill is-dark">Candidate for {esc(candidate["office"])}</span>',
-        f'<span class="el-pill">{esc(muni["name"])}</span>',
-        f'<span class="el-pill">{esc(seat_word(int(candidate["seats_for_office"])))}, elected at large</span>',
-    ]
-    if candidate.get("incumbent") and candidate.get("current_office"):
-        pills.append(f'<span class="el-pill">Current {esc(candidate["current_office"])}</span>')
-    if candidate.get("acclaimed"):
-        pills.append('<span class="el-pill">Acclaimed</span>')
-
+    badge = '<span class="el-badge">Acclaimed</span>' if candidate.get("acclaimed") else ""
     if candidate.get("no_platform_found"):
         story = f'<p class="el-nop">{esc(NO_PLATFORM)}</p>'
-        priorities = ""
     else:
-        story = f'<p class="el-synopsis">{esc(candidate.get("synopsis") or "")}</p>'
-        points = candidate.get("top_points") or []
-        points = points[:5]
-        source = candidate.get("platform_source") or "the candidate's published materials"
-        items = "".join(f"<li>{esc(point)}</li>" for point in points)
-        priorities = ""
-        if items:
-            priorities = (
-                f'<h2 class="el-h2">Priorities</h2>'
-                f'<p class="el-sub">Source: {esc(source)}. Up to five points.</p>'
-                f'<ol class="el-points">{items}</ol>'
-            )
-
-    acc_note = ""
-    if candidate.get("acclamation_note"):
-        acc_note = f'<p class="el-note"><span>{esc(candidate["acclamation_note"])}</span></p>'
-
-    others = [p for p in peers if p["slug"] != candidate["slug"]]
-    n_seats = int(candidate["seats_for_office"])
-    total = len(peers)
-    if others:
-        chips = "".join(
-            f'<a href="{esc(candidate_url(p))}">{esc(p["name"])}</a>' for p in others
+        points = (candidate.get("top_points") or [])[:5]
+        if points:
+            items = "".join(f"<li>{esc(point)}</li>" for point in points)
+            story = f'<section class="el-block"><h2>Priorities</h2><ol class="el-points">{items}</ol></section>'
+        else:
+            story = ""
+    contact = contact_block(candidate)
+    further = candidate.get("further_reading")
+    further_html = ""
+    further_url = ""
+    if isinstance(further, dict) and further.get("url"):
+        further_url = further["url"]
+        further_html = (
+            f'<p class="el-more">{ext_link(further_url, reading_label(further))}</p>'
         )
-        heading = OFFICE_HEADING[candidate["office"]]
-        others_html = f"""<h2 class="el-h2">Also running for {esc(heading)} in {esc(muni['short'])}</h2>
-      <p class="el-sub">{esc(person_word(total))} for {esc(seat_word(n_seats))}, listed alphabetically by surname.</p>
-      <div class="el-chips">{chips}</div>"""
-    else:
-        others_html = f"""<h2 class="el-h2">Also running for {esc(OFFICE_HEADING[candidate['office']])} in {esc(muni['short'])}</h2>
-      <p class="el-sub">No other candidates filed for this office.</p>"""
-
     sources = []
     seen = set()
     for url in candidate.get("sources") or []:
-        if url and url not in seen:
+        if url and url not in seen and url != further_url:
             seen.add(url)
             sources.append(f"<li>{ext_link(url)}</li>")
-    further = ""
-    fr = candidate.get("further_reading")
-    if isinstance(fr, dict) and fr.get("url"):
-        note = fr.get("note") or "Not used as a source for this guide."
-        further = f"""<aside class="el-further">
-        <h2 class="el-h2">Further reading (not a source for this guide)</h2>
-        <p class="el-sub">{esc(note)}</p>
-        <p>{ext_link(fr['url'], fr.get('label') or host_label(fr['url']))}</p>
-      </aside>"""
-
-    slug_tail = candidate["slug"].split("/")[-1]
-    contact = contact_block(candidate)
+    sources_html = ""
+    if sources:
+        sources_html = (
+            f'<section class="el-block"><h2>Sources</h2><ul class="el-sources">{"".join(sources)}</ul></section>'
+        )
     body = f"""<main class="el">
-  <div class="el-wrap">
-    <nav class="el-crumbs" aria-label="Breadcrumb">
-      <a href="{HUB_PATH}">North Simcoe Votes 2026</a>
-      <span>/</span>
-      <a href="{HUB_PATH}#{esc(muni['slug'])}">{esc(muni['name'])}</a>
-      <span>/</span>
-      <span>{esc(OFFICE_HEADING[candidate['office']])}</span>
-      <span>/</span>
-      <span>{esc(candidate['name'])}</span>
-    </nav>
-    <article class="el-prof">
-      <aside>
-        <div class="{photo_class}"><img src="{esc(photo)}" alt="{esc(alt)}" width="600" height="750"></div>
-        {credit}
-        <div class="el-contact-desktop">{contact}</div>
-      </aside>
-      <div>
-        {byline_html()}
-        <p class="el-eyebrow">Candidate, {esc(muni['name'])}</p>
-        <h1>{esc(candidate['name'])}</h1>
-        <div class="el-pills">{''.join(pills)}</div>
-        {acc_note}
-        {story}
-        <div class="el-contact-mobile">{contact}</div>
-        {priorities}
-        {profile_vote(muni)}
-        {others_html}
-        <h2 class="el-h2">Sources</h2>
-        <p class="el-sub">Sources only. These are the pages used for this profile.</p>
-        <ul class="el-sources">{''.join(sources)}</ul>
-        {further}
-        {disclaimer_html()}
-        <a class="el-btn el-btn-line el-back" href="{HUB_PATH}">Back to North Simcoe Votes 2026</a>
-      </div>
-    </article>
+  <div class="el-wrap el-profile">
+    <p class="el-crumbs"><a href="{HUB_PATH}">North Simcoe Votes 2026</a> <span>/</span> <a href="{esc(muni_path(muni['slug']))}">{esc(muni['short'])}</a></p>
+    <img class="el-avatar el-avatar-lg" src="{esc(photo)}" alt="{esc(alt)}" width="600" height="600">
+    <h1>{esc(candidate['name'])}</h1>
+    <p class="el-role">{esc(candidate['office'])} {badge}</p>
+    {story if not candidate.get("no_platform_found") else ""}
+    {contact}
+    {story if candidate.get("no_platform_found") else ""}
+    {further_html}
+    {sources_html}
+    {disclaimer_html()}
+    <p><a class="el-back" href="{esc(muni_path(muni['slug']))}">Back to {esc(muni['short'])}</a></p>
   </div>
 </main>"""
-    title = f"{candidate['name']}, {candidate['office']} candidate, {muni['name']} | North Simcoe Votes 2026"
+    title = f"{candidate['name']}, {candidate['office']}, {muni['short']} | North Simcoe Votes 2026"
     if candidate.get("no_platform_found"):
         description = NO_PLATFORM
     else:
-        description = candidate.get("synopsis") or title
-    og = photo
-    return shell(title, description, candidate_url(candidate), og, body), slug_tail
+        description = (candidate.get("top_points") or [title])[0]
+    return shell(title, description, candidate_url(candidate), photo, body)
 
 
 def clean_output() -> None:
@@ -681,33 +586,76 @@ def main() -> int:
     hub_file.write_text(hub_html, encoding="utf-8")
     written.append(hub_file)
     problems.extend(scrub_check(hub_html, str(hub_file.relative_to(ROOT))))
+    if "el-date is-hot" not in hub_html:
+        problems.append("Hub is missing the Oct 12 highlight")
+    if hub_html.count('class="el-town"') != 5:
+        problems.append("Hub should have five town links")
+    if "el-vcard" in hub_html or "el-person" in hub_html:
+        problems.append("Hub still lists candidates or vote cards")
 
-    grouped: dict[tuple[str, str], list[dict]] = {}
+    grouped: dict[str, list[dict]] = {}
     for candidate in candidates:
-        grouped.setdefault((candidate["municipality_slug"], candidate["office"]), []).append(candidate)
+        grouped.setdefault(candidate["municipality_slug"], []).append(candidate)
 
-    for candidate in candidates:
-        peers = grouped[(candidate["municipality_slug"], candidate["office"])]
-        page, _slug = candidate_page(candidate, peers, muni_by_slug[candidate["municipality_slug"]])
-        path = ROOT / candidate_url(candidate).strip("/") / "index.html"
+    for muni in guide["municipalities"]:
+        page = town_page(muni, grouped.get(muni["slug"], []))
+        path = ROOT / "elections-2026" / muni["slug"] / "index.html"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(page, encoding="utf-8")
         written.append(path)
         problems.extend(scrub_check(page, str(path.relative_to(ROOT))))
-        if candidate.get("no_platform_found") and NO_PLATFORM not in page:
-            problems.append(f"{candidate['slug']} is missing the no-platform sentence")
-        if candidate.get("further_reading") and "Further reading (not a source for this guide)" not in page:
-            problems.append(f"{candidate['slug']} is missing the further reading block")
-        if not candidate.get("further_reading") and "Further reading (not a source for this guide)" in page:
-            problems.append(f"{candidate['slug']} has a further reading block without data")
+        if "FAQPage" not in page or 'id="faq"' not in page:
+            problems.append(f"{muni['slug']} is missing the FAQ")
+        if muni["slug"] == "tiny" and "Online registration closes Monday, October 12." not in page:
+            problems.append("Tiny page is missing the October 12 deadline")
+        if muni["slug"] == "wasaga-beach" and "ward system" not in page:
+            problems.append("Wasaga Beach page is missing the ward question")
+        if "el-mini" in page or "Help centre hours" in page or "Voter help centre" in page:
+            problems.append(f"{muni['slug']} still has admin voting detail")
 
-    # Guard: do not let a rebuild wire these pages into discovery files.
+    for candidate in candidates:
+        muni = muni_by_slug[candidate["municipality_slug"]]
+        page = candidate_page(candidate, muni)
+        path = ROOT / candidate_url(candidate).strip("/") / "index.html"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(page, encoding="utf-8")
+        written.append(path)
+        label = str(path.relative_to(ROOT))
+        problems.extend(scrub_check(page, label))
+        if "Further reading (not a source" in page or "Not used as a source" in page:
+            problems.append(f"{candidate['slug']} still has the further-reading box")
+        if "el-mini" in page or "How to vote in" in page:
+            problems.append(f"{candidate['slug']} still has a how-to-vote block")
+        further = candidate.get("further_reading")
+        if isinstance(further, dict) and further.get("url"):
+            if further["url"] not in page:
+                problems.append(f"{candidate['slug']} is missing the further-reading link")
+            if f"<h2>Sources</h2>" in page and further["url"] in page.split("<h2>Sources</h2>", 1)[-1]:
+                if further["url"] not in page.split("<h2>Sources</h2>", 1)[0]:
+                    problems.append(f"{candidate['slug']} puts further reading only in sources")
+        elif "el-more" in page:
+            problems.append(f"{candidate['slug']} has a further-reading line without data")
+        if candidate.get("no_platform_found"):
+            if NO_PLATFORM not in page:
+                problems.append(f"{candidate['slug']} is missing the no-platform sentence")
+            if "<h2>Priorities</h2>" in page:
+                problems.append(f"{candidate['slug']} shows priorities without a platform")
+        elif candidate.get("top_points") and "<h2>Priorities</h2>" not in page:
+            problems.append(f"{candidate['slug']} is missing priorities")
+        if not (candidate.get("sources") or []) and "<h2>Sources</h2>" in page:
+            problems.append(f"{candidate['slug']} has an empty sources section")
+        has_contact = any(candidate.get(key) for key in ("phone", "email", "website", "facebook", "instagram", "x", "linkedin", "tiktok", "primary_link")) or candidate.get("other_links") or candidate.get("contact_note") or candidate.get("link_note")
+        if not has_contact and "<h2>Contact</h2>" in page:
+            problems.append(f"{candidate['slug']} has an empty contact section")
+        if "silhouette.png" in page and candidate.get("photo_file"):
+            problems.append(f"{candidate['slug']} still uses the silhouette")
+
     for rel in ("sitemap.xml", "llms.txt", "blog.html", "index.html", "robots.txt"):
         text = (ROOT / rel).read_text(encoding="utf-8")
         if "north-simcoe-votes-2026" in text or "/elections-2026/" in text:
             problems.append(f"{rel} links to the draft election pages")
 
-    print(f"Wrote {len(written)} pages ({len(candidates)} candidates + hub)")
+    print(f"Wrote {len(written)} pages ({len(candidates)} candidates + {len(guide['municipalities'])} towns + hub)")
     if problems:
         print("Problems:", file=sys.stderr)
         for problem in problems:

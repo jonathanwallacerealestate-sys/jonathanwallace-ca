@@ -27,22 +27,6 @@
   [headers.values]
     Cache-Control = "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
 
-# 2026 election draft pages. Review only. Not for indexing.
-[[headers]]
-  for = "/blog/north-simcoe-votes-2026"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-
-[[headers]]
-  for = "/blog/north-simcoe-votes-2026/"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-
-[[headers]]
-  for = "/elections-2026/*"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
-
 # Keep llms.txt readable as plain text at both the root and well-known paths
 [[headers]]
   for = "/llms.txt"

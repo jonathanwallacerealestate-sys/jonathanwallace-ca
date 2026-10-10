@@ -78,11 +78,3 @@
   X-Robots-Tag: noindex, follow
 /listings/_template.html
   X-Robots-Tag: noindex, follow
-
-# 2026 election draft pages. Review only. Not for indexing.
-/blog/north-simcoe-votes-2026
-  X-Robots-Tag: noindex, nofollow
-/blog/north-simcoe-votes-2026/
-  X-Robots-Tag: noindex, nofollow
-/elections-2026/*
-  X-Robots-Tag: noindex, nofollow

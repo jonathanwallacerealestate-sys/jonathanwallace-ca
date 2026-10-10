@@ -15,9 +15,10 @@ Run from the repo root:
 
   python3 scripts/build_election_2026.py
 
-Generated pages are noindex,nofollow. This script does not edit sitemap.xml,
-llms.txt, robots.txt, blog.html, or any existing page. Do not add these URLs
-to site navigation.
+Generated pages are index,follow, with canonical URLs on jonathanwallace.ca.
+The hub is listed on blog.html, in sitemap.xml, and in llms.txt. Town and
+candidate pages are in sitemap.xml. This script does not edit those files.
+Do not add these URLs to site navigation.
 """
 
 from __future__ import annotations
@@ -127,8 +128,12 @@ def scrub_check(text: str, label: str) -> list[str]:
         problems.append(f"{label} contains an em dash or en dash")
     if SALES_RE.search(text):
         problems.append(f"{label} contains Sales Representative")
-    if "noindex, nofollow" not in text and "noindex,nofollow" not in text:
-        problems.append(f"{label} is missing noindex, nofollow")
+    if "noindex" in text:
+        problems.append(f"{label} is still noindex")
+    if "index, follow" not in text:
+        problems.append(f"{label} is missing index, follow")
+    if f'href="{SITE}' not in text and "canonical" not in text:
+        problems.append(f"{label} is missing a canonical URL")
     return problems
 
 
@@ -195,7 +200,7 @@ def shell(title: str, description: str, canonical_path: str, og_image: str, body
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 {GTM_HEAD}
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
@@ -611,6 +616,8 @@ def main() -> int:
     hub_file.write_text(hub_html, encoding="utf-8")
     written.append(hub_file)
     problems.extend(scrub_check(hub_html, str(hub_file.relative_to(ROOT))))
+    if f'<link rel="canonical" href="{SITE}{HUB_PATH}">' not in hub_html:
+        problems.append("Hub canonical URL is wrong")
     if "el-date is-hot" not in hub_html:
         problems.append("Hub is missing the Oct 12 highlight")
     if hub_html.count('class="el-town"') != 5:
@@ -629,6 +636,8 @@ def main() -> int:
         path.write_text(page, encoding="utf-8")
         written.append(path)
         problems.extend(scrub_check(page, str(path.relative_to(ROOT))))
+        if f'<link rel="canonical" href="{SITE}{muni_path(muni["slug"])}">' not in page:
+            problems.append(f"{muni['slug']} canonical URL is wrong")
         if "FAQPage" not in page or 'id="faq"' not in page:
             problems.append(f"{muni['slug']} is missing the FAQ")
         if muni["slug"] == "tiny" and "Online registration closes Monday, October 12." not in page:
@@ -649,6 +658,8 @@ def main() -> int:
         written.append(path)
         label = str(path.relative_to(ROOT))
         problems.extend(scrub_check(page, label))
+        if f'<link rel="canonical" href="{SITE}{candidate_url(candidate)}">' not in page:
+            problems.append(f"{candidate['slug']} canonical URL is wrong")
         if "Further reading (not a source" in page or "Not used as a source" in page:
             problems.append(f"{candidate['slug']} still has the further-reading box")
         if "el-mini" in page or "How to vote in" in page:
@@ -697,10 +708,39 @@ def main() -> int:
             if "<small>Website</small>" in page:
                 problems.append(f"{slug} still labels the Team Wasaga profile as Website")
 
-    for rel in ("sitemap.xml", "llms.txt", "blog.html", "index.html", "robots.txt"):
-        text = (ROOT / rel).read_text(encoding="utf-8")
-        if "north-simcoe-votes-2026" in text or "/elections-2026/" in text:
-            problems.append(f"{rel} links to the draft election pages")
+    sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+    llms = (ROOT / "llms.txt").read_text(encoding="utf-8")
+    blog = (ROOT / "blog.html").read_text(encoding="utf-8")
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
+    headers = (ROOT / "_headers").read_text(encoding="utf-8")
+    netlify = (ROOT / "netlify.toml").read_text(encoding="utf-8")
+    hub_url = "https://jonathanwallace.ca/blog/north-simcoe-votes-2026/"
+    if hub_url not in sitemap:
+        problems.append("sitemap.xml is missing the election hub")
+    if hub_url not in llms:
+        problems.append("llms.txt is missing the election hub")
+    if "/blog/north-simcoe-votes-2026/" not in blog or "blog-north-simcoe-votes-2026.jpg" not in blog:
+        problems.append("blog.html is missing the election hub card")
+    if "north-simcoe-votes-2026" in home or "/elections-2026/" in home:
+        problems.append("index.html links to the election pages from the home page")
+    if "elections-2026" in robots or "north-simcoe-votes-2026" in robots:
+        problems.append("robots.txt blocks the election pages")
+    for candidate in candidates:
+        url = "https://jonathanwallace.ca" + candidate_url(candidate)
+        if url not in sitemap:
+            problems.append(f"sitemap.xml is missing {candidate['slug']}")
+    for muni in guide["municipalities"]:
+        url = "https://jonathanwallace.ca" + muni_path(muni["slug"])
+        if url not in sitemap:
+            problems.append(f"sitemap.xml is missing {muni['slug']}")
+        if "listings/" not in sitemap:
+            problems.append("sitemap.xml lost the listing pages")
+            break
+    if "north-simcoe-votes-2026" in headers or "/elections-2026/" in headers:
+        problems.append("_headers still noindexes the election pages")
+    if "north-simcoe-votes-2026" in netlify or 'for = "/elections-2026/' in netlify:
+        problems.append("netlify.toml still noindexes the election pages")
 
     print(f"Wrote {len(written)} pages ({len(candidates)} candidates + {len(guide['municipalities'])} towns + hub)")
     if problems:
@@ -708,7 +748,7 @@ def main() -> int:
         for problem in problems:
             print(" -", problem, file=sys.stderr)
         return 1
-    print("Checks passed: noindex, no dashes, no Sales Representative, discovery files untouched")
+    print("Checks passed: index,follow, canonicals, sitemap, blog card, no dashes, no Sales Representative")
     return 0
 
 

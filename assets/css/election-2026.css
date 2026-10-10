@@ -1,0 +1,448 @@
+/* North Simcoe Votes 2026. Scoped under body.election. */
+
+body.election {
+  background: var(--sand);
+}
+
+body.election .el {
+  color: #1F2933;
+  padding-bottom: 88px;
+}
+
+body.election .el-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+body.election .el h1,
+body.election .el h2,
+body.election .el h3 {
+  font-family: var(--serif);
+  color: var(--navy);
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+body.election .el a {
+  color: inherit;
+}
+
+body.election .el-intro {
+  padding: 48px 0 8px;
+}
+
+body.election .el-intro h1,
+body.election .el-profile h1,
+body.election .el > .el-wrap > h1 {
+  font-size: clamp(2.4rem, 7vw, 4rem);
+  line-height: 1.05;
+  margin-top: 18px;
+}
+
+body.election .el-byline {
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+body.election .el-byline strong {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+body.election .el-eday {
+  margin: 28px 0 0;
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  line-height: 1.2;
+  color: var(--navy);
+}
+
+body.election .el-lede {
+  margin: 22px 0 0;
+  max-width: 38rem;
+  font-size: 1.2rem;
+  line-height: 1.55;
+  color: #3A3833;
+}
+
+/* Key dates: stacked on small screens, a roomy row on wide screens. */
+body.election .el-dates {
+  margin-top: 40px;
+  background: #1B1B1B;
+  color: #F7F3EC;
+}
+
+body.election .el-dates-grid {
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+body.election .el-dates-label {
+  padding: 22px 0 4px;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+
+body.election .el-date {
+  padding: 22px 0;
+  border-top: 1px solid #3A3833;
+}
+
+body.election .el-date b {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.875rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #F7F3EC;
+}
+
+body.election .el-date span {
+  display: block;
+  margin-top: 8px;
+  max-width: 36rem;
+  font-size: 1.125rem;
+  line-height: 1.45;
+  color: #F7F3EC;
+}
+
+body.election .el-date.is-hot {
+  margin: 0 -24px;
+  padding-left: 24px;
+  padding-right: 24px;
+  background: #2A2824;
+  box-shadow: inset 4px 0 0 var(--copper);
+}
+
+body.election .el-date.is-hot b {
+  color: var(--copper);
+}
+
+body.election .el-towns {
+  display: grid;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+body.election .el-town {
+  display: block;
+  padding: 26px 24px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  text-decoration: none;
+}
+
+body.election .el-town:hover {
+  border-color: var(--copper);
+}
+
+body.election .el-town-kind {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8C6E33;
+}
+
+body.election .el-town-name {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--serif);
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  line-height: 1.1;
+  color: var(--navy);
+}
+
+body.election .el-figure {
+  max-width: 820px;
+  margin: 48px auto 0;
+  padding: 0 24px;
+}
+
+body.election .el-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #1B1B1B;
+}
+
+body.election .el-figure figcaption {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+body.election .el-disclaimer {
+  margin-top: 48px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+body.election .el-crumbs {
+  margin: 36px 0 0;
+  font-size: 1rem;
+}
+
+body.election .el-crumbs a,
+body.election .el-back,
+body.election .el-textlink,
+body.election .el-more a,
+body.election .el-sources a,
+body.election .el-faq a,
+body.election .el-clist a {
+  color: var(--navy);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.election .el-back {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 1.05rem;
+}
+
+body.election .el > .el-wrap > h1 {
+  margin-bottom: 36px;
+}
+
+body.election .el-office {
+  margin-top: 40px;
+}
+
+body.election .el-office-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px 18px;
+  margin-bottom: 8px;
+}
+
+body.election .el-office-head h2 {
+  font-size: clamp(1.8rem, 4vw, 2.3rem);
+}
+
+body.election .el-office-head p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+body.election .el-people {
+  display: grid;
+  gap: 8px;
+}
+
+body.election .el-person {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+  text-decoration: none;
+}
+
+body.election .el-person:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.election .el-person-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+}
+
+body.election .el-person-copy strong {
+  font-family: var(--serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--navy);
+}
+
+body.election .el-role {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+body.election .el-avatar {
+  width: 96px;
+  height: 96px;
+  flex: 0 0 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center center;
+  background: #EFE5D2;
+  border: 1px solid rgba(27, 27, 27, 0.14);
+}
+
+body.election .el-avatar-lg {
+  width: min(280px, 72vw);
+  height: min(280px, 72vw);
+  flex: none;
+  margin-top: 28px;
+}
+
+body.election .el-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  background: var(--navy);
+  color: #F7F3EC;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+body.election .el-faq {
+  margin-top: 64px;
+}
+
+body.election .el-faq h2,
+body.election .el-block h2 {
+  font-size: clamp(1.7rem, 4vw, 2.1rem);
+}
+
+body.election .el-faq h3 {
+  margin-top: 28px;
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+body.election .el-faq p,
+body.election .el-nop,
+body.election .el-points,
+body.election .el-note,
+body.election .el-more {
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+body.election .el-faq p {
+  margin: 8px 0 0;
+  max-width: 40rem;
+}
+
+body.election .el-profile .el-role {
+  margin: 12px 0 0;
+  font-size: 0.9rem;
+}
+
+body.election .el-block {
+  margin-top: 36px;
+}
+
+body.election .el-nop {
+  margin: 28px 0 0;
+  max-width: 40rem;
+}
+
+body.election .el-points {
+  margin: 14px 0 0;
+  padding-left: 1.2em;
+}
+
+body.election .el-points li {
+  margin: 0 0 0.6em;
+}
+
+body.election .el-clist {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+body.election .el-clist li {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 10px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  font-size: 1.05rem;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+body.election .el-clist small {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+body.election .el-note,
+body.election .el-more {
+  margin: 14px 0 0;
+}
+
+body.election .el-sources {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+body.election .el-sources li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 1rem;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+@media (min-width: 720px) {
+  body.election .el-people {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 28px;
+  }
+}
+
+@media (min-width: 980px) {
+  body.election .el-dates-grid {
+    display: grid;
+    grid-template-columns: 120px repeat(6, minmax(140px, 1fr));
+    max-width: 1180px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  body.election .el-dates-label {
+    display: flex;
+    align-items: center;
+    padding: 28px 16px 28px 0;
+  }
+  body.election .el-date {
+    padding: 28px 16px;
+    border-top: 0;
+    border-left: 1px solid #3A3833;
+  }
+  body.election .el-date.is-hot {
+    margin: 0;
+    padding: 28px 16px;
+    box-shadow: inset 0 4px 0 var(--copper);
+  }
+  body.election .el-date b {
+    font-size: 1.875rem;
+  }
+  body.election .el-date span {
+    font-size: 1.125rem;
+  }
+}

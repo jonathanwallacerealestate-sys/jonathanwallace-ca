@@ -549,10 +549,14 @@ def candidate_page(candidate: dict, muni: dict) -> str:
         )
     sources = []
     seen = set()
-    for url in candidate.get("sources") or []:
-        if url and url not in seen and url != further_url:
-            seen.add(url)
-            sources.append(f"<li>{ext_link(url)}</li>")
+    for source in candidate.get("sources") or []:
+        if not source or source in seen or source == further_url:
+            continue
+        seen.add(source)
+        if source.startswith(("http://", "https://")):
+            sources.append(f"<li>{ext_link(source)}</li>")
+        else:
+            sources.append(f"<li>{esc(source)}</li>")
     sources_html = ""
     if sources:
         sources_html = (
@@ -697,6 +701,14 @@ def main() -> int:
         primary = candidate.get("primary_link") or ""
         if primary and not candidate.get("website") and "facebook.com" in primary and "Facebook page" not in page:
             problems.append(f"{slug} is missing the Facebook page label")
+        if slug == "tiny/david-evans":
+            card = "Candidate campaign material: David Evans for Mayor card"
+            if "No platform was found" in page:
+                problems.append("David Evans still says no platform was found")
+            if card not in page:
+                problems.append("David Evans is missing the campaign card source")
+            if f'href="{card}"' in page or f">{card}</a>" in page:
+                problems.append("David Evans campaign card source is rendered as a link")
         if slug == "tiny/chuck-stradling":
             if "http://chuckstradling.ca/" not in page or "http://chuckstradling.ca/priorities/" not in page:
                 problems.append("Chuck Stradling is missing the http site links")

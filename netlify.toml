@@ -435,6 +435,212 @@
   status = 301
   force = true
 
+# Newsletter listing index and this week's listing pages.
+# Clean URL (no .html) is the canonical. These pages are in the sitemap.
+[[redirects]]
+  from = "/listings"
+  to = "/listings/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/"
+  to = "/listings/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/index.html"
+  to = "/listings"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/1555-baseline-road-s-tiny"
+  to = "/listings/1555-baseline-road-south-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/1555-baseline-road-s-tiny/"
+  to = "/listings/1555-baseline-road-south-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/1555-baseline-road-s-tiny.html"
+  to = "/listings/1555-baseline-road-south-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/20-rue-eric-tiny"
+  to = "/listings/20-rue-eric-tiny.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/20-rue-eric-tiny/"
+  to = "/listings/20-rue-eric-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/20-rue-eric-tiny.html"
+  to = "/listings/20-rue-eric-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/7-dock-lane-tay"
+  to = "/listings/7-dock-lane-tay.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/7-dock-lane-tay/"
+  to = "/listings/7-dock-lane-tay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/7-dock-lane-tay.html"
+  to = "/listings/7-dock-lane-tay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/8-pinecone-avenue-tiny"
+  to = "/listings/8-pinecone-avenue-tiny.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/8-pinecone-avenue-tiny/"
+  to = "/listings/8-pinecone-avenue-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/8-pinecone-avenue-tiny.html"
+  to = "/listings/8-pinecone-avenue-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/103-silver-birch-drive-tiny"
+  to = "/listings/103-silver-birch-drive-tiny.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/103-silver-birch-drive-tiny/"
+  to = "/listings/103-silver-birch-drive-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/103-silver-birch-drive-tiny.html"
+  to = "/listings/103-silver-birch-drive-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/139-veterans-lane-tay"
+  to = "/listings/139-veterans-lane-tay.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/139-veterans-lane-tay/"
+  to = "/listings/139-veterans-lane-tay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/139-veterans-lane-tay.html"
+  to = "/listings/139-veterans-lane-tay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/390-mildred-street-midland"
+  to = "/listings/390-mildred-street-midland.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/390-mildred-street-midland/"
+  to = "/listings/390-mildred-street-midland"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/390-mildred-street-midland.html"
+  to = "/listings/390-mildred-street-midland"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/993-whitney-crescent-midland"
+  to = "/listings/993-whitney-crescent-midland.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/993-whitney-crescent-midland/"
+  to = "/listings/993-whitney-crescent-midland"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/993-whitney-crescent-midland.html"
+  to = "/listings/993-whitney-crescent-midland"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/375-champlain-road-penetanguishene"
+  to = "/listings/375-champlain-road-penetanguishene.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/375-champlain-road-penetanguishene/"
+  to = "/listings/375-champlain-road-penetanguishene"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/375-champlain-road-penetanguishene.html"
+  to = "/listings/375-champlain-road-penetanguishene"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/1016-wright-drive-midland"
+  to = "/listings/1016-wright-drive-midland.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/1016-wright-drive-midland/"
+  to = "/listings/1016-wright-drive-midland"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/1016-wright-drive-midland.html"
+  to = "/listings/1016-wright-drive-midland"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/1787-champlain-road-tiny"
+  to = "/listings/1787-champlain-road-tiny.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/1787-champlain-road-tiny/"
+  to = "/listings/1787-champlain-road-tiny"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/1787-champlain-road-tiny.html"
+  to = "/listings/1787-champlain-road-tiny"
+  status = 301
+  force = true
+
 # Pretty URL + branded path for the What's It Take market guide
 # (200 rewrites keep the clean URL and preserve ?src=newsletter for the free path)
 [[redirects]]

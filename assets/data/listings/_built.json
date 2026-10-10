@@ -1,0 +1,157 @@
+[
+  {
+    "slug": "20-rue-eric-tiny",
+    "address": "20 Rue Eric",
+    "community": "Lafontaine, Tiny Township",
+    "price": "$937,500",
+    "mls": "S13851424",
+    "realtorUrl": "https://www.realtor.ca/real-estate/30352658/20-rue-eric-tiny-lafontaine",
+    "courtesy": "Listing courtesy of FARIS TEAM REAL ESTATE BROKERAGE",
+    "photoSource": "drive",
+    "photoCount": 25,
+    "missing": [],
+    "summary": "2 + 2 bedrooms, 3 bathrooms, and 1,730 sq. ft. above grade plus a finished lower level in Lafontaine."
+  },
+  {
+    "slug": "7-dock-lane-tay",
+    "address": "7 Dock Lane",
+    "community": "Port McNicoll, Tay Township",
+    "price": "$1,699,900",
+    "mls": "S13879870",
+    "realtorUrl": "https://www.realtor.ca/real-estate/30384907/7-dock-lane-tay-port-mcnicoll",
+    "courtesy": "Listing courtesy of FARIS TEAM REAL ESTATE BROKERAGE",
+    "photoSource": "realtor",
+    "photoCount": 41,
+    "missing": [
+      "Lot depth is not shown on REALTOR.ca (lot size is given as 50 ft frontage, under 1/2 acre).",
+      "Waterfront length is not listed separately from the 50 ft lot frontage."
+    ],
+    "summary": "3 bedrooms, 3 bathrooms, and 2,213 sq. ft. with an unfinished basement in Port McNicoll. Waterfront on Georgian Bay."
+  },
+  {
+    "slug": "8-pinecone-avenue-tiny",
+    "address": "8 Pinecone Avenue",
+    "community": "Rural Tiny",
+    "price": "$699,000",
+    "mls": "S13870402",
+    "realtorUrl": "https://www.realtor.ca/real-estate/30374083/8-pinecone-avenue-tiny-rural-tiny",
+    "courtesy": "Listing courtesy of FARIS TEAM REAL ESTATE BROKERAGE",
+    "photoSource": "drive",
+    "photoCount": 22,
+    "missing": [],
+    "summary": "3 + 1 bedrooms, 2 bathrooms, and 1,088 sq. ft. above grade plus a finished basement in Tiny."
+  },
+  {
+    "slug": "103-silver-birch-drive-tiny",
+    "address": "103 Silver Birch Drive",
+    "community": "Rural Tiny",
+    "price": "$549,900",
+    "mls": "S13868762",
+    "realtorUrl": "https://www.realtor.ca/real-estate/30372002/103-silver-birch-drive-tiny-rural-tiny",
+    "courtesy": "Listing courtesy of FARIS TEAM REAL ESTATE BROKERAGE",
+    "photoSource": "realtor",
+    "photoCount": 29,
+    "missing": [],
+    "summary": "2 bedrooms, 1 bathroom, and 1,095 sq. ft. in Tiny."
+  },
+  {
+    "slug": "4-charles-street-penetanguishene",
+    "address": "4 Charles Street",
+    "community": "Penetanguishene, Simcoe County",
+    "price": "$589,900",
+    "mls": "S13853812",
+    "realtorUrl": "https://www.realtor.ca/real-estate/30355545/4-charles-street-penetanguishene",
+    "courtesy": "Listing courtesy of FARIS TEAM REAL ESTATE BROKERAGE",
+    "photoSource": "drive",
+    "photoCount": 25,
+    "missing": [],
+    "summary": "2 + 2 bedrooms, 3 bathrooms, and 1,152 sq. ft. above grade plus a finished lower level in Penetanguishene."
+  },
+  {
+    "slug": "139-veterans-lane-tay",
+    "address": "139 Veterans Lane",
+    "community": "Victoria Harbour, Tay Township",
+    "price": "$674,900",
+    "mls": "S13831596",
+    "realtorUrl": "https://www.realtor.ca/real-estate/30331640/139-veterans-lane-tay-victoria-harbour",
+    "courtesy": "Listing courtesy of FARIS TEAM REAL ESTATE BROKERAGE",
+    "photoSource": "realtor",
+    "photoCount": 24,
+    "missing": [],
+    "summary": "3 bedrooms, 2 bathrooms, and 1,706 sq. ft. in Victoria Harbour."
+  },
+  {
+    "slug": "390-mildred-street-midland",
+    "address": "390 Mildred Street",
+    "community": "Midland",
+    "price": "$349,900",
+    "mls": "S13811184",
+    "realtorUrl": "https://www.realtor.ca/real-estate/30308427/390-mildred-street-midland",
+    "courtesy": "Listing courtesy of FARIS TEAM REAL ESTATE BROKERAGE",
+    "photoSource": "drive",
+    "photoCount": 25,
+    "missing": [
+      "Appliances are not listed on REALTOR.ca."
+    ],
+    "summary": "2 + 1 bedrooms, 2 bathrooms, and 1,236 sq. ft. above grade in Midland."
+  },
+  {
+    "slug": "993-whitney-crescent-midland",
+    "address": "993 Whitney Crescent",
+    "community": "Midland",
+    "price": "$939,900",
+    "mls": "S13802666",
+    "realtorUrl": "https://www.realtor.ca/real-estate/30299161/993-whitney-crescent-midland",
+    "courtesy": "Listing courtesy of FARIS TEAM REAL ESTATE BROKERAGE",
+    "photoSource": "realtor",
+    "photoCount": 26,
+    "missing": [],
+    "summary": "4 bedrooms, 3 bathrooms, and 2,276 sq. ft. in Midland. Inground pool."
+  },
+  {
+    "slug": "375-champlain-road-penetanguishene",
+    "address": "375 Champlain Road",
+    "community": "Penetanguishene",
+    "price": "$1,099,900",
+    "mls": "S13722636",
+    "realtorUrl": "https://www.realtor.ca/real-estate/30209339/375-champlain-road-penetanguishene",
+    "courtesy": "Listing courtesy of FARIS TEAM REAL ESTATE BROKERAGE",
+    "photoSource": "drive-plus-realtor-landscape",
+    "photoCount": 48,
+    "missing": [
+      "Water source is not shown on REALTOR.ca.",
+      "Sewer is not shown on REALTOR.ca.",
+      "Waterfront length is not listed separately from the 67 ft lot frontage."
+    ],
+    "summary": "3 bedrooms, 2 bathrooms, and 1,618 sq. ft. above grade in Penetanguishene. Waterfront on Georgian Bay."
+  },
+  {
+    "slug": "1016-wright-drive-midland",
+    "address": "1016 Wright Drive",
+    "community": "Midland",
+    "price": "$599,900",
+    "mls": "S13736826",
+    "realtorUrl": "https://www.realtor.ca/real-estate/30225147/1016-wright-drive-midland",
+    "courtesy": "Listing courtesy of FARIS TEAM REAL ESTATE BROKERAGE",
+    "photoSource": "realtor",
+    "photoCount": 30,
+    "missing": [],
+    "summary": "3 bedrooms, 3 bathrooms, and 1,736 sq. ft. above grade with an unfinished basement in Midland."
+  },
+  {
+    "slug": "1787-champlain-road-tiny",
+    "address": "1787 Champlain Road",
+    "community": "Rural Tiny",
+    "price": "$1,199,900",
+    "mls": "S13641804",
+    "realtorUrl": "https://www.realtor.ca/real-estate/30118761/1787-champlain-road-tiny-rural-tiny",
+    "courtesy": "Listing courtesy of FARIS TEAM REAL ESTATE BROKERAGE",
+    "photoSource": "drive",
+    "photoCount": 25,
+    "missing": [
+      "Storeys are not shown on REALTOR.ca. The style is listed as a backsplit.",
+      "Basement type on REALTOR.ca rendered as FinishedFull, with no separator. The description says a finished basement, so the page says Finished."
+    ],
+    "summary": "4 bedrooms, 3 bathrooms, and 2,287 sq. ft. above grade plus a finished basement in Tiny. Waterfront on Georgian Bay. 107 ft of sandy shoreline."
+  }
+]

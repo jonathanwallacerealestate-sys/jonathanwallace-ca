@@ -1,0 +1,16 @@
+{
+  "slug": "1787-champlain-road-tiny",
+  "address": "1787 Champlain Road",
+  "community": "Rural Tiny",
+  "price": "$1,199,900",
+  "mls": "S13641804",
+  "realtorUrl": "https://www.realtor.ca/real-estate/30118761/1787-champlain-road-tiny-rural-tiny",
+  "courtesy": "Listing courtesy of FARIS TEAM REAL ESTATE BROKERAGE",
+  "photoSource": "drive",
+  "photoCount": 25,
+  "missing": [
+    "Storeys are not shown on REALTOR.ca. The style is listed as a backsplit.",
+    "Basement type on REALTOR.ca rendered as FinishedFull, with no separator. The description says a finished basement, so the page says Finished."
+  ],
+  "summary": "4 bedrooms, 3 bathrooms, and 2,287 sq. ft. above grade plus a finished basement in Tiny. Waterfront on Georgian Bay. 107 ft of sandy shoreline."
+}

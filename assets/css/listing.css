@@ -220,3 +220,57 @@
 @media (max-width:560px){
   .stack-actions .btn{width:100%;justify-content:center;}
 }
+
+.listing-courtesy{margin:10px 0 0;font-size:.95rem;}
+.listing-realtor{margin:6px 0 14px;}
+.listing-realtor a{font-weight:700;}
+
+.listing-index h1{margin-bottom:8px;}
+.listing-hero,
+.listing-card{
+  display:grid;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  color:inherit;
+  text-decoration:none;
+  box-shadow:var(--shadow-sm);
+}
+.listing-hero:hover,
+.listing-card:hover{border-color:var(--copper);}
+.listing-hero img,
+.listing-card img{width:100%;height:100%;object-fit:cover;display:block;}
+.listing-card img{aspect-ratio:3/2;height:auto;}
+.listing-hero__body,
+.listing-card__body{padding:22px 22px 24px;}
+.listing-hero__body h2,
+.listing-card__body h2{margin:0 0 6px;}
+.listing-card__body h2{font-size:1.45rem;}
+.listing-card__place{margin:0 0 8px;color:var(--muted);}
+.listing-card__price{
+  font-family:var(--serif);
+  font-size:1.7rem;
+  line-height:1;
+  margin:0 0 8px;
+  color:var(--navy);
+}
+.listing-hero .listing-card__price{font-size:clamp(2rem,4vw,2.8rem);}
+.listing-card__meta{margin:0 0 8px;font-weight:700;letter-spacing:.04em;}
+.listing-card__body p:last-of-type{margin-bottom:16px;}
+.listing-card__body .btn,
+.listing-hero__body .btn{margin-top:4px;}
+.listing-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+@media (min-width:800px){
+  .listing-hero{grid-template-columns:1.35fr .9fr;min-height:420px;}
+}
+@media (max-width:900px){
+  .listing-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:640px){
+  .listing-grid{grid-template-columns:1fr;}
+}

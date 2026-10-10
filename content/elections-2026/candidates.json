@@ -1746,13 +1746,19 @@
       "photo_verification": "Official headshot from the Township of Tiny council page, shown with this member's name and office. Image alt text on the Township page: \"Head shot of Mayor David Evans\". Matches the profile photo on the candidate's own campaign Facebook page.",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the candidate's own website or page): 705-529-8473, davidevansfortinymayor@gmail.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "David (Dave) Evans, Tiny's current mayor, says his family history is rooted in Tiny Township. His campaign material focuses on preserving Tiny's history and natural habitat, smart change that builds on what the township already has, and connecting with residents to answer their questions.",
+      "top_points": [
+        "Preserving Tiny's history: protecting the township's natural habitat and community so future generations and residents can make their own memories on the shores of Georgian Bay.",
+        "Focused on our future: smart change that enhances what Tiny Township already has to offer.",
+        "Keeping a close-knit community that others want to be part of.",
+        "Your voice: connecting with residents to answer questions and get to know them better."
+      ],
+      "no_platform_found": false,
+      "platform_source": "Candidate campaign material (David Evans for Mayor card), supplied Oct 9 2026",
       "sources": [
         "https://www.tiny.ca/township-hall/council-committees/members-council",
-        "https://www.facebook.com/DavidEvansforTinyMayor/"
+        "https://www.facebook.com/DavidEvansforTinyMayor/",
+        "Candidate campaign material: David Evans for Mayor card"
       ]
     },
     {

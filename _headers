@@ -78,3 +78,8 @@
   X-Robots-Tag: noindex, follow
 /listings/_template.html
   X-Robots-Tag: noindex, follow
+
+/blog/get-ready-to-sell-in-spring/*
+  X-Robots-Tag: noindex, nofollow
+/assets/img/spring-guide/*
+  X-Robots-Tag: noindex, nofollow

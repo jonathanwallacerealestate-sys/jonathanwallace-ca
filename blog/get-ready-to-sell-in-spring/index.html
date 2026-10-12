@@ -124,7 +124,9 @@
   @media (max-width:700px){.related{grid-template-columns:1fr;}}
   .related a{display:block;border:1px solid #EAE4D8;border-radius:10px;padding:12px 14px;text-decoration:none !important;color:#141414 !important;font-weight:600;background:#FDFBF7;}
   .related a:hover,.related a:focus-visible{border-color:#C9A96A;}
-  </style>
+    .guide-cta .cta-btns{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;}
+  @media (max-width:599px){.guide-cta .cta-btns{flex-direction:column;align-items:center;}.guide-cta .cta-btns .btn{flex:0 0 auto;width:100%;max-width:340px;}}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -438,7 +440,7 @@
       <div class="guide-cta">
         <h3>Print the whole checklist</h3>
         <p>The timeline above, plus a house-book records list, on two printable pages. Stick it on the fridge and tick things off as you go.</p>
-        <a class="btn btn--primary" href="/assets/downloads/spring-seller-checklist.pdf" download>Download the spring seller checklist (PDF)</a>
+        <p class="cta-btns" style="margin:0;"><a class="btn btn--primary" href="/assets/downloads/spring-seller-checklist.pdf" download>Download the spring seller checklist (PDF)</a></p>
       </div>
 
       <div class="guide-cta">

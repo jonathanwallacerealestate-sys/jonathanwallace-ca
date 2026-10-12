@@ -77,6 +77,22 @@
   a.btn--ghost,a.btn--ghost:link,a.btn--ghost:visited,a.btn--ghost:focus,a.btn--ghost:active{color:#FDFBF7 !important;background:#141414;border-color:#FDFBF7 !important;}
   a.btn--ghost:hover{color:#141414 !important;background:#FDFBF7;}
   a.btn:focus-visible{outline:3px solid #C9A96A;outline-offset:3px;}
+
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:26px 0 34px;padding:0;list-style:none;}
+  @media (max-width:900px){.tiles{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:420px){.tiles{grid-template-columns:1fr;}}
+  .tiles li{margin:0;padding:0;}
+  .post-body a.tile,a.tile{display:flex;flex-direction:column;height:100%;background:#FDFBF7;border:1px solid #EAE4D8;border-radius:12px;overflow:hidden;color:#141414;text-decoration:none !important;transition:box-shadow .2s,transform .2s;}
+  a.tile:hover,a.tile:focus-visible{box-shadow:0 8px 22px rgba(20,20,20,.12);transform:translateY(-2px);border-color:#C9A96A;}
+  a.tile:focus-visible{outline:3px solid #C9A96A;outline-offset:2px;}
+  .tile img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#F7F3EC;}
+  .tile__t{font-family:var(--serif);font-size:1.12rem;line-height:1.25;margin:12px 14px 4px;color:#141414;}
+  .tile__s{font-size:.9rem;line-height:1.45;color:#4A453D;margin:0 14px 14px;}
+  .post-wide{max-width:1100px;}
+  .backlink{font-size:.95rem;margin:0 0 6px;}
+  .post-hero .backlink a{color:#C9A96A;}
+  .topic-fig img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;margin:26px 0 8px;}
+  .ph-note{font-size:.8rem;color:#6E675C;}
 </style>
 <script type="application/ld+json">
 {
@@ -197,7 +213,7 @@
     <p class="post-meta">Midland &middot; Penetanguishene &middot; Tiny &middot; Tay &middot; Wasaga Beach &middot; ~12 min read</p>
     <div class="hero-btns">
       <a class="btn btn--primary" href="/assets/downloads/spring-seller-checklist.pdf" download>Download the printable checklist (PDF)</a>
-      <a class="btn btn--ghost" href="/home-value.html" style="color:#FDFBF7;border-color:rgba(253,251,247,.5);">What's my home worth?</a>
+      <a class="btn btn--primary" href="/home-value.html">What's my home worth?</a>
     </div>
   </div>
 </section>
@@ -211,168 +227,41 @@
       </div>
 
       <p>Most people think about selling in the spring and start getting ready in April. By then the lot is wet, the snowbanks are grey, and every contractor in North Simcoe is booked. Selling isn't really about a fresh coat of paint. It's about taking away every reason a buyer has to hesitate or knock money off your price. That takes time, and in our part of Ontario, the weather decides what you can do and when.</p>
-      <p>Here's how I'd lay it out, month by month, plus the room-by-room list, what's worth fixing (and what isn't), and the paperwork that makes rural and waterfront homes easier to sell.</p>
+      <p>Here's how I'd lay it out. Each topic below has its own page with the details: the month-by-month timeline, the room-by-room list, what's worth fixing (and what isn't), and the paperwork that makes rural and waterfront homes easier to sell.</p>
 
-      <div class="feature">
-        <p class="label">Do this first</p>
-        <h2>Take your photos now, while the property looks its best</h2>
-        <p>This is the one I tell every fall client. In April, exteriors look drab, the lot is wet, nothing is growing and the trees are bare. Right now your gardens, lawn, trees and the water look the way you want buyers to picture them.</p>
-        <p>Get your exterior photos (and drone shots, if your property calls for them) done while the colour is still up. We'll take fresh interior photos right before you list, and use your fall exteriors alongside them. Buyers see the property at its best, not at its muddiest.</p>
-        <p class="src">Real estate photographers recommend the same thing for off-season listings: <a href="https://blog.aryeo.com/tips-for-real-estate-photography-in-the-winter/" rel="noopener" target="_blank">Aryeo</a>, <a href="https://www.steamboatsprings-realestate.com/blog/thinking-of-selling-get-your-home-photographed-before-the-snow-flies/" rel="noopener" target="_blank">Steamboat Springs Real Estate</a>.</p>
-      </div>
-
-      <!-- BEFORE/AFTER IMAGE SLOT 1: drab April exterior vs. same house in fall colour (Artlist illustration). Replace the dashed box below with <figure class="post-figure"><img ...></figure> -->
-      <div class="ph-figure"><strong>Before/after image coming</strong>Same exterior: drab April vs. fall colour</div>
-
-      <h2>Get your number early</h2>
-      <p>Before you spend a dollar on getting ready, find out what your home is worth today and what buyers in your price range expect. That number tells you which projects make sense and which ones are just money in the ground. I'll come walk the property with you, tell you what I'd fix and what I'd leave alone, and we'll check the number again in late winter.</p>
-      <p><a class="btn btn--primary" href="/home-value.html" style="color:#1B1B1B;text-decoration:none;">Get your home evaluation</a></p>
-
-      <h2>Your fall-to-spring timeline</h2>
-
-      <div class="phase">
-        <p class="when">October to November &middot; before the freeze</p>
-        <h3>Outside work and the big unknowns</h3>
-        <ul class="checklist">
-          <li><strong>Fall exterior and drone photos.</strong> (See above.) If you have waterfront, photograph the shoreline and the dock before they come out or freeze in.</li>
-          <li><strong>Book a pre-listing home inspection.</strong> This is the big one. An inspection now means you find the deficiencies on your schedule, not the buyer's, and you have all winter to deal with them. The things you can't fix, you can price for or disclose up front.</li>
-          <li><strong>Get the septic pumped and inspected.</strong> Keep the hauler's written report. If the inside of the tank needs parging, it has to be done while temperatures are still holding above about 10&deg;C so the cement cures properly. Check the product's own temperature requirements with your contractor. Once November turns cold, that job waits until spring, when you'd rather be listing. In Tiny, also check whether your area is part of the Township's <a href="https://www.tiny.ca/services/water-sewage/private-sewage-systems/re-inspection-program" rel="noopener" target="_blank">septic re-inspection program</a> and whether you have any open deficiency notices.</li>
-          <li><strong>Test your well water.</strong> Simcoe Muskoka District Health Unit provides free bacteria testing. Pick up bottles at the Midland office, and the sample has to be tested within 48 hours (<a href="https://www.simcoemuskokahealth.org/topics/safewater/drinkingwater.aspx" rel="noopener" target="_blank">SMDHU</a>). You'll test again after the spring melt.</li>
-          <li><strong>Fix loose handrails on the deck</strong> and any wobbly steps. It's a small job, and every inspector flags it. Buyers notice right away when a railing moves under their hand.</li>
-          <li><strong>Open up the attic and check for unexpected visitors.</strong> Look for droppings, nesting, chewed wiring and disturbed insulation. There's nothing worse than the buyer's inspector finding a rodent problem. In my experience, about half of buyers are instantly turned off when that happens, and the rest start second-guessing their decision. If you find something, deal with it now and keep the pest-control invoice.</li>
-          <li><strong>Service the furnace and A/C</strong> if it's not too late in the season, and keep the records. It shows buyers everything has been maintained and is working.</li>
-          <li><strong>Clean the gutters and winterize outdoor taps and hoses</strong> (<a href="https://www.cbmq.com/pdf/05-CMHC-HomeMaintenanceSchedule2010.pdf" rel="noopener" target="_blank">CMHC maintenance schedule</a>). After the first light snow, look for spots where the snow on the roof melts first. They show heat leaking into the attic, which is where ice dams start (<a href="https://natural-resources.canada.ca/energy-efficiency/home-energy-efficiency/keeping-heat-section-5-roofs-attics" rel="noopener" target="_blank">NRCan</a>).</li>
-          <li><strong>Book a WETT inspection</strong> for any wood stove, insert or pellet stove. Many insurers require one, and if a buyer can't get insurance, they can't get financing (<a href="https://www.wettinc.ca/faq" rel="noopener" target="_blank">WETT Inc.</a>).</li>
-          <li><strong>Start any shoreline approvals now.</strong> Docks, retaining walls and beach work can need Township, conservation authority or other approvals, and none of them happen fast. See Tiny's <a href="https://www.tiny.ca/building-tiny/getting-started/construction-beach" rel="noopener" target="_blank">shoreline construction page</a> and the <a href="https://www.nvca.on.ca/planning-permits/faq-for-permits/" rel="noopener" target="_blank">NVCA permit FAQ</a>.</li>
-        </ul>
-      </div>
-
-      <div class="phase">
-        <p class="when">December to January &middot; inside work</p>
-        <h3>Work through the inspection list</h3>
-        <ul class="checklist">
-          <li><strong>Get rid of water stains.</strong> Here's a common one: a slow leak got fixed properly by a professional four years ago, but nobody ever painted the ceiling. Now's the time. Prime it with a stain blocker, paint it, and put the repair invoice in your house book. You're taking away the question before a buyer can ask it. (A known past issue still gets disclosed. The paint just means nobody has to wonder whether it's still leaking.)</li>
-          <li><strong>Declutter room by room.</strong> Pack up what you won't need until you move. Winter is the perfect time for it.</li>
-          <li><strong>Finish the small repairs:</strong> dripping taps, sticky doors, cracked caulking, burnt-out bulbs, missing cover plates.</li>
-          <li><strong>Test smoke and CO alarms.</strong> You need a CO alarm on every storey and outside sleeping areas if you have a fuel-burning appliance, a fireplace or an attached garage (<a href="https://www.ontario.ca/page/carbon-monoxide-safety" rel="noopener" target="_blank">Ontario.ca</a>).</li>
-          <li><strong>Start your house book</strong> (more below) and gather receipts, warranties and permits for any renovations.</li>
-          <li><strong>If the place sits empty,</strong> read your insurance policy's vacancy and heating clauses. Frozen-pipe damage in a vacant home is often not covered (<a href="https://www.ibc.ca/news-insights/in-focus/does-my-insurance-cover-damage-caused-by-extreme-cold" rel="noopener" target="_blank">IBC</a>).</li>
-          <li><strong>Consider a winter radon test.</strong> A long-term test runs at least 91 days, so starting in winter means you'll have results by spring (<a href="https://www.canada.ca/en/health-canada/services/publications/health-risks-safety/guide-radon-measurements-residential-dwellings.html" rel="noopener" target="_blank">Health Canada</a>).</li>
-        </ul>
-      </div>
-
-      <!-- BEFORE/AFTER IMAGE SLOT 2: ceiling water stain vs. primed and painted (Artlist illustration). -->
-      <div class="ph-figure"><strong>Before/after image coming</strong>Old water stain vs. primed and painted ceiling</div>
-
-      <div class="phase">
-        <p class="when">February to March &middot; paperwork and pricing</p>
-        <h3>Get the documents and the number ready</h3>
-        <ul class="checklist">
-          <li><strong>Find your survey.</strong> If it's old or doesn't show your current fences, additions or outbuildings, talk to me about whether an updated Surveyor's Real Property Report makes sense (<a href="https://www.aols.org/resources/public-resources/boundaries-and-your-land" rel="noopener" target="_blank">AOLS</a>).</li>
-          <li><strong>Order record searches.</strong> In Tiny, you can order a septic record search for your permit history (<a href="https://www.tiny.ca/services/water-sewage/private-sewage-systems" rel="noopener" target="_blank">Tiny</a>). The ESA can tell you if there are open electrical notifications on the property, and its full history requests take about 15 business days (<a href="https://esasafe.com/fees-and-forms/forms/to-request-a-search-of-records-or-access-information/" rel="noopener" target="_blank">ESA</a>).</li>
-          <li><strong>Oil tank?</strong> Find its age, location and inspection records. Older tanks and tanks of unknown age can create insurance and legal issues, so get the facts from TSSA or a registered contractor early (<a href="https://www.canlii.org/en/on/laws/regu/o-reg-213-01/latest/o-reg-213-01.html" rel="noopener" target="_blank">O. Reg. 213/01</a>).</li>
-          <li><strong>Private road or right-of-way?</strong> Gather any road-maintenance or snowplowing agreements. Buyers and lenders will want to know how year-round access works.</li>
-          <li><strong>Talk to me about disclosure.</strong> Make a list of anything you know about. Sellers in Ontario have to disclose latent defects (<a href="https://www.reco.on.ca/agents-and-brokerages/reco-bulletins/reco-bulletin-7-4-facts-a-seller-has-a-legal-obligation-to-disclose" rel="noopener" target="_blank">RECO</a>), and it's much easier to handle up front.</li>
-          <li><strong>Review pricing.</strong> In late winter, we'll go over a fresh comparative market analysis based on what's sold and what you'll be competing with.</li>
-          <li><strong>Book your photographer, cleaners, stager and trades.</strong> Spring is their busy season too.</li>
-        </ul>
-      </div>
-
-      <div class="phase">
-        <p class="when">The final 2 to 4 weeks before you list</p>
-        <h3>Spring walk-around, deep clean, photos</h3>
-        <ul class="checklist">
-          <li><strong>Walk the property</strong> and check the roof, gutters, foundation, grading and sump pump for winter damage.</li>
-          <li><strong>Re-test the well</strong> after the spring melt, and if you have a cottage, open it up carefully: restore the water, check for burst lines and test the pressure tank.</li>
-          <li><strong>Deep clean everything:</strong> windows, baseboards, light fixtures, grout, the inside of the appliances. A well-cared-for house sells for more. Buyers read a clean house as a well-maintained house.</li>
-          <li><strong>Depersonalize and stage</strong> the main rooms, and clear the walkways of snow, ice and slush.</li>
-          <li><strong>Interior photos</strong> on a bright day, paired with your fall exteriors.</li>
-          <li><strong>Put the house book on the kitchen counter.</strong></li>
-        </ul>
-      </div>
-
+      <h2>The guide, topic by topic</h2>
+      <p>Tap any topic for the details.</p>
+    </div>
+  </div>
+  <div class="post post-wide">
+    <div class="post-body">
+      <ul class="tiles">
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/fall-photos/"><img src="/assets/img/spring-guide/fall-photos.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Drone view of a Penetanguishene home in fall colour above Penetang Bay"><span class="tile__t">Take your photos this fall</span><span class="tile__s">In April exteriors look drab, the lot is wet and the trees are bare. Shoot them now.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/pre-listing-inspection/"><img src="/assets/img/spring-guide/pre-listing-inspection.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Exterior of a two-storey home in Tay Township"><span class="tile__t">Book a pre-listing inspection</span><span class="tile__s">Find the deficiencies on your schedule, then fix them over the winter.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/septic/"><img src="/assets/img/spring-guide/septic.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Large open rural lot behind a home in Tay Township"><span class="tile__t">Septic pumped and inspected</span><span class="tile__s">Get it done in the fall. Parging needs about 10&deg;C or warmer so the cement cures.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/deck-handrails/"><img src="/assets/img/spring-guide/deck-handrails.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Covered wooden deck with railings on a Tay Township home"><span class="tile__t">Fix loose deck handrails</span><span class="tile__s">A small job every inspector flags, and buyers feel it right away.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/attic-rodent-check/"><img src="/assets/img/spring-guide/attic-rodent-check.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Photo coming: Check the attic for rodents"><span class="tile__t">Check the attic for rodents</span><span class="tile__s">Look for droppings, nesting and chewed wiring before the buyer's inspector does.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/furnace-ac-service/"><img src="/assets/img/spring-guide/furnace-ac-service.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Photo coming: Service the furnace and A/C"><span class="tile__t">Service the furnace and A/C</span><span class="tile__s">Keep the records. They show buyers everything has been maintained.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/water-stains/"><img src="/assets/img/spring-guide/water-stains.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Bright living room with a clean tray ceiling in a Tiny Township home"><span class="tile__t">Paint over old water stains</span><span class="tile__s">Fix the cause, prime and paint, and keep the repair invoice.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/three-quotes/"><img src="/assets/img/spring-guide/three-quotes.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Exterior and roofline of a Penetanguishene home with a new deck"><span class="tile__t">Get three quotes for big repairs</span><span class="tile__s">Can't afford the fix? Answer the buyer's guess with real numbers.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/house-book/"><img src="/assets/img/spring-guide/house-book.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Kitchen island and counter in a Penetanguishene home"><span class="tile__t">Make a house book</span><span class="tile__s">Your records on the kitchen counter for every showing, with an optional QR code.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/deep-clean/"><img src="/assets/img/spring-guide/deep-clean.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Spotless white kitchen in a Tiny Township home"><span class="tile__t">Deep clean everything</span><span class="tile__s">Buyers read a clean house as a well-maintained house.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/room-by-room/"><img src="/assets/img/spring-guide/room-by-room.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Staged living room in a Penetanguishene home"><span class="tile__t">Room-by-room checklist</span><span class="tile__s">Entry, kitchen, baths, living areas, basement and cottage items.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/timeline/"><img src="/assets/img/spring-guide/timeline.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Penetanguishene home and yard surrounded by trees"><span class="tile__t">Your fall-to-spring timeline</span><span class="tile__s">What to do in October, over the winter, in February and March, and before you list.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/get-your-number/"><img src="/assets/img/spring-guide/get-your-number.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Stone and charcoal bungalow front entry in Tiny Township"><span class="tile__t">Get your number early</span><span class="tile__s">Know what your home is worth before you spend a dollar getting ready.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/whats-worth-fixing/"><img src="/assets/img/spring-guide/whats-worth-fixing.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Updated kitchen in a Penetanguishene home"><span class="tile__t">What's worth fixing</span><span class="tile__s">What usually pays off, and where to think twice before spending big.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/rural-cottage-paperwork/"><img src="/assets/img/spring-guide/rural-cottage-paperwork.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Twilight aerial of a waterfront lot on the Tiny shoreline"><span class="tile__t">Rural and cottage paperwork</span><span class="tile__s">Well tests, WETT, survey, permits and road agreements. Some take weeks.</span></a></li>
+        <li><a class="tile" href="/blog/get-ready-to-sell-in-spring/before-the-photographer/"><img src="/assets/img/spring-guide/before-the-photographer.jpg" width="800" height="600" loading="lazy" decoding="async" alt="Bright great room with wood ceiling in a Tay Township home"><span class="tile__t">Before the photographer arrives</span><span class="tile__s">Lights on, blinds open, counters clear, cars out of the driveway.</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="post">
+    <div class="post-body">
       <div class="guide-cta">
         <h3>Print the whole checklist</h3>
         <p>The timeline above, plus a house-book records list, on two printable pages. Stick it on the fridge and tick things off as you go.</p>
         <a class="btn btn--primary" href="/assets/downloads/spring-seller-checklist.pdf" download>Download the spring seller checklist (PDF)</a>
       </div>
-
-      <div class="feature">
-        <p class="label">Get ahead of the negotiation</p>
-        <h2>Can't afford a fix? Get three quotes before you list</h2>
-        <p>Sometimes the inspection turns up something that needs replacing (the roof, the septic bed, the windows), and the money just isn't there to do it before you sell. That's okay. What isn't okay is letting the buyer set the price of the repair.</p>
-        <p>Buyers always inflate the cost. You'll hear "that's going to cost $20K to fix" across the table, and it becomes their number for knocking down your price. Get three written quotes from reputable local contractors before you list. Then, when it comes up, you can say, "I have three quotes, and they're all around $11K." Now you're negotiating from facts, not from somebody's guess.</p>
-        <p>Get ahead of it before it gets used as leverage. Put the quotes in your house book.</p>
-      </div>
-
-      <div class="feature">
-        <p class="label">My favourite tip</p>
-        <h2>Make a house book</h2>
-        <p>A house book is a binder that tells the story of how your home has been looked after. Buyers eat this up. Every question it answers before they ask is one less objection later, and fewer objections means a smoother deal and a stronger price.</p>
-        <p>What goes in it:</p>
-        <ul class="checklist">
-          <li>Service records: furnace, A/C, septic pump-outs, well tests, chimney/WETT</li>
-          <li>A list of what's been updated and when (roof, windows, furnace, water heater, electrical, plumbing)</li>
-          <li>Receipts and invoices for repairs and renovations, plus any permits</li>
-          <li>Warranties and appliance manuals</li>
-          <li>Your three quotes for anything you didn't fix</li>
-          <li>Utility and heating costs for the past year</li>
-        </ul>
-        <p>Here's why it matters so much. A skilled agent can walk through a house and tell you roughly how old the furnace, the roof and the windows are, because we've seen it all. A less-skilled agent just opens the door, and the buyer is left guessing. Guessing usually means assuming the worst. Your house book answers those questions no matter who shows the home.</p>
-        <p>Have it ready to leave out on the kitchen counter for every showing.</p>
-        <p><strong>Optional, if you're tech-savvy:</strong> scan everything into a shared Google Drive folder and print a QR code on the cover that links to it. Buyers can look through the records right on their phones.</p>
-      </div>
-
-      <h2>What's worth fixing, and what to think twice about</h2>
-      <p>Before you spend money, ask yourself: will a buyer notice this, and will it make them hesitate? If the answer is no, put the money back in your pocket.</p>
-      <table class="fix-table">
-        <thead><tr><th>Usually worth doing</th><th>Think twice before spending big</th></tr></thead>
-        <tbody>
-          <tr><td>Active leaks and old water stains</td><td>A full kitchen or bathroom renovation</td></tr>
-          <tr><td>Loose handrails, wobbly steps, safety items</td><td>High-end finishes beyond what your area sells for</td></tr>
-          <tr><td>Septic pump-out and inspection; well test</td><td>New flooring throughout when a deep clean would do</td></tr>
-          <tr><td>Pests in the attic or crawlspace</td><td>Taste-specific updates (bold tile, feature walls)</td></tr>
-          <tr><td>Furnace/A/C service and records</td><td>Replacing working appliances just because they're older</td></tr>
-          <tr><td>Fresh neutral paint where it's scuffed or dated</td><td>Big landscaping projects right before listing</td></tr>
-          <tr><td>Burnt-out bulbs, dripping taps, sticky doors</td><td>Major systems you can't afford: get three quotes instead</td></tr>
-          <tr><td>A deep clean, top to bottom</td><td>Anything a buyer won't notice or ask about</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Room-by-room checklist</h2>
-      <div class="rooms">
-        <details class="room"><summary><span class="room-title">Entry and exterior</span></summary>
-        <ul class="checklist"><li>Front door clean, hardware working, light fixture working</li><li>Deck railings and steps solid</li><li>Gutters clear, downspouts pointing away from the house</li><li>Snow and ice cleared from walkways for showings</li></ul>
-        </details>
-        <details class="room"><summary><span class="room-title">Kitchen</span></summary>
-        <ul class="checklist"><li>Counters cleared to the essentials</li><li>Appliances cleaned inside and out</li><li>Cabinet doors aligned, hinges tightened</li><li>House book on the counter</li></ul>
-        </details>
-        <details class="room"><summary><span class="room-title">Bathrooms</span></summary>
-        <ul class="checklist"><li>Caulking redone where it's cracked or stained</li><li>No dripping taps or running toilets</li><li>Fan working</li><li>Fresh towels, personal items put away</li></ul>
-        </details>
-        <details class="room"><summary><span class="room-title">Living areas and bedrooms</span></summary>
-        <ul class="checklist"><li>Decluttered and depersonalized</li><li>Scuffs and ceiling stains painted</li><li>Every bulb working, closets half empty</li></ul>
-        </details>
-        <details class="room"><summary><span class="room-title">Basement, attic and mechanical</span></summary>
-        <ul class="checklist"><li>Attic checked for rodents and wildlife</li><li>Furnace and A/C serviced, filter changed</li><li>Sump pump tested; no dampness or musty smell</li><li>Smoke and CO alarms tested</li></ul>
-        </details>
-        <details class="room"><summary><span class="room-title">Rural, cottage and waterfront</span></summary>
-        <ul class="checklist"><li>Septic pumped and inspected, report on file; leaching bed clear of vehicles, patios and fire pits (<a href="https://www.tiny.ca/sites/default/files/2025-04/2025%20Notice%20Letter.pdf" rel="noopener" target="_blank">Tiny</a>)</li><li>Recent well water results</li><li>WETT certificate for any wood stove</li><li>Survey, shoreline and dock permits on file</li><li>Road or snowplowing agreements if you're on a private road</li></ul>
-        </details>
-      </div>
-      <!-- BEFORE/AFTER IMAGE SLOT 3: cluttered vs. decluttered living room (Artlist illustration). -->
-      <div class="ph-figure"><strong>Before/after image coming</strong>Cluttered vs. decluttered living room</div>
-
-      <h2>Before the photographer arrives</h2>
-      <ul class="checklist">
-        <li>Every light on, every bulb the same colour</li>
-        <li>Blinds open, windows clean</li>
-        <li>Counters, fridge door and bathroom vanities cleared</li>
-        <li>Cars out of the driveway, garbage bins out of sight</li>
-        <li>Beds made, towels folded, toilet seats down</li>
-        <li>Pets and pet bowls out of the shot</li>
-        <li>Snow cleared from walkways and the deck if it's still around</li>
-      </ul>
 
       <div class="guide-cta">
         <h2>Thinking about selling this spring?</h2>
@@ -404,7 +293,6 @@
 
       <p class="post-disclaimer">This article is general information for sellers in the Georgian Bay area of Ontario, not legal, insurance or engineering advice. Municipal programs, fees and rules change, so confirm the details with your Township, your lawyer and qualified trades.</p>
       <p class="post-disclaimer" style="border-top:0;margin-top:0;padding-top:0;">Before-and-after images on this page are illustrations created for example purposes.</p>
-
     </div>
   </div>
 </article>

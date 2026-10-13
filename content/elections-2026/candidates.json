@@ -579,11 +579,7 @@
       "contact_source": "https://media-003-ca.cdn.govstack.com/midland-ca/media/xfsjylxu/2026-election-candidate-contact-list.pdf",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/midland-council-candidate-derek-howard-pitches-regional-approach-and-long-term-planning-12763153",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": "https://www.facebook.com/profile.php?id=61592670692419",
       "photo_source_url": "https://www.facebook.com/profile.php?id=61592670692419",
@@ -592,13 +588,20 @@
       "photo_verification": "Profile photo of the candidate's own campaign Facebook page, which names the candidate and the Midland council race. Single source.",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): dhoward4council@gmail.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): dhoward4council@gmail.com.",
+      "top_points": [
+        "Better transit for residents across Midland and North Simcoe to strengthen work, commerce and tourism.",
+        "Affordable and attainable homes, with youth, singles and low-income residents in mind.",
+        "Crime reduction through support for social programs.",
+        "Bring North Simcoe together as a united region rather than divided communities.",
+        "Make decisions for Midland taxpayers while keeping the wider region in mind."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 12, 2026",
       "sources": [
         "https://media-003-ca.cdn.govstack.com/midland-ca/media/xfsjylxu/2026-election-candidate-contact-list.pdf",
-        "https://www.facebook.com/profile.php?id=61592670692419"
+        "https://www.facebook.com/profile.php?id=61592670692419",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/midland-council-candidate-derek-howard-pitches-regional-approach-and-long-term-planning-12763153"
       ]
     },
     {
@@ -630,11 +633,7 @@
       "contact_source": "https://media-003-ca.cdn.govstack.com/midland-ca/media/xfsjylxu/2026-election-candidate-contact-list.pdf",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/bob-jeffery-says-midland-council-should-be-a-voice-for-all-residents-12752558",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": null,
       "photo_source_url": "https://www.midlandtoday.ca/2026-municipal-election-news/bob-jeffery-says-midland-council-should-be-a-voice-for-all-residents-12752558",
@@ -643,12 +642,19 @@
       "photo_verification": "Full-size main photo from the linked local news article (photo only; article not cited as a source).",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): bj3ff3ry@gmail.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): bj3ff3ry@gmail.com.",
+      "top_points": [
+        "Support the town's growth by actively improving neighbourhoods.",
+        "Manage taxes carefully, with every service and project reviewed to make sure it is needed and worthwhile.",
+        "Use new technology in ways that benefit the community and residents.",
+        "Guide development so Midland keeps its character and natural beauty.",
+        "Listen to and represent all ratepayers, not just supporters."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 10, 2026",
       "sources": [
-        "https://media-003-ca.cdn.govstack.com/midland-ca/media/xfsjylxu/2026-election-candidate-contact-list.pdf"
+        "https://media-003-ca.cdn.govstack.com/midland-ca/media/xfsjylxu/2026-election-candidate-contact-list.pdf",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/bob-jeffery-says-midland-council-should-be-a-voice-for-all-residents-12752558"
       ]
     },
     {
@@ -891,11 +897,7 @@
       "contact_source": "https://media-003-ca.cdn.govstack.com/midland-ca/media/xfsjylxu/2026-election-candidate-contact-list.pdf",
       "contact_from_candidate": [],
       "link_note": "This is the candidate's own Facebook profile, which posts campaign content. A separate page, \"Cody Oschefski For Midland\", describes itself as made by supporters, so it is not listed.",
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/cody-oschefski-is-ready-to-get-back-to-work-for-midland-12777006",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": null,
       "photo_source_url": "https://www.facebook.com/photo.php?fbid=10165249662157287&set=pb.503817286.-2207520000&type=3",
@@ -904,13 +906,18 @@
       "photo_verification": "Photo supplied and confirmed by Jonathan Wallace (Oct 9 2026).",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): 705-528-8768, TheCodyO@gmail.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): 705-528-8768, TheCodyO@gmail.com.",
+      "top_points": [
+        "Community safety: a co-ordinated town-wide neighbourhood watch, better information sharing and voluntary resident-led camera networks.",
+        "Affordability: support local organizations, identify gaps and advocate to upper levels of government on housing, food insecurity and homelessness.",
+        "Regional teamwork: revive collaboration between Midland, Penetanguishene, Tiny and Tay in the spirit of the Power of Four."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 15, 2026",
       "sources": [
         "https://media-003-ca.cdn.govstack.com/midland-ca/media/xfsjylxu/2026-election-candidate-contact-list.pdf",
-        "https://www.facebook.com/TheCodyO/"
+        "https://www.facebook.com/TheCodyO/",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/cody-oschefski-is-ready-to-get-back-to-work-for-midland-12777006"
       ]
     },
     {
@@ -1206,11 +1213,7 @@
       "contact_source": "https://www.penetanguishene.ca/townhall/elections",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate interview (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/suzanne-marchand-makes-pitch-for-second-term-on-penetanguishene-council-12759208",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": "https://www.penetanguishene.ca/media/kmthw54d/suzanne-marchand.jpg",
       "photo_source_url": "https://www.penetanguishene.ca/townhall/council/council-members/",
@@ -1219,13 +1222,20 @@
       "photo_verification": "Official headshot from the Town of Penetanguishene council page, shown with this member's name and office. Image alt text on the Town page: \"Councillor Suzanne Marchand\".",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): 705-427-2914, suzanneb9@rogers.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): 705-427-2914, suzanneb9@rogers.com.",
+      "top_points": [
+        "Keep tax increases as low as possible as affordability pressures rise.",
+        "Continued development and more homes to grow the tax base and meet housing needs.",
+        "Build momentum on the multi-use recreation centre and pursue government grants.",
+        "Downtown revitalization: refine the business plan and attract new businesses to the core.",
+        "Continue public engagement through open houses, information sessions and surveys."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 9, 2026",
       "sources": [
         "https://www.penetanguishene.ca/townhall/council/council-members/",
-        "https://www.penetanguishene.ca/townhall/elections"
+        "https://www.penetanguishene.ca/townhall/elections",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/suzanne-marchand-makes-pitch-for-second-term-on-penetanguishene-council-12759208"
       ]
     },
     {
@@ -1257,11 +1267,7 @@
       "contact_source": "https://www.penetanguishene.ca/townhall/elections",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/bonita-desroches-seeks-to-turn-plans-into-action-in-bid-for-re-election-in-penetanguishene-12751249",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": "https://www.penetanguishene.ca/media/03knjbj4/bonita-desroches.jpg",
       "photo_source_url": "https://www.penetanguishene.ca/townhall/council/council-members/",
@@ -1270,13 +1276,20 @@
       "photo_verification": "Official headshot from the Town of Penetanguishene council page, shown with this member's name and office. Image alt text on the Town page: \"Councillor Bonita Desroches\".",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): 705-549-9933, bonitadesroches1@gmail.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): 705-549-9933, bonitadesroches1@gmail.com.",
+      "top_points": [
+        "Advance the Multi-Use Recreation Centre.",
+        "Implement the Town Dock Master Plan and improve parks, trails and recreation.",
+        "Economic development and a vibrant Main Street that supports local businesses.",
+        "Programs and services for all ages, including youth, seniors and active transportation.",
+        "Responsible financial management that provides value for taxpayers."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 8, 2026",
       "sources": [
         "https://www.penetanguishene.ca/townhall/council/council-members/",
-        "https://www.penetanguishene.ca/townhall/elections"
+        "https://www.penetanguishene.ca/townhall/elections",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/bonita-desroches-seeks-to-turn-plans-into-action-in-bid-for-re-election-in-penetanguishene-12751249"
       ]
     },
     {
@@ -1308,11 +1321,7 @@
       "contact_source": "https://www.penetanguishene.ca/townhall/elections",
       "contact_from_candidate": [],
       "link_note": "The Facebook web address reads \"douglaslerouxformayor\", but the page is named \"Douglas Leroux For Councillor of Penetanguishene\". The candidate is certified for Councillor, not Mayor.",
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/douglas-leroux-wants-to-be-your-voice-at-the-table-in-penetanguishene-12749709",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": "https://www.penetanguishene.ca/media/ra3c24wr/doug-leroux.jpg",
       "photo_source_url": "https://www.penetanguishene.ca/townhall/council/council-members/",
@@ -1321,14 +1330,21 @@
       "photo_verification": "Official headshot from the Town of Penetanguishene council page, shown with this member's name and office. Image alt text on the Town page: \"Councillor Doug Leroux\".",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): 705-528-4833 (cell); 705-549-8593 (home), dleroux@csolve.net. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): 705-528-4833 (cell); 705-549-8593 (home), dleroux@csolve.net.",
+      "top_points": [
+        "Keep taxes to a minimum, no higher than the rate of inflation.",
+        "Continued maintenance, replacement and repair of roads and sidewalks.",
+        "Bring the Robert Street West wells back on stream as a secondary town water source.",
+        "Downtown Main Street revitalization, including the collapsed building and Commodore Hotel issues.",
+        "Control density in planning and keep moving on a new community centre."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 8, 2026",
       "sources": [
         "https://www.penetanguishene.ca/townhall/council/council-members/",
         "https://www.penetanguishene.ca/townhall/elections",
-        "https://www.facebook.com/douglaslerouxformayor"
+        "https://www.facebook.com/douglaslerouxformayor",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/douglas-leroux-wants-to-be-your-voice-at-the-table-in-penetanguishene-12749709"
       ]
     },
     {
@@ -1418,11 +1434,7 @@
       "contact_source": "https://www.penetanguishene.ca/townhall/elections",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/martin-prost-promises-long-term-approach-to-penetanguishenes-challenges-12772689",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": null,
       "photo_source_url": "https://www.midlandtoday.ca/2026-municipal-election-news/martin-prost-promises-long-term-approach-to-penetanguishenes-challenges-12772689",
@@ -1431,12 +1443,19 @@
       "photo_verification": "Photo supplied and confirmed by Jonathan Wallace (Oct 9 2026).",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): 705-500-8606 (cell); 705-549-8606 (home), prostlaw@gmail.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): 705-500-8606 (cell); 705-549-8606 (home), prostlaw@gmail.com.",
+      "top_points": [
+        "Take a long-term view of problems instead of quick fixes.",
+        "Give residents notice of major decisions and encourage their input.",
+        "Safeguard drinking water quality and quantity, including protection for private wells.",
+        "Create a committee to help residents hit hard by the tariff war, and actively attract new industry.",
+        "Create opportunities so youth don't have to leave for jobs and careers."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 14, 2026",
       "sources": [
-        "https://www.penetanguishene.ca/townhall/elections"
+        "https://www.penetanguishene.ca/townhall/elections",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/martin-prost-promises-long-term-approach-to-penetanguishenes-challenges-12772689"
       ]
     },
     {
@@ -1468,11 +1487,7 @@
       "contact_source": "https://www.penetanguishene.ca/townhall/elections",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/marie-richardson-hopes-vast-municipal-work-experience-leads-to-penetanguishene-council-seat-12819642",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": null,
       "photo_source_url": "https://www.midlandtoday.ca/2026-municipal-election-news/marie-richardson-hopes-vast-municipal-work-experience-leads-to-penetanguishene-council-seat-12819642",
@@ -1481,12 +1496,18 @@
       "photo_verification": "Full-size main photo from the linked local news article (photo only; article not cited as a source).",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): marie.richardson.scenic773@passfwd.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): marie.richardson.scenic773@passfwd.com.",
+      "top_points": [
+        "Responsible budgeting that weighs what we spend on, why, and the long-term costs.",
+        "Carefully consider new infrastructure, including future maintenance and replacement costs.",
+        "Transparent, efficient governance with meaningful public input.",
+        "Work with residents rather than simply making decisions for them."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 25, 2026",
       "sources": [
-        "https://www.penetanguishene.ca/townhall/elections"
+        "https://www.penetanguishene.ca/townhall/elections",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/marie-richardson-hopes-vast-municipal-work-experience-leads-to-penetanguishene-council-seat-12819642"
       ]
     },
     {
@@ -1518,11 +1539,7 @@
       "contact_source": "https://www.penetanguishene.ca/townhall/elections",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/genuine-commitment-to-our-community-jill-st-amant-eyes-return-to-penetanguishene-council-12795550",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": null,
       "photo_source_url": "https://www.simcoe.com/opinion/contributors/jill-st-amant---penetanguishene-councillor/article_4b2ad526-042d-55af-94a0-bb23e4c963de.html",
@@ -1531,12 +1548,19 @@
       "photo_verification": "Photo supplied and confirmed by Jonathan Wallace (Oct 9 2026).",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): 705-529-3652, jillmstamant@gmail.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): 705-529-3652, jillmstamant@gmail.com.",
+      "top_points": [
+        "Responsible financial management.",
+        "Thoughtful growth and development that respects the town's history and character.",
+        "Maintaining and improving infrastructure.",
+        "Supporting local businesses and organizations.",
+        "Accessibility, community well-being and meaningful opportunities for residents to be heard."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 19, 2026",
       "sources": [
-        "https://www.penetanguishene.ca/townhall/elections"
+        "https://www.penetanguishene.ca/townhall/elections",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/genuine-commitment-to-our-community-jill-st-amant-eyes-return-to-penetanguishene-council-12795550"
       ]
     },
     {
@@ -1568,11 +1592,7 @@
       "contact_source": "https://www.penetanguishene.ca/townhall/elections",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/george-vadeboncoeur-looking-to-be-re-elected-in-penetanguishene-12773991",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": "https://www.penetanguishene.ca/media/kmvgu2kk/george-vadeboncoeur.jpg",
       "photo_source_url": "https://www.penetanguishene.ca/townhall/council/council-members/",
@@ -1581,13 +1601,20 @@
       "photo_verification": "Official headshot from the Town of Penetanguishene council page, shown with this member's name and office. Image alt text on the Town page: \"Councillor George Vadeboncoeur\".",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): 705-441-3244 (cell); 705-549-1906 (home), vadebong@csolve.net. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): 705-441-3244 (cell); 705-549-1906 (home), vadebong@csolve.net.",
+      "top_points": [
+        "Move the new Multi-Use Recreation Centre (new arena) to its next major milestone and pursue senior government funding.",
+        "Ensure the odour issues at the Main Street wastewater treatment plant are addressed.",
+        "Support more affordable housing with the County of Simcoe, with appropriate standards for higher-density infill.",
+        "Ensure the Ojibway Landing redevelopment delivers lasting benefits for Penetanguishene.",
+        "Put additional budget funds toward road and sidewalk repairs."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 15, 2026",
       "sources": [
         "https://www.penetanguishene.ca/townhall/council/council-members/",
-        "https://www.penetanguishene.ca/townhall/elections"
+        "https://www.penetanguishene.ca/townhall/elections",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/george-vadeboncoeur-looking-to-be-re-elected-in-penetanguishene-12773991"
       ]
     },
     {
@@ -1619,11 +1646,7 @@
       "contact_source": "https://www.penetanguishene.ca/townhall/elections",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/penetanguishene-council-candidate-bill-waters-highlights-communication-and-fiscal-focus-12799768",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": "https://www.penetanguishene.ca/media/wgrczwvi/bill-waters.jpg",
       "photo_source_url": "https://www.midlandtoday.ca/2026-municipal-election-news/penetanguishene-council-candidate-bill-waters-highlights-communication-and-fiscal-focus-12799768",
@@ -1632,13 +1655,17 @@
       "photo_verification": "Full-size main photo from the linked local news article (photo only; article not cited as a source).",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): 705-795-2455, bill@marlynns.ca. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): 705-795-2455, bill@marlynns.ca.",
+      "top_points": [
+        "Better communication: open, clear and accessible information about what happens at Town Hall and why.",
+        "Common sense finances: asking whether we need it, can afford it, or there is a better way."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 21, 2026",
       "sources": [
         "https://www.penetanguishene.ca/townhall/council/council-members/",
-        "https://www.penetanguishene.ca/townhall/elections"
+        "https://www.penetanguishene.ca/townhall/elections",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/penetanguishene-council-candidate-bill-waters-highlights-communication-and-fiscal-focus-12799768"
       ]
     },
     {
@@ -2625,11 +2652,7 @@
       "contact_source": "https://www.tiny.ca/elections/registered-candidates-contact-information",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/steffen-walma-running-for-fourth-term-on-tiny-township-council-12773987",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": "https://www.tiny.ca/sites/default/files/2022-11/Councillor%20Steffen%20Walma.jpg",
       "photo_source_url": "https://www.tiny.ca/township-hall/council-committees/members-council",
@@ -2638,14 +2661,20 @@
       "photo_verification": "Official headshot from the Township of Tiny council page, shown with this member's name and office. Image alt text on the Township page: \"Headshot of Councillor Steffen Walma\".",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): 705-956-1300, steffen.t.walma@gmail.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): 705-956-1300, steffen.t.walma@gmail.com.",
+      "top_points": [
+        "Advocate for Tiny at the County, Queen's Park and Ottawa, and secure outside funding to ease the burden on taxpayers.",
+        "Execute the asset management plan, build reserves and invest in roads, bridges, emergency services and facilities.",
+        "Protect Tiny's forests, farmland, water and shoreline while supporting the rural economy.",
+        "Continued investment in parks, recreation and community spaces."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 14, 2026",
       "sources": [
         "https://www.tiny.ca/township-hall/council-committees/members-council",
         "https://www.tiny.ca/elections/registered-candidates-contact-information",
-        "https://www.facebook.com/ReElectWalma4Tiny"
+        "https://www.facebook.com/ReElectWalma4Tiny",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/steffen-walma-running-for-fourth-term-on-tiny-township-council-12773987"
       ]
     },
     {
@@ -2912,11 +2941,7 @@
       "contact_source": "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/sylvia-bumstead-highlights-safety-affordability-in-campaign-for-tay-township-council-12836538",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": "https://www.tay.ca/media/lg5dq0e3/sylvia-bumstead_110.png",
       "photo_source_url": "https://www.tay.ca/municipal-government/mayor-and-council/council-members/",
@@ -2925,13 +2950,20 @@
       "photo_verification": "Official headshot from the Township of Tay council page, shown with this member's name and office.",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): 705-534-7024, sylviab@xplore.net. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): 705-534-7024, sylviab@xplore.net.",
+      "top_points": [
+        "A safe, sustainable and affordable community.",
+        "Maintain and protect agricultural lands for future generations.",
+        "Promote the natural and historical heritage of rural and settlement areas.",
+        "Encourage growth in Victoria Harbour, Port McNicoll, Waubaushene and Waverley.",
+        "Hear residents' concerns and be their voice at council."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Oct 5, 2026",
       "sources": [
         "https://www.tay.ca/municipal-government/mayor-and-council/council-members/",
-        "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf"
+        "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/sylvia-bumstead-highlights-safety-affordability-in-campaign-for-tay-township-council-12836538"
       ]
     },
     {
@@ -2963,11 +2995,7 @@
       "contact_source": "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/candidate-says-listening-and-practical-solutions-will-guide-tay-township-council-run-12796745",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": null,
       "photo_source_url": "https://www.midlandtoday.ca/2026-municipal-election-news/candidate-says-listening-and-practical-solutions-will-guide-tay-township-council-run-12796745",
@@ -2976,12 +3004,19 @@
       "photo_verification": "Full-size main photo from the linked local news article (photo only; article not cited as a source).",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): Jacqueline.dawson@hotmail.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): Jacqueline.dawson@hotmail.com.",
+      "top_points": [
+        "Traffic and road safety, including better responses to speeding.",
+        "Long-term fixes for roads, drainage, ditches and flooding.",
+        "Responsible growth that considers roads, water and sewage infrastructure.",
+        "Protect lakes, waterways, farmland, wetlands and wildlife.",
+        "Parks, splash pads, trails, boat launches and activities for families and youth."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 19, 2026",
       "sources": [
-        "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf"
+        "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/candidate-says-listening-and-practical-solutions-will-guide-tay-township-council-run-12796745"
       ]
     },
     {
@@ -3063,11 +3098,7 @@
       "contact_source": "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/kevin-harrod-cites-municipal-bylaw-experience-in-bid-for-tay-township-council-12776743",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": null,
       "photo_source_url": "https://www.midlandtoday.ca/2026-municipal-election-news/kevin-harrod-cites-municipal-bylaw-experience-in-bid-for-tay-township-council-12776743",
@@ -3076,12 +3107,19 @@
       "photo_verification": "Full-size main photo from the linked local news article (photo only; article not cited as a source).",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): 705-309-5453, kevinrharrod62@gmail.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): 705-309-5453, kevinrharrod62@gmail.com.",
+      "top_points": [
+        "Responsible spending and respect for taxpayers.",
+        "Open, transparent and accountable government.",
+        "Strong municipal services and infrastructure.",
+        "Responsible growth that protects Tay's character.",
+        "Listening to residents and addressing concerns."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 16, 2026",
       "sources": [
-        "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf"
+        "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/kevin-harrod-cites-municipal-bylaw-experience-in-bid-for-tay-township-council-12776743"
       ]
     },
     {
@@ -3211,11 +3249,7 @@
       "contact_source": "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/tay-township-candidate-judy-larmand-points-to-four-years-of-experience-on-council-12836621",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": "https://www.tay.ca/media/k2nefrqx/judy-laramond_110.png",
       "photo_source_url": "https://www.tay.ca/municipal-government/mayor-and-council/council-members/",
@@ -3224,14 +3258,20 @@
       "photo_verification": "Official headshot from the Township of Tay council page, shown with this member's name and office. Township file name is spelled \"judy-laramond\"; it sits beside Councillor Judy Larmand's name and contact details.",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): 705-627-8895, jlarmand@rogers.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): 705-627-8895, jlarmand@rogers.com.",
+      "top_points": [
+        "Keep tax increases as low as reasonably possible.",
+        "Maintain dependable municipal services and infrastructure.",
+        "Manage growth responsibly while protecting farmland, waterfront and rural character.",
+        "Support for youth, seniors, families and community organizations."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Oct 4, 2026",
       "sources": [
         "https://www.tay.ca/municipal-government/mayor-and-council/council-members/",
         "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf",
-        "https://www.facebook.com/profile.php?id=61592127311948"
+        "https://www.facebook.com/profile.php?id=61592127311948",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/tay-township-candidate-judy-larmand-points-to-four-years-of-experience-on-council-12836621"
       ]
     },
     {
@@ -3268,11 +3308,7 @@
       "contact_source": "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/paul-raymond-running-for-a-third-term-on-tay-township-council-12758775",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": "https://www.tay.ca/media/p1raacpa/paul-raymond_110.png",
       "photo_source_url": "https://www.tay.ca/municipal-government/mayor-and-council/council-members/",
@@ -3281,14 +3317,21 @@
       "photo_verification": "Official headshot from the Township of Tay council page, shown with this member's name and office.",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): 705-543-9858, paulrayfortay@gmail.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): 705-543-9858, paulrayfortay@gmail.com.",
+      "top_points": [
+        "Control capital and operating costs to keep tax rates in check.",
+        "Push for an affordable community centre in Waubaushene.",
+        "Push for better OPP coverage to make streets safer.",
+        "Stay accountable and transparent to taxpayers.",
+        "Represent all residents wherever they live in Tay."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Sep 10, 2026",
       "sources": [
         "https://www.tay.ca/municipal-government/mayor-and-council/council-members/",
         "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf",
-        "https://www.facebook.com/profile.php?id=61591820138866"
+        "https://www.facebook.com/profile.php?id=61591820138866",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/paul-raymond-running-for-a-third-term-on-tay-township-council-12758775"
       ]
     },
     {
@@ -3320,11 +3363,7 @@
       "contact_source": "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf",
       "contact_from_candidate": [],
       "link_note": null,
-      "further_reading": {
-        "label": "Candidate profile (MidlandToday)",
-        "url": "https://www.midlandtoday.ca/2026-municipal-election-news/after-12-years-on-tay-council-sandy-talbot-still-seeking-opportunities-to-help-township-grow-12843686",
-        "note": "Further reading only. Not used as a source for this guide."
-      },
+      "further_reading": null,
       "contact_note": null,
       "photo_url": "https://www.tay.ca/media/fmifpp01/sandy-talbot_110.png",
       "photo_source_url": "https://www.tay.ca/municipal-government/mayor-and-council/council-members/",
@@ -3333,13 +3372,19 @@
       "photo_verification": "Official headshot from the Township of Tay council page, shown with this member's name and office.",
       "photo_rejected_reason": null,
       "acclamation_note": null,
-      "synopsis": "Contact (from the official candidate list): 705-534-3127, sandy_talbot@outlook.com. No platform was found in our research. To connect with the candidate, reach out using their contact information to discuss their policies.",
-      "top_points": [],
-      "no_platform_found": true,
-      "platform_source": null,
+      "synopsis": "Contact (from the official candidate list): 705-534-3127, sandy_talbot@outlook.com.",
+      "top_points": [
+        "Maintain a balanced budget, balancing fiscal responsibility with needed investment.",
+        "Progress on updating the fire station and community space in Waubaushene.",
+        "Maintain and improve infrastructure.",
+        "Economic development, technology and recreation."
+      ],
+      "no_platform_found": false,
+      "platform_source": "MidlandToday candidate profile, Oct 5, 2026",
       "sources": [
         "https://www.tay.ca/municipal-government/mayor-and-council/council-members/",
-        "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf"
+        "https://tay.ca/media/n0tpgisb/2026-certified-candidates-contact-information.pdf",
+        "https://www.midlandtoday.ca/2026-municipal-election-news/after-12-years-on-tay-council-sandy-talbot-still-seeking-opportunities-to-help-township-grow-12843686"
       ]
     },
     {

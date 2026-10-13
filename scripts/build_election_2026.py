@@ -45,7 +45,7 @@ NO_PLATFORM = (
     "reach out using their contact information to discuss their policies."
 )
 DISCLAIMER = (
-    "The information comes from municipal and candidate sources as of Oct 9, 2026. "
+    "The information comes from municipal, candidate and news sources as of Oct 13, 2026. "
     "This is a non-partisan resource and it does not endorse any candidate. "
     "Candidates can contact Jonathan at jonathan@faristeam.ca with corrections."
 )
@@ -553,7 +553,9 @@ def candidate_page(candidate: dict, muni: dict) -> str:
         if not source or source in seen or source == further_url:
             continue
         seen.add(source)
-        if source.startswith(("http://", "https://")):
+        if source.startswith(("http://", "https://")) and "midlandtoday.ca/" in source:
+            sources.append(f"<li>{ext_link(source, candidate.get('platform_source') or 'MidlandToday candidate profile')}</li>")
+        elif source.startswith(("http://", "https://")):
             sources.append(f"<li>{ext_link(source)}</li>")
         else:
             sources.append(f"<li>{esc(source)}</li>")

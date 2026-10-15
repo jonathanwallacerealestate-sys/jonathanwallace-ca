@@ -187,7 +187,7 @@ def main():
     h = re.sub(r'(<meta name="twitter:description" content=")[^"]*(")', r'\1' + NEW_DESC + r'\2', h, count=1)
     h = h.replace("assets/img/market-aug-24-30-2026.jpg", NEW_HERO)
     h = re.sub(r'(<img src="' + re.escape(NEW_HERO) + r'" alt=")[^"]*(")', r'\1' + NEW_HERO_ALT + r'\2', h, count=1)
-    h = re.sub(r'<figcaption>[^<]*</figcaption>', f'<figcaption>{NEW_HERO_CAP}</figcaption>', h, count=1)
+    h = re.sub(r'\s*<figcaption>[^<]*</figcaption>', '', h)  # standing rule: no caption under hero photo
     h = h.replace(OLD_WEEK, NEW_WEEK)
     h = h.replace(OLD_DATE, NEW_DATE)
     h = h.replace(OLD_SLUG + ".html", NEW_SLUG + ".html")

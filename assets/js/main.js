@@ -361,8 +361,28 @@
      granted; Decline records the choice and leaves everything denied. */
   var ga4Loaded = false;
   window.dataLayer = window.dataLayer || [];
-  function gtag() { window.dataLayer.push(arguments); }
-  window.gtag = gtag;
+  /* GTM in the page head loads gtag.js on its own. If this file then replaces
+     window.gtag with a stub, the library keeps calling the stub and throws
+     inside googletagmanager.com. Clarity records that as "Script error."
+     Keep the function GTM already installed, and do not add a second copy of
+     the same gtag.js. */
+  if (typeof window.gtag !== 'function') {
+    window.gtag = function () { window.dataLayer.push(arguments); };
+  }
+  function gtag() { window.gtag.apply(window, arguments); }
+  function gtagAlreadyLoaded() {
+    var nodes = document.getElementsByTagName('script');
+    for (var i = 0; i < nodes.length; i++) {
+      var src = nodes[i].src || '';
+      var code = nodes[i].textContent || '';
+      if (src.indexOf('googletagmanager.com/gtag/js') !== -1 && src.indexOf(GA4_MEASUREMENT_ID) !== -1) return true;
+      /* The GTM snippet is inline in the head and inserts gtag.js itself.
+         Checking only for an existing gtag.js tag races that insert and loads
+         a second copy. */
+      if (src.indexOf('googletagmanager.com/gtm.js') !== -1 || code.indexOf('GTM-P36FJB8L') !== -1) return true;
+    }
+    return false;
+  }
   function loadGA4() {
     if (ga4Loaded || !GA4_MEASUREMENT_ID) return;
     ga4Loaded = true;
@@ -378,10 +398,12 @@
     });
     gtag('set', 'url_passthrough', true);
     gtag('set', 'ads_data_redaction', true);
-    var s = document.createElement('script');
-    s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_MEASUREMENT_ID;
-    document.head.appendChild(s);
+    if (!gtagAlreadyLoaded()) {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_MEASUREMENT_ID;
+      document.head.appendChild(s);
+    }
     gtag('js', new Date());
     gtag('config', GA4_MEASUREMENT_ID, { send_page_view: true });
     if (GOOGLE_ADS_ID) gtag('config', GOOGLE_ADS_ID); /* same gtag.js; conversions modeled until Accept */

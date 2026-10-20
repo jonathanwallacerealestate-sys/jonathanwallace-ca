@@ -217,6 +217,10 @@ body.election .el > .el-wrap > h1 {
   margin-bottom: 36px;
 }
 
+body.election .el-townpage > .el-wrap > h1 {
+  margin-bottom: 14px;
+}
+
 body.election .el-office {
   margin-top: 40px;
 }
@@ -413,6 +417,281 @@ body.election .el-sources li {
   body.election .el-people {
     grid-template-columns: 1fr 1fr;
     column-gap: 28px;
+  }
+}
+
+body.election .el-summary {
+  margin: 0;
+  max-width: 40rem;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  color: #3A3833;
+}
+
+body.election .el-jump {
+  position: sticky;
+  top: 74px;
+  z-index: 40;
+  margin-top: 18px;
+  background: rgba(247, 243, 236, 0.96);
+  backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+body.election .el-jump-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  scrollbar-width: none;
+}
+
+body.election .el-jump-row::-webkit-scrollbar {
+  display: none;
+}
+
+body.election .el-jump a {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--navy);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+body.election .el-jump a:hover,
+body.election .el-jump a:focus-visible {
+  border-color: var(--copper);
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
+}
+
+body.election .el-townpage .el-office,
+body.election .el-vote,
+body.election .el-keydates,
+body.election .el-ward {
+  scroll-margin-top: 150px;
+}
+
+body.election .el-names {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.election .el-names li {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  min-height: 48px;
+  border-top: 1px solid var(--line);
+}
+
+body.election .el-townpage .el-office {
+  margin-top: 16px;
+}
+
+body.election .el-townpage .el-office:first-of-type {
+  margin-top: 4px;
+}
+
+body.election .el-names a {
+  flex: 1 1 auto;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: 1.28rem;
+  line-height: 1.25;
+  text-decoration: none;
+  padding: 12px 0;
+}
+
+body.election .el-names a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.election .el-office:has(.el-photos[open]) > .el-names,
+body.election .el-ward:has(.el-photos[open]) > .el-names {
+  display: none;
+}
+
+body.election .el-photos {
+  margin: 4px 0 8px;
+}
+
+body.election .el-photos summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--navy);
+  list-style: none;
+}
+
+body.election .el-photos summary::-webkit-details-marker {
+  display: none;
+}
+
+body.election .el-photos summary::marker {
+  content: "";
+}
+
+body.election .el-photos[open] .el-photos-show,
+body.election .el-photos:not([open]) .el-photos-hide {
+  display: none;
+}
+
+body.election .el-join {
+  margin-top: 32px;
+  padding: 22px 20px;
+  background: var(--navy);
+  color: #F7F3EC;
+  border-top: 3px solid var(--copper);
+}
+
+body.election .el-join p {
+  margin: 0 0 16px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+body.election .el-join a.btn {
+  color: #1B1B1B;
+  text-decoration: none;
+}
+
+body.election .el-vote,
+body.election .el-keydates {
+  margin-top: 40px;
+}
+
+body.election .el-vote h2,
+body.election .el-keydates h2 {
+  font-size: clamp(1.7rem, 4vw, 2.1rem);
+}
+
+body.election .el-vote > p,
+body.election .el-keydate span {
+  font-size: 1.08rem;
+  line-height: 1.5;
+}
+
+body.election .el-vote > p {
+  margin: 12px 0 0;
+  max-width: 40rem;
+}
+
+body.election .el-kv,
+body.election .el-keydate {
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+body.election .el-kv {
+  display: grid;
+  gap: 4px;
+}
+
+body.election .el-kv b {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+
+body.election .el-office-head h3 {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+}
+
+body.election .el-keydate b {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--navy);
+}
+
+body.election .el-kv span,
+body.election .el-keydate span {
+  display: block;
+  margin-top: 4px;
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+body.election .el-keydate.is-hot {
+  padding-left: 14px;
+  box-shadow: inset 4px 0 0 var(--copper);
+}
+
+body.election .el-vote-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 16px 0 0;
+}
+
+body.election .el-vote-links a {
+  color: var(--navy);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.election .el-ward {
+  margin-top: 18px;
+}
+
+@media (max-width: 720px) {
+  body.election .el-townpage .el-crumbs {
+    margin-top: 22px;
+  }
+  body.election .el-towns {
+    gap: 10px;
+    margin-top: 20px;
+  }
+  body.election .el-town {
+    padding: 16px 18px;
+  }
+  body.election .el-town-name {
+    font-size: 1.85rem;
+  }
+  body.election .el-join .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 720px) {
+  body.election .el-kv {
+    grid-template-columns: 190px 1fr;
+    gap: 16px;
+    align-items: baseline;
+  }
+  body.election .el-kv span,
+  body.election .el-keydate span {
+    margin-top: 0;
+  }
+  body.election .el-keydate {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 16px;
+    align-items: baseline;
   }
 }
 

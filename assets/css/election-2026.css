@@ -52,6 +52,12 @@ body.election .el-byline strong {
   font-weight: 700;
 }
 
+body.election .el-results-note {
+  margin: 22px 0 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
 body.election .el-eday {
   margin: 28px 0 0;
   font-family: var(--serif);

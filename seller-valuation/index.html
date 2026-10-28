@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P36FJB8L');</script>
+<!-- End Google Tag Manager -->
+<title>What's your home really worth? | Jonathan Wallace, REALTOR®</title>
+<meta name="description" content="A true value from Jonathan Wallace personally, within 24 hours. Not AI, not an online tool. Free evaluation for Midland, Penetanguishene, Tiny, Tay and Wasaga Beach.">
+<link rel="canonical" href="https://jonathanwallace.ca/seller-valuation/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --charcoal:#1B1B1B;
+  --charcoal-deep:#141414;
+  --ivory:#F7F3EC;
+  --ivory-dark:#EAE4D8;
+  --gold:#C9A96A;
+  --gold-dark:#B3945A;
+  --paper:#FDFBF7;
+  --muted:#6E675C;
+  --line:rgba(30,27,21,.12);
+  --serif:"Playfair Display", Georgia, serif;
+  --sans:"Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --radius:14px;
+  --max:560px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:var(--sans);
+  color:var(--charcoal);
+  background:var(--ivory);
+  line-height:1.55;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+a{color:var(--gold-dark);text-decoration:none;}
+a:hover{color:var(--charcoal);}
+.draft-banner{
+  background:var(--charcoal);
+  color:var(--ivory);
+  text-align:center;
+  font-size:.7rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:7px 12px;
+}
+.draft-banner span{color:var(--gold);}
+.shell{flex:1;display:flex;flex-direction:column;align-items:center;padding:28px 20px 48px;}
+.logo{
+  text-align:center;
+  margin:8px 0 28px;
+}
+.logo__name{
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:1.25rem;
+  letter-spacing:-.02em;
+  color:var(--charcoal);
+  display:block;
+}
+.logo__tag{
+  display:block;
+  font-size:.58rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:600;
+  margin-top:6px;
+}
+.card{
+  width:100%;
+  max-width:var(--max);
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:clamp(26px,5vw,40px) clamp(20px,4vw,36px);
+  box-shadow:0 18px 50px -28px rgba(22,19,13,.35);
+}
+h1{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(1.85rem,5.5vw,2.35rem);
+  line-height:1.15;
+  letter-spacing:-.015em;
+  margin:0 0 12px;
+  text-align:center;
+  color:var(--charcoal);
+}
+.subhead{
+  text-align:center;
+  color:var(--muted);
+  font-size:1.02rem;
+  margin:0 0 28px;
+  line-height:1.5;
+}
+.field{margin-bottom:14px;}
+.field label{
+  display:block;
+  font-weight:600;
+  font-size:.86rem;
+  margin-bottom:6px;
+  color:var(--charcoal);
+}
+.field input{
+  width:100%;
+  padding:15px 16px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  font-family:var(--sans);
+  font-size:1rem;
+  background:#fff;
+  color:var(--charcoal);
+  transition:.15s;
+  appearance:none;
+  -webkit-appearance:none;
+}
+.field input:focus{
+  outline:none;
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(201,169,106,.22);
+}
+.field--address input{border-radius:16px;padding:17px 18px;font-size:1.05rem;}
+.helper{
+  font-size:.8rem;
+  color:var(--muted);
+  margin:8px 0 0;
+  text-align:center;
+  line-height:1.4;
+}
+.consent{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  font-size:.82rem;
+  color:var(--muted);
+  margin:18px 0 20px;
+  line-height:1.45;
+}
+.consent input{
+  margin-top:3px;
+  flex:0 0 auto;
+  width:18px;
+  height:18px;
+  accent-color:var(--gold);
+}
+.btn{
+  display:flex;
+  width:100%;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:1.05rem;
+  padding:17px 24px;
+  border-radius:999px;
+  border:2px solid var(--gold);
+  background:var(--gold);
+  color:var(--charcoal);
+  cursor:pointer;
+  transition:.2s ease;
+  line-height:1.1;
+}
+.btn:hover{background:var(--gold-dark);border-color:var(--gold-dark);}
+.btn--ghost{
+  background:transparent;
+  border-color:var(--charcoal);
+  color:var(--charcoal);
+  margin-top:12px;
+}
+.btn--ghost:hover{background:var(--charcoal);color:var(--paper);}
+.btn:disabled{opacity:.55;cursor:not-allowed;}
+.trust{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px 14px;
+  margin:22px 0 0;
+  padding:0;
+  list-style:none;
+  max-width:var(--max);
+  width:100%;
+}
+.trust li{
+  font-size:.72rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:600;
+}
+.trust li::before{
+  content:"";
+  display:inline-block;
+  width:5px;height:5px;
+  border-radius:50%;
+  background:var(--gold);
+  margin-right:8px;
+  vertical-align:middle;
+}
+.page{display:none;width:100%;flex-direction:column;align-items:center;}
+.page.is-active{display:flex;}
+.thanks-check{
+  width:56px;height:56px;border-radius:50%;
+  background:rgba(201,169,106,.18);
+  border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 16px;
+  font-size:1.5rem;color:var(--charcoal);
+}
+.optional{
+  margin-top:28px;
+  border-top:1px solid var(--line);
+  padding-top:22px;
+}
+.optional__toggle{
+  width:100%;
+  background:transparent;
+  border:0;
+  padding:0;
+  cursor:pointer;
+  text-align:left;
+  font-family:var(--sans);
+}
+.optional__toggle .label{
+  font-family:var(--serif);
+  font-size:1.25rem;
+  color:var(--charcoal);
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.optional__toggle .hint{
+  display:block;
+  margin-top:6px;
+  font-size:.9rem;
+  color:var(--muted);
+  font-weight:400;
+}
+.chev{
+  width:28px;height:28px;border-radius:50%;
+  border:1px solid var(--line);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:.85rem;color:var(--muted);flex:0 0 auto;
+  transition:transform .2s;
+}
+.optional.is-open .chev{transform:rotate(180deg);}
+.optional__body{display:none;margin-top:20px;}
+.optional.is-open .optional__body{display:block;}
+.chip-block{margin-bottom:22px;}
+.chip-block h3{
+  font-family:var(--sans);
+  font-size:.88rem;
+  font-weight:700;
+  margin:0 0 10px;
+  color:var(--charcoal);
+}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{
+  appearance:none;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--charcoal);
+  font-family:var(--sans);
+  font-size:.86rem;
+  font-weight:600;
+  padding:10px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  transition:.15s;
+  line-height:1.2;
+  max-width:100%;
+}
+.chip:hover{border-color:var(--gold);}
+.chip.is-selected{
+  background:var(--charcoal);
+  border-color:var(--charcoal);
+  color:var(--paper);
+}
+.guide{
+  background:var(--ivory);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px 16px;
+  margin-bottom:14px;
+}
+.guide h3{
+  font-family:var(--sans);
+  font-size:.86rem;
+  font-weight:700;
+  margin:0 0 8px;
+}
+.guide ul{margin:0;padding-left:1.1em;color:var(--muted);font-size:.9rem;}
+.guide li{margin-bottom:4px;}
+.upload{
+  display:block;
+  border:2px dashed rgba(201,169,106,.55);
+  border-radius:16px;
+  padding:22px 16px;
+  text-align:center;
+  background:rgba(201,169,106,.07);
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+.upload input{
+  position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;
+  margin:0;padding:0;border:0;font-size:16px;
+}
+.upload strong{display:block;color:var(--charcoal);margin-bottom:4px;font-size:.98rem;}
+.upload p{margin:0;color:var(--muted);font-size:.86rem;}
+#photoList{list-style:none;margin:12px 0 0;padding:0;text-align:left;font-size:.82rem;color:var(--muted);}
+#photoList li{padding:5px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere;}
+#photoError{color:#8B2E2E;font-size:.86rem;margin:8px 0 0;display:none;text-align:center;}
+.hp{position:absolute;left:-9999px;}
+.footer-line{
+  margin-top:28px;
+  text-align:center;
+  font-size:.78rem;
+  color:var(--muted);
+  line-height:1.5;
+  max-width:var(--max);
+  width:100%;
+}
+.footer-line strong{color:var(--charcoal);font-weight:700;}
+.reco{
+  margin-top:10px;
+  font-size:.7rem;
+  color:var(--muted);
+  text-align:center;
+  max-width:var(--max);
+  line-height:1.45;
+}
+.status{
+  display:none;
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:rgba(201,169,106,.15);
+  border:1px solid rgba(201,169,106,.4);
+  color:var(--charcoal);
+  font-size:.9rem;
+  text-align:center;
+}
+.status.is-on{display:block;}
+@media(min-width:720px){
+  .shell{padding:40px 24px 64px;}
+  .logo{margin-bottom:36px;}
+}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P36FJB8L"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="draft-banner">Draft only · <span>noindex</span> · not published</div>
+<main class="shell">
+  <div class="logo">
+    <span class="logo__name">Jonathan Wallace</span>
+    <span class="logo__tag">Your Georgian Bay Specialist</span>
+  </div>
+
+  <section class="page is-active" id="page1" aria-label="Home value request">
+    <div class="card">
+      <h1>What's your home really worth?</h1>
+      <p class="subhead">A true value from me personally, within 24 hours. Not AI, not an online tool.</p>
+      <form id="leadForm" data-beacon="off" novalidate>
+        <input type="hidden" name="campaign_tag" value="Ads:2026-10">
+        <p class="hp"><label>Leave blank <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+        <div class="field field--address">
+          <label for="address">Property address</label>
+          <input id="address" name="address" type="text" placeholder="Enter your home address" required autocomplete="street-address">
+          <p class="helper">Live in a condo? Include your unit number. Example: 12 Bay St #203, Midland, ON</p>
+        </div>
+        <div class="field">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="mobile">Mobile</label>
+          <input id="mobile" name="mobile" type="tel" required autocomplete="tel" inputmode="tel">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" inputmode="email">
+        </div>
+        <label class="consent">
+          <input type="checkbox" name="casl_consent" id="consent" required>
+          <span>I agree to be contacted by Jonathan Wallace, REALTOR®, Faris Team Real Estate Brokerage, about my home's value. I can unsubscribe anytime. (CASL)</span>
+        </label>
+        <button class="btn" type="submit" id="leadSubmit">Get my free evaluation</button>
+        <p class="status" id="leadStatus" role="status"></p>
+      </form>
+    </div>
+    <ul class="trust" aria-label="What you get">
+      <li>Not AI</li>
+      <li>Researched personally</li>
+      <li>Within 24 hours</li>
+      <li>No obligation</li>
+    </ul>
+  </section>
+
+  <section class="page" id="page2" aria-label="Thank you and optional details">
+    <div class="card">
+      <div class="thanks-check" aria-hidden="true">✓</div>
+      <h1>You're all set</h1>
+      <p class="subhead">You'll hear from me within 24 hours with a true value of your home. No obligation.</p>
+
+      <div class="optional" id="optionalBlock">
+        <button type="button" class="optional__toggle" id="optionalToggle" aria-expanded="false" aria-controls="optionalBody">
+          <span class="label">Want a sharper number? Add details <span class="chev" aria-hidden="true">▾</span></span>
+          <span class="hint">Optional. A few taps and photos help me refine your evaluation.</span>
+        </button>
+        <div class="optional__body" id="optionalBody">
+          <form id="detailsForm" data-beacon="off" novalidate>
+            <div class="chip-block" data-field="roof_age">
+              <h3>Roof age</h3>
+              <div class="chips" role="group" aria-label="Roof age"></div>
+            </div>
+            <div class="chip-block" data-field="furnace_age">
+              <h3>Furnace / heat pump age</h3>
+              <div class="chips" role="group" aria-label="Furnace or heat pump age"></div>
+            </div>
+            <div class="chip-block" data-field="ac_age">
+              <h3>A/C age</h3>
+              <div class="chips" role="group" aria-label="A/C age"></div>
+            </div>
+            <div class="chip-block" data-field="windows_age">
+              <h3>Windows age</h3>
+              <div class="chips" role="group" aria-label="Windows age"></div>
+            </div>
+            <div class="chip-block" data-field="kitchen">
+              <h3>Kitchen</h3>
+              <div class="chips" role="group" aria-label="Kitchen"></div>
+            </div>
+            <div class="chip-block" data-field="bathrooms">
+              <h3>Bathrooms</h3>
+              <div class="chips" role="group" aria-label="Bathrooms"></div>
+            </div>
+            <div class="chip-block" data-field="flooring">
+              <h3>Flooring</h3>
+              <div class="chips" role="group" aria-label="Flooring"></div>
+            </div>
+            <div class="chip-block" data-field="basement">
+              <h3>Basement</h3>
+              <div class="chips" role="group" aria-label="Basement"></div>
+            </div>
+            <div class="chip-block" data-field="septic_well">
+              <h3>Septic / well (rural)</h3>
+              <div class="chips" role="group" aria-label="Septic or well"></div>
+            </div>
+
+            <div class="guide">
+              <h3>What to photograph</h3>
+              <ul>
+                <li>Curb appeal / front exterior</li>
+                <li>Kitchen</li>
+                <li>Living areas</li>
+                <li>Bedrooms</li>
+                <li>Bathrooms</li>
+                <li>Lower level / basement</li>
+                <li>Backyard / waterfront</li>
+              </ul>
+            </div>
+
+            <label class="upload" id="uploadBox">
+              <input type="file" id="photos" accept="image/*" multiple>
+              <strong>Tap to add photos</strong>
+              <p>Up to 20 images from your phone or computer</p>
+              <ul id="photoList"></ul>
+              <p id="photoError">Please choose 20 images or fewer.</p>
+            </label>
+
+            <button class="btn" type="submit" id="detailsSubmit" style="margin-top:18px;">Send extra details</button>
+            <p class="status" id="detailsStatus" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="footer-line"><strong>Jonathan Wallace, REALTOR®</strong> | Faris Team Real Estate Brokerage</p>
+  <p class="reco">Licensed by the Real Estate Council of Ontario (RECO). Not intended to solicit properties already listed for sale or buyers/sellers under contract.</p>
+</main>
+
+<!--
+  Build-time registration for Netlify Forms. The parser needs this static form
+  in the deployed HTML. Page 2 posts the photo files here (multipart). The lead
+  and the detail answers go to Make as JSON; email is the match key.
+  Not named "seller-valuation": that name is already used by the public sell pages.
+-->
+<form name="seller-valuation-photos" method="POST" action="/" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field" data-beacon="off" hidden>
+  <input type="hidden" name="form-name" value="seller-valuation-photos">
+  <input name="bot-field">
+  <input type="email" name="email">
+  <input type="text" name="name">
+  <input type="text" name="address">
+  <input type="text" name="photo_count">
+  <input type="text" name="roof_age">
+  <input type="text" name="furnace_age">
+  <input type="text" name="ac_age">
+  <input type="text" name="windows_age">
+  <input type="text" name="kitchen">
+  <input type="text" name="bathrooms">
+  <input type="text" name="flooring">
+  <input type="text" name="basement">
+  <input type="text" name="septic_well">
+  <input type="file" name="photo-1" accept="image/*">
+  <input type="file" name="photo-2" accept="image/*">
+  <input type="file" name="photo-3" accept="image/*">
+  <input type="file" name="photo-4" accept="image/*">
+  <input type="file" name="photo-5" accept="image/*">
+  <input type="file" name="photo-6" accept="image/*">
+  <input type="file" name="photo-7" accept="image/*">
+  <input type="file" name="photo-8" accept="image/*">
+  <input type="file" name="photo-9" accept="image/*">
+  <input type="file" name="photo-10" accept="image/*">
+  <input type="file" name="photo-11" accept="image/*">
+  <input type="file" name="photo-12" accept="image/*">
+  <input type="file" name="photo-13" accept="image/*">
+  <input type="file" name="photo-14" accept="image/*">
+  <input type="file" name="photo-15" accept="image/*">
+  <input type="file" name="photo-16" accept="image/*">
+  <input type="file" name="photo-17" accept="image/*">
+  <input type="file" name="photo-18" accept="image/*">
+  <input type="file" name="photo-19" accept="image/*">
+  <input type="file" name="photo-20" accept="image/*">
+</form>
+
+<script src="/assets/js/main.js"></script>
+<script>
+(function () {
+  var LEAD_HOOK = 'https://hook.us2.make.com/hd95rfq9brb8yuubsq5h4dmnbv5my6ie';
+  var DETAILS_HOOK = 'https://hook.us2.make.com/9uj6sqy9bs79lpoc858f6nvgicnd2mdy';
+  var PHOTO_FORM = 'seller-valuation-photos';
+  var MAX = 20;
+  var MAX_EDGE = 1600;
+  var UPLOAD_BUDGET = 7.2 * 1024 * 1024;
+  var AGE = ['0-5 yrs', '5-10 yrs', '10-15 yrs', '15+ / nearing end of life', 'Not sure'];
+  var UPDATE = ['Updated in last 5 yrs', '5-10 yrs', 'Original'];
+  var SEPTIC = ['Inspected/pumped recently', 'Not sure', 'N/A'];
+  var CHIP_MAP = {
+    roof_age: AGE,
+    furnace_age: AGE,
+    ac_age: AGE,
+    windows_age: AGE,
+    kitchen: UPDATE,
+    bathrooms: UPDATE,
+    flooring: UPDATE,
+    basement: UPDATE,
+    septic_well: SEPTIC
+  };
+  var CHIP_FIELDS = ['roof_age', 'furnace_age', 'ac_age', 'windows_age', 'kitchen', 'bathrooms', 'flooring', 'basement', 'septic_well'];
+  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  var selected = {};
+  var lead = { email: '', name: '', address: '' };
+  var leadSent = false;
+  var detailsSent = false;
+
+  try {
+    var stored = JSON.parse(sessionStorage.getItem('jw_sv_lead') || 'null');
+    if (stored && stored.email) lead = stored;
+  } catch (e) {}
+
+  document.querySelectorAll('.chip-block').forEach(function (block) {
+    var field = block.getAttribute('data-field');
+    var opts = CHIP_MAP[field] || [];
+    var wrap = block.querySelector('.chips');
+    opts.forEach(function (label) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'chip';
+      btn.textContent = label;
+      btn.addEventListener('click', function () {
+        wrap.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('is-selected'); });
+        btn.classList.add('is-selected');
+        selected[field] = label;
+      });
+      wrap.appendChild(btn);
+    });
+  });
+
+  var optional = document.getElementById('optionalBlock');
+  var toggle = document.getElementById('optionalToggle');
+  toggle.addEventListener('click', function () {
+    var open = optional.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  var photos = document.getElementById('photos');
+  var photoList = document.getElementById('photoList');
+  var photoError = document.getElementById('photoError');
+  photos.addEventListener('change', function () {
+    photoList.innerHTML = '';
+    photoError.style.display = 'none';
+    if (!photos.files) return;
+    if (photos.files.length > MAX) {
+      photoError.style.display = 'block';
+      photos.value = '';
+      return;
+    }
+    Array.prototype.forEach.call(photos.files, function (f, i) {
+      var li = document.createElement('li');
+      li.textContent = (i + 1) + '. ' + f.name;
+      photoList.appendChild(li);
+    });
+  });
+
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('is-active'); });
+    document.getElementById(id).classList.add('is-active');
+    window.scrollTo(0, 0);
+  }
+
+  function val(id) {
+    var el = document.getElementById(id);
+    return el ? String(el.value || '').trim() : '';
+  }
+
+  function queryAttribution() {
+    var out = {};
+    var q;
+    try { q = new URLSearchParams(location.search); } catch (e) { q = new URLSearchParams(); }
+    UTM_KEYS.forEach(function (k) { out[k] = q.get(k) || ''; });
+    out.fbclid = q.get('fbclid') || '';
+    q.forEach(function (v, k) {
+      if (k.indexOf('utm_') === 0 && !Object.prototype.hasOwnProperty.call(out, k)) out[k] = v;
+    });
+    return out;
+  }
+
+  function postJson(url, obj) {
+    var payload = JSON.stringify(obj);
+    try {
+      if (navigator.sendBeacon) {
+        var sent = navigator.sendBeacon(url, new Blob([payload], { type: 'application/json' }));
+        if (sent) return true;
+      }
+    } catch (e) {}
+    try {
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload,
+        keepalive: true
+      }).catch(function () {});
+      return true;
+    } catch (e2) {
+      return false;
+    }
+  }
+
+  function fireMeta(eventName, params, custom) {
+    var payload = params || {};
+    function send() {
+      try {
+        if (custom) window.fbq('trackCustom', eventName, payload);
+        else if (params) window.fbq('track', eventName, payload);
+        else window.fbq('track', eventName);
+      } catch (e) {}
+    }
+    if (typeof window.fbq === 'function') { send(); return; }
+    var tries = 0;
+    var timer = setInterval(function () {
+      tries += 1;
+      if (typeof window.fbq === 'function') {
+        clearInterval(timer);
+        send();
+      } else if (tries >= 40) {
+        clearInterval(timer);
+        try {
+          window.dataLayer = window.dataLayer || [];
+          var dl = { event: eventName };
+          Object.keys(payload).forEach(function (k) { dl[k] = payload[k]; });
+          window.dataLayer.push(dl);
+        } catch (e) {}
+      }
+    }, 250);
+  }
+
+  function fireGenerateLead(attr) {
+    var params = {
+      form_name: 'seller-valuation',
+      lead_intent: 'Seller',
+      page_path: '/seller-valuation',
+      utm_medium: (attr && attr.utm_medium) || ''
+    };
+    try {
+      if (typeof window.__jwGa4Event === 'function') {
+        window.__jwGa4Event('generate_lead', params);
+        return;
+      }
+    } catch (e) {}
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'generate_lead',
+        form_name: params.form_name,
+        lead_intent: params.lead_intent,
+        page_path: params.page_path,
+        utm_medium: params.utm_medium
+      });
+    } catch (e2) {}
+  }
+
+  function rememberLead() {
+    try { sessionStorage.setItem('jw_sv_lead', JSON.stringify(lead)); } catch (e) {}
+  }
+
+  function loadImage(file) {
+    return new Promise(function (resolve, reject) {
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function () { URL.revokeObjectURL(url); resolve(img); };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('decode')); };
+      img.src = url;
+    });
+  }
+
+  function canvasFile(canvas, name, quality) {
+    return new Promise(function (resolve) {
+      canvas.toBlob(function (blob) {
+        if (!blob) { resolve(null); return; }
+        var base = String(name || 'photo').replace(/\.[^.]+$/, '') || 'photo';
+        try {
+          resolve(new File([blob], base + '.jpg', { type: 'image/jpeg', lastModified: Date.now() }));
+        } catch (e) {
+          blob.name = base + '.jpg';
+          resolve(blob);
+        }
+      }, 'image/jpeg', quality);
+    });
+  }
+
+  function compressOne(file, quality, edge) {
+    if (!file || !/^image\//.test(file.type) || file.type === 'image/gif') {
+      return Promise.resolve(file);
+    }
+    return loadImage(file).then(function (img) {
+      var maxEdge = edge || MAX_EDGE;
+      var scale = Math.min(1, maxEdge / Math.max(img.width || 1, img.height || 1));
+      var canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round((img.width || 1) * scale));
+      canvas.height = Math.max(1, Math.round((img.height || 1) * scale));
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      return canvasFile(canvas, file.name, quality || 0.72).then(function (out) {
+        return out || file;
+      });
+    }).catch(function () { return file; });
+  }
+
+  function preparePhotos(fileList) {
+    var files = Array.prototype.slice.call(fileList || []);
+    var chain = Promise.resolve([]);
+    files.forEach(function (file) {
+      chain = chain.then(function (acc) {
+        return compressOne(file, 0.72, MAX_EDGE).then(function (out) {
+          if (out && out.size > 700000) {
+            return compressOne(out, 0.55, 1280).then(function (smaller) {
+              acc.push(smaller || out);
+              return acc;
+            });
+          }
+          acc.push(out || file);
+          return acc;
+        });
+      });
+    });
+    return chain.then(function (acc) {
+      var total = acc.reduce(function (sum, file) { return sum + (file && file.size ? file.size : 0); }, 0);
+      if (total <= UPLOAD_BUDGET) return acc;
+      var again = Promise.resolve([]);
+      acc.forEach(function (file) {
+        again = again.then(function (out) {
+          return compressOne(file, 0.42, 1280).then(function (smaller) {
+            out.push(smaller || file);
+            return out;
+          });
+        });
+      });
+      return again;
+    });
+  }
+
+  function uploadPhotos(files) {
+    if (!files.length) return;
+    preparePhotos(files).then(function (ready) {
+      var usable = ready.filter(function (file) { return file && file.size; });
+      if (!usable.length) return;
+      var fd = new FormData();
+      fd.append('form-name', PHOTO_FORM);
+      fd.append('bot-field', '');
+      fd.append('email', lead.email || '');
+      fd.append('name', lead.name || '');
+      fd.append('address', lead.address || '');
+      fd.append('photo_count', String(files.length));
+      CHIP_FIELDS.forEach(function (key) { fd.append(key, selected[key] || ''); });
+      usable.forEach(function (file, i) {
+        if (i >= MAX) return;
+        fd.append('photo-' + (i + 1), file, file.name || ('photo-' + (i + 1) + '.jpg'));
+      });
+      fetch('/', { method: 'POST', body: fd }).catch(function () {});
+      fireMeta('PhotoUpload', { photo_count: files.length }, true);
+    }).catch(function () {});
+  }
+
+  var q = new URLSearchParams(location.search);
+  if (q.get('page') === '2') showPage('page2');
+
+  document.getElementById('leadForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var form = e.target;
+    if (!form.reportValidity()) return;
+    if (leadSent) return;
+    var bot = form.querySelector('[name="bot-field"]');
+    if (bot && bot.value) {
+      showPage('page2');
+      return;
+    }
+    lead = {
+      email: val('email'),
+      name: val('name'),
+      address: val('address')
+    };
+    rememberLead();
+    var attr = queryAttribution();
+    var payload = {
+      address: lead.address,
+      name: lead.name,
+      mobile: val('mobile'),
+      email: lead.email,
+      casl_consent: 'yes',
+      campaign_tag: (form.querySelector('[name="campaign_tag"]') || {}).value || 'Ads:2026-10',
+      page_url: location.href
+    };
+    Object.keys(attr).forEach(function (k) { payload[k] = attr[k]; });
+    var button = document.getElementById('leadSubmit');
+    button.disabled = true;
+    var sent = postJson(LEAD_HOOK, payload);
+    if (!sent) {
+      button.disabled = false;
+      var status = document.getElementById('leadStatus');
+      status.textContent = 'Please try again in a moment.';
+      status.classList.add('is-on');
+      return;
+    }
+    leadSent = true;
+    fireMeta('Lead');
+    fireGenerateLead(attr);
+    showPage('page2');
+  });
+
+  document.getElementById('detailsForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (photos.files && photos.files.length > MAX) {
+      photoError.style.display = 'block';
+      return;
+    }
+    if (detailsSent) return;
+    var bot = document.querySelector('#leadForm [name="bot-field"]');
+    if (bot && bot.value) return;
+    var count = photos.files ? photos.files.length : 0;
+    var payload = { email: lead.email || '', photo_count: count };
+    CHIP_FIELDS.forEach(function (key) { payload[key] = selected[key] || ''; });
+    var button = document.getElementById('detailsSubmit');
+    button.disabled = true;
+    var sent = postJson(DETAILS_HOOK, payload);
+    if (!sent) {
+      button.disabled = false;
+      var status = document.getElementById('detailsStatus');
+      status.textContent = 'Please try again in a moment.';
+      status.classList.add('is-on');
+      return;
+    }
+    detailsSent = true;
+    if (count) uploadPhotos(Array.prototype.slice.call(photos.files));
+    button.textContent = 'Sent';
+    optional.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  });
+
+  window.__showPage = showPage;
+  window.__openOptional = function () {
+    optional.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+  };
+})();
+</script>
+</body>
+</html>

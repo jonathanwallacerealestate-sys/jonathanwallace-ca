@@ -32,6 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --paper:#FDFBF7;
   --muted:#6E675C;
   --line:rgba(30,27,21,.12);
+  --error:#8B2E2E;
   --serif:"Playfair Display", Georgia, serif;
   --sans:"Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --radius:14px;
@@ -103,6 +104,7 @@ h1{
   text-align:center;
   color:var(--charcoal);
 }
+h1:focus{outline:2px solid var(--gold);outline-offset:4px;}
 .subhead{
   text-align:center;
   color:var(--muted);
@@ -118,8 +120,9 @@ h1{
   margin-bottom:6px;
   color:var(--charcoal);
 }
-.field input{
+.field input,.field select{
   width:100%;
+  min-height:48px;
   padding:15px 16px;
   border:1px solid var(--line);
   border-radius:999px;
@@ -131,11 +134,21 @@ h1{
   appearance:none;
   -webkit-appearance:none;
 }
-.field input:focus{
+.field select{
+  background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+  background-position:calc(100% - 22px) calc(50% - 2px),calc(100% - 16px) calc(50% - 2px);
+  background-size:6px 6px,6px 6px;
+  background-repeat:no-repeat;
+  padding-right:40px;
+}
+.field input:focus,.field select:focus{
   outline:none;
   border-color:var(--gold);
   box-shadow:0 0 0 3px rgba(201,169,106,.22);
 }
+.field.is-invalid input,.field.is-invalid select{border-color:var(--error);}
+.field__err{display:none;color:var(--error);font-size:.86rem;margin:6px 4px 0;text-align:left;}
+.field.is-invalid .field__err{display:block;}
 .field--address input{border-radius:16px;padding:17px 18px;font-size:1.05rem;}
 .helper{
   font-size:.8rem;
@@ -153,11 +166,12 @@ h1{
   margin:18px 0 20px;
   line-height:1.45;
 }
+.consent{min-height:44px;cursor:pointer;}
 .consent input{
-  margin-top:3px;
+  margin-top:2px;
   flex:0 0 auto;
-  width:18px;
-  height:18px;
+  width:22px;
+  height:22px;
   accent-color:var(--gold);
 }
 .btn{
@@ -168,6 +182,7 @@ h1{
   font-family:var(--sans);
   font-weight:700;
   font-size:1.05rem;
+  min-height:48px;
   padding:17px 24px;
   border-radius:999px;
   border:2px solid var(--gold);
@@ -228,6 +243,15 @@ h1{
   border-top:1px solid var(--line);
   padding-top:22px;
 }
+.optional__title{
+  font-family:var(--serif);
+  font-size:1.25rem;
+  color:var(--charcoal);
+  font-weight:600;
+  margin:0 0 6px;
+  text-align:left;
+}
+.optional__hint{margin:0 0 20px;color:var(--muted);font-size:.9rem;}
 .optional__toggle{
   width:100%;
   background:transparent;
@@ -281,7 +305,8 @@ h1{
   font-family:var(--sans);
   font-size:.86rem;
   font-weight:600;
-  padding:10px 14px;
+  padding:11px 14px;
+  min-height:44px;
   border-radius:999px;
   cursor:pointer;
   transition:.15s;
@@ -289,7 +314,7 @@ h1{
   max-width:100%;
 }
 .chip:hover{border-color:var(--gold);}
-.chip.is-selected{
+.chip.is-selected,.chip[aria-pressed="true"]{
   background:var(--charcoal);
   border-color:var(--charcoal);
   color:var(--paper);
@@ -320,15 +345,26 @@ h1{
   position:relative;
   overflow:hidden;
 }
-.upload input{
-  position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;
-  margin:0;padding:0;border:0;font-size:16px;
-}
+.upload{min-height:44px;}
 .upload strong{display:block;color:var(--charcoal);margin-bottom:4px;font-size:.98rem;}
 .upload p{margin:0;color:var(--muted);font-size:.86rem;}
-#photoList{list-style:none;margin:12px 0 0;padding:0;text-align:left;font-size:.82rem;color:var(--muted);}
-#photoList li{padding:5px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere;}
-#photoError{color:#8B2E2E;font-size:.86rem;margin:8px 0 0;display:none;text-align:center;}
+.file-input{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);border:0;
+}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;list-style:none;margin:12px 0 0;padding:0;}
+.thumbs:empty{display:none;}
+.thumbs li{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--ivory-dark);}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block;}
+.thumbs button{
+  position:absolute;top:4px;right:4px;width:44px;height:44px;border:0;border-radius:50%;
+  background:rgba(27,27,27,.72);color:#fff;font-size:20px;line-height:1;cursor:pointer;
+}
+.thumbs .st{position:absolute;left:0;right:0;bottom:0;background:rgba(27,27,27,.62);color:#fff;font-size:.68rem;text-align:center;padding:3px 2px;}
+.count{font-size:.82rem;color:var(--muted);margin:8px 0 0;text-align:center;}
+.bar{height:8px;background:var(--ivory-dark);border-radius:8px;overflow:hidden;margin-top:12px;display:none;}
+.bar i{display:block;height:100%;width:0;background:var(--gold-dark);transition:width .2s;}
+#photoError{color:var(--error);font-size:.86rem;margin:8px 0 0;display:none;text-align:center;}
 .hp{position:absolute;left:-9999px;}
 .footer-line{
   margin-top:28px;
@@ -352,9 +388,11 @@ h1{
   text-align:center;
 }
 .status.is-on{display:block;}
+.status--error{background:rgba(139,46,46,.08);border-color:rgba(139,46,46,.35);color:var(--error);}
 @media(min-width:720px){
   .shell{padding:40px 24px 64px;}
   .logo{margin-bottom:36px;}
+  .thumbs{grid-template-columns:repeat(5,1fr);}
 }
 </style>
 </head>
@@ -370,37 +408,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="logo__tag">Your Georgian Bay Specialist</span>
   </div>
 
-  <section class="page is-active" id="page1" aria-label="Home value request">
+  <section class="page is-active" id="page1" aria-labelledby="h1a">
     <div class="card">
-      <h1>What's your home really worth?</h1>
+      <h1 id="h1a" tabindex="-1">What's your home really worth?</h1>
       <p class="subhead">A true value from me personally, within 24 hours. Not AI, not an online tool.</p>
       <form id="leadForm" data-beacon="off" novalidate>
         <input type="hidden" name="campaign_tag" value="Ads:2026-10">
-        <p class="hp"><label>Leave blank <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <p class="hp" aria-hidden="true"><label>Leave blank <input name="company" tabindex="-1" autocomplete="off"></label></p>
 
-        <div class="field field--address">
+        <div class="field field--address" id="addressField">
           <label for="address">Property address</label>
-          <input id="address" name="address" type="text" placeholder="Enter your home address" required autocomplete="street-address">
-          <p class="helper">Live in a condo? Include your unit number. Example: 12 Bay St #203, Midland, ON</p>
+          <input id="address" name="address" type="text" placeholder="Enter your home address" autocomplete="street-address" aria-describedby="addrHelp addrErr">
+          <p class="field__err" id="addrErr">Please enter the property address.</p>
+          <p class="helper" id="addrHelp">Live in a condo? Include your unit number. Example: 12 Bay St #203, Midland, ON</p>
         </div>
-        <div class="field">
+        <div class="field" id="townField">
+          <label for="town">Town</label>
+          <select id="town" name="town" aria-describedby="townErr">
+            <option value="">Choose your town</option>
+            <option>Midland</option>
+            <option>Penetanguishene</option>
+            <option>Tiny</option>
+            <option>Tay</option>
+            <option>Wasaga Beach</option>
+            <option>Other</option>
+          </select>
+          <p class="field__err" id="townErr">Please choose a town.</p>
+        </div>
+        <div class="field" id="nameField">
           <label for="name">Full name</label>
-          <input id="name" name="name" type="text" required autocomplete="name">
+          <input id="name" name="name" type="text" autocomplete="name" aria-describedby="nameErr">
+          <p class="field__err" id="nameErr">Please enter your name.</p>
         </div>
-        <div class="field">
+        <div class="field" id="mobileField">
           <label for="mobile">Mobile</label>
-          <input id="mobile" name="mobile" type="tel" required autocomplete="tel" inputmode="tel">
+          <input id="mobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="mobileErr" placeholder="705-555-0123">
+          <p class="field__err" id="mobileErr">Please enter a 10-digit phone number.</p>
         </div>
-        <div class="field">
+        <div class="field" id="emailField">
           <label for="email">Email</label>
-          <input id="email" name="email" type="email" required autocomplete="email" inputmode="email">
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" aria-describedby="emailErr">
+          <p class="field__err" id="emailErr">Please enter a valid email.</p>
         </div>
         <label class="consent">
-          <input type="checkbox" name="casl_consent" id="consent" required>
-          <span>I agree to be contacted by Jonathan Wallace, REALTOR®, Faris Team Real Estate Brokerage, about my home's value. I can unsubscribe anytime. (CASL)</span>
+          <input type="checkbox" name="updates_consent" id="consent" value="yes">
+          <span id="consentText">Yes, Jonathan Wallace, REALTOR® | Faris Team Real Estate Brokerage may send me my home value and future real estate updates, market news and offers by email or text. I can unsubscribe at any time.</span>
         </label>
         <button class="btn" type="submit" id="leadSubmit">Get my free evaluation</button>
-        <p class="status" id="leadStatus" role="status"></p>
+        <p class="status status--error" id="leadStatus" role="alert"></p>
       </form>
     </div>
     <ul class="trust" aria-label="What you get">
@@ -411,81 +466,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </ul>
   </section>
 
-  <section class="page" id="page2" aria-label="Thank you and optional details">
+  <section class="page" id="page2" aria-labelledby="h1b">
     <div class="card">
       <div class="thanks-check" aria-hidden="true">✓</div>
-      <h1>You're all set</h1>
+      <h1 id="h1b" tabindex="-1">You're all set</h1>
       <p class="subhead">You'll hear from me within 24 hours with a true value of your home. No obligation.</p>
 
-      <div class="optional" id="optionalBlock">
-        <button type="button" class="optional__toggle" id="optionalToggle" aria-expanded="false" aria-controls="optionalBody">
-          <span class="label">Want a sharper number? Add details <span class="chev" aria-hidden="true">▾</span></span>
-          <span class="hint">Optional. A few taps and photos help me refine your evaluation.</span>
-        </button>
-        <div class="optional__body" id="optionalBody">
-          <form id="detailsForm" data-beacon="off" novalidate>
-            <div class="chip-block" data-field="roof_age">
-              <h3>Roof age</h3>
-              <div class="chips" role="group" aria-label="Roof age"></div>
-            </div>
-            <div class="chip-block" data-field="furnace_age">
-              <h3>Furnace / heat pump age</h3>
-              <div class="chips" role="group" aria-label="Furnace or heat pump age"></div>
-            </div>
-            <div class="chip-block" data-field="ac_age">
-              <h3>A/C age</h3>
-              <div class="chips" role="group" aria-label="A/C age"></div>
-            </div>
-            <div class="chip-block" data-field="windows_age">
-              <h3>Windows age</h3>
-              <div class="chips" role="group" aria-label="Windows age"></div>
-            </div>
-            <div class="chip-block" data-field="kitchen">
-              <h3>Kitchen</h3>
-              <div class="chips" role="group" aria-label="Kitchen"></div>
-            </div>
-            <div class="chip-block" data-field="bathrooms">
-              <h3>Bathrooms</h3>
-              <div class="chips" role="group" aria-label="Bathrooms"></div>
-            </div>
-            <div class="chip-block" data-field="flooring">
-              <h3>Flooring</h3>
-              <div class="chips" role="group" aria-label="Flooring"></div>
-            </div>
-            <div class="chip-block" data-field="basement">
-              <h3>Basement</h3>
-              <div class="chips" role="group" aria-label="Basement"></div>
-            </div>
-            <div class="chip-block" data-field="septic_well">
-              <h3>Septic / well (rural)</h3>
-              <div class="chips" role="group" aria-label="Septic or well"></div>
-            </div>
+      <div class="optional is-open" id="optionalBlock">
+        <h2 class="optional__title">Want a sharper number? Add details</h2>
+        <p class="optional__hint">Optional. A few taps and photos help me refine your evaluation.</p>
+        <form id="detailsForm" data-beacon="off" novalidate>
+          <div id="chipMount"></div>
 
-            <div class="guide">
-              <h3>What to photograph</h3>
-              <ul>
-                <li>Curb appeal / front exterior</li>
-                <li>Kitchen</li>
-                <li>Living areas</li>
-                <li>Bedrooms</li>
-                <li>Bathrooms</li>
-                <li>Lower level / basement</li>
-                <li>Backyard / waterfront</li>
-              </ul>
-            </div>
+          <div class="guide">
+            <h3>What to photograph</h3>
+            <ul>
+              <li>Curb appeal / front exterior</li>
+              <li>Kitchen</li>
+              <li>Living areas</li>
+              <li>Bedrooms</li>
+              <li>Bathrooms</li>
+              <li>Lower level / basement</li>
+              <li>Backyard / waterfront</li>
+            </ul>
+          </div>
 
-            <label class="upload" id="uploadBox">
-              <input type="file" id="photos" accept="image/*" multiple>
-              <strong>Tap to add photos</strong>
-              <p>Up to 20 images from your phone or computer</p>
-              <ul id="photoList"></ul>
-              <p id="photoError">Please choose 20 images or fewer.</p>
-            </label>
+          <label class="upload" for="photos">
+            <strong>Tap to add photos</strong>
+            <p>Up to 20 images from your phone or computer</p>
+          </label>
+          <input class="file-input" type="file" id="photos" accept="image/*" multiple>
+          <ul class="thumbs" id="thumbs" aria-label="Selected photos"></ul>
+          <p class="count" id="photoCount" aria-live="polite">0 of 20 photos added</p>
+          <p id="photoError" role="status"></p>
 
-            <button class="btn" type="submit" id="detailsSubmit" style="margin-top:18px;">Send extra details</button>
-            <p class="status" id="detailsStatus" role="status"></p>
-          </form>
-        </div>
+          <div class="field" id="acresField" hidden>
+            <label for="exactAcres">Exact acres</label>
+            <input id="exactAcres" name="exact_acres" type="text" inputmode="decimal" autocomplete="off" aria-describedby="acresErr" placeholder="Optional">
+            <p class="field__err" id="acresErr">Enter a number of acres, or leave this blank.</p>
+          </div>
+
+          <button class="btn" type="submit" id="detailsSubmit" style="margin-top:18px;">Send extra details</button>
+          <div class="bar" id="bar" aria-hidden="true"><i id="barFill"></i></div>
+          <p class="status status--error" id="detailsStatus" role="alert"></p>
+        </form>
       </div>
     </div>
   </section>
@@ -494,10 +518,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </main>
 
 <!--
-  Build-time registration for Netlify Forms. The parser needs this static form
-  in the deployed HTML. Page 2 posts the photo files here (multipart). The lead
-  and the detail answers go to Make as JSON; email is the match key.
-  Not named "seller-valuation": that name is already used by the public sell pages.
+  Build-time registration for Netlify Forms. Photo files post here, one at a time.
+  The lead and the detail answers post to /.netlify/functions/seller, which holds
+  the Make hook URLs. Not named "seller-valuation": that name is already used.
 -->
 <form name="seller-valuation-photos" method="POST" action="/" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field" data-beacon="off" hidden>
   <input type="hidden" name="form-name" value="seller-valuation-photos">
@@ -505,6 +528,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <input type="email" name="email">
   <input type="text" name="name">
   <input type="text" name="address">
+  <input type="text" name="lead_id">
+  <input type="text" name="photo_index">
   <input type="text" name="photo_count">
   <input type="text" name="roof_age">
   <input type="text" name="furnace_age">
@@ -540,160 +565,166 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="/assets/js/main.js"></script>
 <script>
 (function () {
-  var LEAD_HOOK = 'https://hook.us2.make.com/hd95rfq9brb8yuubsq5h4dmnbv5my6ie';
-  var DETAILS_HOOK = 'https://hook.us2.make.com/9uj6sqy9bs79lpoc858f6nvgicnd2mdy';
+  var API = '/.netlify/functions/seller';
   var PHOTO_FORM = 'seller-valuation-photos';
+
   var MAX = 20;
-  var MAX_EDGE = 1600;
-  var UPLOAD_BUDGET = 7.2 * 1024 * 1024;
+  var EDGE = 1800;
+  var $ = function (id) { return document.getElementById(id); };
+  var started = Date.now();
+  var selected = {};
+  var photos = [];
+  var lead = { email: '', name: '', address: '' };
   var AGE = ['0-5 yrs', '5-10 yrs', '10-15 yrs', '15+ / nearing end of life', 'Not sure'];
   var UPDATE = ['Updated in last 5 yrs', '5-10 yrs', 'Original'];
   var SEPTIC = ['Inspected/pumped recently', 'Not sure', 'N/A'];
-  var CHIP_MAP = {
-    roof_age: AGE,
-    furnace_age: AGE,
-    ac_age: AGE,
-    windows_age: AGE,
-    kitchen: UPDATE,
-    bathrooms: UPDATE,
-    flooring: UPDATE,
-    basement: UPDATE,
-    septic_well: SEPTIC
-  };
-  var CHIP_FIELDS = ['roof_age', 'furnace_age', 'ac_age', 'windows_age', 'kitchen', 'bathrooms', 'flooring', 'basement', 'septic_well'];
+  var GROUPS = [
+    ['roof_age', 'Roof age', AGE],
+    ['furnace_age', 'Furnace / heat pump age', AGE],
+    ['ac_age', 'A/C age', AGE],
+    ['windows_age', 'Windows age', AGE],
+    ['kitchen', 'Kitchen', UPDATE],
+    ['bathrooms', 'Bathrooms', UPDATE],
+    ['flooring', 'Flooring', UPDATE],
+    ['basement', 'Basement', UPDATE],
+    ['septic_well', 'Septic / well (rural)', SEPTIC],
+    ['water_sewer', 'Water/sewer', ['Municipal', 'Well', 'Septic', 'Well and septic']],
+    ['full_basement', 'Full basement', ['Yes', 'No']],
+    ['basement_finish', 'Basement finish', ['Finished', 'Partly finished', 'Unfinished']],
+    ['bedrooms', 'Bedrooms', ['1', '2', '3', '4', '5+']],
+    ['bathroom_count', 'Bathrooms', ['1', '1.5', '2', '2.5', '3', '3.5+']],
+    ['ensuite', 'Ensuite bathroom', ['Yes', 'No']],
+    ['sqft', 'Approx. square footage incl. finished lower level', ['1,200 to 2,500', '2,500 to 3,000', '3,000 to 4,000', '4,000 to 6,000']],
+    ['lot_size', 'Lot size', ['Under 0.5 acre', '0.5 to 2 acres', '2 to 5 acres', '5+ acres']]
+  ];
+  var CHIP_KEYS = GROUPS.map(function (g) { return g[0]; });
+  var TOWNS = ['Midland', 'Penetanguishene', 'Tiny', 'Tay', 'Wasaga Beach', 'Other'];
   var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
-  var selected = {};
-  var lead = { email: '', name: '', address: '' };
-  var leadSent = false;
-  var detailsSent = false;
 
-  try {
-    var stored = JSON.parse(sessionStorage.getItem('jw_sv_lead') || 'null');
-    if (stored && stored.email) lead = stored;
-  } catch (e) {}
-
-  document.querySelectorAll('.chip-block').forEach(function (block) {
-    var field = block.getAttribute('data-field');
-    var opts = CHIP_MAP[field] || [];
-    var wrap = block.querySelector('.chips');
-    opts.forEach(function (label) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'chip';
-      btn.textContent = label;
-      btn.addEventListener('click', function () {
-        wrap.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('is-selected'); });
-        btn.classList.add('is-selected');
-        selected[field] = label;
-      });
-      wrap.appendChild(btn);
-    });
-  });
-
-  var optional = document.getElementById('optionalBlock');
-  var toggle = document.getElementById('optionalToggle');
-  toggle.addEventListener('click', function () {
-    var open = optional.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-
-  var photos = document.getElementById('photos');
-  var photoList = document.getElementById('photoList');
-  var photoError = document.getElementById('photoError');
-  photos.addEventListener('change', function () {
-    photoList.innerHTML = '';
-    photoError.style.display = 'none';
-    if (!photos.files) return;
-    if (photos.files.length > MAX) {
-      photoError.style.display = 'block';
-      photos.value = '';
-      return;
-    }
-    Array.prototype.forEach.call(photos.files, function (f, i) {
-      var li = document.createElement('li');
-      li.textContent = (i + 1) + '. ' + f.name;
-      photoList.appendChild(li);
-    });
-  });
-
-  function showPage(id) {
-    document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('is-active'); });
-    document.getElementById(id).classList.add('is-active');
-    window.scrollTo(0, 0);
+  function storeGet(key) {
+    try { return JSON.parse(sessionStorage.getItem('sv_' + key)); } catch (e) { return null; }
   }
-
-  function val(id) {
-    var el = document.getElementById(id);
-    return el ? String(el.value || '').trim() : '';
+  function storeSet(key, value) {
+    try { sessionStorage.setItem('sv_' + key, JSON.stringify(value)); } catch (e) {}
   }
+  function uuid() {
+    if (window.crypto && typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      var r = Math.random() * 16 | 0;
+      return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+  }
+  function cookie(name) {
+    var match = document.cookie.match('(?:^|; )' + name + '=([^;]*)');
+    return match ? decodeURIComponent(match[1]) : '';
+  }
+  var q = new URLSearchParams(location.search);
+  var attr = storeGet('attr') || {};
+  q.forEach(function (v, k) {
+    if (k === 'fbclid' || k.indexOf('utm_') === 0) attr[k] = v;
+  });
+  storeSet('attr', attr);
+  var savedLead = storeGet('lead');
+  if (savedLead && savedLead.email) lead = savedLead;
 
-  function queryAttribution() {
+  function attribution() {
     var out = {};
-    var q;
-    try { q = new URLSearchParams(location.search); } catch (e) { q = new URLSearchParams(); }
-    UTM_KEYS.forEach(function (k) { out[k] = q.get(k) || ''; });
-    out.fbclid = q.get('fbclid') || '';
-    q.forEach(function (v, k) {
-      if (k.indexOf('utm_') === 0 && !Object.prototype.hasOwnProperty.call(out, k)) out[k] = v;
+    UTM_KEYS.forEach(function (k) { out[k] = attr[k] || ''; });
+    Object.keys(attr).forEach(function (k) {
+      if (k.indexOf('utm_') === 0 && !Object.prototype.hasOwnProperty.call(out, k)) out[k] = attr[k];
     });
+    out.fbclid = attr.fbclid || '';
     return out;
   }
-
-  function postJson(url, obj) {
-    var payload = JSON.stringify(obj);
-    try {
-      if (navigator.sendBeacon) {
-        var sent = navigator.sendBeacon(url, new Blob([payload], { type: 'application/json' }));
-        if (sent) return true;
-      }
-    } catch (e) {}
-    try {
-      fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: payload,
-        keepalive: true
-      }).catch(function () {});
-      return true;
-    } catch (e2) {
-      return false;
+  function fbc() {
+    return cookie('_fbc') || (attr.fbclid ? 'fb.1.' + Date.now() + '.' + attr.fbclid : '');
+  }
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(function (p) { p.classList.toggle('is-active', p.id === id); });
+    window.scrollTo(0, 0);
+    var heading = document.querySelector('#' + id + ' h1');
+    if (heading) heading.focus();
+    if (id === 'page2' && history.replaceState) {
+      var url = new URL(location.href);
+      url.searchParams.set('step', '2');
+      history.replaceState(null, '', url);
     }
   }
-
-  function fireMeta(eventName, params, custom) {
-    var payload = params || {};
-    function send() {
-      try {
-        if (custom) window.fbq('trackCustom', eventName, payload);
-        else if (params) window.fbq('track', eventName, payload);
-        else window.fbq('track', eventName);
-      } catch (e) {}
-    }
-    if (typeof window.fbq === 'function') { send(); return; }
+  function phoneOk(value) {
+    var digits = String(value || '').replace(/\D/g, '');
+    if (digits.length === 11 && digits.charAt(0) === '1') digits = digits.slice(1);
+    return digits.length === 10;
+  }
+  function emailOk(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(value || '').trim());
+  }
+  function setInvalid(input, bad) {
+    var field = input.closest ? input.closest('.field') : null;
+    input.setAttribute('aria-invalid', bad ? 'true' : 'false');
+    if (field) field.classList.toggle('is-invalid', !!bad);
+  }
+  function validateLead(form) {
+    var checks = [
+      [form.address, function (v) { return v.trim().length > 0; }],
+      [form.town, function (v) { return TOWNS.indexOf(v) !== -1; }],
+      [form.name, function (v) { return v.trim().length > 0; }],
+      [form.mobile, phoneOk],
+      [form.email, emailOk]
+    ];
+    var ok = true;
+    checks.forEach(function (rule) {
+      var good = rule[1](rule[0].value);
+      setInvalid(rule[0], !good);
+      if (!good && ok) { rule[0].focus(); ok = false; }
+    });
+    return ok;
+  }
+  function failLine(el, before) {
+    el.classList.add('status--error', 'is-on');
+    el.textContent = '';
+    el.appendChild(document.createTextNode(before));
+    var link = document.createElement('a');
+    link.href = 'sms:+17054332525';
+    link.textContent = '705-433-2525';
+    el.appendChild(link);
+    el.appendChild(document.createTextNode('.'));
+  }
+  function postStep(step, body) {
+    return fetch(API + '?step=' + step, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }).then(function (response) {
+      return response.json().catch(function () { return {}; }).then(function (data) {
+        if (!response.ok || (data && data.ok === false)) throw new Error('fail');
+        return data || {};
+      });
+    });
+  }
+  function withRetry(fn) {
+    return fn().catch(function () {
+      return new Promise(function (resolve) { setTimeout(resolve, 800); }).then(fn);
+    });
+  }
+  function whenFbq(fn) {
+    if (typeof window.fbq === 'function') { fn(); return; }
     var tries = 0;
     var timer = setInterval(function () {
       tries += 1;
-      if (typeof window.fbq === 'function') {
-        clearInterval(timer);
-        send();
-      } else if (tries >= 40) {
-        clearInterval(timer);
-        try {
-          window.dataLayer = window.dataLayer || [];
-          var dl = { event: eventName };
-          Object.keys(payload).forEach(function (k) { dl[k] = payload[k]; });
-          window.dataLayer.push(dl);
-        } catch (e) {}
-      }
+      if (typeof window.fbq === 'function') { clearInterval(timer); fn(); }
+      else if (tries >= 20) clearInterval(timer);
     }, 250);
   }
-
-  function fireGenerateLead(attr) {
+  function fireLead(eventId, fields) {
+    whenFbq(function () {
+      try { window.fbq('track', 'Lead', {}, { eventID: eventId }); } catch (e) {}
+    });
     var params = {
       form_name: 'seller-valuation',
       lead_intent: 'Seller',
       page_path: '/seller-valuation',
-      utm_medium: (attr && attr.utm_medium) || ''
+      utm_medium: fields.utm_medium || '',
+      event_id: eventId
     };
     try {
       if (typeof window.__jwGa4Event === 'function') {
@@ -708,14 +739,120 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         form_name: params.form_name,
         lead_intent: params.lead_intent,
         page_path: params.page_path,
-        utm_medium: params.utm_medium
+        utm_medium: params.utm_medium,
+        event_id: eventId
       });
     } catch (e2) {}
   }
-
-  function rememberLead() {
-    try { sessionStorage.setItem('jw_sv_lead', JSON.stringify(lead)); } catch (e) {}
+  function firePhoto(eventId, count) {
+    if (!count) return;
+    whenFbq(function () {
+      try { window.fbq('trackCustom', 'PhotoUpload', { photo_count: count }, { eventID: eventId }); } catch (e) {}
+    });
   }
+
+  function syncFinish() {
+    var block = $('finishBlock');
+    var open = selected.full_basement === 'Yes';
+    if (block) block.hidden = !open;
+    if (!open) {
+      delete selected.basement_finish;
+      if (block) block.querySelectorAll('.chip').forEach(function (chip) { chip.setAttribute('aria-pressed', 'false'); });
+    }
+  }
+  function addChips(mount) {
+    GROUPS.forEach(function (group) {
+      var key = group[0];
+      var block = document.createElement('div');
+      block.className = 'chip-block';
+      block.setAttribute('data-field', key);
+      if (key === 'basement_finish') { block.id = 'finishBlock'; block.hidden = true; }
+      var heading = document.createElement('h3');
+      heading.id = 'lbl_' + key;
+      heading.textContent = group[1];
+      var wrap = document.createElement('div');
+      wrap.className = 'chips';
+      wrap.setAttribute('role', 'group');
+      wrap.setAttribute('aria-labelledby', heading.id);
+      group[2].forEach(function (label) {
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'chip';
+        button.textContent = label;
+        button.setAttribute('aria-pressed', 'false');
+        button.addEventListener('click', function () {
+          var on = button.getAttribute('aria-pressed') !== 'true';
+          wrap.querySelectorAll('.chip').forEach(function (chip) { chip.setAttribute('aria-pressed', 'false'); });
+          if (on) {
+            button.setAttribute('aria-pressed', 'true');
+            selected[key] = label;
+          } else {
+            delete selected[key];
+          }
+          if (key === 'full_basement') syncFinish();
+        });
+        wrap.appendChild(button);
+      });
+      block.appendChild(heading);
+      block.appendChild(wrap);
+      mount.appendChild(block);
+    });
+    var lot = mount.querySelector('[data-field="lot_size"]');
+    var acres = $('acresField');
+    if (lot && acres) {
+      lot.after(acres);
+      acres.hidden = false;
+    }
+  }
+  addChips($('chipMount'));
+
+  function renderPhotos() {
+    var list = $('thumbs');
+    list.textContent = '';
+    photos.forEach(function (photo, index) {
+      var item = document.createElement('li');
+      var img = document.createElement('img');
+      img.src = photo.url;
+      img.alt = 'Photo ' + (index + 1);
+      var remove = document.createElement('button');
+      remove.type = 'button';
+      remove.setAttribute('aria-label', 'Remove photo ' + (index + 1));
+      remove.textContent = '\u00d7';
+      remove.addEventListener('click', function () {
+        URL.revokeObjectURL(photo.url);
+        photos.splice(index, 1);
+        renderPhotos();
+      });
+      item.appendChild(img);
+      item.appendChild(remove);
+      if (photo.st) {
+        var status = document.createElement('span');
+        status.className = 'st';
+        status.textContent = photo.st;
+        item.appendChild(status);
+      }
+      list.appendChild(item);
+    });
+    $('photoCount').textContent = photos.length + ' of 20 photos added';
+  }
+  $('photos').addEventListener('change', function (event) {
+    var incoming = Array.prototype.filter.call(event.target.files || [], function (file) {
+      return /^image\//.test(file.type) || /\.(heic|heif)$/i.test(file.name);
+    });
+    var room = MAX - photos.length;
+    var note = $('photoError');
+    note.style.display = 'none';
+    note.textContent = '';
+    if (incoming.length > room) {
+      note.textContent = 'Up to 20 photos. The first 20 were kept.';
+      note.style.display = 'block';
+    }
+    incoming.slice(0, Math.max(0, room)).forEach(function (file) {
+      photos.push({ file: file, url: URL.createObjectURL(file), st: '' });
+    });
+    event.target.value = '';
+    renderPhotos();
+  });
 
   function loadImage(file) {
     return new Promise(function (resolve, reject) {
@@ -726,175 +863,174 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       img.src = url;
     });
   }
-
-  function canvasFile(canvas, name, quality) {
+  function canvasFile(canvas, quality) {
     return new Promise(function (resolve) {
-      canvas.toBlob(function (blob) {
-        if (!blob) { resolve(null); return; }
-        var base = String(name || 'photo').replace(/\.[^.]+$/, '') || 'photo';
-        try {
-          resolve(new File([blob], base + '.jpg', { type: 'image/jpeg', lastModified: Date.now() }));
-        } catch (e) {
-          blob.name = base + '.jpg';
-          resolve(blob);
-        }
-      }, 'image/jpeg', quality);
+      canvas.toBlob(function (blob) { resolve(blob); }, 'image/jpeg', quality);
     });
   }
-
-  function compressOne(file, quality, edge) {
-    if (!file || !/^image\//.test(file.type) || file.type === 'image/gif') {
-      return Promise.resolve(file);
-    }
+  function compress(file) {
     return loadImage(file).then(function (img) {
-      var maxEdge = edge || MAX_EDGE;
-      var scale = Math.min(1, maxEdge / Math.max(img.width || 1, img.height || 1));
+      var scale = Math.min(1, EDGE / Math.max(img.width || 1, img.height || 1));
       var canvas = document.createElement('canvas');
       canvas.width = Math.max(1, Math.round((img.width || 1) * scale));
       canvas.height = Math.max(1, Math.round((img.height || 1) * scale));
-      var ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      return canvasFile(canvas, file.name, quality || 0.72).then(function (out) {
-        return out || file;
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      return canvasFile(canvas, 0.8).then(function (blob) {
+        if (blob && blob.size > 450000) return canvasFile(canvas, 0.6);
+        return blob;
       });
-    }).catch(function () { return file; });
-  }
-
-  function preparePhotos(fileList) {
-    var files = Array.prototype.slice.call(fileList || []);
-    var chain = Promise.resolve([]);
-    files.forEach(function (file) {
-      chain = chain.then(function (acc) {
-        return compressOne(file, 0.72, MAX_EDGE).then(function (out) {
-          if (out && out.size > 700000) {
-            return compressOne(out, 0.55, 1280).then(function (smaller) {
-              acc.push(smaller || out);
-              return acc;
-            });
-          }
-          acc.push(out || file);
-          return acc;
-        });
-      });
-    });
-    return chain.then(function (acc) {
-      var total = acc.reduce(function (sum, file) { return sum + (file && file.size ? file.size : 0); }, 0);
-      if (total <= UPLOAD_BUDGET) return acc;
-      var again = Promise.resolve([]);
-      acc.forEach(function (file) {
-        again = again.then(function (out) {
-          return compressOne(file, 0.42, 1280).then(function (smaller) {
-            out.push(smaller || file);
-            return out;
-          });
-        });
-      });
-      return again;
+    }).then(function (blob) {
+      if (blob) return blob;
+      return file && file.size < 4500000 ? file : null;
+    }).catch(function () {
+      return file && file.size < 4500000 ? file : null;
     });
   }
-
-  function uploadPhotos(files) {
-    if (!files.length) return;
-    preparePhotos(files).then(function (ready) {
-      var usable = ready.filter(function (file) { return file && file.size; });
-      if (!usable.length) return;
-      var fd = new FormData();
-      fd.append('form-name', PHOTO_FORM);
-      fd.append('bot-field', '');
-      fd.append('email', lead.email || '');
-      fd.append('name', lead.name || '');
-      fd.append('address', lead.address || '');
-      fd.append('photo_count', String(files.length));
-      CHIP_FIELDS.forEach(function (key) { fd.append(key, selected[key] || ''); });
-      usable.forEach(function (file, i) {
-        if (i >= MAX) return;
-        fd.append('photo-' + (i + 1), file, file.name || ('photo-' + (i + 1) + '.jpg'));
+  function uploadOne(blob, index, leadId) {
+    var fd = new FormData();
+    var named;
+    try {
+      named = new File([blob], 'photo-' + (index + 1) + '.jpg', { type: blob.type || 'image/jpeg' });
+    } catch (e) {
+      named = blob;
+    }
+    fd.append('form-name', PHOTO_FORM);
+    fd.append('bot-field', '');
+    fd.append('email', lead.email || '');
+    fd.append('name', lead.name || '');
+    fd.append('address', lead.address || '');
+    fd.append('lead_id', leadId);
+    fd.append('photo_index', String(index + 1));
+    fd.append('photo-' + (index + 1), named, 'photo-' + (index + 1) + '.jpg');
+    return fetch('/', { method: 'POST', body: fd }).then(function (response) {
+      if (!response.ok) throw new Error('upload');
+    });
+  }
+  function uploadAll(leadId, button) {
+    var sent = 0;
+    var index = 0;
+    if (!photos.length) return Promise.resolve(0);
+    $('bar').style.display = 'block';
+    function next() {
+      if (index >= photos.length) return Promise.resolve(sent);
+      var photo = photos[index];
+      var n = index + 1;
+      photo.st = 'Sending';
+      renderPhotos();
+      button.textContent = 'Uploading photo ' + n + ' of ' + photos.length + '\u2026';
+      return compress(photo.file).then(function (blob) {
+        if (!blob) throw new Error('unreadable');
+        return withRetry(function () { return uploadOne(blob, index, leadId); });
+      }).then(function () {
+        photo.st = 'Saved';
+        sent += 1;
+      }, function () {
+        photo.st = 'Not saved';
+      }).then(function () {
+        $('barFill').style.width = Math.round(n / photos.length * 100) + '%';
+        renderPhotos();
+        index += 1;
+        return next();
       });
-      fetch('/', { method: 'POST', body: fd }).catch(function () {});
-      fireMeta('PhotoUpload', { photo_count: files.length }, true);
-    }).catch(function () {});
+    }
+    return next();
   }
 
-  var q = new URLSearchParams(location.search);
-  if (q.get('page') === '2') showPage('page2');
-
-  document.getElementById('leadForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var form = e.target;
-    if (!form.reportValidity()) return;
-    if (leadSent) return;
-    var bot = form.querySelector('[name="bot-field"]');
-    if (bot && bot.value) {
+  $('leadForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    var form = event.target;
+    var status = $('leadStatus');
+    status.classList.remove('is-on');
+    status.textContent = '';
+    if (!validateLead(form)) return;
+    var button = $('leadSubmit');
+    if (button.disabled) return;
+    var leadId = storeGet('lead_id') || uuid();
+    var fields = attribution();
+    var consentOn = form.updates_consent.checked;
+    var body = {
+      lead_id: leadId,
+      event_id: 'lead-' + leadId,
+      address: form.address.value.trim(),
+      town: form.town.value,
+      name: form.name.value.trim(),
+      mobile: form.mobile.value.trim(),
+      email: form.email.value.trim(),
+      updates_consent: consentOn ? 'yes' : 'no',
+      consent_text: consentOn ? $('consentText').textContent.trim() : '',
+      consent_at: consentOn ? new Date().toISOString() : '',
+      campaign_tag: 'Ads:2026-10',
+      company: form.company.value,
+      ms_on_page: Date.now() - started,
+      fbp: cookie('_fbp'),
+      fbc: fbc(),
+      page_url: location.href.split('#')[0]
+    };
+    Object.keys(fields).forEach(function (key) { body[key] = fields[key]; });
+    button.disabled = true;
+    button.textContent = 'Sending\u2026';
+    withRetry(function () { return postStep('lead', body); }).then(function () {
+      lead = { email: body.email, name: body.name, address: body.address };
+      storeSet('lead_id', leadId);
+      storeSet('lead', lead);
+      fireLead(body.event_id, fields);
       showPage('page2');
-      return;
-    }
-    lead = {
-      email: val('email'),
-      name: val('name'),
-      address: val('address')
-    };
-    rememberLead();
-    var attr = queryAttribution();
-    var payload = {
-      address: lead.address,
-      name: lead.name,
-      mobile: val('mobile'),
-      email: lead.email,
-      casl_consent: 'yes',
-      campaign_tag: (form.querySelector('[name="campaign_tag"]') || {}).value || 'Ads:2026-10',
-      page_url: location.href
-    };
-    Object.keys(attr).forEach(function (k) { payload[k] = attr[k]; });
-    var button = document.getElementById('leadSubmit');
-    button.disabled = true;
-    var sent = postJson(LEAD_HOOK, payload);
-    if (!sent) {
+    }).catch(function () {
       button.disabled = false;
-      var status = document.getElementById('leadStatus');
-      status.textContent = 'Please try again in a moment.';
-      status.classList.add('is-on');
-      return;
-    }
-    leadSent = true;
-    fireMeta('Lead');
-    fireGenerateLead(attr);
-    showPage('page2');
+      button.textContent = 'Get my free evaluation';
+      failLine(status, "That didn't go through. Please try again, or text your address to ");
+    });
   });
 
-  document.getElementById('detailsForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (photos.files && photos.files.length > MAX) {
-      photoError.style.display = 'block';
-      return;
-    }
-    if (detailsSent) return;
-    var bot = document.querySelector('#leadForm [name="bot-field"]');
-    if (bot && bot.value) return;
-    var count = photos.files ? photos.files.length : 0;
-    var payload = { email: lead.email || '', photo_count: count };
-    CHIP_FIELDS.forEach(function (key) { payload[key] = selected[key] || ''; });
-    var button = document.getElementById('detailsSubmit');
-    button.disabled = true;
-    var sent = postJson(DETAILS_HOOK, payload);
-    if (!sent) {
-      button.disabled = false;
-      var status = document.getElementById('detailsStatus');
-      status.textContent = 'Please try again in a moment.';
-      status.classList.add('is-on');
-      return;
-    }
-    detailsSent = true;
-    if (count) uploadPhotos(Array.prototype.slice.call(photos.files));
-    button.textContent = 'Sent';
-    optional.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
-  });
+  if (storeGet('lead_id') && q.get('step') === '2') showPage('page2');
 
-  window.__showPage = showPage;
-  window.__openOptional = function () {
-    optional.classList.add('is-open');
-    toggle.setAttribute('aria-expanded', 'true');
-  };
+  $('detailsForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    var status = $('detailsStatus');
+    status.classList.remove('is-on', 'status--error');
+    status.textContent = '';
+    var acres = $('exactAcres');
+    var acresValue = acres.value.trim();
+    var acresBad = acresValue !== '' && !/^\d+(\.\d+)?$/.test(acresValue);
+    setInvalid(acres, acresBad);
+    if (acresBad) { acres.focus(); return; }
+    var leadId = storeGet('lead_id');
+    if (!leadId) {
+      failLine(status, 'Your session expired. Please start again, or text your address to ');
+      return;
+    }
+    var button = $('detailsSubmit');
+    if (button.disabled) return;
+    button.disabled = true;
+    uploadAll(leadId, button).then(function (stored) {
+      var failed = photos.length - stored;
+      var body = {
+        lead_id: leadId,
+        email: lead.email || '',
+        event_id: 'details-' + leadId,
+        photo_count: stored,
+        photos_failed: failed,
+        exact_acres: acresValue
+      };
+      CHIP_KEYS.forEach(function (key) {
+        body[key] = key === 'basement_finish' && selected.full_basement !== 'Yes' ? '' : (selected[key] || '');
+      });
+      firePhoto('photo-' + leadId, stored);
+      button.textContent = 'Saving\u2026';
+      return withRetry(function () { return postStep('details', body); }).then(function () {
+        button.textContent = 'Sent';
+        if (failed) {
+          status.classList.remove('status--error');
+          status.textContent = stored + ' of ' + photos.length + ' photos were saved. You can text the rest to 705-433-2525.';
+          status.classList.add('is-on');
+        }
+      });
+    }).catch(function () {
+      button.disabled = false;
+      button.textContent = 'Send extra details';
+      failLine(status, "Your details didn't send. Try again, or text them to ");
+    });
+  });
 })();
 </script>
 </body>

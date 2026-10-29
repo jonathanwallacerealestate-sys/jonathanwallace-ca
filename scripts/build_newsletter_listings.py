@@ -167,21 +167,9 @@ LISTINGS = [
             "Waterfront length is not listed separately from the 67 ft lot frontage.",
         ],
     },
+    # 1016 Wright Drive (MLS S13736826) left this list on 2026-10-28. It is no longer on REALTOR.ca.
     {
-        "id": "30225147",
-        "slug": "1016-wright-drive-midland",
-        "address": "1016 Wright Drive",
-        "community": "Midland",
-        "locality": "Midland",
-        "region_name": "Midland",
-        "postal": "L4R 0E4",
-        "featured": False,
-        "photo_mode": "realtor",
-        "agents": [("Mark Faris", "Broker"), ("Wyatt Negrini-Weber", None)],
-        "waterfront_length": None,
-    },
-    {
-        "id": "30118761",
+        "id": "30447838",
         "slug": "1787-champlain-road-tiny",
         "address": "1787 Champlain Road",
         "community": "Rural Tiny",
@@ -1045,7 +1033,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="wrap">
     <p class="eyebrow">Georgian Bay</p>
     <h1>Homes for sale</h1>
-    <p class="listing-summary">Twelve homes from this week's notes. Open one for the photos, the facts, and a showing with Jonathan.</p>
+    <p class="listing-summary">Eleven homes from this week's notes. Open one for the photos, the facts, and a showing with Jonathan.</p>
     <p class="eyebrow">Featured this week</p>
     {hero_card}
   </div>

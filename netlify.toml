@@ -54,15 +54,22 @@
 # Change both "to" lines when a new market update is published.
 [[redirects]]
   from = "/market-update-latest"
-  to = "/blog-market-update-oct-12-18-2026.html"
+  to = "/blog-market-update-oct-19-25-2026.html"
   status = 302
   force = true
 
 [[redirects]]
   from = "/market-update-latest/"
-  to = "/blog-market-update-oct-12-18-2026.html"
+  to = "/blog-market-update-oct-19-25-2026.html"
   status = 302
   force = true
+
+
+[[redirects]]
+  from = "/blog-market-update-oct-19-25-2026"
+  to = "/blog-market-update-oct-19-25-2026.html"
+  status = 301
+  force = false
 
 # Ben Poole's private review link now points at the published post
 [[redirects]]

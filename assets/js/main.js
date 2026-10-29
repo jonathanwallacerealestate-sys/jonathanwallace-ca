@@ -1,11 +1,36 @@
 /* jonathanwallace.ca site JS */
+(function (w) {
+  function shield() {
+    var current = w.postMessage;
+    if (typeof current !== 'function' || current.__jwShield) return;
+    var wrapped = function () {
+      try { return current.apply(w, arguments); }
+      catch (e) { /* Android WebView throws once its Java bridge is gone. */ }
+    };
+    wrapped.__jwShield = 1;
+    w.postMessage = wrapped;
+  }
+  shield();
+  w.addEventListener('pagehide', shield);
+})(window);
+
 (function () {
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
+  function setOpen(open) {
+    links.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
   if (toggle && links) {
-    toggle.addEventListener('click', function () { links.classList.toggle('open'); });
+    toggle.type = 'button';
+    toggle.setAttribute('aria-controls', 'navLinks');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.addEventListener('click', function (e) {
+      e.preventDefault();
+      setOpen(!links.classList.contains('open'));
+    });
     links.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () { links.classList.remove('open'); });
+      a.addEventListener('click', function () { setOpen(false); });
     });
   }
   document.querySelectorAll('#year').forEach(function (el) { el.textContent = new Date().getFullYear(); });
@@ -30,8 +55,8 @@
 
 /* Latest YouTube uploads. Resilient: cached last-good shows instantly, a hard
    timeout prevents a stuck spinner, and it always ends on real videos or a
-   clean Watch on YouTube fallback. */
-(function () {
+   clean Watch on YouTube fallback. Deferred so it does not compete with the first tap. */
+jwOnIdle(function () {
   var box = document.getElementById('latestVideos');
   if (!box) return;
   var channel = box.getAttribute('data-yt-channel') || '';
@@ -80,7 +105,7 @@
       } else if (!settled) { settled = true; fallback(); }
     })
     .catch(function () { clearTimeout(timer); if (!settled) { settled = true; fallback(); } });
-})();
+});
 
 /* Lead beacon + interaction tracking. Mirrors every Netlify form submission to
    the Make.com Website Leads webhook (Make -> Follow Up Boss), tagging it by what
@@ -345,7 +370,7 @@
       w['WidgetTrackerObject'] = g;
       (w[g] = w[g] || function () { (w[g].q = w[g].q || []).push(arguments); }), (w[g].ds = 1 * new Date());
       (e = 'script'), (t = d.createElement(e)), (e = d.getElementsByTagName(e)[0]);
-      t.async = 1; t.src = i; e.parentNode.insertBefore(t, e);
+      t.async = 1; t.crossOrigin = 'anonymous'; t.onerror = function () {}; t.src = i; e.parentNode.insertBefore(t, e);
     })(window, 'https://widgetbe.com/agent', document, 'widgetTracker');
     window.widgetTracker('create', FUB_PIXEL_CODE);
     window.widgetTracker('send', 'pageview');
@@ -380,6 +405,8 @@
     gtag('set', 'ads_data_redaction', true);
     var s = document.createElement('script');
     s.async = true;
+    s.crossOrigin = 'anonymous';
+    s.onerror = function () { ga4Loaded = false; };
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_MEASUREMENT_ID;
     document.head.appendChild(s);
     gtag('js', new Date());
@@ -415,26 +442,21 @@
     if (document.getElementById('jwConsent')) return;
     var bar = document.createElement('div');
     bar.id = 'jwConsent';
+    bar.className = 'jw-consent';
     bar.setAttribute('role', 'dialog');
     bar.setAttribute('aria-label', 'Cookie notice');
-    bar.style.cssText = 'position:fixed;left:16px;right:16px;bottom:16px;z-index:2147483000;'
-      + 'max-width:560px;margin:0 auto;background:#1B1B1B;color:#F7F3EC;'
-      + 'border:1px solid rgba(201,169,106,.35);border-radius:14px;'
-      + 'box-shadow:0 14px 40px rgba(0,0,0,.4);padding:18px 20px;'
-      + 'font-family:\'Nunito Sans\',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;'
-      + 'font-size:.9rem;line-height:1.5;opacity:0;transform:translateY(8px);'
-      + 'transition:opacity .35s ease,transform .35s ease;';
+    bar.style.cssText = 'opacity:0;transform:translateY(8px);transition:opacity .35s ease,transform .35s ease;';
     bar.innerHTML =
-      '<div style="display:flex;flex-wrap:wrap;align-items:center;gap:14px;">'
-      + '<p style="margin:0;flex:1 1 260px;min-width:220px;">This site uses cookies to see what visitors find useful and to improve the experience. '
-      + 'You can accept or decline. Read the <a href="/privacy.html" style="color:#C9A96A;text-decoration:underline;">privacy policy</a> for details.</p>'
-      + '<div style="display:flex;gap:10px;flex:0 0 auto;">'
-      + '<button type="button" id="jwConsentDecline" style="cursor:pointer;background:transparent;color:#F7F3EC;'
-      + 'border:1px solid rgba(247,243,236,.4);border-radius:999px;padding:9px 18px;font:inherit;">Decline</button>'
-      + '<button type="button" id="jwConsentAccept" style="cursor:pointer;background:#C9A96A;color:#1B1B1B;'
-      + 'border:1px solid #C9A96A;border-radius:999px;padding:9px 18px;font:inherit;font-weight:600;">Accept</button>'
+      '<div class="jw-consent__row">'
+      + '<p>This site uses cookies to see what visitors find useful and to improve the experience. '
+      + 'You can accept or decline. Read the <a href="/privacy.html">privacy policy</a> for details.</p>'
+      + '<div class="jw-consent__actions">'
+      + '<button type="button" class="jw-consent__no" id="jwConsentDecline">Decline</button>'
+      + '<button type="button" class="jw-consent__yes" id="jwConsentAccept">Accept</button>'
       + '</div></div>';
-    document.body.appendChild(bar);
+    var header = document.querySelector('.site-header');
+    if (header && header.parentNode) header.parentNode.insertBefore(bar, header.nextSibling);
+    else document.body.appendChild(bar);
     requestAnimationFrame(function () { bar.style.opacity = '1'; bar.style.transform = 'translateY(0)'; });
 
     function close() {
@@ -614,7 +636,7 @@
     gsiStarted = true;
     var s = document.createElement('script');
     s.src = 'https://accounts.google.com/gsi/client';
-    s.async = true; s.defer = true; s.onload = init;
+    s.async = true; s.defer = true; s.onload = init; s.onerror = function () {};
     document.head.appendChild(s);
   }
   var CONSENT_KEY = 'jw_cookie_consent_v1';
@@ -630,8 +652,9 @@
 
 /* Live Google reviews (fetched server-side via the google-reviews Netlify function,
    so the API key never touches the browser). Renders a small "Fresh from Google" row
-   into #googleReviews when reviews are available; stays hidden otherwise. */
-(function () {
+   into #googleReviews when reviews are available; stays hidden otherwise.
+   Deferred so the review fetch is not on the first interaction. */
+jwOnIdle(function () {
   var host = document.getElementById('googleReviews');
   if (!host) return;
   function esc(t){ var d=document.createElement('div'); d.textContent=t||''; return d.innerHTML; }
@@ -659,4 +682,145 @@
       + '<div class="grid grid--3" style="margin-top:16px;text-align:left;">' + cards + '</div>' + mapsLink;
     host.style.display = '';
   }).catch(function(){});
+});
+
+function jwOnIdle(fn) {
+  if (window.requestIdleCallback) window.requestIdleCallback(function () { try { fn(); } catch (e) {} }, { timeout: 2500 });
+  else window.setTimeout(function () { try { fn(); } catch (e) {} }, 200);
+}
+
+/* Friday email lives at /join. It was absent from the menu and the footer, so the page drew no clicks. */
+(function () {
+  var path = '';
+  try { path = location.pathname.replace(/\.html$/, '').replace(/\/+$/, '') || '/'; } catch (e) { path = ''; }
+  if (path === '/join') return;
+
+  var nav = document.getElementById('navLinks');
+  if (nav && !nav.querySelector('a[href="/join"]')) {
+    var li = document.createElement('li');
+    li.className = 'nav__join';
+    var a = document.createElement('a');
+    a.href = '/join';
+    a.textContent = 'Friday email';
+    li.appendChild(a);
+    var cta = nav.querySelector('.nav__cta');
+    if (cta) nav.insertBefore(li, cta);
+    else nav.appendChild(li);
+    a.addEventListener('click', function () {
+      nav.classList.remove('open');
+      var toggle = document.getElementById('navToggle');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  var footers = document.querySelectorAll('.footer');
+  for (var i = 0; i < footers.length; i++) {
+    if (footers[i].querySelector('a[href="/join"]')) continue;
+    var blog = footers[i].querySelector('a[href="blog.html"], a[href="/blog.html"], a[href="/blog"]');
+    if (blog && blog.parentNode && blog.parentNode.tagName === 'LI' && blog.parentNode.parentNode) {
+      var item = document.createElement('li');
+      var link = document.createElement('a');
+      link.href = '/join';
+      link.textContent = 'Friday email';
+      item.appendChild(link);
+      blog.parentNode.parentNode.appendChild(item);
+      continue;
+    }
+    var legal = footers[i].querySelector('.footer__legal p:last-child');
+    if (legal) {
+      legal.appendChild(document.createTextNode(' \u00b7 '));
+      var legalLink = document.createElement('a');
+      legalLink.href = '/join';
+      legalLink.textContent = 'Friday email';
+      legal.appendChild(legalLink);
+    }
+  }
+})();
+
+/* Keep off-screen card photos from downloading with the first screen. */
+(function () {
+  var nodes = document.querySelectorAll('.listing__img');
+  if (!nodes.length) return;
+  var vh = window.innerHeight || 800;
+  var pending = [];
+  for (var i = 0; i < nodes.length; i++) {
+    var el = nodes[i];
+    if (el.querySelector('img')) continue;
+    var bg = el.style.backgroundImage;
+    if (!bg || bg === 'none') continue;
+    var rect = el.getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < vh + 240) continue;
+    el.setAttribute('data-bg', bg);
+    el.style.backgroundImage = 'none';
+    pending.push(el);
+  }
+  if (!pending.length) return;
+  if (!('IntersectionObserver' in window)) {
+    pending.forEach(function (el) { el.style.backgroundImage = el.getAttribute('data-bg'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var node = en.target;
+      var stored = node.getAttribute('data-bg');
+      if (stored) node.style.backgroundImage = stored;
+      io.unobserve(node);
+    });
+  }, { rootMargin: '400px 0px' });
+  pending.forEach(function (el) { io.observe(el); });
+})();
+
+/* The Follow Up Boss card is a same-origin iframe named widgetCta.
+   Its close control is a 14px div, and clicks on the inner svg were missing it.
+   Enlarge that target, and if the widget does not shrink itself, shrink the frame. */
+(function () {
+  function syncChromePadding() {
+    var pad = 0;
+    var bar = document.getElementById('jwConsent');
+    if (bar && getComputedStyle(bar).position === 'fixed') pad = Math.max(pad, Math.ceil(bar.getBoundingClientRect().height) + 28);
+    var frame = document.querySelector('iframe[name="widgetCta"]');
+    if (frame && frame.offsetHeight > 60 && frame.offsetWidth > 120) pad = Math.max(pad, frame.offsetHeight + 8);
+    document.body.style.paddingBottom = pad ? pad + 'px' : '';
+  }
+  function arm(frame) {
+    if (!frame || frame.getAttribute('data-jw-cta') === '1') return;
+    var doc;
+    try { doc = frame.contentDocument; } catch (e) { return; }
+    if (!doc || !doc.getElementById) return;
+    var close = doc.getElementById('ctaDesktopBodyClose') || doc.getElementById('ctaMobileClose');
+    if (!close) return;
+    frame.setAttribute('data-jw-cta', '1');
+    var style = doc.createElement('style');
+    style.textContent = '#ctaDesktopBodyClose,#ctaMobileClose,#ctaDesktopPropertyListViewClose{min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;touch-action:manipulation;}#ctaDesktopBodyClose svg,#ctaMobileClose svg,#ctaDesktopPropertyListViewClose svg{pointer-events:none;}';
+    (doc.head || doc.documentElement).appendChild(style);
+    doc.addEventListener('click', function (e) {
+      var node = e.target && e.target.closest ? e.target.closest('#ctaDesktopBodyClose, #ctaMobileClose, #ctaDesktopPropertyListViewClose') : null;
+      if (!node) return;
+      window.setTimeout(function () {
+        if (frame.offsetWidth > 100 && frame.offsetHeight > 100 && typeof node.onclick === 'function') {
+          try { node.onclick(); } catch (err) {}
+        }
+        if (frame.offsetWidth > 100 && frame.offsetHeight > 100) {
+          frame.style.cssText = 'width:70px;height:70px;overflow:hidden;position:fixed;bottom:5px;right:5px;z-index:2147483647;border:0;display:block;';
+        }
+        syncChromePadding();
+      }, 80);
+    }, true);
+    syncChromePadding();
+  }
+  function scan() {
+    var frame = document.querySelector('iframe[name="widgetCta"]');
+    if (frame) arm(frame);
+    syncChromePadding();
+  }
+  scan();
+  var tries = 0;
+  var timer = window.setInterval(function () {
+    scan();
+    tries += 1;
+    var frame = document.querySelector('iframe[name="widgetCta"]');
+    if (tries > 30 || (frame && frame.getAttribute('data-jw-cta') === '1')) window.clearInterval(timer);
+  }, 500);
+  window.addEventListener('resize', syncChromePadding);
 })();

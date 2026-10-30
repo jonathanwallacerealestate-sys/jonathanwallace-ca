@@ -116,6 +116,8 @@ p{margin:0 0 1.1em;}
 .hero__inner{position:relative;padding:clamp(80px,13vw,150px) 0 clamp(70px,10vw,120px);max-width:760px;}
 .hero h1{color:#fff;}
 .hero p{color:rgba(255,255,255,.9);font-size:1.25rem;max-width:54ch;}
+.hero--compact .hero__inner{padding:clamp(56px,7vw,88px) 0 clamp(48px,6vw,76px);}
+.hero--compact .hero__actions{margin-top:24px;}
 .hero__actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;}
 .hero__trust{margin-top:38px;display:flex;flex-wrap:wrap;align-items:center;row-gap:12px;}
 .hero__trust>span{display:inline-flex;align-items:center;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);white-space:nowrap;}

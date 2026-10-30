@@ -1026,6 +1026,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         event_id: 'details-' + leadId,
         photo_count: stored,
         photos_failed: failed,
+        folder_id: driveFolderId || '',
+        folder_url: driveFolderUrl || '',
+        photos_folder_url: driveFolderUrl || '',
         extra_details: extraDetails
       };
       CHIP_KEYS.forEach(function (key) {

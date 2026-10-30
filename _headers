@@ -83,3 +83,11 @@
   X-Robots-Tag: noindex, nofollow
 /assets/img/spring-guide/*
   X-Robots-Tag: noindex, nofollow
+
+# Hidden Meta ad landing. Not in the nav or sitemap.
+/seller-valuation
+  X-Robots-Tag: noindex, nofollow
+/seller-valuation/
+  X-Robots-Tag: noindex, nofollow
+/seller-valuation/index.html
+  X-Robots-Tag: noindex, nofollow

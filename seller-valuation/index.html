@@ -110,7 +110,7 @@ h1:focus{outline:2px solid var(--gold);outline-offset:4px;}
   margin-bottom:6px;
   color:var(--charcoal);
 }
-.field input,.field select{
+.field input,.field select,.field textarea{
   width:100%;
   min-height:48px;
   padding:15px 16px;
@@ -131,15 +131,21 @@ h1:focus{outline:2px solid var(--gold);outline-offset:4px;}
   background-repeat:no-repeat;
   padding-right:40px;
 }
-.field input:focus,.field select:focus{
+.field input:focus,.field select:focus,.field textarea:focus{
   outline:none;
   border-color:var(--gold);
   box-shadow:0 0 0 3px rgba(201,169,106,.22);
 }
-.field.is-invalid input,.field.is-invalid select{border-color:var(--error);}
+.field.is-invalid input,.field.is-invalid select,.field.is-invalid textarea{border-color:var(--error);}
 .field__err{display:none;color:var(--error);font-size:.86rem;margin:6px 4px 0;text-align:left;}
 .field.is-invalid .field__err{display:block;}
 .field--address input{border-radius:16px;padding:17px 18px;font-size:1.05rem;}
+.field textarea{
+  border-radius:16px;
+  min-height:96px;
+  resize:vertical;
+  line-height:1.45;
+}
 .helper{
   font-size:.8rem;
   color:var(--muted);
@@ -490,10 +496,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="count" id="photoCount" aria-live="polite">0 of 20 photos added</p>
           <p id="photoError" role="status"></p>
 
-          <div class="field" id="acresField" hidden>
-            <label for="exactAcres">Exact acres</label>
-            <input id="exactAcres" name="exact_acres" type="text" inputmode="decimal" autocomplete="off" aria-describedby="acresErr" placeholder="Optional">
-            <p class="field__err" id="acresErr">Enter a number of acres, or leave this blank.</p>
+          <div class="field" id="extraDetailsField">
+            <label for="extraDetails">Extra details you think I should know</label>
+            <textarea id="extraDetails" name="extra_details" rows="4" autocomplete="off" placeholder="Optional"></textarea>
           </div>
 
           <button class="btn" type="submit" id="detailsSubmit" style="margin-top:18px;">Send extra details</button>
@@ -795,10 +800,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       mount.appendChild(block);
     });
     var lot = mount.querySelector('[data-field="lot_size"]');
-    var acres = $('acresField');
-    if (lot && acres) {
-      lot.after(acres);
-      acres.hidden = false;
+    var extra = $('extraDetailsField');
+    if (lot && extra) {
+      lot.after(extra);
     }
   }
   addChips($('chipMount'));
@@ -986,11 +990,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var status = $('detailsStatus');
     status.classList.remove('is-on', 'status--error');
     status.textContent = '';
-    var acres = $('exactAcres');
-    var acresValue = acres.value.trim();
-    var acresBad = acresValue !== '' && !/^\d+(\.\d+)?$/.test(acresValue);
-    setInvalid(acres, acresBad);
-    if (acresBad) { acres.focus(); return; }
+    var extraDetails = ($('extraDetails').value || '').trim();
     var leadId = storeGet('lead_id');
     if (!leadId) {
       failLine(status, 'Your session expired. Please start again, or text your address to ');
@@ -1007,7 +1007,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         event_id: 'details-' + leadId,
         photo_count: stored,
         photos_failed: failed,
-        exact_acres: acresValue
+        extra_details: extraDetails
       };
       CHIP_KEYS.forEach(function (key) {
         body[key] = key === 'basement_finish' && selected.full_basement !== 'Yes' ? '' : (selected[key] || '');

@@ -53,16 +53,6 @@ body{
 }
 a{color:var(--gold-dark);text-decoration:none;}
 a:hover{color:var(--charcoal);}
-.draft-banner{
-  background:var(--charcoal);
-  color:var(--ivory);
-  text-align:center;
-  font-size:.7rem;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  padding:7px 12px;
-}
-.draft-banner span{color:var(--gold);}
 .shell{flex:1;display:flex;flex-direction:column;align-items:center;padding:28px 20px 48px;}
 .logo{
   text-align:center;
@@ -389,6 +379,7 @@ h1:focus{outline:2px solid var(--gold);outline-offset:4px;}
 }
 .status.is-on{display:block;}
 .status--error{background:rgba(139,46,46,.08);border-color:rgba(139,46,46,.35);color:var(--error);}
+.status--ok{background:rgba(45,90,61,.08);border-color:rgba(45,90,61,.35);color:#2D5A3D;}
 @media(min-width:720px){
   .shell{padding:40px 24px 64px;}
   .logo{margin-bottom:36px;}
@@ -401,7 +392,6 @@ h1:focus{outline:2px solid var(--gold);outline-offset:4px;}
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P36FJB8L"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<div class="draft-banner">Draft only · <span>noindex</span> · not published</div>
 <main class="shell">
   <div class="logo">
     <span class="logo__name">Jonathan Wallace</span>
@@ -451,8 +441,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <p class="field__err" id="emailErr">Please enter a valid email.</p>
         </div>
         <label class="consent">
-          <input type="checkbox" name="updates_consent" id="consent" value="yes">
-          <span id="consentText">Yes, Jonathan Wallace, REALTOR® | Faris Team Real Estate Brokerage may send me my home value and future real estate updates, market news and offers by email or text. I can unsubscribe at any time.</span>
+          <input type="checkbox" name="updates_consent" id="consent" value="yes" required>
+          <span id="consentText">Yes, Jonathan Wallace, REALTOR®, Faris Team Real Estate Brokerage may send me my home value and future real estate updates, market news and offers by email or text. I can unsubscribe at any time. <a href="/privacy.html">Privacy Policy</a>.</span>
         </label>
         <button class="btn" type="submit" id="leadSubmit">Get my free evaluation</button>
         <p class="status status--error" id="leadStatus" role="alert"></p>
@@ -514,7 +504,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <p class="footer-line"><strong>Jonathan Wallace, REALTOR®</strong> | Faris Team Real Estate Brokerage</p>
+  <p class="footer-line"><strong>Jonathan Wallace, REALTOR®</strong>, Faris Team Real Estate Brokerage</p>
 </main>
 
 <!--
@@ -677,6 +667,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       setInvalid(rule[0], !good);
       if (!good && ok) { rule[0].focus(); ok = false; }
     });
+    var consent = form.updates_consent;
+    if (consent && !consent.checked) {
+      setInvalid(consent, true);
+      if (ok) { consent.focus(); ok = false; }
+    } else if (consent) {
+      setInvalid(consent, false);
+    }
     return ok;
   }
   function failLine(el, before) {
@@ -1019,11 +1016,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       button.textContent = 'Saving\u2026';
       return withRetry(function () { return postStep('details', body); }).then(function () {
         button.textContent = 'Sent';
+        status.classList.remove('status--error', 'status--ok');
         if (failed) {
-          status.classList.remove('status--error');
+          status.classList.add('status--error');
           status.textContent = stored + ' of ' + photos.length + ' photos were saved. You can text the rest to 705-433-2525.';
-          status.classList.add('is-on');
+        } else if (stored) {
+          status.classList.add('status--ok');
+          status.textContent = 'Thanks. Your details and ' + stored + ' photo' + (stored === 1 ? '' : 's') + ' are with me. You\'ll hear within 24 hours.';
+        } else {
+          status.classList.add('status--ok');
+          status.textContent = 'Thanks. Your details are with me. You\'ll hear within 24 hours.';
         }
+        status.classList.add('is-on');
       });
     }).catch(function () {
       button.disabled = false;

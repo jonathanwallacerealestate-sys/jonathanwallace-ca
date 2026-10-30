@@ -136,7 +136,7 @@ LISTINGS = [
         "missing": ["Appliances are not listed on REALTOR.ca."],
     },
     {
-        "id": "30299161",
+        "id": "30452176",
         "slug": "993-whitney-crescent-midland",
         "address": "993 Whitney Crescent",
         "community": "Midland",

@@ -4,14 +4,15 @@
 // Required (Site settings > Environment variables):
 //   MAKE_LEAD_HOOK      page-1 webhook URL
 //   MAKE_DETAILS_HOOK   page-2 webhook URL
+//   MAKE_PHOTO_HOOK     photo-to-Drive webhook URL
 //   MAKE_SHARED_SECRET  value Make checks in the x-jw-secret header
 //
 // If any of those is unset, the function refuses the post. It does not fall back
-// to a hook URL. Photos stay on the Netlify Form seller-valuation-photos.
+// to a hook URL. Photos go to Make → Google Drive (per-lead folder).
 
 const PRODUCTION_ORIGINS = ["https://jonathanwallace.ca", "https://www.jonathanwallace.ca"];
 const PREVIEW_ORIGIN = /^https:\/\/deploy-preview-\d+--jonathanwallace-ca\.netlify\.app$/;
-const HOOKS = { lead: "MAKE_LEAD_HOOK", details: "MAKE_DETAILS_HOOK" };
+const HOOKS = { lead: "MAKE_LEAD_HOOK", details: "MAKE_DETAILS_HOOK", photo: "MAKE_PHOTO_HOOK" };
 const hits = new Map();
 
 const json = (status, body) =>
@@ -34,7 +35,7 @@ function originAllowed(origin) {
 }
 
 function rateLimited(ip, step) {
-  const limit = 6;
+  const limit = step === "photo" ? 40 : 6;
   const key = step + ":" + (ip || "unknown");
   const now = Date.now();
   const arr = (hits.get(key) || []).filter((t) => now - t < 600000);
@@ -67,6 +68,10 @@ export default async (req, context) => {
     return json(400, { ok: false });
   }
   if (!data || !/^[\w-]{8,64}$/.test(data.lead_id || "")) return json(400, { ok: false });
+  if (step === "photo") {
+    if (!data.photo_base64 || typeof data.photo_base64 !== "string") return json(400, { ok: false });
+    if (data.photo_base64.length > 9000000) return json(413, { ok: false });
+  }
 
   if (step === "lead") {
     const ms = Number(data.ms_on_page);
@@ -83,9 +88,17 @@ export default async (req, context) => {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-jw-secret": secret },
       body: JSON.stringify(data),
-      signal: AbortSignal.timeout(12000),
+      signal: AbortSignal.timeout(step === "photo" ? 45000 : 12000),
     });
     if (!r.ok) return json(502, { ok: false });
+    if (step === "photo") {
+      try {
+        const body = await r.json();
+        return json(200, body && typeof body === "object" ? body : { ok: true });
+      } catch (e) {
+        return json(200, { ok: true });
+      }
+    }
     return json(200, { ok: true });
   } catch (e) {
     return json(504, { ok: false });

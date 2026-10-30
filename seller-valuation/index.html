@@ -569,6 +569,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var started = Date.now();
   var selected = {};
   var photos = [];
+  var driveFolderId = '';
+  var driveFolderUrl = '';
   var lead = { email: '', name: '', address: '' };
   var AGE = ['0-5 yrs', '5-10 yrs', '10-15 yrs', '15+ / nearing end of life', 'Not sure'];
   var UPDATE = ['Updated in last 5 yrs', '5-10 yrs', 'Original'];
@@ -887,24 +889,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       return file && file.size < 4500000 ? file : null;
     });
   }
+  function blobToBase64(blob) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        var s = String(reader.result || '');
+        var i = s.indexOf(',');
+        resolve(i >= 0 ? s.slice(i + 1) : s);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  }
   function uploadOne(blob, index, leadId) {
-    var fd = new FormData();
-    var named;
-    try {
-      named = new File([blob], 'photo-' + (index + 1) + '.jpg', { type: blob.type || 'image/jpeg' });
-    } catch (e) {
-      named = blob;
-    }
-    fd.append('form-name', PHOTO_FORM);
-    fd.append('bot-field', '');
-    fd.append('email', lead.email || '');
-    fd.append('name', lead.name || '');
-    fd.append('address', lead.address || '');
-    fd.append('lead_id', leadId);
-    fd.append('photo_index', String(index + 1));
-    fd.append('photo-' + (index + 1), named, 'photo-' + (index + 1) + '.jpg');
-    return fetch('/', { method: 'POST', body: fd }).then(function (response) {
-      if (!response.ok) throw new Error('upload');
+    return blobToBase64(blob).then(function (b64) {
+      return fetch(API + '?step=photo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          lead_id: leadId,
+          address: lead.address || '',
+          email: lead.email || '',
+          name: lead.name || '',
+          photo_index: index + 1,
+          filename: 'photo-' + (index + 1) + '.jpg',
+          folder_id: driveFolderId || '',
+          folder_url: driveFolderUrl || '',
+          photo_base64: b64
+        })
+      }).then(function (response) {
+        if (!response.ok) throw new Error('upload');
+        return response.json().catch(function () { return { ok: true }; });
+      }).then(function (data) {
+        if (data && data.folder_id) driveFolderId = data.folder_id;
+        if (data && data.folder_url) driveFolderUrl = data.folder_url;
+      });
     });
   }
   function uploadAll(leadId, button) {

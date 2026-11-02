@@ -940,6 +940,12 @@
   force = true
 
 [[redirects]]
+  from = "/blog-selling-waterfront-tiny-township/"
+  to = "/blog-selling-waterfront-tiny-township.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog-selling-your-home-in-midland"
   to = "/blog-selling-your-home-in-midland.html"
   status = 301

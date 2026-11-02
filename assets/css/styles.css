@@ -118,6 +118,20 @@ p{margin:0 0 1.1em;}
 .hero p{color:rgba(255,255,255,.9);font-size:1.25rem;max-width:54ch;}
 .hero--compact .hero__inner{padding:clamp(56px,7vw,88px) 0 clamp(48px,6vw,76px);}
 .hero--compact .hero__actions{margin-top:24px;}
+/* Homepage first screen: proof and the three main actions fit above the fold. */
+.hero--fold .hero__inner{max-width:980px;padding:clamp(22px,3.2vw,40px) 0 clamp(20px,3vw,36px);}
+.hero--fold h1{font-size:clamp(1.9rem,4.4vw,3.2rem);margin-bottom:.28em;}
+.hero--fold .hero__proof{margin:0;max-width:68ch;font-size:clamp(.92rem,1.6vw,1.05rem);line-height:1.45;color:rgba(255,255,255,.9);}
+.hero--fold .hero__actions{margin-top:16px;gap:10px;}
+.hero--fold .btn--lg{padding:14px 22px;font-size:1rem;}
+@media (max-width:560px){
+  .hero--fold .hero__inner{padding:16px 0 18px;}
+  .hero--fold h1{font-size:1.85rem;line-height:1.12;}
+  .hero--fold .eyebrow{margin-bottom:8px;}
+  .hero--fold .hero__proof{font-size:.9rem;line-height:1.4;}
+  .hero--fold .hero__actions{margin-top:12px;gap:8px;}
+  .hero--fold .btn--lg{padding:13px 16px;min-height:46px;}
+}
 .hero__actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;}
 .hero__trust{margin-top:38px;display:flex;flex-wrap:wrap;align-items:center;row-gap:12px;}
 .hero__trust>span{display:inline-flex;align-items:center;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72);white-space:nowrap;}

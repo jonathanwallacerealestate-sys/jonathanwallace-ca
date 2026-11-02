@@ -323,21 +323,23 @@
   status = 301
   force = true
 
+# 775 Ontario Street disabled 2026-11-02 (no longer on REALTOR.ca). Reversible: change these back to the 200 rewrite and 301s to undo.
 [[redirects]]
   from = "/listings/775-ontario-street-midland"
-  to = "/listings/775-ontario-street-midland.html"
-  status = 200
+  to = "/"
+  status = 302
+  force = true
 
 [[redirects]]
   from = "/listings/775-ontario-street-midland/"
-  to = "/listings/775-ontario-street-midland"
-  status = 301
+  to = "/"
+  status = 302
   force = true
 
 [[redirects]]
   from = "/listings/775-ontario-street-midland.html"
-  to = "/listings/775-ontario-street-midland"
-  status = 301
+  to = "/"
+  status = 302
   force = true
 
 [[redirects]]

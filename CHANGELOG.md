@@ -16,6 +16,14 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-03
 
+### Straight Answers video library, preview only (PR branch ask-video-library-preview, not merged)
+Why: Jonathan Wallace asked for a library of his unscripted question videos on the site, mocked up so he can refine the design, and not public until there are enough videos.
+- content/ask-videos.json holds each video (question, short answer in his words, transcript from the audio). scripts/build_ask.py renders /ask/ (hub with topic filters), /ask/<slug> (video, short answer, CTA, full transcript, related questions) and a homepage strip above Home Tours.
+- Media: assets/video/ask/*.mp4 (H.264 720x1280, converted from the iPhone HEVC originals, which some browsers will not play) and assets/img/ask/*.jpg posters.
+- Schema ready for launch: VideoObject with transcript, FAQPage and Breadcrumb per page; CollectionPage plus ItemList on the hub.
+- While "live" is false: noindex, not in sitemap.xml or llms.txt, not in the menu, and a gold preview bar on each /ask page. Launch = set live to true, rerun the script, add the pages to sitemap.xml and llms.txt.
+- Uses Midnight Estate tokens, Playfair headlines, no gradients or shadows on cards (DEC-20261103-02).
+
 ### Breadcrumb schema on listing pages
 - 12 indexable listing pages now carry BreadcrumbList (Home, Listings, address), matching the rest of the site (DEC-253).
 

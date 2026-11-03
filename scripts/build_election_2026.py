@@ -17,7 +17,7 @@ Run from the repo root:
 
 Generated pages are index,follow, with canonical URLs on jonathanwallace.ca.
 The hub is listed on blog.html, in sitemap.xml, and in llms.txt. Town and
-candidate pages are in sitemap.xml. This script does not edit those files.
+candidate pages are noindex, follow and out of sitemap.xml since the vote (2026-11-03). This script does not edit those files.
 Do not add these URLs to site navigation.
 """
 
@@ -128,9 +128,12 @@ def scrub_check(text: str, label: str) -> list[str]:
         problems.append(f"{label} contains an em dash or en dash")
     if SALES_RE.search(text):
         problems.append(f"{label} contains Sales Representative")
-    if "noindex" in text:
+    is_archive = "/elections-2026/" in label or label.startswith("elections-2026")
+    if is_archive and "noindex, follow" not in text:
+        problems.append(f"{label} should be noindex, follow (vote is over)")
+    if not is_archive and "noindex" in text:
         problems.append(f"{label} is still noindex")
-    if "index, follow" not in text:
+    if not is_archive and "index, follow" not in text:
         problems.append(f"{label} is missing index, follow")
     if f'href="{SITE}' not in text and "canonical" not in text:
         problems.append(f"{label} is missing a canonical URL")
@@ -188,6 +191,8 @@ def person_word(n: int) -> str:
 
 def shell(title: str, description: str, canonical_path: str, og_image: str, body: str, json_ld: str = "") -> str:
     canonical = SITE + canonical_path
+    # Town and candidate pages are noindex since the Oct 26 vote (Jonathan Wallace, 2026-11-03). The hub stays indexed.
+    robots = "noindex, follow" if canonical_path.startswith("/elections-2026/") else "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
     desc = description.strip()
     if len(desc) > 180:
         desc = desc[:177].rsplit(" ", 1)[0] + "..."
@@ -200,7 +205,7 @@ def shell(title: str, description: str, canonical_path: str, og_image: str, body
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="robots" content="{robots}">
 {GTM_HEAD}
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
@@ -742,12 +747,12 @@ def main() -> int:
         problems.append("robots.txt blocks the election pages")
     for candidate in candidates:
         url = "https://jonathanwallace.ca" + candidate_url(candidate)
-        if url not in sitemap:
-            problems.append(f"sitemap.xml is missing {candidate['slug']}")
+        if url in sitemap:
+            problems.append(f"sitemap.xml still lists {candidate['slug']} (noindex since the vote)")
     for muni in guide["municipalities"]:
         url = "https://jonathanwallace.ca" + muni_path(muni["slug"])
-        if url not in sitemap:
-            problems.append(f"sitemap.xml is missing {muni['slug']}")
+        if url in sitemap:
+            problems.append(f"sitemap.xml still lists {muni['slug']} (noindex since the vote)")
         if "listings/" not in sitemap:
             problems.append("sitemap.xml lost the listing pages")
             break

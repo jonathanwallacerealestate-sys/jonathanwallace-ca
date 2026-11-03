@@ -1,6 +1,6 @@
-import base64, json, sys, urllib.request
+import base64, json, os, sys, urllib.request
 
-HOOK = "https://hook.us2.make.com/se5b11cceeuomzei1qha8ififszdbkoa"
+HOOK = os.environ["JW_PUBLISH_HOOK"]  # webhook is a credential (DEC-124): never commit it
 
 def commit(path, local, message, binary=False):
     data = open(local, "rb").read()

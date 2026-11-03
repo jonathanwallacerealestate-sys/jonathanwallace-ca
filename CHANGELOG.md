@@ -4,7 +4,9 @@ What changed on the site, when, and why. Newest first. Times are America/Toronto
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
 ## Standing rules for anyone editing the site
-- Brand: Midnight Estate. Charcoal #1B1B1B, champagne gold #C9A96A (accent only), ivory #F7F3EC. Headlines in Playfair Display only.
+- Brand: Midnight Estate. Charcoal #1B1B1B, champagne gold #C9A96A (accent only), ivory #F7F3EC. No pure white (#fff); ivory is the lightest tone. Headlines in Playfair Display only (DEC-20261022-01), body and labels in Nunito Sans. No Source Serif or Inter.
+- Blog card thumbnails are never a header at the top of an article (DEC-20261012-01). The article opens on kicker, title, byline and intro; the card can sit lower in the body.
+- Byline is "Jonathan Wallace, REALTOR®" (DEC-20261022-02). No em dashes in headers or written copy (DEC-20261021-13). Footer column titles are p.footer__h, not h4, so page headings stay in order.
 - Title is always "REALTOR®". Always write "Jonathan Wallace" in full. No em dashes. No cliches (nestled, turnkey, cozy, stunning, dream home, and similar).
 - Proof line: $300M+ career sales, 500+ families served, 4.96 stars on RateMyAgent across 16 verified reviews, number one rated agent in Midland and Penetanguishene on RateMyAgent, 2025 Midland Readers' Choice Award Best Realtor.
 - Resources was removed from the top menu on purpose (Oct 30, Jonathan Wallace's request). It lives in the footer only. Do not restore it to the top menu.
@@ -13,9 +15,25 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-03
 
+### Brand and SEO/AEO fix pass (sitewide audit, highest priority items)
+Why: Jonathan Wallace asked for every page to be audited against the brand guidelines and the decision log, through the lens of ranking in AI search, then fixed highest priority first.
+- Headlines: Source Serif 4 and Inter (never loaded, so headlines fell back to Georgia and system sans) replaced on about 70 pages: headings now Playfair Display, body and labels Nunito Sans (DEC-20261022-01). The 13 one-off template posts now load Playfair for their headlines. scripts/build_post.py labels switched from Inter to Nunito Sans so future market posts stay on brand.
+- Pure white replaced with ivory #F7F3EC in styles.css, listing.css and page CSS (Midnight Estate kit).
+- Blog card thumbnail moved off the top of 43 articles to below the intro (DEC-20261012-01). Still used for the blog index, og:image and Article schema.
+- Bylines and JSON-LD job titles now read REALTOR® (DEC-20261022-02), about 124 pages.
+- Em dashes removed from written copy: weekly market hub strip on 17 posts, vendor headers, case study details (DEC-20261021-13). llms.txt title and REALTOR® mentions fixed.
+- Full name in furniture: footer "Email Jonathan Wallace", "From Jonathan Wallace:" callouts, restaurant picks heading; "tell him I sent you" in body (DEC-20261001-11, DEC-20260903-03).
+- "my buyer email list" replaced with "an email list of active buyers" on sell.html and the five sell pages. "Charming" removed from the Penetanguishene hub intro.
+- Footer h4 changed to p.footer__h on 211 pages, so headings run h1, h2, h3 for search and AI parsers. Same look.
+- /blog-which-agent-penetanguishene (noindex duplicate) now 301s to the Penetanguishene interview page.
+- Deleted the empty, indexable test-restore-check.html.
+- scripts/publish.py no longer hardcodes its Make webhook (it reads JW_PUBLISH_HOOK). The old URL is still in git history and must be rotated in Make (DEC-124).
+- Not changed, waiting on Jonathan Wallace: listing description wording (banned words vs matching REALTOR.ca), election candidate pages (index or noindex), town-page FAQs (parked, Needs Jonathan #35), review count 15 vs 16 (DEC-254), moving the 13 one-off posts onto the shared header and footer.
+- Structural check (DEC-263): tag balance, image count and JSON-LD parse compared before and after on every changed file, zero differences.
+
 ### Social images for the big six banks post
 Why: Buffer needs public image URLs for the social drafts.
-- assets/img/social/blog-boc-big-six-banks-november-2026-{linkedin (16:9), google (1200x675), 4x5, 9x16}.jpg. Drop shadow on the text is approved (DEC-20261103-01-card-text-drop-shadow).
+- assets/img/social/blog-boc-big-six-banks-november-2026-{linkedin (16:9), google (1200x675), 4x5, 9x16}.jpg. Correction: the drop-shadow approval (DEC-20261103-01) was logged in error and is void. DEC-20261103-02-no-gradient-no-shadow governs: no gradient and no drop shadow on cards.
 
 ### New blog post: Did the Bank of Canada Raise Rates Too Soon? What Canada's Big Six Banks Are Saying
 Why: Jonathan Wallace asked for a balanced article on how the big six banks see the October 28 rate hike.

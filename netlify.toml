@@ -71,6 +71,19 @@
   status = 301
   force = false
 
+# Duplicate of the Penetanguishene interview page (was noindex). One URL for search and AI answers.
+[[redirects]]
+  from = "/blog-which-agent-penetanguishene"
+  to = "/which-real-estate-agent-should-you-interview-in-penetanguishene"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-which-agent-penetanguishene.html"
+  to = "/which-real-estate-agent-should-you-interview-in-penetanguishene"
+  status = 301
+  force = true
+
 # Ben Poole's private review link now points at the published post
 [[redirects]]
   from = "/review-ben-poole-wills-k7q2x9"

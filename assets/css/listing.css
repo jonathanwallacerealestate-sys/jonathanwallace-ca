@@ -34,7 +34,7 @@
   font-weight:700;
   font-size:.92rem;
   color:var(--navy);
-  background:#fff;
+  background:#F7F3EC;
   border:1px solid var(--line);
   border-radius:999px;
   padding:10px 14px;
@@ -105,7 +105,7 @@
   margin:8px 0 0;
 }
 .fact{
-  background:#fff;
+  background:#F7F3EC;
   border:1px solid var(--line);
   border-radius:var(--radius);
   padding:14px 14px 16px;
@@ -229,7 +229,7 @@
 .listing-hero,
 .listing-card{
   display:grid;
-  background:#fff;
+  background:#F7F3EC;
   border:1px solid var(--line);
   border-radius:var(--radius);
   overflow:hidden;

@@ -68,9 +68,9 @@ def build_body():
       'reading in six weeks, and the reason is not that buyers came back.</p>')
     a('')
     a('<div style="background:#F3EEE3;padding:22px 26px;border-radius:12px;margin:0 0 1.8em;">')
-    a('        <p style="font-family:Inter,sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;'
+    a('        <p style="font-family:'Nunito Sans',sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;'
       'color:#1B1B1B;font-weight:700;margin:0 0 10px;">Key takeaways</p>')
-    a('        <ul style="margin:0;padding-left:1.1em;font-family:Inter,sans-serif;font-size:.97rem;line-height:1.6;">'
+    a('        <ul style="margin:0;padding-left:1.1em;font-family:'Nunito Sans',sans-serif;font-size:.97rem;line-height:1.6;">'
       + "".join(f"<li>{t}</li>" for t in TAKEAWAYS) + '</ul>')
     a('      </div>')
     a('')
@@ -120,7 +120,7 @@ def build_body():
       'relisting the same package at the same number.</p>')
     a('      <h2>The week at a glance</h2>')
     th = ('<th style="text-align:left;padding:9px 10px;border-bottom:2px solid #C9A96A;'
-          'font-family:Inter,sans-serif;">')
+          'font-family:'Nunito Sans',sans-serif;">')
     rows = [f'<tr>{th}Metric</th>{th}This week</th>{th}Change</th></tr>']
     for label, val, chg in STATS:
         rows.append(
@@ -130,7 +130,7 @@ def build_body():
             f'<td style="padding:8px 10px;border-bottom:1px solid #EAE4D8;color:#8A8378;">{chg}</td>'
             '</tr>')
     a('      <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;margin:1.2em 0 1.6em;'
-      'font-family:Inter,sans-serif;font-size:.98rem;">' + "".join(rows) + '</table></div>')
+      'font-family:'Nunito Sans',sans-serif;font-size:.98rem;">' + "".join(rows) + '</table></div>')
     a('')
     a('      <h2>Common questions about this market</h2>')
     for q, ans in FAQ:

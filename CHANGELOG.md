@@ -13,6 +13,16 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-03
 
+### New blog post: Did the Bank of Canada Raise Rates Too Soon? What Canada's Big Six Banks Are Saying
+Why: Jonathan Wallace asked for a balanced article on how the big six banks see the October 28 rate hike.
+- /blog-bank-of-canada-rate-hike-big-six-banks-november-2026 with answer-first summary, "where each bank stands" box, FAQPage, Article (speakable, citations, mentions) and Breadcrumb schema, and links to each bank's published commentary.
+- Card image assets/img/blog-bank-of-canada-rate-hike-big-six-banks-november-2026-card.jpg (Artlist, house styled after 835 Dominion Ave but not identical). Used on the blog index and social only, not as a header on the article.
+- Added to blog.html (first card and ItemList), sitemap.xml and llms.txt.
+
+### 67da723: new blog post: Canada's Economy Is Losing Steam
+Why: Jonathan Wallace asked for an economy-focused post from the weekly Edge report (data restated in his words; Edge and its author are not named, per the report's sharing terms).
+- /blog-canada-economy-losing-steam-november-2026 with answer-first summary, key takeaways, FAQPage, Article (speakable) and Breadcrumb schema. Added to blog.html, sitemap.xml and llms.txt.
+
 ### Planned (handed to Chief Of Staff, from the October Google stats review)
 Why: Search Console October showed 51 clicks and 2.36K impressions. Tiny content (waterfront selling blog +12 clicks, Tiny hub +3) is driving growth. Midland and Penetanguishene don't appear in the top searches. GA4 (Oct 6 to Nov 2) showed 270 users (+84%), but average engagement fell to 50s (-56%), mostly from election traffic that leaves after one page. Google Business Profile had 0 calls in September.
 1. Google Business Profile: check the phone number and the mobile Call button, add Q&A, and post weekly Google Posts naming Midland, Penetanguishene and Tiny.

@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-03
 
+### Breadcrumb schema on listing pages
+- 12 indexable listing pages now carry BreadcrumbList (Home, Listings, address), matching the rest of the site (DEC-253).
+
 ### Batches 2 to 4 from the website council (structure only, no new wording beyond button labels already in use)
 Why: Jonathan Wallace said "finish the job" on the council plan. Wording changes that need his approval are listed at the end and not made.
 - Lead flow: on 66 posts the first call to action is now "Thinking of selling? Book a home evaluation" (Calendly in-home link, data-ga4 book_home_evaluation) instead of the newsletter button. The mid and end newsletter options stay.

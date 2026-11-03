@@ -383,3 +383,40 @@ a.listing *{pointer-events:none;}
 .nl-top a.nl-top__btn{display:inline-block;background:#C9A96A;color:#1B1B1B;font-weight:700;font-size:.95rem;line-height:1.2;padding:11px 22px;border-radius:999px;text-decoration:none;transition:background .2s,transform .2s;}
 .nl-top a.nl-top__btn:hover{background:#B8955A;color:#1B1B1B;transform:translateY(-1px);}
 .nl-top a.nl-top__btn:focus-visible{outline:3px solid #C9A96A;outline-offset:3px;}
+
+/* Agent interview guides: shared with the site header, type, and button. */
+.guide-hero.page-hero{padding:clamp(22px,3.2vw,44px) 0;}
+.guide-hero .eyebrow{color:var(--copper);font-size:.78rem;letter-spacing:.18em;max-width:none;margin-bottom:10px;}
+.guide-hero h1{font-size:clamp(1.85rem,4vw,2.75rem);margin-bottom:.3em;}
+.guide-hero .byline-face{display:flex;align-items:center;gap:14px;margin-top:6px;}
+.guide-hero .byline-face img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+.guide-hero .byline-face p,.guide-hero .byline{margin:0;max-width:52ch;font-size:.98rem;line-height:1.45;color:rgba(255,255,255,.86);}
+.eval-bar{background:var(--copper);}
+.eval-bar .btn{display:flex;width:100%;border-radius:0;border:0;background:var(--copper);color:#1B1B1B;justify-content:center;padding:16px 24px;font-weight:600;}
+.eval-bar .btn:hover{background:var(--copper-dark);color:#1B1B1B;transform:none;}
+.eval-bar .btn:focus-visible{outline:3px solid #1B1B1B;outline-offset:-3px;}
+.guide-figure{margin:0;line-height:0;background:var(--navy);}
+.guide-figure img{width:100%;height:auto;display:block;}
+.guide{padding-top:clamp(28px,4vw,48px);}
+.guide .wrap{max-width:760px;}
+.guide .answer{border-left:3px solid var(--copper);padding:2px 0 2px 20px;margin:0 0 28px;}
+.guide .answer p{font-size:1.12rem;}
+.guide .lede{font-size:1.12rem;}
+.guide .num{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--copper);font-weight:700;display:block;margin-bottom:6px;}
+.guide .ask{background:var(--sand);border-left:3px solid var(--copper);padding:14px 18px;margin:16px 0 0;}
+.guide .ask .label{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--copper);font-weight:700;display:block;margin-bottom:8px;}
+.guide .ask p{margin:0 0 8px;}
+.guide .ask p:last-child{margin-bottom:0;}
+.guide ul.plain{padding-left:1.15em;}
+.guide ol.questions{padding-left:1.2em;}
+.guide ol.questions .why{display:block;color:var(--muted);margin-top:6px;}
+.guide .guide-proof{margin-top:8px;padding-top:8px;border-top:1px solid var(--line);}
+.guide .guide-proof .stats{list-style:none;padding:0;margin:16px 0 0;}
+.guide .guide-proof .stats li{padding:10px 0;border-bottom:1px solid var(--line);}
+.guide .guide-proof .stats li:last-child{border-bottom:0;}
+.guide .faq details{border-bottom:1px solid var(--line);padding:14px 0;}
+.guide .faq summary{cursor:pointer;font-family:var(--serif);font-weight:600;font-size:1.15rem;color:var(--navy);}
+.guide .note{color:var(--muted);font-size:.95rem;}
+.guide .cta{margin-top:36px;padding-top:28px;border-top:1px solid var(--line);}
+.guide .cta .btn{margin:0 0 8px;}
+.page-hero .local-intro{color:rgba(255,255,255,.92);background:transparent;border:0;border-left:3px solid var(--copper);border-radius:0;padding:2px 0 2px 16px;margin:0 0 16px;max-width:68ch;font-size:1.02rem;line-height:1.5;}

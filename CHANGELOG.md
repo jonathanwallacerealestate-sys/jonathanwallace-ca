@@ -16,6 +16,16 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-03
 
+### Batch 1 from the website council (structure only, no wording changes)
+Why: Jonathan Wallace asked for a six-seat council review (execution, marketing, lead flow, site architecture, SEO, AEO). Batch 1 fixes what was broken.
+- Removed the self-serving aggregateRating and review markup from Jonathan Wallace's own RealEstateAgent/Person schema on 75 pages (DEC-252). The visible proof is unchanged.
+- Added the three missing October market updates (Sep 28 to Oct 4, Oct 5 to 11, Oct 12 to 18) to blog.html cards and its ItemList (rebuilt from visible order), and Oct 5 to 25 to llms.txt.
+- New scripts/check_site.py runs as the Netlify build command and stops a deploy if a post is missing from the sitemap, llms.txt or blog.html, the ItemList drifts from the cards, /market-update-latest is stale, JSON-LD fails to parse, a sitemap URL is noindex, own-entity aggregateRating returns, an em dash appears in copy, a redirect is duplicated, or 705-733-2525 appears.
+- /sell-your-home-in-[town]/ (trailing slash) now 301s to the canonical URL. It used to serve the page without its stylesheet.
+- sitemap.xml now lists each post at its canonical URL (12 corrected), and the non-canonical .html form of 9 extensionless-canonical posts 301s to the canonical.
+- GA4: every data-cta link and every Calendly, call, text and button link now carries data-ga4 (430 links). Booking events: book_home_evaluation (in-home), book_phone_call. The interview-page eval bar keeps its existing event name book_evaluation (PR #109's note of book_home_evaluation was wrong).
+- Removed a duplicate redirect block for /blog-which-agent-penetanguishene added earlier today.
+
 ### Fresh social cards for the big six banks post (v2)
 Why: Jonathan Wallace rejected the gradient and drop shadow (DEC-20261103-02-no-gradient-no-shadow) and asked for a fresh render rather than edits of edits, which had degraded the photo.
 - assets/img/social/blog-boc-big-six-banks-november-2026-4x5-v2.jpg and -9x16-v2.jpg, used by the Instagram and Facebook drafts in Buffer.

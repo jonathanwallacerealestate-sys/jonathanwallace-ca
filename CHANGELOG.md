@@ -30,7 +30,11 @@ Why: Jonathan Wallace asked for every page to be audited against the brand guide
 - Deleted the empty, indexable test-restore-check.html.
 - scripts/publish.py no longer hardcodes its Make webhook (it reads JW_PUBLISH_HOOK). The old URL is still in git history and must be rotated in Make (DEC-124).
 - Listing description wording left as is: it matches REALTOR.ca, which Jonathan Wallace confirmed is correct.
-- Not changed, waiting on Jonathan Wallace: election candidate pages (index or noindex), town-page FAQs (parked, Needs Jonathan #35), review count 15 vs 16 (DEC-254), moving the 13 one-off posts onto the shared header and footer.
+- Not changed, waiting on Jonathan Wallace: town-page FAQ rewrites (Needs Jonathan #35, drafts to follow), review count 15 vs 16 (DEC-254).
+- Election town and candidate pages (89) are now noindex, follow and out of sitemap.xml, since the Oct 26 vote is over (Jonathan Wallace's call). The hub post stays indexed. build_election_2026.py writes and checks for this.
+- The 16 one-off posts (13 blog posts, the Farlain spill post, the election results post, farlain-lake-high-water) now use the shared site header, footer, styles.css and main.js (DEC-150). Their own styles are scoped under .post-scope so they no longer touch the shared chrome; the old footer text stays as .post-foot.
+- The five interview pages no longer open on the card image; it now sits below the answer block (DEC-20261012-01).
+- Homepage hero proof sentence removed at Jonathan Wallace's request; the same figures are in the stats band directly below it.
 - Structural check (DEC-263): tag balance, image count and JSON-LD parse compared before and after on every changed file, zero differences.
 
 ### Social images for the big six banks post

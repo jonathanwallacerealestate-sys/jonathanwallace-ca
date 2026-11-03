@@ -304,16 +304,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 h2{clear:both}
 @media (max-width:600px){.float-r{float:none;width:100%;margin:16px 0}}
 @media print{details{display:block}.faq details>p{display:block}}
+.eval-bar{background:#C9A96A;}
+.eval-bar a.btn{display:flex;width:100%;box-sizing:border-box;margin:0;border-radius:0;border:0;background:#C9A96A;color:#1B1B1B;justify-content:center;align-items:center;padding:16px 24px;font-weight:600;font-size:1rem;letter-spacing:0;text-transform:none;text-decoration:none;text-align:center;line-height:1.2;}
+.eval-bar a.btn:hover{background:#B3945A;color:#1B1B1B;}
+.eval-bar a.btn:focus-visible{outline:3px solid #1B1B1B;outline-offset:-3px;}
 </style>
 
 <header class="pagehead">
   <div class="wrap">
     <p class="kicker">Wills &amp; estates interview &middot; Georgian Bay, Ontario</p>
     <h1>Wills, Executors and Powers of Attorney: What I Learned Sitting Down With a Local Estates Lawyer</h1>
-    <p class="byline">By Jonathan Wallace, REALTOR, Faris Team Real Estate Brokerage &middot; Updated October 2026 &middot; ~9 min read</p>
+    <p class="byline">By Jonathan Wallace, REALTOR&reg;, Faris Team Real Estate Brokerage &middot; Updated October 2026 &middot; ~9 min read</p>
 <div class="nl-top"><span class="nl-top__q">Like this article?</span> <a class="nl-top__btn" href="/newsletter" data-cta="post-top-newsletter">Join the weekly newsletter</a></div>
   </div>
 </header>
+<div class="eval-bar">
+  <a class="btn" id="book-home-evaluation" href="https://calendly.com/jonathan-faristeam/jonathan-wallace-in-home-evaluation-full-cma" data-cta="book-home-evaluation" data-ga4="book_home_evaluation">Book a home evaluation</a>
+</div>
 
 <main>
 <div class="wrap">
@@ -463,8 +470,8 @@ h2{clear:both}
       <li><a href="blog-car-affordability-georgian-bay.html">How do you keep a car affordable around Georgian Bay right now?</a></li>
     </ul>
     <h2 style="margin-top:36px">Settling a parent's home?</h2>
-    <p>If you're an executor, or helping a parent plan ahead, I'll walk you through what selling the house actually involves.</p>
-    <a class='btn' href='https://jonathanwallace.ca/contact'>Book a conversation</a>
+    <p>If you're an executor, or helping a parent plan ahead, the next step is a walk-through of what that house is worth and what selling it involves.</p>
+    <a class="btn" href="https://calendly.com/jonathan-faristeam/jonathan-wallace-in-home-evaluation-full-cma" data-cta="book-home-evaluation" data-ga4="book_home_evaluation">Book a home evaluation</a>
   </div>
 
 </div>
@@ -476,6 +483,17 @@ h2{clear:both}
     <p class="reco">Jonathan Wallace, REALTOR&reg;, Faris Team Real Estate Brokerage. REALTOR&reg;, MLS&reg; and the associated logos are trademarks owned by The Canadian Real Estate Association (CREA) and identify real estate professionals who are members of CREA. Not intended to solicit properties already listed for sale or buyers or sellers currently under contract. This article reflects a general conversation with the lawyer interviewed and is information, not legal or tax advice. Every estate is different. Speak with a wills and estates lawyer, and an accountant where tax is involved, before making decisions about your will, powers of attorney or property.</p>
   </div>
 </footer>
-
+<script>
+document.addEventListener('click', function (e) {
+  try {
+    var el = e.target && e.target.closest ? e.target.closest('[data-ga4="book_home_evaluation"]') : null;
+    if (!el) return;
+    var params = { link_url: el.getAttribute('href') || '', page_path: location.pathname };
+    if (typeof window.gtag === 'function') { window.gtag('event', 'book_home_evaluation', params); return; }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push((function () { return arguments; })('event', 'book_home_evaluation', params));
+  } catch (err) {}
+}, true);
+</script>
 </body>
 </html>

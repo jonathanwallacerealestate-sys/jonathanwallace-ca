@@ -13,6 +13,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-03
 
+### Social images for the big six banks post
+Why: Buffer needs public image URLs for the social drafts.
+- assets/img/social/blog-boc-big-six-banks-november-2026-{linkedin (16:9), google (1200x675), 4x5, 9x16}.jpg. Drop shadow on the text is approved (DEC-20261103-01-card-text-drop-shadow).
+
 ### New blog post: Did the Bank of Canada Raise Rates Too Soon? What Canada's Big Six Banks Are Saying
 Why: Jonathan Wallace asked for a balanced article on how the big six banks see the October 28 rate hike.
 - /blog-bank-of-canada-rate-hike-big-six-banks-november-2026 with answer-first summary, "where each bank stands" box, FAQPage, Article (speakable, citations, mentions) and Breadcrumb schema, and links to each bank's published commentary.

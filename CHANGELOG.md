@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-03
 
+### Fresh social cards for the big six banks post (v2)
+Why: Jonathan Wallace rejected the gradient and drop shadow (DEC-20261103-02-no-gradient-no-shadow) and asked for a fresh render rather than edits of edits, which had degraded the photo.
+- assets/img/social/blog-boc-big-six-banks-november-2026-4x5-v2.jpg and -9x16-v2.jpg, used by the Instagram and Facebook drafts in Buffer.
+
 ### Brand and SEO/AEO fix pass (sitewide audit, highest priority items)
 Why: Jonathan Wallace asked for every page to be audited against the brand guidelines and the decision log, through the lens of ranking in AI search, then fixed highest priority first.
 - Headlines: Source Serif 4 and Inter (never loaded, so headlines fell back to Georgia and system sans) replaced on about 70 pages: headings now Playfair Display, body and labels Nunito Sans (DEC-20261022-01). The 13 one-off template posts now load Playfair for their headlines. scripts/build_post.py labels switched from Inter to Nunito Sans so future market posts stay on brand.

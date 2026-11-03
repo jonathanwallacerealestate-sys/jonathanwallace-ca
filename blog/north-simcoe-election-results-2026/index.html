@@ -122,6 +122,10 @@ footer a{color:var(--warm-grey)}
 .nl-top a.nl-top__btn{display:inline-block;background:#C9A96A;color:#1B1B1B;font-weight:700;font-size:.95rem;line-height:1.2;padding:11px 22px;border-radius:999px;text-decoration:none;transition:background .2s,transform .2s;}
 .nl-top a.nl-top__btn:hover{background:#B8955A;color:#1B1B1B;transform:translateY(-1px);}
 .nl-top a.nl-top__btn:focus-visible{outline:3px solid #C9A96A;outline-offset:3px;}
+.eval-bar{background:#C9A96A;}
+.eval-bar a.btn,.eval-bar a.btn:link,.eval-bar a.btn:visited,.eval-bar a.btn:hover,.eval-bar a.btn:focus,.eval-bar a.btn:active{display:flex;width:100%;box-sizing:border-box;border-radius:0;border:0;background:#C9A96A;color:#1B1B1B !important;justify-content:center;align-items:center;padding:16px 24px;font-weight:600;font-size:1rem;letter-spacing:0;text-transform:none;line-height:1.2;text-align:center;}
+.eval-bar a.btn:hover{background:#B3945A;color:#1B1B1B !important;transform:none;}
+.eval-bar a.btn:focus-visible{outline:3px solid #1B1B1B;outline-offset:-3px;}
 </style>
 
 <!-- ===== JSON-LD 1: FAQPage ===== -->
@@ -288,6 +292,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="nl-top"><span class="nl-top__q">Like this article?</span> <a class="nl-top__btn" href="/newsletter" data-cta="post-top-newsletter">Join the weekly newsletter</a></div>
   </div>
 </header>
+<div class="eval-bar">
+  <a class="btn btn--primary" id="book-home-evaluation" href="https://calendly.com/jonathan-faristeam/jonathan-wallace-in-home-evaluation-full-cma" data-cta="book-home-evaluation" data-ga4="book_home_evaluation">Book a home evaluation</a>
+</div>
 
 <main>
 <div class="wrap">
@@ -424,8 +431,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="guide-cta">
     <h2>Questions about what council decisions mean for your property?</h2>
-    <p>Send me a message.</p>
-    <p class="cta-btns"><a class="btn btn--primary" href="/contact">Send me a message</a></p>
+    <p>The useful next step is a home evaluation for that address.</p>
+    <p class="cta-btns"><a class="btn btn--primary" href="https://calendly.com/jonathan-faristeam/jonathan-wallace-in-home-evaluation-full-cma" data-cta="book-home-evaluation" data-ga4="book_home_evaluation">Book a home evaluation</a></p>
   </div>
 
   <h2>FAQ</h2>
@@ -493,6 +500,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="reco">Jonathan Wallace, REALTOR&reg;, Faris Team Real Estate Brokerage. REALTOR&reg;, MLS&reg; and the associated logos are trademarks owned by The Canadian Real Estate Association (CREA) and identify real estate professionals who are members of CREA. Not intended to solicit properties already listed for sale or buyers or sellers currently under contract. This article is a non-partisan summary of publicly posted election results. It is not an endorsement, and it is not legal advice.</p>
   </div>
 </footer>
-
+<script>
+document.addEventListener('click', function (e) {
+  try {
+    var el = e.target && e.target.closest ? e.target.closest('[data-ga4="book_home_evaluation"]') : null;
+    if (!el) return;
+    var params = { link_url: el.getAttribute('href') || '', page_path: location.pathname };
+    if (typeof window.gtag === 'function') { window.gtag('event', 'book_home_evaluation', params); return; }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push((function () { return arguments; })('event', 'book_home_evaluation', params));
+  } catch (err) {}
+}, true);
+</script>
 </body>
 </html>

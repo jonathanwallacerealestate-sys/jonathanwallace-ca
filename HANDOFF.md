@@ -1,5 +1,7 @@
 # jonathanwallace.ca — Project Handoff
 
+> Out of date: this is the original Phase 1 handoff. See CHANGELOG.md for current changes, reasons and rules.
+
 **Owner:** Jonathan Wallace, Salesperson · Faris Team Real Estate, Brokerage
 **Contact:** jonathan@faristeam.ca · 705-433-2525 · Midland, Ontario
 **Project:** Standalone personal-brand real estate website (Phase 1)

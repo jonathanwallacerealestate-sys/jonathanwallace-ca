@@ -214,26 +214,92 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p>Not an automated guess, a real analysis from a local agent who knows what's actually selling in your neighbourhood, and for how much.</p>
   </div>
 </section>
-
-<section class="section">
-  <div class="wrap" style="max-width:780px;">
-    <form class="form" name="home-valuation" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thank-you.html">
-      <input type="hidden" name="form-name" value="home-valuation">
-      <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
-      <div class="field"><label>Property address</label><input name="address" placeholder="123 Bayshore Dr, Midland, ON" required></div>
-      <div class="form__row"><div class="field"><label>Property type</label><select name="property_type"><option>Detached</option><option>Semi / townhouse</option><option>Condo</option><option>Waterfront</option><option>Vacant land</option><option>Other</option></select></div><div class="field"><label>Approx. square footage</label><input name="sqft" placeholder="e.g. 1,800"></div></div>
-      <div class="form__row"><div class="field"><label>Bedrooms</label><select name="beds"><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></div><div class="field"><label>Bathrooms</label><select name="baths"><option>1</option><option>2</option><option>3</option><option>4+</option></select></div></div>
-      <div class="field"><label>Anything that makes your home special? (optional)</label><textarea name="features" rows="3" placeholder="Renovations, waterfront, lot size, view…"></textarea></div>
-      <hr style="border:none;border-top:1px solid var(--line);margin:8px 0 22px;">
-      <div class="form__row"><div class="field"><label>First name</label><input name="first_name" required></div><div class="field"><label>Last name</label><input name="last_name" required></div></div>
-      <div class="form__row"><div class="field"><label>Email</label><input type="email" name="email" required></div><div class="field"><label>Phone</label><input type="tel" name="phone" required></div></div>
-      <div class="field"><label>Timeline to sell</label><select name="timeline"><option>ASAP</option><option>1–3 months</option><option>3–6 months</option><option>6–12 months</option><option>Just curious</option></select></div>
-      <label class="consent"><input type="checkbox" name="casl_consent" required> I agree to be contacted by Jonathan Wallace about my home's value and understand I can unsubscribe anytime. (CASL)</label>
-      <button class="btn btn--primary btn--block btn--lg" type="submit">Get my home valuation</button>
-      <p class="form__note">Free and no-obligation. Your details are private and never shared.</p>
-    </form>
+<!-- SELLER PROOF (council batch 2): proof band + seller review above the form -->
+<section class="proof section" style="padding-top:32px;padding-bottom:10px;">
+  <div class="wrap">
+    <div class="proof__grid">
+      <div><div class="stat__num">$300M+</div><div class="stat__label">In career sales volume</div></div>
+      <div><div class="stat__num">500+</div><div class="stat__label">Families served</div></div>
+      <div><div class="stat__num">4.96&#9733;</div><div class="stat__label">Rated on RateMyAgent</div></div>
+      <div><div class="stat__num">#1</div><div class="stat__label">Agent in Midland &amp; Penetanguishene, as rated on RateMyAgent</div></div>
+    </div>
+    <blockquote style="max-width:720px;margin:28px auto 0;background:#F7F3EC;border:1px solid #EAE4D8;border-radius:14px;padding:22px;"><div style="color:#C9A96A;letter-spacing:3px;font-size:.95rem;text-align:center;">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p style="font-family:'Playfair Display',Georgia,serif;font-size:1.02rem;line-height:1.55;color:#1B1B1B;margin:10px 0 14px;">&ldquo;Jonathan was extremely helpful and responsive during the sale of our property. He was able to provide us with additional reliable resources to assist with the preparation and sale of the home. He planned and executed a successful strategy for a sale above our expected price and in our required timeframe.&rdquo;</p><cite style="font-style:normal;font-size:.88rem;color:#8A8378;">Daniel Landry &middot; Seller &middot; verified on RateMyAgent</cite></blockquote>
   </div>
 </section>
+
+
+<section class="section" id="valuation">
+  <div class="wrap" style="max-width:780px;">
+    <!-- Two-step valuation (council batch 4), modelled on /seller-valuation/. Step 1 is the lead and posts to
+         the existing Netlify form "home-valuation" (main.js beacon tags it organic, Ads only on paid UTMs).
+         Step 2 is optional detail on a separate Netlify form. Without JS, step 1 posts normally to thank-you.html. -->
+    <div id="hvStep1">
+      <p class="eyebrow">Step 1 of 2</p>
+      <h2 style="margin-top:4px;">Where is the home?</h2>
+      <form class="form" id="hvForm1" name="home-valuation" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thank-you.html">
+        <input type="hidden" name="form-name" value="home-valuation">
+        <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
+        <div class="field"><label for="hvAddress">Property address</label><input id="hvAddress" name="address" placeholder="123 Bayshore Dr" autocomplete="street-address" required></div>
+        <div class="field"><label for="hvTown">Town</label><select id="hvTown" name="town" required><option value="">Choose your town</option><option>Midland</option><option>Penetanguishene</option><option>Tiny Township</option><option>Tay Township</option><option>Wasaga Beach</option><option>Other</option></select></div>
+        <div class="form__row"><div class="field"><label for="hvFirst">First name</label><input id="hvFirst" name="first_name" autocomplete="given-name" required></div><div class="field"><label for="hvLast">Last name (optional)</label><input id="hvLast" name="last_name" autocomplete="family-name"></div></div>
+        <div class="form__row"><div class="field"><label for="hvEmail">Email</label><input id="hvEmail" type="email" name="email" autocomplete="email" required></div><div class="field"><label for="hvPhone">Mobile</label><input id="hvPhone" type="tel" name="phone" autocomplete="tel" inputmode="tel" required></div></div>
+        <label class="consent"><input type="checkbox" name="casl_consent" required> I agree to be contacted by Jonathan Wallace about my home's value and understand I can unsubscribe anytime. (CASL)</label>
+        <button class="btn btn--primary btn--block btn--lg" type="submit" data-ga4="home_value_step1">Get my home valuation</button>
+        <p class="form__note">Free and no-obligation. Your details are private and never shared. Prefer to text? <a href="sms:+17054332525" data-ga4="cta_text">705-433-2525</a></p>
+      </form>
+    </div>
+
+    <div id="hvStep2" hidden>
+      <p class="eyebrow">Step 2 of 2, optional</p>
+      <h2 style="margin-top:4px;">Got it. A few details sharpen the number.</h2>
+      <p>Your request is in, and you'll hear from me personally within 24 hours. Add anything below, or skip it.</p>
+      <form class="form" id="hvForm2" name="home-valuation-details" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thank-you.html">
+        <input type="hidden" name="form-name" value="home-valuation-details">
+        <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
+        <input type="hidden" name="email" id="hv2Email">
+        <input type="hidden" name="first_name" id="hv2First">
+        <input type="hidden" name="last_name" id="hv2Last">
+        <input type="hidden" name="address" id="hv2Address">
+        <div class="form__row"><div class="field"><label for="hvType">Property type</label><select id="hvType" name="property_type"><option value="">Choose one</option><option>Detached</option><option>Semi / townhouse</option><option>Condo</option><option>Waterfront</option><option>Vacant land</option><option>Other</option></select></div><div class="field"><label for="hvSqft">Approx. square footage</label><input id="hvSqft" name="sqft" placeholder="e.g. 1,800"></div></div>
+        <div class="form__row"><div class="field"><label for="hvBeds">Bedrooms</label><select id="hvBeds" name="beds"><option value="">Choose</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></div><div class="field"><label for="hvBaths">Bathrooms</label><select id="hvBaths" name="baths"><option value="">Choose</option><option>1</option><option>2</option><option>3</option><option>4+</option></select></div></div>
+        <div class="field"><label for="hvTimeline">Timeline to sell</label><select id="hvTimeline" name="timeline"><option value="">Choose one</option><option>ASAP</option><option>1–3 months</option><option>3–6 months</option><option>6–12 months</option><option>Just curious</option></select></div>
+        <div class="field"><label for="hvFeatures">Anything that makes your home special?</label><textarea id="hvFeatures" name="features" rows="3" placeholder="Renovations, waterfront, lot size, view…"></textarea></div>
+        <button class="btn btn--primary btn--block btn--lg" type="submit" data-ga4="home_value_step2">Send the details</button>
+        <p class="form__note"><a href="thank-you.html" id="hvSkip" data-ga4="home_value_skip_step2">Skip this step</a></p>
+      </form>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  var f1 = document.getElementById('hvForm1'), f2 = document.getElementById('hvForm2');
+  if (!f1 || !f2 || !window.fetch || !window.URLSearchParams) return; /* no JS path: normal POST */
+  function post(form) {
+    return fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString() });
+  }
+  f1.addEventListener('submit', function (e) {
+    if (!f1.checkValidity()) return;
+    e.preventDefault();
+    var btn = f1.querySelector('button[type="submit"]'); btn.disabled = true;
+    post(f1).then(function (r) {
+      if (!r.ok) throw new Error('post failed');
+      ['Email', 'First', 'Last', 'Address'].forEach(function (k) {
+        var src = { Email: 'hvEmail', First: 'hvFirst', Last: 'hvLast', Address: 'hvAddress' }[k];
+        document.getElementById('hv2' + k).value = document.getElementById(src).value;
+      });
+      document.getElementById('hvStep1').hidden = true;
+      var s2 = document.getElementById('hvStep2'); s2.hidden = false;
+      s2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }).catch(function () { btn.disabled = false; f1.submit(); });
+  });
+  f2.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = f2.querySelector('button[type="submit"]'); btn.disabled = true;
+    post(f2).then(function () { location.href = 'thank-you.html'; }, function () { location.href = 'thank-you.html'; });
+  });
+})();
+</script>
 
 <section class="section section--sand">
   <div class="wrap center"><p class="eyebrow">Why it's better than an algorithm</p><h2>A local read, not a robot's guess</h2></div>

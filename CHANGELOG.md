@@ -16,6 +16,16 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-03
 
+### Batches 2 to 4 from the website council (structure only, no new wording beyond button labels already in use)
+Why: Jonathan Wallace said "finish the job" on the council plan. Wording changes that need his approval are listed at the end and not made.
+- Lead flow: on 66 posts the first call to action is now "Thinking of selling? Book a home evaluation" (Calendly in-home link, data-ga4 book_home_evaluation) instead of the newsletter button. The mid and end newsletter options stay.
+- Gold "Book a home evaluation" bar under the hero on all five town hubs.
+- Proof band, Daniel Landry's seller review and a matching town case study link now sit above the form on sell.html, the five sell pages and home-value.html.
+- "Text me" (sms:+17054332525) added to the homepage hero and the sell page heroes. Homepage "Book a listing chat" and the sell-page footer booking buttons now go straight to contact.html#book. Homepage reviews lead with the seller review.
+- Site map: 17 town posts now end with links to their town's sell page, interview page and hub; the Midland, Penetanguishene and Tiny hubs list their best posts; the five interview pages link their sell page, hub and proof posts; the homepage has a "Selling in a specific town?" row.
+- /home-value.html is now two steps, modelled on /seller-valuation/: step 1 asks only address, town, name, email, mobile and consent and posts to the existing Netlify form home-valuation (organic tagging through the main.js beacon unchanged, Ads tag only on paid UTMs); step 2 is optional detail on a new Netlify form home-valuation-details, then thank-you.html (Google Ads conversion unchanged). No default "ASAP" or "1 bedroom" any more, here or on the sell-page forms.
+- Speed: homepage hero now a 218 KB WebP (was a 363 KB JPG) and preloaded; images under /assets/img/ cached for 7 days (_headers). New branded 404.html (noindex) with the shared header, footer and next steps.
+
 ### Batch 1 from the website council (structure only, no wording changes)
 Why: Jonathan Wallace asked for a six-seat council review (execution, marketing, lead flow, site architecture, SEO, AEO). Batch 1 fixes what was broken.
 - Removed the self-serving aggregateRating and review markup from Jonathan Wallace's own RealEstateAgent/Person schema on 75 pages (DEC-252). The visible proof is unchanged.

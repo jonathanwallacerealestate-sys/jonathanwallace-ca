@@ -11,6 +11,7 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 - Proof line: $300M+ career sales, 500+ families served, 4.96 stars on RateMyAgent across 16 verified reviews, number one rated agent in Midland and Penetanguishene on RateMyAgent, 2025 Midland Readers' Choice Award Best Realtor.
 - Resources was removed from the top menu on purpose (Oct 30, Jonathan Wallace's request). It lives in the footer only. Do not restore it to the top menu.
 - Listing pages must match REALTOR.ca. Listings that come off REALTOR.ca get disabled with a redirect to the homepage.
+- Listing descriptions stay word for word as they appear on REALTOR.ca, including words the voice rules otherwise ban (stunning, cozy and similar). Do not rewrite them (Jonathan Wallace, Nov 3, DEC-20261103-listing-copy-matches-realtor-ca).
 - Interview and town pages use the shared site header, footer and styles.css, not one-off templates.
 
 ## 2026-11-03
@@ -28,7 +29,8 @@ Why: Jonathan Wallace asked for every page to be audited against the brand guide
 - /blog-which-agent-penetanguishene (noindex duplicate) now 301s to the Penetanguishene interview page.
 - Deleted the empty, indexable test-restore-check.html.
 - scripts/publish.py no longer hardcodes its Make webhook (it reads JW_PUBLISH_HOOK). The old URL is still in git history and must be rotated in Make (DEC-124).
-- Not changed, waiting on Jonathan Wallace: listing description wording (banned words vs matching REALTOR.ca), election candidate pages (index or noindex), town-page FAQs (parked, Needs Jonathan #35), review count 15 vs 16 (DEC-254), moving the 13 one-off posts onto the shared header and footer.
+- Listing description wording left as is: it matches REALTOR.ca, which Jonathan Wallace confirmed is correct.
+- Not changed, waiting on Jonathan Wallace: election candidate pages (index or noindex), town-page FAQs (parked, Needs Jonathan #35), review count 15 vs 16 (DEC-254), moving the 13 one-off posts onto the shared header and footer.
 - Structural check (DEC-263): tag balance, image count and JSON-LD parse compared before and after on every changed file, zero differences.
 
 ### Social images for the big six banks post

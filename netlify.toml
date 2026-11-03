@@ -4,7 +4,8 @@
 
 [build]
   publish = "."
-  command = ""
+  # Pre-deploy check: stops the deploy if a publish step was skipped (see scripts/check_site.py)
+  command = "python3 scripts/check_site.py"
   functions = "netlify/functions"
 
 # Pretty URLs / basic hardening headers
@@ -70,19 +71,6 @@
   to = "/blog-market-update-oct-19-25-2026.html"
   status = 301
   force = false
-
-# Duplicate of the Penetanguishene interview page (was noindex). One URL for search and AI answers.
-[[redirects]]
-  from = "/blog-which-agent-penetanguishene"
-  to = "/which-real-estate-agent-should-you-interview-in-penetanguishene"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/blog-which-agent-penetanguishene.html"
-  to = "/which-real-estate-agent-should-you-interview-in-penetanguishene"
-  status = 301
-  force = true
 
 # Ben Poole's private review link now points at the published post
 [[redirects]]
@@ -160,8 +148,9 @@
 
 [[redirects]]
   from = "/sell-your-home-in-midland/"
-  to = "/sell-midland.html"
-  status = 200
+  to = "/sell-your-home-in-midland"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/sell-your-home-in-penetanguishene"
@@ -170,8 +159,9 @@
 
 [[redirects]]
   from = "/sell-your-home-in-penetanguishene/"
-  to = "/sell-penetanguishene.html"
-  status = 200
+  to = "/sell-your-home-in-penetanguishene"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/sell-your-home-in-tiny-township"
@@ -180,8 +170,9 @@
 
 [[redirects]]
   from = "/sell-your-home-in-tiny-township/"
-  to = "/sell-tiny-township.html"
-  status = 200
+  to = "/sell-your-home-in-tiny-township"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/sell-your-home-in-tay-township"
@@ -190,8 +181,9 @@
 
 [[redirects]]
   from = "/sell-your-home-in-tay-township/"
-  to = "/sell-tay-township.html"
-  status = 200
+  to = "/sell-your-home-in-tay-township"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/sell-your-home-in-wasaga-beach"
@@ -200,8 +192,9 @@
 
 [[redirects]]
   from = "/sell-your-home-in-wasaga-beach/"
-  to = "/sell-wasaga-beach.html"
-  status = 200
+  to = "/sell-your-home-in-wasaga-beach"
+  status = 301
+  force = true
 
 # Pretty URL for the buyer home-search page
 [[redirects]]
@@ -1316,5 +1309,60 @@
 [[redirects]]
   from = "/home-valuation/"
   to = "/home-value.html"
+  status = 301
+  force = true
+
+# Non-canonical .html forms of posts whose canonical is extensionless (one URL per post for search and AI)
+[[redirects]]
+  from = "/blog-bank-of-canada-rate-decision-october-2026.html"
+  to = "/blog-bank-of-canada-rate-decision-october-2026"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-bank-of-canada-rate-hike-big-six-banks-november-2026.html"
+  to = "/blog-bank-of-canada-rate-hike-big-six-banks-november-2026"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-canada-economy-losing-steam-november-2026.html"
+  to = "/blog-canada-economy-losing-steam-november-2026"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-car-affordability-georgian-bay.html"
+  to = "/blog-car-affordability-georgian-bay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-fixed-or-variable-mortgage-fall-2026.html"
+  to = "/blog-fixed-or-variable-mortgage-fall-2026"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-get-home-ready-for-winter-georgian-bay.html"
+  to = "/blog-get-home-ready-for-winter-georgian-bay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-labatte-house-crossing-georgian-bay.html"
+  to = "/blog-labatte-house-crossing-georgian-bay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-missed-mortgage-payments-ontario.html"
+  to = "/blog-missed-mortgage-payments-ontario"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-wills-executors-powers-of-attorney.html"
+  to = "/blog-wills-executors-powers-of-attorney"
   status = 301
   force = true

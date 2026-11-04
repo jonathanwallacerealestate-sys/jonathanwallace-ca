@@ -1,0 +1,83 @@
+{
+  "_note": "Straight Answers video library. One entry per video, newest first. scripts/build_ask.py renders /ask/ and one page per entry. Transcripts come from the video audio, lightly cleaned. Short answers restate Jonathan Wallace's own words; do not add claims he did not make. LIVE flag: while false, every /ask page is noindex, out of sitemap.xml and llms.txt, and not linked from the menu.",
+  "live": true,
+  "videos": [
+    {
+      "slug": "bank-of-canada-rate-hike-what-it-means",
+      "question": "What does the Bank of Canada rate hike mean for buyers and sellers on Georgian Bay?",
+      "card": "What does the rate hike mean for you?",
+      "category": "Market",
+      "date": "2026-10-28",
+      "duration": 63,
+      "short": "The quarter point increase, from 2.25% to 2.5%, is less about the size of the move and more about the message: the Bank of Canada is serious about inflation. Buyers holding pre-approvals may rush to use them first, then some will cool off as budgets shrink. For prices in Midland, Penetanguishene, Tiny, Tay and Wasaga Beach, nobody knows yet, but if buying gets harder to afford, prices could soften a little more.",
+      "transcript": "Well, that's not the news anybody wanted. The rates, they just went up. The Bank of Canada just raised its key rate today for the first time since July of 2023. Now, it's only a quarter point, from two and a quarter to two and a half. So this isn't really about the size of the move, it's about the message. The bank is telling everybody that they're serious about fighting inflation. Gas, diesel and heating oil have all been really expensive for months, and they don't want that spilling into the price of everything else.\n\nSo what does that mean for buyers? In the short term, you might actually see a quick rush. People have already locked in pre-approval rates, and they'll want to use them before they run out. And then after that, some buyers may cool off a bit. Higher rates mean a smaller budget.\n\nAnd for prices, honestly, nobody knows yet. If buying gets harder to afford, we could see home prices here in Midland, Penetang, Tiny, Tay and Wasaga Beach soften a little bit more. If you've been thinking about buying or selling and you're wondering what it means for you, send me a message.",
+      "related": {"label": "What Canada's big six banks are saying about the rate hike", "href": "/blog-bank-of-canada-rate-hike-big-six-banks-november-2026"}
+    },
+    {
+      "slug": "did-the-rate-hike-make-buying-more-expensive",
+      "question": "Did the rate hike make buying a home in Simcoe County more expensive?",
+      "card": "Did the rate hike make buying more expensive?",
+      "category": "Buying",
+      "date": "2026-11-03",
+      "duration": 86,
+      "short": "Not necessarily. Your payment depends on the price and the rate, and Simcoe County prices are down about 3% in a year. On a $550,000 home with 5% down, the lower price saves about $90 a month while the higher rate adds back about $75, so the payment is still a little lower than last fall. You can always get a better rate later. You can never go back and change the price you paid.",
+      "transcript": "The Bank of Canada just raised its rates by a quarter point, but buying a home here in Simcoe County actually just got marginally cheaper, and here's how it works. Your monthly payment depends on two things: the price of the home and the rate of your loan. When prices drop, you borrow less, and borrowing less can make up for that higher rate.\n\nNow picture Sam and Jess. They're out looking at their first home this week for $550,000, and they find a house that they absolutely love. Then the news hits: rates are going up. Their first thought is, we just missed our chance. So we sit down and we run the numbers.\n\nPrices in Simcoe County have dropped about 3% in a year, so that same house last fall would have cost them about $16,000 more. With a 5% down payment, that lower price saves them about $90 a month. Now, that higher rate does add back about $75 a month. So even after the increase, their payment is a little bit lower than it would have been last fall. And over a 25-year period, that lower price saves them about $26,000.\n\nNow, nobody knows the bottom until prices start rising again, and buying isn't for everybody. But if you're in a good spot to own, the math is on your side right now. You can always get a better rate down the road, and you can never go back and change the price you paid.",
+      "related": {"label": "Fixed or variable mortgage this fall?", "href": "/blog-fixed-or-variable-mortgage-fall-2026.html"}
+    },
+    {
+      "slug": "should-i-wait-until-spring-to-sell",
+      "question": "Should I wait until spring to sell my house in Midland?",
+      "card": "Should I wait until spring to sell?",
+      "category": "Selling",
+      "date": "2026-11-03",
+      "duration": 67,
+      "short": "Waiting for spring feels safer, but it can cost more than you think when prices are trending down. The question worth asking is simple: if prices are lower in the spring, does that change your plans? Nobody has a crystal ball, but answering that honestly tells you what really matters.",
+      "transcript": "Waiting until spring feels safe, but it could cost you more than you think. Now, let me tell you about Tom and Linda. Thirty years in their Midland home. Their kids' heights are still etched on the kitchen doorframe. Now the stairs are getting harder, and they're ready for something smaller and closer to their grandchildren.\n\nThey tell me, well, wait until the spring, my garden shows better. And I understand. It's a big step, and spring does feel safer. But right now, prices are trending in the wrong direction. So I asked them one honest question: what if the prices are lower in the spring? Will that change your plans for the future, or is that something you're going to be okay with? And they both went quiet, because nobody has a crystal ball. But that one question helped them decide what really mattered.\n\nNow, no real estate agent wants to sell a home for less. Most of us got into this business because we care about people, and a lot of how we feel about our work comes from how we do for our clients. So I'd rather ask the hard question today than have them find out in six months. So if you have been thinking about waiting, let's sit down and talk through what it could mean for you.",
+      "related": {"label": "When is the right time to buy or sell in Midland?", "href": "/blog-right-time-to-buy-or-sell-midland.html"}
+    },
+    {
+      "slug": "why-isnt-my-house-selling",
+      "question": "Why isn't my house selling?",
+      "card": "Why isn't my house selling?",
+      "category": "Selling",
+      "date": "2026-11-03",
+      "duration": 65,
+      "short": "When the market slows, three things decide whether a home sells: the price, how it looks, and how many buyers see it. One home sat for almost a year, then sold in under 10 days with a new plan: fresh photos, staging, virtual furniture in the empty rooms, a video tour, drone photography showing the beach, and a price that stood out as one of the best deals around.",
+      "transcript": "It sat on the market for almost a year, and then it sold in under 10 days. Same house, different plan. Now, the couple who owned it asked me one thing at their kitchen table: it's a beautiful home, why won't anybody buy it? It was putting their next move on hold, and the wait was costing them tens of thousands of dollars.\n\nWhen the market slows down, three things decide if a home sells: the price, how it looks, and how many buyers ultimately see the property. Now, their photos were just average, so we started fresh with new photos. We brought in our stager to set up the rooms that already had furniture, and for a few empty rooms we added furniture to those photos digitally, so buyers could see how they could look. Then we put it everywhere buyers look, with a video tour and drone photography showing how close it was to the beach, and we priced it so that it stood out as one of the best deals around.\n\nUnder 10 days later it was sold, and they finally got to move on. So if your home's been sitting and no one's told you why, I'm happy to take an honest look.",
+      "related": {"label": "How your home gets sold, step by step", "href": "/blog-how-your-home-gets-sold.html"}
+    },
+    {
+      "slug": "should-i-sell-as-is-where-is",
+      "question": "Should I list my house \"as is, where is\"?",
+      "card": "Should I list my house \"as is, where is\"?",
+      "category": "Selling",
+      "date": "2026-11-03",
+      "duration": 46,
+      "short": "Usually not. Those four words sound safe, but buyers start picturing leaks or foundation problems and offer less, some walk away thinking you're hiding something, and the buyer's bank can start asking questions too. If something doesn't work, like the dishwasher, name just that one thing so buyers don't invent problems that don't exist.",
+      "transcript": "Four words in your listing that can make buyers think the absolute worst: as is, where is. It means you're selling the home exactly as it sits, with no fixes. It sounds safe, but here's what it really does.\n\nBuyers see those words and they start picturing leaks or foundation problems, and they offer you less money. Some get so nervous that they walk away completely, thinking that you're hiding something. And in my experience, the buyer's bank can notice it too, and they start asking what's wrong. So all that from a few words meant to keep things easy.\n\nHere's the better way. If something doesn't work, like the dishwasher, name just that one thing, so that you don't have buyers inventing problems that don't exist.",
+      "related": {"label": "Selling your home in Midland", "href": "/blog-selling-your-home-in-midland.html"}
+    },
+    {
+      "slug": "buy-before-you-sell",
+      "question": "How do I buy my next home before I sell my current one?",
+      "card": "How do I buy before I sell?",
+      "category": "Buying",
+      "date": "2026-11-03",
+      "duration": 68,
+      "short": "Make your offer conditional on selling your house by a set date, and add a pause clause. Without it, the seller can keep marketing their home and give you 24 to 48 hours to commit the moment another offer comes in, before your own sale is firm. The pause clause means that once you accept an offer on your home, the seller has to wait and can't bump you out, so your buyer commits, then you commit.",
+      "transcript": "Need to sell your house before you can buy the next one? There's a way to do it without ending up homeless. Usually you make an offer on the new house, and it only goes ahead if you sell your house by a certain date. If it doesn't sell in time, the deal ends and you get your deposit back. Now, the catch is the seller gets to keep their house on the market. If another offer comes in, you get 24, maybe 48 hours to commit, or you lose it.\n\nSo picture a couple who finds the house that they've been waiting for. The seller says yes, and they list their home. A few weeks later they get an offer on their place, but that buyer still needs an inspection and bank approval. That same week, someone else comes and offers on the house they want. Now they only have 24 to 48 hours to commit to a house they can't afford yet. They could sell their home and have nowhere to go.\n\nThat's why we add the pause clause. Once you accept an offer for your home, the seller has to wait the duration of the pause clause, and they can't bump you out. Your buyer commits, then you commit, and you move into the house you wanted. So if you need to sell before you buy, send me a DM and I'll make sure you're protected.",
+      "related": {"label": "Offers conditional on the sale of the buyer's property, explained", "href": "/blog-offer-conditional-on-sale-of-buyers-property.html"}
+    },
+    {
+      "slug": "what-to-do-with-a-lowball-offer",
+      "question": "What should I do with a lowball offer on my home?",
+      "card": "What do I do with a lowball offer?",
+      "category": "Selling",
+      "date": "2026-11-03",
+      "duration": 60,
+      "short": "Don't take it personally. Counter it and keep talking. What counts as a lowball depends on the home: $100,000 under on a $400,000 house is a huge gap, but on a million dollar home that has sat for six months it's a starting point. In Jonathan Wallace's experience buyers come up a lot once the talking starts. The first offer is where the deal starts, not where it ends.",
+      "transcript": "That lowball offer on your home might be your buyer. When you list your home, you've got a number in your head, and that's normal. But the longer the home sits, the bolder buyers get. So say it's been six months, and an offer comes in a hundred thousand dollars under your price. It stings, and at first your thought is, absolutely not.\n\nBut what that means depends on the home. If your home is worth $400,000, well, that's a huge gap. But if your home is worth a million bucks, after six months, by my estimation, it really isn't a lowball offer. It's a starting point. That buyer is often thinking, we won't know if we don't ask. And in my experience, buyers come up a lot once the talking starts.\n\nSo if you're open to offers, you can't be offended by the first one. Don't take it personally. Counter it and keep talking, so the buyer feels that you're working towards the same goal. That's how both sides walk away with a successful deal. The first offer is where the deal starts, not where it ends.",
+      "related": {"label": "Selling your home in Midland", "href": "/blog-selling-your-home-in-midland.html"}
+    }
+  ]
+}

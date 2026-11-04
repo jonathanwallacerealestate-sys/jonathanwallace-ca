@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-03
 
+### Friday email link removed from the footer
+Why: Jonathan Wallace asked for it. The Weekly market hub link and the footer sign-up already lead to the Friday email, so two footer links were selling the same thing.
+- assets/js/main.js no longer adds the /join link to footers. The top menu link stays.
+
 ### Straight Answers video library, preview only (PR branch ask-video-library-preview, not merged)
 Why: Jonathan Wallace asked for a library of his unscripted question videos on the site, mocked up so he can refine the design, and not public until there are enough videos.
 - content/ask-videos.json holds each video (question, short answer in his words, transcript from the audio). scripts/build_ask.py renders /ask/ (hub with topic filters), /ask/<slug> (video, short answer, CTA, full transcript, related questions) and a homepage strip above Home Tours.

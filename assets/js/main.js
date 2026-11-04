@@ -418,7 +418,7 @@ jwOnIdle(function () {
   window.jwFireAdsConversion = function (sendTo) {
     if (typeof window.gtag !== 'function' || !GOOGLE_ADS_ID) return;
     window.gtag('event', 'conversion', {
-      send_to: sendTo || (GOOGLE_ADS_ID + '/3m8SCJPwpfEcE0P8jbJE'),
+      send_to: sendTo || (GOOGLE_ADS_ID + '/3m8SCJPwpfEcEOP8jbJE'),
       value: 1.0,
       currency: 'CAD'
     });

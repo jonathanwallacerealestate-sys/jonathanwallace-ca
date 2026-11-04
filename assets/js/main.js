@@ -689,7 +689,7 @@ function jwOnIdle(fn) {
   else window.setTimeout(function () { try { fn(); } catch (e) {} }, 200);
 }
 
-/* Friday email lives at /join. It was absent from the menu and the footer, so the page drew no clicks. */
+/* Friday email lives at /join. Linked from the top menu (it drew no clicks when it was absent). */
 (function () {
   var path = '';
   try { path = location.pathname.replace(/\.html$/, '').replace(/\/+$/, '') || '/'; } catch (e) { path = ''; }
@@ -713,28 +713,7 @@ function jwOnIdle(fn) {
     });
   }
 
-  var footers = document.querySelectorAll('.footer');
-  for (var i = 0; i < footers.length; i++) {
-    if (footers[i].querySelector('a[href="/join"]')) continue;
-    var blog = footers[i].querySelector('a[href="blog.html"], a[href="/blog.html"], a[href="/blog"]');
-    if (blog && blog.parentNode && blog.parentNode.tagName === 'LI' && blog.parentNode.parentNode) {
-      var item = document.createElement('li');
-      var link = document.createElement('a');
-      link.href = '/join';
-      link.textContent = 'Friday email';
-      item.appendChild(link);
-      blog.parentNode.parentNode.appendChild(item);
-      continue;
-    }
-    var legal = footers[i].querySelector('.footer__legal p:last-child');
-    if (legal) {
-      legal.appendChild(document.createTextNode(' \u00b7 '));
-      var legalLink = document.createElement('a');
-      legalLink.href = '/join';
-      legalLink.textContent = 'Friday email';
-      legal.appendChild(legalLink);
-    }
-  }
+  /* Footer link removed Nov 3 at Jonathan Wallace's request: the weekly market hub and the footer sign-up already lead to the Friday email. */
 })();
 
 /* Keep off-screen card photos from downloading with the first screen. */

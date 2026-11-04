@@ -618,7 +618,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var q = new URLSearchParams(location.search);
   var attr = storeGet('attr') || {};
   q.forEach(function (v, k) {
-    if (k === 'fbclid' || k.indexOf('utm_') === 0) attr[k] = v;
+    if (k === 'fbclid' || k === 'gclid' || k.indexOf('utm_') === 0) attr[k] = v;
   });
   storeSet('attr', attr);
   var savedLead = storeGet('lead');
@@ -631,6 +631,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (k.indexOf('utm_') === 0 && !Object.prototype.hasOwnProperty.call(out, k)) out[k] = attr[k];
     });
     out.fbclid = attr.fbclid || '';
+    out.gclid = attr.gclid || '';
     return out;
   }
   function fbc() {
@@ -1036,6 +1037,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         photos_folder_url: driveFolderUrl || '',
         extra_details: extraDetails
       };
+      var attrFields = attribution();
+      Object.keys(attrFields).forEach(function (key) { body[key] = attrFields[key]; });
       CHIP_KEYS.forEach(function (key) {
         body[key] = key === 'basement_finish' && selected.full_basement !== 'Yes' ? '' : (selected[key] || '');
       });

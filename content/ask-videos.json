@@ -1,6 +1,6 @@
 {
   "_note": "Straight Answers video library. One entry per video, newest first. scripts/build_ask.py renders /ask/ and one page per entry. Transcripts come from the video audio, lightly cleaned. Short answers restate Jonathan Wallace's own words; do not add claims he did not make. LIVE flag: while false, every /ask page is noindex, out of sitemap.xml and llms.txt, and not linked from the menu.",
-  "live": false,
+  "live": true,
   "videos": [
     {
       "slug": "bank-of-canada-rate-hike-what-it-means",

@@ -321,6 +321,28 @@ def build_strip():
         fh.write(idx)
 
 
+def build_index_files():
+    """When live, keep sitemap.xml and llms.txt in step with the library."""
+    sm = read("sitemap.xml")
+    sm = re.sub(r"\s*<!-- ASK:START -->.*?<!-- ASK:END -->", "", sm, flags=re.S)
+    if LIVE:
+        today = max(v["date"] for v in VIDEOS)
+        urls = [f"  <url><loc>{SITE}/ask/</loc><lastmod>{today}</lastmod><priority>0.8</priority></url>"]
+        urls += [f"  <url><loc>{SITE}/ask/{v['slug']}</loc><lastmod>{v['date']}</lastmod><priority>0.7</priority></url>" for v in VIDEOS]
+        sm = sm.replace("</urlset>", "  <!-- ASK:START -->\n" + "\n".join(urls) + "\n  <!-- ASK:END -->\n</urlset>")
+    with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as fh:
+        fh.write(sm)
+    ll = read("llms.txt")
+    ll = re.sub(r"## Straight Answers \(video\)\n.*?(?=\n## |\Z)", "", ll, flags=re.S).rstrip("\n") + "\n"
+    if LIVE:
+        lines = [f"- [Straight Answers video library]({SITE}/ask/): short unscripted videos where Jonathan Wallace answers the questions Georgian Bay buyers and sellers are asking, each with a written answer and full transcript."]
+        lines += [f"- [{v['question']}]({SITE}/ask/{v['slug']}): {v['short']}" for v in VIDEOS]
+        block = "## Straight Answers (video)\n" + "\n".join(lines) + "\n"
+        ll = ll.replace("\n## Weekly and monthly market updates", "\n" + block + "\n## Weekly and monthly market updates", 1)
+    with open(os.path.join(ROOT, "llms.txt"), "w", encoding="utf-8") as fh:
+        fh.write(ll)
+
+
 os.makedirs(os.path.join(ROOT, "ask"), exist_ok=True)
 for v in VIDEOS:
     for p in (f"assets/video/ask/{v['slug']}.mp4", f"assets/img/ask/{v['slug']}.jpg"):
@@ -329,4 +351,5 @@ for v in VIDEOS:
     build_question(v, [o for o in VIDEOS if o is not v])
 build_hub()
 build_strip()
+build_index_files()
 print(f"Built /ask/ with {len(VIDEOS)} videos (live={LIVE}).")

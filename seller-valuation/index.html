@@ -720,6 +720,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }, 250);
   }
   function fireLead(eventId, fields) {
+    try {
+      if (typeof window.jwFireAdsConversion === 'function') {
+        window.jwFireAdsConversion('AW-18358697571/3m8SCJPwpfEcE0P8jbJE');
+      }
+    } catch (e) {}
     whenFbq(function () {
       try { window.fbq('track', 'Lead', {}, { eventID: eventId }); } catch (e) {}
     });

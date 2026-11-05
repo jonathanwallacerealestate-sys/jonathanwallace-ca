@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Slightly tighter space between evaluation sections
+Why: Jonathan Wallace said the gap between the opinion, the gold buttons, and Sold felt too open. Section padding and the space between cards are a little smaller. The opinion stays centered, and the three gold buttons stay centered.
+
 ### Sold comparables PDF is a one-page summary
 Why: Jonathan Wallace does not want the full listing photos in the PDF. sold-comparables.pdf is the one-page thumbnail grid. letter-and-sold-comparables.pdf is the letter plus that summary. The web page still has the photo walkthroughs.
 

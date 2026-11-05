@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Blog hero intro line removed
+- blog.html: removed the hero paragraph "Buying, selling, and living in ... real numbers, no spin." at Jonathan Wallace's request. Title and meta description unchanged.
+
 ### Tighter vertical spacing sitewide
 Why: Jonathan Wallace asked for tighter margins on every page.
 - styles.css: .section padding clamp(40px,6vw,80px) to clamp(28px,4vw,52px); .page-hero, .hero__inner, .hero--compact and .ctaband padding cut by about a third. ask.css hero and question page to match. hero--fold and guide-hero were already tight and are unchanged.

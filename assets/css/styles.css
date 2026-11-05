@@ -421,3 +421,55 @@ a.listing *{pointer-events:none;}
 .guide .cta{margin-top:36px;padding-top:28px;border-top:1px solid var(--line);}
 .guide .cta .btn{margin:0 0 8px;}
 .page-hero .local-intro{color:rgba(247,243,236,.92);background:transparent;border:0;border-left:3px solid var(--copper);border-radius:0;padding:2px 0 2px 16px;margin:0 0 16px;max-width:68ch;font-size:1.02rem;line-height:1.5;}
+
+
+/* Preferred Sources (Google) on market updates */
+.preferred-sources{
+  margin:28px 0 8px;
+  padding:22px 22px 20px;
+  background:#F7F3EC;
+  border:1px solid rgba(27,27,27,.08);
+  border-left:3px solid #C9A96A;
+  border-radius:12px;
+  max-width:100%;
+}
+.preferred-sources__eyebrow{
+  margin:0 0 6px;
+  font-family:"Nunito Sans",system-ui,-apple-system,sans-serif;
+  font-size:.72rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:#C9A96A;
+}
+.preferred-sources__title{
+  margin:0 0 10px;
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:1.35rem;
+  line-height:1.25;
+  color:#1B1B1B;
+  font-weight:600;
+}
+.preferred-sources__copy{
+  margin:0 0 16px;
+  font-family:"Nunito Sans",system-ui,-apple-system,sans-serif;
+  font-size:1.02rem;
+  line-height:1.55;
+  color:#1B1B1B;
+}
+.preferred-sources__btn{
+  margin:0 0 12px;
+  min-height:40px;
+}
+.preferred-sources__fallback{
+  margin:0;
+  font-family:"Nunito Sans",system-ui,-apple-system,sans-serif;
+  font-size:.92rem;
+  line-height:1.45;
+  color:#8A8378;
+}
+.preferred-sources__fallback a{
+  color:#C9A96A;
+  text-decoration:underline;
+  text-underline-offset:2px;
+}

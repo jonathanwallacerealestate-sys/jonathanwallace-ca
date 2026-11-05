@@ -421,3 +421,6 @@ a.listing *{pointer-events:none;}
 .guide .cta{margin-top:36px;padding-top:28px;border-top:1px solid var(--line);}
 .guide .cta .btn{margin:0 0 8px;}
 .page-hero .local-intro{color:rgba(247,243,236,.92);background:transparent;border:0;border-left:3px solid var(--copper);border-radius:0;padding:2px 0 2px 16px;margin:0 0 16px;max-width:68ch;font-size:1.02rem;line-height:1.5;}
+
+/* CASL sender ID under the newsletter consent checkbox (Nov 5) */
+.consent__fine{display:block;font-size:.8em;line-height:1.45;opacity:.8;margin-top:6px;}

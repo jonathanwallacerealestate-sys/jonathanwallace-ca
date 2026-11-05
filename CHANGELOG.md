@@ -16,6 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Newsletter consent wording simplified (CASL v3)
+Why: Jonathan Wallace asked to simplify the disclaimer under the sign-up box.
+- On 101 forms the checkbox now reads "Yes, send me Jonathan Wallace's weekly Georgian Bay email. Unsubscribe anytime." The sender ID CASL requires (name, brokerage, mailing address, email) and the privacy link sit underneath in small type (.consent__fine). Phone number dropped from the line; one contact method is enough.
+- consent_version is now casl-v3-2026-11-05 and the hidden consent_text matches the new wording, so new sign-ups record what they agreed to. Google one-tap consent unchanged.
+
 ### Straight Answers thumbnails re-cut from the opening frames
 Why: Jonathan Wallace wants each thumbnail to show him smiling in the first frames, not mid-sentence.
 - All eight posters in assets/img/ask/ re-cut fresh from the original videos at the first frame (rate hike video at the second frame). Card and video poster URLs carry ?v=2 so the 7-day image cache does not serve the old ones.

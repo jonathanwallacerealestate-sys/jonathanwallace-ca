@@ -48,6 +48,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
     color:#C9A96A;
     margin:0 0 6px;
   }
+  .eval-opinion,
+  .eval-opinion .wrap,
+  .eval-opinion h1,
+  .eval-opinion p{text-align:center;}
   .eval-opinion.section{padding:16px 0 14px;}
   .eval-opinion .wrap{max-width:none;padding-left:clamp(16px,2vw,28px);padding-right:clamp(16px,2vw,28px);}
   .eval-opinion .eyebrow{margin:0 0 4px;}
@@ -59,20 +63,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
   .eval-prose > .wrap > .eyebrow{margin:0 0 4px;}
   .eval-prose > .wrap > h2{margin:0 0 4px;max-width:none;}
   .eval-prose > .wrap > p,.eval-page .listing-disclosure p{max-width:none;margin:0;line-height:1.4;}
-  .eval-pill{
-    display:inline-flex;
-    align-items:center;
-    margin:8px 0 0;
-    padding:6px 14px;
-    border-radius:999px;
-    border:1px solid #C9A96A;
-    background:#F7F3EC;
-    color:#1B1B1B;
-    font-size:.85rem;
-    font-weight:600;
-    line-height:1.3;
+  .eval-top-ctas{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:14px;
+    margin-top:0;
   }
-  .eval-pill:hover{color:#1B1B1B;border-color:#1B1B1B;}
+  .eval-top-ctas .btn{
+    flex:1 1 240px;
+    max-width:280px;
+    min-width:240px;
+    justify-content:center;
+    text-align:center;
+  }
+  @media(max-width:560px){
+    .eval-top-ctas .btn{flex:1 1 100%;max-width:none;min-width:0;width:100%;}
+  }
   .eval-note{margin:0 0 10px;color:#8A8378;font-size:.95rem;}
   .eval-actions{margin-top:8px;}
   .eval-actions .btn{white-space:normal;text-align:center;}
@@ -241,10 +248,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
 
 <section class="section eval-prose">
   <div class="wrap">
-    <h2>Letter of Opinion</h2>
-    <a class="eval-pill" href="https://jonathanwallace.ca/newsletter" data-ga4="cta_newsletter">Join our weekly newsletter about Jonathan Wallace.</a>
-    <div class="stack-actions eval-actions">
-      <a class="btn btn--ghost btn--lg" href="https://jonathanwallace.ca/about.html" data-ga4="cta_about">Learn more about Jonathan Wallace</a>
+    <div class="eval-top-ctas">
+      <a class="btn btn--primary btn--lg" href="https://jonathanwallace.ca/newsletter" data-ga4="cta_newsletter">Join Weekly Newsletter</a>
+      <a class="btn btn--primary btn--lg" href="https://jonathanwallace.ca/about" data-ga4="cta_about">Who is Jonathan Wallace</a>
+      <a class="btn btn--primary btn--lg" href="https://jonathanwallace.ca/blog" data-ga4="cta_blog">Recent Blog Posts</a>
     </div>
   </div>
 </section>
@@ -382,12 +389,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
   </div>
 </section>
 
-<section class="section eval-prose">
+<section class="section">
   <div class="wrap">
     <h2>For sale</h2>
+    <div class="eval-comps">
     <article class="eval-comp eval-comp--active">
       <h3>188 Lodge Road</h3>
       <p class="eval-comp__where">Georgian Bay · Detached raised bungalow</p>
+      <button type="button" class="eval-photo" data-gallery="x13624364" aria-label="View 20 photos of 188 Lodge Road">
+        <img src="/eval/188-old-mill-road/photos/x13624364/01.jpg" width="640" height="480" alt="188 Lodge Road, photo 1 of 20" loading="lazy">
+        <span class="eval-photo__count">20 photos</span>
+      </button>
       <p class="eval-sold"><span>Active</span>$1,950,000</p>
       <p class="eval-when">Listed July 31, 2026</p>
       <dl class="eval-dl">
@@ -400,6 +412,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
         <dt>Days on market</dt><dd>97</dd>
       </dl>
     </article>
+    </div>
   </div>
 </section>
 
@@ -956,6 +969,91 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
       {
         "src": "/eval/188-old-mill-road/photos/x12042488/20.jpg",
         "alt": "288 Kings Farm Road, photo 20 of 20"
+      }
+    ]
+  },
+  "x13624364": {
+    "title": "188 Lodge Road",
+    "photos": [
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/01.jpg",
+        "alt": "188 Lodge Road, photo 1 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/02.jpg",
+        "alt": "188 Lodge Road, photo 2 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/03.jpg",
+        "alt": "188 Lodge Road, photo 3 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/04.jpg",
+        "alt": "188 Lodge Road, photo 4 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/05.jpg",
+        "alt": "188 Lodge Road, photo 5 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/06.jpg",
+        "alt": "188 Lodge Road, photo 6 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/07.jpg",
+        "alt": "188 Lodge Road, photo 7 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/08.jpg",
+        "alt": "188 Lodge Road, photo 8 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/09.jpg",
+        "alt": "188 Lodge Road, photo 9 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/10.jpg",
+        "alt": "188 Lodge Road, photo 10 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/11.jpg",
+        "alt": "188 Lodge Road, photo 11 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/12.jpg",
+        "alt": "188 Lodge Road, photo 12 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/13.jpg",
+        "alt": "188 Lodge Road, photo 13 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/14.jpg",
+        "alt": "188 Lodge Road, photo 14 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/15.jpg",
+        "alt": "188 Lodge Road, photo 15 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/16.jpg",
+        "alt": "188 Lodge Road, photo 16 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/17.jpg",
+        "alt": "188 Lodge Road, photo 17 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/18.jpg",
+        "alt": "188 Lodge Road, photo 18 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/19.jpg",
+        "alt": "188 Lodge Road, photo 19 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13624364/20.jpg",
+        "alt": "188 Lodge Road, photo 20 of 20"
       }
     ]
   }

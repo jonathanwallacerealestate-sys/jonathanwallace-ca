@@ -16,6 +16,18 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Sold comparables PDF is a one-page summary
+Why: Jonathan Wallace does not want the full listing photos in the PDF. sold-comparables.pdf is the one-page thumbnail grid. letter-and-sold-comparables.pdf is the letter plus that summary. The web page still has the photo walkthroughs.
+
+### Photos for 188 Lodge Road
+Why: Jonathan Wallace asked for the active listing to use the same 20-photo walkthrough as the sales. It stays marked for sale. No MLS number on the card.
+
+### Top buttons are three equal gold links
+Why: Jonathan Wallace replaced the Letter of Opinion heading and the mixed buttons with Join Weekly Newsletter, Who is Jonathan Wallace, and Recent Blog Posts. They are the same size, gold, and centered. The opinion text is centered too.
+
+### Opinion of value is centered
+Why: Jonathan Wallace asked for the charcoal opinion block to be centered. The spacing and the rest of the page stay as they are.
+
 ### Phone number listed once in the footer
 Why: Jonathan Wallace wants his number shown once, on the "Prefer to call?" button.
 - On the 28 pages whose footer has the "Prefer to call?" button (contact, weekly, the eval page, 23 listing pages and the listings index), the number is removed from the "Get in touch" list. Same change in scripts/build_newsletter_listings.py so rebuilt pages keep it. Footers without the button still list the number once in "Get in touch".

@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Opinion of value is centered
+Why: Jonathan Wallace asked for the charcoal opinion block to be centered. The spacing and the rest of the page stay as they are.
+
 ### Evaluation page cut down to the facts
 Why: Jonathan Wallace asked for a simple page. The extra sentences, photo instructions, and repeated notes are gone. The opinion, the sales, the photos, the for-sale home, and the buttons stay.
 

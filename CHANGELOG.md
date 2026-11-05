@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Disclaimer and prose use the full content width
+Why: The old "What this is" block was a narrow column, so it ran long. That measure came from the listing disclosure style. On this page the disclaimer and the other short text blocks now span the content width, with less padding, so they sit shorter.
+
 ### Your Copies moved to the bottom
 Why: Jonathan Wallace asked for the three downloads and Share with a friend under Your Copies at the bottom. A small newsletter pill sits under the Letter of Opinion heading at the top.
 

@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Your Copies moved to the bottom
+Why: Jonathan Wallace asked for the three downloads and Share with a friend under Your Copies at the bottom. A small newsletter pill sits under the Letter of Opinion heading at the top.
+
 ### Download both is one combined PDF
 Why: Jonathan Wallace asked for one file that is the letter of opinion followed by the sold comparables. The button is labeled "Download both". The two separate downloads stay.
 

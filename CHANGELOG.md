@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Sold comparables PDF is a one-page summary
+Why: Jonathan Wallace does not want the full listing photos in the PDF. sold-comparables.pdf is the one-page thumbnail grid. letter-and-sold-comparables.pdf is the letter plus that summary. The web page still has the photo walkthroughs.
+
 ### Photos for 188 Lodge Road
 Why: Jonathan Wallace asked for the active listing to use the same 20-photo walkthrough as the sales. It stays marked for sale. No MLS number on the card.
 

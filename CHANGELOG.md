@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Client names removed from the bottom disclaimer
+Why: Jonathan Wallace asked to remove "Prepared for Terry and Carol Jeffries." from the bottom of the 188 Old Mill Road evaluation. The line at the top of the page stays.
+
 ### Sold comparables PDF is portrait letter size
 Why: Jonathan Wallace wants the summary on 8.5 by 11 inch paper, vertical. sold-comparables.pdf is one portrait page. letter-and-sold-comparables.pdf is the letter, then that summary, both portrait. Download both still points at the combined file.
 

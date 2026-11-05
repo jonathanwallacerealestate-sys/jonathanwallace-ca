@@ -14,6 +14,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 - Listing descriptions stay word for word as they appear on REALTOR.ca, including words the voice rules otherwise ban (stunning, cozy and similar). Do not rewrite them (Jonathan Wallace, Nov 3, DEC-20261103-listing-copy-matches-realtor-ca).
 - Interview and town pages use the shared site header, footer and styles.css, not one-off templates.
 
+## 2026-11-05
+
+### Straight Answers: new video
+- /ask/should-i-take-my-house-off-the-market-for-winter added (Selling). Built by scripts/build_ask.py; hub, homepage strip, sitemap.xml and llms.txt updated.
+
 ## 2026-11-03
 
 ### Friday email link removed from the footer

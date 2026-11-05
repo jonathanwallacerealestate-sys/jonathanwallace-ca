@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Evaluation page note removed
+Why: Jonathan Wallace asked to remove the explanatory line under the download and share buttons on /eval/188-old-mill-road. The buttons stay.
+
 ### Sold comparables PDF swapped for the one-page table
 Why: Jonathan Wallace rejected the dense card layout. The download at /eval/188-old-mill-road/sold-comparables.pdf is now the one-page table with a small photo on each row. The letter of opinion and the page layout are unchanged. The file URL is the same. Netlify sends max-age=0, must-revalidate, so the href does not need a cache-bust.
 

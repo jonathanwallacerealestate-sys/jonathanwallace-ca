@@ -53,7 +53,7 @@ p{margin:0 0 1.1em;}
 .lead{font-size:1.2rem;color:var(--muted);max-width:60ch;}
 
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
-.section{padding:clamp(40px,6vw,80px) 0;}
+.section{padding:clamp(28px,4vw,52px) 0;}
 .section--sand{background:var(--sand);}
 .section--navy{background:var(--navy);color:rgba(247,243,236,.86);}
 .section--navy h2,.section--navy h3{color:var(--white);}
@@ -113,10 +113,10 @@ p{margin:0 0 1.1em;}
   text-align:center;padding:20px;font-family:var(--sans);font-size:.8rem;letter-spacing:.1em;
   text-transform:uppercase;color:rgba(247,243,236,.55);font-weight:600;
 }
-.hero__inner{position:relative;padding:clamp(80px,13vw,150px) 0 clamp(70px,10vw,120px);max-width:760px;}
+.hero__inner{position:relative;padding:clamp(60px,9vw,110px) 0 clamp(50px,7vw,88px);max-width:760px;}
 .hero h1{color:#F7F3EC;}
 .hero p{color:rgba(247,243,236,.9);font-size:1.25rem;max-width:54ch;}
-.hero--compact .hero__inner{padding:clamp(56px,7vw,88px) 0 clamp(48px,6vw,76px);}
+.hero--compact .hero__inner{padding:clamp(40px,5vw,64px) 0 clamp(34px,4.5vw,56px);}
 .hero--compact .hero__actions{margin-top:24px;}
 /* Homepage first screen: proof and the three main actions fit above the fold. */
 .hero--fold .hero__inner{max-width:980px;padding:clamp(22px,3.2vw,40px) 0 clamp(20px,3vw,36px);}
@@ -226,7 +226,7 @@ p{margin:0 0 1.1em;}
 .form__note{font-size:.8rem;color:var(--muted);margin-top:14px;}
 
 /* ---------- CTA band ---------- */
-.ctaband{background:linear-gradient(120deg,var(--teal),var(--navy));color:#F7F3EC;border-radius:var(--radius);padding:clamp(34px,5vw,60px);text-align:center;}
+.ctaband{background:linear-gradient(120deg,var(--teal),var(--navy));color:#F7F3EC;border-radius:var(--radius);padding:clamp(26px,4vw,44px);text-align:center;}
 .ctaband h2{color:#F7F3EC;}
 .ctaband p{color:rgba(247,243,236,.88);max-width:52ch;margin-left:auto;margin-right:auto;}
 
@@ -264,7 +264,7 @@ a.listing *{pointer-events:none;}
 .footer__legal strong{color:rgba(247,243,236,.75);}
 
 /* ---------- Page hero (inner) ---------- */
-.page-hero{background:linear-gradient(120deg,var(--navy),var(--teal));color:#F7F3EC;padding:clamp(70px,9vw,120px) 0 clamp(50px,7vw,90px);}
+.page-hero{background:linear-gradient(120deg,var(--navy),var(--teal));color:#F7F3EC;padding:clamp(48px,6vw,84px) 0 clamp(36px,5vw,64px);}
 .page-hero h1{color:#F7F3EC;}
 .page-hero p{color:rgba(247,243,236,.9);max-width:58ch;font-size:1.2rem;}
 

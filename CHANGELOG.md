@@ -19,7 +19,7 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 ### Private home evaluation for 188 Old Mill Road, Port Severn
 Why: Jonathan Wallace asked for a private page on jonathanwallace.ca for Terry and Carol Jeffries, so he can open a real site URL. It is a guinea pig for client evaluations, not a public page.
 - /eval/188-old-mill-road is noindex, nofollow, and is not in the nav, sitemap.xml, or llms.txt. Pretty URL redirects match the listing pages. X-Robots-Tag covers the page and the PDFs.
-- The Faris letterhead Letter of Opinion and the one-page Sold Comparables PDF (exterior photos, not the earlier long PDF) are hosted in that folder. Download links are root-relative so they work on the live site and on a deploy preview.
+- The Faris letterhead Letter of Opinion and the one-page Sold Comparables PDF are hosted in that folder. The comparables file is the densified one-pager with exterior photos (about 630 KB), not the earlier long PDF or the first one-page draft. Download links are root-relative so they work on the live site and on a deploy preview.
 - Share opens an email draft with the live page URL in the body and CCs jonathan@faristeam.ca. The site does not send that email.
 
 ### Newsletter consent wording simplified (CASL v3)

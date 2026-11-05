@@ -16,6 +16,12 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Gold top edge on every comparable card
+Why: Jonathan Wallace liked the gold lip on the For sale card and asked for the same on each sold card. Card size is unchanged.
+
+### Disclaimer sits under Your Copies
+Why: Jonathan Wallace asked for the information-purposes line below the four buttons, not above them. It also says this is not an appraisal and that it was prepared for Terry and Carol Jeffries.
+
 ### Slightly tighter space between evaluation sections
 Why: Jonathan Wallace said the gap between the opinion, the gold buttons, and Sold felt too open. Section padding and the space between cards are a little smaller. The opinion stays centered, and the three gold buttons stay centered.
 

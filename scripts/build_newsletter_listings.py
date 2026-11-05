@@ -917,7 +917,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div>
       <h4>Get in touch</h4>
       <ul>
-        <li><a href="tel:{PHONE_TEL}">{PHONE_DISP}</a></li>
         <li><a href="mailto:jonathan@faristeam.ca">Email Jonathan</a></li>
         <li>Midland, Ontario</li>
       </ul>
@@ -1091,7 +1090,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div>
       <h4>Get in touch</h4>
       <ul>
-        <li><a href="tel:{PHONE_TEL}">{PHONE_DISP}</a></li>
         <li><a href="mailto:jonathan@faristeam.ca">Email Jonathan</a></li>
         <li>Midland, Ontario</li>
       </ul>

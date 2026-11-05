@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Sold comparables PDF swapped for the one-page table
+Why: Jonathan Wallace rejected the dense card layout. The download at /eval/188-old-mill-road/sold-comparables.pdf is now the one-page table with a small photo on each row. The letter of opinion and the page layout are unchanged. The file URL is the same. Netlify sends max-age=0, must-revalidate, so the href does not need a cache-bust.
+
 ### Private home evaluation for 188 Old Mill Road, Port Severn
 Why: Jonathan Wallace asked for a private page on jonathanwallace.ca for Terry and Carol Jeffries, so he can open a real site URL. It is a guinea pig for client evaluations, not a public page.
 - /eval/188-old-mill-road is noindex, nofollow, and is not in the nav, sitemap.xml, or llms.txt. Pretty URL redirects match the listing pages. X-Robots-Tag covers the page and the PDFs.

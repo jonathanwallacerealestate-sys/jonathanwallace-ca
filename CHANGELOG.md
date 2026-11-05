@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Listing photos on the sold comparables
+Why: Jonathan Wallace asked for up to 25 photos per sold on /eval/188-old-mill-road, shown at 16:9 and clickable. The saved listing set, and the comparables PDF, has 20 photos per sale. REALM shared links did not return more media, so each card uses those 20 and says so. The subject-property facts block stays off the page.
+
 ### Subject property facts removed from the evaluation page
 Why: Jonathan Wallace asked to take the beds, baths, lot, frontage, PIN, and the rest of that block off /eval/188-old-mill-road. The opinion of value, the six sales, the active listing, and the download and share buttons stay.
 

@@ -97,6 +97,95 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
   }
   .eval-dl dd{margin:0;}
   .eval-history{margin:14px 0 0;font-size:.95rem;}
+  .eval-photo{
+    position:relative;
+    display:block;
+    width:100%;
+    margin:0 0 14px;
+    padding:0;
+    border:0;
+    border-radius:14px;
+    overflow:hidden;
+    background:#1B1B1B;
+    aspect-ratio:16/9;
+    cursor:pointer;
+  }
+  .eval-photo img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .eval-photo__count{
+    position:absolute;
+    left:12px;
+    bottom:12px;
+    background:#1B1B1B;
+    color:#F7F3EC;
+    border:1px solid #C9A96A;
+    border-radius:999px;
+    padding:6px 12px;
+    font-family:var(--sans);
+    font-size:.75rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .eval-photo:focus-visible{outline:3px solid #C9A96A;outline-offset:3px;}
+  .eval-lightbox{
+    width:min(1100px, calc(100vw - 24px));
+    max-width:none;
+    padding:0;
+    border:0;
+    background:transparent;
+    color:#F7F3EC;
+  }
+  .eval-lightbox::backdrop{background:rgba(27,27,27,.94);}
+  .eval-lightbox__panel{background:#1B1B1B;border-radius:14px;padding:16px 16px 14px;}
+  .eval-lightbox__bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin:0 0 12px;
+  }
+  .eval-lightbox__title{margin:0;font-family:var(--serif);font-size:1.25rem;color:#F7F3EC;}
+  .eval-lightbox__close,.eval-lightbox__nav{
+    font-family:var(--sans);
+    font-weight:700;
+    color:#F7F3EC;
+    background:transparent;
+    border:1px solid rgba(247,243,236,.45);
+    border-radius:999px;
+    padding:10px 14px;
+    cursor:pointer;
+  }
+  .eval-lightbox__close:hover,.eval-lightbox__nav:hover{border-color:#C9A96A;color:#C9A96A;}
+  .eval-lightbox__stage{position:relative;}
+  .eval-lightbox__frame{
+    position:relative;
+    aspect-ratio:16/9;
+    background:#141414;
+    border-radius:10px;
+    overflow:hidden;
+  }
+  .eval-lightbox__frame img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .eval-lightbox__nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:1;
+  }
+  .eval-lightbox__nav--prev{left:10px;}
+  .eval-lightbox__nav--next{right:10px;}
+  .eval-lightbox__count{margin:10px 0 0;color:#C9A96A;font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
   @media(min-width:900px){
     .eval-comps{grid-template-columns:1fr 1fr;}
   }
@@ -145,11 +234,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
   <div class="wrap">
     <p class="eyebrow">Sold nearby</p>
     <h2>Six sales behind the opinion</h2>
-    <p>These are waterfront sales, not listings that are still for sale. 188 Lodge Road is on the market at $1,950,000. It is in the next section, and it is not counted as a sale. Figures are from the MLS® system as of November 5, 2026. Where a frontage is marked approximate, the listing did not state a water frontage, so the figure is inferred from the lot.</p>
+    <p>These are waterfront sales, not listings that are still for sale. 188 Lodge Road is on the market at $1,950,000. It is in the next section, and it is not counted as a sale. Figures are from the MLS® system as of November 5, 2026. Where a frontage is marked approximate, the listing did not state a water frontage, so the figure is inferred from the lot. Click a photo to walk through it. Each sale has 20 listing photos, which is every photo in the saved set.</p>
     <div class="eval-comps">
       <article class="eval-comp">
         <h3>1481 Emily Lane</h3>
         <p class="eval-comp__where">Severn · MLS® S12435745 · Detached 2-storey</p>
+        <button type="button" class="eval-photo" data-gallery="s12435745" aria-label="View 20 photos of 1481 Emily Lane">
+          <img src="/eval/188-old-mill-road/photos/s12435745/01.jpg" width="640" height="480" alt="1481 Emily Lane, photo 1 of 20" loading="lazy">
+          <span class="eval-photo__count">20 photos</span>
+        </button>
         <p class="eval-sold"><span>Sold</span>$2,250,000</p>
         <p class="eval-when">November 1, 2025</p>
         <dl class="eval-dl">
@@ -167,6 +260,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
       <article class="eval-comp">
         <h3>2066 Beman Point Lane</h3>
         <p class="eval-comp__where">Severn · MLS® S10895133 · Detached bungaloft</p>
+        <button type="button" class="eval-photo" data-gallery="s10895133" aria-label="View 20 photos of 2066 Beman Point Lane">
+          <img src="/eval/188-old-mill-road/photos/s10895133/01.jpg" width="640" height="480" alt="2066 Beman Point Lane, photo 1 of 20" loading="lazy">
+          <span class="eval-photo__count">20 photos</span>
+        </button>
         <p class="eval-sold"><span>Sold</span>$2,100,000</p>
         <p class="eval-when">August 9, 2024</p>
         <dl class="eval-dl">
@@ -184,6 +281,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
       <article class="eval-comp">
         <h3>748 Whites Falls Road</h3>
         <p class="eval-comp__where">Georgian Bay · MLS® X13102372 · Detached 2-storey log home</p>
+        <button type="button" class="eval-photo" data-gallery="x13102372" aria-label="View 20 photos of 748 Whites Falls Road">
+          <img src="/eval/188-old-mill-road/photos/x13102372/01.jpg" width="640" height="480" alt="748 Whites Falls Road, photo 1 of 20" loading="lazy">
+          <span class="eval-photo__count">20 photos</span>
+        </button>
         <p class="eval-sold"><span>Sold</span>$1,940,000</p>
         <p class="eval-when">June 18, 2026</p>
         <dl class="eval-dl">
@@ -201,6 +302,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
       <article class="eval-comp">
         <h3>104 Points Of View Road</h3>
         <p class="eval-comp__where">Georgian Bay · MLS® X12271198 · Detached bungalow</p>
+        <button type="button" class="eval-photo" data-gallery="x12271198" aria-label="View 20 photos of 104 Points Of View Road">
+          <img src="/eval/188-old-mill-road/photos/x12271198/01.jpg" width="640" height="480" alt="104 Points Of View Road, photo 1 of 20" loading="lazy">
+          <span class="eval-photo__count">20 photos</span>
+        </button>
         <p class="eval-sold"><span>Sold</span>$1,800,000</p>
         <p class="eval-when">November 4, 2025</p>
         <dl class="eval-dl">
@@ -218,6 +323,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
       <article class="eval-comp">
         <h3>187 Lakeview Drive</h3>
         <p class="eval-comp__where">Georgian Bay · MLS® X8422638 · Detached bungalow</p>
+        <button type="button" class="eval-photo" data-gallery="x8422638" aria-label="View 20 photos of 187 Lakeview Drive">
+          <img src="/eval/188-old-mill-road/photos/x8422638/01.jpg" width="640" height="480" alt="187 Lakeview Drive, photo 1 of 20" loading="lazy">
+          <span class="eval-photo__count">20 photos</span>
+        </button>
         <p class="eval-sold"><span>Sold</span>$1,700,000</p>
         <p class="eval-when">November 8, 2024</p>
         <dl class="eval-dl">
@@ -235,6 +344,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
       <article class="eval-comp">
         <h3>288 Kings Farm Road</h3>
         <p class="eval-comp__where">Georgian Bay · MLS® X12042488 · Detached raised bungalow</p>
+        <button type="button" class="eval-photo" data-gallery="x12042488" aria-label="View 20 photos of 288 Kings Farm Road">
+          <img src="/eval/188-old-mill-road/photos/x12042488/01.jpg" width="640" height="480" alt="288 Kings Farm Road, photo 1 of 20" loading="lazy">
+          <span class="eval-photo__count">20 photos</span>
+        </button>
         <p class="eval-sold"><span>Sold</span>$1,575,000</p>
         <p class="eval-when">July 24, 2025</p>
         <dl class="eval-dl">
@@ -306,6 +419,537 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
     <p>© <span id="year">2026</span> Jonathan Wallace. All rights reserved. · <a href="/privacy.html">Privacy Policy</a></p>
   </div>
 </footer>
+<dialog class="eval-lightbox" id="evalLightbox" aria-label="Listing photos">
+  <div class="eval-lightbox__panel">
+    <div class="eval-lightbox__bar">
+      <p class="eval-lightbox__title"></p>
+      <button type="button" class="eval-lightbox__close">Close</button>
+    </div>
+    <div class="eval-lightbox__stage">
+      <button type="button" class="eval-lightbox__nav eval-lightbox__nav--prev">Previous</button>
+      <div class="eval-lightbox__frame">
+        <img alt="">
+      </div>
+      <button type="button" class="eval-lightbox__nav eval-lightbox__nav--next">Next</button>
+    </div>
+    <p class="eval-lightbox__count"></p>
+  </div>
+</dialog>
+<script type="application/json" id="eval-galleries">
+{
+  "s12435745": {
+    "title": "1481 Emily Lane",
+    "photos": [
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/01.jpg",
+        "alt": "1481 Emily Lane, photo 1 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/02.jpg",
+        "alt": "1481 Emily Lane, photo 2 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/03.jpg",
+        "alt": "1481 Emily Lane, photo 3 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/04.jpg",
+        "alt": "1481 Emily Lane, photo 4 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/05.jpg",
+        "alt": "1481 Emily Lane, photo 5 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/06.jpg",
+        "alt": "1481 Emily Lane, photo 6 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/07.jpg",
+        "alt": "1481 Emily Lane, photo 7 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/08.jpg",
+        "alt": "1481 Emily Lane, photo 8 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/09.jpg",
+        "alt": "1481 Emily Lane, photo 9 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/10.jpg",
+        "alt": "1481 Emily Lane, photo 10 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/11.jpg",
+        "alt": "1481 Emily Lane, photo 11 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/12.jpg",
+        "alt": "1481 Emily Lane, photo 12 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/13.jpg",
+        "alt": "1481 Emily Lane, photo 13 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/14.jpg",
+        "alt": "1481 Emily Lane, photo 14 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/15.jpg",
+        "alt": "1481 Emily Lane, photo 15 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/16.jpg",
+        "alt": "1481 Emily Lane, photo 16 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/17.jpg",
+        "alt": "1481 Emily Lane, photo 17 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/18.jpg",
+        "alt": "1481 Emily Lane, photo 18 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/19.jpg",
+        "alt": "1481 Emily Lane, photo 19 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s12435745/20.jpg",
+        "alt": "1481 Emily Lane, photo 20 of 20"
+      }
+    ]
+  },
+  "s10895133": {
+    "title": "2066 Beman Point Lane",
+    "photos": [
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/01.jpg",
+        "alt": "2066 Beman Point Lane, photo 1 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/02.jpg",
+        "alt": "2066 Beman Point Lane, photo 2 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/03.jpg",
+        "alt": "2066 Beman Point Lane, photo 3 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/04.jpg",
+        "alt": "2066 Beman Point Lane, photo 4 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/05.jpg",
+        "alt": "2066 Beman Point Lane, photo 5 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/06.jpg",
+        "alt": "2066 Beman Point Lane, photo 6 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/07.jpg",
+        "alt": "2066 Beman Point Lane, photo 7 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/08.jpg",
+        "alt": "2066 Beman Point Lane, photo 8 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/09.jpg",
+        "alt": "2066 Beman Point Lane, photo 9 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/10.jpg",
+        "alt": "2066 Beman Point Lane, photo 10 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/11.jpg",
+        "alt": "2066 Beman Point Lane, photo 11 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/12.jpg",
+        "alt": "2066 Beman Point Lane, photo 12 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/13.jpg",
+        "alt": "2066 Beman Point Lane, photo 13 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/14.jpg",
+        "alt": "2066 Beman Point Lane, photo 14 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/15.jpg",
+        "alt": "2066 Beman Point Lane, photo 15 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/16.jpg",
+        "alt": "2066 Beman Point Lane, photo 16 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/17.jpg",
+        "alt": "2066 Beman Point Lane, photo 17 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/18.jpg",
+        "alt": "2066 Beman Point Lane, photo 18 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/19.jpg",
+        "alt": "2066 Beman Point Lane, photo 19 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/s10895133/20.jpg",
+        "alt": "2066 Beman Point Lane, photo 20 of 20"
+      }
+    ]
+  },
+  "x13102372": {
+    "title": "748 Whites Falls Road",
+    "photos": [
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/01.jpg",
+        "alt": "748 Whites Falls Road, photo 1 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/02.jpg",
+        "alt": "748 Whites Falls Road, photo 2 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/03.jpg",
+        "alt": "748 Whites Falls Road, photo 3 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/04.jpg",
+        "alt": "748 Whites Falls Road, photo 4 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/05.jpg",
+        "alt": "748 Whites Falls Road, photo 5 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/06.jpg",
+        "alt": "748 Whites Falls Road, photo 6 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/07.jpg",
+        "alt": "748 Whites Falls Road, photo 7 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/08.jpg",
+        "alt": "748 Whites Falls Road, photo 8 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/09.jpg",
+        "alt": "748 Whites Falls Road, photo 9 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/10.jpg",
+        "alt": "748 Whites Falls Road, photo 10 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/11.jpg",
+        "alt": "748 Whites Falls Road, photo 11 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/12.jpg",
+        "alt": "748 Whites Falls Road, photo 12 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/13.jpg",
+        "alt": "748 Whites Falls Road, photo 13 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/14.jpg",
+        "alt": "748 Whites Falls Road, photo 14 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/15.jpg",
+        "alt": "748 Whites Falls Road, photo 15 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/16.jpg",
+        "alt": "748 Whites Falls Road, photo 16 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/17.jpg",
+        "alt": "748 Whites Falls Road, photo 17 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/18.jpg",
+        "alt": "748 Whites Falls Road, photo 18 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/19.jpg",
+        "alt": "748 Whites Falls Road, photo 19 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x13102372/20.jpg",
+        "alt": "748 Whites Falls Road, photo 20 of 20"
+      }
+    ]
+  },
+  "x12271198": {
+    "title": "104 Points Of View Road",
+    "photos": [
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/01.jpg",
+        "alt": "104 Points Of View Road, photo 1 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/02.jpg",
+        "alt": "104 Points Of View Road, photo 2 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/03.jpg",
+        "alt": "104 Points Of View Road, photo 3 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/04.jpg",
+        "alt": "104 Points Of View Road, photo 4 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/05.jpg",
+        "alt": "104 Points Of View Road, photo 5 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/06.jpg",
+        "alt": "104 Points Of View Road, photo 6 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/07.jpg",
+        "alt": "104 Points Of View Road, photo 7 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/08.jpg",
+        "alt": "104 Points Of View Road, photo 8 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/09.jpg",
+        "alt": "104 Points Of View Road, photo 9 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/10.jpg",
+        "alt": "104 Points Of View Road, photo 10 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/11.jpg",
+        "alt": "104 Points Of View Road, photo 11 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/12.jpg",
+        "alt": "104 Points Of View Road, photo 12 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/13.jpg",
+        "alt": "104 Points Of View Road, photo 13 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/14.jpg",
+        "alt": "104 Points Of View Road, photo 14 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/15.jpg",
+        "alt": "104 Points Of View Road, photo 15 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/16.jpg",
+        "alt": "104 Points Of View Road, photo 16 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/17.jpg",
+        "alt": "104 Points Of View Road, photo 17 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/18.jpg",
+        "alt": "104 Points Of View Road, photo 18 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/19.jpg",
+        "alt": "104 Points Of View Road, photo 19 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12271198/20.jpg",
+        "alt": "104 Points Of View Road, photo 20 of 20"
+      }
+    ]
+  },
+  "x8422638": {
+    "title": "187 Lakeview Drive",
+    "photos": [
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/01.jpg",
+        "alt": "187 Lakeview Drive, photo 1 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/02.jpg",
+        "alt": "187 Lakeview Drive, photo 2 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/03.jpg",
+        "alt": "187 Lakeview Drive, photo 3 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/04.jpg",
+        "alt": "187 Lakeview Drive, photo 4 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/05.jpg",
+        "alt": "187 Lakeview Drive, photo 5 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/06.jpg",
+        "alt": "187 Lakeview Drive, photo 6 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/07.jpg",
+        "alt": "187 Lakeview Drive, photo 7 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/08.jpg",
+        "alt": "187 Lakeview Drive, photo 8 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/09.jpg",
+        "alt": "187 Lakeview Drive, photo 9 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/10.jpg",
+        "alt": "187 Lakeview Drive, photo 10 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/11.jpg",
+        "alt": "187 Lakeview Drive, photo 11 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/12.jpg",
+        "alt": "187 Lakeview Drive, photo 12 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/13.jpg",
+        "alt": "187 Lakeview Drive, photo 13 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/14.jpg",
+        "alt": "187 Lakeview Drive, photo 14 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/15.jpg",
+        "alt": "187 Lakeview Drive, photo 15 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/16.jpg",
+        "alt": "187 Lakeview Drive, photo 16 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/17.jpg",
+        "alt": "187 Lakeview Drive, photo 17 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/18.jpg",
+        "alt": "187 Lakeview Drive, photo 18 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/19.jpg",
+        "alt": "187 Lakeview Drive, photo 19 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x8422638/20.jpg",
+        "alt": "187 Lakeview Drive, photo 20 of 20"
+      }
+    ]
+  },
+  "x12042488": {
+    "title": "288 Kings Farm Road",
+    "photos": [
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/01.jpg",
+        "alt": "288 Kings Farm Road, photo 1 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/02.jpg",
+        "alt": "288 Kings Farm Road, photo 2 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/03.jpg",
+        "alt": "288 Kings Farm Road, photo 3 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/04.jpg",
+        "alt": "288 Kings Farm Road, photo 4 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/05.jpg",
+        "alt": "288 Kings Farm Road, photo 5 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/06.jpg",
+        "alt": "288 Kings Farm Road, photo 6 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/07.jpg",
+        "alt": "288 Kings Farm Road, photo 7 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/08.jpg",
+        "alt": "288 Kings Farm Road, photo 8 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/09.jpg",
+        "alt": "288 Kings Farm Road, photo 9 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/10.jpg",
+        "alt": "288 Kings Farm Road, photo 10 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/11.jpg",
+        "alt": "288 Kings Farm Road, photo 11 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/12.jpg",
+        "alt": "288 Kings Farm Road, photo 12 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/13.jpg",
+        "alt": "288 Kings Farm Road, photo 13 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/14.jpg",
+        "alt": "288 Kings Farm Road, photo 14 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/15.jpg",
+        "alt": "288 Kings Farm Road, photo 15 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/16.jpg",
+        "alt": "288 Kings Farm Road, photo 16 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/17.jpg",
+        "alt": "288 Kings Farm Road, photo 17 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/18.jpg",
+        "alt": "288 Kings Farm Road, photo 18 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/19.jpg",
+        "alt": "288 Kings Farm Road, photo 19 of 20"
+      },
+      {
+        "src": "/eval/188-old-mill-road/photos/x12042488/20.jpg",
+        "alt": "288 Kings Farm Road, photo 20 of 20"
+      }
+    ]
+  }
+}
+</script>
+<script src="/assets/js/eval-photos.js"></script>
 <script src="/assets/js/main.js"></script>
 </body>
 </html>

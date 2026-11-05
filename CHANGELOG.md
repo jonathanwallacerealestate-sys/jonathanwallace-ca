@@ -16,6 +16,12 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Download both is one combined PDF
+Why: Jonathan Wallace asked for one file that is the letter of opinion followed by the sold comparables. The button is labeled "Download both". The two separate downloads stay.
+
+### Opinion block sits tighter
+Why: Jonathan Wallace asked for less padding and less space between the lines in the charcoal opinion block. The words stay as they are.
+
 ### Evaluation page tightened, and the share note has no CC
 Why: Jonathan Wallace asked for a shorter full-width opinion, no MLS numbers on the comparables, a plain "for information purposes only" line, and a share email with the November 5, 2026 letter date, the page link, and his REALTOR® sign-off. The share link does not CC anyone.
 

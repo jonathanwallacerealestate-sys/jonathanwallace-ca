@@ -63,20 +63,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
   .eval-prose > .wrap > .eyebrow{margin:0 0 4px;}
   .eval-prose > .wrap > h2{margin:0 0 4px;max-width:none;}
   .eval-prose > .wrap > p,.eval-page .listing-disclosure p{max-width:none;margin:0;line-height:1.4;}
-  .eval-pill{
-    display:inline-flex;
-    align-items:center;
-    margin:8px 0 0;
-    padding:6px 14px;
-    border-radius:999px;
-    border:1px solid #C9A96A;
-    background:#F7F3EC;
-    color:#1B1B1B;
-    font-size:.85rem;
-    font-weight:600;
-    line-height:1.3;
+  .eval-top-ctas{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:14px;
+    margin-top:0;
   }
-  .eval-pill:hover{color:#1B1B1B;border-color:#1B1B1B;}
+  .eval-top-ctas .btn{
+    flex:1 1 240px;
+    max-width:280px;
+    min-width:240px;
+    justify-content:center;
+    text-align:center;
+  }
+  @media(max-width:560px){
+    .eval-top-ctas .btn{flex:1 1 100%;max-width:none;min-width:0;width:100%;}
+  }
   .eval-note{margin:0 0 10px;color:#8A8378;font-size:.95rem;}
   .eval-actions{margin-top:8px;}
   .eval-actions .btn{white-space:normal;text-align:center;}
@@ -245,10 +248,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
 
 <section class="section eval-prose">
   <div class="wrap">
-    <h2>Letter of Opinion</h2>
-    <a class="eval-pill" href="https://jonathanwallace.ca/newsletter" data-ga4="cta_newsletter">Join our weekly newsletter about Jonathan Wallace.</a>
-    <div class="stack-actions eval-actions">
-      <a class="btn btn--ghost btn--lg" href="https://jonathanwallace.ca/about.html" data-ga4="cta_about">Learn more about Jonathan Wallace</a>
+    <div class="eval-top-ctas">
+      <a class="btn btn--primary btn--lg" href="https://jonathanwallace.ca/newsletter" data-ga4="cta_newsletter">Join Weekly Newsletter</a>
+      <a class="btn btn--primary btn--lg" href="https://jonathanwallace.ca/about" data-ga4="cta_about">Who is Jonathan Wallace</a>
+      <a class="btn btn--primary btn--lg" href="https://jonathanwallace.ca/blog" data-ga4="cta_blog">Recent Blog Posts</a>
     </div>
   </div>
 </section>

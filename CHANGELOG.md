@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Top buttons are three equal gold links
+Why: Jonathan Wallace replaced the Letter of Opinion heading and the mixed buttons with Join Weekly Newsletter, Who is Jonathan Wallace, and Recent Blog Posts. They are the same size, gold, and centered. The opinion text is centered too.
+
 ### Opinion of value is centered
 Why: Jonathan Wallace asked for the charcoal opinion block to be centered. The spacing and the rest of the page stay as they are.
 

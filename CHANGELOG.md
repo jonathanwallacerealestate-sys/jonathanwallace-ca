@@ -16,6 +16,12 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Private home evaluation for 188 Old Mill Road, Port Severn
+Why: Jonathan Wallace asked for a private page on jonathanwallace.ca for Terry and Carol Jeffries, so he can open a real site URL. It is a guinea pig for client evaluations, not a public page.
+- /eval/188-old-mill-road is noindex, nofollow, and is not in the nav, sitemap.xml, or llms.txt. Pretty URL redirects match the listing pages. X-Robots-Tag covers the page and the PDFs.
+- The Faris letterhead Letter of Opinion and the one-page Sold Comparables PDF (exterior photos, not the earlier long PDF) are hosted in that folder. Download links are root-relative so they work on the live site and on a deploy preview.
+- Share opens an email draft with the live page URL in the body and CCs jonathan@faristeam.ca. The site does not send that email.
+
 ### Newsletter consent wording simplified (CASL v3)
 Why: Jonathan Wallace asked to simplify the disclaimer under the sign-up box.
 - On 101 forms the checkbox now reads "Yes, send me Jonathan Wallace's weekly Georgian Bay email. Unsubscribe anytime." The sender ID CASL requires (name, brokerage, mailing address, email) and the privacy link sit underneath in small type (.consent__fine). Phone number dropped from the line; one contact method is enough.

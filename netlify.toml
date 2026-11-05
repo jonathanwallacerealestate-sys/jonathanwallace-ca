@@ -1366,3 +1366,24 @@
   to = "/blog-wills-executors-powers-of-attorney"
   status = 301
   force = true
+
+# Private home evaluation (client link). Canonical is the extensionless path.
+# Do not add this URL to the nav, sitemap.xml, or llms.txt. The page is noindex.
+# force is on because eval/188-old-mill-road/ is a real directory (the PDFs live there).
+[[redirects]]
+  from = "/eval/188-old-mill-road"
+  to = "/eval/188-old-mill-road/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/eval/188-old-mill-road/"
+  to = "/eval/188-old-mill-road"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/eval/188-old-mill-road/index.html"
+  to = "/eval/188-old-mill-road"
+  status = 301
+  force = true

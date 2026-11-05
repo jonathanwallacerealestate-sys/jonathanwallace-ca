@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Straight Answers thumbnails re-cut from the opening frames
+Why: Jonathan Wallace wants each thumbnail to show him smiling in the first frames, not mid-sentence.
+- All eight posters in assets/img/ask/ re-cut fresh from the original videos at the first frame (rate hike video at the second frame). Card and video poster URLs carry ?v=2 so the 7-day image cache does not serve the old ones.
+
 ### Straight Answers: new video
 - /ask/should-i-take-my-house-off-the-market-for-winter added (Selling). Built by scripts/build_ask.py; hub, homepage strip, sitemap.xml and llms.txt updated.
 

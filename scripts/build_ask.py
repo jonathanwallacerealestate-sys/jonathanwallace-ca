@@ -27,6 +27,8 @@ data = json.load(open(os.path.join(ROOT, "content/ask-videos.json"), encoding="u
 LIVE = data["live"]
 VIDEOS = data["videos"]
 CATS = ["Selling", "Buying", "Market"]
+# Bump when posters are re-cut, so the 7-day image cache serves the new ones.
+POSTER_V = "2"
 
 
 def esc(s):
@@ -120,7 +122,7 @@ PREVIEW_BAR = "" if LIVE else (
 
 def card(v, heading="h3"):
     return f"""<a class="ask-card" href="/ask/{v['slug']}" data-cat="{v['category']}" data-ga4="ask_card_{v['slug']}">
-  <span class="ask-card__frame"><img src="/assets/img/ask/{v['slug']}.jpg" alt="Jonathan Wallace answering: {esc(v['question'])}" loading="lazy" width="720" height="1280"><span class="ask-card__play" aria-hidden="true"></span><span class="ask-card__time">{mmss(v['duration'])}</span></span>
+  <span class="ask-card__frame"><img src="/assets/img/ask/{v['slug']}.jpg?v={POSTER_V}" alt="Jonathan Wallace answering: {esc(v['question'])}" loading="lazy" width="720" height="1280"><span class="ask-card__play" aria-hidden="true"></span><span class="ask-card__time">{mmss(v['duration'])}</span></span>
   <span class="ask-card__cat">{v['category']}</span>
   <{heading} class="ask-card__q">{esc(v['card'])}</{heading}>
 </a>"""
@@ -180,7 +182,7 @@ def build_question(v, others):
     <nav class="ask-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/ask/">Straight Answers</a><span>/</span>{v['category']}</nav>
     <div class="ask-q__grid">
       <div class="ask-q__video">
-        <video controls playsinline preload="none" poster="/assets/img/ask/{v['slug']}.jpg" width="720" height="1280">
+        <video controls playsinline preload="none" poster="/assets/img/ask/{v['slug']}.jpg?v={POSTER_V}" width="720" height="1280">
           <source src="/assets/video/ask/{v['slug']}.mp4" type="video/mp4">
         </video>
       </div>

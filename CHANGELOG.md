@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Sold comparables PDF is the multi-page photo set
+Why: Jonathan Wallace replaced the one-page table with a summary plus a page of the first 20 listing photos for each of the six solds. The file path is unchanged. The letter of opinion and the page are unchanged.
+
 ### Evaluation page note removed
 Why: Jonathan Wallace asked to remove the explanatory line under the download and share buttons on /eval/188-old-mill-road. The buttons stay.
 

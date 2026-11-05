@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Phone number listed once in the footer
+Why: Jonathan Wallace wants his number shown once, on the "Prefer to call?" button.
+- On the 28 pages whose footer has the "Prefer to call?" button (contact, weekly, the eval page, 23 listing pages and the listings index), the number is removed from the "Get in touch" list. Same change in scripts/build_newsletter_listings.py so rebuilt pages keep it. Footers without the button still list the number once in "Get in touch".
+
 ### Evaluation page cut down to the facts
 Why: Jonathan Wallace asked for a simple page. The extra sentences, photo instructions, and repeated notes are gone. The opinion, the sales, the photos, the for-sale home, and the buttons stay.
 

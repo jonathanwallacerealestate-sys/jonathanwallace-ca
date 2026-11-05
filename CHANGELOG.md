@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Evaluation page cut down to the facts
+Why: Jonathan Wallace asked for a simple page. The extra sentences, photo instructions, and repeated notes are gone. The opinion, the sales, the photos, the for-sale home, and the buttons stay.
+
 ### Disclaimer and prose use the full content width
 Why: The old "What this is" block was a narrow column, so it ran long. That measure came from the listing disclosure style. On this page the disclaimer and the other short text blocks now span the content width, with less padding, so they sit shorter.
 

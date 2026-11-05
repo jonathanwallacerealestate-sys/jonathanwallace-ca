@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Photos for 188 Lodge Road
+Why: Jonathan Wallace asked for the active listing to use the same 20-photo walkthrough as the sales. It stays marked for sale. No MLS number on the card.
+
 ### Top buttons are three equal gold links
 Why: Jonathan Wallace replaced the Letter of Opinion heading and the mixed buttons with Join Weekly Newsletter, Who is Jonathan Wallace, and Recent Blog Posts. They are the same size, gold, and centered. The opinion text is centered too.
 

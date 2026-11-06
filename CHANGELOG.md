@@ -16,6 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-05
 
+### Weekly market update: October 26 to November 1, 2026
+- New post blog-market-update-oct-26-nov-1-2026.html, "Sellers Stepped Back for Winter. The Homes That Stayed On Still Sold.". Hero assets/img/market-blog-market-update-oct-26-nov-1-2026.jpg sits lower in the body (DEC-20261012-01). Citation: Global News, Nov 4, 2026 (Canadian Press, TRREB October figures; competitor broker quote not used).
+- blog.html: new card in the LATEST MARKET UPDATE slot, moved to first position; ItemList rebuilt with the new post at position 1; the Oct 19 to 25 card moved to the top of the MARKET UPDATES ARCHIVE.
+- index.html slot 1, weekly.html, /market-update-latest redirects, sitemap.xml and llms.txt point at the new post.
+
 ### Blog hero intro line removed
 - blog.html: removed the hero paragraph "Buying, selling, and living in ... real numbers, no spin." at Jonathan Wallace's request. Title and meta description unchanged.
 

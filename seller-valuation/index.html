@@ -197,6 +197,31 @@ h1:focus{outline:2px solid var(--gold);outline-offset:4px;}
 }
 .btn--ghost:hover{background:var(--charcoal);color:var(--paper);}
 .btn:disabled{opacity:.55;cursor:not-allowed;}
+.soft-exit{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  max-width:34ch;
+  min-height:44px;
+  margin:16px auto 0;
+  padding:6px 8px;
+  background:transparent;
+  border:0;
+  color:var(--muted);
+  font-family:var(--sans);
+  font-size:.9rem;
+  font-weight:600;
+  line-height:1.4;
+  text-align:center;
+  text-decoration:underline;
+  text-decoration-color:rgba(110,103,92,.4);
+  text-underline-offset:3px;
+}
+.soft-exit:hover,.soft-exit:focus-visible{
+  color:var(--charcoal);
+  text-decoration-color:var(--gold);
+}
 .trust{
   display:flex;
   flex-wrap:wrap;
@@ -453,6 +478,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button class="btn" type="submit" id="leadSubmit">Get my free evaluation</button>
         <p class="status status--error" id="leadStatus" role="alert"></p>
       </form>
+      <!-- Existing Friday email signup at /join. A plain link, so this click does not submit the evaluation or fire Lead. -->
+      <a class="soft-exit" href="/join">Not ready for a full evaluation? Get my weekly market stats instead.</a>
     </div>
     <ul class="trust" aria-label="What you get">
       <li>Not AI</li>

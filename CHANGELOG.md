@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Conditions guide: shorter-looking page
+Why: Jonathan Wallace wants the post to look less long. On this post only: body line height 1.75 to 1.65, paragraph gap 18px to 14px, and the On this page list in two columns (one on phones).
+
 ### Conditions guide: tighter space above section headings
 Why: Jonathan Wallace said there was too much room between the end of one section and the next heading. Space above section headings cut from 52px to 34px on this post.
 

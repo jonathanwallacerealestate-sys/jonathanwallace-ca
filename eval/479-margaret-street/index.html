@@ -83,6 +83,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
   @media(max-width:560px){
     .eval-top-ctas .btn{flex:1 1 100%;max-width:none;min-width:0;width:100%;}
   }
+  /* Playfair at line-height 1 paints the next line through the descenders
+     once the street name or the value range wraps on a phone. */
+  @media(max-width:430px){
+    .eval-opinion h1{line-height:1.36;margin-bottom:10px;}
+    .eval-range{line-height:1.36;}
+  }
   .eval-disclaimer{margin:18px 0 0;max-width:none;color:#8A8378;font-size:.95rem;line-height:1.45;}
   .eval-actions{margin-top:8px;}
   .eval-actions .btn{white-space:normal;text-align:center;}

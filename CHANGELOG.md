@@ -16,6 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### 479 Margaret Street: hero spacing, and waterfront only when it applies
+Why: The address sat on the heading, and the byline sat on the price. Comparables that are not on the water were showing Water frontage as No.
+- Page-local CSS only. 26px under the street heading and under the price, so the descenders leave about 16px of clear space. Under 430px the taller line-height stays, with 18px of margin, which is the same clear gap.
+- Removed the Water frontage row from every comparable on this page. None of them are waterfront.
+
 ### Oct 26 to Nov 1 market update: report button
 Why: Jonathan Wallace asked for this week's newsletter-linked market post to use the two-step option. Top button is now "Get Your Personalized Home Value Report" to /seller-valuation/ (was the Calendly in-home booking).
 

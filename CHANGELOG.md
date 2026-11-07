@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Conditions guide: top evaluation button goes to /home-value
+Why: Jonathan Wallace wants the blog's home evaluation button on the two-step /home-value page, not the Calendly in-home booking. Label is now "Get a free home evaluation"; GA4 event post_top_home_value. The other posts still use the Calendly link from the Nov 3 council batch.
+
 ### Conditions guide: rental highlight, duplicate button, bold
 Why: Jonathan Wallace's review.
 - Rental items highlight now covers the last line of section 6 ("The Buyer agrees to co-operate..."); the HST box starts at section 7 so the two no longer overlap.

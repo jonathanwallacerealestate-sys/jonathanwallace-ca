@@ -16,6 +16,12 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Conditions guide: rental highlight, duplicate button, bold
+Why: Jonathan Wallace's review.
+- Rental items highlight now covers the last line of section 6 ("The Buyer agrees to co-operate..."); the HST box starts at section 7 so the two no longer overlap.
+- Removed the duplicate "View financing clause" button from the home inspection section; financing has its own section and button.
+- Bold now only marks condition, representation, warranty and disclosure in the intro; chattel, fixture, escape clause and pause clause are plain text.
+
 ### Private evaluation for 479 Margaret Street
 Why: Jonathan Wallace needs a private client page to review, same pattern as 188 Old Mill Road.
 - Added eval/479-margaret-street/ (page, three PDFs, one photo per comparable). Not in the nav, sitemap.xml, or llms.txt.

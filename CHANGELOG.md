@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Oct 26 to Nov 1 market update: report button
+Why: Jonathan Wallace asked for this week's newsletter-linked market post to use the two-step option. Top button is now "Get Your Personalized Home Value Report" to /seller-valuation/ (was the Calendly in-home booking).
+
 ### Conditions guide: warranty paragraph reordered
 Why: Jonathan Wallace asked for a logical, easy order: the promise, what happens if it fails before closing (seller repairs or replaces at their own expense), then that it ends at closing and is not an extended warranty.
 

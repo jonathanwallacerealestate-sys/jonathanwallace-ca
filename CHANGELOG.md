@@ -16,6 +16,12 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Private evaluation for 479 Margaret Street
+Why: Jonathan Wallace needs a private client page to review, same pattern as 188 Old Mill Road.
+- Added eval/479-margaret-street/ (page, three PDFs, one photo per comparable). Not in the nav, sitemap.xml, or llms.txt.
+- _headers: X-Robots-Tag noindex, nofollow for /eval/479-margaret-street and everything under it.
+- netlify.toml: pretty URL rewrites to index.html with force, plus the trailing-slash and index.html redirects, same as 188.
+
 ### Conditions guide: condition comparison changed
 Why: Jonathan Wallace pointed out buyers don't get to test drive a house. A condition is now compared to agreeing to buy a used car as long as your mechanic gives it a clean bill of health.
 

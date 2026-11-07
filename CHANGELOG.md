@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Conditions guide: seller repairs at their own expense
+Why: Jonathan Wallace. The chattels section now says a failed appliance before closing is repaired or replaced at the seller's own expense.
+
 ### Conditions guide: warranty explained as a closing-day promise
 Why: Jonathan Wallace's correction. A working-order promise holds up until closing; it is not an extended warranty, so a dishwasher that breaks in March is on the buyer.
 

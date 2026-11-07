@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Conditions guide: representation and warranty bolded
+Why: Jonathan Wallace noticed condition and disclosure were bold in the intro but representation and warranty were not. All four key terms are now bold.
+
 ### New post: Coles Notes: Common Conditions and Warranties in an Ontario Offer
 Why: Jonathan Wallace asked for the offer clauses explainer (drafted in Grok) to go live as this week's newsletter feature. He confirmed permission to show the sample form pages.
 - New post blog-conditions-warranties-ontario-offer.html in the current non-market format (Winter / Wills template, Playfair and Nunito Sans, 720px column). Card assets/img/blog-offer-conditions-warranties-card.jpg sits lower in the body, after the first section (DEC-20261012-01), and is the og:image and blog card.

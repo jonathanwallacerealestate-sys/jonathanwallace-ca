@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Conditions guide: Sources in two columns
+Why: Jonathan Wallace asked for a shorter Sources list. Two columns on desktop and tablet, one on phones.
+
 ### Conditions guide rewritten in plain language
 Why: Jonathan Wallace said the clauses were over-explained and full of legal wording. Every section now explains the clause for someone with little real estate experience, with everyday comparisons (test drive with a return date, turn the house upside down, a building's report card). Same sections, clause buttons and sample offer. About 40 percent shorter; read time ~11 min.
 

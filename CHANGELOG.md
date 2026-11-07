@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Conditions guide: in-person valuation button removed
+Why: Jonathan Wallace asked to take out "Book an in-person valuation". The top of the post now has one centred button, "Get Your Personalized Home Value Report", to the two-step /home-value page.
+
 ### Conditions guide: two centred evaluation buttons
 Why: Jonathan Wallace asked for both options under the title, centred: "Book an in-person valuation" (Calendly, book_home_evaluation) and "Get Your Personalized Home Value Report" (the two-step /home-value page, post_top_home_value).
 

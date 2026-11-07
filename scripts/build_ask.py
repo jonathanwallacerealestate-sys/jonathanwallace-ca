@@ -26,7 +26,7 @@ EVAL = "https://calendly.com/jonathan-faristeam/jonathan-wallace-in-home-evaluat
 data = json.load(open(os.path.join(ROOT, "content/ask-videos.json"), encoding="utf-8"))
 LIVE = data["live"]
 VIDEOS = data["videos"]
-CATS = ["Selling", "Buying", "Market"]
+CATS = ["Selling", "Buying", "Market", "Living here"]
 # Bump when posters are re-cut, so the 7-day image cache serves the new ones.
 POSTER_V = "2"
 
@@ -129,7 +129,7 @@ def card(v, heading="h3"):
 
 
 def cta(v):
-    if v["category"] == "Buying":
+    if v["category"] in ("Buying", "Living here"):
         primary = '<a class="btn btn--primary btn--lg" href="/find-your-home.html" data-ga4="cta_private_search">Start a private home search</a>'
     else:
         primary = f'<a class="btn btn--primary btn--lg" href="{EVAL}" data-ga4="book_home_evaluation" target="_blank" rel="noopener">Book a home evaluation</a>'

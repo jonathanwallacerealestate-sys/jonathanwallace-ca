@@ -3,6 +3,34 @@
   "live": true,
   "videos": [
     {
+      "slug": "crea-forecast-where-are-ontario-prices-headed",
+      "question": "Where are Ontario home prices headed, according to CREA's new forecast?",
+      "card": "Where are home prices headed next?",
+      "category": "Market",
+      "date": "2026-11-07",
+      "duration": 53,
+      "short": "CREA now expects Ontario home prices to finish the year down 3%, and that lines up with what Jonathan Wallace is seeing on the ground: it will probably get a little worse before it gets better. Fixed mortgage rates are rising and the big banks and investors expect the Bank of Canada to raise rates over the next year. Deals right now lean in the buyer's favour. CREA expects things to pick up in 2027, so if you're buying this could be your window, and if you're selling, price it right from day one.",
+      "transcript": "CREA just updated its housing forecast, and honestly, it lines up with what I've been seeing on the ground. It's probably going to get a little bit worse before it gets better. They're now expecting Ontario home prices to finish the year down 3%.\n\nNow here's why. Fixed-rate mortgages are on the rise, and the big banks and investors are betting that the Bank of Canada will raise its rates over the next year to get inflation under control. So borrowing is about to get more expensive, not less.\n\nAnd on the ground, buyers are coming off the sidelines, but the deals happening right now lean in the buyer's favour. Sellers aren't getting their dream number. They're getting the price that they can stomach. However, CREA does expect things to pick up in 2027. So if you're buying, this could be your window. If you're selling, let's price it right from day one. What do you think's going to happen next with pricing?",
+      "related": {
+        "label": "This week's Georgian Bay market numbers",
+        "href": "/weekly"
+      }
+    },
+    {
+      "slug": "what-is-boating-like-in-midland-and-tiny",
+      "question": "What is boating like in Midland and Tiny Township?",
+      "card": "What's boating like around Midland?",
+      "category": "Living here",
+      "date": "2026-11-07",
+      "duration": 49,
+      "short": "Some of the best boating Ontario has to offer is right at your doorstep. Jonathan Wallace's first season at Wye Heritage Marina came with a pool, brand new pickleball courts, a dog park and a friendly marina community, and his favourite part was calm, sunny afternoons anchored off Beckwith Island.",
+      "transcript": "Our boat came out of the water this week, and I'm absolutely so grateful. This was our first year at Wye Heritage, and it was absolutely amazing. The people here were friendly. We used the pool, we used the brand new pickleball courts, the dog park. We had fish and chips at Finn City. We even hosted the GBGH Gala in one of their hangars, and it was an absolutely beautiful venue.\n\nBut my favourite part was afternoons anchored at Beckwith Island. The sun was out, the water was calm. That was my summer.\n\nNow, living in Midland and Tiny Township gives you some of the best boating Ontario has to offer. So if you've been thinking about getting on the water, it's right at your doorstep. Thank you to the marina team, our whole boating community, and all of our new friends on O dock. Spring can't come soon enough. See you on the water next year.",
+      "related": {
+        "label": "Georgian Bay communities guide",
+        "href": "/communities.html"
+      }
+    },
+    {
       "slug": "should-i-take-my-house-off-the-market-for-winter",
       "question": "Should I take my house off the market for the winter?",
       "card": "Should I pull my house off the market for winter?",

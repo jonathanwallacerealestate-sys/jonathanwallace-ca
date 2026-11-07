@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Conditions guide: clause buttons beside the headings
+Why: Jonathan Wallace asked to save space down the page. Each View clause button now sits on the same line as its section heading, slightly smaller, and wraps under the heading when there is no room (phones, sections with several buttons).
+
 ### 479 Margaret Street: phone hero lines no longer collide
 Why: On a phone, "479 Margaret Street" wraps and the g sits on "Street", and "$395,000 to $430,000" wraps through itself. The address under the title was also tight against that g.
 - eval/479-margaret-street only. Under 430px the heading and the value range use a taller line-height, and the heading has a little more room above the address. Desktop, tablet, the cards, and 188 Old Mill Road are unchanged.

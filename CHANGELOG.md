@@ -102,6 +102,11 @@ Why: Jonathan Wallace asked for the offer clauses explainer (drafted in Grok) to
 - Inspection wording corrected at Jonathan Wallace's direction: the home inspection condition requires an inspection satisfactory to the buyer and does not require a certified inspector.
 - blog.html card first after the latest market update, ItemList rebuilt with the post at position 2; sitemap.xml, llms.txt and the .html redirect in netlify.toml added.
 
+## 2026-11-07
+
+### Straight Answers: two new videos, new "Living here" topic
+- Added /ask/crea-forecast-where-are-ontario-prices-headed (Market) and /ask/what-is-boating-like-in-midland-and-tiny (new Living here topic; CTA is the private home search). Posters from each video's opening smile.
+
 ## 2026-11-05
 
 ### Weekly market update: October 26 to November 1, 2026

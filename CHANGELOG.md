@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Conditions guide: card moved above the Fictional terms box
+Why: Jonathan Wallace asked for the hero shot directly above the fictional sample terms. It stays in the body under the intro, not a header (DEC-20261012-01).
+
 ### Conditions guide: clause viewer opens closer, softer highlight
 Why: Jonathan Wallace asked for the View clause pages to open larger and easier to read, and for the gold highlight to be more transparent so the words show through.
 - Viewer opens at 1.4x (was 1x), zoom steps of 0.2 up to 2.4x; wide pages scroll sideways instead of clipping. Highlight fill opacity .38 to .14.

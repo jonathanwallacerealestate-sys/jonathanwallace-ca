@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Conditions guide: bold kept to the four intro terms only
+Why: Jonathan Wallace questioned bold on chattel and fixture. Bold now only marks condition, representation, warranty and disclosure in the intro; chattel, fixture, escape clause and pause clause are plain text.
+
 ### Conditions guide: condition comparison changed
 Why: Jonathan Wallace pointed out buyers don't get to test drive a house. A condition is now compared to agreeing to buy a used car as long as your mechanic gives it a clean bill of health.
 

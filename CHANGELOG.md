@@ -14,6 +14,12 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 - Listing descriptions stay word for word as they appear on REALTOR.ca, including words the voice rules otherwise ban (stunning, cozy and similar). Do not rewrite them (Jonathan Wallace, Nov 3, DEC-20261103-listing-copy-matches-realtor-ca).
 - Interview and town pages use the shared site header, footer and styles.css, not one-off templates.
 
+## 2026-11-07
+
+### Fix: offer clause viewer cut off on mobile
+Why: Jonathan Wallace reported that on mobile the sample offer viewer was cut off along the edges.
+- blog-conditions-warranties-ontario-offer.html: on screens 700px and narrower the viewer is full-screen and opens at zoom 1, so the whole page width fits (was zoom 1.4, wider than the phone). Page labels capped to screen width so nothing scrolls sideways. The + button still zooms in. Desktop is unchanged (zoom 1.4).
+
 ## 2026-11-06
 
 ### 479 Margaret Street: full photo galleries

@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### 479 Margaret Street: phone hero lines no longer collide
+Why: On a phone, "479 Margaret Street" wraps and the g sits on "Street", and "$395,000 to $430,000" wraps through itself. The address under the title was also tight against that g.
+- eval/479-margaret-street only. Under 430px the heading and the value range use a taller line-height, and the heading has a little more room above the address. Desktop, tablet, the cards, and 188 Old Mill Road are unchanged.
+
 ### Conditions guide: in-person valuation button removed
 Why: Jonathan Wallace asked to take out "Book an in-person valuation". The top of the post now has one centred button, "Get Your Personalized Home Value Report", to the two-step /home-value page.
 

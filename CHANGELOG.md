@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Conditions guide: warranty explained as a closing-day promise
+Why: Jonathan Wallace's correction. A working-order promise holds up until closing; it is not an extended warranty, so a dishwasher that breaks in March is on the buyer.
+
 ### Conditions guide: report button goes to /seller-valuation/
 Why: Jonathan Wallace confirmed /seller-valuation/ is the two-step page for "Get Your Personalized Home Value Report" (not /home-value).
 

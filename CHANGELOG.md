@@ -16,11 +16,14 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Conditions guide: condition comparison changed
+Why: Jonathan Wallace pointed out buyers don't get to test drive a house. A condition is now compared to agreeing to buy a used car as long as your mechanic gives it a clean bill of health.
+
 ### Conditions guide: Sources in two columns
 Why: Jonathan Wallace asked for a shorter Sources list. Two columns on desktop and tablet, one on phones.
 
 ### Conditions guide rewritten in plain language
-Why: Jonathan Wallace said the clauses were over-explained and full of legal wording. Every section now explains the clause for someone with little real estate experience, with everyday comparisons (test drive with a return date, turn the house upside down, a building's report card). Same sections, clause buttons and sample offer. About 40 percent shorter; read time ~11 min.
+Why: Jonathan Wallace said the clauses were over-explained and full of legal wording. Every section now explains the clause for someone with little real estate experience, with everyday comparisons (buying a used car subject to your mechanic, turn the house upside down, a building's report card). Same sections, clause buttons and sample offer. About 40 percent shorter; read time ~11 min.
 
 ### Conditions guide: card moved above the Fictional terms box
 Why: Jonathan Wallace asked for the hero shot directly above the fictional sample terms. It stays in the body under the intro, not a header (DEC-20261012-01).

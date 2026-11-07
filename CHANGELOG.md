@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Conditions guide: clause viewer opens closer, softer highlight
+Why: Jonathan Wallace asked for the View clause pages to open larger and easier to read, and for the gold highlight to be more transparent so the words show through.
+- Viewer opens at 1.4x (was 1x), zoom steps of 0.2 up to 2.4x; wide pages scroll sideways instead of clipping. Highlight fill opacity .38 to .14.
+
 ### Conditions guide: representation and warranty bolded
 Why: Jonathan Wallace noticed condition and disclosure were bold in the intro but representation and warranty were not. All four key terms are now bold.
 

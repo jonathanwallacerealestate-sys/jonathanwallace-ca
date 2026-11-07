@@ -16,6 +16,12 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### 479 Margaret Street: full photo galleries
+Why: Each comparable had one photo. Jonathan Wallace sent the full REALM galleries.
+- Sold cards: 255 Lindsay 25, 531 Seventh 17, 639 Dominion 25, 14 Wolfe 25, 15 Lucy 17, 317 Wardell 23, 680 Ontario 25, 320 Yonge 25.
+- Active cards: 762 Ottawa 20, 7 Victory 20, 323 Bell 20, 154 Robert St W 20.
+- Photos are 640px JPEGs, same idea as the 188 Old Mill Road galleries. The lightbox markup is unchanged. Hero spacing and the removed waterfront rows stay.
+
 ### 479 Margaret Street: hero spacing, and waterfront only when it applies
 Why: The address sat on the heading, and the byline sat on the price. Comparables that are not on the water were showing Water frontage as No.
 - Page-local CSS only. 26px under the street heading and under the price, so the descenders leave about 16px of clear space. Under 430px the taller line-height stays, with 18px of margin, which is the same clear gap.

@@ -14,6 +14,15 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 - Listing descriptions stay word for word as they appear on REALTOR.ca, including words the voice rules otherwise ban (stunning, cozy and similar). Do not rewrite them (Jonathan Wallace, Nov 3, DEC-20261103-listing-copy-matches-realtor-ca).
 - Interview and town pages use the shared site header, footer and styles.css, not one-off templates.
 
+## 2026-11-06
+
+### New post: Coles Notes: Common Conditions and Warranties in an Ontario Offer
+Why: Jonathan Wallace asked for the offer clauses explainer (drafted in Grok) to go live as this week's newsletter feature. He confirmed permission to show the sample form pages.
+- New post blog-conditions-warranties-ontario-offer.html in the current non-market format (Winter / Wills template, Playfair and Nunito Sans, 720px column). Card assets/img/blog-offer-conditions-warranties-card.jpg sits lower in the body, after the first section (DEC-20261012-01), and is the og:image and blog card.
+- Clickable sample offer: 21 "View clause" buttons open a modal with the five sample pages (assets/img/offer-sample/page-1 to 5.jpg) and a gold highlight on the clause. Sample PDF at assets/downloads/123-banana-street-sample-offer-schedule-a.pdf. All terms are fictional (123 Banana Street, Sample Buyer, Sample Seller).
+- Inspection wording corrected at Jonathan Wallace's direction: the home inspection condition requires an inspection satisfactory to the buyer and does not require a certified inspector.
+- blog.html card first after the latest market update, ItemList rebuilt with the post at position 2; sitemap.xml, llms.txt and the .html redirect in netlify.toml added.
+
 ## 2026-11-05
 
 ### Weekly market update: October 26 to November 1, 2026

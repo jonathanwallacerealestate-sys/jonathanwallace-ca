@@ -1350,6 +1350,12 @@
   force = true
 
 [[redirects]]
+  from = "/blog-conditions-warranties-ontario-offer.html"
+  to = "/blog-conditions-warranties-ontario-offer"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog-get-home-ready-for-winter-georgian-bay.html"
   to = "/blog-get-home-ready-for-winter-georgian-bay"
   status = 301

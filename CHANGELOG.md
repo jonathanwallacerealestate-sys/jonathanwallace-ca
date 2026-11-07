@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-06
 
+### Conditions guide: two centred evaluation buttons
+Why: Jonathan Wallace asked for both options under the title, centred: "Book an in-person valuation" (Calendly, book_home_evaluation) and "Get Your Personalized Home Value Report" (the two-step /home-value page, post_top_home_value).
+
 ### Conditions guide: top evaluation button goes to /home-value
 Why: Jonathan Wallace wants the blog's home evaluation button on the two-step /home-value page, not the Calendly in-home booking. Label is now "Get a free home evaluation"; GA4 event post_top_home_value. The other posts still use the Calendly link from the Nov 3 council batch.
 

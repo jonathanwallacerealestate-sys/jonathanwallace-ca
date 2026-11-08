@@ -14,6 +14,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 - Listing descriptions stay word for word as they appear on REALTOR.ca, including words the voice rules otherwise ban (stunning, cozy and similar). Do not rewrite them (Jonathan Wallace, Nov 3, DEC-20261103-listing-copy-matches-realtor-ca).
 - Interview and town pages use the shared site header, footer and styles.css, not one-off templates.
 
+## 2026-11-08
+
+### Straight Answers: helping parents plan a move
+- Added /ask/helping-aging-parents-plan-a-move (Selling). Poster from the opening smile.
+
 ## 2026-11-07
 
 ### Fix: offer clause viewer cut off on mobile

@@ -3,6 +3,20 @@
   "live": true,
   "videos": [
     {
+      "slug": "helping-aging-parents-plan-a-move",
+      "question": "How do I help my parents plan a move when they don't know where to start?",
+      "card": "Parents thinking about moving? Where to start",
+      "category": "Selling",
+      "date": "2026-11-08",
+      "duration": 51,
+      "short": "Start with a strategy session: no commitment to sell, just a conversation about what the home could sell for and what is worth doing before a move. Heading into winter there is time to make a plan, a few indoor repairs and some decluttering, one manageable job at a time, and just as important, what they don't need to spend time or money on. Instead of one overwhelming move, they get a clear checklist and decide on their own time.",
+      "transcript": "Are your parents talking about moving, but one look around the home and you know they have no idea where to start? Now, you don't want to rush them, but you do want them to understand what comes next, and that's where a strategy session can help. No commitment to sell, just a conversation about what the home could sell for and what's worth doing before a move.\n\nNow, heading into winter, there's more time to make a plan. A few indoor repairs, some decluttering, one manageable job at a time. And just as important, what they don't need to spend time or money on. So instead of one overwhelming move, they have a clear checklist and can decide on their own time. So if the house does become harder to manage this winter, they already have a head start.\n\nWould your parents be relieved if they had a plan? If so, send me a DM and let's start there.",
+      "related": {
+        "label": "How Jonathan Wallace sells your home",
+        "href": "/sell.html"
+      }
+    },
+    {
       "slug": "crea-forecast-where-are-ontario-prices-headed",
       "question": "Where are Ontario home prices headed, according to CREA's new forecast?",
       "card": "Where are home prices headed next?",

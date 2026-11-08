@@ -1,0 +1,4 @@
+# Private runtime fixtures for the waterfront draft.
+# Raw MLS extracts, normalized candidate rows, and preview datasets stay here.
+# Do not commit them. noindex on the draft page is not access control.
+.local/

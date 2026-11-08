@@ -110,6 +110,15 @@
 /eval/479-margaret-street*
   X-Robots-Tag: noindex, nofollow
 
+# Draft waterfront guide. Not in the nav, sitemap.xml, or llms.txt.
+# noindex is a publication hold. It is not access control for listing records.
+/blog-north-simcoe-waterfront
+  X-Robots-Tag: noindex, nofollow
+/blog-north-simcoe-waterfront/
+  X-Robots-Tag: noindex, nofollow
+/blog-north-simcoe-waterfront.html
+  X-Robots-Tag: noindex, nofollow
+
 # Images are renamed when replaced, so browsers may keep them for a week (speed)
 /assets/img/*
   Cache-Control: public, max-age=604800

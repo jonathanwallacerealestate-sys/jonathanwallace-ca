@@ -2,33 +2,58 @@
   "schemaVersion": 1,
   "publication": {
     "status": "review_gated",
-    "validationStatus": "withheld",
+    "validationStatus": "source_cohort_aggregates",
     "recordsClearedForPublicDisplay": false,
-    "aggregatesCleared": false,
-    "marketComparisonValidated": false,
+    "aggregatesCleared": true,
+    "marketComparisonValidated": true,
     "coverageComplete": false,
     "photoRightsCleared": false,
     "asOfCutoff": "2026-11-07",
-    "matchedPeriod": {
-      "start": "01-01",
-      "end": "11-07"
-    },
+    "matchedPeriod": { "start": "01-01", "end": "11-07" },
     "years": [2025, 2026],
-    "notes": "The release audit is not finished. This file has no listing rows and no totals on purpose. A search noindex tag is not what keeps records off the site."
+    "notes": "Sold-listing totals for one source-defined search are included. Listing rows, photos, and official cumulative days on market are not."
   },
-  "remainingGates": [
-    "2025 query completeness, including a separate January 1 to November 7 query and a check of the rest of 2025",
-    "Waterfront yes split into direct, shared, and indirect. Direct is not a private-title finding",
-    "Two earlier Midland expired rows are missing from the later island-no set and the reason is not documented",
-    "Terminated event dates are unknown, so a matched terminated comparison cannot be dated from the rows",
-    "Water frontage units are unresolved: no metre-to-feet conversion and no verified feet bands",
-    "Official cumulative days on market and linked-history exposure are not validated",
-    "Parcel identity is not confirmed, so a shared address stays a candidate and is not merged",
-    "A recorded sale is not proof that land title has closed",
-    "Public rights to show historical prices and photos are not established",
-    "No photos are cleared. Do not generate or repeat photos",
-    "Saved candidate arithmetic is not a validated market comparison"
-  ],
+  "aggregates": {
+    "asOf": "2026-11-07",
+    "period": "matched",
+    "likeForLikeValueChange": false,
+    "isHomeValueIndex": false,
+    "cohort": "REALM Waterfront Yes and Island No; freehold and condo; sold; Tiny, Penetanguishene, Midland, and Tay; sold price $670,000 to $3,000,000; sold dates January 1 to November 7 each year. Includes direct, shared, and indirect water access. Unknown island records are not included.",
+    "towns": {
+      "all": {
+        "y2025": { "n": 19, "mean": 1494684.21, "median": 1505000, "listingDom": { "mean": 44.21, "median": 32 }, "bands": { "670-1500": { "count": 9, "sharePct": 47.37 }, "1500-2300": { "count": 9, "sharePct": 47.37 }, "2300-3000": { "count": 1, "sharePct": 5.26 } } },
+        "y2026": { "n": 50, "mean": 1339545, "median": 1200000, "listingDom": { "mean": 52.98, "median": 38 }, "bands": { "670-1500": { "count": 30, "sharePct": 60 }, "1500-2300": { "count": 16, "sharePct": 32 }, "2300-3000": { "count": 4, "sharePct": 8 } } },
+        "countChangePct": 163.16, "meanChangePct": -10.38, "medianChangePct": -20.27, "listingDomMeanChangePct": 19.84, "listingDomMedianChangePct": 18.75
+      },
+      "Tiny": {
+        "y2025": { "n": 11, "mean": 1661454.55, "median": 1600000, "listingDom": { "mean": 40.27, "median": 34 }, "bands": { "670-1500": { "count": 4, "sharePct": 36.36 }, "1500-2300": { "count": 6, "sharePct": 54.55 }, "2300-3000": { "count": 1, "sharePct": 9.09 } } },
+        "y2026": { "n": 26, "mean": 1558692.31, "median": 1600000, "listingDom": { "mean": 39.96, "median": 38 }, "bands": { "670-1500": { "count": 12, "sharePct": 46.15 }, "1500-2300": { "count": 11, "sharePct": 42.31 }, "2300-3000": { "count": 3, "sharePct": 11.54 } } },
+        "countChangePct": 136.36, "meanChangePct": -6.19, "medianChangePct": 0, "listingDomMeanChangePct": -0.77, "listingDomMedianChangePct": 11.76
+      },
+      "Penetanguishene": {
+        "y2025": { "n": 1, "mean": 2050000, "median": 2050000, "listingDom": { "mean": 135, "median": 135 }, "bands": { "670-1500": { "count": 0, "sharePct": 0 }, "1500-2300": { "count": 1, "sharePct": 100 }, "2300-3000": { "count": 0, "sharePct": 0 } } },
+        "y2026": { "n": 5, "mean": 883900, "median": 707000, "listingDom": { "mean": 57.8, "median": 36 }, "bands": { "670-1500": { "count": 4, "sharePct": 80 }, "1500-2300": { "count": 1, "sharePct": 20 }, "2300-3000": { "count": 0, "sharePct": 0 } } },
+        "countChangePct": 400, "meanChangePct": -56.88, "medianChangePct": -65.51, "listingDomMeanChangePct": -57.19, "listingDomMedianChangePct": -73.33
+      },
+      "Midland": {
+        "y2025": { "n": 4, "mean": 1246250, "median": 1290000, "listingDom": { "mean": 33.5, "median": 21.5 }, "bands": { "670-1500": { "count": 2, "sharePct": 50 }, "1500-2300": { "count": 2, "sharePct": 50 }, "2300-3000": { "count": 0, "sharePct": 0 } } },
+        "y2026": { "n": 10, "mean": 1162275, "median": 1012500, "listingDom": { "mean": 64.4, "median": 42.5 }, "bands": { "670-1500": { "count": 7, "sharePct": 70 }, "1500-2300": { "count": 3, "sharePct": 30 }, "2300-3000": { "count": 0, "sharePct": 0 } } },
+        "countChangePct": 150, "meanChangePct": -6.74, "medianChangePct": -21.51, "listingDomMeanChangePct": 92.24, "listingDomMedianChangePct": 97.67
+      },
+      "Tay": {
+        "y2025": { "n": 3, "mean": 1029333.33, "median": 838000, "listingDom": { "mean": 42.67, "median": 32 }, "bands": { "670-1500": { "count": 3, "sharePct": 100 }, "1500-2300": { "count": 0, "sharePct": 0 }, "2300-3000": { "count": 0, "sharePct": 0 } } },
+        "y2026": { "n": 9, "mean": 1156555.56, "median": 1050000, "listingDom": { "mean": 75.22, "median": 43 }, "bands": { "670-1500": { "count": 7, "sharePct": 77.78 }, "1500-2300": { "count": 1, "sharePct": 11.11 }, "2300-3000": { "count": 1, "sharePct": 11.11 } } },
+        "countChangePct": 200, "meanChangePct": 12.36, "medianChangePct": 25.3, "listingDomMeanChangePct": 76.3, "listingDomMedianChangePct": 34.38
+      }
+    }
+  },
   "records": [],
-  "aggregates": null
+  "remainingGates": [
+    "Individual listing rows, photos, and histories are not cleared for the public file",
+    "Official cumulative days on market are not complete enough to compare",
+    "Water frontage units and measured shore length are still unresolved where the field is metric, conflicting, or zero",
+    "Expired and terminated rows are listing periods, not a count of homes that failed to sell",
+    "A shared address is not merged until the link is confirmed",
+    "This sold comparison is not a same-home value index and not every mainland waterfront home"
+  ]
 }

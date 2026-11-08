@@ -18,6 +18,7 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ### Draft: North Simcoe waterfront guide, 2025 and 2026 through November 7
 Why: A reviewable evergreen page for Tiny, Penetanguishene, Midland and Tay waterfront, with a property archive. Not for the menu, the blog index, or the sitemap yet.
+- November 7 follow-up: the page now shows the checked source-defined sold comparison (19 and 50, January 1 to November 7). Listing rows, photos, and official cumulative days on market stay out of the public file. Reader copy is the market explanation. Gate notes are in content/waterfront/README.md.
 - New page blog-north-simcoe-waterfront.html, in the conditions-guide shape (Playfair Display, Nunito Sans, 720px reading column) and the evaluation card treatment (ivory card, gold top line, 16:9 viewer). noindex, nofollow. A brand guidelines master was not found. 188 Old Mill Road was not edited.
 - Public data file content/waterfront/public-release.json has no listing rows and no totals. Pending review is not shown as zero. Candidate sale counts and percent changes are not on the page. Search noindex is not the control that keeps records off the site.
 - assets/js/waterfront-model.mjs holds price bands, water-frontage bands, shoreline classes, sold-price math, and listing-row versus confirmed-outcome links. scripts/waterfront-adapt.mjs can normalize a local research file into gitignored .local/ only.

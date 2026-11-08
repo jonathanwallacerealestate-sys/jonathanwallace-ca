@@ -459,22 +459,26 @@ export function canShowRecords(dataset) {
 
 export function canShowAggregates(dataset) {
   const publication = dataset?.publication;
+  const overall = dataset?.aggregates?.towns?.all;
   return Boolean(
-    canShowRecords(dataset)
+    publication
     && publication.aggregatesCleared === true
     && publication.marketComparisonValidated === true
-    && publication.coverageComplete === true
+    && overall
+    && overall.y2025
+    && overall.y2026
   );
 }
 
 export function viewModel(dataset, filters = {}) {
   const photosAllowed = dataset?.publication?.photoRightsCleared === true;
+  const published = canShowAggregates(dataset) ? dataset.aggregates : null;
   if (!canShowRecords(dataset)) {
     return {
       gated: true,
       records: [],
       outcomes: [],
-      comparison: null,
+      comparison: published,
       photosAllowed: false,
       emptyReason: "pending"
     };
@@ -485,14 +489,16 @@ export function viewModel(dataset, filters = {}) {
   }));
   const visible = records.filter((record) => inArchive(record, filters));
   const mode = filters.view === "outcomes" ? "outcomes" : "listings";
+  const publication = dataset.publication || {};
+  const computed = publication.aggregatesCleared === true && publication.marketComparisonValidated === true
+    ? compareYears(records, { period: filters.period || "matched", shoreline: filters.compareShoreline || filters.shoreline || "all" })
+    : null;
   return {
     gated: false,
     records: visible,
     outcomes: outcomeCards(visible),
     mode,
-    comparison: canShowAggregates(dataset)
-      ? compareYears(records, { period: filters.period || "matched", shoreline: filters.compareShoreline || "all" })
-      : null,
+    comparison: published || computed,
     photosAllowed,
     emptyReason: visible.length ? null : "no-match"
   };

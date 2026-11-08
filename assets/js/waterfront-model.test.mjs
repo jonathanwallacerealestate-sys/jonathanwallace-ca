@@ -393,17 +393,32 @@ test("photos cap at 10 real sources and drop blanks and duplicates", () => {
   assert.equal(new Set(photos.map((photo) => photo.src)).size, 10);
 });
 
-test("the public release file stays gated and an empty flagged file is not zero sales", () => {
+test("published aggregates are separate from listing records", () => {
   const dataset = JSON.parse(fs.readFileSync(path.join(root, "content/waterfront/public-release.json"), "utf8"));
   assert.equal(dataset.records.length, 0);
-  assert.equal(dataset.aggregates, null);
   assert.equal(canShowRecords(dataset), false);
-  assert.equal(canShowAggregates(dataset), false);
+  assert.equal(canShowAggregates(dataset), true);
+  assert.equal(dataset.publication.photoRightsCleared, false);
   const view = viewModel(dataset, { year: "2026", period: "matched" });
   assert.equal(view.gated, true);
-  assert.equal(view.comparison, null);
   assert.deepEqual(view.records, []);
   assert.equal(view.emptyReason, "pending");
+  assert.equal(view.comparison.likeForLikeValueChange, false);
+  assert.equal(view.comparison.isHomeValueIndex, false);
+  assert.equal(view.comparison.towns.all.y2025.n, 19);
+  assert.equal(view.comparison.towns.all.y2026.n, 50);
+  assert.equal(view.comparison.towns.all.y2025.mean, 1494684.21);
+  assert.equal(view.comparison.towns.all.y2026.mean, 1339545);
+  assert.equal(view.comparison.towns.all.meanChangePct, -10.38);
+  assert.equal(view.comparison.towns.all.medianChangePct, -20.27);
+  assert.equal(view.comparison.towns.all.y2025.bands["670-1500"].count, 9);
+  assert.equal(view.comparison.towns.all.y2026.bands["670-1500"].count, 30);
+  assert.equal(view.comparison.towns.all.y2025.listingDom.mean, 44.21);
+  assert.equal(view.comparison.towns.all.y2026.listingDom.median, 38);
+  assert.equal(view.comparison.towns.Penetanguishene.y2025.n, 1);
+  assert.equal(view.comparison.towns.Midland.y2025.n, 4);
+  assert.equal(view.comparison.towns.Tiny.medianChangePct, 0);
+  assert.equal(view.comparison.towns.Tay.medianChangePct, 25.3);
 
   const flaggedEmpty = {
     publication: {
@@ -418,6 +433,7 @@ test("the public release file stays gated and an empty flagged file is not zero 
   };
   assert.equal(viewModel(flaggedEmpty).emptyReason, "pending");
   assert.equal(viewModel(flaggedEmpty).comparison, null);
+  assert.equal(canShowRecords(flaggedEmpty), false);
 });
 
 test("records can be held back from totals, and photos stay off without photo clearance", () => {
@@ -480,21 +496,20 @@ test("committed public files do not carry withheld candidate claims or raw listi
     "assets/js/waterfront-model.mjs",
     "assets/js/waterfront-page.mjs",
     "assets/js/waterfront-model.test.mjs",
-    "scripts/waterfront-adapt.mjs"
+    "scripts/waterfront-adapt.mjs",
+    "content/waterfront/README.md"
   ];
   const banned = [
-    "10.38",
-    "20.27",
-    "1,494,684",
-    "1,339,545",
-    "1494684",
-    "1339545",
-    "163.16",
     "S12027846",
     "S12525204",
     "S12309465",
     "S12211897",
-    "realmmlp.ca"
+    "S13741058",
+    "S13531538",
+    "realmmlp.ca",
+    "33 Card",
+    "1834 Tiny",
+    "Card Ave"
   ];
   for (const file of files) {
     const text = fs.readFileSync(path.join(root, file), "utf8");
@@ -508,11 +523,23 @@ test("committed public files do not carry withheld candidate claims or raw listi
     }
   }
   const page = fs.readFileSync(path.join(root, "blog-north-simcoe-waterfront.html"), "utf8");
-  assert.match(page, new RegExp(PENDING));
+  assert.match(page, /North Simcoe Waterfront Market: 2025 vs 2026/);
+  assert.match(page, /Explore waterfront properties/);
+  assert.match(page, /20\.27%/);
+  assert.match(page, /10\.38%/);
+  assert.match(page, /47\.37%/);
   assert.match(page, /noindex, nofollow/);
+  assert.equal(page.includes("classroom"), false);
+  assert.equal(page.includes("not a count of sales"), false);
+  assert.equal(page.includes("does not list homes"), false);
+  assert.equal(page.includes("Hiding the page from search"), false);
+  assert.equal(page.includes("They do not create listings"), false);
   assert.equal(page.includes("eval/188-old-mill-road"), false);
   const release = fs.readFileSync(path.join(root, "content/waterfront/public-release.json"), "utf8");
   assert.match(release, /"records": \[\]/);
+  assert.match(release, /1494684\.21/);
+  assert.match(release, /-10\.38/);
+  assert.match(release, /-20\.27/);
 });
 
 test("date parsing rejects impossible dates and update-only strings", () => {

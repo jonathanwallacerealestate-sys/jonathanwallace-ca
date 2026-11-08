@@ -43,7 +43,6 @@ function selectedView(root) {
 function readFilters(root) {
   return {
     period: selectedPeriod(root),
-    compareShoreline: field(root, "wf-compare-shore").value,
     year: field(root, "wf-year").value,
     town: field(root, "wf-town").value,
     status: field(root, "wf-status").value,
@@ -64,11 +63,36 @@ function resetFilters(root) {
   if (listings) listings.checked = true;
 }
 
+function money(amount) {
+  if (amount == null || !Number.isFinite(amount)) return UNKNOWN;
+  const cents = Math.abs(amount - Math.round(amount)) > 0.001;
+  return new Intl.NumberFormat("en-CA", {
+    style: "currency",
+    currency: "CAD",
+    minimumFractionDigits: cents ? 2 : 0,
+    maximumFractionDigits: cents ? 2 : 0
+  }).format(amount);
+}
+
+function signedPct(value) {
+  if (value == null || !Number.isFinite(value)) return "n/a (zero baseline)";
+  const sign = value >= 0 ? "+" : "";
+  return `${sign}${value.toFixed(2)}%`;
+}
+
 function bandText(summary, id) {
   if (!summary) return PENDING;
   const band = summary.bands[id];
-  if (!band || summary.n === 0) return summary.n === 0 ? `0, ${UNKNOWN} share` : PENDING;
+  if (!band) return PENDING;
+  if (band.sharePct != null) return `${band.count} (${Number(band.sharePct).toFixed(2)}%)`;
+  if (summary.n === 0) return `0, ${UNKNOWN} share`;
   return `${band.count}, ${formatStat(band.share, "share")} of recorded sales`;
+}
+
+function domText(summary) {
+  const dom = summary && (summary.listingDom || (summary.exposure && summary.exposure.listingDom));
+  if (!dom || !Number.isFinite(dom.mean) || !Number.isFinite(dom.median)) return UNKNOWN;
+  return `${dom.mean} days mean; ${dom.median} days median`;
 }
 
 function fillYear(card, year, summary, gated) {
@@ -85,12 +109,12 @@ function fillYear(card, year, summary, gated) {
     return;
   }
   set("n", String(summary.n));
-  set("mean", formatStat(summary.mean, "cad"));
-  set("median", formatStat(summary.median, "cad"));
-  for (const band of PRICE_BANDS) set(band.id, bandText(summary, band.id));
-  set("listingDom", summary.exposure.listingDom ? formatStat(summary.exposure.listingDom.median, "days") + " median" : UNKNOWN);
-  set("officialCdom", summary.exposure.officialCdom ? formatStat(summary.exposure.officialCdom.median, "days") + " median" : UNKNOWN);
-  set("derived", summary.exposure.derivedActiveExposure ? formatStat(summary.exposure.derivedActiveExposure.median, "days") + " median" : UNKNOWN);
+    set("mean", money(summary.mean));
+    set("median", money(summary.median));
+    for (const band of PRICE_BANDS) set(band.id, bandText(summary, band.id));
+    set("listingDom", domText(summary));
+    set("officialCdom", UNKNOWN);
+    set("derived", UNKNOWN);
 }
 
 function renderComparison(root, view, filters) {
@@ -99,12 +123,14 @@ function renderComparison(root, view, filters) {
     node.dataset.period = period;
   });
   const note = field(root, "wf-period-note");
-  const shoreNames = { all: "all shoreline classes", direct: "direct", shared: "shared", indirect: "indirect", unknown: "unknown shoreline" };
-  const shore = shoreNames[filters.compareShoreline] || "all shoreline classes";
-  if (period === "full") {
-    text(note, `Full 2025 is shown beside 2026 year to date, which still ends November 7. These two windows are not a matched pair. Shoreline in this comparison: ${shore}. Totals stay pending until the release audit.`);
+  if (!view.comparison) {
+    text(note, period === "full"
+      ? "Full 2025 beside 2026 through November 7. These windows are not the same length. Figures are not on this page yet."
+      : "January 1 to November 7 each year. Figures are not on this page yet.");
+  } else if (period === "full") {
+    text(note, "For sold listings in this search, full-year 2025 matches January 1 to November 7. November 8 through December 31, 2025 returned no sales. 2026 still ends November 7.");
   } else {
-    text(note, `Both columns use January 1 through November 7. 2026 is year to date, through November 7, 2026. Shoreline in this comparison: ${shore}. Totals stay pending until the release audit.`);
+    text(note, "Sold dates from January 1 to November 7 each year. As of November 7, 2026. Listing days on market are for that listing, not official cumulative days on market.");
   }
   const comparison = view.comparison;
   root.querySelectorAll("[data-town]").forEach((card) => {
@@ -114,11 +140,16 @@ function renderComparison(root, view, filters) {
     fillYear(card, "2026", block && block.y2026, !comparison);
     const change = card.querySelector("[data-stat='change']");
     if (!comparison || !block) {
-      text(change, "Change in the mean: Pending review. Change in the median: Pending review. Neither change is a like-for-like home value change.");
+      text(change, "Change in the mean: Pending review. Change in the median: Pending review. A change in the average is not a change in the value of the same homes.");
       return;
     }
-    const small = block.y2025.smallN || block.y2026.smallN ? " One count is under 10 recorded sales, so the set is small." : "";
-    text(change, `Change in the mean: ${formatStat(block.meanChangePct, "pct")}. Change in the median: ${formatStat(block.medianChangePct, "pct")}. Neither change is a like-for-like home value change.${small}`);
+    const small = (block.y2025.smallN || block.y2026.smallN || block.y2025.n < 10 || block.y2026.n < 10)
+      ? " One year has fewer than 10 sales."
+      : "";
+    const domChange = Number.isFinite(block.listingDomMeanChangePct)
+      ? ` Listing days on market, mean ${signedPct(block.listingDomMeanChangePct)}, median ${signedPct(block.listingDomMedianChangePct)}.`
+      : "";
+    text(change, `Sales ${signedPct(block.countChangePct)}. Mean ${signedPct(block.meanChangePct)}. Median ${signedPct(block.medianChangePct)}.${domChange} Not a same-home value change.${small}`);
   });
 }
 
@@ -205,8 +236,8 @@ function renderArchive(root, view, filters, openLightbox) {
   const grid = field(root, "wf-grid");
   const viewNote = field(root, "wf-view-note");
   text(viewNote, filters.view === "outcomes"
-    ? "Linked property outcomes collapse only a confirmed link. A later confirmed sale becomes the outcome, so the earlier expired or terminated episode is not a second unsold property. An address match that is only a candidate stays as its own row."
-    : "Listing rows are individual listing episodes. An expired or terminated episode stays in this list and is not labeled as a home that never sold.");
+    ? "Linked properties group only a confirmed match. A later sale is the outcome. An address match that is only possible stays separate."
+    : "Each listing is shown on its own. An expired or terminated listing is not labeled as a home that never sold.");
   grid.replaceChildren();
   if (view.gated) {
     const labelFor = (id) => {
@@ -216,17 +247,17 @@ function renderArchive(root, view, filters, openLightbox) {
       return option ? option.textContent : node.value;
     };
     const bits = [labelFor("wf-year"), labelFor("wf-town"), labelFor("wf-status"), labelFor("wf-band"), labelFor("wf-frontage"), labelFor("wf-shore")];
-    text(count, `Showing nothing yet. Pending review. This is not a count of sales. Filters: ${bits.join("; ")}.`);
+    text(count, `Property records are under review. Filters: ${bits.join("; ")}.`);
     empty.hidden = false;
-    text(empty, "No listings are available to show. Pending review is not the same as zero sales, and it is not an empty market.");
+    text(empty, "Property records are under review.");
     return;
   }
   const items = filters.view === "outcomes" ? view.outcomes : view.records;
-  const noun = filters.view === "outcomes" ? "linked property outcomes" : "listing rows";
+  const noun = filters.view === "outcomes" ? "linked properties" : "listings";
   if (!items.length) {
     text(count, `0 ${noun} match these filters.`);
     empty.hidden = false;
-    text(empty, "No listings match these filters. Clear them to see the released set.");
+    text(empty, "No properties match these filters. Clear them to start again.");
     return;
   }
   text(count, `Showing ${items.length} ${noun}.`);

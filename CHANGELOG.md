@@ -14,6 +14,15 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 - Listing descriptions stay word for word as they appear on REALTOR.ca, including words the voice rules otherwise ban (stunning, cozy and similar). Do not rewrite them (Jonathan Wallace, Nov 3, DEC-20261103-listing-copy-matches-realtor-ca).
 - Interview and town pages use the shared site header, footer and styles.css, not one-off templates.
 
+## 2026-11-08
+
+### Draft: North Simcoe waterfront guide, 2025 and 2026 through November 7
+Why: A reviewable evergreen page for Tiny, Penetanguishene, Midland and Tay waterfront, with a property archive. Not for the menu, the blog index, or the sitemap yet.
+- New page blog-north-simcoe-waterfront.html, in the conditions-guide shape (Playfair Display, Nunito Sans, 720px reading column) and the evaluation card treatment (ivory card, gold top line, 16:9 viewer). noindex, nofollow. A brand guidelines master was not found. 188 Old Mill Road was not edited.
+- Public data file content/waterfront/public-release.json has no listing rows and no totals. Pending review is not shown as zero. Candidate sale counts and percent changes are not on the page. Search noindex is not the control that keeps records off the site.
+- assets/js/waterfront-model.mjs holds price bands, water-frontage bands, shoreline classes, sold-price math, and listing-row versus confirmed-outcome links. scripts/waterfront-adapt.mjs can normalize a local research file into gitignored .local/ only.
+- Tests: node --test assets/js/waterfront-model.test.mjs
+
 ## 2026-11-07
 
 ### Fix: offer clause viewer cut off on mobile

@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "publication": {
+    "status": "review_gated",
+    "validationStatus": "withheld",
+    "recordsClearedForPublicDisplay": false,
+    "aggregatesCleared": false,
+    "marketComparisonValidated": false,
+    "coverageComplete": false,
+    "photoRightsCleared": false,
+    "asOfCutoff": "2026-11-07",
+    "matchedPeriod": {
+      "start": "01-01",
+      "end": "11-07"
+    },
+    "years": [2025, 2026],
+    "notes": "The release audit is not finished. This file has no listing rows and no totals on purpose. A search noindex tag is not what keeps records off the site."
+  },
+  "remainingGates": [
+    "2025 query completeness, including a separate January 1 to November 7 query and a check of the rest of 2025",
+    "Waterfront yes split into direct, shared, and indirect. Direct is not a private-title finding",
+    "Two earlier Midland expired rows are missing from the later island-no set and the reason is not documented",
+    "Terminated event dates are unknown, so a matched terminated comparison cannot be dated from the rows",
+    "Water frontage units are unresolved: no metre-to-feet conversion and no verified feet bands",
+    "Official cumulative days on market and linked-history exposure are not validated",
+    "Parcel identity is not confirmed, so a shared address stays a candidate and is not merged",
+    "A recorded sale is not proof that land title has closed",
+    "Public rights to show historical prices and photos are not established",
+    "No photos are cleared. Do not generate or repeat photos",
+    "Saved candidate arithmetic is not a validated market comparison"
+  ],
+  "records": [],
+  "aggregates": null
+}

@@ -1355,6 +1355,13 @@
   status = 301
   force = true
 
+# Draft waterfront guide. Not in the nav, sitemap.xml, blog.html, or llms.txt.
+[[redirects]]
+  from = "/blog-north-simcoe-waterfront.html"
+  to = "/blog-north-simcoe-waterfront"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/blog-get-home-ready-for-winter-georgian-bay.html"
   to = "/blog-get-home-ready-for-winter-georgian-bay"

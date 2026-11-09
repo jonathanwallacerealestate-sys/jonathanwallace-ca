@@ -16,6 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### Listings: disabled 2554 Champlain Road, Tiny and 375 Champlain Road, Penetanguishene
+Why: both listings (MLS® S13643484 and S13722636) are no longer on REALTOR.ca as of the 9 Nov 2026 check, and listing pages must match REALTOR.ca. Pre-authorized by Jonathan Wallace.
+- Disabled reversibly in netlify.toml with 302 redirects to the homepage for /listings/<slug>, the trailing slash and the .html form, same pattern as 1016 Wright Drive and 775 Ontario Street. The HTML files are untouched. To undo, restore the 200 rewrite and 301s.
+- Removed 375 Champlain Road from the listings index card and JSON-LD list (positions renumbered), sitemap.xml, and llms.txt. 2554 Champlain Road had no index, sitemap or llms.txt entry.
+
 ### Listing pages: spec taps and the mobile action bar
 Why: Microsoft Clarity, Nov 6 2026. A Facebook in-app mobile visitor on /listings/20-rue-eric-tiny swiped the photo carousel 27 times, then tapped the bedroom and bathroom details and nothing happened (dead click), then left. The Book a showing, Call, and Text buttons sat on the hero photo. The cookie notice is unchanged. Marketing owns a separate sitewide cookie bar, waiting on Jonathan's approval.
 - Bedrooms link to the room sizes. Bathrooms link to the listing description. The other spec cards link to the details section. On pages where the summary names bedrooms or bathrooms, that line links to the details too. A spec with nowhere to go keeps the default cursor and no hover, so it does not look tappable.

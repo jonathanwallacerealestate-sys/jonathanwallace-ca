@@ -1420,3 +1420,24 @@
   to = "/eval/479-margaret-street"
   status = 301
   force = true
+
+# Private Tiny waterfront homes link. Canonical is the extensionless path.
+# Do not add this URL to the nav, sitemap.xml, or llms.txt. The page is noindex.
+# force is on because eval/tiny-waterfront-homes/ is a real directory (the photos live there).
+[[redirects]]
+  from = "/eval/tiny-waterfront-homes"
+  to = "/eval/tiny-waterfront-homes/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/eval/tiny-waterfront-homes/"
+  to = "/eval/tiny-waterfront-homes"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/eval/tiny-waterfront-homes/index.html"
+  to = "/eval/tiny-waterfront-homes"
+  status = 301
+  force = true

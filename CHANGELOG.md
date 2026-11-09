@@ -14,6 +14,15 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 - Listing descriptions stay word for word as they appear on REALTOR.ca, including words the voice rules otherwise ban (stunning, cozy and similar). Do not rewrite them (Jonathan Wallace, Nov 3, DEC-20261103-listing-copy-matches-realtor-ca).
 - Interview and town pages use the shared site header, footer and styles.css, not one-off templates.
 
+## 2026-11-09
+
+### Private page: Tiny waterfront homes
+Why: A private link for 19 Tiny waterfront properties, with a photo walkthrough on each card, in the same style as the home evaluation pages.
+- Added /eval/tiny-waterfront-homes. It is noindex, nofollow, and is not in the nav, sitemap.xml, llms.txt, or the listings index. Pretty URL redirects and X-Robots-Tag match the other eval pages.
+- Available now lists the active properties by list price, low to high. Recently sold lists the sold properties by sold price, low to high, with the sold month and year.
+- Each card uses the first photo as the hero and opens the rest in the same 16:9 lightbox as the evaluation pages. Eighteen properties have 20 photos. The vacant land property has 8. 368 photos in total.
+- Vacant land shows as vacant land, with no beds, baths, or square footage. Missing water frontage shows as Unknown.
+
 ## 2026-11-08
 
 ### Straight Answers: helping parents plan a move

@@ -16,6 +16,13 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### Monthly market update: October 2026
+Why: Jonathan Wallace asked for the monthly blog from Jeff Barr's October Simcoe County numbers.
+- New post blog-market-update-october-2026.html, "Simcoe County Sold 14 Percent Fewer Homes Than Last October. In Midland and Penetanguishene, Homes Sold a Month Faster." Built on the July monthly template. Article, FAQPage and Breadcrumb schema. September community figures for days on market (about 74 and 65) are worked back from the board percentages and labelled "roughly".
+- Card assets/img/market-october-2026-card.jpg (16:9, 1200x675). Artlist, last week's market card as the layout reference, house styled after the brick bungalow Jonathan Wallace supplied but not identical, no house number. Brand pass: drop shadow removed (DEC-20261103-02), lettering set to ivory #F7F3EC, gold rule. Sits below the real read section, not as a header (DEC-20261012-01). Also the og:image.
+- blog.html: new card in the LATEST MARKET UPDATE slot; the Oct 26 to Nov 1 card moved to the top of the MARKET UPDATES ARCHIVE; ItemList rebuilt from visible order (76 items).
+- sitemap.xml, llms.txt, the .html redirect, and /market-update-latest now point to the October monthly.
+
 ### New headshots
 Why: Jonathan Wallace sent three new professional photos to replace his headshot.
 - jonathan-wallace-headshot.jpg replaced in place with a 1200 by 1200 head and shoulders crop of the new front-facing standing photo. This covers every byline avatar, the town pages, and the JSON-LD and social image references, with no path changes.

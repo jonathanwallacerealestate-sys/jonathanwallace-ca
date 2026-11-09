@@ -16,6 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### About page: Giving back section rewritten
+Why: Jonathan Wallace wanted the section less focused on Wasaga Beach and more about his own interest in local service groups and international service missions.
+- Heading changed from "Proud supporter of our community" to "Invested in the people who show up". Eyebrow unchanged.
+- Intro paragraph rewritten around local service groups and international service missions. The Paul Harris Fellow link is replaced with his wording: recognised by Rotary for his contributions to the organization. The Person JSON-LD award field is unchanged. Cause cards below are unchanged.
+
 ### 610 Concession 14 West: subject facts card removed
 Why: Jonathan Wallace said the subject-property card is not part of the approved 188 Old Mill page.
 - Removed the "The property" section (heading, card, PIN, lot, frontage, and the rest). Section order is now hero, buttons, Sold, For sale, Expired listings, Your Copies. The suggested list price line stays. PDFs were already in the 188 shape and were left as they are.

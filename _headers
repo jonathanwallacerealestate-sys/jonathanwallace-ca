@@ -110,6 +110,16 @@
 /eval/479-margaret-street*
   X-Robots-Tag: noindex, nofollow
 
+# Private client evaluation. Not in the nav, sitemap.xml, or llms.txt.
+/eval/610-concession-14-west
+  X-Robots-Tag: noindex, nofollow
+/eval/610-concession-14-west/
+  X-Robots-Tag: noindex, nofollow
+/eval/610-concession-14-west/*
+  X-Robots-Tag: noindex, nofollow
+/eval/610-concession-14-west*
+  X-Robots-Tag: noindex, nofollow
+
 # Images are renamed when replaced, so browsers may keep them for a week (speed)
 /assets/img/*
   Cache-Control: public, max-age=604800

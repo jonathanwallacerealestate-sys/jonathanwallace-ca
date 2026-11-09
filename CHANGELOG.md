@@ -16,6 +16,12 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### Private evaluation for 610 Concession 14 West, Tiny
+Why: Jonathan Wallace met Gabrielle Osborne and Warren Milne at the property and asked for a private evaluation page, the same kind as 188 Old Mill Road.
+- New page at /eval/610-concession-14-west. Opinion $975,000 to $1,075,000 as of November 9, 2026, with suggested list price not higher than $1,100,000. Not in the nav, sitemap.xml, or llms.txt. Noindex.
+- Sold, for sale, and expired listings from the November 9 REALM pull. Expired listings use the same card and gallery as the others. Water frontage is omitted where the property is not really on the water.
+- Letter of opinion, portrait sold-comparables summary, and the combined PDF.
+
 ### Listings: disabled 2554 Champlain Road, Tiny and 375 Champlain Road, Penetanguishene
 Why: both listings (MLS® S13643484 and S13722636) are no longer on REALTOR.ca as of the 9 Nov 2026 check, and listing pages must match REALTOR.ca. Pre-authorized by Jonathan Wallace.
 - Disabled reversibly in netlify.toml with 302 redirects to the homepage for /listings/<slug>, the trailing slash and the .html form, same pattern as 1016 Wright Drive and 775 Ontario Street. The HTML files are untouched. To undo, restore the 200 rewrite and 301s.

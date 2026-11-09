@@ -16,6 +16,9 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### Straight Answers: is now a good time to sell waterfront
+- Added /ask/is-now-a-good-time-to-sell-waterfront (Selling). Poster from the opening smile.
+
 ### Monthly market update: October 2026
 Why: Jonathan Wallace asked for the monthly blog from Jeff Barr's October Simcoe County numbers.
 - New post blog-market-update-october-2026.html, "Simcoe County Sold 14 Percent Fewer Homes Than Last October. In Midland and Penetanguishene, Homes Sold a Month Faster." Built on the July monthly template. Article, FAQPage and Breadcrumb schema. September community figures for days on market (about 74 and 65) are worked back from the board percentages and labelled "roughly".

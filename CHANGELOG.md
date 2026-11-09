@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### 610 Concession 14 West: subject facts card removed
+Why: Jonathan Wallace said the subject-property card is not part of the approved 188 Old Mill page.
+- Removed the "The property" section (heading, card, PIN, lot, frontage, and the rest). Section order is now hero, buttons, Sold, For sale, Expired listings, Your Copies. The suggested list price line stays. PDFs were already in the 188 shape and were left as they are.
+
 ### Private evaluation for 610 Concession 14 West, Tiny
 Why: Jonathan Wallace met Gabrielle Osborne and Warren Milne at the property and asked for a private evaluation page, the same kind as 188 Old Mill Road.
 - New page at /eval/610-concession-14-west. Opinion $975,000 to $1,075,000 as of November 9, 2026, with suggested list price not higher than $1,100,000. Not in the nav, sitemap.xml, or llms.txt. Noindex.

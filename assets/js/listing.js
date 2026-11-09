@@ -104,8 +104,9 @@
 
 /* Spec cards and the mobile contact bar.
    Clarity, Nov 6 2026: a phone visitor tapped Bedrooms and Bathrooms and
-   nothing happened, and the fixed contact bar sat on the hero photo because
-   it was pushed up by the full height of the in-flow cookie notice. */
+   nothing happened, and the fixed contact bar sat on the hero photo.
+   The cookie notice is left alone. The bar moves only when that notice
+   actually crosses it. */
 (function () {
   function sectionFor(heading) {
     var nodes = document.querySelectorAll('h2');
@@ -178,30 +179,36 @@
   var bar = document.querySelector('.listing-bar');
   var mobileQuery = window.matchMedia('(max-width: 720px)');
 
-  function consentBar() {
-    return document.getElementById('jwConsent');
-  }
-  function consentFixedHeight() {
-    var consent = consentBar();
-    if (!consent) return 0;
-    if (getComputedStyle(consent).position !== 'fixed') return 0;
-    return consent.offsetHeight || 0;
-  }
   function overlapsChrome(el, chromeTop) {
     if (!el) return false;
     var rect = el.getBoundingClientRect();
     if (rect.height < 8) return false;
     return rect.bottom > chromeTop + 4 && rect.top < window.innerHeight - 4;
   }
+  /* Lift the action bar only when the existing cookie notice actually crosses
+     the bar. A notice sitting under the header does not move the bar. */
+  function consentLift(barH) {
+    var consent = document.getElementById('jwConsent');
+    if (!consent) return 0;
+    var box = consent.getBoundingClientRect();
+    if (box.height < 8 || box.width < 8) return 0;
+    var barTop = window.innerHeight - barH;
+    if (box.bottom <= barTop + 1 || box.top >= window.innerHeight) return 0;
+    var fixedAtBottom = getComputedStyle(consent).position === 'fixed' && box.bottom >= window.innerHeight - 2;
+    if (fixedAtBottom) return Math.ceil(box.height);
+    if (box.top >= barTop - 8) return Math.ceil(box.bottom - barTop);
+    return 0;
+  }
 
   var lastKey = '';
   function syncBar() {
-    var consentH = consentFixedHeight();
     var show = true;
     var barH = 0;
+    var lift = 0;
     if (bar) {
       barH = bar.offsetHeight || 64;
-      var chromeTop = window.innerHeight - barH - consentH;
+      lift = consentLift(barH);
+      var chromeTop = window.innerHeight - barH - lift;
       var gallery = document.getElementById('gallery');
       var actions = document.querySelector('.stack-actions');
       if (mobileQuery.matches && gallery) {
@@ -212,12 +219,12 @@
       }
       if (overlapsChrome(actions, chromeTop)) show = false;
     }
-    var key = (mobileQuery.matches ? 'm' : 'd') + '|' + consentH + '|' + (show ? '1' : '0') + '|' + barH;
+    var key = (mobileQuery.matches ? 'm' : 'd') + '|' + lift + '|' + (show ? '1' : '0') + '|' + barH;
     if (key === lastKey) return;
     lastKey = key;
     if (bar) {
-      bar.style.bottom = consentH ? consentH + 'px' : '0';
-      bar.classList.toggle('is-above-consent', consentH > 0);
+      bar.style.bottom = lift ? lift + 'px' : '0';
+      bar.classList.toggle('is-above-consent', lift > 0);
       bar.classList.toggle('is-shown', show);
       bar.classList.toggle('is-parked', !show);
       if (show) {
@@ -228,7 +235,11 @@
         bar.setAttribute('inert', '');
       }
     }
-    try { window.dispatchEvent(new CustomEvent('jw:chrome')); } catch (e) {}
+    if (document.body && document.body.classList.contains('listing-page')) {
+      var reserve = (barH || 64) + (show ? lift : 0) + 12;
+      var next = reserve + 'px';
+      if (document.body.style.paddingBottom !== next) document.body.style.paddingBottom = next;
+    }
   }
 
   var scheduled = false;

@@ -16,11 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
-### Listing pages: mobile photo, spec taps, and cookie banner
-Why: Microsoft Clarity, Nov 6 2026. A Facebook in-app mobile visitor on /listings/20-rue-eric-tiny swiped the photo carousel 27 times, then tapped the bedroom and bathroom details and nothing happened (dead click), then left. The cookie banner covered the top of the page, and the Book a showing, Call, and Text buttons sat on the hero photo.
+### Listing pages: spec taps and the mobile action bar
+Why: Microsoft Clarity, Nov 6 2026. A Facebook in-app mobile visitor on /listings/20-rue-eric-tiny swiped the photo carousel 27 times, then tapped the bedroom and bathroom details and nothing happened (dead click), then left. The Book a showing, Call, and Text buttons sat on the hero photo. The cookie notice is unchanged. Marketing owns a separate sitewide cookie bar, waiting on Jonathan's approval.
 - Bedrooms link to the room sizes. Bathrooms link to the listing description. The other spec cards link to the details section. On pages where the summary names bedrooms or bathrooms, that line links to the details too. A spec with nowhere to go keeps the default cursor and no hover, so it does not look tappable.
 - On phones, the Book a showing, Call, and Text bar stays at the bottom. It stays hidden while the photos are on screen, and while it would cover the same buttons in the page. On a wide screen it also stays off the hero photo, then returns once the photo has scrolled away. The buttons stay at least 44px tall. The data-cta and data-ga4 attributes are unchanged.
-- On phones, the cookie notice is a short bar at the bottom, under those action buttons, and Accept and Decline still work. It no longer covers the top of the page. On a wide screen the notice stays under the header, as before.
+- If the existing cookie notice overlaps that bar, the bar moves up enough to clear it. The notice's own styles and script are not edited.
 
 ## 2026-11-08
 

@@ -448,9 +448,8 @@ jwOnIdle(function () {
     bar.style.cssText = 'opacity:0;transform:translateY(8px);transition:opacity .35s ease,transform .35s ease;';
     bar.innerHTML =
       '<div class="jw-consent__row">'
-      + '<p class="jw-consent__desk">This site uses cookies to see what visitors find useful and to improve the experience. '
+      + '<p>This site uses cookies to see what visitors find useful and to improve the experience. '
       + 'You can accept or decline. Read the <a href="/privacy.html">privacy policy</a> for details.</p>'
-      + '<p class="jw-consent__phone">Cookies help us improve the site. <a href="/privacy.html">Privacy policy</a>.</p>'
       + '<div class="jw-consent__actions">'
       + '<button type="button" class="jw-consent__no" id="jwConsentDecline">Decline</button>'
       + '<button type="button" class="jw-consent__yes" id="jwConsentAccept">Accept</button>'
@@ -458,19 +457,12 @@ jwOnIdle(function () {
     var header = document.querySelector('.site-header');
     if (header && header.parentNode) header.parentNode.insertBefore(bar, header.nextSibling);
     else document.body.appendChild(bar);
-    requestAnimationFrame(function () {
-      bar.style.opacity = '1';
-      bar.style.transform = 'translateY(0)';
-      try { window.dispatchEvent(new CustomEvent('jw:chrome')); } catch (e) {}
-    });
+    requestAnimationFrame(function () { bar.style.opacity = '1'; bar.style.transform = 'translateY(0)'; });
 
     function close() {
       bar.style.opacity = '0';
       bar.style.transform = 'translateY(8px)';
-      setTimeout(function () {
-        if (bar.parentNode) bar.parentNode.removeChild(bar);
-        try { window.dispatchEvent(new CustomEvent('jw:chrome')); } catch (e) {}
-      }, 350);
+      setTimeout(function () { if (bar.parentNode) bar.parentNode.removeChild(bar); }, 350);
     }
     document.getElementById('jwConsentAccept').addEventListener('click', function () {
       saveConsent('granted'); loadPixel(); grantGA4Consent();
@@ -764,20 +756,12 @@ function jwOnIdle(fn) {
 (function () {
   function syncChromePadding() {
     var pad = 0;
-    var consent = document.getElementById('jwConsent');
-    if (consent && getComputedStyle(consent).position === 'fixed') {
-      pad = Math.ceil(consent.getBoundingClientRect().height);
-    }
-    var listingBar = document.querySelector('.listing-bar');
-    if (listingBar && getComputedStyle(listingBar).position === 'fixed') {
-      pad += Math.ceil(listingBar.getBoundingClientRect().height);
-    }
+    var bar = document.getElementById('jwConsent');
+    if (bar && getComputedStyle(bar).position === 'fixed') pad = Math.max(pad, Math.ceil(bar.getBoundingClientRect().height) + 28);
     var frame = document.querySelector('iframe[name="widgetCta"]');
     if (frame && frame.offsetHeight > 60 && frame.offsetWidth > 120) pad = Math.max(pad, frame.offsetHeight + 8);
-    var next = pad ? (pad + 8) + 'px' : '';
-    if (document.body.style.paddingBottom !== next) document.body.style.paddingBottom = next;
+    document.body.style.paddingBottom = pad ? pad + 'px' : '';
   }
-  window.addEventListener('jw:chrome', syncChromePadding);
   function arm(frame) {
     if (!frame || frame.getAttribute('data-jw-cta') === '1') return;
     var doc;

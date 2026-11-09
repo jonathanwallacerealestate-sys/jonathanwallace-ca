@@ -301,21 +301,23 @@
   status = 301
   force = true
 
+# 2554 Champlain Road disabled 2026-11-09 (no longer on REALTOR.ca). Reversible: change these back to the 200 rewrite and 301s to undo.
 [[redirects]]
   from = "/listings/2554-champlain-road-tiny"
-  to = "/listings/2554-champlain-road-tiny.html"
-  status = 200
+  to = "/"
+  status = 302
+  force = true
 
 [[redirects]]
   from = "/listings/2554-champlain-road-tiny/"
-  to = "/listings/2554-champlain-road-tiny"
-  status = 301
+  to = "/"
+  status = 302
   force = true
 
 [[redirects]]
   from = "/listings/2554-champlain-road-tiny.html"
-  to = "/listings/2554-champlain-road-tiny"
-  status = 301
+  to = "/"
+  status = 302
   force = true
 
 [[redirects]]
@@ -611,21 +613,23 @@
   status = 301
   force = true
 
+# 375 Champlain Road disabled 2026-11-09 (no longer on REALTOR.ca). Reversible: change these back to the 200 rewrite and 301s to undo.
 [[redirects]]
   from = "/listings/375-champlain-road-penetanguishene"
-  to = "/listings/375-champlain-road-penetanguishene.html"
-  status = 200
+  to = "/"
+  status = 302
+  force = true
 
 [[redirects]]
   from = "/listings/375-champlain-road-penetanguishene/"
-  to = "/listings/375-champlain-road-penetanguishene"
-  status = 301
+  to = "/"
+  status = 302
   force = true
 
 [[redirects]]
   from = "/listings/375-champlain-road-penetanguishene.html"
-  to = "/listings/375-champlain-road-penetanguishene"
-  status = 301
+  to = "/"
+  status = 302
   force = true
 
 # 1016 Wright Drive disabled 2026-10-28 (no longer on REALTOR.ca). Reversible: change these back to the 200 rewrite and 301s to undo.

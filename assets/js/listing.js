@@ -100,17 +100,154 @@
   });
 
   show(0);
+})();
 
-  /* Keep the sticky bar above the cookie notice while that notice is open. */
+/* Spec cards and the mobile contact bar.
+   Clarity, Nov 6 2026: a phone visitor tapped Bedrooms and Bathrooms and
+   nothing happened, and the fixed contact bar sat on the hero photo because
+   it was pushed up by the full height of the in-flow cookie notice. */
+(function () {
+  function sectionFor(heading) {
+    var nodes = document.querySelectorAll('h2');
+    var want = heading.toLowerCase();
+    for (var i = 0; i < nodes.length; i++) {
+      if (nodes[i].textContent.trim().toLowerCase() === want) {
+        return nodes[i].closest('section') || nodes[i];
+      }
+    }
+    return null;
+  }
+  function ensureId(el, id) {
+    if (!el) return '';
+    if (!el.id) el.id = id;
+    return el.id;
+  }
+
+  var details = sectionFor('the details');
+  var rooms = sectionFor('rooms');
+  var appliances = sectionFor('appliances');
+  var description = sectionFor("in the listing's words");
+  var detailsId = ensureId(details, 'listing-details');
+  var roomsId = ensureId(rooms, 'listing-rooms');
+  var appliancesId = ensureId(appliances, 'listing-appliances');
+  var descriptionId = ensureId(description, 'listing-description');
+
+  function targetFor(label) {
+    var text = label.toLowerCase();
+    if (text.indexOf('bed') !== -1 && roomsId) return { id: roomsId, hint: 'See room sizes' };
+    if (text.indexOf('bath') !== -1 && descriptionId) return { id: descriptionId, hint: 'See the description' };
+    if (text.indexOf('bath') !== -1 && roomsId) return { id: roomsId, hint: 'See room sizes' };
+    if (text.indexOf('appliance') !== -1 && appliancesId) return { id: appliancesId, hint: 'See appliances' };
+    if (detailsId) return { id: detailsId, hint: '' };
+    return null;
+  }
+
+  var facts = document.querySelectorAll('.facts .fact');
+  for (var f = 0; f < facts.length; f++) {
+    var fact = facts[f];
+    if (fact.querySelector('a')) continue;
+    var term = fact.querySelector('dt');
+    var label = term ? term.textContent.replace(/\s+/g, ' ').trim() : '';
+    var target = targetFor(label);
+    if (!target) {
+      fact.classList.add('fact--static');
+      continue;
+    }
+    var link = document.createElement('a');
+    link.className = 'fact-link';
+    link.href = '#' + target.id;
+    while (fact.firstChild) link.appendChild(fact.firstChild);
+    if (target.hint) {
+      var hint = document.createElement('span');
+      hint.className = 'fact-link__hint';
+      hint.textContent = target.hint;
+      link.appendChild(hint);
+    }
+    fact.appendChild(link);
+  }
+
+  var summary = document.querySelector('.listing-summary');
+  if (summary && detailsId && !summary.querySelector('a') && /bed|bath/i.test(summary.textContent)) {
+    var jump = document.createElement('a');
+    jump.className = 'listing-summary__link';
+    jump.href = '#' + detailsId;
+    while (summary.firstChild) jump.appendChild(summary.firstChild);
+    summary.appendChild(jump);
+  }
+
   var bar = document.querySelector('.listing-bar');
-  function placeBar() {
-    if (!bar) return;
-    var consent = document.getElementById('jwConsent');
-    if (consent) bar.style.bottom = (consent.offsetHeight + 24) + 'px';
-    else bar.style.bottom = '0';
+  var mobileQuery = window.matchMedia('(max-width: 720px)');
+
+  function consentBar() {
+    return document.getElementById('jwConsent');
   }
-  if (bar && window.MutationObserver) {
-    new MutationObserver(placeBar).observe(document.body, { childList: true });
+  function consentFixedHeight() {
+    var consent = consentBar();
+    if (!consent) return 0;
+    if (getComputedStyle(consent).position !== 'fixed') return 0;
+    return consent.offsetHeight || 0;
   }
-  placeBar();
+  function overlapsChrome(el, chromeTop) {
+    if (!el) return false;
+    var rect = el.getBoundingClientRect();
+    if (rect.height < 8) return false;
+    return rect.bottom > chromeTop + 4 && rect.top < window.innerHeight - 4;
+  }
+
+  var lastKey = '';
+  function syncBar() {
+    var consentH = consentFixedHeight();
+    var show = true;
+    var barH = 0;
+    if (bar) {
+      barH = bar.offsetHeight || 64;
+      var chromeTop = window.innerHeight - barH - consentH;
+      var gallery = document.getElementById('gallery');
+      var actions = document.querySelector('.stack-actions');
+      if (mobileQuery.matches && gallery) {
+        var g = gallery.getBoundingClientRect();
+        if (g.bottom > 80 && g.top < window.innerHeight) show = false;
+      } else if (overlapsChrome(gallery, chromeTop)) {
+        show = false;
+      }
+      if (overlapsChrome(actions, chromeTop)) show = false;
+    }
+    var key = (mobileQuery.matches ? 'm' : 'd') + '|' + consentH + '|' + (show ? '1' : '0') + '|' + barH;
+    if (key === lastKey) return;
+    lastKey = key;
+    if (bar) {
+      bar.style.bottom = consentH ? consentH + 'px' : '0';
+      bar.classList.toggle('is-above-consent', consentH > 0);
+      bar.classList.toggle('is-shown', show);
+      bar.classList.toggle('is-parked', !show);
+      if (show) {
+        bar.removeAttribute('aria-hidden');
+        bar.removeAttribute('inert');
+      } else {
+        bar.setAttribute('aria-hidden', 'true');
+        bar.setAttribute('inert', '');
+      }
+    }
+    try { window.dispatchEvent(new CustomEvent('jw:chrome')); } catch (e) {}
+  }
+
+  var scheduled = false;
+  function requestSync() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(function () {
+      scheduled = false;
+      syncBar();
+    });
+  }
+
+  if (window.MutationObserver) {
+    new MutationObserver(requestSync).observe(document.body, { childList: true });
+  }
+  window.addEventListener('scroll', requestSync, { passive: true });
+  window.addEventListener('resize', requestSync);
+  if (mobileQuery.addEventListener) mobileQuery.addEventListener('change', requestSync);
+  requestSync();
+  window.setTimeout(requestSync, 400);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(requestSync);
 })();

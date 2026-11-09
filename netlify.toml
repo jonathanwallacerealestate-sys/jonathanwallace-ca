@@ -1424,3 +1424,24 @@
   to = "/eval/479-margaret-street"
   status = 301
   force = true
+
+# Private home evaluation (client link). Canonical is the extensionless path.
+# Do not add this URL to the nav, sitemap.xml, or llms.txt. The page is noindex.
+# force is on because eval/610-concession-14-west/ is a real directory (the PDFs live there).
+[[redirects]]
+  from = "/eval/610-concession-14-west"
+  to = "/eval/610-concession-14-west/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/eval/610-concession-14-west/"
+  to = "/eval/610-concession-14-west"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/eval/610-concession-14-west/index.html"
+  to = "/eval/610-concession-14-west"
+  status = 301
+  force = true

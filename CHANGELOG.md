@@ -16,6 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### New headshots
+Why: Jonathan Wallace sent three new professional photos to replace his headshot.
+- jonathan-wallace-headshot.jpg replaced in place with a 1200 by 1200 head and shoulders crop of the new front-facing standing photo. This covers every byline avatar, the town pages, and the JSON-LD and social image references, with no path changes.
+- Homepage intro photo is now jonathan-wallace-portrait-standing.jpg (leaning on the table). About page intro photo is now jonathan-wallace-portrait-seated.jpg. Both are 1200 by 1500, matching the 4:5 .split__media frame. jonathan-wallace-headshot-full.jpg is no longer referenced and was left in place.
+
 ### About page: Giving back section rewritten
 Why: Jonathan Wallace wanted the section less focused on Wasaga Beach and more about his own interest in local service groups and international service missions.
 - Heading changed from "Proud supporter of our community" to "Invested in the people who show up". Eyebrow unchanged.

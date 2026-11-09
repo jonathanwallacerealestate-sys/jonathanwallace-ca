@@ -110,6 +110,16 @@
 /eval/479-margaret-street*
   X-Robots-Tag: noindex, nofollow
 
+# Private Tiny waterfront homes link. Not in the nav, sitemap.xml, or llms.txt.
+/eval/tiny-waterfront-homes
+  X-Robots-Tag: noindex, nofollow
+/eval/tiny-waterfront-homes/
+  X-Robots-Tag: noindex, nofollow
+/eval/tiny-waterfront-homes/*
+  X-Robots-Tag: noindex, nofollow
+/eval/tiny-waterfront-homes*
+  X-Robots-Tag: noindex, nofollow
+
 # Images are renamed when replaced, so browsers may keep them for a week (speed)
 /assets/img/*
   Cache-Control: public, max-age=604800

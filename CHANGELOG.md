@@ -14,6 +14,14 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 - Listing descriptions stay word for word as they appear on REALTOR.ca, including words the voice rules otherwise ban (stunning, cozy and similar). Do not rewrite them (Jonathan Wallace, Nov 3, DEC-20261103-listing-copy-matches-realtor-ca).
 - Interview and town pages use the shared site header, footer and styles.css, not one-off templates.
 
+## 2026-11-09
+
+### Listing pages: spec taps and the mobile action bar
+Why: Microsoft Clarity, Nov 6 2026. A Facebook in-app mobile visitor on /listings/20-rue-eric-tiny swiped the photo carousel 27 times, then tapped the bedroom and bathroom details and nothing happened (dead click), then left. The Book a showing, Call, and Text buttons sat on the hero photo. The cookie notice is unchanged. Marketing owns a separate sitewide cookie bar, waiting on Jonathan's approval.
+- Bedrooms link to the room sizes. Bathrooms link to the listing description. The other spec cards link to the details section. On pages where the summary names bedrooms or bathrooms, that line links to the details too. A spec with nowhere to go keeps the default cursor and no hover, so it does not look tappable.
+- On phones, the Book a showing, Call, and Text bar stays at the bottom. It stays hidden while the photos are on screen, and while it would cover the same buttons in the page. On a wide screen it also stays off the hero photo, then returns once the photo has scrolled away. The buttons stay at least 44px tall. The data-cta and data-ga4 attributes are unchanged.
+- If the existing cookie notice overlaps that bar, the bar moves up enough to clear it. The notice's own styles and script are not edited.
+
 ## 2026-11-08
 
 ### Straight Answers: helping parents plan a move

@@ -284,6 +284,12 @@ assert.match(portalSrc, /Nice work\. Your next lesson unlocks at /);
 assert.match(portalSrc, /That name is already taken with a different email\. Use the email you signed up with\./);
 assert.match(portalSrc, /You can upload 3 selfies an hour\./);
 assert.match(portalSrc, /selfieHold/);
+assert.match(portalSrc, /aria-label="Bootcamp sections"/);
+assert.match(portalSrc, /aria-label="Reply to /);
+assert.match(portalSrc, /aria-label="Take a selfie"/);
+assert.match(portalSrc, /aria-label="Reminder date"/);
+assert.match(readFileSync(new URL("../ai-30-days/index.html", import.meta.url), "utf8"), /aria-label="Download all the resources"/);
+assert.match(readFileSync(new URL("../ai-30-days/index.html", import.meta.url), "utf8"), /origin!==w\.location\.origin\)return/);
 assert.match(readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), "utf8"), /\.selfie__actions[\s\S]*grid-template-columns: 1fr 1fr/);
 assert.match(portalSrc, /id="selfie-cancel"/);
 assert.doesNotMatch(portalSrc, /linkish remove|window\.prompt\("Admin key"\)/);
@@ -370,6 +376,9 @@ for (const standing of [ben, hidden, solo]) {
   assert.ok(standing.board.every((row) => row.done == null));
 }
 
+assert.equal(loginPoints(["2026-11-09T15:00:00.000Z", "2026-11-09T15:00:02.000Z"]), 0);
+assert.equal(loginPoints(["2026-11-09T15:00:00.000Z", "2026-11-09T15:29:00.000Z"]), 0);
+assert.equal(loginPoints(["2026-11-09T15:00:00.000Z", "2026-11-09T15:30:00.000Z"]), 1);
 assert.equal(loginPoints(["2026-11-09T15:00:00.000Z", "2026-11-09T20:00:00.000Z"]), 1);
 assert.equal(loginPoints(["2026-11-09T15:00:00.000Z", "2026-11-10T15:00:00.000Z"]), 2);
 assert.equal(loginPoints(["2026-11-09T15:00:00.000Z", "2026-11-11T15:00:00.000Z"]), 0);

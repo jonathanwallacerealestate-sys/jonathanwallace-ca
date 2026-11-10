@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/ai-30-days/portal.css">
-<script>(function(w,d,s,l,i){try{var n=w.postMessage;if(typeof n==='function'&&!n.__jwShield){var wrapped=function(){try{return n.apply(w,arguments);}catch(e){}};wrapped.__jwShield=1;w.postMessage=wrapped;}}catch(e){}w[l]=w[l]||[];w[l].push({'gtm.start':
+<script>(function(w,d,s,l,i){try{var native=w.postMessage&&w.postMessage.bind(w);if(typeof native==='function'&&!w.postMessage.__jwShield){var wrapped=function(message,targetOrigin,transfer){try{var origin=targetOrigin==null?'*':String(targetOrigin);if(origin!=='*'&&origin!=='/'&&origin!==w.location.origin)return;return transfer?native(message,origin,transfer):native(message,origin);}catch(e){}};wrapped.__jwShield=1;w.postMessage=wrapped;}}catch(e){}w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='anonymous';j.onerror=function(){};j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -41,7 +41,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
 </header>
 <div class="rule"><p id="rule-text">One lesson at a time. If you don't finish a lesson, don't move on until it's done. If it takes you longer, that's okay.</p></div>
 <div class="kit">
-  <a class="btn" href="/ai-30-days/kit/ai-bootcamp-resources.zip" download="ai-bootcamp-resources.zip">Download all the resources</a>
+  <a class="btn" href="/ai-30-days/kit/ai-bootcamp-resources.zip" download="ai-bootcamp-resources.zip" aria-label="Download all the resources">Download all the resources</a>
 </div>
 <main class="shell">
   <section class="card" id="gate">

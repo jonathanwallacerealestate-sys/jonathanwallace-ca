@@ -6,7 +6,7 @@
 
 import { getDatabase } from "@netlify/database";
 import { adminKeyOk } from "./_shared/admin.mjs";
-import { applyProgress, cleanPost, currentDay, emailClaim, learnersCsv, migrateCurriculum, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, stampCurriculum } from "./_shared/ai30.mjs";
+import { applyProgress, cleanPost, currentDay, emailClaim, isSeparateSession, learnersCsv, migrateCurriculum, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, stampCurriculum } from "./_shared/ai30.mjs";
 import { deleteTestBlobs, listDriveSelfies } from "./_shared/selfies.mjs";
 
 const PRODUCTION = ["https://jonathanwallace.ca", "https://www.jonathanwallace.ca"];
@@ -292,7 +292,16 @@ async function learnerOp(db, person, body) {
         row.email = fresh.email;
       }
     }
-    await db.sql`INSERT INTO ai30_logins (name_key) VALUES (${person.key})`;
+    const recent = firstRow(await db.sql`
+      SELECT logged_at FROM ai30_logins
+      WHERE name_key = ${person.key}
+      ORDER BY logged_at DESC
+      LIMIT 1
+    `);
+    const now = new Date();
+    if (!recent || isSeparateSession(recent.logged_at, now)) {
+      await db.sql`INSERT INTO ai30_logins (name_key, logged_at) VALUES (${person.key}, ${now.toISOString()}::timestamptz)`;
+    }
     const context = await readContext(db);
     return pack(person, row, context);
   }

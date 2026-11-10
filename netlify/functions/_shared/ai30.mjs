@@ -151,11 +151,36 @@ function daySpan(earlier, later) {
   return Math.round((b - a) / 86400000);
 }
 
-export function loginPoints(logins) {
-  const counts = new Map();
+export const LOGIN_SESSION_MS = 30 * 60 * 1000;
+
+export function isSeparateSession(earlier, later) {
+  const earlierMs = earlier instanceof Date ? earlier.getTime() : Date.parse(earlier);
+  const laterMs = later instanceof Date ? later.getTime() : Date.parse(later);
+  if (Number.isNaN(laterMs)) return false;
+  if (Number.isNaN(earlierMs)) return true;
+  return laterMs - earlierMs >= LOGIN_SESSION_MS;
+}
+
+function sessionTimes(logins) {
+  const times = [];
   for (const iso of logins || []) {
     if (!countsForContest(iso)) continue;
-    const day = torontoDay(iso);
+    const time = Date.parse(iso);
+    if (Number.isNaN(time)) continue;
+    times.push(time);
+  }
+  times.sort((a, b) => a - b);
+  const kept = [];
+  for (const time of times) {
+    if (!kept.length || time - kept[kept.length - 1] >= LOGIN_SESSION_MS) kept.push(time);
+  }
+  return kept;
+}
+
+export function loginPoints(logins) {
+  const counts = new Map();
+  for (const time of sessionTimes(logins)) {
+    const day = torontoDay(new Date(time).toISOString());
     if (!day) continue;
     counts.set(day, (counts.get(day) || 0) + 1);
   }

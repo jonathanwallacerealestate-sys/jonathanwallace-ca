@@ -252,6 +252,7 @@ function lessonTotal() {
 function show(name) {
   $("#gate").hidden = name !== "gate";
   $("#app").hidden = name !== "app";
+  document.body.classList.toggle("is-in", name === "app");
   const who = readWho();
   $("#who").hidden = !who;
   if (who) $("#who-name").textContent = `${who.first} ${who.last}`;

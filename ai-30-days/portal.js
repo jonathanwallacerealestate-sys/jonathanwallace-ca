@@ -23,6 +23,7 @@ const state = {
   view: null,
   offline: false,
   status: "",
+  unlockAt: "",
   openThreads: {},
   replyTo: null,
   commentKind: "learned",
@@ -71,6 +72,7 @@ function writeCache() {
       selfie: !!state.selfie,
       closed: !!state.closed,
       winner: state.winner || "",
+      unlockAt: state.unlockAt || "",
     },
   }));
 }
@@ -87,6 +89,7 @@ function applyRecord(record) {
   state.selfie = !!record.selfie;
   state.closed = !!record.closed;
   state.winner = record.winner || "";
+  if (record.unlockAt != null) state.unlockAt = record.unlockAt || "";
   writeCache();
 }
 
@@ -100,6 +103,7 @@ async function post(op, extra) {
   if (!res.ok || !data.ok) {
     const err = new Error(data.error || "save");
     err.code = data.error || "save";
+    err.unlockAt = data.unlockAt || "";
     throw err;
   }
   return data;
@@ -122,6 +126,30 @@ function phase(n) {
   if (n === state.currentDay && !state.complete) return "today";
   if (state.complete && n === lessonTotal()) return "done";
   return "locked";
+}
+
+function paceActive() {
+  const at = Date.parse(state.unlockAt || "");
+  return !Number.isNaN(at) && Date.now() < at;
+}
+
+function paceClock(date) {
+  const parts = new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit", hour12: true }).formatToParts(date);
+  const hour = parts.find((part) => part.type === "hour").value;
+  const minute = parts.find((part) => part.type === "minute").value;
+  const period = (parts.find((part) => part.type === "dayPeriod") || {}).value || "";
+  return `${hour}:${minute} ${period.toUpperCase()}`.trim();
+}
+
+function paceLine() {
+  const when = new Date(state.unlockAt);
+  if (Number.isNaN(when.getTime())) return "Nice work. Your next lesson unlocks in a little while.";
+  const clock = paceClock(when);
+  const now = new Date();
+  const sameDay = when.getFullYear() === now.getFullYear() && when.getMonth() === now.getMonth() && when.getDate() === now.getDate();
+  if (sameDay) return `Nice work. Your next lesson unlocks at ${clock}.`;
+  const weekday = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(when);
+  return `Nice work. Your next lesson unlocks at ${clock} on ${weekday}.`;
 }
 
 function lockLine() {
@@ -300,6 +328,7 @@ function render() {
 
 function renderToday(day, enter) {
   const done = isDone(day.day);
+  const waiting = !done && paceActive();
   const started = state.createdAt
     ? `<p class="fine">Your first lesson started when you signed in. There is no shared calendar.</p>`
     : `<p class="fine">Your first lesson starts when you sign in. There is no shared calendar.</p>`;
@@ -310,6 +339,7 @@ function renderToday(day, enter) {
         <h2 class="lesson-title">${esc(day.title)}</h2>
         <p class="chip">About ${esc(day.minutes)}</p>
       </div>
+      ${waiting ? `<p class="lockline pace" role="status">${LOCK}<span>${esc(paceLine())}</span></p>` : ""}
       <p class="why">${esc(day.why)}</p>
       ${day.optional ? `<p class="optional"><strong>Optional.</strong> ${esc(day.optionalNote || `You can skip this lesson and tap ${COMPLETE_LABEL}`)}</p>` : ""}
       ${day.catchUp ? `<p class="catch">Good spot to catch up.</p>` : ""}
@@ -328,7 +358,8 @@ function renderToday(day, enter) {
       </div>
       <div class="actions">
         ${done && state.complete ? `<p class="fine">You've finished every lesson that's here.</p>` : ""}
-        ${!done ? `<button type="button" class="btn" id="done">${COMPLETE_LABEL}</button>` : `<p class="fine">Marked done. The next lesson is open.</p>`}
+        ${!done && !waiting ? `<button type="button" class="btn" id="done">${COMPLETE_LABEL}</button>` : ""}
+        ${done ? `<p class="fine">Marked done. The next lesson is open.</p>` : ""}
       </div>
       ${shareBox(day)}
     </article>
@@ -827,6 +858,7 @@ async function refreshFeed() {
     state.closed = !!data.closed;
     state.winner = data.winner || "";
     state.selfie = !!data.selfie;
+    if (data.unlockAt != null) state.unlockAt = data.unlockAt || "";
     const typing = document.activeElement && /TEXTAREA|INPUT/i.test(document.activeElement.tagName);
     if (typing) return;
     if (selfieHold && state.tab === "progress") return;
@@ -836,6 +868,12 @@ async function refreshFeed() {
       if (note && state.note) note.textContent = state.note;
       const clock = $("#countdown");
       if (clock && !state.closed) clock.textContent = `${CLOSE_COPY} ${countdownText(Date.now())}`;
+      const showing = !!document.querySelector(".pace");
+      if (!typing && showing !== paceActive()) render();
+      else if (showing) {
+        const span = document.querySelector(".pace span");
+        if (span) span.textContent = paceLine();
+      }
     }
   } catch (e) {}
 }
@@ -869,6 +907,7 @@ function payloadFromState(changeDay, change) {
 function explain(error) {
   if (error.code === "rate") return "Too many tries. Wait a few minutes and try again.";
   if (error.code === "day_locked") return "Finish the current day before moving on.";
+  if (error.code === "pace") return paceLine();
   if (error.code === "email_invalid" || error.code === "email_required") return "Enter a valid email address.";
   if (error.code === "name_invalid" || error.code === "name_required" || error.code === "name_too_long") {
     return "Use a first and last name, letters only, up to 40 characters each.";
@@ -890,11 +929,13 @@ async function savePayload(n, change, okMessage, advance) {
     }
     render();
   } catch (e) {
+    if (e.unlockAt) state.unlockAt = e.unlockAt;
     state.status = explain(e);
     const done = $("#done");
     if (done) done.disabled = false;
     const status = $("#save-status");
     if (status) status.textContent = state.status;
+    if (e.code === "pace") render();
   }
 }
 

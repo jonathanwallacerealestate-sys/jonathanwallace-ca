@@ -165,7 +165,7 @@ for (const day of plan.days) {
     assert.equal(day.assignment, "Done when your Google Drive is connected, it has asked you at least 10 questions, and it can play back how your business runs and where the gaps are, saved in your Drive.");
     assert.match(prompts[1], /Don't give me advice yet\./);
     assert.equal(day.steps[3], "No advice yet. This lesson is for it to understand your business, not to fix it.");
-  } else if (day.day < 6) {
+  } else if (day.id === "dead-leads") {
     assert.equal(last, earlyClose);
     assert.equal(lastPrompt, earlyClose);
     assert.ok(day.assignment.endsWith(sopReminder), "reminder missing on day " + day.day);
@@ -232,9 +232,45 @@ assert.doesNotMatch(JSON.stringify(plan), /keep-going/);
 assert.equal(plan.rule, "One lesson at a time. Take the time you need.");
 assert.equal(plan.days[9].title, "Plan Your Social Media Strategy");
 assert.equal(plan.days[10].title, "Create Your First Three Posts");
-const lessonIds = ["pick-your-ai", "writing-style", "brand-guidelines", "brain-dump", "dead-leads", "decision-log", "inbox", "reviews", "share-posts", "social-strategy", "first-posts", "book-appointments", "keep-notes", "past-clients", "listing-descriptions", "letter-of-opinion", "time-a-letter", "coles-notes", "deal-deadlines", "deal-card", "ten-leads", "paste-notes", "listing-paperwork", "brokerbay", "handoff-1", "handoff-2", "handoff-3", "handoff-4", "handoff-5", "handoff-6", "final-review"];
-assert.deepEqual(plan.days.map((day) => day.id), lessonIds);
-assert.equal(new Set(lessonIds).size, lessonIds.length);
+const legacyIds = ["pick-your-ai", "writing-style", "brand-guidelines", "brain-dump", "dead-leads", "decision-log", "inbox", "reviews", "share-posts", "social-strategy", "first-posts", "book-appointments", "keep-notes", "past-clients", "listing-descriptions", "letter-of-opinion", "time-a-letter", "coles-notes", "deal-deadlines", "deal-card", "ten-leads", "paste-notes", "listing-paperwork", "brokerbay", "handoff-1", "handoff-2", "handoff-3", "handoff-4", "handoff-5", "handoff-6", "final-review"];
+assert.deepEqual([...LEGACY_DAY_IDS], legacyIds);
+const courseIds = [...legacyIds];
+const deadAt = courseIds.indexOf("dead-leads");
+const logAt = courseIds.indexOf("decision-log");
+[courseIds[deadAt], courseIds[logAt]] = [courseIds[logAt], courseIds[deadAt]];
+assert.deepEqual(plan.days.map((day) => day.id), courseIds);
+assert.equal(new Set(courseIds).size, courseIds.length);
+assert.equal(plan.days.find((day) => day.id === "decision-log").day, 5);
+assert.equal(plan.days.find((day) => day.id === "dead-leads").day, 6);
+{
+  const finished = {
+    _ids: 1,
+    _curriculum: 31,
+    "pick-your-ai": { done: true, doneAt: "2026-11-01T00:00:00.000Z" },
+    "writing-style": { done: true, doneAt: "2026-11-01T01:00:00.000Z" },
+    "brand-guidelines": { done: true, doneAt: "2026-11-01T02:00:00.000Z" },
+    "brain-dump": { done: true, doneAt: "2026-11-01T03:00:00.000Z" },
+    "dead-leads": { done: true, doneAt: "2026-11-01T04:00:00.000Z" },
+  };
+  const learner = {
+    key: "sam lee",
+    email: "sam@example.com",
+    days: finished,
+    logins: ["2026-11-01T15:00:00.000Z", "2026-11-02T15:00:00.000Z"],
+  };
+  const posts = [{ key: "sam lee", lesson: 5, parentId: null, createdAt: "2026-11-02T16:00:00.000Z" }];
+  const before = scorePerson(learner, posts);
+  const kept = applyProgress({ days: finished }, { days: { 5: { done: true } } }, "2026-11-03T00:00:00.000Z");
+  assert.equal(kept.ok, true);
+  assert.equal(kept.days["dead-leads"].doneAt, "2026-11-01T04:00:00.000Z");
+  assert.equal(kept.days["decision-log"], undefined);
+  assert.equal(currentDay(finished), 5);
+  const after = scorePerson({ ...learner, days: kept.days }, posts);
+  assert.equal(after.done, before.done);
+  assert.equal(after.points, before.points);
+  assert.equal(loginPoints(learner.logins), loginPoints(learner.logins));
+  assert.equal(before.points, 5 * 3 + 5 + 2);
+}
 assert.equal(plan.days[24].title, "Your List: Hand Off Your First Task");
 assert.equal(plan.days[30].title, "Final Review");
 assert.ok(plan.days.every((day) => day.assignment.startsWith("Done when")));

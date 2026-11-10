@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: decision log comes before dead leads
+Why: Jonathan wants the decision log set up before the dead-leads lesson.
+- The course order is now pick-your-ai, writing-style, brand-guidelines, brain-dump, decision-log, dead-leads, then inbox. Lesson ids are unchanged. Finished lessons, points, and login streaks stay with the id, so a learner who already finished dead leads still has it finished.
+
 ### AI bootcamp: setup tutorials on the first lesson
 Why: Jonathan wants a way through setup for people who get stuck on the first lesson.
 - Under Install it on your phone and your computer, Pick Your AI offers two YouTube tutorials: Grok Bot setup, and Claude setup with a note to jump to Projects at 20:20 and phone and desktop at 25:29. The App Store links stay. The lesson id is unchanged.

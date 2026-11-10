@@ -1,0 +1,119 @@
+{
+  "updated": "2026-11-09",
+  "source": "REALTOR.ca Faris Team organization listings",
+  "attribution": "Listed by Faris Team Real Estate Brokerage",
+  "listings": [
+    {
+      "address": "2087 Rumney Road",
+      "town": "Tay",
+      "price": 1249999,
+      "beds": "3",
+      "baths": "3",
+      "type": "House",
+      "mls": "S14164054",
+      "url": "https://www.realtor.ca/real-estate/30495744/2087-rumney-road-tay-rural-tay",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639298351700830000/reb82/lowres/4/s14164054_1.jpg"
+    },
+    {
+      "address": "308 Russell Street",
+      "town": "Midland",
+      "price": 349900,
+      "beds": "3",
+      "baths": "1",
+      "type": "House",
+      "mls": "S14163240",
+      "url": "https://www.realtor.ca/real-estate/30494675/308-russell-street-midland",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639298262015170000/reb82/lowres/0/s14163240_1.jpg"
+    },
+    {
+      "address": "54 Maple Street",
+      "town": "Tay (Victoria Harbour)",
+      "price": 1195000,
+      "beds": "3 + 1",
+      "baths": "3",
+      "type": "House",
+      "mls": "S14163142",
+      "url": "https://www.realtor.ca/real-estate/30494469/54-maple-street-tay-victoria-harbour",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639298244055830000/reb82/lowres/2/s14163142_1.jpg"
+    },
+    {
+      "address": "88 Nadia Crescent",
+      "town": "Tiny",
+      "price": 259900,
+      "beds": "",
+      "baths": "",
+      "type": "Vacant land",
+      "mls": "S14162116",
+      "url": "https://www.realtor.ca/real-estate/30493610/88-nadia-crescent-tiny-rural-tiny",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639298171677800000/reb82/lowres/6/s14162116_1.jpg"
+    },
+    {
+      "address": "91 Maryjane Road",
+      "town": "Tiny (Wyevale)",
+      "price": 989900,
+      "beds": "3 + 2",
+      "baths": "4",
+      "type": "House",
+      "mls": "S14160524",
+      "url": "https://www.realtor.ca/real-estate/30491737/91-maryjane-road-tiny-wyevale",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639296623380830000/reb82/lowres/4/s14160524_1.jpg"
+    },
+    {
+      "address": "5 Scott Street",
+      "town": "Penetanguishene",
+      "price": 375000,
+      "beds": "2",
+      "baths": "1",
+      "type": "House",
+      "mls": "S14160294",
+      "url": "https://www.realtor.ca/real-estate/30491535/5-scott-street-penetanguishene",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639296551835170000/reb82/lowres/4/s14160294_1.jpg"
+    },
+    {
+      "address": "45 Sheppard Street",
+      "town": "Severn (Coldwater)",
+      "price": 949900,
+      "beds": "3 + 2",
+      "baths": "3",
+      "type": "House",
+      "mls": "S14149548",
+      "url": "https://www.realtor.ca/real-estate/30479865/45-sheppard-street-severn-coldwater",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639294047525370000/reb82/lowres/8/s14149548_1.jpg"
+    },
+    {
+      "address": "775 Ontario Street",
+      "town": "Midland",
+      "price": 599900,
+      "beds": "3",
+      "baths": "1",
+      "type": "House",
+      "mls": "S14147868",
+      "url": "https://www.realtor.ca/real-estate/30477884/775-ontario-street-midland",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639293887035070000/reb82/lowres/8/s14147868_1.jpg"
+    },
+    {
+      "address": "2384 Champlain Road",
+      "town": "Tiny",
+      "price": 749900,
+      "beds": "3",
+      "baths": "2",
+      "type": "House",
+      "mls": "S14135060",
+      "url": "https://www.realtor.ca/real-estate/30464389/2384-champlain-road-tiny-rural-tiny",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639290359748670000/reb82/lowres/0/s14135060_1.jpg"
+    },
+    {
+      "address": "286 Anne Street N",
+      "town": "Barrie (Letitia Heights)",
+      "price": 649900,
+      "beds": "3 + 2",
+      "baths": "2",
+      "type": "Duplex",
+      "mls": "S14132750",
+      "url": "https://www.realtor.ca/real-estate/30461809/286-anne-street-n-barrie-letitia-heights",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639289639611730000/reb82/lowres/0/s14132750_1.jpg"
+    }
+  ],
+  "batch": 1,
+  "note": "Batch 1 of Faris Team listings on /listings/. More batches follow."
+}

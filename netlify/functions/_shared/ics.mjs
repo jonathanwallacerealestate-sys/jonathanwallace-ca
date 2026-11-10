@@ -101,7 +101,7 @@ export function buildIcs(day, when, options) {
   const lines = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Jonathan Wallace//AI Bootcamp: Hiring Your First AI Agent//EN",
+    "PRODID:-//Jonathan Wallace//AI Bootcamp: Zero to Hero//EN",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",

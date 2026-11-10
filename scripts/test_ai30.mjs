@@ -99,6 +99,7 @@ const sections = {
   Review: [31, 31],
 };
 const lightClose = "Ask it to save what you set up today.";
+const earlyClose = "Before you close, ask your AI to save the decisions you made today in this chat. You'll move them into your decision log once you set it up.";
 const standingClose = "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log.";
 const sopReminder = "Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.";
 for (const day of plan.days) {
@@ -113,6 +114,10 @@ for (const day of plan.days) {
     assert.equal(last, lightClose);
     assert.equal(lastPrompt, lightClose);
     assert.doesNotMatch(day.assignment, /Before you finish/);
+  } else if (day.day < 6) {
+    assert.equal(last, earlyClose);
+    assert.equal(lastPrompt, earlyClose);
+    assert.ok(day.assignment.endsWith(sopReminder), "reminder missing on day " + day.day);
   } else {
     assert.equal(last, standingClose);
     assert.equal(lastPrompt, standingClose);

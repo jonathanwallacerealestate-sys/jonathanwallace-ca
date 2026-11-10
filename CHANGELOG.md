@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: save decisions before the log exists
+Why: Jonathan asked the lessons before Set Up Your Decision Log to stop telling people to add rows to a log they have not built yet.
+- Build Your Brand Guidelines, Brain Dump the Tasks You Hate, and Re-Engage Your Dead Leads now close with: ask your AI to save the decisions from the chat, and move them into the decision log once it is set up. The lesson order is unchanged. From Set Up Your Decision Log onward, the closing line is the same as before.
+
 ### AI bootcamp: the email has to match the name
 Why: Jonathan asked that a name already in use can only be opened with the same email.
 - Sign-in compares the email without looking at capitals or extra spaces. A different email stays on the gate: "That name is already taken with a different email. Use the email you signed up with." The stored email is never replaced. If a name has no email yet, the first valid one is saved.

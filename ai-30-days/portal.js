@@ -264,8 +264,9 @@ function renderToday(day, enter) {
       </div>
       <h2 style="font-size:clamp(1.5rem,5vw,2rem);margin-top:8px">${esc(day.title)}</h2>
       <p class="why">${esc(day.why)}</p>
-      ${reminderBlock(day.day)}
+      ${day.optional ? `<p class="optional"><strong>Optional.</strong> ${esc(day.optionalNote || "You can skip this day and tap Done.")}</p>` : ""}
       ${day.catchUp ? `<p class="catch">Good spot to catch up.</p>` : ""}
+      ${reminderBlock(day.day)}
       ${day.day === 1 ? started : ""}
       <ol class="steps">${day.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
       ${day.tip ? `<p class="tip"><strong>Tip.</strong> ${esc(day.tip)}</p>` : ""}
@@ -277,14 +278,14 @@ function renderToday(day, enter) {
       <div class="look">
         <h3>What good looks like</h3>
         <button type="button" class="shot" aria-label="Enlarge the example for day ${day.day}">
-          <span class="shot__frame">${exampleMarkup(day.day)}</span>
+          <span class="shot__frame">${exampleMarkup(day.visual)}</span>
         </button>
       </div>
       <label for="notes">Notes</label>
       <textarea id="notes" maxlength="2000" ${done && day.day !== state.currentDay && state.complete ? "" : ""}>${esc(notes)}</textarea>
       <div class="actions">
         ${done && state.complete ? `<p class="fine">All 30 days are marked done.</p>` : ""}
-        ${!done ? `<button type="button" class="btn" id="done">Mark done</button>` : `<p class="fine">Marked done. The next day is open.</p>`}
+        ${!done ? `<button type="button" class="btn" id="done">${day.optional ? "Done" : "Mark done"}</button>` : `<p class="fine">Marked done. The next day is open.</p>`}
       </div>
     </article>
   `;
@@ -332,7 +333,7 @@ function detail(day) {
       <ol class="steps">${day.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
       ${notes ? `<p class="tip"><strong>Your notes.</strong> ${esc(notes)}</p>` : `<p class="fine">No notes saved on this day.</p>`}
       ${reminderBlock(day.day)}
-      <div class="look"><h3>What good looks like</h3><button type="button" class="shot" aria-label="Enlarge the example for day ${day.day}"><span class="shot__frame">${exampleMarkup(day.day)}</span></button></div>
+      <div class="look"><h3>What good looks like</h3><button type="button" class="shot" aria-label="Enlarge the example for day ${day.day}"><span class="shot__frame">${exampleMarkup(day.visual)}</span></button></div>
     </div>
   `;
 }

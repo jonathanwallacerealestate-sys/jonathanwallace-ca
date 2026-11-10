@@ -304,12 +304,40 @@ const mocks = {
       <ul class="ex__review">
         <li>Used every week: email drafts, texts, deal cards.</li>
         <li>Rules file cleaned to one copy. Approval line is still rule 1.</li>
-        <li>Step 2, when you choose: Connect Your Tools.</li>
+        <li>Your Step 2 choice, written down.</li>
       </ul>
     </div>`,
 };
 
-export function exampleMarkup(day) {
-  const draw = mocks[day];
+const byKey = {
+  email: mocks[6],
+  chat: mocks[2],
+  tasks: mocks[3],
+  about: mocks[4],
+  rules: mocks[5],
+  texts: mocks[7],
+  sop: mocks[8],
+  inbox: mocks[9],
+  review: mocks[10],
+  instagram: mocks[11],
+  swatches: mocks[12],
+  drive: mocks[13],
+  brand: mocks[14],
+  scheduled: mocks[16],
+  calendar: mocks[17],
+  crm: mocks[18],
+  top5: mocks[20],
+  letter: mocks[22],
+  coles: mocks[23],
+  deadlines: mocks[24],
+  deal: mocks[25],
+  calls: mocks[26],
+  forms: mocks[28],
+  showing: mocks[29],
+  review30: mocks[30],
+};
+
+export function exampleMarkup(visual) {
+  const draw = byKey[visual] || mocks[visual];
   return draw ? draw() : "";
 }

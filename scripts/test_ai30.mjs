@@ -52,18 +52,23 @@ assert.equal(plan.days.length, 30);
 assert.equal(plan.catchUpDays.join(","), "7,16,24");
 assert.ok(!plan.rule.includes("—"));
 const sections = {
-  Foundations: [1, 9],
-  "Clients and reviews": [10, 10],
-  "Brand and social": [11, 16],
-  "Connect your tools": [17, 20],
-  "Letters and offers": [21, 24],
-  "Deal card": [25, 27],
-  Advanced: [28, 30],
+  Foundations: [1, 7],
+  "Clients and social": [8, 10],
+  "Connect your tools": [11, 14],
+  "Letters and offers": [15, 18],
+  "Deal card": [19, 21],
+  Advanced: [22, 23],
+  "Your list": [24, 29],
+  Review: [30, 30],
 };
+const lightClose = "Ask it to save what you set up today.";
+const standingClose = "Before we close, add every decision and SOP we made in this chat to my decision log.";
 for (const day of plan.days) {
   assert.equal(day.day, plan.days.indexOf(day) + 1);
-  assert.ok(day.title && day.why && day.steps.length >= 3 && day.prompt && day.visual);
+  assert.ok(day.title && day.why && day.steps.length >= 3 && day.prompt && day.assignment && day.visual);
   assert.ok(!JSON.stringify(day).includes("—"), "em dash in day " + day.day);
+  const last = day.steps[day.steps.length - 1];
+  assert.equal(last, day.day < 6 ? lightClose : standingClose);
   if (day.day <= 9) assert.equal(day.minutes, "15 to 20 min");
   else if (day.day <= 20) assert.equal(day.minutes, "30 min");
   else assert.equal(day.minutes, "30 to 45 min");
@@ -72,17 +77,19 @@ for (const day of plan.days) {
   assert.ok(band, "section range for day " + day.day);
   assert.equal(day.section, band[0]);
 }
-assert.match(plan.days[5].title, /writing style/i);
-assert.match(plan.days[9].title, /review/i);
-assert.match(plan.days[10].title, /10 posts/i);
-assert.match(plan.days[17].title, /notes/i);
-assert.match(plan.days[19].title, /top 5/i);
-assert.match(plan.days[22].title, /Coles Notes/i);
-assert.match(plan.days[23].title, /deadline/i);
-assert.match(plan.days[27].prompt, /RECO/);
-assert.match(plan.days[27].prompt, /GeoWarehouse/);
-assert.match(plan.days[28].title, /BrokerBay/);
-assert.doesNotMatch(JSON.stringify(plan), /Follow Up Ace|Sisu|Brain log/i);
+assert.match(plan.days[0].title, /Pick your AI/);
+assert.match(plan.days[1].title, /writing style/i);
+assert.equal(plan.days[6].optional, true);
+assert.match(plan.days[6].optionalNote, /Skip this lesson/);
+assert.match(plan.days[7].title, /review/i);
+assert.match(plan.days[8].assignment, /brand guidelines/);
+assert.match(plan.days[13].title, /top 5/i);
+assert.match(plan.days[16].title, /Coles Notes/i);
+assert.match(plan.days[21].prompt, /RECO/);
+assert.match(plan.days[21].prompt, /GeoWarehouse/);
+assert.match(plan.days[22].title, /BrokerBay/);
+assert.doesNotMatch(JSON.stringify(plan), /Follow Up Ace|Sisu|Brain log/);
+assert.doesNotMatch(JSON.stringify(plan.days[29]), /Connect Your Tools/);
 
 function unfold(ics) {
   return ics.replace(/\r\n[ \t]/g, "");
@@ -93,7 +100,7 @@ assert.ok(when);
 assert.equal(parseWhen("20261111", "9"), null);
 assert.equal(parseWhen("20260231", "0900"), null);
 
-for (const number of [1, 10]) {
+for (const number of [1, 5]) {
   const day = plan.days[number - 1];
   const ics = buildIcs(day, when, { now: new Date("2026-11-10T12:00:00Z"), uid: `test-day-${number}@jonathanwallace.ca` });
   assert.ok(!/(?<!\r)\n/.test(ics), "bare LF in day " + number);
@@ -111,8 +118,8 @@ for (const number of [1, 10]) {
   assert.match(text, new RegExp(`Today's task: ${day.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
   assert.match(text, /https:\/\/jonathanwallace\.ca\/ai-30-days/);
 }
-assert.match(unfold(buildIcs(plan.days[0], when, { now: new Date("2026-11-10T12:00:00Z") })), /Assignment: Pick one AI you will stick with/);
-assert.match(unfold(buildIcs(plan.days[9], when, { now: new Date("2026-11-10T12:00:00Z") })), /Assignment: Send one text and one email/);
+assert.match(unfold(buildIcs(plan.days[0], when, { now: new Date("2026-11-10T12:00:00Z") })), /Assignment: Done when it can play back a short summary of your business/);
+assert.match(unfold(buildIcs(plan.days[4], when, { now: new Date("2026-11-10T12:00:00Z") })), /Assignment: Done when the re-engagement skill is saved/);
 assert.doesNotMatch(buildIcs(plan.days[0], when), /—/);
 
 console.log("test_ai30: ok");

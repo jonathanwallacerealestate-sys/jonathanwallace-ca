@@ -92,13 +92,13 @@ for (const day of plan.days) {
   assert.ok(band, "section range for day " + day.day);
   assert.equal(day.section, band[0]);
 }
-assert.match(plan.days[0].title, /Pick your AI/);
-assert.match(plan.days[1].title, /writing style/i);
+assert.equal(plan.days[0].title, "Pick Your AI and Tell It About Your Business");
+assert.equal(plan.days[1].title, "Teach It Your Writing Style");
 assert.equal(plan.days[6].optional, true);
 assert.match(plan.days[6].optionalNote, /Skip this lesson/);
 assert.match(plan.days[7].title, /review/i);
 assert.match(plan.days[8].assignment, /brand guidelines/);
-assert.match(plan.days[14].title, /top 5/i);
+assert.equal(plan.days[14].title, "Write Listing Descriptions in Your Top 5");
 assert.match(plan.days[17].title, /Coles Notes/i);
 assert.match(plan.days[22].prompts.join("\n"), /RECO/);
 assert.match(plan.days[22].prompts.join("\n"), /GeoWarehouse/);
@@ -107,10 +107,10 @@ assert.doesNotMatch(plan.rule, /30 days|Getting Started/);
 assert.match(plan.days[23].title, /BrokerBay/);
 assert.doesNotMatch(JSON.stringify(plan), /Follow Up Ace|Sisu|Brain log/);
 assert.doesNotMatch(JSON.stringify(plan), /keep-going/);
-assert.equal(plan.days[9].title, "Plan your social media strategy");
-assert.equal(plan.days[10].title, "Create your first three posts");
-assert.equal(plan.days[24].title, "Your list: hand off your first task");
-assert.equal(plan.days[30].title, "Final review");
+assert.equal(plan.days[9].title, "Plan Your Social Media Strategy");
+assert.equal(plan.days[10].title, "Create Your First Three Posts");
+assert.equal(plan.days[24].title, "Your List: Hand Off Your First Task");
+assert.equal(plan.days[30].title, "Final Review");
 assert.ok(plan.days.every((day) => day.assignment.startsWith("Done when")));
 assert.match(plan.days[10].prompts[0], /my social media plan/);
 assert.doesNotMatch(JSON.stringify(plan), /Lesson \d+|Lessons \d+|\d+ lessons/);
@@ -157,8 +157,8 @@ for (const number of [1, 5]) {
 assert.match(unfold(buildIcs(plan.days[0], when, { now: new Date("2026-11-10T12:00:00Z") })), /Assignment: Done when it can play back a short summary of your business/);
 assert.match(unfold(buildIcs(plan.days[4], when, { now: new Date("2026-11-10T12:00:00Z") })), /Assignment: Done when the re-engagement skill is saved/);
 const lesson11 = unfold(buildIcs(plan.days[10], when, { now: new Date("2026-11-10T12:00:00Z"), uid: "lesson-11@jonathanwallace.ca" }));
-assert.match(lesson11, /SUMMARY:AI Bootcamp: Create your first three posts/);
-assert.match(lesson11, /Task: Create your first three posts/);
+assert.match(lesson11, /SUMMARY:AI Bootcamp: Create Your First Three Posts/);
+assert.match(lesson11, /Task: Create Your First Three Posts/);
 assert.match(lesson11, /Assignment: Done when three posts are finished/);
 assert.doesNotMatch(buildIcs(plan.days[0], when), /—/);
 
@@ -240,7 +240,7 @@ assert.equal(validEmail("not an email"), "");
 assert.match(selfieFilename("Testy", "Alpha", "2026-11-10T15:00:00.000Z"), /^Testy-A-2026-11-10-\d{4}\.jpg$/);
 assert.equal(CONTEST_END_ISO, "2026-12-12T01:00:00.000Z");
 assert.match(plan.days.find((day) => day.day === 15).prompts[0], /Create a skill called Listing writer/);
-assert.equal(plan.days.find((day) => day.day === 16).title, "Make the Letter of Opinion yours");
+assert.equal(plan.days.find((day) => day.day === 16).title, "Make the Letter of Opinion Yours");
 assert.doesNotMatch(plan.days.find((day) => day.day === 16).prompts.join("\n"), /whole drive/);
 
 const repoRoot = fileURLToPath(new URL("..", import.meta.url));

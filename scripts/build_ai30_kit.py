@@ -57,7 +57,7 @@ def main():
         "Handouts and the copy-paste prompts for each skill.",
         "Open the handout for the skill you are on. The prompts are the words you paste into your AI.",
         "",
-        "The formatted Letter of Opinion file is not in this folder yet. The handout for Make the Letter of Opinion yours has the prompt and the steps.",
+        "The formatted Letter of Opinion file is not in this folder yet. The handout for Make the Letter of Opinion Yours has the prompt and the steps.",
         "",
         "Skills",
     ]

@@ -65,7 +65,7 @@ To add the next one:
 5. In `netlify.toml`, copy the three redirect rules for `/listings/193-gouett-street-tay` and change the slug. The clean URL (no `.html`) is the canonical. In `_headers`, copy the `X-Robots-Tag: noindex, follow` lines for the new path.
 6. Do not add the URL to the header, footer, `sitemap.xml`, or `llms.txt`.
 
-Book a showing time opens `https://calendly.com/jonathan-faristeam/private-showing-request?a1=CALENDLY_A1` in a new tab. The same link is the sticky bar's Book a showing button. Both carry `data-cta="calendly-showing"`. People who would rather not use a calendar still get the Netlify form `showing-request` (name, email, phone, preferred times, hidden address and MLS). `assets/js/main.js` already mirrors that submit to the same Make.com lead webhook as the other forms. Call uses `tel:+17059983064`. Text, on small screens, uses `sms:+17059983064`. Display the number as 705-998-3064.
+Book a showing time opens `https://calendly.com/jonathan-faristeam/private-showing-request?a1=CALENDLY_A1` in a new tab. The same link is the sticky bar's Book a showing button. Both carry `data-cta="calendly-showing"`. People who would rather not use a calendar still get the Netlify form `showing-request` (name, email, phone, preferred times, hidden address and MLS). `assets/js/main.js` already mirrors that submit to the same Make.com lead webhook as the other forms. Call uses `tel:+17054332525`. Text, on small screens, uses `sms:+17054332525`. Display the number as 705-433-2525.
 
 ## Before launch — replace these
 

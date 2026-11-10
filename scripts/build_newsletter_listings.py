@@ -24,8 +24,8 @@ UPLOADS = Path("/home/ubuntu/.cursor/projects/workspace/uploads")
 
 COURTESY = "FARIS TEAM REAL ESTATE BROKERAGE"
 BYLINE = "Jonathan Wallace, Realtor with Faris Team Real Estate Brokerage"
-PHONE_TEL = "+17059983064"
-PHONE_DISP = "705-998-3064"
+PHONE_TEL = "+17054332525"
+PHONE_DISP = "705-433-2525"
 
 LISTINGS = [
     {

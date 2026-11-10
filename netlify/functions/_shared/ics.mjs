@@ -8,19 +8,11 @@ export function assignmentText(day) {
   return ((day && day.steps) || []).join(" ");
 }
 
-export function sessionPlan(day) {
-  const minutes = String((day && day.minutes) || "").trim();
-  return minutes ? `about ${minutes}` : "the time shown on the lesson";
-}
-
 export function eventDescription(day) {
-  return [
-    `Hey, don't forget you've got to do your AI session today. Plan on ${sessionPlan(day)}.`,
-    "",
-    `Task: ${day.title}`,
-    `Assignment: ${assignmentText(day)}`,
-    PORTAL,
-  ].join("\n");
+  const title = String((day && day.title) || "your next lesson").trim();
+  const topic = String((day && day.why) || "").replace(/\s+/g, " ").trim().replace(/\.+$/, "");
+  const line = topic ? `${topic}.` : "";
+  return `Time for tomorrow's AI lesson: ${title}. ${line} Log in here: ${PORTAL}`.replace(/\s+/g, " ").trim();
 }
 
 export function escapeText(value) {
@@ -128,7 +120,7 @@ export function buildIcs(day, when, options) {
     `URL:${PORTAL}`,
     "BEGIN:VALARM",
     "ACTION:DISPLAY",
-    `DESCRIPTION:${escapeText(`Your AI session today. Plan on ${sessionPlan(day)}.`)}`,
+    `DESCRIPTION:${escapeText(`Time for tomorrow's AI lesson: ${day.title}.`)}`,
     "TRIGGER:PT0S",
     "END:VALARM",
     "END:VEVENT",

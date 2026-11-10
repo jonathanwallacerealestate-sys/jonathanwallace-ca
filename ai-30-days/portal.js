@@ -28,6 +28,7 @@ const state = {
   openThreads: {},
   replyTo: null,
   commentKind: "learned",
+  reviewDay: null,
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -183,7 +184,7 @@ function reminderBlock(day) {
     <div class="remind">
       <label for="remind-time-${day}">Reminder time</label>
       <input type="time" id="remind-time-${day}" value="09:00">
-      <a class="btn btn--ghost" id="remind-${day}" href="${icsHref(day, "09:00")}">Add reminder to my calendar</a>
+      <a class="btn btn--ghost" id="remind-${day}" href="${icsHref(day, "09:00")}">Add tomorrow's lesson to my calendar</a>
     </div>
   `;
 }
@@ -277,6 +278,7 @@ function signOut() {
   state.last = "";
   state.email = "";
   state.drafts = null;
+  state.reviewDay = null;
   state.days = {};
   state.replyTo = null;
   state.openThreads = {};
@@ -302,7 +304,7 @@ function render() {
     ? renderProgress()
     : state.tab === "board"
       ? renderBoard()
-      : renderToday(dayByNumber(state.complete ? lessonTotal() : state.currentDay), enter);
+      : renderToday(dayByNumber(lessonOnScreen()), enter);
 
   root.innerHTML = `
     ${banner}
@@ -331,7 +333,7 @@ function render() {
     }
   };
 
-  if (state.tab === "today") bindToday(state.complete ? lessonTotal() : state.currentDay);
+  if (state.tab === "today") bindToday(lessonOnScreen());
   if (state.tab === "progress") { bindDots(); bindSelfie(); }
   if (state.tab === "board") bindBoard();
   const shot = root.querySelector(".shot");
@@ -339,9 +341,16 @@ function render() {
   state.justAdvanced = false;
 }
 
+function lessonOnScreen() {
+  if (state.reviewDay && isDone(state.reviewDay)) return state.reviewDay;
+  if (state.complete) return lessonTotal();
+  return state.currentDay;
+}
+
 function renderToday(day, enter) {
   const done = isDone(day.day);
   const waiting = !done && paceActive();
+  const next = dayByNumber(day.day + 1);
   const started = state.createdAt
     ? `<p class="fine">Your first lesson started when you signed in. There is no shared calendar.</p>`
     : `<p class="fine">Your first lesson starts when you sign in. There is no shared calendar.</p>`;
@@ -356,7 +365,6 @@ function renderToday(day, enter) {
       <p class="why">${esc(day.why)}</p>
       ${day.optional ? `<p class="optional"><strong>Optional.</strong> ${esc(day.optionalNote || `You can skip this lesson and tap ${COMPLETE_LABEL}`)}</p>` : ""}
       ${day.catchUp ? `<p class="catch">Good spot to catch up.</p>` : ""}
-      ${reminderBlock(day.day)}
       ${day.day === 1 ? started : ""}
       <ol class="steps">${day.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
       ${day.tip ? `<p class="tip"><strong>Tip.</strong> ${esc(day.tip)}</p>` : ""}
@@ -372,8 +380,9 @@ function renderToday(day, enter) {
       <div class="actions">
         ${done && state.complete ? `<p class="fine">You've finished every lesson that's here.</p>` : ""}
         ${!done && !waiting ? `<button type="button" class="btn" id="done">${COMPLETE_LABEL}</button>` : ""}
-        ${done ? `<p class="fine">Marked done. The next lesson is open.</p>` : ""}
+        ${done && next ? `<button type="button" class="btn btn--ghost" id="open-next">The next lesson is open.</button>` : ""}
       </div>
+      ${done && next ? reminderBlock(next.day) : ""}
       ${shareBox(day)}
     </article>
   `;
@@ -699,7 +708,15 @@ function bindToday(n) {
   }
   const shot = document.querySelector("#today-card .shot");
   if (shot) shot.onclick = () => openShot(shot);
-  bindReminder(n);
+  const next = dayByNumber(n + 1);
+  if (isDone(n) && next) bindReminder(next.day);
+  const openNext = $("#open-next");
+  if (openNext) {
+    openNext.onclick = () => {
+      state.reviewDay = null;
+      render();
+    };
+  }
   bindShare();
 }
 
@@ -1009,6 +1026,7 @@ async function savePayload(n, change, okMessage, advance) {
     state.status = okMessage;
     state.lockNote = "";
     if (advance) {
+      state.reviewDay = n;
       state.tab = "today";
       state.view = null;
       state.justAdvanced = true;

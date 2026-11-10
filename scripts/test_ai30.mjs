@@ -192,21 +192,22 @@ for (const number of [1, 5]) {
   assert.match(text, /DTSTAMP:20261110T120000Z/);
   assert.match(text, /TRIGGER:PT0S/);
   assert.match(text, new RegExp(`UID:test-day-${number}@jonathanwallace.ca`));
-  assert.match(text, /your AI session today/);
-  assert.match(text, new RegExp(`Plan on about ${day.minutes.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
-  assert.doesNotMatch(text, /30-minute AI session/);
-  assert.match(text, new RegExp(`Task: ${day.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
-  assert.match(text, /https:\/\/jonathanwallace\.ca\/ai-30-days/);
+  assert.match(text, /Time for tomorrow's AI lesson:/);
+  assert.match(text, /Log in here: https:\/\/jonathanwallace\.ca\/ai-30-days/);
+  assert.match(text, /URL:https:\/\/jonathanwallace\.ca\/ai-30-days/);
+  assert.doesNotMatch(text, /RRULE|30-minute AI session|webhook|hook\.us2/);
+  assert.match(text, new RegExp(`SUMMARY:AI Bootcamp: ${day.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
 }
-assert.match(unfold(buildIcs(plan.days[0], when, { now: new Date("2026-11-10T12:00:00Z") })), /Assignment: Done when it can play back a short summary of your business/);
-assert.match(unfold(buildIcs(plan.days[4], when, { now: new Date("2026-11-10T12:00:00Z") })), /Assignment: Done when the re-engagement skill is saved/);
-const lesson11 = unfold(buildIcs(plan.days[10], when, { now: new Date("2026-11-10T12:00:00Z"), uid: "lesson-11@jonathanwallace.ca" }));
-assert.match(lesson11, /SUMMARY:AI Bootcamp: Create Your First Three Posts/);
-assert.match(lesson11, /Task: Create Your First Three Posts/);
-assert.match(lesson11, /Assignment: Done when three posts are finished/);
+const tomorrow = unfold(buildIcs(plan.days[1], when, { now: new Date("2026-11-10T12:00:00Z") }));
+assert.match(tomorrow, /SUMMARY:AI Bootcamp: Teach It Your Writing Style/);
+assert.match(tomorrow, /Time for tomorrow's AI lesson: Teach It Your Writing Style\. What you feed it is what it writes like\. Log in here: https:\/\/jonathanwallace\.ca\/ai-30-days/);
 assert.doesNotMatch(buildIcs(plan.days[0], when), /—/);
+assert.match(portalPlaceholder(), /reminderBlock\(next\.day\)/);
 
-const portalSrc = readFileSync(new URL("../ai-30-days/portal.js", import.meta.url), "utf8");
+function portalPlaceholder() {
+  return readFileSync(new URL("../ai-30-days/portal.js", import.meta.url), "utf8");
+}
+const portalSrc = portalPlaceholder();
 assert.doesNotMatch(portalSrc, /All lessons|tab-all|renderAll|Mark done|of \$\{lessonTotal/);
 assert.match(portalSrc, /I've completed the lesson and the challenge\./);
 assert.match(portalSrc, /id="tab-today"/);

@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: tomorrow's lesson reminder
+Why: Jonathan asked the calendar file to remind a learner to log in the next morning for the next lesson.
+- After a lesson is finished, the reminder sits under the completion button. It is a one-time event the next morning, at 9:00 or the time they pick. The title is AI Bootcamp plus the next lesson. The note names that lesson, the one-line topic, and the login link.
+
 ### AI bootcamp: listing masters in the kit
 Why: Jonathan approved sharing the scrubbed Form 200 and RECO Information Guide, with his name removed and Faris Team brokerage details kept.
 - Both files are in the resources zip under forms/. The read-me lists them. Prep Your Listing Appointment Paperwork points to them as in your kit. The kit is rebuilt.

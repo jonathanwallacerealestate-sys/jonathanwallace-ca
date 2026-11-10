@@ -6,7 +6,7 @@
 
 import { getDatabase } from "@netlify/database";
 import { adminKeyOk } from "./_shared/admin.mjs";
-import { applyProgress, cleanPost, currentDay, learnersCsv, migrateCurriculum, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, stampCurriculum, validEmail } from "./_shared/ai30.mjs";
+import { applyProgress, cleanPost, currentDay, emailClaim, learnersCsv, migrateCurriculum, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, stampCurriculum } from "./_shared/ai30.mjs";
 import { deleteTestBlobs, listDriveSelfies } from "./_shared/selfies.mjs";
 
 const PRODUCTION = ["https://jonathanwallace.ca", "https://www.jonathanwallace.ca"];
@@ -266,18 +266,32 @@ async function learnerOp(db, person, body) {
     let row = await readRow(db, person.key);
     const migrated = migrateCurriculum(row ? row.days : {});
     const createdAt = row && row.createdAt ? row.createdAt : new Date().toISOString();
-    const email = validEmail(body.email);
     if (!row) {
-      if (!email) return { ok: true, needsEmail: true, first: person.first, last: person.last };
+      const claim = emailClaim("", body.email);
+      if (!claim.ok) return { ok: true, needsEmail: true, first: person.first, last: person.last };
       row = await writeRow(db, person, migrated, createdAt);
-    } else if (!row || JSON.stringify(migrated) !== JSON.stringify(row.days)) {
+    } else if (JSON.stringify(migrated) !== JSON.stringify(row.days)) {
       row = await writeRow(db, person, migrated, createdAt);
     }
-    if (email) {
-      await db.sql`UPDATE ai30_progress SET email = ${email}, updated_at = now() WHERE name_key = ${person.key}`;
-      row.email = email;
+    const claim = emailClaim(row.email, body.email);
+    if (!claim.ok) {
+      if (claim.error === "email_required") return { ok: true, needsEmail: true, first: person.first, last: person.last };
+      return { ok: false, error: "email_mismatch" };
     }
-    if (!row.email) return { ok: true, needsEmail: true, first: person.first, last: person.last };
+    if (claim.write) {
+      const saved = firstRow(await db.sql`
+        UPDATE ai30_progress SET email = ${claim.email}, updated_at = now()
+        WHERE name_key = ${person.key} AND (email IS NULL OR btrim(email) = '')
+        RETURNING email
+      `);
+      if (saved && saved.email) row.email = saved.email;
+      else {
+        const fresh = await readRow(db, person.key);
+        const again = emailClaim(fresh && fresh.email, body.email);
+        if (!again.ok) return { ok: false, error: again.error === "email_required" ? "email_mismatch" : again.error };
+        row.email = fresh.email;
+      }
+    }
     await db.sql`INSERT INTO ai30_logins (name_key) VALUES (${person.key})`;
     const context = await readContext(db);
     return pack(person, row, context);
@@ -294,6 +308,8 @@ async function learnerOp(db, person, body) {
 
   const row = await readRow(db, person.key);
   if (!row || !row.email) return { ok: true, needsEmail: true, first: person.first, last: person.last };
+  const claim = emailClaim(row.email, body.email);
+  if (!claim.ok) return { ok: false, error: claim.error };
   const text = cleanPost(body.body);
   if (!text) return { ok: false, error: "empty" };
   const parentId = Number(body.parentId);

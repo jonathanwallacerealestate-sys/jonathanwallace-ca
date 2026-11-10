@@ -116,6 +116,29 @@ export function validEmail(value) {
   return email;
 }
 
+// A stored email is never replaced. The first valid email is saved. A later sign-in must match it.
+export function emailClaim(stored, given) {
+  const saved = collapse(stored).toLowerCase();
+  if (!saved) {
+    const incoming = validEmail(given);
+    if (!incoming) return { ok: false, error: "email_required" };
+    return { ok: true, email: incoming, write: true };
+  }
+  if (collapse(given).toLowerCase() !== saved) return { ok: false, error: "email_mismatch" };
+  return { ok: true, email: saved, write: false };
+}
+
+export const SELFIE_LIMIT = 3;
+export const SELFIE_WINDOW_MS = 60 * 60 * 1000;
+
+export function nextSelfieStamps(stamps, nowMs) {
+  const now = Number.isFinite(nowMs) ? nowMs : Date.now();
+  const recent = (stamps || []).map((stamp) => Number(stamp)).filter((stamp) => now - stamp < SELFIE_WINDOW_MS && now - stamp >= 0);
+  if (recent.length >= SELFIE_LIMIT) return { ok: false, stamps: recent };
+  recent.push(now);
+  return { ok: true, stamps: recent };
+}
+
 export function cleanPost(value) {
   const text = String(value || "").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "").trim();
   if (!text) return "";

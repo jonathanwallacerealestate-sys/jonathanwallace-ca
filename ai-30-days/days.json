@@ -26,7 +26,7 @@
     },
     {
       "id": "clients",
-      "title": "Clients and social",
+      "title": "Clients and Social",
       "days": [
         8,
         11
@@ -35,7 +35,7 @@
     },
     {
       "id": "calendar",
-      "title": "Calendar, notes and listings",
+      "title": "Calendar, Notes and Listings",
       "days": [
         12,
         15
@@ -44,7 +44,7 @@
     },
     {
       "id": "letters",
-      "title": "Letters and offers",
+      "title": "Letters and Offers",
       "days": [
         16,
         19
@@ -53,7 +53,7 @@
     },
     {
       "id": "deals",
-      "title": "Deal card",
+      "title": "Deal Card",
       "days": [
         20,
         22
@@ -71,7 +71,7 @@
     },
     {
       "id": "list",
-      "title": "Your list",
+      "title": "Your List",
       "days": [
         25,
         30
@@ -246,7 +246,7 @@
     },
     {
       "day": 8,
-      "section": "Clients and social",
+      "section": "Clients and Social",
       "title": "Ask for Reviews",
       "why": "Happy clients will leave a review if you make it easy and personal.",
       "minutes": "30 to 45 minutes",
@@ -267,7 +267,7 @@
     },
     {
       "day": 9,
-      "section": "Clients and social",
+      "section": "Clients and Social",
       "title": "Share 10 Posts You Like",
       "why": "Showing real posts is clearer than trying to describe a style.",
       "minutes": "45 to 60 minutes",
@@ -287,7 +287,7 @@
     },
     {
       "day": 10,
-      "section": "Clients and social",
+      "section": "Clients and Social",
       "title": "Plan Your Social Media Strategy",
       "why": "A simple plan you'll actually follow beats random posting.",
       "minutes": "45 to 60 minutes",
@@ -308,7 +308,7 @@
     },
     {
       "day": 11,
-      "section": "Clients and social",
+      "section": "Clients and Social",
       "title": "Create Your First Three Posts",
       "why": "Turn your best ideas into posts that look like you.",
       "minutes": "60 to 90 minutes",
@@ -330,8 +330,8 @@
     },
     {
       "day": 12,
-      "section": "Calendar, notes and listings",
-      "title": "Book Appointments Into Your Calendar",
+      "section": "Calendar, Notes and Listings",
+      "title": "Book Appointments into Your Calendar",
       "why": "Say it once out loud and it is booked, with travel time built in.",
       "minutes": "30 to 45 minutes",
       "catchUp": false,
@@ -352,7 +352,7 @@
     },
     {
       "day": 13,
-      "section": "Calendar, notes and listings",
+      "section": "Calendar, Notes and Listings",
       "title": "Teach It How You Keep Notes",
       "why": "Once it knows how you take notes, every call, meeting, or pop-by gets logged without you typing.",
       "minutes": "45 to 60 minutes",
@@ -376,7 +376,7 @@
     },
     {
       "day": 14,
-      "section": "Calendar, notes and listings",
+      "section": "Calendar, Notes and Listings",
       "title": "Stay in Touch with Past Clients",
       "why": "Past clients are your best source of repeat and referral business, and your AI can remember the details you cannot.",
       "minutes": "60 to 90 minutes",
@@ -397,7 +397,7 @@
     },
     {
       "day": 15,
-      "section": "Calendar, notes and listings",
+      "section": "Calendar, Notes and Listings",
       "title": "Write Listing Descriptions in Your Top 5",
       "why": "Your listing description is a top 5, the 5 best reasons to buy this home.",
       "minutes": "45 to 60 minutes",
@@ -419,7 +419,7 @@
     },
     {
       "day": 16,
-      "section": "Letters and offers",
+      "section": "Letters and Offers",
       "title": "Make the Letter of Opinion Yours",
       "why": "Turn the ready-made Letter of Opinion template into your own, with your details and your real signature.",
       "minutes": "60 to 90 minutes",
@@ -441,7 +441,7 @@
     },
     {
       "day": 17,
-      "section": "Letters and offers",
+      "section": "Letters and Offers",
       "title": "Practise, then Time a Real Letter",
       "why": "A past address is a safe rehearsal. The timed letter shows you what a real one costs in minutes.",
       "minutes": "60 to 90 minutes",
@@ -461,8 +461,8 @@
     },
     {
       "day": 18,
-      "section": "Letters and offers",
-      "title": "Read an Offer: the Coles Notes",
+      "section": "Letters and Offers",
+      "title": "Read an Offer: The Coles Notes",
       "why": "Offers are long. Your client needs the key points, fast and clearly.",
       "minutes": "60 to 90 minutes",
       "catchUp": false,
@@ -483,7 +483,7 @@
     },
     {
       "day": 19,
-      "section": "Letters and offers",
+      "section": "Letters and Offers",
       "title": "Deal Deadline Tracker",
       "why": "Missing a condition date or a title search date is costly. Let your AI put every date in your calendar.",
       "minutes": "45 to 60 minutes",
@@ -503,7 +503,7 @@
     },
     {
       "day": 20,
-      "section": "Deal card",
+      "section": "Deal Card",
       "title": "Deal Card Setup",
       "why": "One card per person keeps the next step where you can see it.",
       "minutes": "30 to 45 minutes",
@@ -523,7 +523,7 @@
     },
     {
       "day": 21,
-      "section": "Deal card",
+      "section": "Deal Card",
       "title": "Ten Leads, then Make the Calls",
       "why": "The card only matters if you pick up the phone.",
       "minutes": "60 to 90 minutes",
@@ -543,7 +543,7 @@
     },
     {
       "day": 22,
-      "section": "Deal card",
+      "section": "Deal Card",
       "title": "Paste the Notes, then the Next 10",
       "why": "The notes you bring back are what make the next list sharper.",
       "minutes": "45 to 60 minutes",
@@ -608,7 +608,7 @@
     },
     {
       "day": 25,
-      "section": "Your list",
+      "section": "Your List",
       "title": "Your List: Hand Off Your First Task",
       "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "45 to 60 minutes",
@@ -629,7 +629,7 @@
     },
     {
       "day": 26,
-      "section": "Your list",
+      "section": "Your List",
       "title": "Your List: Hand Off Another Task",
       "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "45 to 60 minutes",
@@ -650,7 +650,7 @@
     },
     {
       "day": 27,
-      "section": "Your list",
+      "section": "Your List",
       "title": "Your List: Hand Off the Next Task",
       "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "45 to 60 minutes",
@@ -671,7 +671,7 @@
     },
     {
       "day": 28,
-      "section": "Your list",
+      "section": "Your List",
       "title": "Your List: Hand Off One More Task",
       "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "45 to 60 minutes",
@@ -692,7 +692,7 @@
     },
     {
       "day": 29,
-      "section": "Your list",
+      "section": "Your List",
       "title": "Your List: Keep Handing Tasks Off",
       "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "45 to 60 minutes",
@@ -713,7 +713,7 @@
     },
     {
       "day": 30,
-      "section": "Your list",
+      "section": "Your List",
       "title": "Your List: Hand Off the Next One on Your List",
       "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "45 to 60 minutes",

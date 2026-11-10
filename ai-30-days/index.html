@@ -43,12 +43,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
 <main class="shell">
   <section class="card" id="gate">
     <p class="kicker">Sign in</p>
-    <p class="lead">First name and last name. No password. The same name brings you back to your place, on your phone or your computer.</p>
+    <p class="lead">First name, last name, and email. No password. The same name brings you back to your place, on your phone or your computer.</p>
     <form id="gate-form">
       <label for="first">First name</label>
       <input id="first" name="first" autocomplete="given-name" maxlength="40" required>
       <label for="last">Last name</label>
       <input id="last" name="last" autocomplete="family-name" maxlength="40" required>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="email" maxlength="120" required>
       <button class="btn" id="enter" type="submit">Continue</button>
       <p class="err" id="gate-err" role="status"></p>
       <p class="fine">Your first lesson starts when you sign in. There is no shared calendar.</p>

@@ -13,6 +13,12 @@ const state = {
   doneCount: 0,
   complete: false,
   createdAt: "",
+  note: "",
+  board: [],
+  posts: [],
+  selfie: false,
+  closed: false,
+  winner: "",
   tab: "today",
   view: null,
   offline: false,
@@ -56,6 +62,12 @@ function writeCache() {
       doneCount: state.doneCount,
       complete: state.complete,
       createdAt: state.createdAt,
+      note: state.note || "",
+      board: state.board || [],
+      posts: state.posts || [],
+      selfie: !!state.selfie,
+      closed: !!state.closed,
+      winner: state.winner || "",
     },
   }));
 }
@@ -66,6 +78,12 @@ function applyRecord(record) {
   state.doneCount = record.doneCount || 0;
   state.complete = !!record.complete;
   state.createdAt = record.createdAt || "";
+  state.note = record.note || "";
+  state.board = Array.isArray(record.board) ? record.board : [];
+  state.posts = Array.isArray(record.posts) ? record.posts : state.posts || [];
+  state.selfie = !!record.selfie;
+  state.closed = !!record.closed;
+  state.winner = record.winner || "";
   writeCache();
 }
 
@@ -110,6 +128,13 @@ function lockLine() {
 }
 
 const LOCK = `<svg class="lock" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.8"></path></svg>`;
+const COMPLETE_LABEL = "I've completed the lesson and the challenge.";
+const CLOSE_COPY = "Leaderboard closes Friday, December 11 at 8 PM.";
+const PRIZE_COPY = "The winner gets 2 hours of one-on-one AI coaching with Jonathan.";
+const POINTS_COPY = "3 points for each lesson you finish. 2 more when you come back the next day. 1 more for a second visit the same day. 5 more when you share a lesson with the group, once per lesson. 3 more when you answer someone else's question, once per question.";
+const SELFIE_HELLO = "Got your learning selfie. Good job. Now you know how to stack the deck and win.";
+const CONTEST_END = Date.parse("2026-12-12T01:00:00.000Z");
+let feedTimer = 0;
 
 function icsHref(day, timeValue) {
   const value = /^\d{2}:\d{2}$/.test(timeValue || "") ? timeValue : "09:00";
@@ -156,7 +181,7 @@ function takeDayRequest() {
   const n = Number(raw);
   if (!raw || !Number.isInteger(n)) return;
   if (phase(n) === "locked") refuseLocked();
-  else if (phase(n) === "done") { state.tab = "all"; state.view = n; state.lockNote = ""; }
+  else if (phase(n) === "done") { state.tab = "today"; state.view = null; state.lockNote = ""; }
   else { state.tab = "today"; state.view = null; state.lockNote = ""; }
 }
 
@@ -174,19 +199,26 @@ function show(name) {
   if (who) $("#who-name").textContent = `${who.first} ${who.last}`;
 }
 
-async function signIn(first, last, remember) {
+async function signIn(first, last, email, remember) {
   state.first = first;
   state.last = last;
   state.offline = false;
   state.status = "";
-  if (remember) localStorage.setItem(WHO, JSON.stringify({ first, last }));
+  if (remember) localStorage.setItem(WHO, JSON.stringify({ first, last, email: email || "" }));
   const cached = readCache(first, last);
   if (cached) applyRecord(cached);
   try {
-    applyRecord(await post("load"));
+    const data = await post("load", email ? { email } : {});
+    if (data.needsEmail) {
+      show("gate");
+      const err = $("#gate-err");
+      if (err) err.textContent = "Add your email to continue.";
+      return;
+    }
+    applyRecord(data);
     state.offline = false;
   } catch (e) {
-    if (e.code === "name_invalid" || e.code === "name_required" || e.code === "name_too_long") throw e;
+    if (e.code === "name_invalid" || e.code === "name_required" || e.code === "name_too_long" || e.code === "email_invalid") throw e;
     state.offline = true;
     if (!cached) {
       state.days = {};
@@ -203,9 +235,11 @@ async function signIn(first, last, remember) {
   takeDayRequest();
   show("app");
   render();
+  startFeed();
 }
 
 function signOut() {
+  clearInterval(feedTimer);
   localStorage.removeItem(WHO);
   localStorage.removeItem(CACHE);
   state.first = "";
@@ -224,20 +258,24 @@ function render() {
     ? `<p class="warn" role="status">${esc(state.status)} <button type="button" class="linkish" id="retry">Try the server again</button></p>`
     : "";
   const locked = state.lockNote ? `<p class="lockline" role="status">${LOCK} ${esc(state.lockNote)}</p>` : "";
+  const peers = state.note ? `<p class="peers" role="status">${esc(state.note)}</p>` : "";
   const enter = state.justAdvanced ? " card--next" : "";
 
-  let panel = "";
-  if (state.tab === "today") panel = renderToday(dayByNumber(state.complete ? lessonTotal() : state.currentDay), enter);
-  else if (state.tab === "progress") panel = renderProgress();
-  else panel = renderAll();
+  if (state.tab !== "progress" && state.tab !== "board") state.tab = "today";
+  const panel = state.tab === "progress"
+    ? renderProgress()
+    : state.tab === "board"
+      ? renderBoard()
+      : renderToday(dayByNumber(state.complete ? lessonTotal() : state.currentDay), enter);
 
   root.innerHTML = `
     ${banner}
     ${locked}
+    ${peers}
     <div class="tabs" role="tablist">
       <button type="button" role="tab" id="tab-today" aria-selected="${state.tab === "today"}">Lesson</button>
       <button type="button" role="tab" id="tab-progress" aria-selected="${state.tab === "progress"}">Progress</button>
-      <button type="button" role="tab" id="tab-all" aria-selected="${state.tab === "all"}">All lessons</button>
+      <button type="button" role="tab" id="tab-board" aria-selected="${state.tab === "board"}">Board</button>
     </div>
     ${panel}
     <p class="status" id="save-status" role="status">${esc(state.status && !state.offline ? state.status : "")}</p>
@@ -245,13 +283,13 @@ function render() {
 
   $("#tab-today").onclick = () => { state.tab = "today"; state.view = null; render(); };
   $("#tab-progress").onclick = () => { state.tab = "progress"; render(); };
-  $("#tab-all").onclick = () => { state.tab = "all"; render(); };
+  $("#tab-board").onclick = () => { state.tab = "board"; render(); };
   const retry = $("#retry");
   if (retry) retry.onclick = () => signIn(state.first, state.last, true);
 
   if (state.tab === "today") bindToday(state.complete ? lessonTotal() : state.currentDay);
-  if (state.tab === "progress") bindDots();
-  if (state.tab === "all") bindAll();
+  if (state.tab === "progress") { bindDots(); bindSelfie(); }
+  if (state.tab === "board") bindBoard();
   const shot = root.querySelector(".shot");
   if (shot) shot.onclick = () => openShot(shot);
   state.justAdvanced = false;
@@ -271,13 +309,14 @@ function renderToday(day, enter) {
         <p class="chip">About ${esc(day.minutes)}</p>
       </div>
       <p class="why">${esc(day.why)}</p>
-      ${day.optional ? `<p class="optional"><strong>Optional.</strong> ${esc(day.optionalNote || "You can skip this lesson and tap Done.")}</p>` : ""}
+      ${day.optional ? `<p class="optional"><strong>Optional.</strong> ${esc(day.optionalNote || `You can skip this lesson and tap ${COMPLETE_LABEL}`)}</p>` : ""}
       ${day.catchUp ? `<p class="catch">Good spot to catch up.</p>` : ""}
       ${reminderBlock(day.day)}
       ${day.day === 1 ? started : ""}
       <ol class="steps">${day.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
       ${day.tip ? `<p class="tip"><strong>Tip.</strong> ${esc(day.tip)}</p>` : ""}
       ${day.assignment ? `<p class="assignment"><strong>Assignment.</strong> ${esc(day.assignment)}</p>` : ""}
+      ${day.sample ? `<div class="sample"><p class="kicker">Sample, made up</p><pre class="sample__text">${esc(day.sample)}</pre></div>` : ""}
       ${promptBoxes(day)}
       <div class="look">
         <h3>What good looks like</h3>
@@ -289,51 +328,134 @@ function renderToday(day, enter) {
       <textarea id="notes" maxlength="2000" ${done && day.day !== state.currentDay && state.complete ? "" : ""}>${esc(notes)}</textarea>
       <div class="actions">
         ${done && state.complete ? `<p class="fine">You've finished every lesson that's here.</p>` : ""}
-        ${!done ? `<button type="button" class="btn" id="done">${day.optional ? "Done" : "Mark done"}</button>` : `<p class="fine">Marked done. The next lesson is open.</p>`}
+        ${!done ? `<button type="button" class="btn" id="done">${COMPLETE_LABEL}</button>` : `<p class="fine">Marked done. The next lesson is open.</p>`}
       </div>
+      ${shareBox(day)}
     </article>
   `;
 }
 
+function countdownText(now) {
+  let left = CONTEST_END - now;
+  if (left <= 0) return "";
+  const days = Math.floor(left / 86400000);
+  left -= days * 86400000;
+  const hours = Math.floor(left / 3600000);
+  left -= hours * 3600000;
+  const minutes = Math.floor(left / 60000);
+  return `${days} days, ${hours} hours, ${minutes} minutes left.`;
+}
+
 function renderProgress() {
-  const total = lessonTotal();
-  const pct = total ? Math.round((state.doneCount / total) * 100) : 0;
+  const rows = Array.isArray(state.board) ? state.board : [];
+  const body = rows.length ? rows.map((row) => `
+    <li class="board__row${row.you ? " board__row--you" : ""}">
+      <span class="board__rank">${esc(row.rank)}</span>
+      <span class="board__name">${esc(row.name)}${row.you ? ` <span class="board__tag">You</span>` : ""}</span>
+      <span class="board__points">${esc(row.points)}</span>
+      <span class="board__done">${esc(row.done)}</span>
+    </li>`).join("") : `<li class="fine">No one is on the board yet.</li>`;
+  const clock = state.closed
+    ? `<p class="prize">${state.winner ? `Winner: ${esc(state.winner)}` : "The leaderboard is closed."}</p>`
+    : `<p class="prize" id="countdown">${esc(CLOSE_COPY)} ${esc(countdownText(Date.now()))}</p>`;
   return `
-    <section class="card">
-      <h2 class="lesson-title">${esc((dayByNumber(state.currentDay) || {}).title || "")}</h2>
-      <div class="track" role="img" aria-label="Progress"><span style="width:${pct}%"></span></div>
+    <section class="card board" aria-label="Leaderboard">
+      <h2 class="lesson-title">Leaderboard</h2>
+      ${clock}
+      <p class="prize">${esc(PRIZE_COPY)}</p>
+      ${state.selfie ? selfieUnlocked() : selfieLocked()}
+      <div class="board__head"><span>Rank</span><span>Name</span><span>Points</span><span>Lessons</span></div>
+      <ul class="board__list">${body}</ul>
     </section>
   `;
 }
 
-function renderAll() {
-  const groups = [];
-  let last = "";
-  for (const day of state.plan.days) {
-    if (day.section !== last) {
-      groups.push(`<h3>${esc(day.section)}</h3>`);
-      last = day.section;
-    }
-    const kind = phase(day.day);
-    const note = kind === "locked" ? `${LOCK} ${esc(lockLine())}` : kind === "today" ? "Now" : "Done";
-    groups.push(`<button type="button" class="row ${kind === "locked" ? "row--locked" : ""}" data-day="${day.day}"><span class="row__title">${esc(day.title)}</span><span class="row__note">${note}</span></button>`);
-    if (state.view === day.day && kind !== "locked") groups.push(`<div class="open-day">${detail(day)}</div>`);
-  }
-  return `<section class="card"><ul class="daylist">${groups.join("")}</ul></section>`;
+function selfieLocked() {
+  return `
+    <section class="selfie" id="selfie">
+      <h3>Post a selfie of you learning AI to unlock how to earn points</h3>
+      <button type="button" class="btn" id="selfie-cam">Take a selfie</button>
+      <button type="button" class="btn btn--ghost" id="selfie-lib">Choose from Photos</button>
+      <input id="selfie-cam-file" type="file" accept="image/*" capture="user" hidden>
+      <input id="selfie-lib-file" type="file" accept="image/*" hidden>
+      <div id="selfie-preview" hidden>
+        <img id="selfie-img" alt="Preview of your selfie">
+        <div class="selfie__actions">
+          <button type="button" class="btn btn--ghost" id="selfie-retake">Retake</button>
+          <button type="button" class="btn" id="selfie-upload">Upload</button>
+        </div>
+      </div>
+      <p class="err" id="selfie-status" role="status"></p>
+    </section>`;
 }
 
-function detail(day) {
-  const notes = slot(day.day).notes || "";
+function selfieUnlocked() {
   return `
-    <div class="card">
-      <p class="why">${esc(day.why)}</p>
-      <ol class="steps">${day.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
-      ${notes ? `<p class="tip"><strong>Your notes.</strong> ${esc(notes)}</p>` : `<p class="fine">No notes saved on this lesson.</p>`}
-      ${promptBoxes(day)}
-      ${reminderBlock(day.day)}
-      <div class="look"><h3>What good looks like</h3><button type="button" class="shot" aria-label="Enlarge the example for ${esc(day.title)}"><span class="shot__frame">${exampleMarkup(day.visual)}</span></button></div>
-    </div>
-  `;
+    <section class="how">
+      <p class="hello">${esc(SELFIE_HELLO)}</p>
+      <h3>How points work</h3>
+      <p>${esc(POINTS_COPY)}</p>
+      <p class="prize">${esc(PRIZE_COPY)}</p>
+    </section>`;
+}
+
+function shareBox(day) {
+  return `
+    <section class="share">
+      <p class="share__prompt">Share what you learned with the group (+5 points)</p>
+      <div class="tags" role="group" aria-label="What kind of note">
+        <button type="button" class="tag" data-kind="learned" aria-pressed="true">Learned</button>
+        <button type="button" class="tag" data-kind="question" aria-pressed="false">Question</button>
+        <button type="button" class="tag" data-kind="stuck" aria-pressed="false">Stuck on</button>
+      </div>
+      <textarea id="share-body" maxlength="500" placeholder="A note for the group"></textarea>
+      <button type="button" class="btn btn--ghost" id="share-send" data-lesson="${day.day}">Post to the group</button>
+      <p class="fine" id="share-status" role="status"></p>
+    </section>`;
+}
+
+function stamp(iso) {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Toronto",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  }).format(date);
+}
+
+function renderBoard() {
+  const posts = Array.isArray(state.posts) ? state.posts : [];
+  const cards = posts.length ? posts.map((post) => `
+    <article class="post" data-id="${esc(post.id)}">
+      <header>
+        <span class="pill">${esc(kindLabel(post.kind))}</span>
+        <strong>${esc(post.name)}</strong>
+        <time>${esc(stamp(post.createdAt))}</time>
+      </header>
+      <p class="post__lesson">${esc(post.lessonTitle || "")}</p>
+      <p>${esc(post.body)}</p>
+      <div class="replies">${(post.replies || []).map((reply) => `
+        <article class="reply">
+          <header><strong>${esc(reply.name)}</strong> <time>${esc(stamp(reply.createdAt))}</time></header>
+          <p>${esc(reply.body)}</p>
+          <button type="button" class="linkish remove" data-id="${esc(reply.id)}">Remove</button>
+        </article>`).join("")}</div>
+      <div class="replybox">
+        <textarea maxlength="500" placeholder="Write a reply"></textarea>
+        <button type="button" class="btn btn--ghost reply-send" data-parent="${esc(post.id)}">Reply</button>
+      </div>
+      <button type="button" class="linkish remove" data-id="${esc(post.id)}">Remove</button>
+    </article>`).join("") : `<p class="fine">No notes yet. Share one from today's lesson.</p>`;
+  return `<section class="card feed"><h2 class="lesson-title">Message board</h2>${cards}</section>`;
+}
+
+function kindLabel(kind) {
+  if (kind === "question") return "Question";
+  if (kind === "stuck") return "Stuck on";
+  return "Learned";
 }
 
 function promptList(day) {
@@ -417,6 +539,167 @@ function bindToday(n) {
   const shot = document.querySelector("#today-card .shot");
   if (shot) shot.onclick = () => openShot(shot);
   bindReminder(n);
+  bindShare();
+}
+
+function bindShare() {
+  let kind = "learned";
+  document.querySelectorAll(".tag").forEach((btn) => {
+    btn.onclick = () => {
+      kind = btn.dataset.kind;
+      document.querySelectorAll(".tag").forEach((other) => other.setAttribute("aria-pressed", other === btn ? "true" : "false"));
+    };
+  });
+  const send = $("#share-send");
+  if (!send) return;
+  send.onclick = async () => {
+    const body = ($("#share-body") && $("#share-body").value) || "";
+    const status = $("#share-status");
+    send.disabled = true;
+    try {
+      applyRecord(await post("talk", { lesson: Number(send.dataset.lesson), kind, body }));
+      if (status) status.textContent = "Posted to the group.";
+      state.tab = "board";
+      render();
+    } catch (e) {
+      if (status) status.textContent = e.code === "empty" ? "Write a note first." : explain(e);
+      send.disabled = false;
+    }
+  };
+}
+
+function bindBoard() {
+  document.querySelectorAll(".reply-send").forEach((btn) => {
+    btn.onclick = async () => {
+      const box = btn.parentElement.querySelector("textarea");
+      btn.disabled = true;
+      try {
+        applyRecord(await post("talk", { parentId: Number(btn.dataset.parent), body: box ? box.value : "" }));
+        render();
+      } catch (e) {
+        btn.disabled = false;
+      }
+    };
+  });
+  document.querySelectorAll(".remove").forEach((btn) => {
+    btn.onclick = async () => {
+      const key = window.prompt("Admin key");
+      if (!key) return;
+      try {
+        await post("remove", { id: Number(btn.dataset.id), adminKey: key });
+        await refreshFeed();
+        render();
+      } catch (e) {
+        window.alert("That key did not work.");
+      }
+    };
+  });
+}
+
+let selfieBlob = null;
+
+async function fileToJpeg(file) {
+  if (file.size > 15 * 1024 * 1024) throw new Error("That photo is too large. Use one under 15 MB.");
+  const url = URL.createObjectURL(file);
+  try {
+    const img = await new Promise((resolve, reject) => {
+      const image = new Image();
+      image.onload = () => resolve(image);
+      image.onerror = () => reject(new Error("This photo format didn't open. Take it again or choose a jpg."));
+      image.src = url;
+    });
+    const max = 1280;
+    const scale = Math.min(1, max / Math.max(img.width, img.height));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.max(1, Math.round(img.width * scale));
+    canvas.height = Math.max(1, Math.round(img.height * scale));
+    canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.82));
+    if (!blob) throw new Error("This photo format didn't open. Take it again or choose a jpg.");
+    return blob;
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}
+
+function showPreview(blob) {
+  selfieBlob = blob;
+  const box = $("#selfie-preview");
+  const img = $("#selfie-img");
+  if (img.src && img.src.startsWith("blob:")) URL.revokeObjectURL(img.src);
+  img.src = URL.createObjectURL(blob);
+  box.hidden = false;
+}
+
+function bindSelfie() {
+  const cam = $("#selfie-cam-file");
+  const lib = $("#selfie-lib-file");
+  const take = async (file) => {
+    const status = $("#selfie-status");
+    try {
+      showPreview(await fileToJpeg(file));
+      if (status) status.textContent = "";
+    } catch (e) {
+      if (status) status.textContent = e.message || "That photo didn't open.";
+    }
+  };
+  if ($("#selfie-cam")) $("#selfie-cam").onclick = () => cam.click();
+  if ($("#selfie-lib")) $("#selfie-lib").onclick = () => lib.click();
+  if (cam) cam.onchange = () => { if (cam.files && cam.files[0]) take(cam.files[0]); };
+  if (lib) lib.onchange = () => { if (lib.files && lib.files[0]) take(lib.files[0]); };
+  if ($("#selfie-retake")) $("#selfie-retake").onclick = () => { cam.value = ""; cam.click(); };
+  if ($("#selfie-upload")) $("#selfie-upload").onclick = async () => {
+    if (!selfieBlob) return;
+    const status = $("#selfie-status");
+    $("#selfie-upload").disabled = true;
+    const data = await new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result).split(",")[1]);
+      reader.readAsDataURL(selfieBlob);
+    });
+    try {
+      const res = await fetch("/api/ai-30-days/selfie", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ first: state.first, last: state.last, image: data }),
+      });
+      const body = await res.json();
+      if (!res.ok || !body.ok) throw new Error("save");
+      state.selfie = true;
+      render();
+    } catch (e) {
+      if (status) status.textContent = "The photo did not save. Try again.";
+      $("#selfie-upload").disabled = false;
+    }
+  };
+}
+
+function startFeed() {
+  clearInterval(feedTimer);
+  feedTimer = setInterval(() => { refreshFeed(); }, 20000);
+}
+
+async function refreshFeed() {
+  if (!state.first) return;
+  try {
+    const data = await post("feed");
+    if (data.needsEmail) return;
+    state.note = data.note || "";
+    state.board = data.board || [];
+    state.posts = data.posts || [];
+    state.closed = !!data.closed;
+    state.winner = data.winner || "";
+    state.selfie = !!data.selfie;
+    const typing = document.activeElement && /TEXTAREA|INPUT/i.test(document.activeElement.tagName);
+    if (typing) return;
+    if (state.tab === "board" || state.tab === "progress") render();
+    else {
+      const note = document.querySelector(".peers");
+      if (note && state.note) note.textContent = state.note;
+      const clock = $("#countdown");
+      if (clock && !state.closed) clock.textContent = `${CLOSE_COPY} ${countdownText(Date.now())}`;
+    }
+  } catch (e) {}
 }
 
 function bindDots() {
@@ -425,29 +708,11 @@ function bindDots() {
       const n = Number(btn.dataset.day);
       if (phase(n) === "locked") { refuseLocked(); render(); return; }
       state.lockNote = "";
-      if (phase(n) === "today") { state.tab = "today"; state.view = null; }
-      else { state.tab = "all"; state.view = n; }
+      state.tab = "today";
+      state.view = null;
       render();
     };
   });
-}
-
-function bindAll() {
-  document.querySelectorAll(".row").forEach((btn) => {
-    btn.onclick = () => {
-      const n = Number(btn.dataset.day);
-      if (phase(n) === "locked") { refuseLocked(); render(); return; }
-      state.lockNote = "";
-      if (phase(n) === "today") { state.tab = "today"; state.view = null; render(); return; }
-      state.view = state.view === n ? null : n;
-      render();
-    };
-  });
-  document.querySelectorAll(".open-day .shot").forEach((shot) => {
-    shot.onclick = () => openShot(shot);
-  });
-  if (state.view) bindReminder(state.view);
-  bindCopies(document.querySelector(".open-day") || document);
 }
 
 function payloadFromState(changeDay, change) {
@@ -466,6 +731,7 @@ function payloadFromState(changeDay, change) {
 function explain(error) {
   if (error.code === "rate") return "Too many tries. Wait a few minutes and try again.";
   if (error.code === "day_locked") return "Finish the current day before moving on.";
+  if (error.code === "email_invalid" || error.code === "email_required") return "Enter a valid email address.";
   if (error.code === "name_invalid" || error.code === "name_required" || error.code === "name_too_long") {
     return "Use a first and last name, letters only, up to 40 characters each.";
   }
@@ -556,7 +822,8 @@ async function boot() {
   $("#sig").textContent = state.plan.signature;
   const who = readWho();
   if (who && who.first && who.last) {
-    await signIn(who.first, who.last, true);
+    if (who.email) $("#email").value = who.email;
+    await signIn(who.first, who.last, who.email || "", true);
   } else {
     show("gate");
   }
@@ -566,15 +833,16 @@ $("#gate-form").onsubmit = async (event) => {
   event.preventDefault();
   const first = $("#first").value;
   const last = $("#last").value;
+  const email = $("#email").value;
   const err = $("#gate-err");
-  if (!first.trim() || !last.trim()) {
-    err.textContent = "Enter a first name and a last name.";
+  if (!first.trim() || !last.trim() || !email.trim()) {
+    err.textContent = "Enter your name and email.";
     return;
   }
   err.textContent = "";
   $("#enter").disabled = true;
   try {
-    await signIn(first.trim(), last.trim(), true);
+    await signIn(first.trim(), last.trim(), email.trim(), true);
   } catch (e) {
     err.textContent = explain(e);
   }

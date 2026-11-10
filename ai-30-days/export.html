@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>AI Bootcamp admin</title>
+<link rel="stylesheet" href="/ai-30-days/portal.css">
+</head>
+<body>
+<header class="bar"><h1 class="bar__title">AI Bootcamp admin</h1></header>
+<main class="shell">
+  <section class="card">
+    <p class="lead">Enter the admin key set as AI30_ADMIN_KEY on Netlify.</p>
+    <label for="key">Admin key</label>
+    <input id="key" type="password" autocomplete="current-password">
+    <button type="button" class="btn" id="csv">Download learner CSV</button>
+    <button type="button" class="btn btn--ghost" id="reset">Reset test leaderboard</button>
+    <p class="err" id="status" role="status"></p>
+    <pre id="result" class="sample__text" hidden></pre>
+  </section>
+</main>
+<script>
+const status = document.querySelector("#status");
+const result = document.querySelector("#result");
+async function call(op) {
+  const res = await fetch("/api/ai-30-days", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ op, adminKey: document.querySelector("#key").value }),
+  });
+  const data = await res.json().catch(() => ({ ok: false }));
+  if (!res.ok || !data.ok) throw new Error(data.error || "request");
+  return data;
+}
+document.querySelector("#csv").onclick = async () => {
+  status.textContent = "";
+  try {
+    const data = await call("export");
+    const blob = new Blob([data.csv], { type: "text/csv" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "ai-bootcamp-learners.csv";
+    link.click();
+    status.textContent = "CSV downloaded.";
+  } catch (e) {
+    status.textContent = "That key did not work.";
+  }
+};
+document.querySelector("#reset").onclick = async () => {
+  if (!window.confirm("Remove Testy and Zztest learners, their points, logins, posts, and selfie flags?")) return;
+  status.textContent = "";
+  try {
+    const data = await call("reset");
+    result.hidden = false;
+    const files = (data.driveFiles || []).join("\n") || "None listed.";
+    result.textContent = `Removed:\n${(data.removed || []).join("\n") || "No one."}\n\nDrive (${data.drive}):\n${files}\n\nDrive files were not deleted.`;
+    status.textContent = "Reset done.";
+  } catch (e) {
+    status.textContent = "That key did not work.";
+  }
+};
+</script>
+</body>
+</html>

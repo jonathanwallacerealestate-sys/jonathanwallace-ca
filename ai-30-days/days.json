@@ -228,7 +228,7 @@
       "minutes": "15 to 20 min",
       "catchUp": true,
       "optional": true,
-      "optionalNote": "If you do not want your AI to have access to your email, that is completely fine. Skip this lesson and tap Done to move to the next lesson.",
+      "optionalNote": "If you do not want your AI to have access to your email, that is completely fine. Skip this lesson and tap I've completed the lesson and the challenge to move to the next lesson.",
       "visual": "inbox",
       "steps": [
         "Connect your AI to your email (Outlook or Gmail).",
@@ -238,7 +238,7 @@
         "If you can't connect it, ask it to give you the text to paste in yourself.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ],
-      "assignment": "Done when your rules are saved as an Inbox SOP and you have run them once and checked what moved (or tapped Done to skip). Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
+      "assignment": "Done when your rules are saved as an Inbox SOP and you have run them once and checked what moved (or tapped I've completed the lesson and the challenge to skip). Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
         "I'm going to teach you how I manage my inbox: how I filter and file, what can be deleted and when, and where things should go. For example, 30 days after a BrokerBay showing is done, archive the request and confirmation. Anything signed back from DocuSign goes into that property's folder. Save this as my Inbox SOP. Show me what you'd move or delete before doing it the first time. Then add these rules to my decision log.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
@@ -346,8 +346,7 @@
       ],
       "assignment": "Done when you have booked one real upcoming appointment this way. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
-        "Put a booking in my calendar for tomorrow's listing appointment at 123 Banana Street with Sam and Priya. It is 2 hours long and I will be coming from my house. Set a reminder for when I need to leave so I have enough driving time.",
-        "Put a booking in my calendar for tomorrow's listing appointment at 123 Banana Street with Sam and Priya Sample. It is 2 hours long and I will be coming from my house. Set a reminder for when I need to leave so I have enough driving time. Then save how I like appointments booked: usual length, reminders, and my home address as the start.",
+        "Book this appointment in my calendar: [what it is] at [address] with [names] on [date and time]. It's [length] long and I'm leaving from [home or office]. Check the drive time and add a reminder for when I need to leave, with 10 minutes to spare. If you can't connect to my calendar, give me the event details and leave-by time so I can add it myself. Then save how I like appointments booked (usual length, reminder timing, where I start from) as a skill called Booking appointments, and read the event back to me so I can check it.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ]
     },
@@ -366,12 +365,12 @@
         "Test it: dictate a note about a real client (a call, a meeting, or a pop-by) and have it log the note.",
         "Ask it about that client afterwards and check that it pulls the note back.",
         "If you can't connect it, ask it to give you the text to paste in yourself.",
+        "This note format is a starting point. Tailor it to how you work and what your CRM needs.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ],
-      "assignment": "Done when one real note is logged and it pulls it back when you ask about that client. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
+      "assignment": "Done when one real note is logged and it pulls it back when asked. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
-        "When I give you a note, keep the specific information about the client and add it as a note on their profile in my CRM, like Follow Up Boss.",
-        "When I give you a note, keep the specific information about the client and add it as a note on their profile in my CRM, like Follow Up Boss. If you are not connected to my CRM, give me the note to paste in. I will dictate a note now. After you log it, I will ask you about that client. Pull the note back so I can check it.",
+        "Create a skill called Client notes. When I dictate a note about a call, meeting or pop-by, turn it into a short CRM note in this format: date, client first name, what happened, key details to remember, and next step with a date. Keep only facts I said, and never add ID, banking or mortgage numbers. If you're connected to my CRM (like Follow Up Boss), add it to that client's profile and to their deal card if they have one. If not, give me the note to paste in. I'll dictate one now. After that, I'll ask you about that client, so pull the note back for me to check.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ]
     },
@@ -384,58 +383,59 @@
       "catchUp": false,
       "visual": "email",
       "steps": [
-        "Unlike re-engaging dead leads, which is for cold leads, this is for people you have already helped. It is about remembering their details.",
-        "Pull up one past client from your database.",
-        "Dictate who they are, how you met, how you helped them on their last transaction, who their kids are, and what house they bought.",
-        "Have it draft an email to them, and give you a few follow-up ideas for that specific client based on your notes.",
-        "Teach this as a skill called Past client follow-up. Ask it to store what you told it about this client so it never has to ask again. Update your CRM notes too. If it is not connected to your CRM, it gives you the note to paste in.",
-        "If you can't connect it, ask it to give you the text to paste in yourself.",
+        "Build a skill that keeps notes on past clients and tracks home anniversaries, birthdays and kids' names.",
+        "Log the note to your CRM, or take the note it gives you to paste in.",
+        "Write 5 text options and 5 email options that show you're thinking of them and offering help, for example a snow removal or roofing contact as winter nears.",
+        "Test it on one real past client.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ],
-      "assignment": "Done when the Past client follow-up skill is saved and one email is drafted and approved. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
+      "assignment": "Done when one past client's dates and details are in your CRM, and you've picked one text or email to send after approving it. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
-        "This is not for cold leads. It is for people I have already helped, and it is about remembering their details. I am going to dictate a past client: who they are, how we met, how I helped on their last sale, who their kids are, and what house they bought. Draft an email to them, and give me a few follow-up ideas for this client based on those notes. Save this as a skill called Past client follow-up. Store what I told you so you never have to ask again, and remind me to update my CRM notes. If you are not connected to my CRM, give me the note to paste in. Do not send the email until I approve.",
+        "Create a skill called Past client care. This is for past clients I've already helped, not cold leads. I'll tell you about one past client: first names, how we met, the home they bought or sold, the closing date, birthdays, kids' names and anything personal they've shared. Track their home anniversary (closing date) and birthdays. Log these details and dates as a note in my CRM (like Follow Up Boss), or give me the note to paste in if you're not connected. Then write 5 short text options and 5 short email options in my style that show I'm thinking of them and ask if they need help with anything. Use the season, for example winter coming and whether they need a snow removal or roofing contact. Ask me for my trusted local trades list first, and never make up a name. Keep only facts I gave you, and never add ID, banking or mortgage numbers. Do not send anything until I approve.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ]
     },
     {
       "day": 15,
       "section": "Calendar, notes and listings",
-      "title": "Listing descriptions and your top 5",
-      "why": "This saves time and energy at every listing. It is also how you turn any repeated task into a saved skill.",
+      "title": "Write listing descriptions in your top 5",
+      "why": "Your listing description is a top 5, the 5 best reasons to buy this home.",
       "minutes": "30 min",
       "catchUp": false,
       "visual": "top5",
       "steps": [
-        "Share your last 20 listing descriptions with your AI, plus your writing style and what you like.",
-        "Dictate a fake property the way you would at a listing appointment, and have it write the top 5 reasons in the Faris Team format.",
-        "Review it, refine it, and save the final version as the template in the skill. It should work whether the details come from Plaud, a voice note, dictation, a text, or an email.",
+        "Paste 3 to 5 descriptions you like.",
+        "Describe a made-up property.",
+        "Edit the draft in plain English.",
+        "Save it as the template.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ],
-      "assignment": "Done when you have used a fake property, dictated the information as you would at a listing appointment, and saved one finished top 5 as the template in the skill. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
+      "assignment": "Done when your Listing writer skill writes a Top 5 you'd post with only light edits. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
-        "I will share listing descriptions I like and how I want a top 5 written. Then I will dictate a fake property the way I would at a listing appointment. Write one finished top 5 in that format. I will review it and tell you what to change. Save the final version as the template in a skill, so a voice note, a Plaud note, a text, or an email can all produce the same kind of top 5.",
+        "Create a skill called Listing writer.\n\nMy listing descriptions use a top 5 format. The top 5 is the listing description, not an extra section. It is the 5 best reasons to buy this home.\n\nHere is the format to follow, even before I share examples:\n\nStart with this exact header, on its own line:\n\nTop 5 Reasons You Will Love This Home:\n\nThen write five numbered points, each on its own line, like this: 1) then 2) then 3) then 4) then 5). Use a number, a closing parenthesis, and a space. Do not use bullets, bold labels, or a short title before each point.\n\nDo not add an intro paragraph before the header. Do not add a call to action, a phone number, a brokerage line, or the word REALTOR® in the description.\n\nEach point is usually one sentence, about 30 to 45 words. A little shorter or longer is fine, but keep each point in the 15 to 65 word range, and the whole description around 150 to 250 words (about 200 is typical).\n\nLead with the strongest reason to buy this home in point 1. That is often the waterfront or lot, a standout garage or shop, a new build or major renovation, the curb appeal, or the lifestyle. Points 2 to 4 cover the supporting reasons, such as the layout and finishes, outdoor living, upgrades and mechanicals, or parking and storage. Point 5 covers location and lifestyle (what is nearby, and drive times only if I give them). End point 5 with the finished square footage in a short factual tag, in this style: 1,420 above grade sq.ft. plus a finished lower level. If I give different floor-area details, use those exact words.\n\nWrite in a warm, polished voice, in second person or focused on the home. Do not write in first person. Stack specific facts rather than vague praise. Connecting phrases that fit this style include showcasing, featuring, complemented by, offering, and highlighted by. Use Canadian spelling (neighbourhood, storey, centre, harbour, armour, metre). Do not use em dashes.\n\nUse only the facts I give you. If you need a detail I did not provide, such as a measurement, a year, a distance, or a feature, mark it [CHECK] instead of inventing it. Prefer specific, checkable facts over unsubstantiated superlatives. Do not promise results or use words like guarantee, investment, or \"will sell quickly.\" If you want to say a neighbourhood is sought-after or that something is rare, mark it [CHECK] unless I said it.\n\nIf I tell you photos were virtually staged, add this exact final line after point 5:\n\n*Please note some images have been virtually staged to show the potential of the home.\n\nI will paste 3 to 5 listing descriptions I like, so you can tweak the style to match them. If I do not have my own yet, use the format above as the starting point.\n\nThen I will describe a made-up property the way I would at a listing appointment, by voice note, dictation, text, or email. Write one top 5 listing description from those details.\n\nShow me the draft, and I will tell you what to change in plain English. When I am happy, save the final version as the template for this skill.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
-      ]
+      ],
+      "sample": "Top 5 Reasons You Will Love This Home:\n1) Thoughtfully updated all-brick bungalow showcasing inviting curb appeal and a fully landscaped lot, with a covered front porch and a walkout from the dining area to a private backyard made for relaxing and entertaining\n2) Enjoy the ease of main-level living with three bedrooms, two bathrooms, and laundry all on one floor, complemented by an open kitchen and living space with a centre island, quartz counters, and a gas fireplace\n3) Extend your living space into the finished lower level, featuring a bright rec room, a fourth bedroom, and a three-piece bathroom, offering a comfortable setup for guests or work-from-home days\n4) Practical extras include an attached double-car garage with interior access, a double paved driveway, and a fully fenced backyard with a new deck and garden shed for storage\n5) Set on a quiet street close to schools, parks, shops, and the waterfront trail, with the hospital and downtown just a short drive away. 1,420 above grade sq.ft. plus a finished lower level."
     },
     {
       "day": 16,
       "section": "Letters and offers",
-      "title": "Letter of Opinion setup",
-      "why": "The template, a few past letters, and your signature live in one folder, and only that folder is shared.",
+      "title": "Make the Letter of Opinion yours",
+      "why": "Turn the ready-made Letter of Opinion template into your own, with your details and your real signature.",
       "minutes": "30 min",
       "catchUp": false,
-      "visual": "drive",
+      "visual": "letter",
       "steps": [
-        "Make one Drive folder for your Letter of Opinion with your Word template and a photo of your signature. Share only that folder, not your whole drive.",
-        "Share 2 or 3 past letters so it learns the format.",
-        "Teach it what goes in: the property, owners (addressed to everyone on title), 3 to 5 sold comparables and 3 to 5 actives, and the opinion range.",
-        "Save it as a Letter of Opinion skill.",
+        "Download the Letter of Opinion template from the kit.",
+        "Sign your name in dark pen on plain white paper and photograph it in good light.",
+        "Run the prompt with the template and your signature photo.",
+        "Check the test PDF: your name, details and signature are in the right spots, and none of the original agent's details are left.",
+        "Fix anything in plain English, such as making the signature a bit smaller or moving your phone number under your name.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ],
-      "assignment": "Done when the skill is saved and it drafts one test letter for a fake property in your format. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
+      "assignment": "Done when you have a test PDF with your name, details and signature that you'd be proud to send. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
-        "Help me set up a Letter of Opinion. I will put a Word template and a signature photo in one Drive folder, and I will share only that folder, not my whole drive. I will also share 2 or 3 past letters so you learn the format. A letter needs the property, the owners (addressed to everyone on title), 3 to 5 sold comparables, 3 to 5 actives, and the opinion range. Save this as a Letter of Opinion skill, then draft one test letter for a fake property in that format. Nothing is final until I approve it.",
+        "I'm attaching the Letter of Opinion template from the kit. It's already built, so keep the layout and wording unless I ask for a change. Take out any name, contact details and signature from the original agent, but keep all the formatting exactly as it is. Put my details in their place: my name is [name], [title, e.g. REALTOR®], [brokerage], [phone], [email], and I work in [areas]. I'm also attaching a photo of my signature, signed in dark pen on plain white paper. Turn it into a clean, smooth digital signature with a transparent background and place it on the signature line of the PDF. Show me the finished letter and ask me what I'd like to change. Make my changes, then save it as a skill called Letter of Opinion. Test it on a made-up property at 123 Banana Street, using made-up comparables clearly marked SAMPLE. Nothing is final until I approve it.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ]
     },

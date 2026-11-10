@@ -16,6 +16,14 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: fixes before the talk
+Why: Jonathan approved five fixes before tonight's talk.
+- The Progress tab no longer refreshes while a selfie preview is on screen or an upload is in progress. Cancel or a finished upload lets the refresh resume.
+- A learner with no finished lesson sees "Welcome in. Finish your first lesson to join the leaderboard." The ahead and behind lines start after the first finished lesson.
+- Jonathan Wallace is left off the public leaderboard and out of the peer comparison. His practice post, and the Zztest Council and Zztest Selfie rows, are removed when the database migration runs.
+- Learners no longer see Remove on the message board. Removing a post is on the admin page only.
+- The resource zip now includes the Letter of Opinion kit, the client email template, the Deal Card kit, Prompts by Area, and a sample one-page Letter of Opinion. Names, phone, email, office address, and brokerage in those files are placeholders. The 30-day checklist is not in the zip.
+
 ### AI bootcamp: comments-style message board
 Why: Jonathan asked for the live message board to read like an Instagram or Facebook comments section.
 - Each note is a row with a round initials avatar, a bold first name and last initial, the note, then a grey line with the relative time, a Learned / Question / Stuck on pill, the lesson title, and Reply. Replies sit indented under the note, and a thread with more than two replies stays collapsed behind View N more replies.

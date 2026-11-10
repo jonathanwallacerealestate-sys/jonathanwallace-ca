@@ -55,6 +55,15 @@ export function isPracticeName(first, last) {
   return collapse(`${first || ""} ${last || ""}`).toLowerCase().startsWith("zztest");
 }
 
+// The host stays off the public leaderboard and out of peer comparisons.
+export function isHost(person) {
+  const first = collapse(person.first || person.first_name || "").toLowerCase();
+  const last = collapse(person.last || person.last_name || "").toLowerCase();
+  const key = collapse(person.key || person.name_key || `${first} ${last}`).toLowerCase();
+  if (key === "jonathan wallace" || (first === "jonathan" && last === "wallace")) return true;
+  return collapse(person.email || "").toLowerCase() === "jonathan@faristeam.ca";
+}
+
 // 8:00 p.m. Eastern on Friday, December 11, 2026. December is UTC-5 in Toronto.
 export const CONTEST_END_ISO = "2026-12-12T01:00:00.000Z";
 export const POST_MAX = 500;
@@ -167,6 +176,7 @@ export function scorePerson(person, posts) {
 }
 
 const PEER_NOTE = {
+  welcome: "Welcome in. Finish your first lesson to join the leaderboard.",
   ahead: "You're ahead of most of your peers learning AI. Keep it going.",
   behind: "You're a little behind your peers learning AI. Today's a good day to catch up.",
   even: "You're right in step with your peers learning AI.",
@@ -211,18 +221,25 @@ function asPerson(row) {
     logins: row.logins || [],
     email: row.email || "",
     practice: isPracticeName(row.first || row.first_name || "", row.last || row.last_name || ""),
+    host: isHost(row),
   };
 }
 
+function onPublicBoard(person) {
+  return !person.practice && !person.host;
+}
+
 // Points decide the order. A tie goes to the person with more lessons completed.
-// Practice names that start with Zztest stay off the board and out of the note.
+// Practice names that start with Zztest, and the host, stay off the board and out of the note.
+// A learner with no finished lesson gets a welcome, not an ahead or behind line.
 export function peerStanding(rows, posts, youKey) {
   const people = (rows || []).map(asPerson).filter((person) => person.key);
   const scored = people.map((person) => ({ ...person, ...scorePerson(person, posts) }));
   const you = scored.find((person) => person.key === youKey);
-  const peers = scored.filter((person) => !person.practice && person.key !== youKey);
-  const tone = peerPlace(you ? you.points : 0, peers.map((person) => person.points));
-  const board = scored.filter((person) => !person.practice).map((person) => ({
+  const peers = scored.filter((person) => onPublicBoard(person) && person.key !== youKey);
+  const youDone = you ? you.done : 0;
+  const tone = youDone < 1 ? "welcome" : peerPlace(you ? you.points : 0, peers.map((person) => person.points));
+  const board = scored.filter(onPublicBoard).map((person) => ({
     name: displayLearner(person.first, person.last),
     points: person.points,
     done: person.done,
@@ -254,8 +271,14 @@ export function lessonTitle(day) {
   return found ? found.title : "";
 }
 
+function hiddenPost(post) {
+  if (isPracticeName(post.first, post.last)) return true;
+  const body = collapse(post.body || "").replace(/[.]+$/, "").toLowerCase();
+  return body === "that was a cool lesson";
+}
+
 export function publicFeed(posts, youKey) {
-  const visible = (posts || []).filter((post) => !isPracticeName(post.first, post.last));
+  const visible = (posts || []).filter((post) => !hiddenPost(post));
   const byId = new Map();
   const top = [];
   for (const post of visible) {

@@ -13,6 +13,18 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[1]
 plan_path = root / "ai-30-days" / "days.json"
 zip_path = root / "ai-30-days" / "kit" / "ai-bootcamp-resources.zip"
+source_dir = root / "ai-30-days" / "kit" / "source"
+FORBIDDEN = (
+    "Jonathan Wallace",
+    "jonathan@faristeam.ca",
+    "705-433-2525",
+    "531 King Street",
+    "Faris Team",
+    "FarisTeam",
+    "1gVOahhpWV00QdTg44BbqIaCOhjplNq1t",
+    "30-Day-Checklist",
+    "\u2014",
+)
 
 
 def safe_name(title):
@@ -57,7 +69,9 @@ def main():
         "Handouts and the copy-paste prompts for each skill.",
         "Open the handout for the skill you are on. The prompts are the words you paste into your AI.",
         "",
-        "The formatted Letter of Opinion file is not in this folder yet. The handout for Make the Letter of Opinion Yours has the prompt and the steps.",
+        "The kits folder has the Letter of Opinion kit, the client email template, the Deal Card kit, and Prompts by Area.",
+        "The sample one-page Letter of Opinion is kits/Letter-of-Opinion-123-Sample-Street-SAMPLE.pdf. The name, phone, email, office address, and brokerage on it are placeholders.",
+        "The handout for Make the Letter of Opinion Yours has the prompt and the steps.",
         "",
         "Skills",
     ]
@@ -74,6 +88,18 @@ def main():
     if "\u2014" in readme_text:
         raise SystemExit("em dash in read me")
     files["read-me.txt"] = readme_text
+    if not source_dir.is_dir():
+        raise SystemExit("missing kit source folder")
+    for path in sorted(source_dir.iterdir()):
+        if not path.is_file():
+            continue
+        if "30-Day-Checklist" in path.name or "Bootcamp-Checklist" in path.name:
+            raise SystemExit("checklist file must stay out of the kit: " + path.name)
+        blob = path.read_bytes()
+        for needle in FORBIDDEN:
+            if needle.encode("utf-8") in blob:
+                raise SystemExit(path.name + " still contains " + needle)
+        files[f"kits/{path.name}"] = blob
     zip_path.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
         for path in sorted(files):

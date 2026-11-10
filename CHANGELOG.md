@@ -16,6 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: name and work address on the letter and the forms
+Why: Jonathan asked the Letter of Opinion lesson to collect a full name and brokerage office address, and the listing paperwork lesson to reuse those details on Form 200 and the RECO forms.
+- Make the Letter of Opinion Yours now asks for the full name and the work address, and tells the AI to save both in the business summary and the decision log.
+- Prep Your Listing Appointment Paperwork has a new step and a copy prompt that fill the agent name and the brokerage address from those saved details. The sample commission figures stay 5% total, 2.5% to the co-operating brokerage, and a 60-day holdover. The kit is rebuilt.
+
 ### AI bootcamp: realistic time on each lesson
 Why: Jonathan asked for an honest time on every lesson for a beginner agent who is new to AI.
 - The steps are the same. The time on the card now matches the work, from about 30 minutes up to 60 to 90 minutes for the long ones, including ten calls, the listing paperwork, the Letter of Opinion, reading an offer, and brand guidelines.

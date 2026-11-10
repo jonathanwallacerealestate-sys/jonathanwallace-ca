@@ -332,7 +332,13 @@ assert.match(selfieFilename("Testy", "Alpha", "2026-11-10T15:00:00.000Z"), /^Tes
 assert.equal(CONTEST_END_ISO, "2026-12-12T01:00:00.000Z");
 assert.match(plan.days.find((day) => day.day === 15).prompts[0], /Create a skill called Listing writer/);
 assert.equal(plan.days.find((day) => day.day === 16).title, "Make the Letter of Opinion Yours");
+assert.match(plan.days.find((day) => day.day === 16).steps.join("\n"), /full name and your work address/);
+assert.match(plan.days.find((day) => day.day === 16).prompts[0], /work address is \[brokerage office address\]/);
+assert.match(plan.days.find((day) => day.day === 16).prompts[0], /standard agent details/);
 assert.doesNotMatch(plan.days.find((day) => day.day === 16).prompts.join("\n"), /whole drive/);
+const paperwork = plan.days.find((day) => day.day === 23);
+assert.match(paperwork.prompts.join("\n"), /5% total, with 2\.5% to the co-operating brokerage, and a 60-day holdover/);
+assert.match(paperwork.prompts.join("\n"), /Fill my name into every agent name field on the Form 200 and RECO forms/);
 
 const repoRoot = fileURLToPath(new URL("..", import.meta.url));
 execFileSync("python3", ["scripts/build_ai30_kit.py"], { cwd: repoRoot });

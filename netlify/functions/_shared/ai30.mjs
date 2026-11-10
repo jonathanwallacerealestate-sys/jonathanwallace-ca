@@ -1,7 +1,8 @@
 // Progress rules for /ai-30-days. Stores only a name, day statuses, notes, and timestamps.
 // The name key is trim + collapsed spaces + lowercase, so "Jane Doe" and "jane  doe" match.
 
-export const DAY_COUNT = 30;
+export const DAY_COUNT = 31;
+export const CURRICULUM = 31;
 export const NOTE_MAX = 2000;
 export const NAME_MAX = 40;
 
@@ -49,7 +50,39 @@ export function doneCount(days) {
 }
 
 export function emptyDays() {
-  return {};
+  return { _curriculum: CURRICULUM };
+}
+
+// Old plans had 30 lessons. Lesson 10 was replaced by two new lessons, so stored
+// numbers from 11 up move forward by one. If old lesson 10 was finished, new
+// lesson 11 is marked finished. Numbers 1 to 9 stay put. Runs once.
+export function migrateCurriculum(days) {
+  const src = days && typeof days === "object" ? days : {};
+  if (src._curriculum === CURRICULUM) return src;
+  const next = { _curriculum: CURRICULUM };
+  const copy = (from, to) => {
+    const slot = src[String(from)];
+    if (slot && typeof slot === "object") next[String(to)] = slot;
+  };
+  for (let n = 1; n <= 9; n += 1) copy(n, n);
+  if (src["10"] && src["10"].done === true) copy(10, 11);
+  for (let n = 11; n <= 30; n += 1) copy(n, n + 1);
+  return next;
+}
+
+export function stampCurriculum(days) {
+  const next = lessonMap(days);
+  next._curriculum = CURRICULUM;
+  return next;
+}
+
+export function lessonMap(days) {
+  const out = {};
+  const src = days && typeof days === "object" ? days : {};
+  for (let n = 1; n <= DAY_COUNT; n += 1) {
+    if (src[String(n)] && typeof src[String(n)] === "object") out[String(n)] = src[String(n)];
+  }
+  return out;
 }
 
 // Forward only. A day can be marked done only after every earlier day is done.
@@ -85,7 +118,7 @@ export function applyProgress(existing, incoming, nowIso) {
 }
 
 export function publicRecord(person, row) {
-  const days = row && row.days && typeof row.days === "object" ? row.days : {};
+  const days = lessonMap(row && row.days);
   const createdAt = row && row.createdAt ? row.createdAt : new Date().toISOString();
   const updatedAt = row && row.updatedAt ? row.updatedAt : createdAt;
   return {

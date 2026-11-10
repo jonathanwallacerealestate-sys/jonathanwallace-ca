@@ -3,7 +3,7 @@ import { createServer } from "node:http";
 import { readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
 import { dirname, extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
-import { applyProgress, normalizePerson, publicRecord, recordFromRow } from "../netlify/functions/_shared/ai30.mjs";
+import { applyProgress, migrateCurriculum, normalizePerson, publicRecord, recordFromRow, stampCurriculum } from "../netlify/functions/_shared/ai30.mjs";
 import { buildIcs, parseWhen } from "../netlify/functions/_shared/ics.mjs";
 import plan from "../ai-30-days/days.json" with { type: "json" };
 
@@ -59,20 +59,27 @@ const server = createServer(async (req, res) => {
     const store = loadStore();
     const existing = store[person.key] ? recordFromRow(store[person.key]) : null;
     if (body.op === "load") {
-      const row = existing || { first_name: person.first, last_name: person.last, days: {}, created_at: new Date().toISOString(), updated_at: new Date().toISOString() };
-      store[person.key] = { ...row, first_name: person.first, last_name: person.last, updated_at: new Date().toISOString(), created_at: row.createdAt || row.created_at };
-      if (!store[person.key].days) store[person.key].days = {};
+      const migrated = migrateCurriculum(existing ? existing.days : {});
+      const created = existing && existing.createdAt ? existing.createdAt : new Date().toISOString();
+      store[person.key] = {
+        first_name: person.first,
+        last_name: person.last,
+        days: migrated,
+        created_at: created,
+        updated_at: new Date().toISOString(),
+      };
       saveStore(store);
       return send(res, 200, JSON.stringify(publicRecord(person, recordFromRow(store[person.key]))));
     }
     if (body.op === "save") {
-      const applied = applyProgress(existing, body, new Date().toISOString());
+      const stored = existing ? { ...existing, days: migrateCurriculum(existing.days) } : null;
+      const applied = applyProgress(stored, body, new Date().toISOString());
       if (!applied.ok) return send(res, 400, JSON.stringify({ ok: false, error: applied.error, day: applied.day }));
       const created = existing && existing.createdAt ? existing.createdAt : new Date().toISOString();
       store[person.key] = {
         first_name: person.first,
         last_name: person.last,
-        days: applied.days,
+        days: stampCurriculum(applied.days),
         created_at: created,
         updated_at: new Date().toISOString(),
       };

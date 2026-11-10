@@ -6,12 +6,12 @@
   "pacing": {
     "1-9": "15 to 20 min",
     "10-20": "30 min",
-    "21-30": "30 to 45 min"
+    "21-31": "30 to 45 min"
   },
   "catchUpDays": [
     7,
-    16,
-    24
+    17,
+    25
   ],
   "note": "Each person's Lesson 1 starts when they first sign in. There is no shared calendar.",
   "sections": [
@@ -21,63 +21,71 @@
       "days": [
         1,
         7
-      ]
+      ],
+      "summary": "Set up your AI and teach it your business, write in your voice, build brand guidelines, hand off the tasks you hate, re-engage dead leads, and keep a decision log."
     },
     {
       "id": "clients",
       "title": "Clients and social",
       "days": [
         8,
-        10
-      ]
+        11
+      ],
+      "summary": "Ask for reviews, plan your social media, and create your first posts."
     },
     {
-      "id": "tools",
-      "title": "Connect your tools",
+      "id": "calendar",
+      "title": "Calendar, notes and listings",
       "days": [
-        11,
-        14
-      ]
+        12,
+        15
+      ],
+      "summary": "Use your calendar, keep notes, stay in touch with past clients, and write listing descriptions."
     },
     {
       "id": "letters",
       "title": "Letters and offers",
       "days": [
-        15,
-        18
-      ]
+        16,
+        19
+      ],
+      "summary": "Write Letters of Opinion, read an offer, and track deal deadlines."
     },
     {
       "id": "deals",
       "title": "Deal card",
       "days": [
-        19,
-        21
-      ]
+        20,
+        22
+      ],
+      "summary": "Build deal cards and make your lead calls."
     },
     {
       "id": "advanced",
       "title": "Advanced",
       "days": [
-        22,
-        23
-      ]
+        23,
+        24
+      ],
+      "summary": "Prep listing paperwork and book showings."
     },
     {
       "id": "list",
       "title": "Your list",
       "days": [
-        24,
-        29
-      ]
+        25,
+        30
+      ],
+      "summary": "Turn the jobs you hate into saved skills, one task at a time."
     },
     {
       "id": "review",
       "title": "Review",
       "days": [
-        30,
-        30
-      ]
+        31,
+        31
+      ],
+      "summary": "Review every lesson and write down your next step."
     }
   ],
   "days": [
@@ -181,7 +189,7 @@
         "Ask your AI to research ways to re-engage dead leads by text and by email, and the best practices for both.",
         "Explain your situation: you have leads in your database who went quiet.",
         "Give it a couple of examples (real or mock).",
-        "Create a skill: you give it a person's details, it gives you 5 text options, or 5 email options if that is where they want to be met, to re-engage them into a conversation about buying or selling.",
+        "Create a skill (a saved set of steps your AI can repeat): you give it a person's details, it gives you 5 text options, or 5 email options if that is where they want to be met, to re-engage them into a conversation about buying or selling.",
         "Ask it to save the skill.",
         "Ask it to save what you set up today."
       ],
@@ -204,12 +212,12 @@
         "Have your AI set up the columns: date, area (for example email, texts, leads), the decision or SOP, and the reason.",
         "Add everything from Lessons 1 to 5: your business summary, Email writing SOP, brand guidelines, hated-task list, and re-engagement skill.",
         "Practise the closing prompt. From this lesson on, it is the last step of every lesson.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
       "assignment": "Done when your decision log exists, holds everything from Lessons 1 to 5, and your AI can read it back to you.",
       "prompts": [
         "Help me set up a decision log as a spreadsheet with columns for date, area, decision or SOP, and reason. Add everything we've decided so far. From now on, read it at the start of our work so you don't need retraining. At the end of every chat, add any new decisions and SOPs to it.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
@@ -227,12 +235,13 @@
         "Teach it how you like emails filtered and filed, how and when they can be deleted, and where they can be moved.",
         "Set one or two standing rules. Examples: 30 days after a BrokerBay showing is done, its request and confirmation emails are archived or deleted. Anything that comes back signed from DocuSign is filed in a folder for that property, checked once a day.",
         "Add your inbox rules to your decision log.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "If you can't connect it, ask it to give you the text to paste in yourself.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
       "assignment": "Done when your rules are saved as an Inbox SOP and you have run them once and checked what moved (or tapped Done to skip).",
       "prompts": [
         "I'm going to teach you how I manage my inbox: how I filter and file, what can be deleted and when, and where things should go. For example, 30 days after a BrokerBay showing is done, archive the request and confirmation. Anything signed back from DocuSign goes into that property's folder. Save this as my Inbox SOP. Show me what you'd move or delete before doing it the first time. Then add these rules to my decision log.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
@@ -247,13 +256,13 @@
         "Teach your AI how you like to request reviews: where (for example Google), your review links, and what you would like to say.",
         "Have it build a text template and an email template, and save them.",
         "When a deal is done, use the short prompt for a text, then ask for the same message by email.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
-      "assignment": "Send one text and one email requesting a review from a client on a property you have sold this year.",
+      "assignment": "Done when you have sent one text and one email requesting a review from a client on a property you have sold this year.",
       "prompts": [
         "I am going to tell you how I like to ask for reviews: where (for example Google), my review link, and the words I like. Build a text template and an email template and save them.\n\nWhen I say something like \"Hey, I just did a deal with [client]. We just sold 123 Banana Street. I want to send it via text,\" give me the message with my review link, based on my text template. Do the same when I ask for email. Do not send anything until I approve.",
         "Hey, I just did a deal with [client]. We just sold 123 Banana Street. I want to send it via text. Give me the message with my review link, based on my text template.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
@@ -266,39 +275,62 @@
       "visual": "instagram",
       "steps": [
         "Find at least 10 social media posts you like the style of.",
-        "For each one, copy the link (the post's URL) and paste it into your AI chat.",
+        "For each one, take a screenshot and share it with your AI. Screenshots work better than links.",
         "Tell it what you like about them.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
-      "assignment": "Have your AI create one new version of one of the posts you shared, run through your brand guidelines.",
+      "assignment": "Done when your AI has created one new version of one of the posts you shared, run through your brand guidelines.",
       "prompts": [
-        "I am going to paste links to at least 10 social posts I like the style of, and say what I like about each. When I have shared them, create one new version of one of those posts for my business, and run it through the brand guidelines we've created. Do not publish it.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "I am going to share screenshots of at least 10 social posts I like the style of, and say what I like about each. When I have shared them, create one new version of one of those posts for my business, and run it through the brand guidelines we've created. Do not publish it.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
       "day": 10,
       "section": "Clients and social",
-      "title": "Post, then schedule two more",
-      "why": "One live post, plus two more waiting, is a rhythm you can keep.",
+      "title": "Plan your social media strategy",
+      "why": "A simple plan you'll actually follow beats random posting.",
       "minutes": "30 min",
       "catchUp": false,
       "visual": "scheduled",
       "steps": [
-        "Publish the post you made on Lesson 9 (or a local food spot or community moment), after you approve it.",
-        "Draft two more posts using your brand guidelines.",
-        "Schedule them, or set a reminder to post them if you have no scheduler.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Decide how many posts you will make each week, and which channels you will use.",
+        "Get the sizes: feed posts and carousels are 4:5 (1080 × 1350). Reels and Stories are 9:16 (1080 × 1920).",
+        "Brainstorm your first 30 days of posts at that pace.",
+        "Stay away from Just Listed, Just Sold and Open House. Mix in neighbourhood events, neighbour highlights, restaurant reviews, things to do on the weekend, Top 10 things to get your home ready for sale, and 5 things that will lose you $10,000 or more in negotiations.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
-      "assignment": "Done when one post is live and two more are scheduled (or reminders set).",
+      "assignment": "Done when you have a written 30-day posting calendar with date, channel, size and topic for each post.",
       "prompts": [
-        "Help me publish the post from yesterday, or a local food spot or community moment, after I approve the words. Then draft two more posts using my brand guidelines. Tell me how to schedule them, or set reminders if I have no scheduler. Do not publish anything until I approve.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Help me plan my social media strategy. First ask me how many posts a week I want to make and which channels I'll post on (for example Instagram, Facebook, LinkedIn). Then give me the right size for each: 4:5 (1080 × 1350) for feed posts and carousels, and 9:16 (1080 × 1920) for Reels and Stories. Next, brainstorm my first 30 days of posts at that pace, using my brand guide. Avoid Just Listed, Just Sold and Open House posts. Mix in local events, neighbour highlights, restaurant reviews, things to do on the weekend, and helpful seller tips like \"Top 10 things to get your home ready for sale\" and \"5 mistakes that can cost you $10,000 or more in negotiations.\" Give it to me as a simple calendar table with date, channel, size, topic and a one-line hook. Ask me questions one at a time.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
       "day": 11,
-      "section": "Connect your tools",
+      "section": "Clients and social",
+      "title": "Create your first three posts",
+      "why": "Turn your best ideas into posts that look like you.",
+      "minutes": "30 min",
+      "catchUp": false,
+      "visual": "instagram",
+      "steps": [
+        "Pick your top 3 ideas from the Lesson 10 brainstorm and workshop them.",
+        "Show it visual examples you like (carousels, images, lists). Screenshots work best.",
+        "Have it recreate what you like through the lens of your brand guidelines.",
+        "Ask for changes in plain English.",
+        "If you built a template you'll reuse, save it as an SOP.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
+      ],
+      "assignment": "Done when three posts are finished and approved by you, and any reusable template is saved as an SOP.",
+      "prompts": [
+        "Let's create my first three posts from my Lesson 10 brainstorm. Help me pick and sharpen my top 3 ideas. I'll share screenshots of posts I like, such as carousels, images and lists. Recreate the style I like using my brand guide: my fonts, colours, headshot and logo. Use the right size for each channel from my plan. Show me one post at a time, and I'll tell you what to change in plain English. If we build a template I'll reuse, save it as an SOP with the steps, sizes and an example.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
+      ]
+    },
+    {
+      "day": 12,
+      "section": "Calendar, notes and listings",
       "title": "Book appointments into your calendar",
       "why": "Say it once out loud and it is booked, with travel time built in.",
       "minutes": "30 min",
@@ -309,18 +341,19 @@
         "Dictate a booking with the sample prompt.",
         "Check the event, the location, and the leave-by reminder.",
         "Save how you like appointments booked (length, reminders, home address as the start) as a skill.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "If you can't connect it, ask it to give you the text to paste in yourself.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
-      "assignment": "Book one real upcoming appointment this way.",
+      "assignment": "Done when you have booked one real upcoming appointment this way.",
       "prompts": [
         "Put a booking in my calendar for tomorrow's listing appointment at 123 Banana Street with Sam and Priya. It is 2 hours long and I will be coming from my house. Set a reminder for when I need to leave so I have enough driving time.",
         "Put a booking in my calendar for tomorrow's listing appointment at 123 Banana Street with Sam and Priya Sample. It is 2 hours long and I will be coming from my house. Set a reminder for when I need to leave so I have enough driving time. Then save how I like appointments booked: usual length, reminders, and my home address as the start.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
-      "day": 12,
-      "section": "Connect your tools",
+      "day": 13,
+      "section": "Calendar, notes and listings",
       "title": "Teach it how you keep notes",
       "why": "Once it knows how you take notes, every call, meeting, or pop-by gets logged without you typing.",
       "minutes": "30 min",
@@ -332,18 +365,19 @@
         "If your AI is not connected to your CRM, have it give you the note to paste in.",
         "Test it: dictate a note about a real client (a call, a meeting, or a pop-by) and have it log the note.",
         "Ask it about that client afterwards and check that it pulls the note back.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "If you can't connect it, ask it to give you the text to paste in yourself.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
       "assignment": "Done when one real note is logged and it pulls it back when you ask about that client.",
       "prompts": [
         "When I give you a note, keep the specific information about the client and add it as a note on their profile in my CRM, like Follow Up Boss.",
         "When I give you a note, keep the specific information about the client and add it as a note on their profile in my CRM, like Follow Up Boss. If you are not connected to my CRM, give me the note to paste in. I will dictate a note now. After you log it, I will ask you about that client. Pull the note back so I can check it.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
-      "day": 13,
-      "section": "Connect your tools",
+      "day": 14,
+      "section": "Calendar, notes and listings",
       "title": "Stay in touch with past clients",
       "why": "Past clients are your best source of repeat and referral business, and your AI can remember the details you cannot.",
       "minutes": "30 min",
@@ -355,17 +389,18 @@
         "Dictate who they are, how you met, how you helped them on their last transaction, who their kids are, and what house they bought.",
         "Have it draft an email to them, and give you a few follow-up ideas for that specific client based on your notes.",
         "Teach this as a skill called Past client follow-up. Ask it to store what you told it about this client so it never has to ask again. Update your CRM notes too. If it is not connected to your CRM, it gives you the note to paste in.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "If you can't connect it, ask it to give you the text to paste in yourself.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
       "assignment": "Done when the Past client follow-up skill is saved and one email is drafted and approved.",
       "prompts": [
         "This is not for cold leads. It is for people I have already helped, and it is about remembering their details. I am going to dictate a past client: who they are, how we met, how I helped on their last sale, who their kids are, and what house they bought. Draft an email to them, and give me a few follow-up ideas for this client based on those notes. Save this as a skill called Past client follow-up. Store what I told you so you never have to ask again, and remind me to update my CRM notes. If you are not connected to my CRM, give me the note to paste in. Do not send the email until I approve.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
-      "day": 14,
-      "section": "Connect your tools",
+      "day": 15,
+      "section": "Calendar, notes and listings",
       "title": "Listing descriptions and your top 5",
       "why": "This saves time and energy at every listing. It is also how you turn any repeated task into a saved skill.",
       "minutes": "30 min",
@@ -375,16 +410,16 @@
         "Share your last 20 listing descriptions with your AI, plus your writing style and what you like.",
         "Dictate a fake property the way you would at a listing appointment, and have it write the top 5 reasons in the Faris Team format.",
         "Review it, refine it, and save the final version as the template in the skill. It should work whether the details come from Plaud, a voice note, dictation, a text, or an email.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
-      "assignment": "Use a fake property. Dictate all the information as you would at a listing appointment, have it create one finished top 5 as your template, refine it, and save that final version in the skill.",
+      "assignment": "Done when you have used a fake property, dictated the information as you would at a listing appointment, and saved one finished top 5 as the template in the skill.",
       "prompts": [
         "I will share listing descriptions I like and how I want a top 5 written. Then I will dictate a fake property the way I would at a listing appointment. Write one finished top 5 in that format. I will review it and tell you what to change. Save the final version as the template in a skill, so a voice note, a Plaud note, a text, or an email can all produce the same kind of top 5.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
-      "day": 15,
+      "day": 16,
       "section": "Letters and offers",
       "title": "Letter of Opinion setup",
       "why": "The template, a few past letters, and your signature live in one folder, and only that folder is shared.",
@@ -396,16 +431,16 @@
         "Share 2 or 3 past letters so it learns the format.",
         "Teach it what goes in: the property, owners (addressed to everyone on title), 3 to 5 sold comparables and 3 to 5 actives, and the opinion range.",
         "Save it as a Letter of Opinion skill.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
       "assignment": "Done when the skill is saved and it drafts one test letter for a fake property in your format.",
       "prompts": [
         "Help me set up a Letter of Opinion. I will put a Word template and a signature photo in one Drive folder, and I will share only that folder, not my whole drive. I will also share 2 or 3 past letters so you learn the format. A letter needs the property, the owners (addressed to everyone on title), 3 to 5 sold comparables, 3 to 5 actives, and the opinion range. Save this as a Letter of Opinion skill, then draft one test letter for a fake property in that format. Nothing is final until I approve it.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
-      "day": 16,
+      "day": 17,
       "section": "Letters and offers",
       "title": "Practise, then time a real letter",
       "why": "A past address is a safe rehearsal. The timed letter shows you what a real one costs in minutes.",
@@ -416,16 +451,16 @@
         "Practise on a past address: give it the solds and actives you used.",
         "Then draft a real letter and time it.",
         "You approve before anyone sees it.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
       "assignment": "Done when you have one practice letter and one real draft, with the time it took written down.",
       "prompts": [
         "We are going to write a Letter of Opinion from my skill. First, practise on a past address. I will give you the solds and actives I used. Then draft a real letter and I will time it. Nothing goes out until I approve it.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
-      "day": 17,
+      "day": 18,
       "section": "Letters and offers",
       "title": "Read an offer: the Coles Notes",
       "why": "Offers are long. Your client needs the key points, fast and clearly.",
@@ -433,21 +468,21 @@
       "catchUp": false,
       "visual": "coles",
       "steps": [
-        "Teach your AI how to read an Agreement of Purchase and Sale (APS).",
-        "Give it some mock signbacks so it gets a feel for what they look like.",
+        "Teach your AI how to read an Agreement of Purchase and Sale (APS), the contract used to buy a home in Ontario.",
+        "Give it some mock signbacks so it gets a feel for what they look like. A signback is the offer sent back with changes.",
         "Teach it to read the Confirmation of Acceptance so it knows when an offer has been accepted.",
         "Give it guidelines on what is relevant to share with a client (price, deposit, conditions and their dates, closing date, inclusions and exclusions) so it does not repeat the whole agreement.",
         "Save it as a skill.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
-      "assignment": "Run one mock offer and have it draft the Coles Notes email as if to a client, but send it to yourself so you can see the highlights it picks.",
+      "assignment": "Done when you have run one mock offer and it has drafted the Coles Notes email as if to a client, sent to you so you can see the highlights it picks.",
       "prompts": [
         "Learn how to read an Agreement of Purchase and Sale. I will give you mock signbacks and a Confirmation of Acceptance so you can tell when an offer is accepted. Share only what a client needs: price, deposit, conditions and their dates, closing date, and inclusions or exclusions. Do not repeat the whole agreement. Save this as a skill. Then run one mock offer and draft the Coles Notes as an email to the client, but address it to me so I can check the highlights. Do not send it to the client.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
-      "day": 18,
+      "day": 19,
       "section": "Letters and offers",
       "title": "Deal deadline tracker",
       "why": "Missing a condition date or a title search date is costly. Let your AI put every date in your calendar.",
@@ -458,16 +493,16 @@
         "From an accepted APS, teach your AI to find the conditional dates, the title search date, and the closing date.",
         "Have it add each date as a calendar event, with a reminder a few days before.",
         "Save it as a skill.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
-      "assignment": "Run it on a mock or recent accepted offer and check that every date landed in your calendar.",
+      "assignment": "Done when you have run it on a mock or recent accepted offer and every date has landed in your calendar.",
       "prompts": [
         "From an accepted Agreement of Purchase and Sale, find the conditional dates, the title search date, and the closing date. Add each one to my calendar with a reminder a few days before. Save this as a skill. I will give you a mock or recent accepted offer. After you add the dates, list them so I can check every one.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
-      "day": 19,
+      "day": 20,
       "section": "Deal card",
       "title": "Deal card setup",
       "why": "One card per person keeps the next step where you can see it.",
@@ -478,36 +513,36 @@
         "Choose the fields: name, phone, what they want, last touch, next step, the date, and a link to the CRM profile.",
         "Have your AI build one blank card and one filled example.",
         "Save the layout as a skill so every new lead starts the same way.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
       "assignment": "Done when you have one blank card, one filled example, and the layout saved as a skill.",
       "prompts": [
         "Help me set up a simple deal card I can reuse for each lead: name, phone, what they want, last touch, next step, the date, and a link to the CRM profile. Show me one blank card and one filled example with a fictional lead. Save the layout as a skill.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
-      "day": 20,
+      "day": 21,
       "section": "Deal card",
       "title": "Ten leads, then make the calls",
       "why": "The card only matters if you pick up the phone.",
-      "minutes": "30 min",
+      "minutes": "30 to 45 min",
       "catchUp": false,
       "visual": "calls",
       "steps": [
         "Pick 10 leads and make a deal card for each.",
         "Use your Lesson 5 re-engagement skill for the openers.",
         "Make the calls yourself. Your AI does not contact anyone. Write a one-line note for each call.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
       "assignment": "Done when 10 cards are made, every call is dialled, and there is a one-line note for each.",
       "prompts": [
         "I am going to name 10 leads. For each one, make a deal card and a short call opener using my re-engagement skill from Lesson 5. I will make the calls. Do not contact anyone yourself. I will give you a one-line note after each call.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
-      "day": 21,
+      "day": 22,
       "section": "Deal card",
       "title": "Paste the notes, then the next 10",
       "why": "The notes you bring back are what make the next list sharper.",
@@ -518,16 +553,16 @@
         "Paste the notes from the calls you just made and update each card.",
         "Set up the next 10 the same way.",
         "Set a repeating calendar reminder three times a week.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
       "assignment": "Done when notes are pasted, the next 10 cards are built, and the repeating reminder is in your calendar.",
       "prompts": [
         "I am pasting notes from the calls I just made. Update each deal card. Then set up the next 10 the same way. Set a repeating calendar reminder three times a week.\n\n[paste your call notes]",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
-      "day": 22,
+      "day": 23,
       "section": "Advanced",
       "title": "Prep your listing appointment paperwork",
       "why": "The forms you print for every listing appointment can be ready in a minute.",
@@ -535,20 +570,20 @@
       "catchUp": false,
       "visual": "forms",
       "steps": [
-        "In WEBForms, build your blank masters yourself: the RECO guide, and a listing agreement with your standard Schedule A, saved as editable PDFs.",
-        "Pre-fill your standard terms in the master: commission 5% total with 2.5% to the co-operating brokerage, and a 60-day holdover.",
+        "In WEBForms (the online system for Ontario real estate forms), build your blank masters yourself: the RECO guide, and a listing agreement with your standard Schedule A (the extra page of terms on the listing agreement), saved as editable PDFs.",
+        "Pre-fill your standard terms in the master: commission 5% total with 2.5% to the co-operating brokerage, and a 60-day holdover (the period after the listing ends when a commission can still be owed).",
         "Teach your AI to turn a GeoWarehouse report into a ready-to-fill details sheet: owner names, address and property details, postal code checked on Google, listing start date and number of days.",
         "Save it as a skill.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
       "assignment": "Done when the details sheet for a fake property comes out in about a minute and you fill your PDFs from it.",
       "prompts": [
         "I build the blank masters myself in WEBForms: the RECO guide, and a listing agreement with my standard Schedule A, saved as editable PDFs. My standard terms are commission 5% total, with 2.5% to the co-operating brokerage, and a 60-day holdover. When I give you a GeoWarehouse report, turn it into a ready-to-fill details sheet: owner names, address and property details, postal code checked on Google, and where the listing start date and the number of days go. Save this as a skill. Then make the details sheet for a fake property. I fill the PDFs myself.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
-      "day": 23,
+      "day": 24,
       "section": "Advanced",
       "title": "Book showings in BrokerBay",
       "why": "Showings are repetitive and easy to hand off once it knows your rules.",
@@ -561,158 +596,158 @@
         "It drafts the note to your client. You approve before it goes.",
         "Teach it how you cancel a showing too.",
         "Save it as a Showings SOP.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
       "assignment": "Done when one mock showing is planned and booked by you, and the client note and cancellation note are saved in the Showings SOP.",
       "prompts": [
         "Learn how I book showings. Ask which time windows I will take, and always check Google Maps first for the route and drive time between showings. Plan one mock showing on one of my listings and draft the request details. I will book it in BrokerBay myself. Draft the note to my client and wait for my approval before it goes out. Also learn how I cancel a showing. Save the client note and the cancellation note in a Showings SOP.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
-      ]
-    },
-    {
-      "day": 24,
-      "section": "Your list",
-      "title": "Teach your next task",
-      "why": "Work the next easiest task on the list you ranked on Lesson 4, one at a time.",
-      "minutes": "30 to 45 min",
-      "catchUp": true,
-      "visual": "tasks",
-      "steps": [
-        "Pick the next easiest task on your ranked list from Lesson 4.",
-        "Teach it one step at a time.",
-        "Test it on one real example.",
-        "Save it as a skill or SOP.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
-      ],
-      "assignment": "Done when that task is saved as a skill and tested once. If your list runs out, use the bonus keep-going ideas.",
-      "prompts": [
-        "Look at my ranked list from Lesson 4 and take the next easiest task we have not taught yet. Teach it with me, one step at a time. We will test it on one real example, then save it as a skill or SOP. If my list has run out, say so and use a keep-going idea. Before we close, add every decision and SOP we made in this chat to my decision log.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
       "day": 25,
       "section": "Your list",
-      "title": "Teach your second task",
-      "why": "Work the next easiest task on the list you ranked on Lesson 4, one at a time.",
+      "title": "Your list: task 1",
+      "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "30 to 45 min",
-      "catchUp": false,
+      "catchUp": true,
       "visual": "tasks",
       "steps": [
-        "Pick the next easiest task still left on your ranked list from Lesson 4.",
-        "Teach it one step at a time.",
-        "Test it on one real example.",
-        "Save it as a skill or SOP.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Open your Lesson 4 brain dump and take the next easiest task.",
+        "Teach it start to finish. One task this lesson, with no drifting.",
+        "Test it on a real example.",
+        "Save it as a skill.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
-      "assignment": "Done when that task is saved as a skill and tested once. If your list runs out, use the bonus keep-going ideas.",
+      "assignment": "Done when that task runs as a saved skill and you've tested it once.",
       "prompts": [
-        "Look at my ranked list from Lesson 4 and take the next easiest task we have not taught yet. Teach it with me, one step at a time. We will test it on one real example, then save it as a skill or SOP. If my list has run out, say so and use a keep-going idea. Before we close, add every decision and SOP we made in this chat to my decision log.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Here is my list of tasks I hate from Lesson 4 [paste it]. Take the next easiest one that we haven't done yet. Ask me questions one at a time until you understand how I do it today. Then do it for me once using a real example, and I'll tell you what to change in plain English. When I'm happy, save it as a skill with clear steps so you can repeat it every time.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
       "day": 26,
       "section": "Your list",
-      "title": "Teach your third task",
-      "why": "Work the next easiest task on the list you ranked on Lesson 4, one at a time.",
+      "title": "Your list: task 2",
+      "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "30 to 45 min",
       "catchUp": false,
       "visual": "sop",
       "steps": [
-        "Pick the next easiest task still left on your ranked list from Lesson 4.",
-        "Teach it one step at a time.",
-        "Test it on one real example.",
-        "Save it as a skill or SOP.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Open your Lesson 4 brain dump and take the next easiest task.",
+        "Teach it start to finish. One task this lesson, with no drifting.",
+        "Test it on a real example.",
+        "Save it as a skill.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
-      "assignment": "Done when that task is saved as a skill and tested once. If your list runs out, use the bonus keep-going ideas.",
+      "assignment": "Done when that task runs as a saved skill and you've tested it once.",
       "prompts": [
-        "Look at my ranked list from Lesson 4 and take the next easiest task we have not taught yet. Teach it with me, one step at a time. We will test it on one real example, then save it as a skill or SOP. If my list has run out, say so and use a keep-going idea. Before we close, add every decision and SOP we made in this chat to my decision log.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Here is my list of tasks I hate from Lesson 4 [paste it]. Take the next easiest one that we haven't done yet. Ask me questions one at a time until you understand how I do it today. Then do it for me once using a real example, and I'll tell you what to change in plain English. When I'm happy, save it as a skill with clear steps so you can repeat it every time.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
       "day": 27,
       "section": "Your list",
-      "title": "Teach your fourth task",
-      "why": "Work the next easiest task on the list you ranked on Lesson 4, one at a time.",
+      "title": "Your list: task 3",
+      "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "30 to 45 min",
       "catchUp": false,
       "visual": "sop",
       "steps": [
-        "Pick the next easiest task still left on your ranked list from Lesson 4.",
-        "Teach it one step at a time.",
-        "Test it on one real example.",
-        "Save it as a skill or SOP.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Open your Lesson 4 brain dump and take the next easiest task.",
+        "Teach it start to finish. One task this lesson, with no drifting.",
+        "Test it on a real example.",
+        "Save it as a skill.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
-      "assignment": "Done when that task is saved as a skill and tested once. If your list runs out, use the bonus keep-going ideas.",
+      "assignment": "Done when that task runs as a saved skill and you've tested it once.",
       "prompts": [
-        "Look at my ranked list from Lesson 4 and take the next easiest task we have not taught yet. Teach it with me, one step at a time. We will test it on one real example, then save it as a skill or SOP. If my list has run out, say so and use a keep-going idea. Before we close, add every decision and SOP we made in this chat to my decision log.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Here is my list of tasks I hate from Lesson 4 [paste it]. Take the next easiest one that we haven't done yet. Ask me questions one at a time until you understand how I do it today. Then do it for me once using a real example, and I'll tell you what to change in plain English. When I'm happy, save it as a skill with clear steps so you can repeat it every time.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
       "day": 28,
       "section": "Your list",
-      "title": "Teach your fifth task",
-      "why": "Work the next easiest task on the list you ranked on Lesson 4, one at a time.",
+      "title": "Your list: task 4",
+      "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "30 to 45 min",
       "catchUp": false,
       "visual": "sop",
       "steps": [
-        "Pick the next easiest task still left on your ranked list from Lesson 4.",
-        "Teach it one step at a time.",
-        "Test it on one real example.",
-        "Save it as a skill or SOP.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Open your Lesson 4 brain dump and take the next easiest task.",
+        "Teach it start to finish. One task this lesson, with no drifting.",
+        "Test it on a real example.",
+        "Save it as a skill.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
-      "assignment": "Done when that task is saved as a skill and tested once. If your list runs out, use the bonus keep-going ideas.",
+      "assignment": "Done when that task runs as a saved skill and you've tested it once.",
       "prompts": [
-        "Look at my ranked list from Lesson 4 and take the next easiest task we have not taught yet. Teach it with me, one step at a time. We will test it on one real example, then save it as a skill or SOP. If my list has run out, say so and use a keep-going idea. Before we close, add every decision and SOP we made in this chat to my decision log.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Here is my list of tasks I hate from Lesson 4 [paste it]. Take the next easiest one that we haven't done yet. Ask me questions one at a time until you understand how I do it today. Then do it for me once using a real example, and I'll tell you what to change in plain English. When I'm happy, save it as a skill with clear steps so you can repeat it every time.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
       "day": 29,
       "section": "Your list",
-      "title": "Teach your sixth task",
-      "why": "Work the next easiest task on the list you ranked on Lesson 4, one at a time.",
+      "title": "Your list: task 5",
+      "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "30 to 45 min",
       "catchUp": false,
       "visual": "sop",
       "steps": [
-        "Pick the next easiest task still left on your ranked list from Lesson 4.",
-        "Teach it one step at a time.",
-        "Test it on one real example.",
-        "Save it as a skill or SOP.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Open your Lesson 4 brain dump and take the next easiest task.",
+        "Teach it start to finish. One task this lesson, with no drifting.",
+        "Test it on a real example.",
+        "Save it as a skill.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
-      "assignment": "Done when that task is saved as a skill and tested once. If your list runs out, use the bonus keep-going ideas.",
+      "assignment": "Done when that task runs as a saved skill and you've tested it once.",
       "prompts": [
-        "Look at my ranked list from Lesson 4 and take the next easiest task we have not taught yet. Teach it with me, one step at a time. We will test it on one real example, then save it as a skill or SOP. If my list has run out, say so and use a keep-going idea. Before we close, add every decision and SOP we made in this chat to my decision log.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Here is my list of tasks I hate from Lesson 4 [paste it]. Take the next easiest one that we haven't done yet. Ask me questions one at a time until you understand how I do it today. Then do it for me once using a real example, and I'll tell you what to change in plain English. When I'm happy, save it as a skill with clear steps so you can repeat it every time.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     },
     {
       "day": 30,
+      "section": "Your list",
+      "title": "Your list: task 6",
+      "why": "Hand off the jobs you hate most, one at a time.",
+      "minutes": "30 to 45 min",
+      "catchUp": false,
+      "visual": "sop",
+      "steps": [
+        "Open your Lesson 4 brain dump and take the next easiest task.",
+        "Teach it start to finish. One task this lesson, with no drifting.",
+        "Test it on a real example.",
+        "Save it as a skill.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
+      ],
+      "assignment": "Done when that task runs as a saved skill and you've tested it once.",
+      "prompts": [
+        "Here is my list of tasks I hate from Lesson 4 [paste it]. Take the next easiest one that we haven't done yet. Ask me questions one at a time until you understand how I do it today. Then do it for me once using a real example, and I'll tell you what to change in plain English. When I'm happy, save it as a skill with clear steps so you can repeat it every time.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
+      ]
+    },
+    {
+      "day": 31,
       "section": "Review",
-      "title": "Review the month",
-      "why": "Look at what you actually used, leave one clean decision log, and write down what Step 2 is for you.",
+      "title": "Final review",
+      "why": "Look back at every lesson, leave one clean decision log, and write down your next step.",
       "minutes": "30 to 45 min",
       "catchUp": false,
       "visual": "review30",
       "steps": [
-        "Review what you used, what you skipped, and what saved you time.",
-        "Review and clean up your decision log so there is one source of truth.",
-        "Pick what you want next for Step 2, and write that choice down.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Review the bootcamp lesson by lesson, from Lesson 1 through Lesson 30: what you set up, what you use, what you skipped, and what saved you time.",
+        "Clean up your decision log so there is one source of truth. Merge duplicates, remove anything outdated, and flag anything that conflicts.",
+        "Your next step is to connect your tools (email, calendar, CRM and Drive). Pick which one you want to connect first, and write that down.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ],
-      "assignment": "Done when your decision log is cleaned up and your Step 2 choice is written down.",
+      "assignment": "Done when every lesson is reviewed, your decision log is cleaned up, and your next step is written down.",
       "prompts": [
-        "Help me review the month: what I used, what I skipped, and what saved me time. Help me clean my decision log so there is one source of truth. Then help me write down what I want next for Step 2. Do not add anything new until I choose.",
-        "Before we close, add every decision and SOP we made in this chat to my decision log."
+        "Help me review my bootcamp. I'm attaching my decision log. Go through every lesson, 1 to 30, one at a time: what I set up, whether the skill or SOP is saved and in my decision log, what I use, what I skipped, and what saved me the most time. Give me a short table. Then clean up my decision log: merge duplicates, remove anything outdated, and flag anything that conflicts, so there is one source of truth. Show me the changes before you make them. Last, my next step is to connect my tools (email, calendar, CRM and Drive). Ask me which one I want to connect first, and write that down as my next goal.",
+        "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log."
       ]
     }
   ]

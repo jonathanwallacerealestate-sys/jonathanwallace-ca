@@ -228,6 +228,40 @@ export default async (req, context) => {
   }
 };
 
+async function saveLocked(db, person, body) {
+  const client = await db.pool.connect();
+  try {
+    await client.query("BEGIN");
+    const found = await client.query(
+      "SELECT name_key, first_name, last_name, email, days, selfie_at, created_at, updated_at FROM ai30_progress WHERE name_key = $1 FOR UPDATE",
+      [person.key],
+    );
+    const raw = found.rows[0];
+    if (!raw || !raw.email) {
+      await client.query("COMMIT");
+      return { ok: true, needsEmail: true, first: person.first, last: person.last };
+    }
+    const existing = recordFromRow(raw);
+    const applied = applyProgress({ ...existing, days: migrateCurriculum(existing.days) }, body, new Date().toISOString());
+    if (!applied.ok) {
+      await client.query("ROLLBACK");
+      return { ok: false, error: applied.error, day: applied.day };
+    }
+    const updated = await client.query(
+      "UPDATE ai30_progress SET days = $2::jsonb, updated_at = now() WHERE name_key = $1 RETURNING name_key, first_name, last_name, email, days, selfie_at, created_at, updated_at",
+      [person.key, JSON.stringify(stampCurriculum(applied.days))],
+    );
+    await client.query("COMMIT");
+    const row = recordFromRow(updated.rows[0]);
+    return pack(person, row, await readContext(db));
+  } catch (e) {
+    try { await client.query("ROLLBACK"); } catch (err) {}
+    throw e;
+  } finally {
+    client.release();
+  }
+}
+
 async function learnerOp(db, person, body) {
   if (body.op === "load") {
     let row = await readRow(db, person.key);
@@ -250,18 +284,7 @@ async function learnerOp(db, person, body) {
     return pack(person, row, context);
   }
 
-  if (body.op === "save") {
-    const existing = await readRow(db, person.key);
-    if (!existing || !existing.email) return { ok: true, needsEmail: true, first: person.first, last: person.last };
-    const stored = { ...existing, days: migrateCurriculum(existing.days) };
-    const applied = applyProgress(stored, body, new Date().toISOString());
-    if (!applied.ok) return { ok: false, error: applied.error, day: applied.day };
-    const row = await writeRow(db, person, stampCurriculum(applied.days), existing.createdAt || new Date().toISOString());
-    row.email = existing.email;
-    row.selfieAt = existing.selfieAt;
-    const context = await readContext(db);
-    return pack(person, row, context);
-  }
+  if (body.op === "save") return saveLocked(db, person, body);
 
   if (body.op === "feed") {
     const row = await readRow(db, person.key);

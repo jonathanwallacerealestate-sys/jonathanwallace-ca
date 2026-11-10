@@ -530,7 +530,12 @@ export function paceUnlockAt(days, nowIso) {
 // A third new completion inside the 8 hour pace window is refused. Older completions are left as they are.
 function incomingSlot(nextIn, day) {
   if (nextIn[day.id] && typeof nextIn[day.id] === "object") return daySlot(nextIn[day.id]);
-  if (nextIn[String(day.day)] && typeof nextIn[String(day.day)] === "object") return daySlot(nextIn[String(day.day)]);
+  // Old saves used the original day number. That number stays tied to the
+  // same lesson id, even if the lesson later moves in the course.
+  const legacyNumber = LEGACY_DAY_IDS.indexOf(day.id) + 1;
+  if (legacyNumber > 0 && nextIn[String(legacyNumber)] && typeof nextIn[String(legacyNumber)] === "object") {
+    return daySlot(nextIn[String(legacyNumber)]);
+  }
   return daySlot(null);
 }
 

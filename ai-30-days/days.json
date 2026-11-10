@@ -214,6 +214,28 @@
     },
     {
       "day": 5,
+      "id": "decision-log",
+      "section": "Foundations",
+      "title": "Set Up Your Decision Log",
+      "why": "A decision log gives your AI a memory, so you do not have to retrain it every time.",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
+      "catchUp": false,
+      "visual": "sop",
+      "steps": [
+        "Choose where it lives: an Excel spreadsheet, Google Drive or Dropbox, however you see fit.",
+        "Have your AI set up the columns: date, area (for example email, texts, leads), the decision or SOP, and the reason.",
+        "Add everything from the earlier lessons: your business summary, Email writing SOP, brand guidelines, hated-task list, and re-engagement skill.",
+        "Practise the closing prompt. From this lesson on, it is the last step of every lesson.",
+        "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
+      ],
+      "assignment": "Done when your decision log exists, holds everything from the earlier lessons, and your AI can read it back to you. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
+      "prompts": [
+        "Help me set up a decision log as a spreadsheet with columns for date, area, decision or SOP, and reason. Add everything we've decided so far. From now on, read it at the start of our work so you don't need retraining. At the end of every chat, add any new decisions and SOPs to it.",
+        "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
+      ]
+    },
+    {
+      "day": 6,
       "id": "dead-leads",
       "section": "Foundations",
       "title": "Re-Engage Your Dead Leads",
@@ -233,28 +255,6 @@
       "prompts": [
         "Research the best ways to re-engage cold real estate leads by text and by email, and the best practices for each. Then I'll explain my situation and give you a couple of examples. Create a skill: when I give you a person's details, give me 5 text messages, or 5 email options if email is where they'd rather be reached, to restart a conversation about buying or selling. Don't send anything. I approve first.",
         "Before we close, list every decision we made in this chat and save them. I'll move them into my decision log once it's set up."
-      ]
-    },
-    {
-      "day": 6,
-      "id": "decision-log",
-      "section": "Foundations",
-      "title": "Set Up Your Decision Log",
-      "why": "A decision log gives your AI a memory, so you do not have to retrain it every time.",
-      "minutes": "15 to 30 minutes, longer if you go deeper",
-      "catchUp": false,
-      "visual": "sop",
-      "steps": [
-        "Choose where it lives: an Excel spreadsheet, Google Drive or Dropbox, however you see fit.",
-        "Have your AI set up the columns: date, area (for example email, texts, leads), the decision or SOP, and the reason.",
-        "Add everything from the earlier lessons: your business summary, Email writing SOP, brand guidelines, hated-task list, and re-engagement skill.",
-        "Practise the closing prompt. From this lesson on, it is the last step of every lesson.",
-        "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
-      ],
-      "assignment": "Done when your decision log exists, holds everything from the earlier lessons, and your AI can read it back to you. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
-      "prompts": [
-        "Help me set up a decision log as a spreadsheet with columns for date, area, decision or SOP, and reason. Add everything we've decided so far. From now on, read it at the start of our work so you don't need retraining. At the end of every chat, add any new decisions and SOPs to it.",
-        "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ]
     },
     {

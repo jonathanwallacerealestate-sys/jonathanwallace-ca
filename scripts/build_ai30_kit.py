@@ -77,6 +77,9 @@ def handout(day):
     ]
     for index, step in enumerate(day["steps"], start=1):
         lines.append(f"{index}. {step}")
+        for link in day.get("links") or []:
+            if link.get("step") == index and str(link.get("href", "")).startswith("https://"):
+                lines.append(f"   {link['label']}: {link['href']}")
     if day.get("tip"):
         lines.extend(["", f"Tip. {day['tip']}"])
     if day.get("optionalNote"):

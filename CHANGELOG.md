@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: lesson 1 says Grok Bot
+Why: Jonathan asked for the paid-plan name in the first lesson to say Grok Bot.
+- Step 1 of Pick Your AI and Tell It About Your Business now says "Pick one AI and start on the paid plan: Grok Bot or Claude Pro. My pick for real estate agents is Grok Bot." Step 2 links to Grok Bot and Claude on the App Store. The lesson id is unchanged.
+
 ### AI bootcamp: permanent lesson ids and the approved lesson fixes
 Why: Jonathan asked for every approved fix on the live course before the presentation, led by lesson ids that keep each person's progress if the course order changes.
 - Finished lessons are stored by a permanent id. Existing day numbers are copied onto those ids once. Points, finished lessons, completion times, and login streaks stay the same. Removing a lesson later keeps its id, so those points stay. See ai-30-days/CURRICULUM_EDITING.md.

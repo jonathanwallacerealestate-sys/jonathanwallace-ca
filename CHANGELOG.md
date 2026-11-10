@@ -16,9 +16,22 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
-### AI bootcamp: no All lessons tab
-Why: Jonathan asked for the All lessons tab to come off the learning centre.
-- The tab and the list it opened are gone. Lesson and Progress stay. A finished lesson opened from a link stays on the current lesson instead of that list.
+### AI bootcamp: points, live board, selfie unlock, and email
+Why: Jonathan asked for a points contest through Friday, December 11 at 8 PM Eastern, a live group board, a private selfie that unlocks the points explainer, and an email on every sign-in.
+- The All lessons tab and the progress bar stay off. A note says whether you are ahead of, in step with, or behind your peers, using points.
+- Points: 3 per finished lesson, 2 for coming back the next day, 1 for a second visit the same day, 5 for one group note per lesson, and 3 for answering someone else's question once. The leaderboard closes Friday, December 11 at 8 PM. The winner gets 2 hours of one-on-one AI coaching with Jonathan. After that, the board freezes and names the winner. Lessons still work.
+- The group board has Learned, Question, and Stuck on notes, one level of replies, and refreshes about every 20 seconds. Names that start with Zztest stay off the board and the leaderboard.
+- A selfie unlocks how points work. The success line is "Got your learning selfie. Good job. Now you know how to stack the deck and win." Photos are not shown to the group. They are stored as a backup and sent to Google Drive when that connection is set.
+- Sign-in asks for an email. It is kept private and is not on the leaderboard or the board. The admin page at /ai-30-days/export.html downloads a CSV and can reset Testy and Zztest rows. It uses the AI30_ADMIN_KEY environment variable.
+- Five lessons were rewritten: calendar booking, client notes, past clients, listing descriptions, and the Letter of Opinion.
+
+### AI bootcamp: no All lessons tab, no progress bar, peer note and leaderboard
+Why: Jonathan asked for the All lessons tab and any personal progress meter to come off, and for agents to see how they compare with the others who are learning.
+- The All lessons tab and the list it opened are gone. A finished lesson opened from a link stays on the current lesson.
+- The progress bar, percentages, and any "X of Y" count are gone. Completed lessons stay saved on the server.
+- After sign-in, a short note says whether you are ahead of, behind, or in step with the other learners, using the median of their completed lessons. It does not give a number.
+- The Progress tab is a leaderboard: rank, first name and last initial, and lessons completed. Your row is highlighted. Names that start with Zztest are left out of the note and the board.
+- The button at the end of every lesson reads "I've completed the lesson and the challenge." It still opens the next lesson.
 
 ### AI bootcamp: skill titles only, and an SOP reminder
 Why: Jonathan asked that agents see the skill they are learning, not a lesson number or a total, and that each lesson after the first SOP reminds them to log the decision.

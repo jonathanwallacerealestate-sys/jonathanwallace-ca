@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { DAY_COUNT, applyProgress, currentDay, doneCount, migrateCurriculum, normalizePerson } from "../netlify/functions/_shared/ai30.mjs";
+import { CONTEST_END_ISO, DAY_COUNT, applyProgress, currentDay, doneCount, loginPoints, migrateCurriculum, normalizePerson, peerStanding, scorePerson, selfieFilename, validEmail } from "../netlify/functions/_shared/ai30.mjs";
 import { buildIcs, eventDescription, icsFilename, parseWhen } from "../netlify/functions/_shared/ics.mjs";
 
 const jane = normalizePerson("  Jane   ", "  DOE ");
@@ -161,8 +161,83 @@ assert.match(lesson11, /Assignment: Done when three posts are finished/);
 assert.doesNotMatch(buildIcs(plan.days[0], when), /—/);
 
 const portalSrc = readFileSync(new URL("../ai-30-days/portal.js", import.meta.url), "utf8");
-assert.doesNotMatch(portalSrc, /All lessons|tab-all|renderAll/);
+assert.doesNotMatch(portalSrc, /All lessons|tab-all|renderAll|Mark done|of \$\{lessonTotal/);
+assert.match(portalSrc, /I've completed the lesson and the challenge\./);
 assert.match(portalSrc, /id="tab-today"/);
 assert.match(portalSrc, /id="tab-progress"/);
+assert.match(portalSrc, /id="tab-board"/);
+assert.match(portalSrc, /capture="user"/);
+assert.match(portalSrc, /Got your learning selfie\. Good job\. Now you know how to stack the deck and win\./);
+assert.match(portalSrc, /Leaderboard closes Friday, December 11 at 8 PM\./);
+assert.match(portalSrc, /The winner gets 2 hours of one-on-one AI coaching with Jonathan\./);
+assert.match(portalSrc, /3 more when you answer someone else's question/);
+assert.doesNotMatch(portalSrc, /Your selfie is shared/);
+assert.doesNotMatch(readFileSync(new URL("../ai-30-days/index.html", import.meta.url), "utf8"), /So we can send you updates/);
+assert.doesNotMatch(portalSrc, /role="img" aria-label="Progress"/);
+
+function learner(key, first, last, done) {
+  const days = { _curriculum: 31 };
+  for (let n = 1; n <= done; n += 1) days[String(n)] = { done: true };
+  return { key, first, last, days };
+}
+const classRows = [
+  learner("ada north", "Ada", "North", 2),
+  learner("ben cole", "Ben", "Cole", 4),
+  learner("cara singh", "Cara", "Singh", 4),
+  learner("dee park", "Dee", "Park", 1),
+  learner("zztest notab", "Zztest", "Notab", 20),
+];
+const ben = peerStanding(classRows, [], "ben cole");
+assert.equal(ben.note, "You're ahead of most of your peers learning AI. Keep it going.");
+assert.equal(ben.board.length, 4);
+assert.deepEqual(ben.board.map((row) => [row.rank, row.name, row.points, row.done, row.you]), [
+  [1, "Ben C.", 12, 4, true],
+  [1, "Cara S.", 12, 4, false],
+  [3, "Ada N.", 6, 2, false],
+  [4, "Dee P.", 3, 1, false],
+]);
+assert.equal(peerStanding(classRows, [], "dee park").note, "You're a little behind your peers learning AI. Today's a good day to catch up.");
+assert.equal(peerStanding([
+  learner("ada north", "Ada", "North", 3),
+  learner("ben cole", "Ben", "Cole", 3),
+], [], "ada north").note, "You're right in step with your peers learning AI.");
+const solo = peerStanding([
+  learner("ada north", "Ada", "North", 0),
+  learner("zztest x", "Zztest", "X", 9),
+], [], "ada north");
+assert.equal(solo.note, "You're the first one here learning AI. Keep it going.");
+assert.equal(solo.board.length, 1);
+assert.equal(solo.board[0].you, true);
+const hidden = peerStanding(classRows, [], "zztest notab");
+assert.equal(hidden.board.length, 4);
+assert.ok(hidden.board.every((row) => row.you !== true));
+for (const standing of [ben, hidden, solo]) {
+  assert.doesNotMatch(standing.note, /\d|out of/);
+  assert.ok(standing.board.every((row) => !/zztest/i.test(row.name)));
+  assert.ok(standing.board.every((row) => !String(row.done).includes("/")));
+}
+
+assert.equal(loginPoints(["2026-11-09T15:00:00.000Z", "2026-11-09T20:00:00.000Z"]), 1);
+assert.equal(loginPoints(["2026-11-09T15:00:00.000Z", "2026-11-10T15:00:00.000Z"]), 2);
+assert.equal(loginPoints(["2026-11-09T15:00:00.000Z", "2026-11-11T15:00:00.000Z"]), 0);
+const ada = { key: "ada north", first: "Ada", last: "North", days: { _curriculum: 31, "1": { done: true, doneAt: "2026-11-10T15:00:00.000Z" } }, logins: [] };
+const question = { id: 1, key: "ben cole", parentId: null, kind: "question", lesson: 1, createdAt: "2026-11-10T15:00:00.000Z" };
+assert.equal(scorePerson(ada, [
+  { id: 2, key: "ada north", parentId: null, lesson: 1, createdAt: "2026-11-10T16:00:00.000Z" },
+  { id: 3, key: "ada north", parentId: 1, parentKind: "question", parentKey: "ben cole", createdAt: "2026-11-10T17:00:00.000Z" },
+  { id: 4, key: "ada north", parentId: 1, parentKind: "question", parentKey: "ben cole", createdAt: "2026-11-10T18:00:00.000Z" },
+]).points, 3 + 5 + 3);
+assert.equal(scorePerson(ada, [
+  { id: 9, key: "ada north", parentId: 8, parentKind: "question", parentKey: "ada north", createdAt: "2026-11-10T17:00:00.000Z" },
+]).points, 3);
+const late = { key: "ada north", first: "Ada", last: "North", days: { _curriculum: 31, "1": { done: true, doneAt: "2026-12-12T02:00:00.000Z" } }, logins: [] };
+assert.equal(scorePerson(late, []).points, 0);
+assert.equal(validEmail("test+alpha@example.com"), "test+alpha@example.com");
+assert.equal(validEmail("not an email"), "");
+assert.match(selfieFilename("Testy", "Alpha", "2026-11-10T15:00:00.000Z"), /^Testy-A-2026-11-10-\d{4}\.jpg$/);
+assert.equal(CONTEST_END_ISO, "2026-12-12T01:00:00.000Z");
+assert.match(plan.days.find((day) => day.day === 15).prompts[0], /Create a skill called Listing writer/);
+assert.equal(plan.days.find((day) => day.day === 16).title, "Make the Letter of Opinion yours");
+assert.doesNotMatch(plan.days.find((day) => day.day === 16).prompts.join("\n"), /whole drive/);
 
 console.log("test_ai30: ok");

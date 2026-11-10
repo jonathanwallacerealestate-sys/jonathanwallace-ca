@@ -51,6 +51,268 @@ export function doneCount(days) {
   return n;
 }
 
+export function isPracticeName(first, last) {
+  return collapse(`${first || ""} ${last || ""}`).toLowerCase().startsWith("zztest");
+}
+
+// 8:00 p.m. Eastern on Friday, December 11, 2026. December is UTC-5 in Toronto.
+export const CONTEST_END_ISO = "2026-12-12T01:00:00.000Z";
+export const POST_MAX = 500;
+export const CLOSE_COPY = "Leaderboard closes Friday, December 11 at 8 PM.";
+export const PRIZE_COPY = "The winner gets 2 hours of one-on-one AI coaching with Jonathan.";
+export const POINTS_COPY = "3 points for each lesson you finish. 2 more when you come back the next day. 1 more for a second visit the same day. 5 more when you share a lesson with the group, once per lesson. 3 more when you answer someone else's question, once per question.";
+export const SELFIE_HELLO = "Got your learning selfie. Good job. Now you know how to stack the deck and win.";
+
+export function contestOpen(now) {
+  return new Date(now || Date.now()).getTime() < new Date(CONTEST_END_ISO).getTime();
+}
+
+export function countsForContest(iso) {
+  const time = new Date(iso).getTime();
+  return !Number.isNaN(time) && time <= new Date(CONTEST_END_ISO).getTime();
+}
+
+export function torontoParts(iso) {
+  const date = new Date(iso || Date.now());
+  if (Number.isNaN(date.getTime())) return null;
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Toronto",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(date);
+  const get = (type) => parts.find((part) => part.type === type).value;
+  return { year: get("year"), month: get("month"), day: get("day"), hour: get("hour"), minute: get("minute") };
+}
+
+export function torontoDay(iso) {
+  const parts = torontoParts(iso);
+  return parts ? `${parts.year}-${parts.month}-${parts.day}` : "";
+}
+
+export function selfieFilename(first, last, now) {
+  const parts = torontoParts(now || Date.now());
+  const given = collapse(first).replace(/[^\p{L}]+/gu, "") || "Learner";
+  const initial = lastInitial(last) || "X";
+  return `${given}-${initial}-${parts.year}-${parts.month}-${parts.day}-${parts.hour}${parts.minute}.jpg`;
+}
+
+export function validEmail(value) {
+  const email = collapse(value).toLowerCase();
+  if (email.length < 6 || email.length > 120) return "";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "";
+  return email;
+}
+
+export function cleanPost(value) {
+  const text = String(value || "").replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "").trim();
+  if (!text) return "";
+  return text.slice(0, POST_MAX);
+}
+
+function daySpan(earlier, later) {
+  const a = Date.parse(`${earlier}T00:00:00Z`);
+  const b = Date.parse(`${later}T00:00:00Z`);
+  return Math.round((b - a) / 86400000);
+}
+
+export function loginPoints(logins) {
+  const counts = new Map();
+  for (const iso of logins || []) {
+    if (!countsForContest(iso)) continue;
+    const day = torontoDay(iso);
+    if (!day) continue;
+    counts.set(day, (counts.get(day) || 0) + 1);
+  }
+  const days = [...counts.keys()].sort();
+  let points = 0;
+  for (let i = 1; i < days.length; i += 1) {
+    if (daySpan(days[i - 1], days[i]) === 1) points += 2;
+  }
+  for (const count of counts.values()) if (count >= 2) points += 1;
+  return points;
+}
+
+export function scorePerson(person, posts) {
+  const days = lessonMap(migrateCurriculum(person.days));
+  const doneLessons = new Set();
+  for (let n = 1; n <= DAY_COUNT; n += 1) {
+    const slot = days[String(n)];
+    if (!slot || slot.done !== true) continue;
+    if (slot.doneAt && !countsForContest(slot.doneAt)) continue;
+    doneLessons.add(n);
+  }
+  const key = person.key;
+  const mine = (posts || []).filter((post) => post.key === key && (!post.createdAt || countsForContest(post.createdAt)));
+  const shared = new Set();
+  for (const post of mine) {
+    if (post.parentId) continue;
+    if (doneLessons.has(Number(post.lesson))) shared.add(Number(post.lesson));
+  }
+  const answered = new Set();
+  let answers = 0;
+  for (const post of mine) {
+    if (!post.parentId || post.parentKind !== "question" || post.parentKey === key) continue;
+    const id = String(post.parentId);
+    if (answered.has(id)) continue;
+    answered.add(id);
+    answers += 1;
+  }
+  const done = doneLessons.size;
+  const points = done * 3 + loginPoints(person.logins) + shared.size * 5 + answers * 3;
+  return { points, done };
+}
+
+const PEER_NOTE = {
+  ahead: "You're ahead of most of your peers learning AI. Keep it going.",
+  behind: "You're a little behind your peers learning AI. Today's a good day to catch up.",
+  even: "You're right in step with your peers learning AI.",
+  first: "You're the first one here learning AI. Keep it going.",
+};
+
+function lastInitial(last) {
+  const clean = collapse(last);
+  if (!clean) return "";
+  return Array.from(clean)[0].toUpperCase();
+}
+
+export function displayLearner(first, last) {
+  const given = collapse(first);
+  const initial = lastInitial(last);
+  return initial ? `${given} ${initial}.` : given;
+}
+
+function peerPlace(you, counts) {
+  if (!counts.length) return "first";
+  const sorted = counts.slice().sort((a, b) => a - b);
+  const n = sorted.length;
+  if (n % 2 === 1) {
+    const median = sorted[(n - 1) / 2];
+    if (you > median) return "ahead";
+    if (you < median) return "behind";
+    return "even";
+  }
+  const low = sorted[n / 2 - 1];
+  const high = sorted[n / 2];
+  if (you > high) return "ahead";
+  if (you < low) return "behind";
+  return "even";
+}
+
+function asPerson(row) {
+  return {
+    key: String(row.key || row.name_key || ""),
+    first: row.first || row.first_name || "",
+    last: row.last || row.last_name || "",
+    days: row.days,
+    logins: row.logins || [],
+    email: row.email || "",
+    practice: isPracticeName(row.first || row.first_name || "", row.last || row.last_name || ""),
+  };
+}
+
+// Points decide the order. A tie goes to the person with more lessons completed.
+// Practice names that start with Zztest stay off the board and out of the note.
+export function peerStanding(rows, posts, youKey) {
+  const people = (rows || []).map(asPerson).filter((person) => person.key);
+  const scored = people.map((person) => ({ ...person, ...scorePerson(person, posts) }));
+  const you = scored.find((person) => person.key === youKey);
+  const peers = scored.filter((person) => !person.practice && person.key !== youKey);
+  const tone = peerPlace(you ? you.points : 0, peers.map((person) => person.points));
+  const board = scored.filter((person) => !person.practice).map((person) => ({
+    name: displayLearner(person.first, person.last),
+    points: person.points,
+    done: person.done,
+    you: person.key === youKey,
+  }));
+  board.sort((a, b) => b.points - a.points || b.done - a.done || a.name.localeCompare(b.name, "en"));
+  let previous = "";
+  let rank = 0;
+  board.forEach((person, index) => {
+    const mark = `${person.points}:${person.done}`;
+    if (mark !== previous) {
+      rank = index + 1;
+      previous = mark;
+    }
+    person.rank = rank;
+  });
+  const closed = !contestOpen();
+  const leaders = board.filter((person) => person.rank === 1 && person.points > 0);
+  return {
+    note: PEER_NOTE[tone],
+    board,
+    closed,
+    winner: closed ? leaders.map((person) => person.name).join(" and ") : "",
+  };
+}
+
+export function lessonTitle(day) {
+  const found = (plan.days || []).find((item) => item.day === Number(day));
+  return found ? found.title : "";
+}
+
+export function publicFeed(posts, youKey) {
+  const visible = (posts || []).filter((post) => !isPracticeName(post.first, post.last));
+  const byId = new Map();
+  const top = [];
+  for (const post of visible) {
+    if (post.parentId) continue;
+    const item = {
+      id: post.id,
+      name: displayLearner(post.first, post.last),
+      body: post.body,
+      kind: post.kind,
+      lessonTitle: lessonTitle(post.lesson),
+      createdAt: post.createdAt,
+      you: post.key === youKey,
+      replies: [],
+    };
+    byId.set(String(post.id), item);
+    top.push(item);
+  }
+  for (const post of visible) {
+    if (!post.parentId) continue;
+    const parent = byId.get(String(post.parentId));
+    if (!parent) continue;
+    parent.replies.push({
+      id: post.id,
+      name: displayLearner(post.first, post.last),
+      body: post.body,
+      createdAt: post.createdAt,
+      you: post.key === youKey,
+    });
+  }
+  top.sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
+  return top.slice(0, 80);
+}
+
+function csvCell(value) {
+  const text = String(value == null ? "" : value);
+  if (/[",\r\n]/.test(text)) return `"${text.replace(/"/g, '""')}"`;
+  return text;
+}
+
+export function learnersCsv(rows, posts) {
+  const lines = ["name,email,points,lessons_completed,last_login"];
+  const people = (rows || []).map(asPerson).filter((person) => person.key);
+  people.sort((a, b) => a.first.localeCompare(b.first, "en") || a.last.localeCompare(b.last, "en"));
+  for (const person of people) {
+    const score = scorePerson(person, posts);
+    const last = (person.logins || []).map((iso) => new Date(iso).getTime()).filter((time) => !Number.isNaN(time)).sort((a, b) => b - a)[0];
+    lines.push([
+      csvCell(`${person.first} ${person.last}`),
+      csvCell(person.email),
+      score.points,
+      score.done,
+      csvCell(last ? new Date(last).toISOString() : ""),
+    ].join(","));
+  }
+  return `${lines.join("\r\n")}\r\n`;
+}
+
 export function emptyDays() {
   return { _curriculum: CURRICULUM };
 }
@@ -133,6 +395,8 @@ export function publicRecord(person, row) {
     currentDay: currentDay(days),
     doneCount: doneCount(days),
     complete: doneCount(days) === DAY_COUNT,
+    selfie: !!(row && (row.selfieAt || row.selfie_at)),
+    needsEmail: !(row && row.email),
   };
 }
 
@@ -148,6 +412,9 @@ export function recordFromRow(row) {
     days: days && typeof days === "object" ? days : {},
     createdAt: toIso(row.created_at || row.createdAt),
     updatedAt: toIso(row.updated_at || row.updatedAt),
+    email: row.email || "",
+    selfieAt: row.selfie_at || row.selfieAt || "",
+    logins: Array.isArray(row.logins) ? row.logins : [],
   };
 }
 

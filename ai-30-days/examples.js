@@ -207,7 +207,7 @@ const mocks = {
       <h3>123 Banana Street</h3>
       <p>Prepared for Jordan Lee. This practice letter uses a past deal, then the same steps are timed on a real one.</p>
       <p class="ex__range">Sample range only</p>
-      <p class="ex__sign">Signature sits in the shared folder. This mock has none.</p>
+      <p class="ex__sign">Your name and signature sit on the letter. The original agent's details are gone.</p>
     </div>`,
   23: () => `
     <div class="ex ex--paper">

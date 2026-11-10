@@ -123,14 +123,17 @@ for (const day of plan.days) {
     assert.equal(lastPrompt, standingClose);
     assert.ok(day.assignment.endsWith(sopReminder), "reminder missing on day " + day.day);
   }
-  if (day.day <= 9) assert.equal(day.minutes, "15 to 20 min");
-  else if (day.day <= 20) assert.equal(day.minutes, "30 min");
-  else assert.equal(day.minutes, "30 to 45 min");
+  assert.match(day.minutes, /^(About )?\d+( to \d+)? minutes$/);
   assert.equal(day.catchUp, plan.catchUpDays.includes(day.day));
   const band = Object.entries(sections).find(([, range]) => day.day >= range[0] && day.day <= range[1]);
   assert.ok(band, "section range for day " + day.day);
   assert.equal(day.section, band[0]);
 }
+assert.equal(plan.days[2].minutes, "60 to 90 minutes");
+assert.equal(plan.days[15].minutes, "60 to 90 minutes");
+assert.equal(plan.days[17].minutes, "60 to 90 minutes");
+assert.equal(plan.days[20].minutes, "60 to 90 minutes");
+assert.equal(plan.days[22].minutes, "60 to 90 minutes");
 assert.equal(plan.days[0].title, "Pick Your AI and Tell It About Your Business");
 assert.equal(plan.days[1].title, "Teach It Your Writing Style");
 assert.equal(plan.days[6].optional, true);
@@ -189,7 +192,9 @@ for (const number of [1, 5]) {
   assert.match(text, /DTSTAMP:20261110T120000Z/);
   assert.match(text, /TRIGGER:PT0S/);
   assert.match(text, new RegExp(`UID:test-day-${number}@jonathanwallace.ca`));
-  assert.match(text, /Hey\\, don't forget you've got to do your 30-minute AI session today\.\\n\\nTask:/);
+  assert.match(text, /your AI session today/);
+  assert.match(text, new RegExp(`Plan on about ${day.minutes.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
+  assert.doesNotMatch(text, /30-minute AI session/);
   assert.match(text, new RegExp(`Task: ${day.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
   assert.match(text, /https:\/\/jonathanwallace\.ca\/ai-30-days/);
 }

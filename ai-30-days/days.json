@@ -94,7 +94,7 @@
       "section": "Foundations",
       "title": "Pick Your AI and Tell It About Your Business",
       "why": "It can only help with a business it understands.",
-      "minutes": "15 to 20 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "about",
       "steps": [
@@ -114,7 +114,7 @@
       "section": "Foundations",
       "title": "Teach It Your Writing Style",
       "why": "What you feed it is what it writes like.",
-      "minutes": "15 to 20 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "email",
       "tip": "Talk instead of type. Use the microphone; it is faster and the draft is still yours to approve.",
@@ -137,7 +137,7 @@
       "section": "Foundations",
       "title": "Build Your Brand Guidelines",
       "why": "Every post and flyer should look like you without starting over each time.",
-      "minutes": "15 to 20 min",
+      "minutes": "60 to 90 minutes",
       "catchUp": false,
       "visual": "brand",
       "steps": [
@@ -160,7 +160,7 @@
       "section": "Foundations",
       "title": "Brain Dump the Tasks You Hate",
       "why": "Now that it knows your business and your style, it can help you decide what to hand off first. Everyone's list will be different.",
-      "minutes": "15 to 20 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "tasks",
       "steps": [
@@ -182,7 +182,7 @@
       "section": "Foundations",
       "title": "Re-Engage Your Dead Leads",
       "why": "Your database already has people who went quiet. The right message can restart the conversation.",
-      "minutes": "15 to 20 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "texts",
       "steps": [
@@ -204,7 +204,7 @@
       "section": "Foundations",
       "title": "Set Up Your Decision Log",
       "why": "A decision log gives your AI a memory, so you do not have to retrain it every time.",
-      "minutes": "15 to 20 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "sop",
       "steps": [
@@ -225,7 +225,7 @@
       "section": "Foundations",
       "title": "Teach It to Clean Up Your Inbox",
       "why": "A tidy inbox means you do not miss the emails that matter.",
-      "minutes": "15 to 20 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": true,
       "optional": true,
       "optionalNote": "If you do not want your AI to have access to your email, that is completely fine. Skip this lesson and tap I've completed the lesson and the challenge to move to the next lesson.",
@@ -249,7 +249,7 @@
       "section": "Clients and social",
       "title": "Ask for Reviews",
       "why": "Happy clients will leave a review if you make it easy and personal.",
-      "minutes": "15 to 20 min",
+      "minutes": "30 to 45 minutes",
       "catchUp": false,
       "visual": "review",
       "steps": [
@@ -270,7 +270,7 @@
       "section": "Clients and social",
       "title": "Share 10 Posts You Like",
       "why": "Showing real posts is clearer than trying to describe a style.",
-      "minutes": "15 to 20 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "instagram",
       "steps": [
@@ -290,7 +290,7 @@
       "section": "Clients and social",
       "title": "Plan Your Social Media Strategy",
       "why": "A simple plan you'll actually follow beats random posting.",
-      "minutes": "30 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "scheduled",
       "steps": [
@@ -311,7 +311,7 @@
       "section": "Clients and social",
       "title": "Create Your First Three Posts",
       "why": "Turn your best ideas into posts that look like you.",
-      "minutes": "30 min",
+      "minutes": "60 to 90 minutes",
       "catchUp": false,
       "visual": "instagram",
       "steps": [
@@ -333,7 +333,7 @@
       "section": "Calendar, notes and listings",
       "title": "Book Appointments Into Your Calendar",
       "why": "Say it once out loud and it is booked, with travel time built in.",
-      "minutes": "30 min",
+      "minutes": "30 to 45 minutes",
       "catchUp": false,
       "visual": "calendar",
       "steps": [
@@ -355,7 +355,7 @@
       "section": "Calendar, notes and listings",
       "title": "Teach It How You Keep Notes",
       "why": "Once it knows how you take notes, every call, meeting, or pop-by gets logged without you typing.",
-      "minutes": "30 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "crm",
       "steps": [
@@ -379,7 +379,7 @@
       "section": "Calendar, notes and listings",
       "title": "Stay in Touch with Past Clients",
       "why": "Past clients are your best source of repeat and referral business, and your AI can remember the details you cannot.",
-      "minutes": "30 min",
+      "minutes": "60 to 90 minutes",
       "catchUp": false,
       "visual": "email",
       "steps": [
@@ -400,7 +400,7 @@
       "section": "Calendar, notes and listings",
       "title": "Write Listing Descriptions in Your Top 5",
       "why": "Your listing description is a top 5, the 5 best reasons to buy this home.",
-      "minutes": "30 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "top5",
       "steps": [
@@ -422,7 +422,7 @@
       "section": "Letters and offers",
       "title": "Make the Letter of Opinion Yours",
       "why": "Turn the ready-made Letter of Opinion template into your own, with your details and your real signature.",
-      "minutes": "30 min",
+      "minutes": "60 to 90 minutes",
       "catchUp": false,
       "visual": "letter",
       "steps": [
@@ -444,7 +444,7 @@
       "section": "Letters and offers",
       "title": "Practise, then Time a Real Letter",
       "why": "A past address is a safe rehearsal. The timed letter shows you what a real one costs in minutes.",
-      "minutes": "30 min",
+      "minutes": "60 to 90 minutes",
       "catchUp": true,
       "visual": "letter",
       "steps": [
@@ -464,7 +464,7 @@
       "section": "Letters and offers",
       "title": "Read an Offer: the Coles Notes",
       "why": "Offers are long. Your client needs the key points, fast and clearly.",
-      "minutes": "30 min",
+      "minutes": "60 to 90 minutes",
       "catchUp": false,
       "visual": "coles",
       "steps": [
@@ -486,7 +486,7 @@
       "section": "Letters and offers",
       "title": "Deal Deadline Tracker",
       "why": "Missing a condition date or a title search date is costly. Let your AI put every date in your calendar.",
-      "minutes": "30 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "deadlines",
       "steps": [
@@ -506,7 +506,7 @@
       "section": "Deal card",
       "title": "Deal Card Setup",
       "why": "One card per person keeps the next step where you can see it.",
-      "minutes": "30 min",
+      "minutes": "30 to 45 minutes",
       "catchUp": false,
       "visual": "deal",
       "steps": [
@@ -526,7 +526,7 @@
       "section": "Deal card",
       "title": "Ten Leads, then Make the Calls",
       "why": "The card only matters if you pick up the phone.",
-      "minutes": "30 to 45 min",
+      "minutes": "60 to 90 minutes",
       "catchUp": false,
       "visual": "calls",
       "steps": [
@@ -546,7 +546,7 @@
       "section": "Deal card",
       "title": "Paste the Notes, then the Next 10",
       "why": "The notes you bring back are what make the next list sharper.",
-      "minutes": "30 to 45 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "deal",
       "steps": [
@@ -566,7 +566,7 @@
       "section": "Advanced",
       "title": "Prep Your Listing Appointment Paperwork",
       "why": "The forms you print for every listing appointment can be ready in a minute.",
-      "minutes": "30 to 45 min",
+      "minutes": "60 to 90 minutes",
       "catchUp": false,
       "visual": "forms",
       "steps": [
@@ -587,7 +587,7 @@
       "section": "Advanced",
       "title": "Book Showings in BrokerBay",
       "why": "Showings are repetitive and easy to hand off once it knows your rules.",
-      "minutes": "30 to 45 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "showing",
       "steps": [
@@ -609,7 +609,7 @@
       "section": "Your list",
       "title": "Your List: Hand Off Your First Task",
       "why": "Hand off the jobs you hate most, one at a time.",
-      "minutes": "30 to 45 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": true,
       "visual": "tasks",
       "steps": [
@@ -630,7 +630,7 @@
       "section": "Your list",
       "title": "Your List: Hand Off Another Task",
       "why": "Hand off the jobs you hate most, one at a time.",
-      "minutes": "30 to 45 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "sop",
       "steps": [
@@ -651,7 +651,7 @@
       "section": "Your list",
       "title": "Your List: Hand Off the Next Task",
       "why": "Hand off the jobs you hate most, one at a time.",
-      "minutes": "30 to 45 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "sop",
       "steps": [
@@ -672,7 +672,7 @@
       "section": "Your list",
       "title": "Your List: Hand Off One More Task",
       "why": "Hand off the jobs you hate most, one at a time.",
-      "minutes": "30 to 45 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "sop",
       "steps": [
@@ -693,7 +693,7 @@
       "section": "Your list",
       "title": "Your List: Keep Handing Tasks Off",
       "why": "Hand off the jobs you hate most, one at a time.",
-      "minutes": "30 to 45 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "sop",
       "steps": [
@@ -714,7 +714,7 @@
       "section": "Your list",
       "title": "Your List: Hand Off the Next One on Your List",
       "why": "Hand off the jobs you hate most, one at a time.",
-      "minutes": "30 to 45 min",
+      "minutes": "45 to 60 minutes",
       "catchUp": false,
       "visual": "sop",
       "steps": [
@@ -735,7 +735,7 @@
       "section": "Review",
       "title": "Final Review",
       "why": "Look back at every lesson, leave one clean decision log, and write down your next step.",
-      "minutes": "30 to 45 min",
+      "minutes": "60 to 90 minutes",
       "catchUp": false,
       "visual": "review30",
       "steps": [

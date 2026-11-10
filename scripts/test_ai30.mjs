@@ -378,9 +378,15 @@ assert.match(zipList, /kits\/Deal-Card-Kit\.docx/);
 assert.match(zipList, /kits\/Prompts-by-Area\.md/);
 assert.match(zipList, /kits\/Letter-of-Opinion-Client-Email-Template\.docx/);
 assert.match(zipList, /kits\/Letter-of-Opinion-123-Sample-Street-SAMPLE\.pdf/);
+assert.match(zipList, /forms\/Form_200_Listing_Agreement_master\.pdf/);
+assert.match(zipList, /forms\/RECO_Information_Guide_master\.pdf/);
 assert.doesNotMatch(zipList, /30-Day-Checklist|Bootcamp-Checklist|Lesson \d/);
 const zipReadme = execFileSync("python3", ["-c", "import zipfile; print(zipfile.ZipFile('ai-30-days/kit/ai-bootcamp-resources.zip').read('read-me.txt').decode())"], { cwd: repoRoot, encoding: "utf8" });
 assert.match(zipReadme, /Letter-of-Opinion-123-Sample-Street-SAMPLE\.pdf/);
+assert.match(zipReadme, /forms\/Form_200_Listing_Agreement_master\.pdf/);
+assert.match(zipReadme, /forms\/RECO_Information_Guide_master\.pdf/);
+assert.match(paperwork.steps[0], /in your kit/);
+assert.match(paperwork.prompts[0], /in my kit/);
 assert.doesNotMatch(zipReadme, /not in this folder yet/);
 const zipBytes = readFileSync(new URL("../ai-30-days/kit/ai-bootcamp-resources.zip", import.meta.url));
 for (const needle of ["Jonathan Wallace", "jonathan@faristeam.ca", "705-433-2525", "531 King Street", "Faris Team", "FarisTeam", "1gVOahhpWV00QdTg44BbqIaCOhjplNq1t"]) {

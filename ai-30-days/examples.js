@@ -279,7 +279,7 @@ const mocks = {
         <span>2.5% to the co-operating brokerage</span>
         <span>60-day holdover</span>
       </article>
-      <p class="ex__fine">Names and address come from the GeoWarehouse report. Postal code is checked. You still fill the start date and the number of days.</p>
+      <p class="ex__fine">The RECO guide and Form 200 masters are in your kit. Names and address come from the GeoWarehouse report. Postal code is checked. You still fill the start date and the number of days.</p>
     </div>`,
   29: () => `
     <div class="ex ex--split">

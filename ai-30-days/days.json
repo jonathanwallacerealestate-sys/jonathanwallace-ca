@@ -570,17 +570,17 @@
       "catchUp": false,
       "visual": "forms",
       "steps": [
-        "In WEBForms (the online system for Ontario real estate forms), build your blank masters yourself: the RECO guide, and a listing agreement with your standard Schedule A (the extra page of terms on the listing agreement), saved as editable PDFs.",
+        "The RECO Information Guide and the Form 200 listing agreement are in your kit. In WEBForms (the online system for Ontario real estate forms), build your blank masters yourself from those files: the RECO guide, and a listing agreement with your standard Schedule A (the extra page of terms on the listing agreement), saved as editable PDFs.",
         "Pre-fill your standard terms in the master: commission 5% total with 2.5% to the co-operating brokerage, and a 60-day holdover (the period after the listing ends when a commission can still be owed).",
         "Teach your AI to turn a GeoWarehouse report into a ready-to-fill details sheet: owner names, address and property details, postal code checked on Google, listing start date and number of days.",
         "Save it as a skill.",
-        "Use the name and work address from your Letter of Opinion. Have your AI fill your name into every agent name field on the Form 200 and RECO forms, and use your work address for the brokerage address on Form 200. Check the filled form before you use it.",
+        "Use the name and work address from your Letter of Opinion. The Form 200 and RECO forms are in your kit. Have your AI fill your name into every agent name field on the Form 200 and RECO forms, and use your work address for the brokerage address on Form 200. Check the filled form before you use it.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ],
       "assignment": "Done when the details sheet for a fake property comes out in about a minute and you fill your PDFs from it. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
-        "I build the blank masters myself in WEBForms: the RECO guide, and a listing agreement with my standard Schedule A, saved as editable PDFs. My standard terms are commission 5% total, with 2.5% to the co-operating brokerage, and a 60-day holdover. When I give you a GeoWarehouse report, turn it into a ready-to-fill details sheet: owner names, address and property details, postal code checked on Google, and where the listing start date and the number of days go. Save this as a skill. Then make the details sheet for a fake property. I fill the PDFs myself.",
-        "Use the name and work address I gave you for my Letter of Opinion. Fill my name into every agent name field on the Form 200 and RECO forms, and use my work address for the brokerage address on Form 200. Show me the filled form to check before I use it.",
+        "The RECO Information Guide and Form 200 are in my kit. I build the blank masters myself in WEBForms: the RECO guide, and a listing agreement with my standard Schedule A, saved as editable PDFs. My standard terms are commission 5% total, with 2.5% to the co-operating brokerage, and a 60-day holdover. When I give you a GeoWarehouse report, turn it into a ready-to-fill details sheet: owner names, address and property details, postal code checked on Google, and where the listing start date and the number of days go. Save this as a skill. Then make the details sheet for a fake property. I fill the PDFs myself.",
+        "The Form 200 and RECO forms are in my kit. Use the name and work address I gave you for my Letter of Opinion. Fill my name into every agent name field on the Form 200 and RECO forms, and use my work address for the brokerage address on Form 200. Show me the filled form to check before I use it.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ]
     },

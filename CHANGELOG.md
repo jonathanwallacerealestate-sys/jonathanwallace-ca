@@ -20,6 +20,7 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 Why: agents were able to peek at a later day, and they asked for a reminder they can drop on the phone calendar.
 - A later day stays locked until the current day is marked done. The progress grid, the day list, the address bar, and the keyboard all keep it shut, with "Finish Day N to unlock". Marking today done saves on the server and moves straight to the next card.
 - Each open day has Add reminder to my calendar. It asks the phone to add a 30-minute event the next morning (9:00 a.m., or a time they pick) from /api/ai-30-days/ics.
+- The check sign-ins used to prove the gate were removed. The progress API does not delete records.
 
 ### Private training portal: AI in 30 days
 Why: brokerage agents at the November 10 AI talk need a private link they can keep using, with progress that follows them from phone to laptop.

@@ -303,7 +303,7 @@ ol.steps li { margin: 0 0 8px; }
 .board__head,
 .board__row {
   display: grid;
-  grid-template-columns: 2.2rem minmax(0, 1fr) auto auto;
+  grid-template-columns: 2.2rem minmax(0, 1fr) auto;
   gap: 8px;
   align-items: center;
   min-height: 44px;
@@ -326,7 +326,6 @@ ol.steps li { margin: 0 0 8px; }
 }
 .board__rank { font-family: var(--serif); font-size: 1.25rem; }
 .board__name { font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
-.board__done { font-weight: 700; }
 .board__tag {
   margin-left: 6px;
   font-size: 0.75rem;

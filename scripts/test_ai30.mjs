@@ -157,6 +157,13 @@ for (const day of plan.days) {
     assert.equal(day.assignment, "Done when your brand guidelines are saved and your AI can describe your fonts, colours and look back to you.");
     assert.equal(day.steps[0], "Research the fonts and colour palettes you like. Share screenshots from your phone, search online, or find websites whose fonts and layout you like.");
     assert.equal(prompts[0].startsWith("I'm building my brand guidelines."), true);
+  } else if (day.day === 4) {
+    assert.equal(day.id, "brain-dump");
+    assert.equal(last, "Ask it to list and save every decision you made today.");
+    assert.equal(lastPrompt, "Before we close, list every decision we made in this chat and save them.");
+    assert.equal(day.assignment, "Done when your Google Drive is connected, your full list is ranked easiest to hardest, the strategy is saved in your Drive, and the first (easiest) task is picked.");
+    assert.match(prompts[1], /Save the ranked list and the strategy to my Google Drive\.$/);
+    assert.equal(day.steps[0].startsWith("Connect your Google Drive."), true);
   } else if (day.day < 6) {
     assert.equal(last, earlyClose);
     assert.equal(lastPrompt, earlyClose);

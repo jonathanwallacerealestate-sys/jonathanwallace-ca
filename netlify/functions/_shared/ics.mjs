@@ -93,11 +93,20 @@ function shift(date, hhmm, minutes) {
   return `${dt.getUTCFullYear()}${p(dt.getUTCMonth() + 1)}${p(dt.getUTCDate())}T${p(dt.getUTCHours())}${p(dt.getUTCMinutes())}00`;
 }
 
+export function icsFilename(day) {
+  const slug = String((day && day.title) || "session")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 80);
+  return `ai-bootcamp-${slug || "session"}.ics`;
+}
+
 export function buildIcs(day, when, options) {
   const opts = options || {};
   const now = opts.now || new Date();
   const uid = opts.uid || `ai30-day-${day.day}-${when.date}T${when.hhmm}-${stampUtc(now)}@jonathanwallace.ca`;
-  const summary = `AI Bootcamp: Lesson ${day.day}`;
+  const summary = `AI Bootcamp: ${day.title}`;
   const lines = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",

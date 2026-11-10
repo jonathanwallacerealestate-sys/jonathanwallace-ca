@@ -1,7 +1,9 @@
 // Progress rules for /ai-30-days. Stores only a name, day statuses, notes, and timestamps.
 // The name key is trim + collapsed spaces + lowercase, so "Jane Doe" and "jane  doe" match.
 
-export const DAY_COUNT = 31;
+import plan from "../../../ai-30-days/days.json" with { type: "json" };
+
+export const DAY_COUNT = plan.days.length;
 export const CURRICULUM = 31;
 export const NOTE_MAX = 2000;
 export const NAME_MAX = 40;

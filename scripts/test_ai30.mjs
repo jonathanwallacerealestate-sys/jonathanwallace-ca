@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { applyProgress, currentDay, doneCount, migrateCurriculum, normalizePerson } from "../netlify/functions/_shared/ai30.mjs";
-import { buildIcs, eventDescription, parseWhen } from "../netlify/functions/_shared/ics.mjs";
+import { DAY_COUNT, applyProgress, currentDay, doneCount, migrateCurriculum, normalizePerson } from "../netlify/functions/_shared/ai30.mjs";
+import { buildIcs, eventDescription, icsFilename, parseWhen } from "../netlify/functions/_shared/ics.mjs";
 
 const jane = normalizePerson("  Jane   ", "  DOE ");
 assert.equal(jane.ok, true);
@@ -48,7 +48,7 @@ const sameCase = normalizePerson("JANE", "doe");
 assert.equal(sameCase.key, "jane doe");
 
 const plan = JSON.parse(readFileSync(new URL("../ai-30-days/days.json", import.meta.url), "utf8"));
-assert.equal(plan.days.length, 31);
+assert.equal(plan.days.length, DAY_COUNT);
 assert.equal(plan.catchUpDays.join(","), "7,17,25");
 assert.equal(plan.title, "AI Bootcamp: Zero to Hero");
 assert.ok(!plan.rule.includes("—"));
@@ -63,7 +63,8 @@ const sections = {
   Review: [31, 31],
 };
 const lightClose = "Ask it to save what you set up today.";
-const standingClose = "Before we close, give me every decision and SOP we made in this chat as new rows for my decision log.";
+const standingClose = "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log.";
+const sopReminder = "Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.";
 for (const day of plan.days) {
   assert.equal(day.day, plan.days.indexOf(day) + 1);
   const prompts = Array.isArray(day.prompts) ? day.prompts : (day.prompt ? [day.prompt] : []);
@@ -71,7 +72,16 @@ for (const day of plan.days) {
   assert.ok(prompts.every((item) => typeof item === "string" && item.trim()));
   assert.ok(!JSON.stringify(day).includes("—"), "em dash in day " + day.day);
   const last = day.steps[day.steps.length - 1];
-  assert.equal(last, day.day < 6 ? lightClose : standingClose);
+  const lastPrompt = prompts[prompts.length - 1];
+  if (day.day < 3) {
+    assert.equal(last, lightClose);
+    assert.equal(lastPrompt, lightClose);
+    assert.doesNotMatch(day.assignment, /Before you finish/);
+  } else {
+    assert.equal(last, standingClose);
+    assert.equal(lastPrompt, standingClose);
+    assert.ok(day.assignment.endsWith(sopReminder), "reminder missing on day " + day.day);
+  }
   if (day.day <= 9) assert.equal(day.minutes, "15 to 20 min");
   else if (day.day <= 20) assert.equal(day.minutes, "30 min");
   else assert.equal(day.minutes, "30 to 45 min");
@@ -97,10 +107,11 @@ assert.doesNotMatch(JSON.stringify(plan), /Follow Up Ace|Sisu|Brain log/);
 assert.doesNotMatch(JSON.stringify(plan), /keep-going/);
 assert.equal(plan.days[9].title, "Plan your social media strategy");
 assert.equal(plan.days[10].title, "Create your first three posts");
-assert.equal(plan.days[24].title, "Your list: task 1");
+assert.equal(plan.days[24].title, "Your list: hand off your first task");
 assert.equal(plan.days[30].title, "Final review");
 assert.ok(plan.days.every((day) => day.assignment.startsWith("Done when")));
-assert.match(plan.days[10].prompts[0], /Lesson 10 brainstorm/);
+assert.match(plan.days[10].prompts[0], /my social media plan/);
+assert.doesNotMatch(JSON.stringify(plan), /Lesson \d+|Lessons \d+|\d+ lessons/);
 const shifted = migrateCurriculum({
   9: { done: true, doneAt: "2026-11-01T00:00:00.000Z" },
   10: { done: true, doneAt: "2026-11-02T00:00:00.000Z" },
@@ -130,7 +141,8 @@ for (const number of [1, 5]) {
     assert.ok(new TextEncoder().encode(line).length <= 75, "long line in day " + number);
   }
   const text = unfold(ics);
-  assert.match(text, new RegExp(`SUMMARY:AI Bootcamp: Lesson ${number}`));
+  assert.match(text, new RegExp(`SUMMARY:AI Bootcamp: ${day.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
+  assert.doesNotMatch(icsFilename(day), /lesson-\d|Lesson/);
   assert.match(text, /DTSTART:20261111T090000/);
   assert.match(text, /DTEND:20261111T093000/);
   assert.match(text, /DTSTAMP:20261110T120000Z/);
@@ -143,7 +155,7 @@ for (const number of [1, 5]) {
 assert.match(unfold(buildIcs(plan.days[0], when, { now: new Date("2026-11-10T12:00:00Z") })), /Assignment: Done when it can play back a short summary of your business/);
 assert.match(unfold(buildIcs(plan.days[4], when, { now: new Date("2026-11-10T12:00:00Z") })), /Assignment: Done when the re-engagement skill is saved/);
 const lesson11 = unfold(buildIcs(plan.days[10], when, { now: new Date("2026-11-10T12:00:00Z"), uid: "lesson-11@jonathanwallace.ca" }));
-assert.match(lesson11, /SUMMARY:AI Bootcamp: Lesson 11/);
+assert.match(lesson11, /SUMMARY:AI Bootcamp: Create your first three posts/);
 assert.match(lesson11, /Task: Create your first three posts/);
 assert.match(lesson11, /Assignment: Done when three posts are finished/);
 assert.doesNotMatch(buildIcs(plan.days[0], when), /—/);

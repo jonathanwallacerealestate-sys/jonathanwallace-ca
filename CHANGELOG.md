@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: lesson folders use the lesson title
+Why: Jonathan asked for one folder per lesson, named the same as the lesson, with no number in front.
+- The two-digit prefix is gone. Each lesson folder matches the title on the site, and the handout and prompts are inside it. The forms folder stays. Prompts by Area sits next to the read-me so it does not add an extra folder.
+
 ### AI bootcamp: zip folders follow the lessons
 Why: A file manager was sorting the forms folder ahead of the lessons.
 - Each lesson is a folder with a two-digit prefix and its title, so 01 comes first. Forms stay last. The Letter of Opinion kit is in the letter lesson, the Deal Card kit is in the deal card lesson, and Prompts by Area sorts first.

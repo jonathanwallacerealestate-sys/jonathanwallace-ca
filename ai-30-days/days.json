@@ -181,17 +181,19 @@
       "catchUp": false,
       "visual": "tasks",
       "steps": [
+        "Connect your Google Drive. Ask your AI to link your Google Drive so it can save your files there and manage them. Then ask it to move what you have saved so far (your business summary, Email writing SOP and brand guidelines) into a folder there.",
         "Do a full brain dump of every task you hate doing. Do not filter it.",
         "With your AI, rank the list from easiest to hardest.",
         "Build a strategy together for how it will take these on, one at a time, starting with the easiest.",
         "Stay on this list. Do not drift into other topics.",
-        "Ask it to save the ranked list and the strategy.",
-        "Before we close, list every decision we made in this chat and save them. I'll move them into my decision log once it's set up."
+        "Ask it to save the ranked list and the strategy to your Google Drive.",
+        "Ask it to list and save every decision you made today."
       ],
-      "assignment": "Done when your full list is ranked easiest to hardest, the strategy is saved, and the first (easiest) task is picked. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
+      "assignment": "Done when your Google Drive is connected, your full list is ranked easiest to hardest, the strategy is saved in your Drive, and the first (easiest) task is picked.",
       "prompts": [
-        "I'm going to brain dump every task in my business I hate doing. Don't suggest anything until I say I'm done. Then help me rank them from easiest to hardest for you to take on. Build a strategy for how we'll work through them one at a time, starting with the easiest. Keep us on this list and don't drift into other topics. Save the ranked list and the strategy.",
-        "Before we close, list every decision we made in this chat and save them. I'll move them into my decision log once it's set up."
+        "Connect to my Google Drive so you can save my files there and manage them. Create a folder for my AI work and move my business summary, Email writing SOP and brand guidelines into it. Walk me through any step I need to do to connect it.",
+        "I'm going to brain dump every task in my business I hate doing. Don't suggest anything until I say I'm done. Then help me rank them from easiest to hardest for you to take on. Build a strategy for how we'll work through them one at a time, starting with the easiest. Keep us on this list and don't drift into other topics. Save the ranked list and the strategy to my Google Drive.",
+        "Before we close, list every decision we made in this chat and save them."
       ]
     },
     {

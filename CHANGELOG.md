@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: writing style samples and pet peeves
+Why: Jonathan rewrote the start of Teach It Your Writing Style so people can paste links and name what they do not want.
+- The first step now asks for samples, including a blog or social link, and why you like it. The next step asks for pet peeves, such as em dashes, long paragraphs, and salesy words. The first prompt asks for what you like about each link, and the second prompt is "Save everything we set up today, so you remember it next time." The lesson id is unchanged.
+
 ### AI bootcamp: lesson 1 says Grok Bot
 Why: Jonathan asked for the paid-plan name in the first lesson to say Grok Bot.
 - Step 1 of Pick Your AI and Tell It About Your Business now says "Pick one AI and start on the paid plan: Grok Bot or Claude Pro. My pick for real estate agents is Grok Bot." Step 2 links to Grok Bot and Claude on the App Store. The lesson id is unchanged.

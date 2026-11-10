@@ -429,6 +429,16 @@ for (const needle of ["Jonathan Wallace", "jonathan@faristeam.ca", "705-433-2525
   assert.equal(zipBytes.includes(Buffer.from(needle)), false, needle);
 }
 assert.match(readFileSync(new URL("../ai-30-days/index.html", import.meta.url), "utf8"), /class="btn".*Download all the resources/);
+assert.doesNotMatch(portalSrc, /Notes on this device|Finish the current day|no shared calendar|\$\{days\} days/);
+assert.match(portalSrc, /Your progress on this device is only a backup until it connects\./);
+assert.match(portalSrc, /Finish this lesson before moving on\./);
+assert.match(portalSrc, /plural\(days, "day", "days"\)/);
+assert.match(portalSrc, /plural\(hours, "hour", "hours"\)/);
+assert.match(portalSrc, /plural\(minutes, "minute", "minutes"\)/);
+assert.doesNotMatch(JSON.stringify(plan), /no shared calendar|bootcamp checklist/);
+assert.doesNotMatch(readFileSync(new URL("../ai-30-days/index.html", import.meta.url), "utf8"), /no shared calendar/);
+assert.match(readFileSync(new URL("../ai-30-days/kit/source/Prompts-by-Area.md", import.meta.url), "utf8"), /The skills below follow the lessons\./);
+assert.doesNotMatch(readFileSync(new URL("../ai-30-days/kit/source/Prompts-by-Area.md", import.meta.url), "utf8"), /bootcamp checklist/);
 assert.match(portalSrc, /classList\.toggle\("is-in", name === "app"\)/);
 assert.match(readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), "utf8"), /body\.is-in \.kit \.btn/);
 const portalCss = readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), "utf8");

@@ -14,6 +14,11 @@ root = Path(__file__).resolve().parents[1]
 plan_path = root / "ai-30-days" / "days.json"
 zip_path = root / "ai-30-days" / "kit" / "ai-bootcamp-resources.zip"
 source_dir = root / "ai-30-days" / "kit" / "source"
+forms_dir = root / "ai-30-days" / "kit" / "forms"
+FORM_FILES = (
+    "Form_200_Listing_Agreement_master.pdf",
+    "RECO_Information_Guide_master.pdf",
+)
 FORBIDDEN = (
     "Jonathan Wallace",
     "jonathan@faristeam.ca",
@@ -73,6 +78,11 @@ def main():
         "The sample one-page Letter of Opinion is kits/Letter-of-Opinion-123-Sample-Street-SAMPLE.pdf. The name, phone, email, office address, and brokerage on it are placeholders.",
         "The handout for Make the Letter of Opinion Yours has the prompt and the steps.",
         "",
+        "The forms folder has the listing masters, in your kit:",
+        "- forms/Form_200_Listing_Agreement_master.pdf",
+        "- forms/RECO_Information_Guide_master.pdf",
+        "Faris Team brokerage details are already on them. Add your own name and work address when you fill them.",
+        "",
         "Skills",
     ]
     files = {}
@@ -100,6 +110,19 @@ def main():
             if needle.encode("utf-8") in blob:
                 raise SystemExit(path.name + " still contains " + needle)
         files[f"kits/{path.name}"] = blob
+    if not forms_dir.is_dir():
+        raise SystemExit("missing forms folder")
+    for name in FORM_FILES:
+        path = forms_dir / name
+        if not path.is_file():
+            raise SystemExit("missing form: " + name)
+        blob = path.read_bytes()
+        if not blob.startswith(b"%PDF"):
+            raise SystemExit(name + " is not a PDF")
+        for needle in ("Jonathan Wallace", "jonathan@faristeam.ca", "705-433-2525"):
+            if needle.encode("utf-8") in blob:
+                raise SystemExit(name + " still contains " + needle)
+        files[f"forms/{name}"] = blob
     zip_path.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
         for path in sorted(files):

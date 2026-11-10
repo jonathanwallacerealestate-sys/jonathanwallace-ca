@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: listing masters in the kit
+Why: Jonathan approved sharing the scrubbed Form 200 and RECO Information Guide, with his name removed and Faris Team brokerage details kept.
+- Both files are in the resources zip under forms/. The read-me lists them. Prep Your Listing Appointment Paperwork points to them as in your kit. The kit is rebuilt.
+
 ### AI bootcamp: replies keep what you typed
 Why: Jonathan asked that a reply which fails say so clearly, and that typed comments not disappear when the page refreshes or the phone keyboard closes.
 - An empty reply says "Type a reply first." A reply that does not post says "That didn't post. Check your connection and try again."

@@ -65,7 +65,9 @@ const lightClose = "Ask it to save what you set up today.";
 const standingClose = "Before we close, add every decision and SOP we made in this chat to my decision log.";
 for (const day of plan.days) {
   assert.equal(day.day, plan.days.indexOf(day) + 1);
-  assert.ok(day.title && day.why && day.steps.length >= 3 && day.prompt && day.assignment && day.visual);
+  const prompts = Array.isArray(day.prompts) ? day.prompts : (day.prompt ? [day.prompt] : []);
+  assert.ok(day.title && day.why && day.steps.length >= 3 && prompts.length && day.assignment && day.visual);
+  assert.ok(prompts.every((item) => typeof item === "string" && item.trim()));
   assert.ok(!JSON.stringify(day).includes("—"), "em dash in day " + day.day);
   const last = day.steps[day.steps.length - 1];
   assert.equal(last, day.day < 6 ? lightClose : standingClose);
@@ -85,8 +87,10 @@ assert.match(plan.days[7].title, /review/i);
 assert.match(plan.days[8].assignment, /brand guidelines/);
 assert.match(plan.days[13].title, /top 5/i);
 assert.match(plan.days[16].title, /Coles Notes/i);
-assert.match(plan.days[21].prompt, /RECO/);
-assert.match(plan.days[21].prompt, /GeoWarehouse/);
+assert.match(plan.days[21].prompts.join("\n"), /RECO/);
+assert.match(plan.days[21].prompts.join("\n"), /GeoWarehouse/);
+assert.equal(plan.title, "AI Bootcamp: Hiring Your First AI Agent");
+assert.doesNotMatch(plan.rule, /30 days|Getting Started/);
 assert.match(plan.days[22].title, /BrokerBay/);
 assert.doesNotMatch(JSON.stringify(plan), /Follow Up Ace|Sisu|Brain log/);
 assert.doesNotMatch(JSON.stringify(plan.days[29]), /Connect Your Tools/);
@@ -108,14 +112,14 @@ for (const number of [1, 5]) {
     assert.ok(new TextEncoder().encode(line).length <= 75, "long line in day " + number);
   }
   const text = unfold(ics);
-  assert.match(text, new RegExp(`SUMMARY:Your 30-minute AI session today: Day ${number}`));
+  assert.match(text, new RegExp(`SUMMARY:AI Bootcamp: Lesson ${number}`));
   assert.match(text, /DTSTART:20261111T090000/);
   assert.match(text, /DTEND:20261111T093000/);
   assert.match(text, /DTSTAMP:20261110T120000Z/);
   assert.match(text, /TRIGGER:PT0S/);
   assert.match(text, new RegExp(`UID:test-day-${number}@jonathanwallace.ca`));
-  assert.match(text, /Hey\\, don't forget you've got to do your 30-minute AI session today\.\\n\\nToday's task:/);
-  assert.match(text, new RegExp(`Today's task: ${day.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
+  assert.match(text, /Hey\\, don't forget you've got to do your 30-minute AI session today\.\\n\\nTask:/);
+  assert.match(text, new RegExp(`Task: ${day.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
   assert.match(text, /https:\/\/jonathanwallace\.ca\/ai-30-days/);
 }
 assert.match(unfold(buildIcs(plan.days[0], when, { now: new Date("2026-11-10T12:00:00Z") })), /Assignment: Done when it can play back a short summary of your business/);

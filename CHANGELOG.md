@@ -16,6 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### AI in 30 days: one day at a time, and a calendar reminder
+Why: agents were able to peek at a later day, and they asked for a reminder they can drop on the phone calendar.
+- A later day stays locked until the current day is marked done. The progress grid, the day list, the address bar, and the keyboard all keep it shut, with "Finish Day N to unlock". Marking today done saves on the server and moves straight to the next card.
+- Each open day has Add reminder to my calendar. It asks the phone to add a 30-minute event the next morning (9:00 a.m., or a time they pick) from /api/ai-30-days/ics.
+
 ### Private training portal: AI in 30 days
 Why: brokerage agents at the November 10 AI talk need a private link they can keep using, with progress that follows them from phone to laptop.
 - New page at /ai-30-days. Standalone: no site header, nav, or footer, and no links to the rest of the site. Not in sitemap.xml or llms.txt. noindex, nofollow, noarchive, plus an X-Robots-Tag and a robots.txt Disallow. Title bar: AI Getting Started: Your First 30 Days. Sign-off is plain text.

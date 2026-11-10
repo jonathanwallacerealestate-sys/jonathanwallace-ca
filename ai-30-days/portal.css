@@ -52,10 +52,11 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.01e
   border: 0;
   padding: 8px 0;
   min-height: 44px;
-  color: var(--ivory);
+  color: var(--charcoal);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+.bar .linkish { color: var(--ivory); }
 
 .rule {
   max-width: 760px;
@@ -246,6 +247,7 @@ ol.steps li { margin: 0 0 8px; }
   gap: 8px;
 }
 .dot {
+  position: relative;
   aspect-ratio: 1;
   border-radius: 12px;
   border: 1px solid var(--line);
@@ -254,6 +256,7 @@ ol.steps li { margin: 0 0 8px; }
   font-weight: 600;
   min-height: 44px;
 }
+.dot .lock { position: absolute; top: 4px; right: 4px; width: 12px; height: 12px; }
 .dot--done { background: var(--charcoal); color: var(--ivory); border-color: var(--charcoal); }
 .dot--today { background: var(--gold); border-color: var(--gold); color: var(--charcoal); }
 .dot--locked { color: var(--muted); }
@@ -284,8 +287,37 @@ ol.steps li { margin: 0 0 8px; }
   align-items: center;
 }
 .row b { font-family: var(--serif); font-size: 1.1rem; }
-.row span { color: var(--muted); font-size: 0.85rem; margin-left: auto; }
-.row--locked { color: var(--muted); }
+.row--locked { color: var(--muted); flex-wrap: wrap; }
+.row__title { font-weight: 700; color: inherit; }
+.row__note { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.85rem; }
+.row--locked .row__note { flex: 1 0 100%; margin-left: 28px; }
+.lockline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 0;
+  color: var(--charcoal);
+  font-weight: 700;
+}
+.lock { display: block; flex: 0 0 auto; }
+.remind {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 14px;
+}
+.remind label { margin: 0; }
+.remind input[type="time"] { width: auto; min-width: 8.5rem; background: var(--ivory); }
+.remind .btn { width: auto; margin-top: 0; flex: 1 1 220px; text-decoration: none; color: var(--charcoal); }
+@keyframes day-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.card--next { animation: day-in .4s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .card--next { animation: none; }
+}
 .open-day { margin: -4px 0 12px; }
 
 .signoff {

@@ -166,15 +166,27 @@ for (const day of plan.days) {
     assert.match(prompts[1], /Don't give me advice yet\./);
     assert.equal(day.steps[3], "No advice yet. This lesson is for it to understand your business, not to fix it.");
   } else if (day.id === "dead-leads") {
-    assert.equal(last, earlyClose);
-    assert.equal(lastPrompt, earlyClose);
-    assert.ok(day.assignment.endsWith(sopReminder), "reminder missing on day " + day.day);
+    const deadClose = "Before we close, list every decision we made in this chat, add them to my decision log with the reason, and update the SOP they belong to. Ask me any questions one at a time.";
+    assert.equal(last, deadClose);
+    assert.equal(lastPrompt, deadClose);
+    assert.match(day.assignment, /add every decision you made today to your decision log, and update the SOP it belongs to\.$/);
+    assert.doesNotMatch(day.assignment, /log every decision you made today in your SOP/);
+  } else if (day.id === "decision-log") {
+    assert.equal(day.day, 5);
+    assert.equal(day.minutes, "30 to 45 minutes, longer if you go deeper");
+    assert.equal(day.steps.length, 7);
+    assert.equal(prompts.length, 3);
+    assert.ok(prompts[0].includes("\n\nHOW TO ASK ME QUESTIONS:"));
+    assert.ok(prompts[1].includes("\n\nTHE AREAS AND QUESTIONS"));
+    assert.match(prompts[2], /Add each decision as a new row in my decision log with its reason/);
   } else {
     assert.equal(last, standingClose);
     assert.equal(lastPrompt, standingClose);
     assert.ok(day.assignment.endsWith(sopReminder), "reminder missing on day " + day.day);
   }
-  const timeLabel = day.day === 2 || day.day === 3
+  const timeLabel = day.id === "decision-log"
+    ? "30 to 45 minutes, longer if you go deeper"
+    : day.day === 2 || day.day === 3
     ? "30 minutes to start, longer if you go deeper"
     : "15 to 30 minutes, longer if you go deeper";
   assert.equal(day.minutes, timeLabel, "time label on day " + day.day);

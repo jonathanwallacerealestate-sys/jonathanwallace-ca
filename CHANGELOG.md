@@ -16,6 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: two lessons, then an 8 hour pause
+Why: Jonathan asked that a learner finish at most two lessons in any 8 hour stretch.
+- The server refuses a third completion until 8 hours after the earlier of the last two. Lessons already finished stay finished, and each one is still worth 3 points.
+- The next lesson stays locked and says when it opens, in the learner's own local time, such as "Nice work. Your next lesson unlocks at 3:40 PM." The calendar reminder still works on that lesson.
+
 ### AI bootcamp: fixes before the talk
 Why: Jonathan approved five fixes before tonight's talk.
 - The Progress tab no longer refreshes while a selfie preview is on screen or an upload is in progress. Cancel or a finished upload lets the refresh resume.

@@ -372,14 +372,45 @@ export function lessonMap(days) {
   return out;
 }
 
+// Two finished lessons in any 8 hour stretch. The next one waits until 8 hours
+// after the earlier of the two most recent completions.
+export const PACE_LIMIT = 2;
+export const PACE_WINDOW_MS = 8 * 60 * 60 * 1000;
+
+export function completionTimes(days) {
+  const times = [];
+  const src = days && typeof days === "object" ? days : {};
+  for (let n = 1; n <= DAY_COUNT; n += 1) {
+    const slot = src[String(n)];
+    if (!slot || slot.done !== true || !slot.doneAt) continue;
+    const time = new Date(slot.doneAt).getTime();
+    if (!Number.isNaN(time)) times.push(time);
+  }
+  times.sort((a, b) => a - b);
+  return times;
+}
+
+export function paceUnlockAt(days, nowIso) {
+  const times = completionTimes(days);
+  if (times.length < PACE_LIMIT) return "";
+  const earliest = times[times.length - PACE_LIMIT];
+  const unlock = earliest + PACE_WINDOW_MS;
+  const now = new Date(nowIso || Date.now()).getTime();
+  if (Number.isNaN(now) || now >= unlock) return "";
+  return new Date(unlock).toISOString();
+}
+
 // Forward only. A day can be marked done only after every earlier day is done.
 // Done days stay done. Notes are kept on done days and on the current day. Locked days drop notes.
 // doneAt is set on the server. The client clock is ignored.
+// A third new completion inside the 8 hour pace window is refused. Older completions are left as they are.
 export function applyProgress(existing, incoming, nowIso) {
   const prev = existing && existing.days && typeof existing.days === "object" ? existing.days : {};
   const nextIn = incoming && incoming.days && typeof incoming.days === "object" ? incoming.days : {};
   const now = nowIso || new Date().toISOString();
+  const nowMs = new Date(now).getTime();
   const days = {};
+  const stamped = completionTimes(prev);
   let passedOpen = false;
 
   for (let n = 1; n <= DAY_COUNT; n += 1) {
@@ -388,6 +419,12 @@ export function applyProgress(existing, incoming, nowIso) {
     const want = daySlot(nextIn[id]);
     const wasDone = !!(before && before.done === true);
     if (want.done && !wasDone && passedOpen) return { ok: false, error: "day_locked", day: n };
+    if (want.done && !wasDone && stamped.length >= PACE_LIMIT) {
+      const earliest = stamped[stamped.length - PACE_LIMIT];
+      if (nowMs < earliest + PACE_WINDOW_MS) {
+        return { ok: false, error: "pace", day: n, unlockAt: new Date(earliest + PACE_WINDOW_MS).toISOString() };
+      }
+    }
     const done = wasDone || want.done;
     const notes = done || !passedOpen ? want.notes : "";
     if (!done) passedOpen = true;
@@ -395,7 +432,13 @@ export function applyProgress(existing, incoming, nowIso) {
     const slot = {};
     if (done) {
       slot.done = true;
-      slot.doneAt = wasDone && before.doneAt ? String(before.doneAt) : now;
+      if (wasDone) {
+        if (before.doneAt) slot.doneAt = String(before.doneAt);
+      } else {
+        slot.doneAt = now;
+        stamped.push(nowMs);
+        stamped.sort((a, b) => a - b);
+      }
     }
     if (notes) slot.notes = notes;
     if (Object.keys(slot).length) days[id] = slot;
@@ -420,6 +463,7 @@ export function publicRecord(person, row) {
     complete: doneCount(days) === DAY_COUNT,
     selfie: !!(row && (row.selfieAt || row.selfie_at)),
     needsEmail: !(row && row.email),
+    unlockAt: paceUnlockAt(days),
   };
 }
 

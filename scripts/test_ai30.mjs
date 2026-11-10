@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { CONTEST_END_ISO, DAY_COUNT, applyProgress, currentDay, doneCount, loginPoints, migrateCurriculum, normalizePerson, peerStanding, publicFeed, scorePerson, selfieFilename, validEmail } from "../netlify/functions/_shared/ai30.mjs";
+import { CONTEST_END_ISO, DAY_COUNT, applyProgress, currentDay, doneCount, loginPoints, migrateCurriculum, normalizePerson, paceUnlockAt, peerStanding, publicFeed, scorePerson, selfieFilename, validEmail } from "../netlify/functions/_shared/ai30.mjs";
 import { buildIcs, eventDescription, icsFilename, parseWhen } from "../netlify/functions/_shared/ics.mjs";
 
 const jane = normalizePerson("  Jane   ", "  DOE ");
@@ -45,6 +45,40 @@ assert.equal(lockedNote.days["4"], undefined);
 
 const long = applyProgress(null, { days: { 1: { notes: "x".repeat(5000) } } }, t0);
 assert.equal(long.days["1"].notes.length, 2000);
+
+const paceA = "2026-11-10T12:00:00.000Z";
+const paceB = "2026-11-10T12:20:00.000Z";
+const firstPace = applyProgress(null, { days: { 1: { done: true } } }, paceA);
+const two = applyProgress({ days: firstPace.days }, { days: { 2: { done: true } } }, paceB);
+assert.equal(two.ok, true);
+assert.equal(two.days["1"].doneAt, paceA);
+assert.equal(two.days["2"].done, true);
+const third = applyProgress({ days: two.days }, { days: { 3: { done: true } } }, "2026-11-10T13:00:00.000Z");
+assert.equal(third.ok, false);
+assert.equal(third.error, "pace");
+assert.equal(third.unlockAt, "2026-11-10T20:00:00.000Z");
+assert.equal(two.days["1"].done, true);
+assert.equal(two.days["2"].done, true);
+assert.equal(two.days["3"], undefined);
+const opened = applyProgress({ days: two.days }, { days: { 3: { done: true } } }, "2026-11-10T20:00:00.000Z");
+assert.equal(opened.ok, true);
+assert.equal(opened.days["3"].done, true);
+const burst = {
+  1: { done: true, doneAt: "2026-11-10T10:00:00.000Z" },
+  2: { done: true, doneAt: "2026-11-10T10:05:00.000Z" },
+  3: { done: true, doneAt: "2026-11-10T10:10:00.000Z" },
+};
+const fourth = applyProgress({ days: burst }, { days: { 4: { done: true } } }, "2026-11-10T12:00:00.000Z");
+assert.equal(fourth.error, "pace");
+assert.equal(fourth.unlockAt, "2026-11-10T18:05:00.000Z");
+assert.equal(burst["1"].done, true);
+assert.equal(burst["3"].doneAt, "2026-11-10T10:10:00.000Z");
+assert.equal(paceUnlockAt(burst, "2026-11-10T18:05:00.000Z"), "");
+const undated = { 1: { done: true }, 2: { done: true, doneAt: paceB } };
+const afterUndated = applyProgress({ days: undated }, { days: { 3: { done: true } } }, "2026-11-10T13:00:00.000Z");
+assert.equal(afterUndated.ok, true);
+assert.equal(afterUndated.days["1"].done, true);
+assert.equal(afterUndated.days["1"].doneAt, undefined);
 
 const sameCase = normalizePerson("JANE", "doe");
 assert.equal(sameCase.key, "jane doe");
@@ -182,6 +216,7 @@ assert.match(portalSrc, /View \$\{extra\} more/);
 assert.match(portalSrc, /function relativeTime/);
 assert.match(portalSrc, /function initials/);
 assert.doesNotMatch(portalSrc, /❤|aria-label="Like"|like-count/);
+assert.match(portalSrc, /Nice work\. Your next lesson unlocks at /);
 assert.match(portalSrc, /selfieHold/);
 assert.match(portalSrc, /id="selfie-cancel"/);
 assert.doesNotMatch(portalSrc, /linkish remove|window\.prompt\("Admin key"\)/);

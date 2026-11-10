@@ -171,7 +171,7 @@ const server = createServer(async (req, res) => {
     if (!item || !item.email) return send(res, 200, JSON.stringify({ ok: true, needsEmail: true, first: person.first, last: person.last }));
     if (body.op === "save") {
       const applied = applyProgress({ days: migrateCurriculum(item.days) }, body, new Date().toISOString());
-      if (!applied.ok) return send(res, 400, JSON.stringify({ ok: false, error: applied.error, day: applied.day }));
+      if (!applied.ok) return send(res, 400, JSON.stringify({ ok: false, error: applied.error, day: applied.day, unlockAt: applied.unlockAt || "" }));
       item.days = stampCurriculum(applied.days);
       item.updated_at = new Date().toISOString();
       saveStore(store);

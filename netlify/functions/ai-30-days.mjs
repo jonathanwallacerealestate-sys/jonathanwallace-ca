@@ -244,7 +244,7 @@ async function saveLocked(db, person, body) {
     const applied = applyProgress({ ...existing, days: migrateCurriculum(existing.days) }, body, new Date().toISOString());
     if (!applied.ok) {
       await client.query("ROLLBACK");
-      return { ok: false, error: applied.error, day: applied.day };
+      return { ok: false, error: applied.error, day: applied.day, unlockAt: applied.unlockAt || "" };
     }
     const updated = await client.query(
       "UPDATE ai30_progress SET days = $2::jsonb, updated_at = now() WHERE name_key = $1 RETURNING name_key, first_name, last_name, email, days, selfie_at, created_at, updated_at",

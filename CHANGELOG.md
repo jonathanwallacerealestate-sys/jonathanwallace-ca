@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### AI bootcamp: no All lessons tab
+Why: Jonathan asked for the All lessons tab to come off the learning centre.
+- The tab and the list it opened are gone. Lesson and Progress stay. A finished lesson opened from a link stays on the current lesson instead of that list.
+
 ### AI bootcamp: skill titles only, and an SOP reminder
 Why: Jonathan asked that agents see the skill they are learning, not a lesson number or a total, and that each lesson after the first SOP reminds them to log the decision.
 - Cards, the sign-in topic list, the lock line, the completion line, the printable checklist, and the calendar event name use the skill title only. Internal day numbers still gate progress.

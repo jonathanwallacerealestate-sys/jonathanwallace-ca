@@ -160,4 +160,9 @@ assert.match(lesson11, /Task: Create your first three posts/);
 assert.match(lesson11, /Assignment: Done when three posts are finished/);
 assert.doesNotMatch(buildIcs(plan.days[0], when), /—/);
 
+const portalSrc = readFileSync(new URL("../ai-30-days/portal.js", import.meta.url), "utf8");
+assert.doesNotMatch(portalSrc, /All lessons|tab-all|renderAll/);
+assert.match(portalSrc, /id="tab-today"/);
+assert.match(portalSrc, /id="tab-progress"/);
+
 console.log("test_ai30: ok");

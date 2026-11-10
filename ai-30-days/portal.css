@@ -136,7 +136,7 @@ textarea { min-height: 120px; resize: vertical; }
 
 .tabs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 8px;
   margin: 14px 0;
 }
@@ -286,26 +286,6 @@ ol.steps li { margin: 0 0 8px; }
 }
 .track span { display: block; height: 100%; background: var(--gold); width: 0; }
 
-.daylist { list-style: none; margin: 0; padding: 0; }
-.daylist h3 { font-size: 1.15rem; margin: 18px 0 8px; }
-.row {
-  width: 100%;
-  text-align: left;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 12px;
-  margin: 0 0 8px;
-  min-height: 52px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-.row b { font-family: var(--serif); font-size: 1.1rem; }
-.row--locked { color: var(--muted); flex-wrap: wrap; }
-.row__title { font-weight: 700; color: inherit; }
-.row__note { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.85rem; }
-.row--locked .row__note { flex: 1 0 100%; margin-left: 28px; }
 .lockline {
   display: flex;
   align-items: center;
@@ -333,8 +313,6 @@ ol.steps li { margin: 0 0 8px; }
 @media (prefers-reduced-motion: reduce) {
   .card--next { animation: none; }
 }
-.open-day { margin: -4px 0 12px; }
-
 .learn { margin-top: 22px; }
 .learn h2 { font-size: clamp(1.45rem, 4vw, 1.8rem); margin: 0 0 10px; }
 .learn__sum { margin: 0 0 12px; padding-left: 1.15rem; }

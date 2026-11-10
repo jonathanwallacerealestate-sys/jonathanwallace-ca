@@ -156,7 +156,7 @@ function takeDayRequest() {
   const n = Number(raw);
   if (!raw || !Number.isInteger(n)) return;
   if (phase(n) === "locked") refuseLocked();
-  else if (phase(n) === "done") { state.tab = "all"; state.view = n; state.lockNote = ""; }
+  else if (phase(n) === "done") { state.tab = "today"; state.view = null; state.lockNote = ""; }
   else { state.tab = "today"; state.view = null; state.lockNote = ""; }
 }
 
@@ -226,10 +226,10 @@ function render() {
   const locked = state.lockNote ? `<p class="lockline" role="status">${LOCK} ${esc(state.lockNote)}</p>` : "";
   const enter = state.justAdvanced ? " card--next" : "";
 
-  let panel = "";
-  if (state.tab === "today") panel = renderToday(dayByNumber(state.complete ? lessonTotal() : state.currentDay), enter);
-  else if (state.tab === "progress") panel = renderProgress();
-  else panel = renderAll();
+  if (state.tab !== "progress") state.tab = "today";
+  const panel = state.tab === "progress"
+    ? renderProgress()
+    : renderToday(dayByNumber(state.complete ? lessonTotal() : state.currentDay), enter);
 
   root.innerHTML = `
     ${banner}
@@ -237,7 +237,6 @@ function render() {
     <div class="tabs" role="tablist">
       <button type="button" role="tab" id="tab-today" aria-selected="${state.tab === "today"}">Lesson</button>
       <button type="button" role="tab" id="tab-progress" aria-selected="${state.tab === "progress"}">Progress</button>
-      <button type="button" role="tab" id="tab-all" aria-selected="${state.tab === "all"}">All lessons</button>
     </div>
     ${panel}
     <p class="status" id="save-status" role="status">${esc(state.status && !state.offline ? state.status : "")}</p>
@@ -245,13 +244,11 @@ function render() {
 
   $("#tab-today").onclick = () => { state.tab = "today"; state.view = null; render(); };
   $("#tab-progress").onclick = () => { state.tab = "progress"; render(); };
-  $("#tab-all").onclick = () => { state.tab = "all"; render(); };
   const retry = $("#retry");
   if (retry) retry.onclick = () => signIn(state.first, state.last, true);
 
   if (state.tab === "today") bindToday(state.complete ? lessonTotal() : state.currentDay);
   if (state.tab === "progress") bindDots();
-  if (state.tab === "all") bindAll();
   const shot = root.querySelector(".shot");
   if (shot) shot.onclick = () => openShot(shot);
   state.justAdvanced = false;
@@ -303,36 +300,6 @@ function renderProgress() {
       <h2 class="lesson-title">${esc((dayByNumber(state.currentDay) || {}).title || "")}</h2>
       <div class="track" role="img" aria-label="Progress"><span style="width:${pct}%"></span></div>
     </section>
-  `;
-}
-
-function renderAll() {
-  const groups = [];
-  let last = "";
-  for (const day of state.plan.days) {
-    if (day.section !== last) {
-      groups.push(`<h3>${esc(day.section)}</h3>`);
-      last = day.section;
-    }
-    const kind = phase(day.day);
-    const note = kind === "locked" ? `${LOCK} ${esc(lockLine())}` : kind === "today" ? "Now" : "Done";
-    groups.push(`<button type="button" class="row ${kind === "locked" ? "row--locked" : ""}" data-day="${day.day}"><span class="row__title">${esc(day.title)}</span><span class="row__note">${note}</span></button>`);
-    if (state.view === day.day && kind !== "locked") groups.push(`<div class="open-day">${detail(day)}</div>`);
-  }
-  return `<section class="card"><ul class="daylist">${groups.join("")}</ul></section>`;
-}
-
-function detail(day) {
-  const notes = slot(day.day).notes || "";
-  return `
-    <div class="card">
-      <p class="why">${esc(day.why)}</p>
-      <ol class="steps">${day.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
-      ${notes ? `<p class="tip"><strong>Your notes.</strong> ${esc(notes)}</p>` : `<p class="fine">No notes saved on this lesson.</p>`}
-      ${promptBoxes(day)}
-      ${reminderBlock(day.day)}
-      <div class="look"><h3>What good looks like</h3><button type="button" class="shot" aria-label="Enlarge the example for ${esc(day.title)}"><span class="shot__frame">${exampleMarkup(day.visual)}</span></button></div>
-    </div>
   `;
 }
 
@@ -425,29 +392,11 @@ function bindDots() {
       const n = Number(btn.dataset.day);
       if (phase(n) === "locked") { refuseLocked(); render(); return; }
       state.lockNote = "";
-      if (phase(n) === "today") { state.tab = "today"; state.view = null; }
-      else { state.tab = "all"; state.view = n; }
+      state.tab = "today";
+      state.view = null;
       render();
     };
   });
-}
-
-function bindAll() {
-  document.querySelectorAll(".row").forEach((btn) => {
-    btn.onclick = () => {
-      const n = Number(btn.dataset.day);
-      if (phase(n) === "locked") { refuseLocked(); render(); return; }
-      state.lockNote = "";
-      if (phase(n) === "today") { state.tab = "today"; state.view = null; render(); return; }
-      state.view = state.view === n ? null : n;
-      render();
-    };
-  });
-  document.querySelectorAll(".open-day .shot").forEach((shot) => {
-    shot.onclick = () => openShot(shot);
-  });
-  if (state.view) bindReminder(state.view);
-  bindCopies(document.querySelector(".open-day") || document);
 }
 
 function payloadFromState(changeDay, change) {

@@ -6,7 +6,7 @@
 
 import { getDatabase } from "@netlify/database";
 import { adminCodeLocked, adminKeyOk, adminPinOk, applyAdminSession, clearAdminCodeFailures, isAdminEmail, noteAdminCodeFailure, signAdminToken, verifyAdminToken } from "./_shared/admin.mjs";
-import { applyProgress, cleanPost, currentDay, emailClaim, isSeparateSession, learnersCsv, migrateCurriculum, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, stampCurriculum } from "./_shared/ai30.mjs";
+import { applyProgress, cleanPost, currentDay, emailClaim, isSeparateSession, learnersCsv, migrateCurriculum, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, stampCurriculum, storedLessonId } from "./_shared/ai30.mjs";
 import { deleteTestBlobs, listDriveSelfies } from "./_shared/selfies.mjs";
 
 const PRODUCTION = ["https://jonathanwallace.ca", "https://www.jonathanwallace.ca"];
@@ -62,6 +62,7 @@ function enrichPosts(rows) {
     first: row.first_name,
     last: row.last_name,
     lesson: Number(row.lesson),
+    lessonId: row.lesson_id || "",
     kind: row.kind,
     body: row.body,
     parentId: row.parent_id ? Number(row.parent_id) : null,
@@ -83,7 +84,7 @@ async function readContext(db) {
   `);
   const loginRows = rowsOf(await db.sql`SELECT name_key, logged_at FROM ai30_logins`);
   const postRows = enrichPosts(rowsOf(await db.sql`
-    SELECT id, name_key, first_name, last_name, lesson, kind, body, parent_id, created_at
+    SELECT id, name_key, first_name, last_name, lesson, lesson_id, kind, body, parent_id, created_at
     FROM ai30_posts
     ORDER BY created_at ASC
   `));
@@ -372,18 +373,19 @@ async function learnerOp(db, person, body) {
     const parent = firstRow(await db.sql`SELECT id, parent_id FROM ai30_posts WHERE id = ${parentId} LIMIT 1`);
     if (!parent || parent.parent_id) return { ok: false, error: "reply" };
     await db.sql`
-      INSERT INTO ai30_posts (name_key, first_name, last_name, lesson, kind, body, parent_id)
-      VALUES (${person.key}, ${person.first}, ${person.last}, 0, 'reply', ${text}, ${parentId})
+      INSERT INTO ai30_posts (name_key, first_name, last_name, lesson, lesson_id, kind, body, parent_id)
+      VALUES (${person.key}, ${person.first}, ${person.last}, 0, '', 'reply', ${text}, ${parentId})
     `;
   } else {
     const lesson = Number(body.lesson);
     const kind = body.kind === "question" || body.kind === "stuck" ? body.kind : body.kind === "learned" ? "learned" : "";
-    if (!kind || !Number.isInteger(lesson) || lesson < 1) return { ok: false, error: "post" };
+    const lessonId = storedLessonId({ lesson, lessonId: body.lessonId });
+    if (!kind || !lessonId) return { ok: false, error: "post" };
     const days = migrateCurriculum(row.days);
     if (lesson > currentDay(days)) return { ok: false, error: "day_locked" };
     await db.sql`
-      INSERT INTO ai30_posts (name_key, first_name, last_name, lesson, kind, body)
-      VALUES (${person.key}, ${person.first}, ${person.last}, ${lesson}, ${kind}, ${text})
+      INSERT INTO ai30_posts (name_key, first_name, last_name, lesson, lesson_id, kind, body)
+      VALUES (${person.key}, ${person.first}, ${person.last}, ${lesson}, ${lessonId}, ${kind}, ${text})
     `;
   }
   const context = await readContext(db);

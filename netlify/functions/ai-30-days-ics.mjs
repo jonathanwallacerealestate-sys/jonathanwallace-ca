@@ -3,7 +3,7 @@
 // The day title and assignment come from ai-30-days/days.json.
 
 import plan from "../../ai-30-days/days.json" with { type: "json" };
-import { buildIcs, icsFilename, parseWhen } from "./_shared/ics.mjs";
+import { buildIcs, icsFilename, parseWhen, unlockDescription } from "./_shared/ics.mjs";
 
 const hits = new Map();
 
@@ -39,7 +39,8 @@ export default async (req, context) => {
   const day = (plan.days || []).find((item) => item.day === dayNo);
   if (!day || !when) return text(400, "Missing day or time");
 
-  const body = buildIcs(day, when);
+  const unlock = url.searchParams.get("kind") === "unlock";
+  const body = buildIcs(day, when, unlock ? { description: unlockDescription(day), alarm: `AI Bootcamp: ${day.title}` } : {});
   return new Response(body, {
     status: 200,
     headers: {

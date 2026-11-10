@@ -15,6 +15,12 @@ export function eventDescription(day) {
   return `Time for tomorrow's AI lesson: ${title}. ${line} Log in here: ${PORTAL}`.replace(/\s+/g, " ").trim();
 }
 
+export function unlockDescription(day) {
+  const topic = String((day && day.why) || "").replace(/\s+/g, " ").trim().replace(/\.+$/, "");
+  const line = topic ? `${topic}.` : "";
+  return `${line} Log in here: ${PORTAL}`.replace(/\s+/g, " ").trim();
+}
+
 export function escapeText(value) {
   return String(value)
     .replace(/\\/g, "\\\\")
@@ -104,6 +110,8 @@ export function buildIcs(day, when, options) {
   const now = opts.now || new Date();
   const uid = opts.uid || `ai30-day-${day.day}-${when.date}T${when.hhmm}-${stampUtc(now)}@jonathanwallace.ca`;
   const summary = `AI Bootcamp: ${day.title}`;
+  const description = opts.description || eventDescription(day);
+  const alarm = opts.alarm || `Time for tomorrow's AI lesson: ${day.title}.`;
   const lines = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
@@ -116,11 +124,11 @@ export function buildIcs(day, when, options) {
     `DTSTART:${shift(when.date, when.hhmm, 0)}`,
     `DTEND:${shift(when.date, when.hhmm, 30)}`,
     `SUMMARY:${escapeText(summary)}`,
-    `DESCRIPTION:${escapeText(eventDescription(day))}`,
+    `DESCRIPTION:${escapeText(description)}`,
     `URL:${PORTAL}`,
     "BEGIN:VALARM",
     "ACTION:DISPLAY",
-    `DESCRIPTION:${escapeText(`Time for tomorrow's AI lesson: ${day.title}.`)}`,
+    `DESCRIPTION:${escapeText(alarm)}`,
     "TRIGGER:PT0S",
     "END:VALARM",
     "END:VEVENT",

@@ -141,7 +141,9 @@ function dayByNumber(n) {
 }
 
 function slot(n) {
-  return state.days[String(n)] || {};
+  const day = dayByNumber(n);
+  if (!day) return {};
+  return state.days[day.id] || state.days[String(n)] || {};
 }
 
 function isDone(n) {
@@ -203,6 +205,16 @@ function shiftLocalDate(days) {
   const date = new Date();
   date.setDate(date.getDate() + days);
   return isoDate(date);
+}
+
+function unlockIcsHref() {
+  const when = new Date(state.unlockAt || "");
+  const day = dayByNumber(state.currentDay);
+  if (!day || Number.isNaN(when.getTime())) return "";
+  const p = (n) => String(n).padStart(2, "0");
+  const date = `${when.getFullYear()}${p(when.getMonth() + 1)}${p(when.getDate())}`;
+  const time = `${p(when.getHours())}${p(when.getMinutes())}`;
+  return `/api/ai-30-days/ics?day=${day.day}&date=${date}&time=${time}&kind=unlock`;
 }
 
 function icsHref(day, dateValue, timeValue) {
@@ -369,7 +381,7 @@ function render() {
     <div class="tabs" role="tablist" aria-label="Bootcamp sections">
       <button type="button" role="tab" id="tab-today" aria-selected="${state.tab === "today"}" aria-label="Lesson">Lesson</button>
       <button type="button" role="tab" id="tab-progress" aria-selected="${state.tab === "progress"}" aria-label="Leaderboard">Leaderboard</button>
-      <button type="button" role="tab" id="tab-board" aria-selected="${state.tab === "board"}" aria-label="Message Board">Message Board</button>
+      <button type="button" role="tab" id="tab-board" aria-selected="${state.tab === "board"}" aria-label="Messages">Messages</button>
     </div>
     ${panel}
     ${renderAdminCode()}
@@ -401,6 +413,12 @@ function render() {
   state.justAdvanced = false;
 }
 
+function lessonDownload(day) {
+  if (!day || !/^[a-z0-9-]+$/.test(day.id || "")) return "";
+  const href = `/ai-30-days/kit/lessons/${day.id}.zip`;
+  return `<p class="lesson-files"><a href="${esc(href)}" download="${esc(day.id)}.zip">Download this lesson's files</a></p>`;
+}
+
 function lessonOnScreen() {
   if (state.reviewDay && isDone(state.reviewDay)) return state.reviewDay;
   if (state.complete) return lessonTotal();
@@ -419,16 +437,18 @@ function renderToday(day, enter) {
       <p class="kicker">${esc(day.section)}</p>
       <div class="dayhead">
         <h2 class="lesson-title">${esc(day.title)}</h2>
-        <p class="chip">About ${esc(day.minutes)}</p>
+        <p class="chip">${esc(day.minutes)}</p>
+        <p class="teach">The more you teach it, the better it gets.</p>
+        ${lessonDownload(day)}
       </div>
-      ${waiting ? `<p class="lockline pace" role="status">${LOCK}<span>${esc(paceLine())}</span></p>` : ""}
+      ${waiting ? `<p class="lockline pace" role="status">${LOCK}<span>${esc(paceLine())}</span></p><a class="btn btn--ghost" id="unlock-remind" href="${esc(unlockIcsHref())}">Add a reminder to my calendar</a>` : ""}
       <p class="why">${esc(day.why)}</p>
       ${day.optional ? `<p class="optional"><strong>Optional.</strong> ${esc(day.optionalNote || `You can skip this lesson and tap ${COMPLETE_LABEL}`)}</p>` : ""}
       ${day.catchUp ? `<p class="catch">Good spot to catch up.</p>` : ""}
       ${day.day === 1 ? started : ""}
       <ol class="steps">${day.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
       ${day.tip ? `<p class="tip"><strong>Tip.</strong> ${esc(day.tip)}</p>` : ""}
-      ${day.assignment ? `<p class="assignment"><strong>Assignment.</strong> ${esc(day.assignment)}</p>` : ""}
+      ${day.assignment ? `<p class="assignment"><strong>Challenge.</strong> ${esc(day.assignment)}</p>` : ""}
       ${day.sample ? `<div class="sample"><p class="kicker">Sample, made up</p><pre class="sample__text">${esc(day.sample)}</pre></div>` : ""}
       ${promptBoxes(day)}
       <div class="look">
@@ -593,7 +613,7 @@ function renderProgress() {
       <span class="board__rank">${esc(row.rank)}</span>
       <span class="board__name">${esc(row.name)}${row.you ? ` <span class="board__tag">You</span>` : ""}</span>
       <span class="board__points">${esc(row.points)}</span>
-    </li>`).join("") : `<li class="fine">No one is on the board yet.</li>`;
+    </li>`).join("") : `<li class="fine">Be the first on the board. Finish your first lesson to join.</li>`;
   const clock = state.closed
     ? `<p class="prize">${state.winner ? `Winner: ${esc(state.winner)}` : "The leaderboard is closed."}</p>`
     : `<p class="prize" id="countdown">${esc(CLOSE_COPY)} ${esc(countdownText(Date.now()))}</p>`;
@@ -646,10 +666,10 @@ function shareBox(day) {
       <div class="tags" role="group" aria-label="What kind of note">
         <button type="button" class="tag" data-kind="learned" aria-pressed="true">Learned</button>
         <button type="button" class="tag" data-kind="question" aria-pressed="false">Question</button>
-        <button type="button" class="tag" data-kind="stuck" aria-pressed="false">Stuck on</button>
+        <button type="button" class="tag" data-kind="stuck" aria-pressed="false">Stuck</button>
       </div>
       <textarea id="share-body" maxlength="500" placeholder="A note for the group" aria-label="A note for the group"></textarea>
-      <button type="button" class="btn btn--ghost" id="share-send" data-lesson="${day.day}">Post to the group</button>
+      <button type="button" class="btn btn--ghost" id="share-send" data-lesson="${day.day}" data-lesson-id="${esc(day.id || "")}">Post to the group</button>
       <p class="fine" id="share-status" role="status"></p>
     </section>`;
 }
@@ -792,7 +812,7 @@ function renderComposer() {
     <div class="tags tags--compact" role="group" aria-label="What kind of note">
       <button type="button" class="tag" data-kind="learned" aria-pressed="${kind === "learned"}">Learned</button>
       <button type="button" class="tag" data-kind="question" aria-pressed="${kind === "question"}">Question</button>
-      <button type="button" class="tag" data-kind="stuck" aria-pressed="${kind === "stuck"}">Stuck on</button>
+      <button type="button" class="tag" data-kind="stuck" aria-pressed="${kind === "stuck"}">Stuck</button>
     </div>`;
   const note = replying
     ? `<p class="composer__to">Replying to ${esc(replying.name)} <button type="button" class="linkish" id="reply-cancel">Cancel</button></p>`
@@ -814,13 +834,13 @@ function renderBoard() {
     .sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
   const cards = posts.length
     ? posts.map((post) => `${commentRow(post, false)}${replyThread(post)}`).join("")
-    : `<p class="fine">No comments yet.</p>`;
-  return `<section class="card feed"><h2 class="lesson-title">Message Board</h2><div class="thread">${cards}</div>${renderComposer()}</section>`;
+    : `<p class="fine">Nothing here yet. Share one thing you learned, a question, or where you're stuck.</p>`;
+  return `<section class="card feed"><h2 class="lesson-title">Messages</h2><div class="thread">${cards}</div>${renderComposer()}</section>`;
 }
 
 function kindLabel(kind) {
   if (kind === "question") return "Question";
-  if (kind === "stuck") return "Stuck on";
+  if (kind === "stuck") return "Stuck";
   return "Learned";
 }
 
@@ -922,7 +942,7 @@ function bindShare() {
     const status = $("#share-status");
     send.disabled = true;
     try {
-      applyRecord(await post("talk", { lesson: Number(send.dataset.lesson), kind, body }));
+      applyRecord(await post("talk", { lesson: Number(send.dataset.lesson), lessonId: send.dataset.lessonId || "", kind, body }));
       if (status) status.textContent = "Posted to the group.";
       state.tab = "board";
       render();
@@ -1000,7 +1020,8 @@ function bindBoard() {
           state.replyTo = null;
         } else {
           const lesson = state.complete ? lessonTotal() : state.currentDay;
-          applyRecord(await post("talk", { lesson, kind: state.commentKind || "learned", body }));
+          const shown = dayByNumber(lesson);
+          applyRecord(await post("talk", { lesson, lessonId: shown && shown.id, kind: state.commentKind || "learned", body }));
           keepDraft("");
         }
         state.status = "Posted to the group.";
@@ -1182,13 +1203,13 @@ function bindDots() {
 
 function payloadFromState(changeDay, change) {
   const days = {};
-  for (let n = 1; n <= lessonTotal(); n += 1) {
-    const cur = slot(n);
+  for (const day of state.plan.days) {
+    const cur = state.days[day.id] || state.days[String(day.day)] || {};
     const entry = {};
     if (cur.done) entry.done = true;
     if (cur.notes) entry.notes = cur.notes;
-    if (n === changeDay) Object.assign(entry, change);
-    if (Object.keys(entry).length) days[String(n)] = entry;
+    if (day.day === changeDay) Object.assign(entry, change);
+    if (Object.keys(entry).length) days[day.id] = entry;
   }
   return days;
 }

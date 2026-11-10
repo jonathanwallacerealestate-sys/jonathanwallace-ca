@@ -4,7 +4,7 @@ AI Bootcamp: Zero to Hero. From the bootcamp.
 
 Do one lesson at a time. If you don't finish a lesson, don't move on until it's done. If it takes longer, that's okay. The skills below follow the lessons.
 
-Paste your house rules at the start of a chat. These prompts are samples. Use Sample names. Do not paste client ID, banking, or mortgage numbers. Drafts only. You review. You send.
+Paste your SOP at the start of a chat. These prompts are samples. Use Sample names. Do not paste client ID, banking, or mortgage numbers. Drafts only. You review. You send.
 
 The Deal Card kit and the Letter of Opinion kit are in this same folder. Attach the kit. Do not retype it.
 
@@ -12,7 +12,7 @@ The Deal Card kit and the Letter of Opinion kit are in this same folder. Attach 
 
 ## Getting started
 
-### House rules
+### SOP
 
 When to use: Teach It Your Writing Style. The approval line is rule one: it drafts, you approve. Use it at the start of a chat after that.
 
@@ -262,13 +262,13 @@ I will review it and post it myself.
 When to use: Set Up Your Decision Log, and at the end of every lesson after that. Save the list to your decision log. An SOP is a step-by-step. Teach It Your Writing Style is where you save the email writing SOP.
 
 ```
-Before we finish, list any new SOPs and decisions from this chat in short bullet points so I can save them to my rules file.
+Before we finish, list any new SOPs and decisions from this chat in short bullet points so I can save them to my decision log.
 ```
 
-### Read my rules back
+### Read my SOP back
 
 When to use: Set Up Your Decision Log and Final Review, and at the start of a fresh chat, or when a thread gets muddled.
 
 ```
-Read my house rules back to me in short bullets before we start. If anything is missing, ask. Do not invent a rule I did not give you.
+Read my SOP back to me in short bullets before we start. If anything is missing, ask. Do not invent a rule I did not give you.
 ```

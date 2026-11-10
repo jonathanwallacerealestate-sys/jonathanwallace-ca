@@ -40,7 +40,7 @@ const mocks = {
   5: () => `
     <div class="ex ex--paper">
       ${brand()}
-      <h3>House rules</h3>
+      <h3>SOP</h3>
       <ol class="ex__rules">
         <li><b>1. Approval line.</b> You draft. I approve before anything goes out.</li>
         <li>Do not invent facts, prices, or dates.</li>
@@ -68,7 +68,7 @@ const mocks = {
   8: () => `
     <div class="ex ex--chat">
       <p class="ex__who">End of chat</p>
-      <p class="ex__bubble">Saved: Email writing SOP, and the decision to skip exclamation marks. House rules, first line: I draft, you approve, nothing goes out until you say so.</p>
+      <p class="ex__bubble">Saved: Email writing SOP, and the decision to skip exclamation marks. SOP, first line: I draft, you approve, nothing goes out until you say so.</p>
     </div>`,
   9: () => `
     <div class="ex ex--mail">
@@ -303,7 +303,7 @@ const mocks = {
       <h3>Month review</h3>
       <ul class="ex__review">
         <li>Used every week: email drafts, texts, deal cards.</li>
-        <li>Rules file cleaned to one copy. Approval line is still rule 1.</li>
+        <li>Decision log cleaned to one copy. Approval line is still rule 1.</li>
         <li>Your Step 2 choice, written down.</li>
       </ul>
     </div>`,

@@ -4,15 +4,15 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync, statSync, readdirSy
 import { dirname, extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { adminCodeLocked, adminKeyOk, adminPinOk, applyAdminSession, clearAdminCodeFailures, isAdminEmail, noteAdminCodeFailure, signAdminToken, verifyAdminToken } from "../netlify/functions/_shared/admin.mjs";
-import { applyProgress, cleanPost, currentDay, emailClaim, isSeparateSession, learnersCsv, migrateCurriculum, nextSelfieStamps, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, selfieFilename, stampCurriculum } from "../netlify/functions/_shared/ai30.mjs";
-import { buildIcs, icsFilename, parseWhen } from "../netlify/functions/_shared/ics.mjs";
+import { applyProgress, cleanPost, currentDay, emailClaim, isSeparateSession, learnersCsv, migrateCurriculum, nextSelfieStamps, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, selfieFilename, stampCurriculum, storedLessonId } from "../netlify/functions/_shared/ai30.mjs";
+import { buildIcs, icsFilename, parseWhen, unlockDescription } from "../netlify/functions/_shared/ics.mjs";
 import plan from "../ai-30-days/days.json" with { type: "json" };
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const storePath = process.env.AI30_STORE || "/tmp/ai30-dev-store.json";
 const selfieDir = process.env.AI30_SELFIES || "/tmp/ai30-selfies";
 const port = Number(process.env.PORT || 8765);
-const types = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".json": "application/json; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png", ".ico": "image/x-icon", ".txt": "text/plain; charset=utf-8" };
+const types = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".json": "application/json; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png", ".ico": "image/x-icon", ".txt": "text/plain; charset=utf-8", ".zip": "application/zip" };
 
 function loadStore() {
   if (!existsSync(storePath)) return {};
@@ -43,7 +43,8 @@ const server = createServer(async (req, res) => {
       "Cache-Control": "no-store",
       "X-Robots-Tag": "noindex, nofollow, noarchive",
     });
-    res.end(buildIcs(day, when));
+    const unlock = url.searchParams.get("kind") === "unlock";
+    res.end(buildIcs(day, when, unlock ? { description: unlockDescription(day), alarm: `AI Bootcamp: ${day.title}` } : {}));
     return;
   }
 
@@ -247,8 +248,9 @@ const server = createServer(async (req, res) => {
       } else {
         const lesson = Number(body.lesson);
         const kind = ["learned", "question", "stuck"].includes(body.kind) ? body.kind : "";
-        if (!kind || lesson > currentDay(migrateCurriculum(item.days))) return send(res, 400, JSON.stringify({ ok: false, error: "day_locked" }));
-        store._posts.push({ id, key: person.key, first: person.first, last: person.last, lesson, kind, body: text, parentId: null, createdAt: new Date().toISOString() });
+        const lessonId = storedLessonId({ lesson, lessonId: body.lessonId });
+        if (!kind || !lessonId || lesson > currentDay(migrateCurriculum(item.days))) return send(res, 400, JSON.stringify({ ok: false, error: "day_locked" }));
+        store._posts.push({ id, key: person.key, first: person.first, last: person.last, lesson, lessonId, kind, body: text, parentId: null, createdAt: new Date().toISOString() });
       }
       saveStore(store);
       const row = recordFromRow(item);

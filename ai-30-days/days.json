@@ -176,23 +176,22 @@
       "id": "brain-dump",
       "section": "Foundations",
       "title": "Brain Dump the Tasks You Hate",
-      "why": "Now that it knows your business and your style, it can help you decide what to hand off first. Everyone's list will be different.",
+      "why": "You have had a couple of days to think since you first told it about your business. Now it learns where the gaps are, so it can start thinking ahead for you. Everyone's business is different.",
       "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "tasks",
       "steps": [
         "Connect your Google Drive. Ask your AI to link your Google Drive so it can save your files there and manage them. Then ask it to move what you have saved so far (your business summary, Email writing SOP and brand guidelines) into a folder there.",
-        "Do a full brain dump of every task you hate doing. Do not filter it.",
-        "With your AI, rank the list from easiest to hardest.",
-        "Build a strategy together for how it will take these on, one at a time, starting with the easiest.",
-        "Stay on this list. Do not drift into other topics.",
-        "Ask it to save the ranked list and the strategy to your Google Drive.",
-        "Ask it to list and save every decision you made today."
+        "Brain dump everything that has come to mind since your first lesson: the tasks you hate, what slows you down, and what you wish someone else handled. Do not filter it.",
+        "Let it interview you. It asks you 10 to 20 questions, one at a time, about how your business runs, what you enjoy, where the gaps are, and how it could help.",
+        "No advice yet. This lesson is for it to understand your business, not to fix it.",
+        "When the questions are done, ask it to play back what it learned and the gaps it sees, ranked from easiest to hardest to help with.",
+        "Ask it to save what it learned to your Google Drive, and to list and save every decision you made today."
       ],
-      "assignment": "Done when your Google Drive is connected, your full list is ranked easiest to hardest, the strategy is saved in your Drive, and the first (easiest) task is picked.",
+      "assignment": "Done when your Google Drive is connected, it has asked you at least 10 questions, and it can play back how your business runs and where the gaps are, saved in your Drive.",
       "prompts": [
         "Connect to my Google Drive so you can save my files there and manage them. Create a folder for my AI work and move my business summary, Email writing SOP and brand guidelines into it. Walk me through any step I need to do to connect it.",
-        "I'm going to brain dump every task in my business I hate doing. Don't suggest anything until I say I'm done. Then help me rank them from easiest to hardest for you to take on. Build a strategy for how we'll work through them one at a time, starting with the easiest. Keep us on this list and don't drift into other topics. Save the ranked list and the strategy to my Google Drive.",
+        "I've had a few days to think since I first told you about my business. I'm going to brain dump the tasks I hate, what slows me down, and what I wish someone else handled. Don't give me advice yet. When I say I'm done, ask me 10 to 20 questions, one at a time, waiting for my answer before the next one. Learn how my business runs, what I enjoy, where my gaps are, and how you could help. When you're done, play back what you learned and the gaps you see, ranked from easiest to hardest for you to help with. Save it to my Google Drive and use it, along with my saved decisions, to start thinking ahead for me.",
         "Before we close, list every decision we made in this chat and save them."
       ]
     },

@@ -104,7 +104,9 @@ function phase(n) {
 }
 
 function lockLine() {
-  return `Finish Lesson ${state.currentDay} to unlock`;
+  const current = dayByNumber(state.currentDay);
+  if (!current) return "Finish the lesson before this one to unlock";
+  return `Finish "${current.title}" to unlock`;
 }
 
 const LOCK = `<svg class="lock" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.8"></path></svg>`;
@@ -259,16 +261,15 @@ function renderToday(day, enter) {
   const done = isDone(day.day);
   const notes = slot(day.day).notes || "";
   const started = state.createdAt
-    ? `<p class="fine">Your Lesson 1 started when you signed in. There is no shared calendar.</p>`
-    : `<p class="fine">Your Lesson 1 starts when you sign in. There is no shared calendar.</p>`;
+    ? `<p class="fine">Your first lesson started when you signed in. There is no shared calendar.</p>`
+    : `<p class="fine">Your first lesson starts when you sign in. There is no shared calendar.</p>`;
   return `
     <article class="card${enter || ""}" id="today-card">
       <p class="kicker">${esc(day.section)}</p>
       <div class="dayhead">
-        <h2 class="lesson-count">Lesson ${day.day} of ${lessonTotal()}</h2>
+        <h2 class="lesson-title">${esc(day.title)}</h2>
         <p class="chip">About ${esc(day.minutes)}</p>
       </div>
-      <h3 class="lesson-title">${esc(day.title)}</h3>
       <p class="why">${esc(day.why)}</p>
       ${day.optional ? `<p class="optional"><strong>Optional.</strong> ${esc(day.optionalNote || "You can skip this lesson and tap Done.")}</p>` : ""}
       ${day.catchUp ? `<p class="catch">Good spot to catch up.</p>` : ""}
@@ -280,14 +281,14 @@ function renderToday(day, enter) {
       ${promptBoxes(day)}
       <div class="look">
         <h3>What good looks like</h3>
-        <button type="button" class="shot" aria-label="Enlarge the example for lesson ${day.day}">
+        <button type="button" class="shot" aria-label="Enlarge the example for ${esc(day.title)}">
           <span class="shot__frame">${exampleMarkup(day.visual)}</span>
         </button>
       </div>
       <label for="notes">Notes</label>
       <textarea id="notes" maxlength="2000" ${done && day.day !== state.currentDay && state.complete ? "" : ""}>${esc(notes)}</textarea>
       <div class="actions">
-        ${done && state.complete ? `<p class="fine">All ${lessonTotal()} lessons are marked done.</p>` : ""}
+        ${done && state.complete ? `<p class="fine">You've finished every lesson that's here.</p>` : ""}
         ${!done ? `<button type="button" class="btn" id="done">${day.optional ? "Done" : "Mark done"}</button>` : `<p class="fine">Marked done. The next lesson is open.</p>`}
       </div>
     </article>
@@ -295,19 +296,12 @@ function renderToday(day, enter) {
 }
 
 function renderProgress() {
-  const dots = state.plan.days.map((d) => {
-    const kind = phase(d.day);
-    const label = kind === "locked" ? `Lesson ${d.day}, locked. ${lockLine()}` : `Lesson ${d.day}, ${kind}`;
-    const mark = kind === "locked" ? LOCK : "";
-    return `<button type="button" class="dot dot--${kind}" data-day="${d.day}" aria-label="${esc(label)}">${mark}${d.day}</button>`;
-  }).join("");
-  const pending = state.plan.days.some((d) => phase(d.day) === "locked");
+  const total = lessonTotal();
+  const pct = total ? Math.round((state.doneCount / total) * 100) : 0;
   return `
     <section class="card">
-      <p class="count">${state.doneCount} of ${lessonTotal()} done</p>
-      <div class="grid">${dots}</div>
-      <p class="legend"><span><i style="background:#1b1b1b"></i>Done</span><span><i style="background:#c9a96a"></i>Now</span><span><i style="background:#f7f3ec;border:1px solid rgba(30,27,21,.2)"></i>Locked</span></p>
-      ${pending ? `<p class="lockline">${LOCK} ${esc(lockLine())}</p>` : ""}
+      <h2 class="lesson-title">${esc((dayByNumber(state.currentDay) || {}).title || "")}</h2>
+      <div class="track" role="img" aria-label="Progress"><span style="width:${pct}%"></span></div>
     </section>
   `;
 }
@@ -322,7 +316,7 @@ function renderAll() {
     }
     const kind = phase(day.day);
     const note = kind === "locked" ? `${LOCK} ${esc(lockLine())}` : kind === "today" ? "Now" : "Done";
-    groups.push(`<button type="button" class="row ${kind === "locked" ? "row--locked" : ""}" data-day="${day.day}"><b>${day.day}</b> <span class="row__title">${esc(day.title)}</span><span class="row__note">${note}</span></button>`);
+    groups.push(`<button type="button" class="row ${kind === "locked" ? "row--locked" : ""}" data-day="${day.day}"><span class="row__title">${esc(day.title)}</span><span class="row__note">${note}</span></button>`);
     if (state.view === day.day && kind !== "locked") groups.push(`<div class="open-day">${detail(day)}</div>`);
   }
   return `<section class="card"><ul class="daylist">${groups.join("")}</ul></section>`;
@@ -337,7 +331,7 @@ function detail(day) {
       ${notes ? `<p class="tip"><strong>Your notes.</strong> ${esc(notes)}</p>` : `<p class="fine">No notes saved on this lesson.</p>`}
       ${promptBoxes(day)}
       ${reminderBlock(day.day)}
-      <div class="look"><h3>What good looks like</h3><button type="button" class="shot" aria-label="Enlarge the example for lesson ${day.day}"><span class="shot__frame">${exampleMarkup(day.visual)}</span></button></div>
+      <div class="look"><h3>What good looks like</h3><button type="button" class="shot" aria-label="Enlarge the example for ${esc(day.title)}"><span class="shot__frame">${exampleMarkup(day.visual)}</span></button></div>
     </div>
   `;
 }
@@ -417,7 +411,7 @@ function bindToday(n) {
     done.onclick = async () => {
       done.disabled = true;
       const notesValue = $("#notes") ? $("#notes").value : "";
-      await savePayload(n, { done: true, notes: notesValue }, "Lesson marked done.", true);
+      await savePayload(n, { done: true, notes: notesValue }, "Marked done.", true);
     };
   }
   const shot = document.querySelector("#today-card .shot");
@@ -526,7 +520,7 @@ function printChecklist() {
   const root = $("#print-root");
   const days = state.plan.days.map((d) => `
     <article class="print-day">
-      <h2><span class="box"></span>Lesson ${d.day}. ${esc(d.title)}</h2>
+      <h2><span class="box"></span>${esc(d.title)}</h2>
       <p>${esc(d.section)} · About ${esc(d.minutes)}${d.catchUp ? " · Good spot to catch up" : ""}${isDone(d.day) ? " · Done" : ""}</p>
       <p>${esc(d.why)}</p>
       <ol>${d.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
@@ -548,7 +542,7 @@ function renderLearn() {
     const items = days.filter((day) => day.day >= start && day.day <= end);
     return `<details class="learn__group">
       <summary>${esc(section.title)}</summary>
-      <ol>${items.map((day) => `<li>Lesson ${day.day}: ${esc(day.title)}</li>`).join("")}</ol>
+      <ul>${items.map((day) => `<li>${esc(day.title)}</li>`).join("")}</ul>
     </details>`;
   }).join("");
   root.innerHTML = `<h2>What you'll learn along the way</h2><ul class="learn__sum">${lines}</ul>${groups}`;

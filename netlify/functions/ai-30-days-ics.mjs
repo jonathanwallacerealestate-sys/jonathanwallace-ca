@@ -3,7 +3,7 @@
 // The day title and assignment come from ai-30-days/days.json.
 
 import plan from "../../ai-30-days/days.json" with { type: "json" };
-import { buildIcs, parseWhen } from "./_shared/ics.mjs";
+import { buildIcs, icsFilename, parseWhen } from "./_shared/ics.mjs";
 
 const hits = new Map();
 
@@ -44,7 +44,7 @@ export default async (req, context) => {
     status: 200,
     headers: {
       "Content-Type": "text/calendar; charset=utf-8",
-      "Content-Disposition": `inline; filename="ai-bootcamp-lesson-${day.day}.ics"`,
+      "Content-Disposition": `inline; filename="${icsFilename(day)}"`,
       "Cache-Control": "no-store",
       "X-Robots-Tag": "noindex, nofollow, noarchive",
     },

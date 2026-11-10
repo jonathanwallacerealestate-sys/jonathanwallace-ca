@@ -24,6 +24,7 @@ body {
 }
 button, input, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
+[hidden] { display: none !important; }
 h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.01em; line-height: 1.15; margin: 0; }
 
 .bar {
@@ -275,6 +276,15 @@ ol.steps li { margin: 0 0 8px; }
   vertical-align: -1px;
 }
 .count { font-family: var(--sans); font-weight: 700; font-size: 1.35rem; margin: 0 0 12px; }
+.track {
+  height: 12px;
+  margin-top: 16px;
+  background: var(--ivory);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.track span { display: block; height: 100%; background: var(--gold); width: 0; }
 
 .daylist { list-style: none; margin: 0; padding: 0; }
 .daylist h3 { font-size: 1.15rem; margin: 18px 0 8px; }
@@ -337,7 +347,7 @@ ol.steps li { margin: 0 0 8px; }
   font-weight: 700;
   cursor: pointer;
 }
-.learn__group ol { margin: 0 0 12px; padding-left: 1.2rem; }
+.learn__group ul { margin: 0 0 12px; padding-left: 1.2rem; }
 .learn__group li { margin: 0 0 6px; }
 .signoff {
   max-width: 760px;

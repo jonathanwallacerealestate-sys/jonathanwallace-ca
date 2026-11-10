@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
 import { dirname, extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { applyProgress, migrateCurriculum, normalizePerson, publicRecord, recordFromRow, stampCurriculum } from "../netlify/functions/_shared/ai30.mjs";
-import { buildIcs, parseWhen } from "../netlify/functions/_shared/ics.mjs";
+import { buildIcs, icsFilename, parseWhen } from "../netlify/functions/_shared/ics.mjs";
 import plan from "../ai-30-days/days.json" with { type: "json" };
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -37,7 +37,7 @@ const server = createServer(async (req, res) => {
     if (!day || !when) return send(res, 400, "Missing day or time", "text/plain; charset=utf-8");
     res.writeHead(200, {
       "Content-Type": "text/calendar; charset=utf-8",
-      "Content-Disposition": `inline; filename="ai-bootcamp-lesson-${day.day}.ics"`,
+      "Content-Disposition": `inline; filename="${icsFilename(day)}"`,
       "Cache-Control": "no-store",
       "X-Robots-Tag": "noindex, nofollow, noarchive",
     });

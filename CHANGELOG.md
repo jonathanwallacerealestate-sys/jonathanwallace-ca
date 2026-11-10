@@ -16,6 +16,12 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### AI bootcamp: skill titles only, and an SOP reminder
+Why: Jonathan asked that agents see the skill they are learning, not a lesson number or a total, and that each lesson after the first SOP reminds them to log the decision.
+- Cards, the sign-in topic list, the lock line, the completion line, the printable checklist, and the calendar event name use the skill title only. Internal day numbers still gate progress.
+- From Build your brand guidelines on, the assignment ends with "Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to." The closing prompt asks which SOP each decision belongs in. Pick your AI and Teach it your writing style keep their own closing step.
+- The print checklist stays off the sign-in page. A button style was overriding the hidden attribute.
+
 ### AI bootcamp: 31 lessons
 Why: Jonathan approved two new social lessons and a lesson-by-lesson final review, and asked for the sign-in page to show the path instead of a printable checklist.
 - Lesson 10 is Plan your social media strategy. Lesson 11 is Create your first three posts. The old "post, then schedule two more" lesson is gone. Later lessons move up by one. The last lesson is 31, Final review. Your list is Lessons 25 to 30.

@@ -13,6 +13,7 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[1]
 plan_path = root / "ai-30-days" / "days.json"
 zip_path = root / "ai-30-days" / "kit" / "ai-bootcamp-resources.zip"
+lesson_zip_dir = root / "ai-30-days" / "kit" / "lessons"
 source_dir = root / "ai-30-days" / "kit" / "source"
 forms_dir = root / "ai-30-days" / "kit" / "forms"
 FORM_FILES = (
@@ -67,7 +68,8 @@ def handout(day):
         day["title"],
         "",
         f"Section: {day['section']}",
-        f"Time: About {day['minutes']}",
+        f"Time: {day['minutes']}",
+        "The more you teach it, the better it gets.",
         "",
         day["why"],
         "",
@@ -79,7 +81,7 @@ def handout(day):
         lines.extend(["", f"Tip. {day['tip']}"])
     if day.get("optionalNote"):
         lines.extend(["", f"Optional. {day['optionalNote']}"])
-    lines.extend(["", "Assignment", day["assignment"], "", "Prompts"])
+    lines.extend(["", "Challenge", day["assignment"], "", "Prompts"])
     for prompt in day.get("prompts") or []:
         lines.extend(["", prompt, ""])
     if day.get("sample"):
@@ -113,16 +115,27 @@ def main():
         "Folders",
     ]
     files = {}
+    lesson_packs = {}
     seen = set()
     folders = {}
+    ids = {}
     for day in plan["days"]:
+        lesson_id = str(day.get("id") or "")
+        if not re.fullmatch(r"[a-z0-9-]+", lesson_id):
+            raise SystemExit("lesson id must stay a lowercase slug: " + lesson_id)
+        if lesson_id in ids.values():
+            raise SystemExit("duplicate lesson id: " + lesson_id)
         name = safe_name(day["title"])
         if name in seen:
             raise SystemExit("duplicate skill file name: " + name)
         seen.add(name)
         folder = lesson_folder(day)
-        folders[int(day["day"])] = folder
-        files[f"{folder}/{folder}.txt"] = handout(day)
+        number = int(day["day"])
+        folders[number] = folder
+        ids[number] = lesson_id
+        handout_path = f"{folder}/{folder}.txt"
+        files[handout_path] = handout(day)
+        lesson_packs[lesson_id] = {handout_path: files[handout_path]}
         readme.append(f"- {folder}")
     readme_text = "\n".join(readme).strip() + "\n"
     if "\u2014" in readme_text:
@@ -144,8 +157,12 @@ def main():
             raise SystemExit("no lesson folder for kit file: " + path.name)
         if home == 0:
             files[path.name] = blob
+            if path.name.startswith("Prompts-by-Area."):
+                lesson_packs[ids[2]][f"{folders[2]}/{path.name}"] = blob
         else:
-            files[f"{folders[home]}/{path.name}"] = blob
+            packed = f"{folders[home]}/{path.name}"
+            files[packed] = blob
+            lesson_packs[ids[home]][packed] = blob
     if not forms_dir.is_dir():
         raise SystemExit("missing forms folder")
     for name in FORM_FILES:
@@ -159,11 +176,22 @@ def main():
             if needle.encode("utf-8") in blob:
                 raise SystemExit(name + " still contains " + needle)
         files[f"forms/{name}"] = blob
+        lesson_packs[ids[23]][f"forms/{name}"] = blob
     zip_path.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
         for path in sorted(files):
             archive.writestr(path, files[path])
-    print(f"wrote {zip_path} ({len(files)} files)")
+    lesson_zip_dir.mkdir(parents=True, exist_ok=True)
+    for stale in lesson_zip_dir.glob("*.zip"):
+        if stale.stem not in lesson_packs:
+            stale.unlink()
+    for lesson_id, pack in lesson_packs.items():
+        out = lesson_zip_dir / f"{lesson_id}.zip"
+        ordered = sorted(pack, key=lambda item: (item.startswith("forms/"), item))
+        with zipfile.ZipFile(out, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+            for path in ordered:
+                archive.writestr(path, pack[path])
+    print(f"wrote {zip_path} ({len(files)} files) and {len(lesson_packs)} lesson zips")
 
 
 if __name__ == "__main__":

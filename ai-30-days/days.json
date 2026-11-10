@@ -1,7 +1,7 @@
 {
   "title": "AI Bootcamp: Zero to Hero",
   "audience": "Brokerage agents",
-  "rule": "One lesson at a time. If you don't finish a lesson, don't move on until it's done. If it takes you longer, that's okay.",
+  "rule": "One lesson at a time. Take the time you need.",
   "signature": "Jonathan Wallace, REALTOR® | Faris Team",
   "pacing": {
     "1-9": "15 to 20 min",
@@ -91,14 +91,15 @@
   "days": [
     {
       "day": 1,
+      "id": "pick-your-ai",
       "section": "Foundations",
       "title": "Pick Your AI and Tell It About Your Business",
       "why": "It can only help with a business it understands.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "about",
       "steps": [
-        "Pick one AI. My picks are Grok or Claude, and I think Grok is the easiest to use for real estate agents.",
+        "Pick one AI and start on the paid plan: Grok Premium or Claude Pro. My pick for real estate agents is Grok.",
         "Install it on your phone and your computer.",
         "Explain your business: who you are, your experience, and everything it would need to know to help you. Examples: how many houses you have sold, what areas you like to work in, and the roadblocks and challenges where it could help you manage, fix, solve or add leverage.",
         "Ask it to save what you set up today."
@@ -106,15 +107,16 @@
       "assignment": "Done when it can play back a short summary of your business and you are happy it is accurate.",
       "prompts": [
         "I'm a REALTOR® and I want you to understand my business. Ask me questions one at a time: how many houses I've sold, what areas I like to work in, how long I've been in real estate, and the roadblocks and challenges where you could help me manage, fix, solve or add leverage. When we're done, give me a short summary of my business and save it.",
-        "Save what we set up today, so you remember it next time."
+        "Save everything we set up today, so you remember it next time."
       ]
     },
     {
       "day": 2,
+      "id": "writing-style",
       "section": "Foundations",
       "title": "Teach It Your Writing Style",
       "why": "What you feed it is what it writes like.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "30 minutes to start, longer if you go deeper",
       "catchUp": false,
       "visual": "email",
       "tip": "Talk instead of type. Use the microphone; it is faster and the draft is still yours to approve.",
@@ -134,10 +136,11 @@
     },
     {
       "day": 3,
+      "id": "brand-guidelines",
       "section": "Foundations",
       "title": "Build Your Brand Guidelines",
       "why": "Every post and flyer should look like you without starting over each time.",
-      "minutes": "60 to 90 minutes",
+      "minutes": "30 minutes to start, longer if you go deeper",
       "catchUp": false,
       "visual": "brand",
       "steps": [
@@ -147,20 +150,21 @@
         "Upload any marketing materials you have already created.",
         "Add the Faris Team logo.",
         "Have your AI turn it all into one brand guidelines file and save it.",
-        "Before you close, ask your AI to save the decisions you made today in this chat. You'll move them into your decision log once you set it up."
+        "Before we close, list every decision we made in this chat and save them. I'll move them into my decision log once it's set up."
       ],
       "assignment": "Done when your brand guidelines are saved and your AI can describe your fonts, colours and look back to you. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
         "I'm going to give you the fonts I like, my colour palette, my headshots, marketing materials I've made, and the Faris Team logo. Ask me anything you need, then create my brand guidelines: fonts, colours, photo style, logo use, and how my posts and materials should look. Save it so every marketing piece follows it.",
-        "Before you close, ask your AI to save the decisions you made today in this chat. You'll move them into your decision log once you set it up."
+        "Before we close, list every decision we made in this chat and save them. I'll move them into my decision log once it's set up."
       ]
     },
     {
       "day": 4,
+      "id": "brain-dump",
       "section": "Foundations",
       "title": "Brain Dump the Tasks You Hate",
       "why": "Now that it knows your business and your style, it can help you decide what to hand off first. Everyone's list will be different.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "tasks",
       "steps": [
@@ -169,20 +173,21 @@
         "Build a strategy together for how it will take these on, one at a time, starting with the easiest.",
         "Stay on this list. Do not drift into other topics.",
         "Ask it to save the ranked list and the strategy.",
-        "Before you close, ask your AI to save the decisions you made today in this chat. You'll move them into your decision log once you set it up."
+        "Before we close, list every decision we made in this chat and save them. I'll move them into my decision log once it's set up."
       ],
       "assignment": "Done when your full list is ranked easiest to hardest, the strategy is saved, and the first (easiest) task is picked. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
         "I'm going to brain dump every task in my business I hate doing. Don't suggest anything until I say I'm done. Then help me rank them from easiest to hardest for you to take on. Build a strategy for how we'll work through them one at a time, starting with the easiest. Keep us on this list and don't drift into other topics. Save the ranked list and the strategy.",
-        "Before you close, ask your AI to save the decisions you made today in this chat. You'll move them into your decision log once you set it up."
+        "Before we close, list every decision we made in this chat and save them. I'll move them into my decision log once it's set up."
       ]
     },
     {
       "day": 5,
+      "id": "dead-leads",
       "section": "Foundations",
       "title": "Re-Engage Your Dead Leads",
       "why": "Your database already has people who went quiet. The right message can restart the conversation.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "texts",
       "steps": [
@@ -191,20 +196,21 @@
         "Give it a couple of examples (real or mock).",
         "Create a skill (a saved set of steps your AI can repeat): you give it a person's details, it gives you 5 text options, or 5 email options if that is where they want to be met, to re-engage them into a conversation about buying or selling.",
         "Ask it to save the skill.",
-        "Before you close, ask your AI to save the decisions you made today in this chat. You'll move them into your decision log once you set it up."
+        "Before we close, list every decision we made in this chat and save them. I'll move them into my decision log once it's set up."
       ],
       "assignment": "Done when the re-engagement skill is saved and you have run it on one real dead lead and got 5 options back. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
         "Research the best ways to re-engage cold real estate leads by text and by email, and the best practices for each. Then I'll explain my situation and give you a couple of examples. Create a skill: when I give you a person's details, give me 5 text messages, or 5 email options if email is where they'd rather be reached, to restart a conversation about buying or selling. Don't send anything. I approve first.",
-        "Before you close, ask your AI to save the decisions you made today in this chat. You'll move them into your decision log once you set it up."
+        "Before we close, list every decision we made in this chat and save them. I'll move them into my decision log once it's set up."
       ]
     },
     {
       "day": 6,
+      "id": "decision-log",
       "section": "Foundations",
       "title": "Set Up Your Decision Log",
       "why": "A decision log gives your AI a memory, so you do not have to retrain it every time.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "sop",
       "steps": [
@@ -222,10 +228,11 @@
     },
     {
       "day": 7,
+      "id": "inbox",
       "section": "Foundations",
       "title": "Teach It to Clean Up Your Inbox",
       "why": "A tidy inbox means you do not miss the emails that matter.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": true,
       "optional": true,
       "optionalNote": "If you do not want your AI to have access to your email, that is completely fine. Skip this lesson and tap I've completed the lesson and the challenge to move to the next lesson.",
@@ -233,23 +240,24 @@
       "steps": [
         "Connect your AI to your email (Outlook or Gmail).",
         "Teach it how you like emails filtered and filed, how and when they can be deleted, and where they can be moved.",
-        "Set one or two standing rules. Examples: 30 days after a BrokerBay showing is done, its request and confirmation emails are archived or deleted. Anything that comes back signed from DocuSign is filed in a folder for that property, checked once a day.",
-        "Add your inbox rules to your decision log.",
+        "Set one or two Inbox SOP steps. Examples: 30 days after a BrokerBay showing is done, its request and confirmation emails are archived or deleted. Anything that comes back signed from DocuSign is filed in a folder for that property, checked once a day.",
+        "Add your Inbox SOP to your decision log.",
         "If you can't connect it, ask it to give you the text to paste in yourself.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ],
-      "assignment": "Done when your rules are saved as an Inbox SOP and you have run them once and checked what moved (or tapped I've completed the lesson and the challenge to skip). Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
+      "assignment": "Done when your Inbox SOP is saved and you have run it once and checked what moved (or tapped I've completed the lesson and the challenge to skip). Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
-        "I'm going to teach you how I manage my inbox: how I filter and file, what can be deleted and when, and where things should go. For example, 30 days after a BrokerBay showing is done, archive the request and confirmation. Anything signed back from DocuSign goes into that property's folder. Save this as my Inbox SOP. Show me what you'd move or delete before doing it the first time. Then add these rules to my decision log.",
+        "I'm going to teach you how I manage my inbox: how I filter and file, what can be deleted and when, and where things should go. For example, 30 days after a BrokerBay showing is done, archive the request and confirmation. Anything signed back from DocuSign goes into that property's folder. Save this as my Inbox SOP. Show me what you'd move or delete before doing it the first time. Then add this Inbox SOP to my decision log.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ]
     },
     {
       "day": 8,
+      "id": "reviews",
       "section": "Clients and Social",
       "title": "Ask for Reviews",
       "why": "Happy clients will leave a review if you make it easy and personal.",
-      "minutes": "30 to 45 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "review",
       "steps": [
@@ -267,10 +275,11 @@
     },
     {
       "day": 9,
+      "id": "share-posts",
       "section": "Clients and Social",
       "title": "Share 10 Posts You Like",
       "why": "Showing real posts is clearer than trying to describe a style.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "instagram",
       "steps": [
@@ -287,10 +296,11 @@
     },
     {
       "day": 10,
+      "id": "social-strategy",
       "section": "Clients and Social",
       "title": "Plan Your Social Media Strategy",
       "why": "A simple plan you'll actually follow beats random posting.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "scheduled",
       "steps": [
@@ -308,10 +318,11 @@
     },
     {
       "day": 11,
+      "id": "first-posts",
       "section": "Clients and Social",
       "title": "Create Your First Three Posts",
       "why": "Turn your best ideas into posts that look like you.",
-      "minutes": "60 to 90 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "instagram",
       "steps": [
@@ -330,10 +341,11 @@
     },
     {
       "day": 12,
+      "id": "book-appointments",
       "section": "Calendar, Notes and Listings",
       "title": "Book Appointments into Your Calendar",
       "why": "Say it once out loud and it is booked, with travel time built in.",
-      "minutes": "30 to 45 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "calendar",
       "steps": [
@@ -352,10 +364,11 @@
     },
     {
       "day": 13,
+      "id": "keep-notes",
       "section": "Calendar, Notes and Listings",
       "title": "Teach It How You Keep Notes",
       "why": "Once it knows how you take notes, every call, meeting, or pop-by gets logged without you typing.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "crm",
       "steps": [
@@ -375,10 +388,11 @@
     },
     {
       "day": 14,
+      "id": "past-clients",
       "section": "Calendar, Notes and Listings",
       "title": "Stay in Touch with Past Clients",
       "why": "Past clients are your best source of repeat and referral business, and your AI can remember the details you cannot.",
-      "minutes": "60 to 90 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "email",
       "steps": [
@@ -396,10 +410,11 @@
     },
     {
       "day": 15,
+      "id": "listing-descriptions",
       "section": "Calendar, Notes and Listings",
       "title": "Write Listing Descriptions in Your Top 5",
       "why": "Your listing description is a top 5, the 5 best reasons to buy this home.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "top5",
       "steps": [
@@ -418,10 +433,11 @@
     },
     {
       "day": 16,
+      "id": "letter-of-opinion",
       "section": "Letters and Offers",
       "title": "Make the Letter of Opinion Yours",
       "why": "Turn the ready-made Letter of Opinion template into your own, with your details and your real signature.",
-      "minutes": "60 to 90 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "letter",
       "steps": [
@@ -440,10 +456,11 @@
     },
     {
       "day": 17,
+      "id": "time-a-letter",
       "section": "Letters and Offers",
       "title": "Practise, then Time a Real Letter",
       "why": "A past address is a safe rehearsal. The timed letter shows you what a real one costs in minutes.",
-      "minutes": "60 to 90 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": true,
       "visual": "letter",
       "steps": [
@@ -460,10 +477,11 @@
     },
     {
       "day": 18,
+      "id": "coles-notes",
       "section": "Letters and Offers",
       "title": "Read an Offer: The Coles Notes",
       "why": "Offers are long. Your client needs the key points, fast and clearly.",
-      "minutes": "60 to 90 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "coles",
       "steps": [
@@ -482,10 +500,11 @@
     },
     {
       "day": 19,
+      "id": "deal-deadlines",
       "section": "Letters and Offers",
       "title": "Deal Deadline Tracker",
       "why": "Missing a condition date or a title search date is costly. Let your AI put every date in your calendar.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "deadlines",
       "steps": [
@@ -502,10 +521,11 @@
     },
     {
       "day": 20,
+      "id": "deal-card",
       "section": "Deal Card",
       "title": "Deal Card Setup",
       "why": "One card per person keeps the next step where you can see it.",
-      "minutes": "30 to 45 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "deal",
       "steps": [
@@ -522,10 +542,11 @@
     },
     {
       "day": 21,
+      "id": "ten-leads",
       "section": "Deal Card",
       "title": "Ten Leads, then Make the Calls",
       "why": "The card only matters if you pick up the phone.",
-      "minutes": "60 to 90 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "calls",
       "steps": [
@@ -542,10 +563,11 @@
     },
     {
       "day": 22,
+      "id": "paste-notes",
       "section": "Deal Card",
       "title": "Paste the Notes, then the Next 10",
       "why": "The notes you bring back are what make the next list sharper.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "deal",
       "steps": [
@@ -562,10 +584,11 @@
     },
     {
       "day": 23,
+      "id": "listing-paperwork",
       "section": "Advanced",
       "title": "Prep Your Listing Appointment Paperwork",
       "why": "The forms you print for every listing appointment can be ready in a minute.",
-      "minutes": "60 to 90 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "forms",
       "steps": [
@@ -585,10 +608,11 @@
     },
     {
       "day": 24,
+      "id": "brokerbay",
       "section": "Advanced",
       "title": "Book Showings in BrokerBay",
-      "why": "Showings are repetitive and easy to hand off once it knows your rules.",
-      "minutes": "45 to 60 minutes",
+      "why": "Showings are repetitive and easy to hand off once it knows your Showings SOP.",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "showing",
       "steps": [
@@ -607,10 +631,11 @@
     },
     {
       "day": 25,
+      "id": "handoff-1",
       "section": "Your List",
       "title": "Your List: Hand Off Your First Task",
       "why": "Hand off the jobs you hate most, one at a time.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": true,
       "visual": "tasks",
       "steps": [
@@ -628,10 +653,11 @@
     },
     {
       "day": 26,
+      "id": "handoff-2",
       "section": "Your List",
       "title": "Your List: Hand Off Another Task",
       "why": "Hand off the jobs you hate most, one at a time.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "sop",
       "steps": [
@@ -649,10 +675,11 @@
     },
     {
       "day": 27,
+      "id": "handoff-3",
       "section": "Your List",
       "title": "Your List: Hand Off the Next Task",
       "why": "Hand off the jobs you hate most, one at a time.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "sop",
       "steps": [
@@ -670,10 +697,11 @@
     },
     {
       "day": 28,
+      "id": "handoff-4",
       "section": "Your List",
       "title": "Your List: Hand Off One More Task",
       "why": "Hand off the jobs you hate most, one at a time.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "sop",
       "steps": [
@@ -691,10 +719,11 @@
     },
     {
       "day": 29,
+      "id": "handoff-5",
       "section": "Your List",
       "title": "Your List: Keep Handing Tasks Off",
       "why": "Hand off the jobs you hate most, one at a time.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "sop",
       "steps": [
@@ -712,10 +741,11 @@
     },
     {
       "day": 30,
+      "id": "handoff-6",
       "section": "Your List",
       "title": "Your List: Hand Off the Next One on Your List",
       "why": "Hand off the jobs you hate most, one at a time.",
-      "minutes": "45 to 60 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "sop",
       "steps": [
@@ -733,10 +763,11 @@
     },
     {
       "day": 31,
+      "id": "final-review",
       "section": "Review",
       "title": "Final Review",
       "why": "Look back at every lesson, leave one clean decision log, and write down your next step.",
-      "minutes": "60 to 90 minutes",
+      "minutes": "15 to 30 minutes, longer if you go deeper",
       "catchUp": false,
       "visual": "review30",
       "steps": [

@@ -6,6 +6,41 @@ import plan from "../../../ai-30-days/days.json" with { type: "json" };
 
 export const DAY_COUNT = plan.days.length;
 export const CURRICULUM = 31;
+// Original day numbers, frozen. Never reorder, reuse, or edit an id.
+// A lesson can leave days.json. Its id stays here so finished work still counts.
+export const LEGACY_DAY_IDS = Object.freeze([
+  "pick-your-ai",
+  "writing-style",
+  "brand-guidelines",
+  "brain-dump",
+  "dead-leads",
+  "decision-log",
+  "inbox",
+  "reviews",
+  "share-posts",
+  "social-strategy",
+  "first-posts",
+  "book-appointments",
+  "keep-notes",
+  "past-clients",
+  "listing-descriptions",
+  "letter-of-opinion",
+  "time-a-letter",
+  "coles-notes",
+  "deal-deadlines",
+  "deal-card",
+  "ten-leads",
+  "paste-notes",
+  "listing-paperwork",
+  "brokerbay",
+  "handoff-1",
+  "handoff-2",
+  "handoff-3",
+  "handoff-4",
+  "handoff-5",
+  "handoff-6",
+  "final-review",
+]);
 export const NOTE_MAX = 2000;
 export const NAME_MAX = 40;
 
@@ -40,16 +75,22 @@ function daySlot(raw) {
 }
 
 export function currentDay(days) {
-  for (let n = 1; n <= DAY_COUNT; n += 1) {
-    if (!days[String(n)] || days[String(n)].done !== true) return n;
-  }
-  return DAY_COUNT;
+  const src = lessonMap(days);
+  const index = plan.days.findIndex((day) => !(src[day.id] && src[day.id].done === true));
+  if (index < 0) return DAY_COUNT;
+  return plan.days[index].day;
 }
 
 export function doneCount(days) {
+  const src = lessonMap(days);
   let n = 0;
-  for (let i = 1; i <= DAY_COUNT; i += 1) if (days[String(i)] && days[String(i)].done) n += 1;
+  for (const slot of Object.values(src)) if (slot && slot.done === true) n += 1;
   return n;
+}
+
+function planComplete(days) {
+  const src = lessonMap(days);
+  return plan.days.every((day) => src[day.id] && src[day.id].done === true);
 }
 
 export function isPracticeName(first, last) {
@@ -194,14 +235,21 @@ export function loginPoints(logins) {
   return points;
 }
 
+export function storedLessonId(post) {
+  const explicit = post && post.lessonId ? String(post.lessonId) : "";
+  if (explicit && (LEGACY_DAY_IDS.includes(explicit) || plan.days.some((day) => day.id === explicit))) return explicit;
+  const n = Number(post && post.lesson);
+  if (Number.isInteger(n) && n >= 1 && n <= LEGACY_DAY_IDS.length) return LEGACY_DAY_IDS[n - 1];
+  return "";
+}
+
 export function scorePerson(person, posts) {
-  const days = lessonMap(migrateCurriculum(person.days));
+  const days = lessonMap(person.days);
   const doneLessons = new Set();
-  for (let n = 1; n <= DAY_COUNT; n += 1) {
-    const slot = days[String(n)];
+  for (const [id, slot] of Object.entries(days)) {
     if (!slot || slot.done !== true) continue;
     if (slot.doneAt && !countsForContest(slot.doneAt)) continue;
-    doneLessons.add(n);
+    doneLessons.add(id);
   }
   const done = doneLessons.size;
   if (isAdminEmail(person && person.email)) return { points: 0, done };
@@ -210,7 +258,8 @@ export function scorePerson(person, posts) {
   const shared = new Set();
   for (const post of mine) {
     if (post.parentId) continue;
-    if (doneLessons.has(Number(post.lesson))) shared.add(Number(post.lesson));
+    const id = storedLessonId(post);
+    if (id && doneLessons.has(id)) shared.add(id);
   }
   const answered = new Set();
   let answers = 0;
@@ -320,6 +369,8 @@ export function peerStanding(rows, posts, youKey) {
 }
 
 export function lessonTitle(day) {
+  const byId = (plan.days || []).find((item) => item.id === day);
+  if (byId) return byId.title;
   const found = (plan.days || []).find((item) => item.day === Number(day));
   return found ? found.title : "";
 }
@@ -341,7 +392,7 @@ export function publicFeed(posts, youKey) {
       name: displayLearner(post.first, post.last),
       body: post.body,
       kind: post.kind,
-      lessonTitle: lessonTitle(post.lesson),
+      lessonTitle: lessonTitle(post.lessonId || storedLessonId(post) || post.lesson),
       createdAt: post.createdAt,
       you: post.key === youKey,
       replies: [],
@@ -393,13 +444,12 @@ export function emptyDays() {
   return { _curriculum: CURRICULUM };
 }
 
-// Old plans had 30 lessons. Lesson 10 was replaced by two new lessons, so stored
-// numbers from 11 up move forward by one. If old lesson 10 was finished, new
-// lesson 11 is marked finished. Numbers 1 to 9 stay put. Runs once.
-export function migrateCurriculum(days) {
-  const src = days && typeof days === "object" ? days : {};
-  if (src._curriculum === CURRICULUM) return src;
-  const next = { _curriculum: CURRICULUM };
+function idKeys(src) {
+  return Object.keys(src).filter((key) => !key.startsWith("_") && !/^\d+$/.test(key));
+}
+
+function shift30to31(src) {
+  const next = {};
   const copy = (from, to) => {
     const slot = src[String(from)];
     if (slot && typeof slot === "object") next[String(to)] = slot;
@@ -410,17 +460,39 @@ export function migrateCurriculum(days) {
   return next;
 }
 
+// Old 30-lesson records shift once. Then day numbers become the frozen ids.
+// A record already stamped _ids is returned unchanged. Runs once per record.
+export function migrateCurriculum(days) {
+  const src = days && typeof days === "object" ? days : {};
+  if (src._ids === 1) return src;
+  if (idKeys(src).length && !Object.keys(src).some((key) => /^\d+$/.test(key))) {
+    return { ...src, _curriculum: CURRICULUM, _ids: 1 };
+  }
+  const numbered = src._curriculum === CURRICULUM ? src : shift30to31(src);
+  const next = { _curriculum: CURRICULUM, _ids: 1 };
+  for (let n = 1; n <= LEGACY_DAY_IDS.length; n += 1) {
+    const slot = numbered[String(n)];
+    if (slot && typeof slot === "object") next[LEGACY_DAY_IDS[n - 1]] = slot;
+  }
+  for (const key of idKeys(src)) {
+    if (!next[key] && src[key] && typeof src[key] === "object") next[key] = src[key];
+  }
+  return next;
+}
+
 export function stampCurriculum(days) {
   const next = lessonMap(days);
   next._curriculum = CURRICULUM;
+  next._ids = 1;
   return next;
 }
 
 export function lessonMap(days) {
+  const src = migrateCurriculum(days);
   const out = {};
-  const src = days && typeof days === "object" ? days : {};
-  for (let n = 1; n <= DAY_COUNT; n += 1) {
-    if (src[String(n)] && typeof src[String(n)] === "object") out[String(n)] = src[String(n)];
+  for (const [key, slot] of Object.entries(src)) {
+    if (key.startsWith("_")) continue;
+    if (slot && typeof slot === "object") out[key] = slot;
   }
   return out;
 }
@@ -432,9 +504,8 @@ export const PACE_WINDOW_MS = 8 * 60 * 60 * 1000;
 
 export function completionTimes(days) {
   const times = [];
-  const src = days && typeof days === "object" ? days : {};
-  for (let n = 1; n <= DAY_COUNT; n += 1) {
-    const slot = src[String(n)];
+  const src = lessonMap(days);
+  for (const slot of Object.values(src)) {
     if (!slot || slot.done !== true || !slot.doneAt) continue;
     const time = new Date(slot.doneAt).getTime();
     if (!Number.isNaN(time)) times.push(time);
@@ -457,8 +528,14 @@ export function paceUnlockAt(days, nowIso) {
 // Done days stay done. Notes are kept on done days and on the current day. Locked days drop notes.
 // doneAt is set on the server. The client clock is ignored.
 // A third new completion inside the 8 hour pace window is refused. Older completions are left as they are.
+function incomingSlot(nextIn, day) {
+  if (nextIn[day.id] && typeof nextIn[day.id] === "object") return daySlot(nextIn[day.id]);
+  if (nextIn[String(day.day)] && typeof nextIn[String(day.day)] === "object") return daySlot(nextIn[String(day.day)]);
+  return daySlot(null);
+}
+
 export function applyProgress(existing, incoming, nowIso, options) {
-  const prev = existing && existing.days && typeof existing.days === "object" ? existing.days : {};
+  const prev = migrateCurriculum(existing && existing.days);
   const nextIn = incoming && incoming.days && typeof incoming.days === "object" ? incoming.days : {};
   const now = nowIso || new Date().toISOString();
   const nowMs = new Date(now).getTime();
@@ -467,16 +544,16 @@ export function applyProgress(existing, incoming, nowIso, options) {
   const stamped = completionTimes(prev);
   let passedOpen = false;
 
-  for (let n = 1; n <= DAY_COUNT; n += 1) {
-    const id = String(n);
+  for (const day of plan.days) {
+    const id = day.id;
     const before = prev[id] && typeof prev[id] === "object" ? prev[id] : null;
-    const want = daySlot(nextIn[id]);
+    const want = incomingSlot(nextIn, day);
     const wasDone = !!(before && before.done === true);
-    if (want.done && !wasDone && passedOpen) return { ok: false, error: "day_locked", day: n };
+    if (want.done && !wasDone && passedOpen) return { ok: false, error: "day_locked", day: day.day };
     if (!skipPace && want.done && !wasDone && stamped.length >= PACE_LIMIT) {
       const earliest = stamped[stamped.length - PACE_LIMIT];
       if (nowMs < earliest + PACE_WINDOW_MS) {
-        return { ok: false, error: "pace", day: n, unlockAt: new Date(earliest + PACE_WINDOW_MS).toISOString() };
+        return { ok: false, error: "pace", day: day.day, unlockAt: new Date(earliest + PACE_WINDOW_MS).toISOString() };
       }
     }
     const done = wasDone || want.done;
@@ -498,6 +575,11 @@ export function applyProgress(existing, incoming, nowIso, options) {
     if (Object.keys(slot).length) days[id] = slot;
   }
 
+  for (const [key, slot] of Object.entries(prev)) {
+    if (key.startsWith("_") || days[key] || plan.days.some((day) => day.id === key)) continue;
+    if (slot && typeof slot === "object" && slot.done === true) days[key] = slot;
+  }
+
   return { ok: true, days };
 }
 
@@ -514,7 +596,7 @@ export function publicRecord(person, row) {
     updatedAt,
     currentDay: currentDay(days),
     doneCount: doneCount(days),
-    complete: doneCount(days) === DAY_COUNT,
+    complete: planComplete(days),
     selfie: !!(row && (row.selfieAt || row.selfie_at)),
     needsEmail: !(row && row.email),
     needsAdminCode: isAdminEmail(row && row.email),

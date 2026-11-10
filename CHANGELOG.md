@@ -16,6 +16,15 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: permanent lesson ids and the approved lesson fixes
+Why: Jonathan asked for every approved fix on the live course before the presentation, led by lesson ids that keep each person's progress if the course order changes.
+- Finished lessons are stored by a permanent id. Existing day numbers are copied onto those ids once. Points, finished lessons, completion times, and login streaks stay the same. Removing a lesson later keeps its id, so those points stay. See ai-30-days/CURRICULUM_EDITING.md.
+- The sign-in page says "Short lessons that turn AI into your assistant, one real task at a time." and "Enter your name and email. No password. Use the same name and email to come back on your phone or computer."
+- Each lesson has its own public zip. The Download all button is gone. A locked lesson can add a calendar reminder at the unlock time.
+- Prompt 2 on the first lesson, and the close prompt on lessons 3, 4, and 5, are the approved paste lines. The course uses SOP and decision log. The lesson ending is labelled Challenge.
+- Time chips are "15 to 30 minutes, longer if you go deeper", except the writing-style and brand-guidelines lessons. Each lesson says "The more you teach it, the better it gets."
+- The banner is one line. The third tab is Messages. Empty states and the Stuck tag are the approved lines. Lesson 1 step 1 names Grok Premium and Claude Pro.
+
 ### AI bootcamp: admin code
 Why: Matching the admin email is not enough. Jonathan also wants a code before the admin tools open.
 - Set AI30_ADMIN_PIN on Netlify. When the signed-in email is on AI30_ADMIN_EMAILS, the page shows an Admin code field. The server compares the code in constant time, then returns a signed token that marks that device as admin for 30 days. Five wrong codes for that email or that IP lock the check for 15 minutes. Learners never see the field. AI30_ADMIN_KEY still works on the admin page.

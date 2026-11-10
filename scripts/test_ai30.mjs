@@ -284,6 +284,7 @@ assert.match(portalSrc, /Nice work\. Your next lesson unlocks at /);
 assert.match(portalSrc, /That name is already taken with a different email\. Use the email you signed up with\./);
 assert.match(portalSrc, /You can upload 3 selfies an hour\./);
 assert.match(portalSrc, /selfieHold/);
+assert.match(readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), "utf8"), /\.selfie__actions[\s\S]*grid-template-columns: 1fr 1fr/);
 assert.match(portalSrc, /id="selfie-cancel"/);
 assert.doesNotMatch(portalSrc, /linkish remove|window\.prompt\("Admin key"\)/);
 assert.match(readFileSync(new URL("../ai-30-days/export.html", import.meta.url), "utf8"), /Remove a board post/);

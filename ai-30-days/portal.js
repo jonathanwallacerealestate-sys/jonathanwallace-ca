@@ -309,8 +309,8 @@ function render() {
     ${peers}
     <div class="tabs" role="tablist">
       <button type="button" role="tab" id="tab-today" aria-selected="${state.tab === "today"}">Lesson</button>
-      <button type="button" role="tab" id="tab-progress" aria-selected="${state.tab === "progress"}">Progress</button>
-      <button type="button" role="tab" id="tab-board" aria-selected="${state.tab === "board"}">Board</button>
+      <button type="button" role="tab" id="tab-progress" aria-selected="${state.tab === "progress"}">Leaderboard</button>
+      <button type="button" role="tab" id="tab-board" aria-selected="${state.tab === "board"}">Message Board</button>
     </div>
     ${panel}
     <p class="status" id="save-status" role="status">${esc(state.status && !state.offline ? state.status : "")}</p>
@@ -578,7 +578,7 @@ function renderBoard() {
   const cards = posts.length
     ? posts.map((post) => `${commentRow(post, false)}${replyThread(post)}`).join("")
     : `<p class="fine">No comments yet.</p>`;
-  return `<section class="card feed"><h2 class="lesson-title">Message board</h2><div class="thread">${cards}</div>${renderComposer()}</section>`;
+  return `<section class="card feed"><h2 class="lesson-title">Message Board</h2><div class="thread">${cards}</div>${renderComposer()}</section>`;
 }
 
 function kindLabel(kind) {

@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: tab names
+Why: Jonathan asked for the tab names to match what is inside them.
+- The Progress tab is now labelled Leaderboard. The Board tab is now labelled Message Board, including the heading on that page.
+
 ### AI bootcamp: name and work address on the letter and the forms
 Why: Jonathan asked the Letter of Opinion lesson to collect a full name and brokerage office address, and the listing paperwork lesson to reuse those details on Form 200 and the RECO forms.
 - Make the Letter of Opinion Yours now asks for the full name and the work address, and tells the AI to save both in the business summary and the decision log.

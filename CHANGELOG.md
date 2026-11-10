@@ -16,6 +16,12 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### Private training portal: AI in 30 days
+Why: brokerage agents at the November 10 AI talk need a private link they can keep using, with progress that follows them from phone to laptop.
+- New page at /ai-30-days. Standalone: no site header, nav, or footer, and no links to the rest of the site. Not in sitemap.xml or llms.txt. noindex, nofollow, noarchive, plus an X-Robots-Tag and a robots.txt Disallow. Title bar: AI Getting Started: Your First 30 Days. Sign-off is plain text.
+- Sign in with first and last name only. The same name, any spacing or capital letters, opens the same place. Progress is stored in Netlify Database (name, day statuses, notes, timestamps). A copy is cached on the device. "Not you?" forgets the device.
+- The 30 days live in ai-30-days/days.json so the list can be edited in one file. Each day has a short example of what good looks like. Days 7, 16, and 24 are marked as a good spot to catch up. Day 1 starts when that person first signs in.
+
 ### Straight Answers: is now a good time to sell waterfront
 - Added /ask/is-now-a-good-time-to-sell-waterfront (Selling). Poster from the opening smile.
 

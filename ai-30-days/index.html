@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+  Private training portal for brokerage agents. Do not link it from the nav,
+  footer, sitemap.xml, or llms.txt.
+-->
+<html lang="en-CA">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>AI Getting Started: Your First 30 Days</title>
+<meta name="description" content="Private 30-day AI practice plan for brokerage agents. Shared only by link.">
+<link rel="canonical" href="https://jonathanwallace.ca/ai-30-days">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jonathanwallace.ca/ai-30-days">
+<meta property="og:title" content="AI Getting Started: Your First 30 Days">
+<meta property="og:description" content="Private 30-day AI practice plan for brokerage agents. Shared only by link.">
+<meta property="og:locale" content="en_CA">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ai-30-days/portal.css">
+<script>(function(w,d,s,l,i){try{var n=w.postMessage;if(typeof n==='function'&&!n.__jwShield){var wrapped=function(){try{return n.apply(w,arguments);}catch(e){}};wrapped.__jwShield=1;w.postMessage=wrapped;}}catch(e){}w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='anonymous';j.onerror=function(){};j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P36FJB8L');</script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P36FJB8L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header class="bar">
+  <p class="bar__title">AI Getting Started: Your First 30 Days</p>
+  <div class="who" id="who" hidden>
+    <p>Signed in as <strong id="who-name"></strong></p>
+    <button type="button" class="linkish" id="not-you">Not you?</button>
+  </div>
+</header>
+<div class="rule"><p id="rule-text">One day at a time. If you don't finish a day's task, don't move on until it's done. If 30 days takes you 90, that's okay.</p></div>
+<main class="shell">
+  <section class="card" id="gate">
+    <p class="kicker">Sign in</p>
+    <h1>Your 30 days</h1>
+    <p class="lead">First name and last name. No password. The same name brings you back to your place, on your phone or your computer.</p>
+    <form id="gate-form">
+      <label for="first">First name</label>
+      <input id="first" name="first" autocomplete="given-name" maxlength="40" required>
+      <label for="last">Last name</label>
+      <input id="last" name="last" autocomplete="family-name" maxlength="40" required>
+      <button class="btn" id="enter" type="submit">Continue</button>
+      <p class="err" id="gate-err" role="status"></p>
+      <p class="fine">Your Day 1 starts when you sign in. There is no shared calendar.</p>
+    </form>
+  </section>
+  <div id="app" hidden></div>
+</main>
+<div class="tools"><button type="button" class="btn btn--ghost" id="print">Print checklist</button></div>
+<p class="signoff" id="sig">Jonathan Wallace, REALTOR® | Faris Team</p>
+<dialog id="lightbox">
+  <button type="button" class="btn btn--ghost lb-close" id="lb-close">Close</button>
+  <div id="lb-body"></div>
+</dialog>
+<div class="print-root" id="print-root"></div>
+<script type="module" src="/ai-30-days/portal.js"></script>
+</body>
+</html>

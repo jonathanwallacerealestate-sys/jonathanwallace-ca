@@ -1,0 +1,450 @@
+import { exampleMarkup } from "./examples.js";
+
+const WHO = "jw-ai30-who";
+const CACHE = "jw-ai30-cache";
+const API = "/api/ai-30-days";
+
+const state = {
+  plan: null,
+  first: "",
+  last: "",
+  days: {},
+  currentDay: 1,
+  doneCount: 0,
+  complete: false,
+  createdAt: "",
+  tab: "today",
+  view: null,
+  offline: false,
+  status: "",
+};
+
+const $ = (sel) => document.querySelector(sel);
+
+function esc(value) {
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function readWho() {
+  try { return JSON.parse(localStorage.getItem(WHO) || "null"); } catch (e) { return null; }
+}
+
+function cacheKey(first, last) {
+  return `${first} ${last}`.replace(/\s+/g, " ").trim().toLowerCase();
+}
+
+function readCache(first, last) {
+  try {
+    const row = JSON.parse(localStorage.getItem(CACHE) || "null");
+    if (!row || row.key !== cacheKey(first, last)) return null;
+    return row.record;
+  } catch (e) {
+    return null;
+  }
+}
+
+function writeCache() {
+  localStorage.setItem(CACHE, JSON.stringify({
+    key: cacheKey(state.first, state.last),
+    record: {
+      days: state.days,
+      currentDay: state.currentDay,
+      doneCount: state.doneCount,
+      complete: state.complete,
+      createdAt: state.createdAt,
+    },
+  }));
+}
+
+function applyRecord(record) {
+  state.days = record.days || {};
+  state.currentDay = record.currentDay || 1;
+  state.doneCount = record.doneCount || 0;
+  state.complete = !!record.complete;
+  state.createdAt = record.createdAt || "";
+  writeCache();
+}
+
+async function post(op, extra) {
+  const res = await fetch(API, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ op, first: state.first, last: state.last, ...extra }),
+  });
+  const data = await res.json().catch(() => ({ ok: false, error: "json" }));
+  if (!res.ok || !data.ok) {
+    const err = new Error(data.error || "save");
+    err.code = data.error || "save";
+    throw err;
+  }
+  return data;
+}
+
+function dayByNumber(n) {
+  return state.plan.days.find((d) => d.day === n);
+}
+
+function slot(n) {
+  return state.days[String(n)] || {};
+}
+
+function isDone(n) {
+  return slot(n).done === true;
+}
+
+function phase(n) {
+  if (isDone(n)) return "done";
+  if (n === state.currentDay && !state.complete) return "today";
+  if (state.complete && n === 30) return "done";
+  return "locked";
+}
+
+function show(name) {
+  $("#gate").hidden = name !== "gate";
+  $("#app").hidden = name !== "app";
+  const who = readWho();
+  $("#who").hidden = !who;
+  if (who) $("#who-name").textContent = `${who.first} ${who.last}`;
+}
+
+async function signIn(first, last, remember) {
+  state.first = first;
+  state.last = last;
+  state.offline = false;
+  state.status = "";
+  if (remember) localStorage.setItem(WHO, JSON.stringify({ first, last }));
+  const cached = readCache(first, last);
+  if (cached) applyRecord(cached);
+  try {
+    applyRecord(await post("load"));
+    state.offline = false;
+  } catch (e) {
+    if (e.code === "name_invalid" || e.code === "name_required" || e.code === "name_too_long") throw e;
+    state.offline = true;
+    if (!cached) {
+      state.days = {};
+      state.currentDay = 1;
+      state.doneCount = 0;
+      state.complete = false;
+    }
+    state.status = e.code === "rate"
+      ? "Too many tries. Wait a few minutes and tap Try the server again."
+      : "The server copy is not available yet. Notes on this device are only a backup until it connects.";
+  }
+  state.tab = "today";
+  state.view = null;
+  show("app");
+  render();
+}
+
+function signOut() {
+  localStorage.removeItem(WHO);
+  localStorage.removeItem(CACHE);
+  state.first = "";
+  state.last = "";
+  state.days = {};
+  show("gate");
+  $("#first").value = "";
+  $("#last").value = "";
+  $("#first").focus();
+}
+
+function render() {
+  const root = $("#app");
+  const plan = state.plan;
+  const banner = state.offline
+    ? `<p class="warn" role="status">${esc(state.status)} <button type="button" class="linkish" id="retry">Try the server again</button></p>`
+    : "";
+
+  let panel = "";
+  if (state.tab === "today") panel = renderToday(dayByNumber(state.complete ? 30 : state.currentDay));
+  else if (state.tab === "progress") panel = renderProgress();
+  else panel = renderAll();
+
+  root.innerHTML = `
+    ${banner}
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tab-today" aria-selected="${state.tab === "today"}">Today</button>
+      <button type="button" role="tab" id="tab-progress" aria-selected="${state.tab === "progress"}">Progress</button>
+      <button type="button" role="tab" id="tab-all" aria-selected="${state.tab === "all"}">All days</button>
+    </div>
+    ${panel}
+    <p class="status" id="save-status" role="status">${esc(state.status && !state.offline ? state.status : "")}</p>
+  `;
+
+  $("#tab-today").onclick = () => { state.tab = "today"; state.view = null; render(); };
+  $("#tab-progress").onclick = () => { state.tab = "progress"; render(); };
+  $("#tab-all").onclick = () => { state.tab = "all"; render(); };
+  const retry = $("#retry");
+  if (retry) retry.onclick = () => signIn(state.first, state.last, true);
+
+  if (state.tab === "today") bindToday(state.complete ? 30 : state.currentDay);
+  if (state.tab === "progress") bindDots();
+  if (state.tab === "all") bindAll();
+  const shot = root.querySelector(".shot");
+  if (shot) shot.onclick = () => openShot(shot);
+}
+
+function renderToday(day) {
+  const done = isDone(day.day);
+  const notes = slot(day.day).notes || "";
+  const started = state.createdAt
+    ? `<p class="fine">Your Day 1 started when you signed in. There is no shared calendar.</p>`
+    : `<p class="fine">Your Day 1 starts when you sign in. There is no shared calendar.</p>`;
+  return `
+    <article class="card" id="today-card">
+      <p class="kicker">${esc(day.section)}</p>
+      <div class="dayhead">
+        <h1>Day ${day.day} of 30</h1>
+        <p class="chip">About ${esc(day.minutes)}</p>
+      </div>
+      <h2 style="font-size:clamp(1.5rem,5vw,2rem);margin-top:8px">${esc(day.title)}</h2>
+      <p class="why">${esc(day.why)}</p>
+      ${day.catchUp ? `<p class="catch">Good spot to catch up.</p>` : ""}
+      ${day.day === 1 ? started : ""}
+      <ol class="steps">${day.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+      ${day.tip ? `<p class="tip"><strong>Tip.</strong> ${esc(day.tip)}</p>` : ""}
+      ${day.assignment ? `<p class="assignment"><strong>Assignment.</strong> ${esc(day.assignment)}</p>` : ""}
+      <div class="prompt">
+        <header><p>Prompt</p><button type="button" class="copy" id="copy">Copy</button></header>
+        <pre id="prompt-text">${esc(day.prompt)}</pre>
+      </div>
+      <div class="look">
+        <h3>What good looks like</h3>
+        <button type="button" class="shot" aria-label="Enlarge the example for day ${day.day}">
+          <span class="shot__frame">${exampleMarkup(day.day)}</span>
+        </button>
+      </div>
+      <label for="notes">Notes</label>
+      <textarea id="notes" maxlength="2000" ${done && day.day !== state.currentDay && state.complete ? "" : ""}>${esc(notes)}</textarea>
+      <div class="actions">
+        ${done && state.complete ? `<p class="fine">All 30 days are marked done.</p>` : ""}
+        ${!done ? `<button type="button" class="btn" id="done">Mark done</button>` : `<p class="fine">Marked done. The next day is open.</p>`}
+      </div>
+    </article>
+  `;
+}
+
+function renderProgress() {
+  const dots = state.plan.days.map((d) => {
+    const kind = phase(d.day);
+    const label = kind === "locked" ? `Day ${d.day}, locked` : `Day ${d.day}, ${kind}`;
+    return `<button type="button" class="dot dot--${kind}" data-day="${d.day}" aria-label="${label}" ${kind === "locked" ? "disabled" : ""}>${d.day}</button>`;
+  }).join("");
+  return `
+    <section class="card">
+      <p class="count">${state.doneCount} of 30 done</p>
+      <div class="grid">${dots}</div>
+      <p class="legend"><span><i style="background:#1b1b1b"></i>Done</span><span><i style="background:#c9a96a"></i>Today</span><span><i style="background:#f7f3ec;border:1px solid rgba(30,27,21,.2)"></i>Locked</span></p>
+    </section>
+  `;
+}
+
+function renderAll() {
+  const groups = [];
+  let last = "";
+  for (const day of state.plan.days) {
+    if (day.section !== last) {
+      groups.push(`<h3>${esc(day.section)}</h3>`);
+      last = day.section;
+    }
+    const kind = phase(day.day);
+    const note = kind === "locked" ? "Locked" : kind === "today" ? "Today" : "Done";
+    groups.push(`<button type="button" class="row ${kind === "locked" ? "row--locked" : ""}" data-day="${day.day}" ${kind === "locked" ? "disabled" : ""}><b>${day.day}</b> ${esc(day.title)}<span>${note}</span></button>`);
+    if (state.view === day.day && kind !== "locked") groups.push(`<div class="open-day">${detail(day)}</div>`);
+  }
+  return `<section class="card"><ul class="daylist">${groups.join("")}</ul></section>`;
+}
+
+function detail(day) {
+  const notes = slot(day.day).notes || "";
+  return `
+    <div class="card">
+      <p class="why">${esc(day.why)}</p>
+      <ol class="steps">${day.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+      ${notes ? `<p class="tip"><strong>Your notes.</strong> ${esc(notes)}</p>` : `<p class="fine">No notes saved on this day.</p>`}
+      <div class="look"><h3>What good looks like</h3><button type="button" class="shot" aria-label="Enlarge the example for day ${day.day}"><span class="shot__frame">${exampleMarkup(day.day)}</span></button></div>
+    </div>
+  `;
+}
+
+function bindToday(n) {
+  const copy = $("#copy");
+  if (copy) {
+    copy.onclick = async () => {
+      const text = $("#prompt-text").textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        copy.textContent = "Copied";
+      } catch (e) {
+        copy.textContent = "Select the prompt";
+      }
+      setTimeout(() => { copy.textContent = "Copy"; }, 1600);
+    };
+  }
+  const notes = $("#notes");
+  if (notes) {
+    let timer;
+    notes.oninput = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => saveNotes(n, notes.value), 700);
+    };
+  }
+  const done = $("#done");
+  if (done) {
+    done.onclick = async () => {
+      done.disabled = true;
+      const notesValue = $("#notes") ? $("#notes").value : "";
+      await savePayload(n, { done: true, notes: notesValue }, "Day marked done.");
+    };
+  }
+  const shot = document.querySelector("#today-card .shot");
+  if (shot) shot.onclick = () => openShot(shot);
+}
+
+function bindDots() {
+  document.querySelectorAll(".dot").forEach((btn) => {
+    btn.onclick = () => {
+      const n = Number(btn.dataset.day);
+      if (phase(n) === "today") { state.tab = "today"; render(); }
+      else { state.tab = "all"; state.view = n; render(); }
+    };
+  });
+}
+
+function bindAll() {
+  document.querySelectorAll(".row").forEach((btn) => {
+    btn.onclick = () => {
+      const n = Number(btn.dataset.day);
+      if (phase(n) === "locked") return;
+      if (phase(n) === "today") { state.tab = "today"; state.view = null; render(); return; }
+      state.view = state.view === n ? null : n;
+      render();
+    };
+  });
+  document.querySelectorAll(".open-day .shot").forEach((shot) => {
+    shot.onclick = () => openShot(shot);
+  });
+}
+
+function payloadFromState(changeDay, change) {
+  const days = {};
+  for (let n = 1; n <= 30; n += 1) {
+    const cur = slot(n);
+    const entry = {};
+    if (cur.done) entry.done = true;
+    if (cur.notes) entry.notes = cur.notes;
+    if (n === changeDay) Object.assign(entry, change);
+    if (Object.keys(entry).length) days[String(n)] = entry;
+  }
+  return days;
+}
+
+function explain(error) {
+  if (error.code === "rate") return "Too many tries. Wait a few minutes and try again.";
+  if (error.code === "day_locked") return "Finish the current day before moving on.";
+  if (error.code === "name_invalid" || error.code === "name_required" || error.code === "name_too_long") {
+    return "Use a first and last name, letters only, up to 40 characters each.";
+  }
+  return "Could not save on the server. Your place in the plan is unchanged.";
+}
+
+async function saveNotes(n, notes) {
+  const days = payloadFromState(n, { notes });
+  try {
+    applyRecord(await post("save", { days }));
+    state.offline = false;
+    const status = $("#save-status");
+    if (status) status.textContent = "Notes saved.";
+  } catch (e) {
+    const status = $("#save-status");
+    if (status) status.textContent = explain(e);
+  }
+}
+
+async function savePayload(n, change, okMessage) {
+  const days = payloadFromState(n, change);
+  try {
+    applyRecord(await post("save", { days }));
+    state.offline = false;
+    state.status = okMessage;
+    render();
+  } catch (e) {
+    state.status = explain(e);
+    const done = $("#done");
+    if (done) done.disabled = false;
+    const status = $("#save-status");
+    if (status) status.textContent = state.status;
+  }
+}
+
+function openShot(shot) {
+  const box = $("#lightbox");
+  $("#lb-body").innerHTML = shot.querySelector(".ex, .ex--split")
+    ? shot.querySelector(".shot__frame").innerHTML
+    : shot.innerHTML;
+  if (typeof box.showModal === "function") box.showModal();
+  else box.setAttribute("open", "");
+}
+
+function printChecklist() {
+  const root = $("#print-root");
+  const days = state.plan.days.map((d) => `
+    <article class="print-day">
+      <h2><span class="box"></span>Day ${d.day}. ${esc(d.title)}</h2>
+      <p>${esc(d.section)} · About ${esc(d.minutes)}${d.catchUp ? " · Good spot to catch up" : ""}${isDone(d.day) ? " · Done" : ""}</p>
+      <p>${esc(d.why)}</p>
+      <ol>${d.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+    </article>
+  `).join("");
+  root.innerHTML = `<h1>${esc(state.plan.title)}</h1><p>${esc(state.plan.rule)}</p>${days}<p>${esc(state.plan.signature)}</p>`;
+  window.print();
+}
+
+async function boot() {
+  const res = await fetch("/ai-30-days/days.json", { cache: "no-cache" });
+  state.plan = await res.json();
+  $("#rule-text").textContent = state.plan.rule;
+  $("#sig").textContent = state.plan.signature;
+  const who = readWho();
+  if (who && who.first && who.last) {
+    await signIn(who.first, who.last, true);
+  } else {
+    show("gate");
+  }
+}
+
+$("#gate-form").onsubmit = async (event) => {
+  event.preventDefault();
+  const first = $("#first").value;
+  const last = $("#last").value;
+  const err = $("#gate-err");
+  if (!first.trim() || !last.trim()) {
+    err.textContent = "Enter a first name and a last name.";
+    return;
+  }
+  err.textContent = "";
+  $("#enter").disabled = true;
+  try {
+    await signIn(first.trim(), last.trim(), true);
+  } catch (e) {
+    err.textContent = explain(e);
+  }
+  $("#enter").disabled = false;
+};
+
+$("#not-you").onclick = () => signOut();
+$("#print").onclick = () => { if (state.plan) printChecklist(); };
+$("#lb-close").onclick = () => {
+  const box = $("#lightbox");
+  if (box.close) box.close();
+  box.removeAttribute("open");
+};
+
+boot().catch(() => {
+  $("#rule-text").textContent = "The plan could not be loaded. Refresh the page.";
+});

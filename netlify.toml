@@ -5,7 +5,7 @@
 [build]
   publish = "."
   # Pre-deploy check: stops the deploy if a publish step was skipped (see scripts/check_site.py)
-  command = "python3 scripts/check_site.py"
+  command = "python3 scripts/check_site.py && node scripts/test_ai30.mjs"
   functions = "netlify/functions"
 
 # Pretty URLs / basic hardening headers
@@ -1449,5 +1449,26 @@
 [[redirects]]
   from = "/eval/610-concession-14-west/index.html"
   to = "/eval/610-concession-14-west"
+  status = 301
+  force = true
+
+# Private agent training portal. Canonical is the extensionless path.
+# Do not add this URL to the nav, sitemap.xml, or llms.txt. The page is noindex.
+# force is on because ai-30-days/ is a real directory.
+[[redirects]]
+  from = "/ai-30-days"
+  to = "/ai-30-days/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/ai-30-days/"
+  to = "/ai-30-days"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ai-30-days/index.html"
+  to = "/ai-30-days"
   status = 301
   force = true

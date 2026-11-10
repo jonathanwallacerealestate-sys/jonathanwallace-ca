@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: admin code
+Why: Matching the admin email is not enough. Jonathan also wants a code before the admin tools open.
+- Set AI30_ADMIN_PIN on Netlify. When the signed-in email is on AI30_ADMIN_EMAILS, the page shows an Admin code field. The server compares the code in constant time, then returns a signed token that marks that device as admin for 30 days. Five wrong codes for that email or that IP lock the check for 15 minutes. Learners never see the field. AI30_ADMIN_KEY still works on the admin page.
+
 ### AI bootcamp: admin activity scores nothing
 Why: Jonathan needs to click through the lessons to test them, without those visits changing anyone's points.
 - An admin email earns nothing for lessons, logins, streaks, posts, or replies, and a learner gets no answer points for replying to an admin. The 8-hour lock does not stop an admin. Selfies were already worth nothing.

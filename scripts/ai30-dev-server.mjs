@@ -3,7 +3,7 @@ import { createServer } from "node:http";
 import { mkdirSync, readFileSync, writeFileSync, existsSync, statSync, readdirSync, unlinkSync } from "node:fs";
 import { dirname, extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
-import { adminKeyOk, isAdminEmail } from "../netlify/functions/_shared/admin.mjs";
+import { adminCodeLocked, adminKeyOk, adminPinOk, applyAdminSession, clearAdminCodeFailures, isAdminEmail, noteAdminCodeFailure, signAdminToken, verifyAdminToken } from "../netlify/functions/_shared/admin.mjs";
 import { applyProgress, cleanPost, currentDay, emailClaim, isSeparateSession, learnersCsv, migrateCurriculum, nextSelfieStamps, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, selfieFilename, stampCurriculum } from "../netlify/functions/_shared/ai30.mjs";
 import { buildIcs, icsFilename, parseWhen } from "../netlify/functions/_shared/ics.mjs";
 import plan from "../ai-30-days/days.json" with { type: "json" };
@@ -82,6 +82,7 @@ const server = createServer(async (req, res) => {
     };
     const answer = (row) => {
       const record = publicRecord(person, row);
+      applyAdminSession(record, row && row.email, body.adminToken);
       const standing = peerStanding(people(), posts(), person.key);
       record.note = standing.note;
       record.board = standing.board;
@@ -97,9 +98,23 @@ const server = createServer(async (req, res) => {
       if (!item || !item.email) return false;
       const claim = emailClaim(item.email, body.email);
       if (!claim.ok) return false;
-      return isAdminEmail(item.email);
+      return isAdminEmail(item.email) && verifyAdminToken(body.adminToken, item.email);
     };
-    const adminOp = ["export", "reset", "remove", "delete-learner", "admin-login"].includes(body.op);
+    const adminOp = ["export", "reset", "remove", "delete-learner", "admin-login", "admin-code"].includes(body.op);
+    if (body.op === "admin-code") {
+      const who = normalizePerson(body.first, body.last);
+      const item = who.ok ? store[who.key] : null;
+      const claim = item ? emailClaim(item.email, body.email) : { ok: false };
+      if (!who.ok || !item || !claim.ok || !isAdminEmail(item.email)) return send(res, 200, JSON.stringify({ ok: false, error: "admin_code" }));
+      if (adminCodeLocked(item.email, req.socket.remoteAddress)) return send(res, 200, JSON.stringify({ ok: false, error: "admin_lock" }));
+      if (!adminPinOk(body.code)) {
+        noteAdminCodeFailure(item.email, req.socket.remoteAddress);
+        const locked = adminCodeLocked(item.email, req.socket.remoteAddress);
+        return send(res, 200, JSON.stringify({ ok: false, error: locked ? "admin_lock" : "admin_code" }));
+      }
+      clearAdminCodeFailures(item.email, req.socket.remoteAddress);
+      return send(res, 200, JSON.stringify({ ok: true, isAdmin: true, needsAdminCode: true, adminToken: signAdminToken(item.email) }));
+    }
     if (adminOp) {
       const allowed = body.op === "admin-login" ? adminKeyOk(body.adminKey) : adminKeyOk(body.adminKey) || signedInAdmin();
       if (!allowed) return send(res, 403, JSON.stringify({ ok: false, error: "admin" }));
@@ -200,7 +215,9 @@ const server = createServer(async (req, res) => {
     const item = store[person.key];
     if (!item || !item.email) return send(res, 200, JSON.stringify({ ok: true, needsEmail: true, first: person.first, last: person.last }));
     if (body.op === "save") {
-      const applied = applyProgress({ days: migrateCurriculum(item.days) }, body, new Date().toISOString(), { skipPace: isAdminEmail(item.email) });
+      const applied = applyProgress({ days: migrateCurriculum(item.days) }, body, new Date().toISOString(), {
+        skipPace: isAdminEmail(item.email) && verifyAdminToken(body.adminToken, item.email),
+      });
       if (!applied.ok) return send(res, 400, JSON.stringify({ ok: false, error: applied.error, day: applied.day, unlockAt: applied.unlockAt || "" }));
       item.days = stampCurriculum(applied.days);
       item.updated_at = new Date().toISOString();

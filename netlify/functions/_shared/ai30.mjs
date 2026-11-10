@@ -200,6 +200,7 @@ export function scorePerson(person, posts) {
 
 const PEER_NOTE = {
   welcome: "Welcome in. Finish your first lesson to join the leaderboard.",
+  start: "You're off to a good start. Keep going.",
   ahead: "You're ahead of most of your peers learning AI. Keep it going.",
   behind: "You're a little behind your peers learning AI. Today's a good day to catch up.",
   even: "You're right in step with your peers learning AI.",
@@ -254,14 +255,15 @@ function onPublicBoard(person) {
 
 // Points decide the order. The same points share a rank. Names are only there to keep the list steady.
 // Practice names that start with Zztest, and the host, stay off the board and out of the note.
-// A learner with no finished lesson gets a welcome, not an ahead or behind line.
+// No finished lesson gets a welcome. One or two finished lessons get a neutral start line, unless they are already ahead. Behind waits until three lessons.
 export function peerStanding(rows, posts, youKey) {
   const people = (rows || []).map(asPerson).filter((person) => person.key);
   const scored = people.map((person) => ({ ...person, ...scorePerson(person, posts) }));
   const you = scored.find((person) => person.key === youKey);
   const peers = scored.filter((person) => onPublicBoard(person) && person.key !== youKey);
   const youDone = you ? you.done : 0;
-  const tone = youDone < 1 ? "welcome" : peerPlace(you ? you.points : 0, peers.map((person) => person.points));
+  const place = peerPlace(you ? you.points : 0, peers.map((person) => person.points));
+  const tone = youDone < 1 ? "welcome" : youDone < 3 ? (place === "ahead" ? "ahead" : "start") : place;
   const board = scored.filter(onPublicBoard).map((person) => ({
     name: displayLearner(person.first, person.last),
     points: person.points,

@@ -2,7 +2,8 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { CONTEST_END_ISO, DAY_COUNT, applyProgress, currentDay, doneCount, emailClaim, loginPoints, migrateCurriculum, nextSelfieStamps, normalizePerson, paceUnlockAt, peerStanding, publicFeed, scorePerson, selfieFilename, validEmail } from "../netlify/functions/_shared/ai30.mjs";
+import { adminEmails, isAdminEmail } from "../netlify/functions/_shared/admin.mjs";
+import { CONTEST_END_ISO, DAY_COUNT, applyProgress, currentDay, doneCount, emailClaim, loginPoints, migrateCurriculum, nextSelfieStamps, normalizePerson, paceUnlockAt, peerStanding, publicFeed, publicRecord, scorePerson, selfieFilename, validEmail } from "../netlify/functions/_shared/ai30.mjs";
 import { buildIcs, eventDescription, icsFilename, parseWhen } from "../netlify/functions/_shared/ics.mjs";
 
 const jane = normalizePerson("  Jane   ", "  DOE ");
@@ -294,6 +295,10 @@ assert.match(readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), 
 assert.match(portalSrc, /id="selfie-cancel"/);
 assert.doesNotMatch(portalSrc, /linkish remove|window\.prompt\("Admin key"\)/);
 assert.match(readFileSync(new URL("../ai-30-days/export.html", import.meta.url), "utf8"), /Remove a board post/);
+assert.match(readFileSync(new URL("../ai-30-days/export.html", import.meta.url), "utf8"), /AI30_ADMIN_KEY/);
+assert.match(portalSrc, /state\.isAdmin !== true/);
+assert.match(portalSrc, /delete-learner/);
+assert.doesNotMatch(portalSrc, /AI30_ADMIN_EMAILS/);
 assert.doesNotMatch(readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), "utf8"), /—/);
 assert.match(readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), "utf8"), /\.composer/);
 
@@ -357,6 +362,24 @@ const newbie = peerStanding([
 ], [], "casey nguyen");
 assert.equal(newbie.note, "Welcome in. Finish your first lesson to join the leaderboard.");
 assert.ok(newbie.board.every((row) => row.name !== "Jonathan W."));
+const previousAdmins = process.env.AI30_ADMIN_EMAILS;
+process.env.AI30_ADMIN_EMAILS = "Coach@example.com, other@example.com";
+assert.deepEqual(adminEmails(), ["coach@example.com", "other@example.com"]);
+assert.equal(isAdminEmail("  COACH@example.com "), true);
+assert.equal(isAdminEmail("learner@example.com"), false);
+const coach = learner("pat coach", "Pat", "Coach", 8);
+coach.email = "coach@example.com";
+const hiddenAdmin = peerStanding([
+  learner("casey nguyen", "Casey", "Nguyen", 1),
+  coach,
+], [], "casey nguyen");
+assert.ok(hiddenAdmin.board.every((row) => row.name !== "Pat C."));
+const adminRecord = publicRecord({ first: "Pat", last: "Coach" }, { email: "coach@example.com", days: {} });
+assert.equal(adminRecord.isAdmin, true);
+assert.equal(adminRecord.email, undefined);
+assert.equal(publicRecord({ first: "Casey", last: "Nguyen" }, { email: "casey@example.com", days: {} }).isAdmin, false);
+if (previousAdmins == null) delete process.env.AI30_ADMIN_EMAILS;
+else process.env.AI30_ADMIN_EMAILS = previousAdmins;
 assert.equal(peerStanding([
   learner("casey nguyen", "Casey", "Nguyen", 1),
   host,

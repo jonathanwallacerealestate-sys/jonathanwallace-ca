@@ -3,7 +3,7 @@ import { createServer } from "node:http";
 import { mkdirSync, readFileSync, writeFileSync, existsSync, statSync, readdirSync, unlinkSync } from "node:fs";
 import { dirname, extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
-import { adminKeyOk } from "../netlify/functions/_shared/admin.mjs";
+import { adminKeyOk, isAdminEmail } from "../netlify/functions/_shared/admin.mjs";
 import { applyProgress, cleanPost, currentDay, emailClaim, isSeparateSession, learnersCsv, migrateCurriculum, nextSelfieStamps, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, selfieFilename, stampCurriculum } from "../netlify/functions/_shared/ai30.mjs";
 import { buildIcs, icsFilename, parseWhen } from "../netlify/functions/_shared/ics.mjs";
 import plan from "../ai-30-days/days.json" with { type: "json" };
@@ -88,8 +88,20 @@ const server = createServer(async (req, res) => {
       record.winner = standing.winner;
       return JSON.stringify(record);
     };
-    const adminOp = ["export", "reset", "remove", "admin-login"].includes(body.op);
-    if (adminOp && !adminKeyOk(body.adminKey)) return send(res, 403, JSON.stringify({ ok: false, error: "admin" }));
+    const signedInAdmin = () => {
+      const who = normalizePerson(body.first, body.last);
+      if (!who.ok) return false;
+      const item = store[who.key];
+      if (!item || !item.email) return false;
+      const claim = emailClaim(item.email, body.email);
+      if (!claim.ok) return false;
+      return isAdminEmail(item.email);
+    };
+    const adminOp = ["export", "reset", "remove", "delete-learner", "admin-login"].includes(body.op);
+    if (adminOp) {
+      const allowed = body.op === "admin-login" ? adminKeyOk(body.adminKey) : adminKeyOk(body.adminKey) || signedInAdmin();
+      if (!allowed) return send(res, 403, JSON.stringify({ ok: false, error: "admin" }));
+    }
     if (body.op === "export") return send(res, 200, JSON.stringify({ ok: true, csv: learnersCsv(people(), posts()) }));
     if (body.op === "reset") {
       const removed = people().filter((person) => person.first.toLowerCase() === "testy" || person.key.startsWith("zztest")).map((person) => `${person.first} ${person.last}`);
@@ -112,6 +124,15 @@ const server = createServer(async (req, res) => {
       store._posts = store._posts.filter((post) => post.id !== id && post.parentId !== id);
       saveStore(store);
       return send(res, 200, JSON.stringify({ ok: true }));
+    }
+    if (body.op === "delete-learner") {
+      const target = normalizePerson(body.targetFirst, body.targetLast);
+      if (!target.ok) return send(res, 400, JSON.stringify({ ok: false, error: target.error }));
+      const existing = store[target.key];
+      delete store[target.key];
+      store._posts = store._posts.filter((post) => post.key !== target.key);
+      saveStore(store);
+      return send(res, 200, JSON.stringify({ ok: true, removed: existing ? `${target.first} ${target.last}` : "" }));
     }
     const person = normalizePerson(body.first, body.last);
     if (!person.ok) return send(res, 400, JSON.stringify({ ok: false, error: person.error }));

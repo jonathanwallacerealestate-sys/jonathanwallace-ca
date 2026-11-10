@@ -18,3 +18,27 @@ export function adminKeyOk(given) {
   if (left.length !== right.length) return false;
   return timingSafeEqual(left, right);
 }
+
+function envValue(name) {
+  let fromNetlify = "";
+  try {
+    if (typeof Netlify !== "undefined" && Netlify.env) fromNetlify = Netlify.env.get(name) || "";
+  } catch (e) {
+    fromNetlify = "";
+  }
+  return fromNetlify || process.env[name] || "";
+}
+
+// Comma-separated addresses. Comparison is trim + lowercase. The list never goes to the browser.
+export function adminEmails() {
+  return envValue("AI30_ADMIN_EMAILS")
+    .split(",")
+    .map((item) => item.trim().toLowerCase())
+    .filter(Boolean);
+}
+
+export function isAdminEmail(email) {
+  const value = String(email || "").trim().toLowerCase();
+  if (!value) return false;
+  return adminEmails().includes(value);
+}

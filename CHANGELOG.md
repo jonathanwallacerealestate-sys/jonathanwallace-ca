@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: admin follows the signed-in email
+Why: Jonathan asked for admin tools on his own sign-in, without typing a key, and without putting that email in the repo.
+- Set AI30_ADMIN_EMAILS on Netlify to a comma-separated list. The server compares it with the email stored on the signed-in record. A match returns isAdmin and shows reset, CSV export, delete learner, and remove post. The server checks the stored email again before every admin action. Those accounts stay off the leaderboard. AI30_ADMIN_KEY still works on the admin page.
+
 ### AI bootcamp: sessions, names, and the pixel
 Why: A second refresh was counting as a second visit, some controls had no accessible name, and the Facebook pixel was logging failed postMessage calls.
 - A same-day visit point now needs two sessions at least 30 minutes apart, checked on the server. Icon-only and unlabeled controls have names. The pixel still loads, and a message aimed at Facebook no longer prints a console warning.

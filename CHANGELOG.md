@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### AI bootcamp: download all the resources
+Why: Jonathan asked for one clear download of the whole kit on the first page, before sign-in and after.
+- A gold button, Download all the resources, sits under the pacing line. It saves ai-30-days/kit/ai-bootcamp-resources.zip, a handout and the prompts for each skill. Rebuild it with scripts/build_ai30_kit.py after a lesson change.
+
 ### AI bootcamp: buttons centred, and a Make selfie webhook
 Why: Jonathan asked for every button to be easy to tap on a phone, and for selfies to be able to land in Google Drive through Make.com.
 - Gold and outline buttons span the card and centre their label. Tap targets stay at least 44 pixels tall. On a phone the header stacks, the time chip sits under the lesson title, and reply buttons sit under the reply box.

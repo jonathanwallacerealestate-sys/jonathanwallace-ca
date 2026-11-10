@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { CONTEST_END_ISO, DAY_COUNT, applyProgress, currentDay, doneCount, loginPoints, migrateCurriculum, normalizePerson, peerStanding, scorePerson, selfieFilename, validEmail } from "../netlify/functions/_shared/ai30.mjs";
 import { buildIcs, eventDescription, icsFilename, parseWhen } from "../netlify/functions/_shared/ics.mjs";
 
@@ -240,5 +242,16 @@ assert.equal(CONTEST_END_ISO, "2026-12-12T01:00:00.000Z");
 assert.match(plan.days.find((day) => day.day === 15).prompts[0], /Create a skill called Listing writer/);
 assert.equal(plan.days.find((day) => day.day === 16).title, "Make the Letter of Opinion yours");
 assert.doesNotMatch(plan.days.find((day) => day.day === 16).prompts.join("\n"), /whole drive/);
+
+const repoRoot = fileURLToPath(new URL("..", import.meta.url));
+execFileSync("python3", ["scripts/build_ai30_kit.py"], { cwd: repoRoot });
+const zipList = execFileSync("python3", ["-c", "import zipfile; z=zipfile.ZipFile('ai-30-days/kit/ai-bootcamp-resources.zip'); print('\\n'.join(z.namelist()))"], { cwd: repoRoot, encoding: "utf8" });
+for (const day of plan.days) {
+  const piece = day.title.replace(/[^\w\s-]/gu, "").replace(/\s+/g, " ").trim();
+  assert.match(zipList, new RegExp(piece.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+}
+assert.match(zipList, /read-me\.txt/);
+assert.doesNotMatch(zipList, /Lesson \d/);
+assert.match(readFileSync(new URL("../ai-30-days/index.html", import.meta.url), "utf8"), /Download all the resources/);
 
 console.log("test_ai30: ok");

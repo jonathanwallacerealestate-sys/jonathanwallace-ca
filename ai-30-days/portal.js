@@ -2,6 +2,7 @@ import { exampleMarkup } from "./examples.js";
 
 const WHO = "jw-ai30-who";
 const CACHE = "jw-ai30-cache";
+const ADMIN_TOKEN = "jw-ai30-admin-token";
 const API = "/api/ai-30-days";
 
 const state = {
@@ -30,6 +31,7 @@ const state = {
   commentKind: "learned",
   reviewDay: null,
   isAdmin: false,
+  needsAdminCode: false,
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -91,6 +93,7 @@ function applyRecord(record) {
   state.posts = Array.isArray(record.posts) ? record.posts : state.posts || [];
   state.selfie = !!record.selfie;
   state.isAdmin = record.isAdmin === true;
+  state.needsAdminCode = record.needsAdminCode === true;
   state.closed = !!record.closed;
   state.winner = record.winner || "";
   if (record.unlockAt != null) state.unlockAt = record.unlockAt || "";
@@ -101,7 +104,7 @@ async function post(op, extra) {
   const res = await fetch(API, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ op, first: state.first, last: state.last, email: state.email || "", ...extra }),
+    body: JSON.stringify({ op, first: state.first, last: state.last, email: state.email || "", adminToken: readAdminToken(), ...extra }),
   });
   const data = await res.json().catch(() => ({ ok: false, error: "json" }));
   if (!res.ok || !data.ok) {
@@ -111,6 +114,26 @@ async function post(op, extra) {
     throw err;
   }
   return data;
+}
+
+function readAdminToken() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(ADMIN_TOKEN) || "null");
+    const email = (state.email || "").trim().toLowerCase();
+    if (saved && saved.email === email && saved.token) return saved.token;
+  } catch (e) {}
+  return "";
+}
+
+function writeAdminToken(token) {
+  localStorage.setItem(ADMIN_TOKEN, JSON.stringify({
+    email: (state.email || "").trim().toLowerCase(),
+    token,
+  }));
+}
+
+function clearAdminToken() {
+  localStorage.removeItem(ADMIN_TOKEN);
 }
 
 function dayByNumber(n) {
@@ -308,6 +331,8 @@ function signOut() {
   state.last = "";
   state.email = "";
   state.isAdmin = false;
+  state.needsAdminCode = false;
+  clearAdminToken();
   state.drafts = null;
   state.reviewDay = null;
   state.days = {};
@@ -347,10 +372,12 @@ function render() {
       <button type="button" role="tab" id="tab-board" aria-selected="${state.tab === "board"}" aria-label="Message Board">Message Board</button>
     </div>
     ${panel}
+    ${renderAdminCode()}
     ${renderAdmin()}
     <p class="status" id="save-status" role="status">${esc(state.status && !state.offline ? state.status : "")}</p>
   `;
 
+  bindAdminCode();
   bindAdmin();
   $("#tab-today").onclick = () => { state.tab = "today"; state.view = null; render(); };
   $("#tab-progress").onclick = () => { state.tab = "progress"; render(); };
@@ -434,6 +461,43 @@ function countdownText(now) {
   left -= hours * 3600000;
   const minutes = Math.floor(left / 60000);
   return `${plural(days, "day", "days")}, ${plural(hours, "hour", "hours")}, ${plural(minutes, "minute", "minutes")} left.`;
+}
+
+function renderAdminCode() {
+  if (!state.needsAdminCode || state.isAdmin) return "";
+  return `
+    <section class="card" id="admin-code" aria-label="Admin code">
+      <label for="admin-code-input">Admin code</label>
+      <input id="admin-code-input" type="password" autocomplete="current-password" maxlength="40" aria-label="Admin code">
+      <button type="button" class="btn" id="admin-code-send">Continue</button>
+      <p class="err" id="admin-code-status" role="status"></p>
+    </section>`;
+}
+
+function bindAdminCode() {
+  const send = $("#admin-code-send");
+  if (!send) return;
+  send.onclick = async () => {
+    const status = $("#admin-code-status");
+    const code = ($("#admin-code-input") && $("#admin-code-input").value || "").trim();
+    if (!code) {
+      if (status) status.textContent = "Enter the admin code.";
+      return;
+    }
+    send.disabled = true;
+    try {
+      const data = await post("admin-code", { code });
+      if (data.adminToken) writeAdminToken(data.adminToken);
+      state.isAdmin = true;
+      state.needsAdminCode = true;
+      render();
+    } catch (e) {
+      if (status) status.textContent = e.code === "admin_lock"
+        ? "Too many tries. Wait 15 minutes and try again."
+        : "That code did not work.";
+      send.disabled = false;
+    }
+  };
 }
 
 function renderAdmin() {

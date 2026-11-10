@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { adminEmails, isAdminEmail } from "../netlify/functions/_shared/admin.mjs";
+import { adminCodeLocked, adminEmails, adminPinOk, applyAdminSession, clearAdminCodeFailures, isAdminEmail, noteAdminCodeFailure, signAdminToken, verifyAdminToken } from "../netlify/functions/_shared/admin.mjs";
 import { CONTEST_END_ISO, DAY_COUNT, applyProgress, currentDay, doneCount, emailClaim, loginPoints, migrateCurriculum, nextSelfieStamps, normalizePerson, paceUnlockAt, peerStanding, publicFeed, publicRecord, scorePerson, selfieFilename, validEmail } from "../netlify/functions/_shared/ai30.mjs";
 import { buildIcs, eventDescription, icsFilename, parseWhen } from "../netlify/functions/_shared/ics.mjs";
 
@@ -297,6 +297,9 @@ assert.doesNotMatch(portalSrc, /linkish remove|window\.prompt\("Admin key"\)/);
 assert.match(readFileSync(new URL("../ai-30-days/export.html", import.meta.url), "utf8"), /Remove a board post/);
 assert.match(readFileSync(new URL("../ai-30-days/export.html", import.meta.url), "utf8"), /AI30_ADMIN_KEY/);
 assert.match(portalSrc, /state\.isAdmin !== true/);
+assert.match(portalSrc, /Admin code/);
+assert.match(portalSrc, /needsAdminCode/);
+assert.doesNotMatch(portalSrc, /AI30_ADMIN_PIN/);
 assert.match(portalSrc, /delete-learner/);
 assert.doesNotMatch(portalSrc, /AI30_ADMIN_EMAILS/);
 assert.doesNotMatch(readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), "utf8"), /—/);
@@ -374,9 +377,20 @@ const hiddenAdmin = peerStanding([
   coach,
 ], [], "casey nguyen");
 assert.ok(hiddenAdmin.board.every((row) => row.name !== "Pat C."));
+process.env.AI30_ADMIN_PIN = "test-pin";
 const adminRecord = publicRecord({ first: "Pat", last: "Coach" }, { email: "coach@example.com", days: {} });
-assert.equal(adminRecord.isAdmin, true);
+assert.equal(adminRecord.needsAdminCode, true);
+assert.equal(adminRecord.isAdmin, false);
 assert.equal(adminRecord.email, undefined);
+assert.equal(adminPinOk("test-pin"), true);
+assert.equal(adminPinOk("nope"), false);
+const token = signAdminToken("coach@example.com");
+assert.equal(verifyAdminToken(token, "coach@example.com"), true);
+assert.equal(verifyAdminToken(token, "other@example.com"), false);
+assert.equal(verifyAdminToken(token + "x", "coach@example.com"), false);
+const session = applyAdminSession({ unlockAt: "2026-11-10T20:00:00.000Z" }, "coach@example.com", token);
+assert.equal(session.isAdmin, true);
+assert.equal(session.unlockAt, "");
 assert.equal(publicRecord({ first: "Casey", last: "Nguyen" }, { email: "casey@example.com", days: {} }).isAdmin, false);
 coach.days["1"].doneAt = "2026-11-10T12:00:00.000Z";
 coach.days["2"].doneAt = "2026-11-10T12:10:00.000Z";
@@ -398,9 +412,15 @@ assert.equal(peerStanding([coach], [], "pat coach").note, "Welcome in. Finish yo
 const rushed = { email: "coach@example.com", days: { 1: { done: true, doneAt: "2026-11-10T12:00:00.000Z" }, 2: { done: true, doneAt: "2026-11-10T12:10:00.000Z" } } };
 assert.equal(applyProgress(rushed, { days: { 3: { done: true } } }, "2026-11-10T12:20:00.000Z", { skipPace: true }).ok, true);
 assert.equal(applyProgress(rushed, { days: { 3: { done: true } } }, "2026-11-10T12:20:00.000Z").error, "pace");
-assert.equal(publicRecord({ first: "Pat", last: "Coach" }, rushed).unlockAt, "");
+assert.notEqual(publicRecord({ first: "Pat", last: "Coach" }, rushed).unlockAt, "");
+assert.equal(applyAdminSession(publicRecord({ first: "Pat", last: "Coach" }, rushed), "coach@example.com", token).unlockAt, "");
+for (let n = 0; n < 5; n += 1) noteAdminCodeFailure("locked@example.com", "203.0.113.8");
+assert.equal(adminCodeLocked("locked@example.com", "203.0.113.9"), true);
+assert.equal(adminCodeLocked("other@example.com", "203.0.113.8"), true);
+clearAdminCodeFailures("locked@example.com", "203.0.113.8");
 if (previousAdmins == null) delete process.env.AI30_ADMIN_EMAILS;
 else process.env.AI30_ADMIN_EMAILS = previousAdmins;
+delete process.env.AI30_ADMIN_PIN;
 assert.equal(peerStanding([
   learner("casey nguyen", "Casey", "Nguyen", 1),
   host,

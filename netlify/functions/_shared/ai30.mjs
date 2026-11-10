@@ -517,8 +517,9 @@ export function publicRecord(person, row) {
     complete: doneCount(days) === DAY_COUNT,
     selfie: !!(row && (row.selfieAt || row.selfie_at)),
     needsEmail: !(row && row.email),
-    isAdmin: isAdminEmail(row && row.email),
-    unlockAt: isAdminEmail(row && row.email) ? "" : paceUnlockAt(days),
+    needsAdminCode: isAdminEmail(row && row.email),
+    isAdmin: false,
+    unlockAt: paceUnlockAt(days),
   };
 }
 

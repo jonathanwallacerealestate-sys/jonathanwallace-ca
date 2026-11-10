@@ -5,7 +5,7 @@
 // Stores only the normalised name, day statuses, notes, and timestamps.
 
 import { getDatabase } from "@netlify/database";
-import { adminKeyOk, isAdminEmail } from "./_shared/admin.mjs";
+import { adminCodeLocked, adminKeyOk, adminPinOk, applyAdminSession, clearAdminCodeFailures, isAdminEmail, noteAdminCodeFailure, signAdminToken, verifyAdminToken } from "./_shared/admin.mjs";
 import { applyProgress, cleanPost, currentDay, emailClaim, isSeparateSession, learnersCsv, migrateCurriculum, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, stampCurriculum } from "./_shared/ai30.mjs";
 import { deleteTestBlobs, listDriveSelfies } from "./_shared/selfies.mjs";
 
@@ -104,8 +104,9 @@ async function readContext(db) {
   return { people, posts: postRows };
 }
 
-function pack(person, row, context) {
+function pack(person, row, context, token) {
   const record = publicRecord(person, row);
+  applyAdminSession(record, row && row.email, token);
   const standing = peerStanding(context.people, context.posts, person.key);
   record.note = standing.note;
   record.board = standing.board;
@@ -163,7 +164,7 @@ export default async (req, context) => {
     return json(400, { ok: false, error: "json" });
   }
 
-  const adminOp = body.op === "export" || body.op === "reset" || body.op === "remove" || body.op === "delete-learner" || body.op === "admin-login";
+  const adminOp = body.op === "export" || body.op === "reset" || body.op === "remove" || body.op === "delete-learner" || body.op === "admin-login" || body.op === "admin-code";
   const person = body.op === "admin-login" || !adminOp ? normalizePerson(body && body.first, body && body.last) : { ok: true, key: "", first: "", last: "" };
   if (!person.ok) return json(400, { ok: false, error: person.error });
   if ((body.op === "save" || body.op === "talk") && limited(body.op + ":" + person.key, 40)) {
@@ -178,6 +179,7 @@ export default async (req, context) => {
   }
 
   try {
+    if (body.op === "admin-code") return json(200, await adminCode(db, body, ip));
     if (adminOp && !(await adminAllowed(db, body))) return json(403, { ok: false, error: "admin" });
 
     if (body.op === "export") {
@@ -239,16 +241,34 @@ export default async (req, context) => {
   }
 };
 
+async function signedInRow(db, body) {
+  const who = normalizePerson(body.first, body.last);
+  if (!who.ok) return null;
+  const row = await readRow(db, who.key);
+  if (!row || !row.email) return null;
+  const claim = emailClaim(row.email, body.email);
+  if (!claim.ok) return null;
+  return row;
+}
+
+async function adminCode(db, body, ip) {
+  const row = await signedInRow(db, body);
+  if (!row || !isAdminEmail(row.email)) return { ok: false, error: "admin_code" };
+  if (adminCodeLocked(row.email, ip)) return { ok: false, error: "admin_lock" };
+  if (!adminPinOk(body.code)) {
+    noteAdminCodeFailure(row.email, ip);
+    return { ok: false, error: adminCodeLocked(row.email, ip) ? "admin_lock" : "admin_code" };
+  }
+  clearAdminCodeFailures(row.email, ip);
+  return { ok: true, isAdmin: true, needsAdminCode: true, adminToken: signAdminToken(row.email) };
+}
+
 async function adminAllowed(db, body) {
   if (body.op === "admin-login") return adminKeyOk(body.adminKey);
   if (adminKeyOk(body.adminKey)) return true;
-  const who = normalizePerson(body.first, body.last);
-  if (!who.ok) return false;
-  const row = await readRow(db, who.key);
-  if (!row || !row.email) return false;
-  const claim = emailClaim(row.email, body.email);
-  if (!claim.ok) return false;
-  return isAdminEmail(row.email);
+  const row = await signedInRow(db, body);
+  if (!row || !isAdminEmail(row.email)) return false;
+  return verifyAdminToken(body.adminToken, row.email);
 }
 
 async function saveLocked(db, person, body) {
@@ -265,7 +285,9 @@ async function saveLocked(db, person, body) {
       return { ok: true, needsEmail: true, first: person.first, last: person.last };
     }
     const existing = recordFromRow(raw);
-    const applied = applyProgress({ ...existing, days: migrateCurriculum(existing.days) }, body, new Date().toISOString(), { skipPace: isAdminEmail(existing.email) });
+    const applied = applyProgress({ ...existing, days: migrateCurriculum(existing.days) }, body, new Date().toISOString(), {
+      skipPace: isAdminEmail(existing.email) && verifyAdminToken(body.adminToken, existing.email),
+    });
     if (!applied.ok) {
       await client.query("ROLLBACK");
       return { ok: false, error: applied.error, day: applied.day, unlockAt: applied.unlockAt || "" };
@@ -276,7 +298,7 @@ async function saveLocked(db, person, body) {
     );
     await client.query("COMMIT");
     const row = recordFromRow(updated.rows[0]);
-    return pack(person, row, await readContext(db));
+    return pack(person, row, await readContext(db), body.adminToken);
   } catch (e) {
     try { await client.query("ROLLBACK"); } catch (err) {}
     throw e;
@@ -327,7 +349,7 @@ async function learnerOp(db, person, body) {
       await db.sql`INSERT INTO ai30_logins (name_key, logged_at) VALUES (${person.key}, ${now.toISOString()}::timestamptz)`;
     }
     const context = await readContext(db);
-    return pack(person, row, context);
+    return pack(person, row, context, body.adminToken);
   }
 
   if (body.op === "save") return saveLocked(db, person, body);
@@ -336,7 +358,7 @@ async function learnerOp(db, person, body) {
     const row = await readRow(db, person.key);
     if (!row || !row.email) return { ok: true, needsEmail: true, first: person.first, last: person.last };
     const context = await readContext(db);
-    return pack(person, row, context);
+    return pack(person, row, context, body.adminToken);
   }
 
   const row = await readRow(db, person.key);
@@ -365,7 +387,7 @@ async function learnerOp(db, person, body) {
     `;
   }
   const context = await readContext(db);
-  return pack(person, row, context);
+  return pack(person, row, context, body.adminToken);
 }
 
 export const config = {

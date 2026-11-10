@@ -1,0 +1,492 @@
+{
+  "title": "AI Getting Started: Your First 30 Days",
+  "audience": "Brokerage agents",
+  "rule": "One day at a time. If you don't finish a day's task, don't move on until it's done. If 30 days takes you 90, that's okay.",
+  "signature": "Jonathan Wallace, REALTOR® | Faris Team",
+  "pacing": {
+    "1-9": "15 to 20 min",
+    "10-20": "30 min",
+    "21-30": "30 to 45 min"
+  },
+  "catchUpDays": [7, 16, 24],
+  "note": "Each person's Day 1 starts when they first sign in. There is no fixed calendar.",
+  "sections": [
+    { "id": "foundations", "title": "Foundations", "days": [1, 9] },
+    { "id": "clients", "title": "Clients and reviews", "days": [10, 10] },
+    { "id": "brand", "title": "Brand and social", "days": [11, 16] },
+    { "id": "tools", "title": "Connect your tools", "days": [17, 20] },
+    { "id": "letters", "title": "Letters and offers", "days": [21, 24] },
+    { "id": "deals", "title": "Deal card", "days": [25, 27] },
+    { "id": "advanced", "title": "Advanced", "days": [28, 30] }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "section": "Foundations",
+      "title": "Pick one AI",
+      "why": "One tool, on your phone and your computer, is enough to start.",
+      "minutes": "15 to 20 min",
+      "catchUp": false,
+      "visual": "email",
+      "steps": [
+        "Pick one AI you will stick with for these 30 days.",
+        "Install it on your phone and on your computer.",
+        "Use it on one real email. Read the draft. Send it only if you are happy with it."
+      ],
+      "prompt": "I want to try you on a real work email. Here it is:\n\n[paste the email]\n\nDraft a short, clear reply in a warm professional voice. Do not send anything. I will read it and decide."
+    },
+    {
+      "day": 2,
+      "section": "Foundations",
+      "title": "Talk instead of type",
+      "why": "Speaking is faster, and the draft is still yours to approve.",
+      "minutes": "15 to 20 min",
+      "catchUp": false,
+      "visual": "chat",
+      "tip": "Save any prompt you reuse. Handy ones: an email reply, a text reply, and an appointment summary.",
+      "steps": [
+        "On your phone, open your AI and use the microphone instead of the keyboard.",
+        "Talk through one real task, such as a reply you have been putting off.",
+        "Read what it wrote before you use it.",
+        "If a prompt worked well, save it with a short name so you can use it again."
+      ],
+      "prompt": "I am going to dictate instead of type. Tidy my words into clear notes, then do the task. If I say a prompt I want to keep, save it with a short name (for example: email reply, text reply, or appointment summary) so I can reuse it. Do not send anything until I approve."
+    },
+    {
+      "day": 3,
+      "section": "Foundations",
+      "title": "Three tasks you hate",
+      "why": "The best first jobs are the ones you already avoid.",
+      "minutes": "15 to 20 min",
+      "catchUp": false,
+      "visual": "tasks",
+      "steps": [
+        "Let it ask about your week before it suggests anything.",
+        "Pick three tasks you dislike that it could take on over the next 30 days.",
+        "For each one, note where to start and a rough guess of time saved."
+      ],
+      "prompt": "Before you suggest anything, ask me about my week: what I do each day, what takes the longest, and what I put off. Then suggest three tasks I dislike that you could take on over the next 30 days. For each one, say where I should start and roughly how much time it could save."
+    },
+    {
+      "day": 4,
+      "section": "Foundations",
+      "title": "About-me note",
+      "why": "A short note about you keeps the drafts sounding like a person, not a template.",
+      "minutes": "15 to 20 min",
+      "catchUp": false,
+      "visual": "about",
+      "steps": [
+        "Tell it who you help, where you work, and how you like to sound.",
+        "Ask for a one-page about-me note in your words.",
+        "Fix anything that does not sound like you, then save the note."
+      ],
+      "prompt": "Ask me a few questions, then write a one-page about-me note I can reuse: who I help, where I work, how I like to sound, and what I will not do. Keep it in my words. I will edit it before we save it."
+    },
+    {
+      "day": 5,
+      "section": "Foundations",
+      "title": "House rules",
+      "why": "One written rules file is the line every future chat has to stay behind.",
+      "minutes": "15 to 20 min",
+      "catchUp": false,
+      "visual": "rules",
+      "steps": [
+        "Make the first rule the approval line: it drafts, you approve before anything goes out.",
+        "Add a few more rules in your own words, such as tone, what it must not invent, and what it must ask you first.",
+        "Save them as one file you can paste at the start of a new chat."
+      ],
+      "prompt": "Help me write my house rules in one file. The first rule is: you draft, I approve, and nothing goes out until I say so. Ask what else should be in the rules, then give me one clean file I can save."
+    },
+    {
+      "day": 6,
+      "section": "Foundations",
+      "title": "Teach it your writing style",
+      "why": "What you feed it is what it writes like.",
+      "minutes": "15 to 20 min",
+      "catchUp": false,
+      "visual": "email",
+      "steps": [
+        "Share examples of writing you like: emails you have sent, authors you like, news articles, or any writing you think is good.",
+        "Dictate a mock email to one of your clients and have it write it.",
+        "Ask it to save how it should write your emails as an Email writing SOP.",
+        "Tell it one thing you do not like, and ask it to update the Email writing SOP."
+      ],
+      "prompt": "I am going to share writing I like (emails, authors, articles). Learn the style. Then I will dictate a mock email to a client. Write it in that style and save the approach as my Email writing SOP. Wait. I will tell you one thing I do not like, and you will update the SOP. Do not send the email."
+    },
+    {
+      "day": 7,
+      "section": "Foundations",
+      "title": "Text templates",
+      "why": "The texts you send every week should not start from a blank box.",
+      "minutes": "15 to 20 min",
+      "catchUp": true,
+      "visual": "texts",
+      "steps": [
+        "Pick three texts you send often, such as a check-in, a follow-up after a showing, and a thank-you.",
+        "Have your AI draft a short template for each, in your voice.",
+        "Save them so you can ask for one by name."
+      ],
+      "prompt": "Help me write three short text templates I can reuse: a check-in, a follow-up after a showing, and a quick thank-you. Keep them warm and short. Save each one with a name so I can ask for it later."
+    },
+    {
+      "day": 8,
+      "section": "Foundations",
+      "title": "Save the chat before you close it",
+      "why": "A good decision is gone if you close the chat without saving it.",
+      "minutes": "15 to 20 min",
+      "catchUp": false,
+      "visual": "sop",
+      "steps": [
+        "At the end of a working chat, ask it to save the SOPs and decisions you made.",
+        "Ask it to read your house rules back in a few lines.",
+        "Do this before you close the chat."
+      ],
+      "prompt": "Before we end, list the SOPs and decisions we made in this chat and save them. Then read my house rules back to me in a few lines so I can see they are still in place."
+    },
+    {
+      "day": 9,
+      "section": "Foundations",
+      "title": "Inbox cleanup",
+      "why": "Five old emails is enough practice. You still approve every send.",
+      "minutes": "15 to 20 min",
+      "catchUp": false,
+      "visual": "inbox",
+      "steps": [
+        "Find the five oldest emails that still need a reply.",
+        "Paste them in and ask for a short draft for each.",
+        "Approve each reply yourself before it goes out."
+      ],
+      "prompt": "Here are five old emails that still need a reply. For each one, say who it is from, what they need, and draft a short reply. Do not send anything. I will approve each one first.\n\n[paste the five emails]"
+    },
+    {
+      "day": 10,
+      "section": "Clients and reviews",
+      "title": "Ask for reviews",
+      "why": "Happy clients will leave a review if you make it easy and personal.",
+      "minutes": "30 min",
+      "catchUp": false,
+      "visual": "review",
+      "steps": [
+        "Teach your AI how you like to request reviews: where (for example Google), your review links, and what you would like to say.",
+        "Have it build a text template and an email template, and save them.",
+        "Use it like this: \"Hey, I just did a deal with [client]. We just sold 123 Banana Street. I want to send it via text. Give me the message with my review link, based on my text template.\" Do the same for email."
+      ],
+      "assignment": "Send one text and one email requesting a review from a client on a property you have sold this year.",
+      "prompt": "I am going to tell you how I like to ask for reviews: where (for example Google), my review link, and the words I like. Build a text template and an email template and save them.\n\nWhen I say something like \"Hey, I just did a deal with [client]. We just sold 123 Banana Street. I want to send it via text,\" give me the message with my review link, based on my text template. Do the same when I ask for email. Do not send anything until I approve."
+    },
+    {
+      "day": 11,
+      "section": "Brand and social",
+      "title": "Share 10 posts you like",
+      "why": "Showing real posts is clearer than trying to describe a style.",
+      "minutes": "30 min",
+      "catchUp": false,
+      "visual": "instagram",
+      "steps": [
+        "Find at least 10 social media posts you like the style of.",
+        "For each one, copy the link (the post's URL) and paste it into your AI chat.",
+        "Tell it what you like about them."
+      ],
+      "assignment": "Have your AI create one new version of one of the posts you shared, in your style, for your business.",
+      "prompt": "I am going to paste links to at least 10 social posts I like the style of, and say what I like about each. When I have shared them, create one new version of one of those posts, in my style, for my business. Do not publish it."
+    },
+    {
+      "day": 12,
+      "section": "Brand and social",
+      "title": "Pick your fonts and colours",
+      "why": "Fonts and colours give the guide something solid to stand on.",
+      "minutes": "30 min",
+      "catchUp": false,
+      "visual": "swatches",
+      "steps": [
+        "Pick fonts and a colour palette you actually like.",
+        "Share them with your AI, plus examples of colours and styles you like: screenshots, links, and your logo.",
+        "Let it ask a few questions, then read the summary and correct it."
+      ],
+      "prompt": "Ask me a few questions about my taste in fonts, colours, and style. I will share examples (screenshots, links, and my logo). Then summarize the fonts, colours, and style you think fit me, so we can start building brand guidelines."
+    },
+    {
+      "day": 13,
+      "section": "Brand and social",
+      "title": "One photo folder",
+      "why": "One shared folder beats hunting through your whole drive.",
+      "minutes": "30 min",
+      "catchUp": false,
+      "visual": "drive",
+      "steps": [
+        "Create one Drive folder for photos you are happy to share.",
+        "Add headshots, listing photos, local spots, and your logo.",
+        "Share only that folder, not your whole drive."
+      ],
+      "prompt": "Help me plan one photo folder I can share with you. It should hold headshots, listing photos, local spots, and my logo, and nothing else. Tell me what to put in it and remind me to share only that folder, not my whole drive."
+    },
+    {
+      "day": 14,
+      "section": "Brand and social",
+      "title": "Draft and save your brand guide",
+      "why": "One page you will actually open is better than a long guide you will not.",
+      "minutes": "30 min",
+      "catchUp": false,
+      "visual": "brand",
+      "steps": [
+        "Ask for a one-page brand guide from the fonts, colours, and photos you already chose.",
+        "Edit anything that does not sound like you or look like your work.",
+        "Save the final page with your rules."
+      ],
+      "prompt": "Using the fonts, colours, and photos we already set, draft a one-page brand guide: voice, colours, fonts, and how a post should look. Then help me edit it. When I am happy, save the final version as my brand guide."
+    },
+    {
+      "day": 15,
+      "section": "Brand and social",
+      "title": "First post",
+      "why": "A local food spot or a community moment is enough for a first post.",
+      "minutes": "30 min",
+      "catchUp": false,
+      "visual": "instagram",
+      "steps": [
+        "Pick a local food spot or something happening in your community.",
+        "Draft the caption in your voice, using your brand guide.",
+        "Choose the photo, approve the words, and post it yourself."
+      ],
+      "prompt": "Draft my first post about a local food spot or a community event. Use my brand guide and my voice. Give me the caption and a short note on what photo to use. Do not publish it until I approve."
+    },
+    {
+      "day": 16,
+      "section": "Brand and social",
+      "title": "Second and third posts",
+      "why": "A second post builds the habit. Scheduling the third one means it still goes out on a busy day.",
+      "minutes": "30 min",
+      "catchUp": true,
+      "visual": "scheduled",
+      "steps": [
+        "Draft a second post in the same style. Publish it when you are happy with it.",
+        "Draft a third post.",
+        "Schedule the third post so it goes out without you standing over it."
+      ],
+      "prompt": "Draft my second post in the same style as my first. Then draft a third post and tell me a sensible time to schedule it. Do not publish anything until I approve."
+    },
+    {
+      "day": 17,
+      "section": "Connect your tools",
+      "title": "Book appointments into your calendar",
+      "why": "Say it once out loud and it is booked, with travel time built in.",
+      "minutes": "30 min",
+      "catchUp": false,
+      "visual": "calendar",
+      "steps": [
+        "Connect your AI to your calendar.",
+        "Dictate a booking. For example: \"Put a booking in my calendar for tomorrow's listing appointment at 123 Banana Street with Sam and Priya. It is 2 hours long and I will be coming from my house. Set a reminder for when I need to leave so I have enough driving time.\"",
+        "Check the event, the location, and the leave-by reminder.",
+        "Save how you like appointments booked (length, reminders, home address as the start) as a skill."
+      ],
+      "assignment": "Book one real upcoming appointment this way.",
+      "prompt": "Put a booking in my calendar for tomorrow's listing appointment at 123 Banana Street with Sam and Priya Sample. It is 2 hours long and I will be coming from my house. Set a reminder for when I need to leave so I have enough driving time. Then save how I like appointments booked: usual length, reminders, and my home address as the start."
+    },
+    {
+      "day": 18,
+      "section": "Connect your tools",
+      "title": "Teach it how you keep notes",
+      "why": "Once it knows how you take notes, every call, meeting, or pop-by gets logged without you typing.",
+      "minutes": "30 min",
+      "catchUp": false,
+      "visual": "crm",
+      "steps": [
+        "Create a skill that teaches your AI how you like to keep notes.",
+        "Dictate it. For example: \"When I give you a note, keep the specific information about the client, add it as a note on their profile in my CRM, like Follow Up Boss, and save it to the deal card we are building.\"",
+        "Test it: dictate a note about a real client (a call, a meeting, or a pop-by) and have it log the note.",
+        "Ask it about that client afterwards and check that it pulls the note back."
+      ],
+      "prompt": "When I give you a note, keep the specific information about the client, add it as a note on their profile in my CRM (like Follow Up Boss), and save it to the deal card we are building. I will dictate a note now. After you log it, I will ask you about that client. Pull the note back so I can check it."
+    },
+    {
+      "day": 19,
+      "section": "Connect your tools",
+      "title": "Stay in touch with past clients",
+      "why": "Past clients are your best source of repeat and referral business, and your AI can remember the details you cannot.",
+      "minutes": "30 min",
+      "catchUp": false,
+      "visual": "email",
+      "steps": [
+        "Pull up one past client from your database.",
+        "Dictate who they are, how you met, how you helped them on their last transaction, who their kids are, and what house they bought.",
+        "Have it draft an email to them, and give you a few follow-up ideas for that specific client based on your notes.",
+        "Teach this as a skill called Past client follow-up. Ask it to store what you told it about this client so it never has to ask again. Update your database or CRM notes too."
+      ],
+      "prompt": "I am going to dictate a past client: who they are, how we met, how I helped on their last sale, who their kids are, and what house they bought. Draft an email to them, and give me a few follow-up ideas for this client based on those notes. Save this as a skill called Past client follow-up. Store what I told you so you never have to ask again, and remind me to update my CRM notes. Do not send the email until I approve."
+    },
+    {
+      "day": 20,
+      "section": "Connect your tools",
+      "title": "Listing descriptions and your top 5",
+      "why": "This saves time and energy at every listing. It is also how you turn any repeated task into a saved skill.",
+      "minutes": "30 min",
+      "catchUp": false,
+      "visual": "top5",
+      "steps": [
+        "Share your last 20 listing descriptions with your AI, plus your writing style and what you like.",
+        "Dictate a fake property the way you would at a listing appointment, and have it write the top 5 reasons in the Faris Team format.",
+        "Review it, refine it, and save the final version as the template in the skill. It should work whether the details come from Plaud, a voice note, dictation, a text, or an email."
+      ],
+      "assignment": "Use a fake property. Dictate all the information as you would at a listing appointment, have it create one finished top 5 as your template, refine it, and save that final version in the skill.",
+      "prompt": "I will share listing descriptions I like and how I want a top 5 written. Then I will dictate a fake property the way I would at a listing appointment. Write one finished top 5 in that format. I will review it and tell you what to change. Save the final version as the template in a skill, so a voice note, a Plaud note, a text, or an email can all produce the same kind of top 5."
+    },
+    {
+      "day": 21,
+      "section": "Letters and offers",
+      "title": "Letter of Opinion setup",
+      "why": "The template and your signature live in one folder, and only that folder is shared.",
+      "minutes": "30 to 45 min",
+      "catchUp": false,
+      "visual": "drive",
+      "steps": [
+        "Make one Drive folder for your Letter of Opinion.",
+        "Put a Word template and a photo of your signature in that folder.",
+        "Share only that folder, not your whole drive."
+      ],
+      "prompt": "Help me set up a Letter of Opinion folder. I will keep a Word template and a signature photo in one Drive folder. Remind me to share only that folder with you, not my whole drive. List what the template should include and how I should name the folder."
+    },
+    {
+      "day": 22,
+      "section": "Letters and offers",
+      "title": "Practise, then time a real letter",
+      "why": "A past deal is a safe rehearsal. The timed letter shows you what a real one costs in minutes.",
+      "minutes": "30 to 45 min",
+      "catchUp": false,
+      "visual": "letter",
+      "steps": [
+        "Practise a full Letter of Opinion on a past deal.",
+        "Then write a real letter and time how long it takes.",
+        "You approve the letter before anyone else sees it."
+      ],
+      "prompt": "We are going to write a Letter of Opinion from my template. First, practise on a past deal I will describe. Then I will give you a real one and I will time it. Draft only. Nothing is final until I approve it."
+    },
+    {
+      "day": 23,
+      "section": "Letters and offers",
+      "title": "Read an offer: the Coles Notes",
+      "why": "Offers are long. Your client needs the key points, fast and clearly.",
+      "minutes": "30 to 45 min",
+      "catchUp": false,
+      "visual": "coles",
+      "steps": [
+        "Teach your AI how to read an Agreement of Purchase and Sale (APS).",
+        "Give it some mock signbacks so it gets a feel for what they look like.",
+        "Teach it to read the Confirmation of Acceptance so it knows when an offer has been accepted.",
+        "Give it guidelines on what is relevant to share with a client (price, deposit, conditions and their dates, closing date, inclusions and exclusions) so it does not repeat the whole agreement.",
+        "Save it as a skill."
+      ],
+      "assignment": "Run one mock offer and have it draft the Coles Notes email as if to a client, but send it to yourself so you can see the highlights it picks.",
+      "prompt": "Learn how to read an Agreement of Purchase and Sale. I will give you mock signbacks and a Confirmation of Acceptance so you can tell when an offer is accepted. Share only what a client needs: price, deposit, conditions and their dates, closing date, and inclusions or exclusions. Do not repeat the whole agreement. Save this as a skill. Then run one mock offer and draft the Coles Notes as an email to the client, but address it to me so I can check the highlights. Do not send it to the client."
+    },
+    {
+      "day": 24,
+      "section": "Letters and offers",
+      "title": "Deal deadline tracker",
+      "why": "Missing a condition date or a title search date is costly. Let your AI put every date in your calendar.",
+      "minutes": "30 to 45 min",
+      "catchUp": true,
+      "visual": "deadlines",
+      "steps": [
+        "From an accepted APS, teach your AI to find the conditional dates, the title search date, and the closing date.",
+        "Have it add each date as a calendar event, with a reminder a few days before.",
+        "Save it as a skill."
+      ],
+      "assignment": "Run it on a mock or recent accepted offer and check that every date landed in your calendar.",
+      "prompt": "From an accepted Agreement of Purchase and Sale, find the conditional dates, the title search date, and the closing date. Add each one to my calendar with a reminder a few days before. Save this as a skill. I will give you a mock or recent accepted offer. After you add the dates, list them so I can check every one."
+    },
+    {
+      "day": 25,
+      "section": "Deal card",
+      "title": "Deal card setup",
+      "why": "One card per person keeps the next step where you can see it.",
+      "minutes": "30 to 45 min",
+      "catchUp": false,
+      "visual": "deal",
+      "steps": [
+        "Choose the fields: name, phone, what they want, last touch, next step, and the date.",
+        "Have your AI build one blank card and one filled example.",
+        "Save the layout so every new lead starts the same way."
+      ],
+      "prompt": "Help me set up a simple deal card I can reuse for each lead: name, phone, what they want, last touch, next step, and the date. Show me one blank card and one filled example with a fictional lead. Save the layout."
+    },
+    {
+      "day": 26,
+      "section": "Deal card",
+      "title": "Ten leads, then make the calls",
+      "why": "The card only matters if you pick up the phone.",
+      "minutes": "30 to 45 min",
+      "catchUp": false,
+      "visual": "calls",
+      "steps": [
+        "Pick 10 leads and make a deal card for each.",
+        "Ask for a short opener for each call.",
+        "Make the calls yourself. Your AI does not contact anyone."
+      ],
+      "prompt": "I am going to name 10 leads. For each one, make a deal card and a short call opener. I will make the calls. Do not contact anyone yourself."
+    },
+    {
+      "day": 27,
+      "section": "Deal card",
+      "title": "Paste the notes, then the next 10",
+      "why": "The notes you bring back are what make the next list sharper.",
+      "minutes": "30 to 45 min",
+      "catchUp": false,
+      "visual": "deal",
+      "tip": "Make the deal card a habit three times a week.",
+      "steps": [
+        "Paste the notes from the calls you just made and update each card.",
+        "Set up the next 10 the same way.",
+        "Put a repeating reminder so you do this three times a week."
+      ],
+      "prompt": "I am pasting notes from the calls I just made. Update each deal card. Then set up the next 10 the same way. Remember this with me: I will do this three times a week until it is a habit.\n\n[paste your call notes]"
+    },
+    {
+      "day": 28,
+      "section": "Advanced",
+      "title": "Prep your listing appointment paperwork",
+      "why": "The forms you print for every listing appointment can be ready in a minute.",
+      "minutes": "30 to 45 min",
+      "catchUp": false,
+      "visual": "forms",
+      "steps": [
+        "In WEBForms, draft blank masters: the RECO guide, and a listing agreement with your standard Schedule A. Save them as editable PDFs.",
+        "Pre-fill your standard terms in the master PDF so you never retype them: commission 5% total, with 2.5% to the co-operating brokerage, and a 60-day holdover.",
+        "Teach your AI to take the seller information from a GeoWarehouse report: owner names and property details and address from GeoWarehouse, cross-check Google for the postal code, and where to fill in the listing start date and the number of days.",
+        "Save it as a skill."
+      ],
+      "assignment": "Have it create, in one minute, all the PDFs you need to take to a listing appointment.",
+      "prompt": "Help me get listing appointment paperwork ready. I use WEBForms. I need blank masters saved as editable PDFs: the RECO guide, and a listing agreement with my standard Schedule A. Pre-fill the standard terms: commission 5% total, with 2.5% to the co-operating brokerage, and a 60-day holdover. When I give you a GeoWarehouse report, take the owner names and the property details and address from it, cross-check Google for the postal code, and show me where the listing start date and the number of days go. Save this as a skill. Then prepare, as if in one minute, the set of PDFs I would take to a listing appointment. I approve before anything is used."
+    },
+    {
+      "day": 29,
+      "section": "Advanced",
+      "title": "Book showings in BrokerBay",
+      "why": "Showings are repetitive and easy to hand off once it knows your rules.",
+      "minutes": "30 to 45 min",
+      "catchUp": false,
+      "visual": "showing",
+      "steps": [
+        "Teach your AI how you book showings: which time windows to take, and to check Google Maps first for the route and drive time between appointments.",
+        "Book a mock showing on one of your own listings in BrokerBay.",
+        "Have it draft the note letting your client know. You approve before it goes.",
+        "Teach it how to cancel a showing too, and save all of it as a Showings SOP."
+      ],
+      "prompt": "Learn how I book showings. Ask which time windows I will take, and always check Google Maps first for the route and drive time between appointments. We will book a mock showing on one of my listings in BrokerBay. Draft the note to my client and wait for my approval before it goes out. Also learn how I cancel a showing. Save all of this as a Showings SOP."
+    },
+    {
+      "day": 30,
+      "section": "Advanced",
+      "title": "Review the month",
+      "why": "Look at what you actually used, leave one clean rules file, and choose what Step 2 is for you.",
+      "minutes": "30 to 45 min",
+      "catchUp": false,
+      "visual": "review30",
+      "steps": [
+        "Review the month: what you used, what you skipped, and what saved you time.",
+        "Clean up your rules file so there is one source of truth.",
+        "Pick what you want next for Step 2, Connect Your Tools."
+      ],
+      "prompt": "Help me review the month. Read my house rules back and help me clean them into one source of truth. Then look at what I actually used. Suggest what I should pick up next for Step 2, Connect Your Tools. Do not add new tools until I choose."
+    }
+  ]
+}

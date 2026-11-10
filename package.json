@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "dependencies": {
+    "@netlify/database": "^2.0.3"
+  }
+}

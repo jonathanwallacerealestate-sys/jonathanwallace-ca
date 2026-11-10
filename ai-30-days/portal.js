@@ -276,6 +276,7 @@ function signOut() {
   state.first = "";
   state.last = "";
   state.email = "";
+  state.drafts = null;
   state.days = {};
   state.replyTo = null;
   state.openThreads = {};
@@ -546,6 +547,47 @@ function replyThread(post) {
   return `<div class="thread__replies">${toggle}${shown.map((reply) => commentRow(reply, true)).join("")}</div>`;
 }
 
+function draftStorageKey() {
+  return `jw-ai30-drafts:${cacheKey(state.first || "", state.last || "")}`;
+}
+
+function loadDraftMap() {
+  const key = draftStorageKey();
+  if (!state.drafts || state.draftKey !== key) {
+    state.draftKey = key;
+    try { state.drafts = JSON.parse(sessionStorage.getItem(key) || "{}"); }
+    catch (e) { state.drafts = {}; }
+  }
+  return state.drafts;
+}
+
+function draftId() {
+  return state.replyTo ? `reply:${state.replyTo.id}` : "comment";
+}
+
+function keepDraft(text) {
+  const drafts = loadDraftMap();
+  const id = draftId();
+  if (String(text || "").length) drafts[id] = String(text);
+  else delete drafts[id];
+  state.drafts = drafts;
+  try { sessionStorage.setItem(draftStorageKey(), JSON.stringify(drafts)); } catch (e) {}
+}
+
+function takeDraft() {
+  return loadDraftMap()[draftId()] || "";
+}
+
+function rememberComposer() {
+  const input = $("#comment-body");
+  if (input) keepDraft(input.value);
+}
+
+function composerBusy() {
+  const input = $("#comment-body");
+  return !!(input && input.value);
+}
+
 function renderComposer() {
   const replying = state.replyTo;
   const placeholder = replying ? `Reply to ${replying.name}` : "Add a comment...";
@@ -688,8 +730,16 @@ function bindShare() {
 }
 
 function bindBoard() {
+  const field = $("#comment-body");
+  if (field) {
+    field.value = takeDraft();
+    const save = () => keepDraft(field.value);
+    field.addEventListener("input", save);
+    field.addEventListener("blur", save);
+  }
   document.querySelectorAll(".reply-open").forEach((btn) => {
     btn.onclick = () => {
+      rememberComposer();
       state.replyTo = { id: Number(btn.dataset.id), name: btn.dataset.name || "" };
       const y = window.scrollY;
       render();
@@ -701,6 +751,7 @@ function bindBoard() {
   const cancel = $("#reply-cancel");
   if (cancel) {
     cancel.onclick = () => {
+      rememberComposer();
       state.replyTo = null;
       const y = window.scrollY;
       render();
@@ -732,19 +783,31 @@ function bindBoard() {
       const status = $("#comment-status");
       const send = $("#comment-send");
       const body = input ? input.value : "";
+      const replying = !!state.replyTo;
+      if (!body.trim()) {
+        if (status) status.textContent = replying ? "Type a reply first." : "Write a note first.";
+        return;
+      }
       if (send) send.disabled = true;
       try {
         if (state.replyTo) {
           applyRecord(await post("talk", { parentId: state.replyTo.id, body }));
+          keepDraft("");
           state.replyTo = null;
         } else {
           const lesson = state.complete ? lessonTotal() : state.currentDay;
           applyRecord(await post("talk", { lesson, kind: state.commentKind || "learned", body }));
+          keepDraft("");
         }
         state.status = "Posted to the group.";
         render();
       } catch (e) {
-        if (status) status.textContent = e.code === "empty" ? "Write a note first." : explain(e);
+        if (status) {
+          status.textContent = replying
+            ? "That didn't post. Check your connection and try again."
+            : (e.code === "empty" ? "Write a note first." : explain(e));
+        }
+        if (input) keepDraft(input.value);
         if (send) send.disabled = false;
       }
     };
@@ -882,6 +945,7 @@ async function refreshFeed() {
     if (data.unlockAt != null) state.unlockAt = data.unlockAt || "";
     const typing = document.activeElement && /TEXTAREA|INPUT/i.test(document.activeElement.tagName);
     if (typing) return;
+    if (state.tab === "board" && composerBusy()) return;
     if (selfieHold && state.tab === "progress") return;
     if (state.tab === "board" || state.tab === "progress") render();
     else {

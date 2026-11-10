@@ -16,6 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: replies keep what you typed
+Why: Jonathan asked that a reply which fails say so clearly, and that typed comments not disappear when the page refreshes or the phone keyboard closes.
+- An empty reply says "Type a reply first." A reply that does not post says "That didn't post. Check your connection and try again."
+- Comment and reply drafts are kept for each thread until they post. The board does not redraw a box that still has text in it.
+
 ### AI bootcamp: the behind note waits for three lessons
 Why: Jonathan asked that a new learner not be told they are behind until they have finished three lessons.
 - No finished lesson still gets the welcome. One or two finished lessons get "You're off to a good start. Keep going." unless they are already ahead of their peers. From three lessons on, ahead, behind, and in step work as before.

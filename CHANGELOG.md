@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: the behind note waits for three lessons
+Why: Jonathan asked that a new learner not be told they are behind until they have finished three lessons.
+- No finished lesson still gets the welcome. One or two finished lessons get "You're off to a good start. Keep going." unless they are already ahead of their peers. From three lessons on, ahead, behind, and in step work as before.
+
 ### AI bootcamp: leaderboard shows points only
 Why: Jonathan asked to take the completed-lesson count off the public leaderboard.
 - Each row is rank, first name and last initial, and points. The same points share a rank. The admin CSV still includes lessons completed.

@@ -270,7 +270,16 @@ assert.deepEqual(tiedLessons.board.map((row) => [row.rank, row.name, row.points]
   [1, "Amy B.", 6],
   [1, "Cam D.", 6],
 ]);
-assert.equal(peerStanding(classRows, [], "dee park").note, "You're a little behind your peers learning AI. Today's a good day to catch up.");
+assert.equal(peerStanding(classRows, [], "dee park").note, "You're off to a good start. Keep going.");
+assert.equal(peerStanding(classRows, [], "ada north").note, "You're off to a good start. Keep going.");
+assert.equal(peerStanding([
+  learner("ada north", "Ada", "North", 2),
+  learner("dee park", "Dee", "Park", 1),
+], [], "ada north").note, "You're ahead of most of your peers learning AI. Keep it going.");
+assert.equal(peerStanding([
+  learner("ada north", "Ada", "North", 3),
+  learner("ben cole", "Ben", "Cole", 4),
+], [], "ada north").note, "You're a little behind your peers learning AI. Today's a good day to catch up.");
 assert.equal(peerStanding([
   learner("ada north", "Ada", "North", 3),
   learner("ben cole", "Ben", "Cole", 3),
@@ -294,7 +303,7 @@ assert.ok(newbie.board.every((row) => row.name !== "Jonathan W."));
 assert.equal(peerStanding([
   learner("casey nguyen", "Casey", "Nguyen", 1),
   host,
-], [], "casey nguyen").note, "You're the first one here learning AI. Keep it going.");
+], [], "casey nguyen").note, "You're off to a good start. Keep going.");
 const cool = publicFeed([
   { id: 1, key: "jonathan wallace", first: "Jonathan", last: "Wallace", body: "That was a cool lesson.", kind: "learned", lesson: 1, createdAt: "2026-11-10T12:00:00.000Z", parentId: null },
   { id: 2, key: "ada north", first: "Ada", last: "North", body: "Same here.", kind: "reply", lesson: 1, createdAt: "2026-11-10T12:05:00.000Z", parentId: 1 },

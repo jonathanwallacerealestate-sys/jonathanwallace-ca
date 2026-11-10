@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### AI bootcamp: private lesson notes removed
+Why: Jonathan asked for the private notes box to come off the bottom of each lesson.
+- The notes field is gone. The completion button and the group share box stay.
+
 ### AI bootcamp: print checklist removed
 Why: Jonathan asked for the print checklist to come off the learning centre entirely.
 - The button, the print view, and the code that built it are gone.

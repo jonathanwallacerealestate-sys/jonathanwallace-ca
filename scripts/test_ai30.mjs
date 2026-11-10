@@ -137,7 +137,11 @@ for (const day of plan.days) {
   assert.ok(!JSON.stringify(day).includes("—"), "em dash in day " + day.day);
   const last = day.steps[day.steps.length - 1];
   const lastPrompt = prompts[prompts.length - 1];
-  if (day.day < 3) {
+  if (day.day === 1) {
+    assert.equal(last, lightClose);
+    assert.equal(lastPrompt, "Save what we set up today, so you remember it next time.");
+    assert.doesNotMatch(day.assignment, /Before you finish/);
+  } else if (day.day < 3) {
     assert.equal(last, lightClose);
     assert.equal(lastPrompt, lightClose);
     assert.doesNotMatch(day.assignment, /Before you finish/);
@@ -162,6 +166,13 @@ assert.equal(plan.days[17].minutes, "60 to 90 minutes");
 assert.equal(plan.days[20].minutes, "60 to 90 minutes");
 assert.equal(plan.days[22].minutes, "60 to 90 minutes");
 assert.equal(plan.days[0].title, "Pick Your AI and Tell It About Your Business");
+assert.equal(plan.days[0].prompts[1], "Save what we set up today, so you remember it next time.");
+{
+  const noteSteps = plan.days.find((day) => day.day === 13).steps;
+  assert.equal(noteSteps.filter((step) => /paste in/i.test(step)).length, 1);
+  assert.equal(noteSteps[2], "If your AI is not connected to your CRM, have it give you the note to paste in.");
+  assert.doesNotMatch(noteSteps.join("\n"), /paste in yourself/);
+}
 assert.equal(plan.days[1].title, "Teach It Your Writing Style");
 assert.equal(plan.days[6].optional, true);
 assert.match(plan.days[6].optionalNote, /Skip this lesson/);

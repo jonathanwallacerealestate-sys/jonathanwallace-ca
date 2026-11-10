@@ -106,7 +106,7 @@
       "assignment": "Done when it can play back a short summary of your business and you are happy it is accurate.",
       "prompts": [
         "I'm a REALTOR® and I want you to understand my business. Ask me questions one at a time: how many houses I've sold, what areas I like to work in, how long I've been in real estate, and the roadblocks and challenges where you could help me manage, fix, solve or add leverage. When we're done, give me a short summary of my business and save it.",
-        "Ask it to save what you set up today."
+        "Save what we set up today, so you remember it next time."
       ]
     },
     {
@@ -364,7 +364,6 @@
         "If your AI is not connected to your CRM, have it give you the note to paste in.",
         "Test it: dictate a note about a real client (a call, a meeting, or a pop-by) and have it log the note.",
         "Ask it about that client afterwards and check that it pulls the note back.",
-        "If you can't connect it, ask it to give you the text to paste in yourself.",
         "This note format is a starting point. Tailor it to how you work and what your CRM needs.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ],

@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: first prompt and notes steps
+Why: The first lesson's second prompt was a stage direction, and the notes lesson listed the same paste step twice.
+- The paste line is now one plain ask: save what we set up today. The notes lesson keeps a single step for pasting the note when the CRM is not connected, and the handout numbers follow.
+
 ### AI bootcamp: leftover wording
 Why: A few lines still described notes, day numbers, and a missing calendar, which is not how the lessons work now.
 - Offline progress is no longer called notes. A locked lesson says finish this lesson. The sign-in line no longer says there is no shared calendar. The leaderboard countdown says 1 day, 1 hour, and 1 minute. The prompts file no longer mentions a bootcamp checklist.

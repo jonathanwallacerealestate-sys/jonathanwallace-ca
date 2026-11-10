@@ -198,14 +198,14 @@ function reminderBlock(day) {
       <div class="remind__when">
         <div class="remind__field">
           <label for="remind-date-${day}">Reminder date</label>
-          <input type="date" id="remind-date-${day}" value="${tomorrow}" min="${today}">
+          <input type="date" id="remind-date-${day}" value="${tomorrow}" min="${today}" aria-label="Reminder date">
         </div>
         <div class="remind__field">
           <label for="remind-time-${day}">Reminder time</label>
-          <input type="time" id="remind-time-${day}" value="09:00">
+          <input type="time" id="remind-time-${day}" value="09:00" aria-label="Reminder time">
         </div>
       </div>
-      <a class="btn btn--ghost" id="remind-${day}" href="${icsHref(day, tomorrow, "09:00")}">Add tomorrow's lesson to my calendar</a>
+      <a class="btn btn--ghost" id="remind-${day}" href="${icsHref(day, tomorrow, "09:00")}" aria-label="Add tomorrow's lesson to my calendar">Add tomorrow's lesson to my calendar</a>
     </div>
   `;
 }
@@ -338,10 +338,10 @@ function render() {
     ${banner}
     ${locked}
     ${peers}
-    <div class="tabs" role="tablist">
-      <button type="button" role="tab" id="tab-today" aria-selected="${state.tab === "today"}">Lesson</button>
-      <button type="button" role="tab" id="tab-progress" aria-selected="${state.tab === "progress"}">Leaderboard</button>
-      <button type="button" role="tab" id="tab-board" aria-selected="${state.tab === "board"}">Message Board</button>
+    <div class="tabs" role="tablist" aria-label="Bootcamp sections">
+      <button type="button" role="tab" id="tab-today" aria-selected="${state.tab === "today"}" aria-label="Lesson">Lesson</button>
+      <button type="button" role="tab" id="tab-progress" aria-selected="${state.tab === "progress"}" aria-label="Leaderboard">Leaderboard</button>
+      <button type="button" role="tab" id="tab-board" aria-selected="${state.tab === "board"}" aria-label="Message Board">Message Board</button>
     </div>
     ${panel}
     <p class="status" id="save-status" role="status">${esc(state.status && !state.offline ? state.status : "")}</p>
@@ -458,15 +458,15 @@ function selfieLocked() {
   return `
     <section class="selfie" id="selfie">
       <h3>Post a selfie of you learning AI to unlock how to earn points</h3>
-      <button type="button" class="btn" id="selfie-cam">Take a selfie</button>
-      <button type="button" class="btn btn--ghost" id="selfie-lib">Choose from Photos</button>
-      <input id="selfie-cam-file" type="file" accept="image/*" capture="user" hidden>
-      <input id="selfie-lib-file" type="file" accept="image/*" hidden>
+      <button type="button" class="btn" id="selfie-cam" aria-label="Take a selfie">Take a selfie</button>
+      <button type="button" class="btn btn--ghost" id="selfie-lib" aria-label="Choose from Photos">Choose from Photos</button>
+      <input id="selfie-cam-file" type="file" accept="image/*" capture="user" aria-label="Take a selfie" hidden>
+      <input id="selfie-lib-file" type="file" accept="image/*" aria-label="Choose a selfie from Photos" hidden>
       <div id="selfie-preview" hidden>
         <img id="selfie-img" alt="Preview of your selfie">
         <div class="selfie__actions">
-          <button type="button" class="btn btn--ghost" id="selfie-retake">Retake</button>
-          <button type="button" class="btn" id="selfie-upload">Upload</button>
+          <button type="button" class="btn btn--ghost" id="selfie-retake" aria-label="Retake selfie">Retake</button>
+          <button type="button" class="btn" id="selfie-upload" aria-label="Upload selfie">Upload</button>
         </div>
         <button type="button" class="linkish" id="selfie-cancel">Cancel</button>
       </div>
@@ -493,7 +493,7 @@ function shareBox(day) {
         <button type="button" class="tag" data-kind="question" aria-pressed="false">Question</button>
         <button type="button" class="tag" data-kind="stuck" aria-pressed="false">Stuck on</button>
       </div>
-      <textarea id="share-body" maxlength="500" placeholder="A note for the group"></textarea>
+      <textarea id="share-body" maxlength="500" placeholder="A note for the group" aria-label="A note for the group"></textarea>
       <button type="button" class="btn btn--ghost" id="share-send" data-lesson="${day.day}">Post to the group</button>
       <p class="fine" id="share-status" role="status"></p>
     </section>`;
@@ -557,7 +557,7 @@ function commentRow(item, reply) {
   const name = item.name || "";
   const pill = reply ? "" : `<span class="cmt__pill">${esc(kindLabel(item.kind))}</span>`;
   const lesson = !reply && item.lessonTitle ? `<span class="cmt__lesson">${esc(item.lessonTitle)}</span>` : "";
-  const replyBtn = reply ? "" : `<button type="button" class="linkish reply-open" data-id="${esc(item.id)}" data-name="${esc(name)}">Reply</button>`;
+  const replyBtn = reply ? "" : `<button type="button" class="linkish reply-open" data-id="${esc(item.id)}" data-name="${esc(name)}" aria-label="Reply to ${esc(name)}">Reply</button>`;
   return `
     <article class="cmt${reply ? " cmt--reply" : ""}">
       <span class="avatar" style="${avatarStyle(name)}" aria-hidden="true">${esc(initials(name))}</span>
@@ -681,7 +681,7 @@ function promptBoxes(day) {
     const label = list.length > 1 ? `Prompt ${i + 1}` : "Prompt";
     return `
       <div class="prompt">
-        <header><p>${label}</p><button type="button" class="copy">Copy</button></header>
+        <header><p>${label}</p><button type="button" class="copy" aria-label="Copy ${esc(label)}">Copy</button></header>
         <pre class="prompt-text">${esc(text)}</pre>
       </div>`;
   }).join("");

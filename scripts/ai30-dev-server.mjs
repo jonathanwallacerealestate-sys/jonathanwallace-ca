@@ -4,7 +4,7 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync, statSync, readdirSy
 import { dirname, extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { adminKeyOk } from "../netlify/functions/_shared/admin.mjs";
-import { applyProgress, cleanPost, currentDay, emailClaim, learnersCsv, migrateCurriculum, nextSelfieStamps, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, selfieFilename, stampCurriculum } from "../netlify/functions/_shared/ai30.mjs";
+import { applyProgress, cleanPost, currentDay, emailClaim, isSeparateSession, learnersCsv, migrateCurriculum, nextSelfieStamps, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, selfieFilename, stampCurriculum } from "../netlify/functions/_shared/ai30.mjs";
 import { buildIcs, icsFilename, parseWhen } from "../netlify/functions/_shared/ics.mjs";
 import plan from "../ai-30-days/days.json" with { type: "json" };
 
@@ -164,7 +164,9 @@ const server = createServer(async (req, res) => {
       item.days = migrateCurriculum(item.days);
       if (claim.write) item.email = claim.email;
       item.logins = item.logins || [];
-      item.logins.push(new Date().toISOString());
+      const now = new Date().toISOString();
+      const last = item.logins[item.logins.length - 1];
+      if (!last || isSeparateSession(last, now)) item.logins.push(now);
       item.updated_at = new Date().toISOString();
       saveStore(store);
       const row = recordFromRow(item);

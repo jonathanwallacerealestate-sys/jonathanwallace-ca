@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: sessions, names, and the pixel
+Why: A second refresh was counting as a second visit, some controls had no accessible name, and the Facebook pixel was logging failed postMessage calls.
+- A same-day visit point now needs two sessions at least 30 minutes apart, checked on the server. Icon-only and unlabeled controls have names. The pixel still loads, and a message aimed at Facebook no longer prints a console warning.
+
 ### AI bootcamp: lesson folders use the lesson title
 Why: Jonathan asked for one folder per lesson, named the same as the lesson, with no number in front.
 - The two-digit prefix is gone. Each lesson folder matches the title on the site, and the handout and prompts are inside it. The forms folder stays. Prompts by Area sits next to the read-me so it does not add an extra folder.

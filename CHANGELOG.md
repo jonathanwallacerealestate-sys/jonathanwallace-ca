@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: leaderboard shows points only
+Why: Jonathan asked to take the completed-lesson count off the public leaderboard.
+- Each row is rank, first name and last initial, and points. The same points share a rank. The admin CSV still includes lessons completed.
+
 ### AI bootcamp: tab names
 Why: Jonathan asked for the tab names to match what is inside them.
 - The Progress tab is now labelled Leaderboard. The Board tab is now labelled Message Board, including the heading on that page.

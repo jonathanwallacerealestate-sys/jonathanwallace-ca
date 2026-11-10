@@ -252,7 +252,7 @@ function onPublicBoard(person) {
   return !person.practice && !person.host;
 }
 
-// Points decide the order. A tie goes to the person with more lessons completed.
+// Points decide the order. The same points share a rank. Names are only there to keep the list steady.
 // Practice names that start with Zztest, and the host, stay off the board and out of the note.
 // A learner with no finished lesson gets a welcome, not an ahead or behind line.
 export function peerStanding(rows, posts, youKey) {
@@ -265,14 +265,13 @@ export function peerStanding(rows, posts, youKey) {
   const board = scored.filter(onPublicBoard).map((person) => ({
     name: displayLearner(person.first, person.last),
     points: person.points,
-    done: person.done,
     you: person.key === youKey,
   }));
-  board.sort((a, b) => b.points - a.points || b.done - a.done || a.name.localeCompare(b.name, "en"));
+  board.sort((a, b) => b.points - a.points || a.name.localeCompare(b.name, "en"));
   let previous = "";
   let rank = 0;
   board.forEach((person, index) => {
-    const mark = `${person.points}:${person.done}`;
+    const mark = String(person.points);
     if (mark !== previous) {
       rank = index + 1;
       previous = mark;

@@ -213,6 +213,7 @@ assert.match(portalSrc, /id="tab-today"/);
 assert.match(portalSrc, /id="tab-progress"/);
 assert.match(portalSrc, /id="tab-board"/);
 assert.match(portalSrc, />Leaderboard</);
+assert.doesNotMatch(portalSrc, /<span>Lessons<\/span>|board__done/);
 assert.match(portalSrc, />Message Board</);
 assert.doesNotMatch(portalSrc, />Progress<|>Board</);
 assert.match(portalSrc, /capture="user"/);
@@ -254,11 +255,20 @@ const classRows = [
 const ben = peerStanding(classRows, [], "ben cole");
 assert.equal(ben.note, "You're ahead of most of your peers learning AI. Keep it going.");
 assert.equal(ben.board.length, 4);
-assert.deepEqual(ben.board.map((row) => [row.rank, row.name, row.points, row.done, row.you]), [
-  [1, "Ben C.", 12, 4, true],
-  [1, "Cara S.", 12, 4, false],
-  [3, "Ada N.", 6, 2, false],
-  [4, "Dee P.", 3, 1, false],
+assert.deepEqual(ben.board.map((row) => [row.rank, row.name, row.points, row.you]), [
+  [1, "Ben C.", 12, true],
+  [1, "Cara S.", 12, false],
+  [3, "Ada N.", 6, false],
+  [4, "Dee P.", 3, false],
+]);
+assert.ok(ben.board.every((row) => row.done == null));
+const tiedLessons = peerStanding([
+  learner("amy bee", "Amy", "Bee", 2),
+  Object.assign(learner("cam dee", "Cam", "Dee", 1), { logins: ["2026-11-08T15:00:00.000Z", "2026-11-09T15:00:00.000Z", "2026-11-09T18:00:00.000Z"] }),
+], [], "amy bee");
+assert.deepEqual(tiedLessons.board.map((row) => [row.rank, row.name, row.points]), [
+  [1, "Amy B.", 6],
+  [1, "Cam D.", 6],
 ]);
 assert.equal(peerStanding(classRows, [], "dee park").note, "You're a little behind your peers learning AI. Today's a good day to catch up.");
 assert.equal(peerStanding([
@@ -297,7 +307,7 @@ assert.ok(hidden.board.every((row) => row.you !== true));
 for (const standing of [ben, hidden, solo]) {
   assert.doesNotMatch(standing.note, /\d|out of/);
   assert.ok(standing.board.every((row) => !/zztest/i.test(row.name)));
-  assert.ok(standing.board.every((row) => !String(row.done).includes("/")));
+  assert.ok(standing.board.every((row) => row.done == null));
 }
 
 assert.equal(loginPoints(["2026-11-09T15:00:00.000Z", "2026-11-09T20:00:00.000Z"]), 1);

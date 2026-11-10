@@ -396,7 +396,6 @@ function renderProgress() {
       <span class="board__rank">${esc(row.rank)}</span>
       <span class="board__name">${esc(row.name)}${row.you ? ` <span class="board__tag">You</span>` : ""}</span>
       <span class="board__points">${esc(row.points)}</span>
-      <span class="board__done">${esc(row.done)}</span>
     </li>`).join("") : `<li class="fine">No one is on the board yet.</li>`;
   const clock = state.closed
     ? `<p class="prize">${state.winner ? `Winner: ${esc(state.winner)}` : "The leaderboard is closed."}</p>`
@@ -407,7 +406,7 @@ function renderProgress() {
       ${clock}
       <p class="prize">${esc(PRIZE_COPY)}</p>
       ${state.selfie ? selfieUnlocked() : selfieLocked()}
-      <div class="board__head"><span>Rank</span><span>Name</span><span>Points</span><span>Lessons</span></div>
+      <div class="board__head"><span>Rank</span><span>Name</span><span>Points</span></div>
       <ul class="board__list">${body}</ul>
     </section>
   `;

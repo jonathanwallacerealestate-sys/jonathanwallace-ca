@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: decision log setup and SOP interview
+Why: Jonathan replaced the decision log lesson with the full setup, including the Google Sheet and the SOP interview.
+- Set Up Your Decision Log now uses that setup prompt, the SOP prompt, and a closing prompt that saves each decision with its reason. The copy boxes keep the line breaks. Re-Engage Your Dead Leads now adds its decisions to the decision log, since the log already exists. The lesson id and its place before dead leads are unchanged.
+
 ### AI bootcamp: decision log comes before dead leads
 Why: Jonathan wants the decision log set up before the dead-leads lesson.
 - The course order is now pick-your-ai, writing-style, brand-guidelines, brain-dump, decision-log, dead-leads, then inbox. Lesson ids are unchanged. Finished lessons, points, and login streaks stay with the id, so a learner who already finished dead leads still has it finished.

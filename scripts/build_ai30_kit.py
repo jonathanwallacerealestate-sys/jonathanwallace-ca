@@ -38,7 +38,7 @@ def handout(day):
         day["title"],
         "",
         f"Section: {day['section']}",
-        f"About: {day['minutes']}",
+        f"Time: About {day['minutes']}",
         "",
         day["why"],
         "",

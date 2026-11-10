@@ -8,9 +8,14 @@ export function assignmentText(day) {
   return ((day && day.steps) || []).join(" ");
 }
 
+export function sessionPlan(day) {
+  const minutes = String((day && day.minutes) || "").trim();
+  return minutes ? `about ${minutes}` : "the time shown on the lesson";
+}
+
 export function eventDescription(day) {
   return [
-    "Hey, don't forget you've got to do your 30-minute AI session today.",
+    `Hey, don't forget you've got to do your AI session today. Plan on ${sessionPlan(day)}.`,
     "",
     `Task: ${day.title}`,
     `Assignment: ${assignmentText(day)}`,
@@ -123,7 +128,7 @@ export function buildIcs(day, when, options) {
     `URL:${PORTAL}`,
     "BEGIN:VALARM",
     "ACTION:DISPLAY",
-    "DESCRIPTION:Your 30-minute AI session today",
+    `DESCRIPTION:${escapeText(`Your AI session today. Plan on ${sessionPlan(day)}.`)}`,
     "TRIGGER:PT0S",
     "END:VALARM",
     "END:VEVENT",

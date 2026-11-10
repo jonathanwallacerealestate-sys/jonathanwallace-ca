@@ -150,6 +150,13 @@ for (const day of plan.days) {
     assert.equal(day.steps[1], "Tell it your pet peeves too. Share everything you do not like in writing (for example em dashes, long paragraphs, salesy words) so it knows what to avoid.");
     assert.equal(prompts[0], "Here are samples of writing I like, including links to writers and social media accounts whose style I love, and what I like about each one. Here are my pet peeves, the things I never want, such as em dashes. Learn my style. Then make up a mock scenario with one of my clients and draft an email to them. Send it only to me, or save it as a draft, so I can see it. I'll coach you on what to change. Every time I make a suggestion, save it to my Email writing SOP. Rule one: you draft, I approve, and nothing goes out until I say so.");
     assert.doesNotMatch(day.assignment, /Before you finish/);
+  } else if (day.day === 3) {
+    assert.equal(day.id, "brand-guidelines");
+    assert.equal(last, "Ask it to list and save every decision you made today.");
+    assert.equal(lastPrompt, "Before we close, list every decision we made in this chat and save them.");
+    assert.equal(day.assignment, "Done when your brand guidelines are saved and your AI can describe your fonts, colours and look back to you.");
+    assert.equal(day.steps[0], "Research the fonts and colour palettes you like. Share screenshots from your phone, search online, or find websites whose fonts and layout you like.");
+    assert.equal(prompts[0].startsWith("I'm building my brand guidelines."), true);
   } else if (day.day < 6) {
     assert.equal(last, earlyClose);
     assert.equal(lastPrompt, earlyClose);

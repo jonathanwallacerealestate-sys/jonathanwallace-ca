@@ -157,18 +157,18 @@
       "catchUp": false,
       "visual": "brand",
       "steps": [
-        "Pick the fonts you like.",
-        "Pick your colour palette.",
-        "Upload your headshots.",
-        "Upload any marketing materials you have already created.",
-        "Add the Faris Team logo.",
+        "Research the fonts and colour palettes you like. Share screenshots from your phone, search online, or find websites whose fonts and layout you like.",
+        "Share Instagram posts you like and ones you don't, and say what you like or dislike about each one.",
+        "Tell it what you don't like too: fonts, colours or styles that are not you.",
+        "Upload your headshots, any marketing materials you have already created, and the Faris Team logo.",
+        "Let it interview you. Once you have shared everything, it asks you at least 10 clarifying questions, one at a time, to confirm what you do and don't like.",
         "Have your AI turn it all into one brand guidelines file and save it.",
-        "Before we close, list every decision we made in this chat and save them. I'll move them into my decision log once it's set up."
+        "Ask it to list and save every decision you made today."
       ],
-      "assignment": "Done when your brand guidelines are saved and your AI can describe your fonts, colours and look back to you. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
+      "assignment": "Done when your brand guidelines are saved and your AI can describe your fonts, colours and look back to you.",
       "prompts": [
-        "I'm going to give you the fonts I like, my colour palette, my headshots, marketing materials I've made, and the Faris Team logo. Ask me anything you need, then create my brand guidelines: fonts, colours, photo style, logo use, and how my posts and materials should look. Save it so every marketing piece follows it.",
-        "Before we close, list every decision we made in this chat and save them. I'll move them into my decision log once it's set up."
+        "I'm building my brand guidelines. I'm going to share fonts and colour palettes I like, screenshots, websites, and Instagram posts I like and don't like, with what I like or dislike about each one. I'll also share my headshots, marketing materials I've made, and the Faris Team logo. When I say I'm done sharing, ask me at least 10 clarifying questions, one at a time, waiting for my answer before the next one, until you are sure what I do and don't like. Then create my brand guidelines: fonts, colours, photo style, logo use, and how my posts and materials should look. Save it so every marketing piece follows it.",
+        "Before we close, list every decision we made in this chat and save them."
       ]
     },
     {

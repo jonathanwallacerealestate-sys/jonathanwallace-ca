@@ -90,14 +90,41 @@ assert.equal(plan.title, "AI Bootcamp: Zero to Hero");
 assert.ok(!plan.rule.includes("—"));
 const sections = {
   Foundations: [1, 7],
-  "Clients and social": [8, 11],
-  "Calendar, notes and listings": [12, 15],
-  "Letters and offers": [16, 19],
-  "Deal card": [20, 22],
+  "Clients and Social": [8, 11],
+  "Calendar, Notes and Listings": [12, 15],
+  "Letters and Offers": [16, 19],
+  "Deal Card": [20, 22],
   Advanced: [23, 24],
-  "Your list": [25, 30],
+  "Your List": [25, 30],
   Review: [31, 31],
 };
+const SMALL_WORDS = new Set(["a", "an", "the", "and", "or", "but", "for", "to", "in", "on", "of", "at", "by", "with", "then", "into", "as"]);
+const BRANDS = { ai: "AI", sop: "SOP", brokerbay: "BrokerBay", coles: "Coles" };
+function styleCore(core, force) {
+  return core.split("-").map((part) => {
+    const low = part.toLowerCase();
+    if (BRANDS[low]) return BRANDS[low];
+    if (!part || /^\d+$/.test(part)) return part;
+    if (!force && SMALL_WORDS.has(low)) return low;
+    return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase();
+  }).join("-");
+}
+function titleCase(text) {
+  const tokens = text.split(" ");
+  let after = false;
+  return tokens.map((token, index) => {
+    const match = token.match(/^(\W*)(.*?)(\W*)$/u);
+    const force = index === 0 || index === tokens.length - 1 || after;
+    after = token.endsWith(":") || (match[2] || "").endsWith(":");
+    return match[1] + styleCore(match[2], force) + match[3];
+  }).join(" ");
+}
+assert.deepEqual(plan.sections.map((section) => section.id), ["foundations", "clients", "calendar", "letters", "deals", "advanced", "list", "review"]);
+for (const section of plan.sections) assert.equal(titleCase(section.title), section.title);
+for (const day of plan.days) {
+  assert.equal(titleCase(day.title), day.title, day.title);
+  assert.equal(day.day, plan.days.indexOf(day) + 1);
+}
 const lightClose = "Ask it to save what you set up today.";
 const earlyClose = "Before you close, ask your AI to save the decisions you made today in this chat. You'll move them into your decision log once you set it up.";
 const standingClose = "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log.";
@@ -140,8 +167,13 @@ assert.equal(plan.days[6].optional, true);
 assert.match(plan.days[6].optionalNote, /Skip this lesson/);
 assert.match(plan.days[7].title, /review/i);
 assert.match(plan.days[8].assignment, /brand guidelines/);
+assert.equal(plan.days[11].title, "Book Appointments into Your Calendar");
 assert.equal(plan.days[14].title, "Write Listing Descriptions in Your Top 5");
-assert.match(plan.days[17].title, /Coles Notes/i);
+assert.equal(plan.days[16].title, "Practise, then Time a Real Letter");
+assert.equal(plan.days[17].title, "Read an Offer: The Coles Notes");
+assert.equal(plan.days[20].title, "Ten Leads, then Make the Calls");
+assert.equal(plan.days[21].title, "Paste the Notes, then the Next 10");
+assert.equal(plan.days[13].title, "Stay in Touch with Past Clients");
 assert.match(plan.days[22].prompts.join("\n"), /RECO/);
 assert.match(plan.days[22].prompts.join("\n"), /GeoWarehouse/);
 assert.equal(plan.title, "AI Bootcamp: Zero to Hero");

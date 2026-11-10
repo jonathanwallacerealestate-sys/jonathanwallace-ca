@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: one title case rule
+Why: Jonathan asked every lesson title and section name to follow the same rule, on the page and in the resources zip.
+- Short words stay lowercase unless they are first, last, or right after a colon: a, an, the, and, or, but, for, to, in, on, of, at, by, with, then, into, as. AI, SOP, BrokerBay, Coles Notes, and Top 5 stay as they are. The day numbers that save progress are unchanged. The zip handouts use the new names.
+
 ### AI bootcamp: darker section labels
 Why: The small gold labels were #b3945a, about 2.8:1 on the card, under the WCAG AA line.
 - Section labels are now #886a3b, the nearest step from #8a6d3b that clears 4.5:1 on ivory and on the card. Gold buttons and gold lines stay #c9a96a.

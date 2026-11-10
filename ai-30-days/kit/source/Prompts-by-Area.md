@@ -14,7 +14,7 @@ The Deal Card kit and the Letter of Opinion kit are in this same folder. Attach 
 
 ### House rules
 
-When to use: Teach it your writing style. The approval line is rule one: it drafts, you approve. Use it at the start of a chat after that.
+When to use: Teach It Your Writing Style. The approval line is rule one: it drafts, you approve. Use it at the start of a chat after that.
 
 ```
 I'm a REALTOR® with [Your Brokerage]. I work in [your area].
@@ -31,7 +31,7 @@ This is not legal advice.
 
 ### About-me note
 
-When to use: Pick your AI and tell it about your business, so your AI always has the basics.
+When to use: Pick Your AI and Tell It About Your Business, so your AI always has the basics.
 
 ```
 About me. Use these basics on every draft. Do not invent a brokerage, a market, or contact details.
@@ -45,7 +45,7 @@ Contact: [the phone and email you want on drafts].
 
 ### Approval line
 
-When to use: Teach it your writing style, as rule one of the email writing SOP. Client-facing work always gets your review.
+When to use: Teach It Your Writing Style, as rule one of the email writing SOP. Client-facing work always gets your review.
 
 ```
 Approval line. You may organize notes and checklists on your own. Anything a client would see, an email, a text, a post, or a letter, waits for my review. I send it myself.
@@ -53,7 +53,7 @@ Approval line. You may organize notes and checklists on your own. Anything a cli
 
 ### Three things I hate
 
-When to use: Brain dump the tasks you hate.
+When to use: Brain Dump the Tasks You Hate.
 
 ```
 I'm a real estate agent. Ask me a few questions about my week, then help me pick three tasks I hate doing that you could help me with during this bootcamp. For each, tell me how we'd start and how much time it could save.
@@ -63,7 +63,7 @@ A sample answer, not yours: paperwork follow-up, CMA prep, writing listing descr
 
 ### Email reply
 
-When to use: Teach it your writing style, and any time a reply is waiting.
+When to use: Teach It Your Writing Style, and any time a reply is waiting.
 
 ```
 Draft a reply to the email below. Warm, short, plain language. No exclamation marks. Draft only. I will review it and send it myself. Do not invent facts.
@@ -84,7 +84,7 @@ What happened: [a few words].
 
 ### Appointment summary
 
-When to use: Teach it how you keep notes.
+When to use: Teach It How You Keep Notes.
 
 ```
 Turn these notes into an appointment summary. Give me key points, open questions, and what I must verify. Do not add facts that are not in the notes.
@@ -102,7 +102,7 @@ Write three short texts I can reuse: a showing follow-up, an offer update, and a
 
 ### Inbox cleanup
 
-When to use: Teach it to clean up your inbox. Good spot to catch up. Skip it if you do not want your AI in your email.
+When to use: Teach It to Clean Up Your Inbox. Good spot to catch up. Skip it if you do not want your AI in your email.
 
 ```
 Here are my 5 oldest unanswered emails. Private details are removed.
@@ -112,7 +112,7 @@ Draft a reply to each one. Short. Warm. Plain language. Number them to match. I 
 
 ### Time-blocked day plan
 
-When to use: any morning after Pick your AI and tell it about your business. While you are parked. Never while driving.
+When to use: any morning after Pick Your AI and Tell It About Your Business. While you are parked. Never while driving.
 
 ```
 I'm a REALTOR®. Here is my messy list for today. SAMPLE DATA ONLY.
@@ -176,9 +176,9 @@ Explain, in plain language a buyer can follow, what a home inspection condition 
 
 ---
 
-## Deal card
+## Deal Card
 
-When to use: Deal card setup, Ten leads, then make the calls, and Paste the notes, then the next 10. Attach Deal-Card-Kit.md from this folder. You sign in yourself. The AI never gets your password. It never texts or emails anyone. Paste the notes, then the next 10 sets a repeating reminder three times a week.
+When to use: Deal Card Setup, Ten Leads, then Make the Calls, and Paste the Notes, then the Next 10. Attach Deal-Card-Kit.md from this folder. You sign in yourself. The AI never gets your password. It never texts or emails anyone. Paste the Notes, then the Next 10 sets a repeating reminder three times a week.
 
 ```
 Read the Deal Card kit I attached. Open the Follow Up Boss website in the browser and stop at the sign-in page. I will sign in. You never need my password. Then show me one person to call. One card only. Draft only.
@@ -188,7 +188,7 @@ Read the Deal Card kit I attached. Open the Follow Up Boss website in the browse
 
 ## Letter of Opinion
 
-When to use: Letter of Opinion setup, then Practise, then time a real letter. That second one is a good spot to catch up. Attach Letter-of-Opinion-Kit.md. The opinion of value is yours. You check every name and every figure, and you send it.
+When to use: Make the Letter of Opinion Yours, then Practise, then Time a Real Letter. That second one is a good spot to catch up. Attach Letter-of-Opinion-Kit.md. The opinion of value is yours. You check every name and every figure, and you send it.
 
 ```
 I'm a REALTOR®. Draft a Letter of Opinion and the client email. Use my template, my signature photo, and the Letter of Opinion kit. SAMPLE DATA ONLY. Do not invent a comp, a price, or a postal code.
@@ -211,7 +211,7 @@ One page. Draft only. I will check every figure and send it myself.
 
 ## Voice memo and appointment recap
 
-When to use: Teach it your writing style, when you talk instead of type, and Teach it how you keep notes, when a note has to land in your CRM. Let people know you are recording.
+When to use: Teach It Your Writing Style, when you talk instead of type, and Teach It How You Keep Notes, when a note has to land in your CRM. Let people know you are recording.
 
 ```
 Here is my voice memo, or my spoken recap, from a call with [client].
@@ -228,7 +228,7 @@ No em dashes. Flag anything I need to verify. Do not invent details.
 
 ## Brand guide
 
-When to use: Build your brand guidelines. Fonts, colours, headshots, marketing materials, and your logo become one brand guidelines file.
+When to use: Build Your Brand Guidelines. Fonts, colours, headshots, marketing materials, and your logo become one brand guidelines file.
 
 ```
 Here are 10 social media posts I like the style of, so you understand my taste, plus fonts, colour palettes, and designs I like, and my logo. My photos, headshots, and listing photos are in one Drive folder: Headshots, Listing Photos, Local Spots, and Logo. Use only that folder, not my whole Drive.
@@ -240,7 +240,7 @@ Build me a one-page brand guide: colours with hex codes, a heading and body font
 
 ## Caption in your style
 
-When to use: Share 10 posts you like, Plan your social media strategy, and Create your first three posts. Run the new version through Build your brand guidelines.
+When to use: Share 10 Posts You Like, Plan Your Social Media Strategy, and Create Your First Three Posts. Run the new version through Build Your Brand Guidelines.
 
 ```
 Follow my brand guide. Here is a photo of my local spot.
@@ -259,7 +259,7 @@ I will review it and post it myself.
 
 ### End of each chat
 
-When to use: Set up your decision log, and at the end of every lesson after that. Save the list to your decision log. An SOP is a step-by-step. Teach it your writing style is where you save the email writing SOP.
+When to use: Set Up Your Decision Log, and at the end of every lesson after that. Save the list to your decision log. An SOP is a step-by-step. Teach It Your Writing Style is where you save the email writing SOP.
 
 ```
 Before we finish, list any new SOPs and decisions from this chat in short bullet points so I can save them to my rules file.
@@ -267,7 +267,7 @@ Before we finish, list any new SOPs and decisions from this chat in short bullet
 
 ### Read my rules back
 
-When to use: Set up your decision log and Final review, and at the start of a fresh chat, or when a thread gets muddled.
+When to use: Set Up Your Decision Log and Final Review, and at the start of a fresh chat, or when a thread gets muddled.
 
 ```
 Read my house rules back to me in short bullets before we start. If anything is missing, ask. Do not invent a rule I did not give you.

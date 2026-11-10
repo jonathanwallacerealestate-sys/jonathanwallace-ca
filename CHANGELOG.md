@@ -16,6 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### AI bootcamp: lessons, and a copy button on every prompt
+Why: the program has a new name, and agents need to paste each prompt without selecting the text by hand.
+- Visible name is AI Bootcamp: Hiring Your First AI Agent. Cards say Lesson, not Day. The address stays /ai-30-days, and saved progress is still stored by the same numbers.
+- Each prompt is its own box with a Copy button. A lesson with more than one prompt has a button on each.
+
 ### AI in 30 days: revised plan
 Why: Jonathan reviewed the 30 days and rewrote the order, the lessons, and the assignments.
 - ai-30-days/days.json now follows that plan. Every day has an assignment, which the calendar reminder uses. Days 1 to 5 end with a short save. Days 6 to 30 end with the decision-log line. Day 7 is optional. Days 24 to 29 are the provisional "your list" lessons.

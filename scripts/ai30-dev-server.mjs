@@ -37,7 +37,7 @@ const server = createServer(async (req, res) => {
     if (!day || !when) return send(res, 400, "Missing day or time", "text/plain; charset=utf-8");
     res.writeHead(200, {
       "Content-Type": "text/calendar; charset=utf-8",
-      "Content-Disposition": `inline; filename="ai-session-day-${day.day}.ics"`,
+      "Content-Disposition": `inline; filename="ai-bootcamp-lesson-${day.day}.ics"`,
       "Cache-Control": "no-store",
       "X-Robots-Tag": "noindex, nofollow, noarchive",
     });

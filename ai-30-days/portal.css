@@ -153,6 +153,8 @@ textarea { min-height: 120px; resize: vertical; }
 }
 
 .dayhead { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.lesson-count { font-size: clamp(2rem, 8vw, 2.8rem); margin: 0; }
+.lesson-title { font-size: clamp(1.5rem, 5vw, 2rem); margin-top: 8px; }
 .chip {
   flex: 0 0 auto;
   border: 1px solid var(--gold);
@@ -200,12 +202,14 @@ ol.steps li { margin: 0 0 8px; }
 }
 .copy {
   min-height: 44px;
+  min-width: 44px;
   border-radius: 999px;
   border: 1px solid var(--charcoal);
   background: var(--paper);
-  padding: 8px 12px;
+  padding: 8px 16px;
   font-weight: 700;
 }
+.prompt + .prompt { margin-top: 10px; }
 
 .look { margin-top: 18px; }
 .look h3 { font-size: 1.25rem; margin-bottom: 8px; }

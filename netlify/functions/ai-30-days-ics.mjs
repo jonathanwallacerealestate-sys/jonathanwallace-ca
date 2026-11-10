@@ -44,7 +44,7 @@ export default async (req, context) => {
     status: 200,
     headers: {
       "Content-Type": "text/calendar; charset=utf-8",
-      "Content-Disposition": `inline; filename="ai-session-day-${day.day}.ics"`,
+      "Content-Disposition": `inline; filename="ai-bootcamp-lesson-${day.day}.ics"`,
       "Cache-Control": "no-store",
       "X-Robots-Tag": "noindex, nofollow, noarchive",
     },

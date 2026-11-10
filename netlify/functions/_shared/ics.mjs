@@ -12,7 +12,7 @@ export function eventDescription(day) {
   return [
     "Hey, don't forget you've got to do your 30-minute AI session today.",
     "",
-    `Today's task: ${day.title}`,
+    `Task: ${day.title}`,
     `Assignment: ${assignmentText(day)}`,
     PORTAL,
   ].join("\n");
@@ -97,11 +97,11 @@ export function buildIcs(day, when, options) {
   const opts = options || {};
   const now = opts.now || new Date();
   const uid = opts.uid || `ai30-day-${day.day}-${when.date}T${when.hhmm}-${stampUtc(now)}@jonathanwallace.ca`;
-  const summary = `Your 30-minute AI session today: Day ${day.day}`;
+  const summary = `AI Bootcamp: Lesson ${day.day}`;
   const lines = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Jonathan Wallace//AI Getting Started//EN",
+    "PRODID:-//Jonathan Wallace//AI Bootcamp: Hiring Your First AI Agent//EN",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "BEGIN:VEVENT",

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { applyProgress, currentDay, doneCount, normalizePerson } from "../netlify/functions/_shared/ai30.mjs";
+import { buildIcs, eventDescription, parseWhen } from "../netlify/functions/_shared/ics.mjs";
 
 const jane = normalizePerson("  Jane   ", "  DOE ");
 assert.equal(jane.ok, true);
@@ -82,5 +83,36 @@ assert.match(plan.days[27].prompt, /RECO/);
 assert.match(plan.days[27].prompt, /GeoWarehouse/);
 assert.match(plan.days[28].title, /BrokerBay/);
 assert.doesNotMatch(JSON.stringify(plan), /Follow Up Ace|Sisu|Brain log/i);
+
+function unfold(ics) {
+  return ics.replace(/\r\n[ \t]/g, "");
+}
+
+const when = parseWhen("20261111", "0900");
+assert.ok(when);
+assert.equal(parseWhen("20261111", "9"), null);
+assert.equal(parseWhen("20260231", "0900"), null);
+
+for (const number of [1, 10]) {
+  const day = plan.days[number - 1];
+  const ics = buildIcs(day, when, { now: new Date("2026-11-10T12:00:00Z"), uid: `test-day-${number}@jonathanwallace.ca` });
+  assert.ok(!/(?<!\r)\n/.test(ics), "bare LF in day " + number);
+  for (const line of ics.split("\r\n")) {
+    assert.ok(new TextEncoder().encode(line).length <= 75, "long line in day " + number);
+  }
+  const text = unfold(ics);
+  assert.match(text, new RegExp(`SUMMARY:Your 30-minute AI session today: Day ${number}`));
+  assert.match(text, /DTSTART:20261111T090000/);
+  assert.match(text, /DTEND:20261111T093000/);
+  assert.match(text, /DTSTAMP:20261110T120000Z/);
+  assert.match(text, /TRIGGER:PT0S/);
+  assert.match(text, new RegExp(`UID:test-day-${number}@jonathanwallace.ca`));
+  assert.match(text, /Hey\\, don't forget you've got to do your 30-minute AI session today\.\\n\\nToday's task:/);
+  assert.match(text, new RegExp(`Today's task: ${day.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
+  assert.match(text, /https:\/\/jonathanwallace\.ca\/ai-30-days/);
+}
+assert.match(unfold(buildIcs(plan.days[0], when, { now: new Date("2026-11-10T12:00:00Z") })), /Assignment: Pick one AI you will stick with/);
+assert.match(unfold(buildIcs(plan.days[9], when, { now: new Date("2026-11-10T12:00:00Z") })), /Assignment: Send one text and one email/);
+assert.doesNotMatch(buildIcs(plan.days[0], when), /—/);
 
 console.log("test_ai30: ok");

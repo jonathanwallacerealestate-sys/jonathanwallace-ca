@@ -103,6 +103,61 @@ function phase(n) {
   return "locked";
 }
 
+function lockLine() {
+  return `Finish Day ${state.currentDay} to unlock`;
+}
+
+const LOCK = `<svg class="lock" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.8"></path></svg>`;
+
+function icsHref(day, timeValue) {
+  const value = /^\d{2}:\d{2}$/.test(timeValue || "") ? timeValue : "09:00";
+  const [hh, mm] = value.split(":");
+  const start = new Date();
+  start.setDate(start.getDate() + 1);
+  const p = (n) => String(n).padStart(2, "0");
+  const date = `${start.getFullYear()}${p(start.getMonth() + 1)}${p(start.getDate())}`;
+  return `/api/ai-30-days/ics?day=${day}&date=${date}&time=${hh}${mm}`;
+}
+
+function reminderBlock(day) {
+  return `
+    <div class="remind">
+      <label for="remind-time-${day}">Reminder time</label>
+      <input type="time" id="remind-time-${day}" value="09:00">
+      <a class="btn btn--ghost" id="remind-${day}" href="${icsHref(day, "09:00")}">Add reminder to my calendar</a>
+    </div>
+  `;
+}
+
+function bindReminder(day) {
+  const input = document.querySelector(`#remind-time-${day}`);
+  const link = document.querySelector(`#remind-${day}`);
+  if (!input || !link) return;
+  const sync = () => { link.href = icsHref(day, input.value); };
+  input.addEventListener("input", sync);
+  input.addEventListener("change", sync);
+}
+
+function refuseLocked() {
+  state.lockNote = lockLine();
+  state.view = null;
+}
+
+function takeDayRequest() {
+  const url = new URL(location.href);
+  const raw = url.searchParams.get("day");
+  if (raw || location.hash) {
+    url.searchParams.delete("day");
+    url.hash = "";
+    history.replaceState(null, "", url.pathname + url.search);
+  }
+  const n = Number(raw);
+  if (!raw || !Number.isInteger(n)) return;
+  if (phase(n) === "locked") refuseLocked();
+  else if (phase(n) === "done") { state.tab = "all"; state.view = n; state.lockNote = ""; }
+  else { state.tab = "today"; state.view = null; state.lockNote = ""; }
+}
+
 function show(name) {
   $("#gate").hidden = name !== "gate";
   $("#app").hidden = name !== "app";
@@ -137,6 +192,7 @@ async function signIn(first, last, remember) {
   }
   state.tab = "today";
   state.view = null;
+  takeDayRequest();
   show("app");
   render();
 }
@@ -155,18 +211,21 @@ function signOut() {
 
 function render() {
   const root = $("#app");
-  const plan = state.plan;
+  if (state.view != null && phase(state.view) === "locked") state.view = null;
   const banner = state.offline
     ? `<p class="warn" role="status">${esc(state.status)} <button type="button" class="linkish" id="retry">Try the server again</button></p>`
     : "";
+  const locked = state.lockNote ? `<p class="lockline" role="status">${LOCK} ${esc(state.lockNote)}</p>` : "";
+  const enter = state.justAdvanced ? " card--next" : "";
 
   let panel = "";
-  if (state.tab === "today") panel = renderToday(dayByNumber(state.complete ? 30 : state.currentDay));
+  if (state.tab === "today") panel = renderToday(dayByNumber(state.complete ? 30 : state.currentDay), enter);
   else if (state.tab === "progress") panel = renderProgress();
   else panel = renderAll();
 
   root.innerHTML = `
     ${banner}
+    ${locked}
     <div class="tabs" role="tablist">
       <button type="button" role="tab" id="tab-today" aria-selected="${state.tab === "today"}">Today</button>
       <button type="button" role="tab" id="tab-progress" aria-selected="${state.tab === "progress"}">Progress</button>
@@ -187,16 +246,17 @@ function render() {
   if (state.tab === "all") bindAll();
   const shot = root.querySelector(".shot");
   if (shot) shot.onclick = () => openShot(shot);
+  state.justAdvanced = false;
 }
 
-function renderToday(day) {
+function renderToday(day, enter) {
   const done = isDone(day.day);
   const notes = slot(day.day).notes || "";
   const started = state.createdAt
     ? `<p class="fine">Your Day 1 started when you signed in. There is no shared calendar.</p>`
     : `<p class="fine">Your Day 1 starts when you sign in. There is no shared calendar.</p>`;
   return `
-    <article class="card" id="today-card">
+    <article class="card${enter || ""}" id="today-card">
       <p class="kicker">${esc(day.section)}</p>
       <div class="dayhead">
         <h1>Day ${day.day} of 30</h1>
@@ -204,6 +264,7 @@ function renderToday(day) {
       </div>
       <h2 style="font-size:clamp(1.5rem,5vw,2rem);margin-top:8px">${esc(day.title)}</h2>
       <p class="why">${esc(day.why)}</p>
+      ${reminderBlock(day.day)}
       ${day.catchUp ? `<p class="catch">Good spot to catch up.</p>` : ""}
       ${day.day === 1 ? started : ""}
       <ol class="steps">${day.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
@@ -232,14 +293,17 @@ function renderToday(day) {
 function renderProgress() {
   const dots = state.plan.days.map((d) => {
     const kind = phase(d.day);
-    const label = kind === "locked" ? `Day ${d.day}, locked` : `Day ${d.day}, ${kind}`;
-    return `<button type="button" class="dot dot--${kind}" data-day="${d.day}" aria-label="${label}" ${kind === "locked" ? "disabled" : ""}>${d.day}</button>`;
+    const label = kind === "locked" ? `Day ${d.day}, locked. ${lockLine()}` : `Day ${d.day}, ${kind}`;
+    const mark = kind === "locked" ? LOCK : "";
+    return `<button type="button" class="dot dot--${kind}" data-day="${d.day}" aria-label="${esc(label)}">${mark}${d.day}</button>`;
   }).join("");
+  const pending = state.plan.days.some((d) => phase(d.day) === "locked");
   return `
     <section class="card">
       <p class="count">${state.doneCount} of 30 done</p>
       <div class="grid">${dots}</div>
       <p class="legend"><span><i style="background:#1b1b1b"></i>Done</span><span><i style="background:#c9a96a"></i>Today</span><span><i style="background:#f7f3ec;border:1px solid rgba(30,27,21,.2)"></i>Locked</span></p>
+      ${pending ? `<p class="lockline">${LOCK} ${esc(lockLine())}</p>` : ""}
     </section>
   `;
 }
@@ -253,8 +317,8 @@ function renderAll() {
       last = day.section;
     }
     const kind = phase(day.day);
-    const note = kind === "locked" ? "Locked" : kind === "today" ? "Today" : "Done";
-    groups.push(`<button type="button" class="row ${kind === "locked" ? "row--locked" : ""}" data-day="${day.day}" ${kind === "locked" ? "disabled" : ""}><b>${day.day}</b> ${esc(day.title)}<span>${note}</span></button>`);
+    const note = kind === "locked" ? `${LOCK} ${esc(lockLine())}` : kind === "today" ? "Today" : "Done";
+    groups.push(`<button type="button" class="row ${kind === "locked" ? "row--locked" : ""}" data-day="${day.day}"><b>${day.day}</b> <span class="row__title">${esc(day.title)}</span><span class="row__note">${note}</span></button>`);
     if (state.view === day.day && kind !== "locked") groups.push(`<div class="open-day">${detail(day)}</div>`);
   }
   return `<section class="card"><ul class="daylist">${groups.join("")}</ul></section>`;
@@ -267,6 +331,7 @@ function detail(day) {
       <p class="why">${esc(day.why)}</p>
       <ol class="steps">${day.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
       ${notes ? `<p class="tip"><strong>Your notes.</strong> ${esc(notes)}</p>` : `<p class="fine">No notes saved on this day.</p>`}
+      ${reminderBlock(day.day)}
       <div class="look"><h3>What good looks like</h3><button type="button" class="shot" aria-label="Enlarge the example for day ${day.day}"><span class="shot__frame">${exampleMarkup(day.day)}</span></button></div>
     </div>
   `;
@@ -299,19 +364,23 @@ function bindToday(n) {
     done.onclick = async () => {
       done.disabled = true;
       const notesValue = $("#notes") ? $("#notes").value : "";
-      await savePayload(n, { done: true, notes: notesValue }, "Day marked done.");
+      await savePayload(n, { done: true, notes: notesValue }, "Day marked done.", true);
     };
   }
   const shot = document.querySelector("#today-card .shot");
   if (shot) shot.onclick = () => openShot(shot);
+  bindReminder(n);
 }
 
 function bindDots() {
   document.querySelectorAll(".dot").forEach((btn) => {
     btn.onclick = () => {
       const n = Number(btn.dataset.day);
-      if (phase(n) === "today") { state.tab = "today"; render(); }
-      else { state.tab = "all"; state.view = n; render(); }
+      if (phase(n) === "locked") { refuseLocked(); render(); return; }
+      state.lockNote = "";
+      if (phase(n) === "today") { state.tab = "today"; state.view = null; }
+      else { state.tab = "all"; state.view = n; }
+      render();
     };
   });
 }
@@ -320,7 +389,8 @@ function bindAll() {
   document.querySelectorAll(".row").forEach((btn) => {
     btn.onclick = () => {
       const n = Number(btn.dataset.day);
-      if (phase(n) === "locked") return;
+      if (phase(n) === "locked") { refuseLocked(); render(); return; }
+      state.lockNote = "";
       if (phase(n) === "today") { state.tab = "today"; state.view = null; render(); return; }
       state.view = state.view === n ? null : n;
       render();
@@ -329,6 +399,7 @@ function bindAll() {
   document.querySelectorAll(".open-day .shot").forEach((shot) => {
     shot.onclick = () => openShot(shot);
   });
+  if (state.view) bindReminder(state.view);
 }
 
 function payloadFromState(changeDay, change) {
@@ -366,12 +437,18 @@ async function saveNotes(n, notes) {
   }
 }
 
-async function savePayload(n, change, okMessage) {
+async function savePayload(n, change, okMessage, advance) {
   const days = payloadFromState(n, change);
   try {
     applyRecord(await post("save", { days }));
     state.offline = false;
     state.status = okMessage;
+    state.lockNote = "";
+    if (advance) {
+      state.tab = "today";
+      state.view = null;
+      state.justAdvanced = true;
+    }
     render();
   } catch (e) {
     state.status = explain(e);

@@ -133,6 +133,9 @@
 /api/ai-30-days
   X-Robots-Tag: noindex, nofollow, noarchive
   Cache-Control: no-store
+/api/ai-30-days/ics
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
 
 # Images are renamed when replaced, so browsers may keep them for a week (speed)
 /assets/img/*

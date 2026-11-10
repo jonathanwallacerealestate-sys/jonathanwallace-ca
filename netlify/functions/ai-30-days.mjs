@@ -111,6 +111,14 @@ export default async (req, context) => {
       return json(200, publicRecord(person, row));
     }
 
+    if (body.op === "forget") {
+      if (person.key !== "smoke check" && !person.key.startsWith("zztest ")) {
+        return json(403, { ok: false, error: "op" });
+      }
+      await db.sql`DELETE FROM ai30_progress WHERE name_key = ${person.key}`;
+      return json(200, { ok: true, deleted: true });
+    }
+
     if (body.op === "save") {
       const existing = await readRow(db, person.key);
       const applied = applyProgress(existing, body, new Date().toISOString());

@@ -203,6 +203,8 @@ export function scorePerson(person, posts) {
     if (slot.doneAt && !countsForContest(slot.doneAt)) continue;
     doneLessons.add(n);
   }
+  const done = doneLessons.size;
+  if (isAdminEmail(person && person.email)) return { points: 0, done };
   const key = person.key;
   const mine = (posts || []).filter((post) => post.key === key && (!post.createdAt || countsForContest(post.createdAt)));
   const shared = new Set();
@@ -214,12 +216,12 @@ export function scorePerson(person, posts) {
   let answers = 0;
   for (const post of mine) {
     if (!post.parentId || post.parentKind !== "question" || post.parentKey === key) continue;
+    if (post.parentAdmin || isAdminEmail(post.parentEmail)) continue;
     const id = String(post.parentId);
     if (answered.has(id)) continue;
     answered.add(id);
     answers += 1;
   }
-  const done = doneLessons.size;
   const points = done * 3 + loginPoints(person.logins) + shared.size * 5 + answers * 3;
   return { points, done };
 }
@@ -287,9 +289,10 @@ export function peerStanding(rows, posts, youKey) {
   const scored = people.map((person) => ({ ...person, ...scorePerson(person, posts) }));
   const you = scored.find((person) => person.key === youKey);
   const peers = scored.filter((person) => onPublicBoard(person) && person.key !== youKey);
-  const youDone = you ? you.done : 0;
-  const place = peerPlace(you ? you.points : 0, peers.map((person) => person.points));
-  const tone = youDone < 1 ? "welcome" : youDone < 3 ? (place === "ahead" ? "ahead" : "start") : place;
+  const youAdmin = !!(you && isAdminEmail(you.email));
+  const youDone = you && !youAdmin ? you.done : 0;
+  const place = peerPlace(you && !youAdmin ? you.points : 0, peers.map((person) => person.points));
+  const tone = youAdmin || youDone < 1 ? "welcome" : youDone < 3 ? (place === "ahead" ? "ahead" : "start") : place;
   const board = scored.filter(onPublicBoard).map((person) => ({
     name: displayLearner(person.first, person.last),
     points: person.points,
@@ -454,11 +457,12 @@ export function paceUnlockAt(days, nowIso) {
 // Done days stay done. Notes are kept on done days and on the current day. Locked days drop notes.
 // doneAt is set on the server. The client clock is ignored.
 // A third new completion inside the 8 hour pace window is refused. Older completions are left as they are.
-export function applyProgress(existing, incoming, nowIso) {
+export function applyProgress(existing, incoming, nowIso, options) {
   const prev = existing && existing.days && typeof existing.days === "object" ? existing.days : {};
   const nextIn = incoming && incoming.days && typeof incoming.days === "object" ? incoming.days : {};
   const now = nowIso || new Date().toISOString();
   const nowMs = new Date(now).getTime();
+  const skipPace = !!(options && options.skipPace);
   const days = {};
   const stamped = completionTimes(prev);
   let passedOpen = false;
@@ -469,7 +473,7 @@ export function applyProgress(existing, incoming, nowIso) {
     const want = daySlot(nextIn[id]);
     const wasDone = !!(before && before.done === true);
     if (want.done && !wasDone && passedOpen) return { ok: false, error: "day_locked", day: n };
-    if (want.done && !wasDone && stamped.length >= PACE_LIMIT) {
+    if (!skipPace && want.done && !wasDone && stamped.length >= PACE_LIMIT) {
       const earliest = stamped[stamped.length - PACE_LIMIT];
       if (nowMs < earliest + PACE_WINDOW_MS) {
         return { ok: false, error: "pace", day: n, unlockAt: new Date(earliest + PACE_WINDOW_MS).toISOString() };
@@ -514,7 +518,7 @@ export function publicRecord(person, row) {
     selfie: !!(row && (row.selfieAt || row.selfie_at)),
     needsEmail: !(row && row.email),
     isAdmin: isAdminEmail(row && row.email),
-    unlockAt: paceUnlockAt(days),
+    unlockAt: isAdminEmail(row && row.email) ? "" : paceUnlockAt(days),
   };
 }
 

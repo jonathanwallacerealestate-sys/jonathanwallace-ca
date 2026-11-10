@@ -378,6 +378,27 @@ const adminRecord = publicRecord({ first: "Pat", last: "Coach" }, { email: "coac
 assert.equal(adminRecord.isAdmin, true);
 assert.equal(adminRecord.email, undefined);
 assert.equal(publicRecord({ first: "Casey", last: "Nguyen" }, { email: "casey@example.com", days: {} }).isAdmin, false);
+coach.days["1"].doneAt = "2026-11-10T12:00:00.000Z";
+coach.days["2"].doneAt = "2026-11-10T12:10:00.000Z";
+coach.days["3"].doneAt = "2026-11-10T12:20:00.000Z";
+coach.logins = ["2026-11-09T15:00:00.000Z", "2026-11-09T20:00:00.000Z", "2026-11-10T15:00:00.000Z"];
+assert.equal(scorePerson(coach, [
+  { id: 1, key: "pat coach", parentId: null, lesson: 1, kind: "learned", createdAt: "2026-11-10T16:00:00.000Z" },
+  { id: 2, key: "pat coach", parentId: 9, parentKind: "question", parentKey: "ada north", createdAt: "2026-11-10T17:00:00.000Z" },
+]).points, 0);
+const learnerOnly = learner("ada north", "Ada", "North", 1);
+learnerOnly.days["1"].doneAt = "2026-11-10T15:00:00.000Z";
+assert.equal(scorePerson(learnerOnly, [
+  { id: 4, key: "ada north", parentId: 3, parentKind: "question", parentKey: "pat coach", parentAdmin: true, createdAt: "2026-11-10T18:00:00.000Z" },
+]).points, 3);
+const besideAdmin = peerStanding([learnerOnly, coach], [], "ada north");
+assert.equal(besideAdmin.note, "You're off to a good start. Keep going.");
+assert.ok(besideAdmin.board.every((row) => row.name !== "Pat C."));
+assert.equal(peerStanding([coach], [], "pat coach").note, "Welcome in. Finish your first lesson to join the leaderboard.");
+const rushed = { email: "coach@example.com", days: { 1: { done: true, doneAt: "2026-11-10T12:00:00.000Z" }, 2: { done: true, doneAt: "2026-11-10T12:10:00.000Z" } } };
+assert.equal(applyProgress(rushed, { days: { 3: { done: true } } }, "2026-11-10T12:20:00.000Z", { skipPace: true }).ok, true);
+assert.equal(applyProgress(rushed, { days: { 3: { done: true } } }, "2026-11-10T12:20:00.000Z").error, "pace");
+assert.equal(publicRecord({ first: "Pat", last: "Coach" }, rushed).unlockAt, "");
 if (previousAdmins == null) delete process.env.AI30_ADMIN_EMAILS;
 else process.env.AI30_ADMIN_EMAILS = previousAdmins;
 assert.equal(peerStanding([

@@ -428,14 +428,14 @@
       "steps": [
         "Download the Letter of Opinion template from the kit.",
         "Sign your name in dark pen on plain white paper and photograph it in good light.",
-        "Run the prompt with the template and your signature photo.",
+        "Run the prompt with the template and your signature photo. Give your AI your full name and your work address, the brokerage office address. Tell it to save both in your business summary and your decision log as your standard agent details.",
         "Check the test PDF: your name, details and signature are in the right spots, and none of the original agent's details are left.",
         "Fix anything in plain English, such as making the signature a bit smaller or moving your phone number under your name.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ],
       "assignment": "Done when you have a test PDF with your name, details and signature that you'd be proud to send. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
-        "I'm attaching the Letter of Opinion template from the kit. It's already built, so keep the layout and wording unless I ask for a change. Take out any name, contact details and signature from the original agent, but keep all the formatting exactly as it is. Put my details in their place: my name is [name], [title, e.g. REALTOR®], [brokerage], [phone], [email], and I work in [areas]. I'm also attaching a photo of my signature, signed in dark pen on plain white paper. Turn it into a clean, smooth digital signature with a transparent background and place it on the signature line of the PDF. Show me the finished letter and ask me what I'd like to change. Make my changes, then save it as a skill called Letter of Opinion. Test it on a made-up property at 123 Banana Street, using made-up comparables clearly marked SAMPLE. Nothing is final until I approve it.",
+        "I'm attaching the Letter of Opinion template from the kit. It's already built, so keep the layout and wording unless I ask for a change. Take out any name, contact details and signature from the original agent, but keep all the formatting exactly as it is. Put my details in their place: my full name is [full name], [title, e.g. REALTOR®], [brokerage], my work address is [brokerage office address], [phone], [email], and I work in [areas]. Save my full name and my work address in my business summary and in my decision log as my standard agent details. I'm also attaching a photo of my signature, signed in dark pen on plain white paper. Turn it into a clean, smooth digital signature with a transparent background and place it on the signature line of the PDF. Show me the finished letter and ask me what I'd like to change. Make my changes, then save it as a skill called Letter of Opinion. Test it on a made-up property at 123 Banana Street, using made-up comparables clearly marked SAMPLE. Nothing is final until I approve it.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ]
     },
@@ -574,11 +574,13 @@
         "Pre-fill your standard terms in the master: commission 5% total with 2.5% to the co-operating brokerage, and a 60-day holdover (the period after the listing ends when a commission can still be owed).",
         "Teach your AI to turn a GeoWarehouse report into a ready-to-fill details sheet: owner names, address and property details, postal code checked on Google, listing start date and number of days.",
         "Save it as a skill.",
+        "Use the name and work address from your Letter of Opinion. Have your AI fill your name into every agent name field on the Form 200 and RECO forms, and use your work address for the brokerage address on Form 200. Check the filled form before you use it.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ],
       "assignment": "Done when the details sheet for a fake property comes out in about a minute and you fill your PDFs from it. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
         "I build the blank masters myself in WEBForms: the RECO guide, and a listing agreement with my standard Schedule A, saved as editable PDFs. My standard terms are commission 5% total, with 2.5% to the co-operating brokerage, and a 60-day holdover. When I give you a GeoWarehouse report, turn it into a ready-to-fill details sheet: owner names, address and property details, postal code checked on Google, and where the listing start date and the number of days go. Save this as a skill. Then make the details sheet for a fake property. I fill the PDFs myself.",
+        "Use the name and work address I gave you for my Letter of Opinion. Fill my name into every agent name field on the Form 200 and RECO forms, and use my work address for the brokerage address on Form 200. Show me the filled form to check before I use it.",
         "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
       ]
     },

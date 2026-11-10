@@ -145,7 +145,10 @@ for (const day of plan.days) {
     assert.doesNotMatch(day.assignment, /Before you finish/);
   } else if (day.day < 3) {
     assert.equal(last, lightClose);
-    assert.equal(lastPrompt, lightClose);
+    assert.equal(lastPrompt, "Save everything we set up today, so you remember it next time.");
+    assert.equal(day.steps[0], "Give it samples of writing you like: emails you have sent, articles, or authors. You can also just paste a link. If there is a blog writer you like, or a social media account whose captions you love, copy the URL and share it with your AI. With every link, tell it why you are sharing it and what you like about it, such as the tone, the short sentences, or how it opens. That way it learns not only what you like, but why.");
+    assert.equal(day.steps[1], "Tell it your pet peeves too. Share everything you do not like in writing (for example em dashes, long paragraphs, salesy words) so it knows what to avoid.");
+    assert.equal(prompts[0], "Here are samples of writing I like, including links to writers and social media accounts whose style I love, and what I like about each one. Here are my pet peeves, the things I never want, such as em dashes. Learn my style. Then make up a mock scenario with one of my clients and draft an email to them. Send it only to me, or save it as a draft, so I can see it. I'll coach you on what to change. Every time I make a suggestion, save it to my Email writing SOP. Rule one: you draft, I approve, and nothing goes out until I say so.");
     assert.doesNotMatch(day.assignment, /Before you finish/);
   } else if (day.day < 6) {
     assert.equal(last, earlyClose);

@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: setup tutorials on the first lesson
+Why: Jonathan wants a way through setup for people who get stuck on the first lesson.
+- Under Install it on your phone and your computer, Pick Your AI offers two YouTube tutorials: Grok Bot setup, and Claude setup with a note to jump to Projects at 20:20 and phone and desktop at 25:29. The App Store links stay. The lesson id is unchanged.
+
 ### AI bootcamp: brain dump is an interview, not advice
 Why: Jonathan replaced the ranking lesson with a gap interview, after a couple of days to think.
 - Brain Dump the Tasks You Hate still connects Google Drive, then the learner dumps what has come up and answers 10 to 20 questions. The AI plays back the gaps and saves them. It does not give advice in this lesson. The lesson id, title, time, and example are unchanged.

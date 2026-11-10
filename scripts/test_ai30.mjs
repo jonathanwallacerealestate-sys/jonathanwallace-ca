@@ -193,7 +193,13 @@ assert.deepEqual(plan.days[0].links, [
   { step: 2, label: "Grok Bot for iPhone", href: "https://apps.apple.com/ca/app/grok-bot/id6794501026" },
   { step: 2, label: "Claude for iPhone", href: "https://apps.apple.com/ca/app/claude-by-anthropic/id6473753684" },
 ]);
-assert.ok(plan.days.slice(1).every((day) => !day.links));
+assert.equal(plan.days[0].setup.text, "Stuck on setup? Watch a step-by-step tutorial:");
+assert.deepEqual(plan.days[0].setup.links.map((link) => link.href), [
+  "https://www.youtube.com/watch?v=q1IwR88mhaA",
+  "https://www.youtube.com/watch?v=9oJySubZRSA",
+]);
+assert.match(plan.days[0].setup.links[1].note, /Projects at 20:20, phone and desktop at 25:29/);
+assert.ok(plan.days.slice(1).every((day) => !day.links && !day.setup));
 assert.doesNotMatch(JSON.stringify(plan), /Grok Premium|6670324846/);
 assert.doesNotMatch(JSON.stringify(plan.days[0]), /start free/i);
 assert.doesNotMatch(plan.days[0].steps[0], /\$\d/);
@@ -367,6 +373,8 @@ assert.match(portalSrc, />Stuck</);
 assert.match(portalSrc, /<strong>Challenge\.<\/strong>/);
 assert.match(portalSrc, /The more you teach it, the better it gets\./);
 assert.match(portalSrc, /class="step-links"/);
+assert.match(portalSrc, /class="setup-help"/);
+assert.match(portalSrc, /function setupHelp/);
 assert.match(portalSrc, /target="_blank" rel="noopener noreferrer"/);
 assert.match(portalSrc, /Download this lesson's files/);
 assert.match(portalSrc, /Type a reply first\./);
@@ -652,6 +660,9 @@ assert.match(promptsMd, /save them to my decision log\./);
   assert.match(lessonZip, /Grok Bot or Claude Pro/);
   assert.match(lessonZip, /Grok Bot for iPhone: https:\/\/apps\.apple\.com\/ca\/app\/grok-bot\/id6794501026/);
   assert.match(lessonZip, /Claude for iPhone: https:\/\/apps\.apple\.com\/ca\/app\/claude-by-anthropic\/id6473753684/);
+  assert.match(lessonZip, /Stuck on setup\? Watch a step-by-step tutorial:/);
+  assert.match(lessonZip, /https:\/\/www\.youtube\.com\/watch\?v=q1IwR88mhaA/);
+  assert.match(lessonZip, /Projects at 20:20, phone and desktop at 25:29/);
   assert.doesNotMatch(lessonZip, /Grok Premium|6670324846/);
   assert.doesNotMatch(lessonZip, /start free/i);
   assert.match(lessonZip, /^Challenge$/m);

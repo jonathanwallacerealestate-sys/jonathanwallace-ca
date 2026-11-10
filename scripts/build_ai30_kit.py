@@ -80,6 +80,16 @@ def handout(day):
         for link in day.get("links") or []:
             if link.get("step") == index and str(link.get("href", "")).startswith("https://"):
                 lines.append(f"   {link['label']}: {link['href']}")
+        setup = day.get("setup") or {}
+        if setup.get("step") == index and setup.get("text"):
+            lines.append(f"   {setup['text']}")
+            for link in setup.get("links") or []:
+                if str(link.get("href", "")).startswith("https://"):
+                    lines.append(f"   {link['label']}: {link['href']}")
+                    if link.get("detail"):
+                        lines.append(f"   {link['detail']}")
+                    if link.get("note"):
+                        lines.append(f"   {link['note']}")
     if day.get("tip"):
         lines.extend(["", f"Tip. {day['tip']}"])
     if day.get("optionalNote"):

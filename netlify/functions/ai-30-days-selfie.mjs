@@ -1,10 +1,19 @@
 import { getDatabase } from "@netlify/database";
-import { normalizePerson, selfieFilename } from "./_shared/ai30.mjs";
+import { emailClaim, nextSelfieStamps, normalizePerson, selfieFilename } from "./_shared/ai30.mjs";
 import { saveSelfieBlob, uploadSelfieToDrive } from "./_shared/selfies.mjs";
 
 const PRODUCTION = ["https://jonathanwallace.ca", "https://www.jonathanwallace.ca"];
 const PREVIEW = /^https:\/\/deploy-preview-\d+--jonathanwallace-ca\.netlify\.app$/;
 const LOCAL = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
+
+const selfieHits = new Map();
+
+function selfieLimited(key) {
+  const gate = nextSelfieStamps(selfieHits.get(key) || [], Date.now());
+  selfieHits.set(key, gate.stamps);
+  if (selfieHits.size > 5000) selfieHits.clear();
+  return !gate.ok;
+}
 
 const json = (status, body) =>
   new Response(JSON.stringify(body), {
@@ -18,6 +27,12 @@ const json = (status, body) =>
 
 function allowed(origin) {
   return PRODUCTION.indexOf(origin) !== -1 || PREVIEW.test(origin) || LOCAL.test(origin);
+}
+
+function firstRow(result) {
+  if (Array.isArray(result)) return result[0] || null;
+  if (result && Array.isArray(result.rows)) return result.rows[0] || null;
+  return null;
 }
 
 export default async (req) => {
@@ -40,6 +55,10 @@ export default async (req) => {
 
   let db;
   try { db = getDatabase(); } catch (e) { return json(503, { ok: false, error: "storage_unavailable" }); }
+  const found = firstRow(await db.sql`SELECT email FROM ai30_progress WHERE name_key = ${person.key} LIMIT 1`);
+  const claim = emailClaim(found && found.email, body.email);
+  if (!claim.ok) return json(400, { ok: false, error: claim.error });
+  if (selfieLimited(person.key)) return json(429, { ok: false, error: "rate" });
   const filename = selfieFilename(person.first, person.last);
   try {
     await saveSelfieBlob(filename, bytes);

@@ -24,6 +24,7 @@ const state = {
   offline: false,
   status: "",
   unlockAt: "",
+  email: "",
   openThreads: {},
   replyTo: null,
   commentKind: "learned",
@@ -97,7 +98,7 @@ async function post(op, extra) {
   const res = await fetch(API, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ op, first: state.first, last: state.last, ...extra }),
+    body: JSON.stringify({ op, first: state.first, last: state.last, email: state.email || "", ...extra }),
   });
   const data = await res.json().catch(() => ({ ok: false, error: "json" }));
   if (!res.ok || !data.ok) {
@@ -233,23 +234,24 @@ async function signIn(first, last, email, remember) {
   state.last = last;
   state.offline = false;
   state.status = "";
-  if (remember) localStorage.setItem(WHO, JSON.stringify({ first, last, email: email || "" }));
   const cached = readCache(first, last);
-  if (cached) applyRecord(cached);
   try {
-    const data = await post("load", email ? { email } : {});
+    const data = await post("load", { email: email || "" });
     if (data.needsEmail) {
       show("gate");
       const err = $("#gate-err");
       if (err) err.textContent = "Add your email to continue.";
       return;
     }
+    state.email = email || "";
     applyRecord(data);
     state.offline = false;
+    if (remember) localStorage.setItem(WHO, JSON.stringify({ first, last, email: state.email }));
   } catch (e) {
-    if (e.code === "name_invalid" || e.code === "name_required" || e.code === "name_too_long" || e.code === "email_invalid") throw e;
+    if (e.code === "name_invalid" || e.code === "name_required" || e.code === "name_too_long" || e.code === "email_invalid" || e.code === "email_mismatch") throw e;
     state.offline = true;
-    if (!cached) {
+    if (cached) applyRecord(cached);
+    else {
       state.days = {};
       state.currentDay = 1;
       state.doneCount = 0;
@@ -273,12 +275,14 @@ function signOut() {
   localStorage.removeItem(CACHE);
   state.first = "";
   state.last = "";
+  state.email = "";
   state.days = {};
   state.replyTo = null;
   state.openThreads = {};
   show("gate");
   $("#first").value = "";
   $("#last").value = "";
+  $("#email").value = "";
   $("#first").focus();
 }
 
@@ -316,7 +320,15 @@ function render() {
   $("#tab-progress").onclick = () => { state.tab = "progress"; render(); };
   $("#tab-board").onclick = () => { state.tab = "board"; render(); };
   const retry = $("#retry");
-  if (retry) retry.onclick = () => signIn(state.first, state.last, true);
+  if (retry) retry.onclick = async () => {
+    try {
+      await signIn(state.first, state.last, state.email || "", true);
+    } catch (e) {
+      show("gate");
+      const err = $("#gate-err");
+      if (err) err.textContent = explain(e);
+    }
+  };
 
   if (state.tab === "today") bindToday(state.complete ? lessonTotal() : state.currentDay);
   if (state.tab === "progress") { bindDots(); bindSelfie(); }
@@ -827,16 +839,26 @@ function bindSelfie() {
       const res = await fetch("/api/ai-30-days/selfie", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ first: state.first, last: state.last, image: data }),
+        body: JSON.stringify({ first: state.first, last: state.last, email: state.email || "", image: data }),
       });
       const body = await res.json();
-      if (!res.ok || !body.ok) throw new Error("save");
+      if (!res.ok || !body.ok) {
+        const err = new Error(body.error || "save");
+        err.code = body.error || "save";
+        throw err;
+      }
       selfieHold = false;
       selfieBlob = null;
       state.selfie = true;
       render();
     } catch (e) {
-      if (status) status.textContent = "The photo did not save. Try again.";
+      if (status) {
+        status.textContent = e.code === "rate"
+          ? "You can upload 3 selfies an hour. Try again later."
+          : e.code === "email_mismatch"
+            ? explain(e)
+            : "The photo did not save. Try again.";
+      }
       $("#selfie-upload").disabled = false;
     }
   };
@@ -909,6 +931,7 @@ function explain(error) {
   if (error.code === "day_locked") return "Finish the current day before moving on.";
   if (error.code === "pace") return paceLine();
   if (error.code === "email_invalid" || error.code === "email_required") return "Enter a valid email address.";
+  if (error.code === "email_mismatch") return "That name is already taken with a different email. Use the email you signed up with.";
   if (error.code === "name_invalid" || error.code === "name_required" || error.code === "name_too_long") {
     return "Use a first and last name, letters only, up to 40 characters each.";
   }
@@ -975,7 +998,13 @@ async function boot() {
   const who = readWho();
   if (who && who.first && who.last) {
     if (who.email) $("#email").value = who.email;
-    await signIn(who.first, who.last, who.email || "", true);
+    try {
+      await signIn(who.first, who.last, who.email || "", true);
+    } catch (e) {
+      show("gate");
+      const err = $("#gate-err");
+      if (err) err.textContent = explain(e);
+    }
   } else {
     show("gate");
   }

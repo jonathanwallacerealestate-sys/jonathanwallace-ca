@@ -16,6 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: the email has to match the name
+Why: Jonathan asked that a name already in use can only be opened with the same email.
+- Sign-in compares the email without looking at capitals or extra spaces. A different email stays on the gate: "That name is already taken with a different email. Use the email you signed up with." The stored email is never replaced. If a name has no email yet, the first valid one is saved.
+- A selfie or a message board post needs that same name and email. Each learner can upload 3 selfies an hour.
+
 ### AI bootcamp: two lessons, then an 8 hour pause
 Why: Jonathan asked that a learner finish at most two lessons in any 8 hour stretch.
 - The server refuses a third completion until 8 hours after the earlier of the last two. Lessons already finished stay finished, and each one is still worth 3 points.

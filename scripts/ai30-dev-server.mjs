@@ -4,7 +4,7 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync, statSync, readdirSy
 import { dirname, extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { adminKeyOk } from "../netlify/functions/_shared/admin.mjs";
-import { applyProgress, cleanPost, currentDay, learnersCsv, migrateCurriculum, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, selfieFilename, stampCurriculum, validEmail } from "../netlify/functions/_shared/ai30.mjs";
+import { applyProgress, cleanPost, currentDay, emailClaim, learnersCsv, migrateCurriculum, nextSelfieStamps, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, selfieFilename, stampCurriculum } from "../netlify/functions/_shared/ai30.mjs";
 import { buildIcs, icsFilename, parseWhen } from "../netlify/functions/_shared/ics.mjs";
 import plan from "../ai-30-days/days.json" with { type: "json" };
 
@@ -127,11 +127,16 @@ const server = createServer(async (req, res) => {
     if (url.pathname.endsWith("/selfie")) {
       const bytes = Buffer.from(String(body.image || ""), "base64");
       if (bytes.length < 100 || bytes[0] !== 0xff || bytes[1] !== 0xd8) return send(res, 400, JSON.stringify({ ok: false, error: "image" }));
-      if (!store[person.key] || !store[person.key].email) return send(res, 400, JSON.stringify({ ok: false, error: "email_required" }));
+      const item = store[person.key];
+      const claim = emailClaim(item && item.email, body.email);
+      if (!claim.ok) return send(res, 400, JSON.stringify({ ok: false, error: claim.error }));
+      const gate = nextSelfieStamps(item.selfie_hits || [], Date.now());
+      if (!gate.ok) return send(res, 429, JSON.stringify({ ok: false, error: "rate" }));
+      item.selfie_hits = gate.stamps;
       mkdirSync(selfieDir, { recursive: true });
       const filename = selfieFilename(person.first, person.last);
       writeFileSync(join(selfieDir, filename), bytes);
-      store[person.key].selfie_at = new Date().toISOString();
+      item.selfie_at = new Date().toISOString();
       saveStore(store);
       return send(res, 200, JSON.stringify({ ok: true, selfie: true, drive: "not_connected" }));
     }
@@ -150,14 +155,14 @@ const server = createServer(async (req, res) => {
       return store[person.key];
     };
     if (body.op === "load") {
+      const claim = emailClaim(store[person.key] && store[person.key].email, body.email);
+      if (!claim.ok) {
+        if (claim.error === "email_required") return send(res, 200, JSON.stringify({ ok: true, needsEmail: true, first: person.first, last: person.last }));
+        return send(res, 200, JSON.stringify({ ok: false, error: "email_mismatch" }));
+      }
       const item = ensure();
       item.days = migrateCurriculum(item.days);
-      const email = validEmail(body.email);
-      if (email) item.email = email;
-      if (!item.email) {
-        saveStore(store);
-        return send(res, 200, JSON.stringify({ ok: true, needsEmail: true, first: person.first, last: person.last }));
-      }
+      if (claim.write) item.email = claim.email;
       item.logins = item.logins || [];
       item.logins.push(new Date().toISOString());
       item.updated_at = new Date().toISOString();
@@ -187,6 +192,8 @@ const server = createServer(async (req, res) => {
       return send(res, 200, answer(row));
     }
     if (body.op === "talk") {
+      const claim = emailClaim(item.email, body.email);
+      if (!claim.ok) return send(res, 400, JSON.stringify({ ok: false, error: claim.error }));
       const text = cleanPost(body.body);
       if (!text) return send(res, 400, JSON.stringify({ ok: false, error: "empty" }));
       const id = store._posts.reduce((max, post) => Math.max(max, post.id), 0) + 1;

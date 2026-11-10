@@ -163,13 +163,14 @@ textarea { min-height: 120px; resize: vertical; }
   font-weight: 700;
   letter-spacing: 0.02em;
 }
-.catch {
+.catch, .optional {
   margin: 12px 0 0;
-  padding: 8px 10px;
+  padding: 10px 12px;
   border-left: 3px solid var(--gold);
   background: var(--ivory);
-  font-size: 0.92rem;
+  font-size: 0.98rem;
 }
+.optional { background: #f3ead4; }
 .why { font-size: 1.05rem; margin: 10px 0 0; }
 ol.steps { margin: 14px 0 0; padding-left: 1.2rem; }
 ol.steps li { margin: 0 0 8px; }

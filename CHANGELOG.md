@@ -16,6 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### AI in 30 days: revised plan
+Why: Jonathan reviewed the 30 days and rewrote the order, the lessons, and the assignments.
+- ai-30-days/days.json now follows that plan. Every day has an assignment, which the calendar reminder uses. Days 1 to 5 end with a short save. Days 6 to 30 end with the decision-log line. Day 7 is optional. Days 24 to 29 are the provisional "your list" lessons.
+- Progress is still stored by day number. No one's place was moved.
+
 ### AI in 30 days: one day at a time, and a calendar reminder
 Why: agents were able to peek at a later day, and they asked for a reminder they can drop on the phone calendar.
 - A later day stays locked until the current day is marked done. The progress grid, the day list, the address bar, and the keyboard all keep it shut, with "Finish Day N to unlock". Marking today done saves on the server and moves straight to the next card.

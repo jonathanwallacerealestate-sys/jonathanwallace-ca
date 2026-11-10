@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: smaller download link after sign-in
+Why: Jonathan asked the lesson title to sit higher on a phone. The big download button was pushing it down.
+- After sign-in, Download all the resources is a small centred text link, and the space above the lesson is tighter. The sign-in page still has the big gold button.
+
 ### AI bootcamp: pick the reminder date
 Why: Jonathan asked learners to choose both the date and the time for the next-lesson reminder.
 - A date picker sits beside the time picker. It opens on tomorrow and will not go earlier than today. The calendar file uses that date and time as the learner's local time.

@@ -396,6 +396,8 @@ const zipBytes = readFileSync(new URL("../ai-30-days/kit/ai-bootcamp-resources.z
 for (const needle of ["Jonathan Wallace", "jonathan@faristeam.ca", "705-433-2525", "531 King Street", "Faris Team", "FarisTeam", "1gVOahhpWV00QdTg44BbqIaCOhjplNq1t"]) {
   assert.equal(zipBytes.includes(Buffer.from(needle)), false, needle);
 }
-assert.match(readFileSync(new URL("../ai-30-days/index.html", import.meta.url), "utf8"), /Download all the resources/);
+assert.match(readFileSync(new URL("../ai-30-days/index.html", import.meta.url), "utf8"), /class="btn".*Download all the resources/);
+assert.match(portalSrc, /classList\.toggle\("is-in", name === "app"\)/);
+assert.match(readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), "utf8"), /body\.is-in \.kit \.btn/);
 
 console.log("test_ai30: ok");

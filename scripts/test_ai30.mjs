@@ -399,5 +399,25 @@ for (const needle of ["Jonathan Wallace", "jonathan@faristeam.ca", "705-433-2525
 assert.match(readFileSync(new URL("../ai-30-days/index.html", import.meta.url), "utf8"), /class="btn".*Download all the resources/);
 assert.match(portalSrc, /classList\.toggle\("is-in", name === "app"\)/);
 assert.match(readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), "utf8"), /body\.is-in \.kit \.btn/);
+const portalCss = readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), "utf8");
+assert.match(portalCss, /--gold:\s*#c9a96a/i);
+assert.match(portalCss, /--gold-dark:\s*#886a3b/i);
+{
+  const lin = (c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+  const lum = (hex) => {
+    const n = parseInt(hex.slice(1), 16);
+    const r = lin(((n >> 16) & 255) / 255);
+    const g = lin(((n >> 8) & 255) / 255);
+    const b = lin((n & 255) / 255);
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  };
+  const ratio = (fg, bg) => {
+    const a = lum(fg);
+    const b = lum(bg);
+    return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+  };
+  assert.ok(ratio("#886a3b", "#F7F3EC") >= 4.5);
+  assert.ok(ratio("#886a3b", "#FDFBF7") >= 4.5);
+}
 
 console.log("test_ai30: ok");

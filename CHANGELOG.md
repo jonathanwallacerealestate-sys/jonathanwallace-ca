@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: darker section labels
+Why: The small gold labels were #b3945a, about 2.8:1 on the card, under the WCAG AA line.
+- Section labels are now #886a3b, the nearest step from #8a6d3b that clears 4.5:1 on ivory and on the card. Gold buttons and gold lines stay #c9a96a.
+
 ### AI bootcamp: smaller download link after sign-in
 Why: Jonathan asked the lesson title to sit higher on a phone. The big download button was pushing it down.
 - After sign-in, Download all the resources is a small centred text link, and the space above the lesson is tighter. The sign-in page still has the big gold button.

@@ -16,6 +16,12 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### AI bootcamp: 31 lessons
+Why: Jonathan approved two new social lessons and a lesson-by-lesson final review, and asked for the sign-in page to show the path instead of a printable checklist.
+- Lesson 10 is Plan your social media strategy. Lesson 11 is Create your first three posts. The old "post, then schedule two more" lesson is gone. Later lessons move up by one. The last lesson is 31, Final review. Your list is Lessons 25 to 30.
+- Saved progress from the 30-lesson plan is mapped once: lessons 1 to 9 stay, a finished old lesson 10 counts as the new lesson 11, and old lessons 11 and up move forward by one. New lesson 10 stays open so that plan is not skipped.
+- The sign-in page lists what the bootcamp covers, then every lesson title under its section. The print checklist is not on that page.
+
 ### AI bootcamp name: Zero to Hero
 Why: Jonathan set the program name to AI Bootcamp: Zero to Hero.
 - Page title, heading, sign-in bar, and the print title use that name. Calendar events stay titled AI Bootcamp: Lesson N.

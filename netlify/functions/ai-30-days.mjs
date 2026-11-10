@@ -5,7 +5,7 @@
 // Stores only the normalised name, day statuses, notes, and timestamps.
 
 import { getDatabase } from "@netlify/database";
-import { applyProgress, normalizePerson, publicRecord, recordFromRow } from "./_shared/ai30.mjs";
+import { applyProgress, migrateCurriculum, normalizePerson, publicRecord, recordFromRow, stampCurriculum } from "./_shared/ai30.mjs";
 
 const PRODUCTION = ["https://jonathanwallace.ca", "https://www.jonathanwallace.ca"];
 const PREVIEW = /^https:\/\/deploy-preview-\d+--jonathanwallace-ca\.netlify\.app$/;
@@ -103,20 +103,21 @@ export default async (req, context) => {
   try {
     if (body.op === "load") {
       let row = await readRow(db, person.key);
-      if (!row) row = await writeRow(db, person, {}, new Date().toISOString());
-      else {
-        const refreshed = await writeRow(db, person, row.days, row.createdAt);
-        row = refreshed || row;
+      const migrated = migrateCurriculum(row ? row.days : {});
+      const createdAt = row && row.createdAt ? row.createdAt : new Date().toISOString();
+      if (!row || JSON.stringify(migrated) !== JSON.stringify(row.days)) {
+        row = await writeRow(db, person, migrated, createdAt);
       }
       return json(200, publicRecord(person, row));
     }
 
     if (body.op === "save") {
       const existing = await readRow(db, person.key);
-      const applied = applyProgress(existing, body, new Date().toISOString());
+      const stored = existing ? { ...existing, days: migrateCurriculum(existing.days) } : null;
+      const applied = applyProgress(stored, body, new Date().toISOString());
       if (!applied.ok) return json(400, { ok: false, error: applied.error, day: applied.day });
       const createdAt = existing && existing.createdAt ? existing.createdAt : new Date().toISOString();
-      const row = await writeRow(db, person, applied.days, createdAt);
+      const row = await writeRow(db, person, stampCurriculum(applied.days), createdAt);
       return json(200, publicRecord(person, row));
     }
 

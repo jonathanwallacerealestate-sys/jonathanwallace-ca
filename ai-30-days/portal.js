@@ -99,7 +99,7 @@ function isDone(n) {
 function phase(n) {
   if (isDone(n)) return "done";
   if (n === state.currentDay && !state.complete) return "today";
-  if (state.complete && n === 30) return "done";
+  if (state.complete && n === lessonTotal()) return "done";
   return "locked";
 }
 
@@ -158,9 +158,15 @@ function takeDayRequest() {
   else { state.tab = "today"; state.view = null; state.lockNote = ""; }
 }
 
+function lessonTotal() {
+  return state.plan && state.plan.days ? state.plan.days.length : 31;
+}
+
 function show(name) {
   $("#gate").hidden = name !== "gate";
   $("#app").hidden = name !== "app";
+  const print = $("#print");
+  if (print) print.hidden = name === "gate";
   const who = readWho();
   $("#who").hidden = !who;
   if (who) $("#who-name").textContent = `${who.first} ${who.last}`;
@@ -219,7 +225,7 @@ function render() {
   const enter = state.justAdvanced ? " card--next" : "";
 
   let panel = "";
-  if (state.tab === "today") panel = renderToday(dayByNumber(state.complete ? 30 : state.currentDay), enter);
+  if (state.tab === "today") panel = renderToday(dayByNumber(state.complete ? lessonTotal() : state.currentDay), enter);
   else if (state.tab === "progress") panel = renderProgress();
   else panel = renderAll();
 
@@ -241,7 +247,7 @@ function render() {
   const retry = $("#retry");
   if (retry) retry.onclick = () => signIn(state.first, state.last, true);
 
-  if (state.tab === "today") bindToday(state.complete ? 30 : state.currentDay);
+  if (state.tab === "today") bindToday(state.complete ? lessonTotal() : state.currentDay);
   if (state.tab === "progress") bindDots();
   if (state.tab === "all") bindAll();
   const shot = root.querySelector(".shot");
@@ -259,7 +265,7 @@ function renderToday(day, enter) {
     <article class="card${enter || ""}" id="today-card">
       <p class="kicker">${esc(day.section)}</p>
       <div class="dayhead">
-        <h2 class="lesson-count">Lesson ${day.day} of 30</h2>
+        <h2 class="lesson-count">Lesson ${day.day} of ${lessonTotal()}</h2>
         <p class="chip">About ${esc(day.minutes)}</p>
       </div>
       <h3 class="lesson-title">${esc(day.title)}</h3>
@@ -281,7 +287,7 @@ function renderToday(day, enter) {
       <label for="notes">Notes</label>
       <textarea id="notes" maxlength="2000" ${done && day.day !== state.currentDay && state.complete ? "" : ""}>${esc(notes)}</textarea>
       <div class="actions">
-        ${done && state.complete ? `<p class="fine">All 30 lessons are marked done.</p>` : ""}
+        ${done && state.complete ? `<p class="fine">All ${lessonTotal()} lessons are marked done.</p>` : ""}
         ${!done ? `<button type="button" class="btn" id="done">${day.optional ? "Done" : "Mark done"}</button>` : `<p class="fine">Marked done. The next lesson is open.</p>`}
       </div>
     </article>
@@ -298,7 +304,7 @@ function renderProgress() {
   const pending = state.plan.days.some((d) => phase(d.day) === "locked");
   return `
     <section class="card">
-      <p class="count">${state.doneCount} of 30 done</p>
+      <p class="count">${state.doneCount} of ${lessonTotal()} done</p>
       <div class="grid">${dots}</div>
       <p class="legend"><span><i style="background:#1b1b1b"></i>Done</span><span><i style="background:#c9a96a"></i>Now</span><span><i style="background:#f7f3ec;border:1px solid rgba(30,27,21,.2)"></i>Locked</span></p>
       ${pending ? `<p class="lockline">${LOCK} ${esc(lockLine())}</p>` : ""}
@@ -452,7 +458,7 @@ function bindAll() {
 
 function payloadFromState(changeDay, change) {
   const days = {};
-  for (let n = 1; n <= 30; n += 1) {
+  for (let n = 1; n <= lessonTotal(); n += 1) {
     const cur = slot(n);
     const entry = {};
     if (cur.done) entry.done = true;
@@ -530,9 +536,28 @@ function printChecklist() {
   window.print();
 }
 
+function renderLearn() {
+  const root = $("#learn");
+  if (!root || !state.plan) return;
+  const sections = state.plan.sections || [];
+  const days = state.plan.days || [];
+  const lines = sections.map((section) => `<li>${esc(section.summary || section.title)}</li>`).join("");
+  const groups = sections.map((section) => {
+    const start = section.days[0];
+    const end = section.days[1];
+    const items = days.filter((day) => day.day >= start && day.day <= end);
+    return `<details class="learn__group">
+      <summary>${esc(section.title)}</summary>
+      <ol>${items.map((day) => `<li>Lesson ${day.day}: ${esc(day.title)}</li>`).join("")}</ol>
+    </details>`;
+  }).join("");
+  root.innerHTML = `<h2>What you'll learn along the way</h2><ul class="learn__sum">${lines}</ul>${groups}`;
+}
+
 async function boot() {
   const res = await fetch("/ai-30-days/days.json", { cache: "no-cache" });
   state.plan = await res.json();
+  renderLearn();
   $("#rule-text").textContent = state.plan.rule;
   $("#sig").textContent = state.plan.signature;
   const who = readWho();

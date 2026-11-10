@@ -356,8 +356,20 @@ ol.steps li { margin: 0 0 8px; }
 .selfie, .how, .share { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); }
 .selfie h3, .how h3 { font-size: 1.2rem; margin: 0 0 8px; }
 .selfie .btn { min-height: 56px; }
-.selfie__actions { display: flex; gap: 8px; margin-top: 8px; }
-.selfie__actions .btn { flex: 1; }
+.selfie__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+  align-items: stretch;
+}
+.selfie__actions .btn {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  min-height: 56px;
+  margin: 0;
+}
 .selfie img { width: 100%; max-height: 420px; object-fit: contain; border-radius: 12px; background: var(--charcoal); }
 .tags { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 8px 0; }
 .tag { min-height: 44px; border-radius: 999px; border: 1px solid var(--line); background: transparent; padding: 8px 6px; font-weight: 700; text-align: center; }

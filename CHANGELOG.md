@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: selfie buttons side by side
+Why: Retake and Upload were different sizes and did not line up on a phone.
+- The two buttons now share one row, with the same height and the same width, on a phone and on a desktop. The preview still stays up while the photo is waiting to upload.
+
 ### AI bootcamp: first prompt and notes steps
 Why: The first lesson's second prompt was a stage direction, and the notes lesson listed the same paste step twice.
 - The paste line is now one plain ask: save what we set up today. The notes lesson keeps a single step for pasting the note when the CRM is not connected, and the handout numbers follow.

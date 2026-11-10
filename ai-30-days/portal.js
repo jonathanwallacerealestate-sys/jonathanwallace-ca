@@ -23,6 +23,9 @@ const state = {
   view: null,
   offline: false,
   status: "",
+  openThreads: {},
+  replyTo: null,
+  commentKind: "learned",
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -243,6 +246,8 @@ function signOut() {
   state.first = "";
   state.last = "";
   state.days = {};
+  state.replyTo = null;
+  state.openThreads = {};
   show("gate");
   $("#first").value = "";
   $("#last").value = "";
@@ -421,30 +426,116 @@ function stamp(iso) {
   }).format(date);
 }
 
-function renderBoard() {
-  const posts = Array.isArray(state.posts) ? state.posts : [];
-  const cards = posts.length ? posts.map((post) => `
-    <article class="post" data-id="${esc(post.id)}">
-      <header>
-        <span class="pill">${esc(kindLabel(post.kind))}</span>
-        <strong>${esc(post.name)}</strong>
-        <time>${esc(stamp(post.createdAt))}</time>
-      </header>
-      <p class="post__lesson">${esc(post.lessonTitle || "")}</p>
-      <p>${esc(post.body)}</p>
-      <div class="replies">${(post.replies || []).map((reply) => `
-        <article class="reply">
-          <header><strong>${esc(reply.name)}</strong> <time>${esc(stamp(reply.createdAt))}</time></header>
-          <p>${esc(reply.body)}</p>
-          <button type="button" class="linkish remove" data-id="${esc(reply.id)}">Remove</button>
-        </article>`).join("")}</div>
-      <div class="replybox">
-        <textarea maxlength="500" placeholder="Write a reply"></textarea>
-        <button type="button" class="btn btn--ghost reply-send" data-parent="${esc(post.id)}">Reply</button>
+const AVATAR_PALETTE = [
+  ["#1b1b1b", "#f7f3ec"],
+  ["#c9a96a", "#1b1b1b"],
+  ["#6e5a32", "#f7f3ec"],
+  ["#e7d7b4", "#1b1b1b"],
+  ["#3a3228", "#c9a96a"],
+  ["#b3945a", "#1b1b1b"],
+  ["#8c7350", "#f7f3ec"],
+  ["#f3ead4", "#1b1b1b"],
+];
+
+function initials(name) {
+  const parts = String(name || "").replace(/\./g, "").trim().split(/\s+/).filter(Boolean);
+  if (!parts.length) return "?";
+  const first = parts[0].charAt(0);
+  const last = parts.length > 1 ? parts[parts.length - 1].charAt(0) : "";
+  return (first + last).toUpperCase();
+}
+
+function avatarStyle(name) {
+  let hash = 0;
+  const key = String(name || "").toLowerCase();
+  for (let i = 0; i < key.length; i += 1) hash = (hash * 33 + key.charCodeAt(i)) >>> 0;
+  const pair = AVATAR_PALETTE[hash % AVATAR_PALETTE.length];
+  return `background:${pair[0]};color:${pair[1]}`;
+}
+
+function relativeTime(iso) {
+  const then = new Date(iso).getTime();
+  if (Number.isNaN(then)) return "";
+  const sec = Math.max(0, Math.floor((Date.now() - then) / 1000));
+  if (sec < 60) return "now";
+  const min = Math.floor(sec / 60);
+  if (min < 60) return `${min}m`;
+  const hr = Math.floor(min / 60);
+  if (hr < 24) return `${hr}h`;
+  const day = Math.floor(hr / 24);
+  if (day < 7) return `${day}d`;
+  const week = Math.floor(day / 7);
+  return `${week}w`;
+}
+
+function commentRow(item, reply) {
+  const name = item.name || "";
+  const pill = reply ? "" : `<span class="cmt__pill">${esc(kindLabel(item.kind))}</span>`;
+  const lesson = !reply && item.lessonTitle ? `<span class="cmt__lesson">${esc(item.lessonTitle)}</span>` : "";
+  const replyBtn = reply ? "" : `<button type="button" class="linkish reply-open" data-id="${esc(item.id)}" data-name="${esc(name)}">Reply</button>`;
+  return `
+    <article class="cmt${reply ? " cmt--reply" : ""}">
+      <span class="avatar" style="${avatarStyle(name)}" aria-hidden="true">${esc(initials(name))}</span>
+      <div class="cmt__main">
+        <p class="cmt__text"><strong>${esc(name)}</strong> ${esc(item.body)}</p>
+        <p class="cmt__meta">
+          <time datetime="${esc(item.createdAt || "")}" title="${esc(stamp(item.createdAt))}">${esc(relativeTime(item.createdAt))}</time>
+          ${pill}
+          ${lesson}
+          ${replyBtn}
+          <button type="button" class="linkish remove" data-id="${esc(item.id)}">Remove</button>
+        </p>
       </div>
-      <button type="button" class="linkish remove" data-id="${esc(post.id)}">Remove</button>
-    </article>`).join("") : `<p class="fine">No notes yet. Share one from today's lesson.</p>`;
-  return `<section class="card feed"><h2 class="lesson-title">Message board</h2>${cards}</section>`;
+    </article>`;
+}
+
+function replyThread(post) {
+  const replies = [...(post.replies || [])].sort((a, b) => String(a.createdAt).localeCompare(String(b.createdAt)));
+  if (!replies.length) return "";
+  const open = !!state.openThreads[String(post.id)];
+  const extra = replies.length - 2;
+  const shown = !open && extra > 0 ? replies.slice(extra) : replies;
+  const label = open
+    ? "Hide replies"
+    : `View ${extra} more ${extra === 1 ? "reply" : "replies"}`;
+  const toggle = extra > 0
+    ? `<button type="button" class="linkish thread-toggle" data-id="${esc(post.id)}">${label}</button>`
+    : "";
+  return `<div class="thread__replies">${toggle}${shown.map((reply) => commentRow(reply, true)).join("")}</div>`;
+}
+
+function renderComposer() {
+  const replying = state.replyTo;
+  const placeholder = replying ? `Reply to ${replying.name}` : "Add a comment...";
+  const kind = state.commentKind || "learned";
+  const tags = replying ? "" : `
+    <div class="tags tags--compact" role="group" aria-label="What kind of note">
+      <button type="button" class="tag" data-kind="learned" aria-pressed="${kind === "learned"}">Learned</button>
+      <button type="button" class="tag" data-kind="question" aria-pressed="${kind === "question"}">Question</button>
+      <button type="button" class="tag" data-kind="stuck" aria-pressed="${kind === "stuck"}">Stuck on</button>
+    </div>`;
+  const note = replying
+    ? `<p class="composer__to">Replying to ${esc(replying.name)} <button type="button" class="linkish" id="reply-cancel">Cancel</button></p>`
+    : "";
+  return `
+    <form class="composer" id="composer">
+      ${note}
+      ${tags}
+      <div class="composer__bar">
+        <input id="comment-body" maxlength="500" placeholder="${esc(placeholder)}" aria-label="${esc(placeholder)}" autocomplete="off">
+        <button type="submit" class="btn" id="comment-send">Post</button>
+      </div>
+      <p class="fine" id="comment-status" role="status"></p>
+    </form>`;
+}
+
+function renderBoard() {
+  const posts = (Array.isArray(state.posts) ? state.posts.slice() : [])
+    .sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
+  const cards = posts.length
+    ? posts.map((post) => `${commentRow(post, false)}${replyThread(post)}`).join("")
+    : `<p class="fine">No comments yet.</p>`;
+  return `<section class="card feed"><h2 class="lesson-title">Message board</h2><div class="thread">${cards}</div>${renderComposer()}</section>`;
 }
 
 function kindLabel(kind) {
@@ -555,18 +646,67 @@ function bindShare() {
 }
 
 function bindBoard() {
-  document.querySelectorAll(".reply-send").forEach((btn) => {
-    btn.onclick = async () => {
-      const box = btn.parentElement.querySelector("textarea");
-      btn.disabled = true;
-      try {
-        applyRecord(await post("talk", { parentId: Number(btn.dataset.parent), body: box ? box.value : "" }));
-        render();
-      } catch (e) {
-        btn.disabled = false;
-      }
+  document.querySelectorAll(".reply-open").forEach((btn) => {
+    btn.onclick = () => {
+      state.replyTo = { id: Number(btn.dataset.id), name: btn.dataset.name || "" };
+      const y = window.scrollY;
+      render();
+      window.scrollTo(0, y);
+      const input = $("#comment-body");
+      if (input) input.focus();
     };
   });
+  const cancel = $("#reply-cancel");
+  if (cancel) {
+    cancel.onclick = () => {
+      state.replyTo = null;
+      const y = window.scrollY;
+      render();
+      window.scrollTo(0, y);
+    };
+  }
+  document.querySelectorAll(".thread-toggle").forEach((btn) => {
+    btn.onclick = () => {
+      const id = String(btn.dataset.id);
+      state.openThreads[id] = !state.openThreads[id];
+      const y = window.scrollY;
+      render();
+      window.scrollTo(0, y);
+    };
+  });
+  document.querySelectorAll(".composer .tag").forEach((btn) => {
+    btn.onclick = () => {
+      state.commentKind = btn.dataset.kind;
+      document.querySelectorAll(".composer .tag").forEach((other) => {
+        other.setAttribute("aria-pressed", other === btn ? "true" : "false");
+      });
+    };
+  });
+  const form = $("#composer");
+  if (form) {
+    form.onsubmit = async (event) => {
+      event.preventDefault();
+      const input = $("#comment-body");
+      const status = $("#comment-status");
+      const send = $("#comment-send");
+      const body = input ? input.value : "";
+      if (send) send.disabled = true;
+      try {
+        if (state.replyTo) {
+          applyRecord(await post("talk", { parentId: state.replyTo.id, body }));
+          state.replyTo = null;
+        } else {
+          const lesson = state.complete ? lessonTotal() : state.currentDay;
+          applyRecord(await post("talk", { lesson, kind: state.commentKind || "learned", body }));
+        }
+        state.status = "Posted to the group.";
+        render();
+      } catch (e) {
+        if (status) status.textContent = e.code === "empty" ? "Write a note first." : explain(e);
+        if (send) send.disabled = false;
+      }
+    };
+  }
   document.querySelectorAll(".remove").forEach((btn) => {
     btn.onclick = async () => {
       const key = window.prompt("Admin key");

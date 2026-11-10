@@ -16,6 +16,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: comments-style message board
+Why: Jonathan asked for the live message board to read like an Instagram or Facebook comments section.
+- Each note is a row with a round initials avatar, a bold first name and last initial, the note, then a grey line with the relative time, a Learned / Question / Stuck on pill, the lesson title, and Reply. Replies sit indented under the note, and a thread with more than two replies stays collapsed behind View N more replies.
+- A sticky Add a comment bar with a compact tag picker and a Post button sits at the bottom of the board. Points, replies, and admin removal work the same way as before.
+
 ### AI bootcamp: lesson titles in Title Case
 Why: Jonathan asked for every lesson title to use Title Case, including the kit handouts and calendar names.
 - Major words are capitalized. Short words such as and, to, in, on, of, with, and then stay lowercase unless they are the first or last word. AI, BrokerBay, SOP, Coles Notes, and Top 5 stay as they are. The day numbers that save progress are unchanged.

@@ -177,6 +177,13 @@ assert.doesNotMatch(portalSrc, /Your selfie is shared|Print checklist|printCheck
 assert.doesNotMatch(readFileSync(new URL("../ai-30-days/index.html", import.meta.url), "utf8"), /Print checklist|print-root/);
 assert.doesNotMatch(readFileSync(new URL("../ai-30-days/index.html", import.meta.url), "utf8"), /So we can send you updates/);
 assert.doesNotMatch(portalSrc, /role="img" aria-label="Progress"/);
+assert.match(portalSrc, /Add a comment\.\.\./);
+assert.match(portalSrc, /View \$\{extra\} more/);
+assert.match(portalSrc, /function relativeTime/);
+assert.match(portalSrc, /function initials/);
+assert.doesNotMatch(portalSrc, /❤|aria-label="Like"|like-count/);
+assert.doesNotMatch(readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), "utf8"), /—/);
+assert.match(readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), "utf8"), /\.composer/);
 
 function learner(key, first, last, done) {
   const days = { _curriculum: 31 };

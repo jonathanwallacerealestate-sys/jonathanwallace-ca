@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: admin activity scores nothing
+Why: Jonathan needs to click through the lessons to test them, without those visits changing anyone's points.
+- An admin email earns nothing for lessons, logins, streaks, posts, or replies, and a learner gets no answer points for replying to an admin. The 8-hour lock does not stop an admin. Selfies were already worth nothing.
+
 ### AI bootcamp: admin follows the signed-in email
 Why: Jonathan asked for admin tools on his own sign-in, without typing a key, and without putting that email in the repo.
 - Set AI30_ADMIN_EMAILS on Netlify to a comma-separated list. The server compares it with the email stored on the signed-in record. A match returns isAdmin and shows reset, CSV export, delete learner, and remove post. The server checks the stored email again before every admin action. Those accounts stay off the leaderboard. AI30_ADMIN_KEY still works on the admin page.

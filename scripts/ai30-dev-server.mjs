@@ -71,10 +71,12 @@ const server = createServer(async (req, res) => {
     const posts = () => {
       const rawPosts = store._posts.map((post) => ({ ...post }));
       const byId = new Map(rawPosts.map((post) => [post.id, post]));
+      const adminKeys = new Set(Object.entries(store).filter(([key, item]) => key !== "_posts" && isAdminEmail(item && item.email)).map(([key]) => key));
       for (const post of rawPosts) {
         const parent = post.parentId ? byId.get(post.parentId) : null;
         post.parentKind = parent ? parent.kind : "";
         post.parentKey = parent ? parent.key : "";
+        post.parentAdmin = !!(parent && adminKeys.has(parent.key));
       }
       return rawPosts;
     };
@@ -198,7 +200,7 @@ const server = createServer(async (req, res) => {
     const item = store[person.key];
     if (!item || !item.email) return send(res, 200, JSON.stringify({ ok: true, needsEmail: true, first: person.first, last: person.last }));
     if (body.op === "save") {
-      const applied = applyProgress({ days: migrateCurriculum(item.days) }, body, new Date().toISOString());
+      const applied = applyProgress({ days: migrateCurriculum(item.days) }, body, new Date().toISOString(), { skipPace: isAdminEmail(item.email) });
       if (!applied.ok) return send(res, 400, JSON.stringify({ ok: false, error: applied.error, day: applied.day, unlockAt: applied.unlockAt || "" }));
       item.days = stampCurriculum(applied.days);
       item.updated_at = new Date().toISOString();

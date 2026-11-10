@@ -99,6 +99,8 @@ async function readContext(db) {
     const at = iso(login.logged_at);
     if (person && at) person.logins.push(at);
   }
+  const adminKeys = new Set(people.filter((person) => isAdminEmail(person.email)).map((person) => person.key));
+  for (const post of postRows) post.parentAdmin = !!(post.parentKey && adminKeys.has(post.parentKey));
   return { people, posts: postRows };
 }
 
@@ -263,7 +265,7 @@ async function saveLocked(db, person, body) {
       return { ok: true, needsEmail: true, first: person.first, last: person.last };
     }
     const existing = recordFromRow(raw);
-    const applied = applyProgress({ ...existing, days: migrateCurriculum(existing.days) }, body, new Date().toISOString());
+    const applied = applyProgress({ ...existing, days: migrateCurriculum(existing.days) }, body, new Date().toISOString(), { skipPace: isAdminEmail(existing.email) });
     if (!applied.ok) {
       await client.query("ROLLBACK");
       return { ok: false, error: applied.error, day: applied.day, unlockAt: applied.unlockAt || "" };

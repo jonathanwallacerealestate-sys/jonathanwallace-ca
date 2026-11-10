@@ -465,6 +465,11 @@ assert.match(readFileSync(new URL("../ai-30-days/export.html", import.meta.url),
 assert.match(readFileSync(new URL("../ai-30-days/export.html", import.meta.url), "utf8"), /AI30_ADMIN_KEY/);
 assert.match(portalSrc, /state\.isAdmin !== true/);
 assert.match(portalSrc, /Admin code/);
+assert.match(portalSrc, /Review lessons/);
+assert.match(portalSrc, /hash === "#review"/);
+assert.match(portalSrc, /if \(state\.lessonReview && state\.isAdmin !== true\) state\.lessonReview = null/);
+assert.match(portalSrc, /id="done" disabled/);
+assert.match(portalSrc, /if \(done && !done\.disabled\)/);
 assert.match(portalSrc, /needsAdminCode/);
 assert.doesNotMatch(portalSrc, /AI30_ADMIN_PIN/);
 assert.match(portalSrc, /delete-learner/);

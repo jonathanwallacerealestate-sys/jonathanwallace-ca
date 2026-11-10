@@ -297,6 +297,51 @@ ol.steps li { margin: 0 0 8px; }
 }
 .prompt + .prompt { margin-top: 10px; }
 
+.review-list { display: grid; gap: 8px; margin-top: 12px; }
+.review-card {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+  width: 100%;
+  text-align: left;
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.review-pos { font-size: 0.75rem; font-weight: 700; color: var(--gold-dark); padding-top: 3px; }
+.review-card__main { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.review-card__main strong { font-size: 1rem; }
+.review-card__main span { font-size: 0.85rem; color: var(--muted); }
+.review-bar, .review-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.review-bar .btn, .review-nav .btn { margin-top: 0; }
+.review-frame {
+  position: relative;
+  width: 390px;
+  max-width: 100%;
+  margin: 12px auto 0;
+}
+.review-frame.is-desk { width: 760px; }
+.review-frame:not(.is-desk) .dayhead {
+  flex-direction: column;
+  align-items: stretch;
+}
+.review-frame:not(.is-desk) .lesson-title { max-width: 100%; }
+.review-id {
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  margin: 0;
+  font-size: 0.68rem;
+  color: var(--muted);
+  z-index: 1;
+}
+
 .look { margin-top: 18px; }
 .look h3 { font-size: 1.25rem; margin-bottom: 8px; }
 .shot {

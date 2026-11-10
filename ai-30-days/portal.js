@@ -32,6 +32,9 @@ const state = {
   reviewDay: null,
   isAdmin: false,
   needsAdminCode: false,
+  wantReview: false,
+  lessonReview: null,
+  reviewWide: false,
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -267,19 +270,59 @@ function refuseLocked() {
   state.view = null;
 }
 
+function reviewRequested() {
+  const url = new URL(location.href);
+  return url.hash === "#review" || url.searchParams.get("review") === "1";
+}
+
 function takeDayRequest() {
   const url = new URL(location.href);
   const raw = url.searchParams.get("day");
-  if (raw || location.hash) {
+  const review = reviewRequested();
+  let changed = false;
+  if (raw) {
     url.searchParams.delete("day");
-    url.hash = "";
-    history.replaceState(null, "", url.pathname + url.search);
+    changed = true;
   }
+  if (url.hash && url.hash !== "#review") {
+    url.hash = "";
+    changed = true;
+  }
+  if (review) {
+    url.hash = "#review";
+    url.searchParams.delete("review");
+    changed = true;
+  }
+  if (changed) history.replaceState(null, "", url.pathname + url.search + url.hash);
   const n = Number(raw);
   if (!raw || !Number.isInteger(n)) return;
   if (phase(n) === "locked") refuseLocked();
   else if (phase(n) === "done") { state.tab = "today"; state.view = null; state.lockNote = ""; }
   else { state.tab = "today"; state.view = null; state.lockNote = ""; }
+}
+
+function settleReview() {
+  const asked = state.wantReview || reviewRequested();
+  if (!asked) return;
+  if (state.isAdmin === true) {
+    state.wantReview = true;
+    if (!state.lessonReview) state.lessonReview = { mode: "list" };
+    const url = new URL(location.href);
+    url.hash = "#review";
+    url.searchParams.delete("review");
+    history.replaceState(null, "", url.pathname + url.search + url.hash);
+    return;
+  }
+  if (state.needsAdminCode) {
+    state.wantReview = true;
+    return;
+  }
+  state.wantReview = false;
+  state.lessonReview = null;
+  const url = new URL(location.href);
+  if (url.hash === "#review") url.hash = "";
+  url.searchParams.delete("review");
+  history.replaceState(null, "", url.pathname + url.search + url.hash);
 }
 
 function lessonTotal() {
@@ -329,7 +372,9 @@ async function signIn(first, last, email, remember) {
   }
   state.tab = "today";
   state.view = null;
+  state.wantReview = state.wantReview || reviewRequested();
   takeDayRequest();
+  settleReview();
   show("app");
   render();
   startFeed();
@@ -347,6 +392,8 @@ function signOut() {
   clearAdminToken();
   state.drafts = null;
   state.reviewDay = null;
+  state.wantReview = false;
+  state.lessonReview = null;
   state.days = {};
   state.replyTo = null;
   state.openThreads = {};
@@ -357,8 +404,118 @@ function signOut() {
   $("#first").focus();
 }
 
+function lessonHasDownload(day) {
+  return /^[a-z0-9-]+$/.test(day && day.id || "");
+}
+
+function reviewIndex() {
+  const days = state.plan && state.plan.days ? state.plan.days : [];
+  if (!state.lessonReview || state.lessonReview.mode !== "lesson") return -1;
+  return days.findIndex((day) => day.id === state.lessonReview.id);
+}
+
+function renderReviewList() {
+  const days = state.plan.days || [];
+  const cards = days.map((day, index) => `
+    <button type="button" class="review-card" data-id="${esc(day.id)}">
+      <span class="review-pos">${index + 1}</span>
+      <span class="review-card__main">
+        <strong>${esc(day.title)}</strong>
+        <span>${esc(day.section)} · ${esc(day.minutes)}</span>
+        <span>${lessonHasDownload(day) ? "Download ready" : "No download"}</span>
+      </span>
+    </button>`).join("");
+  return `
+    <section class="card" id="review-list" aria-label="Review lessons">
+      <h2 class="lesson-title">Review lessons</h2>
+      <p class="fine">The same lessons learners see. Nothing you open here is saved.</p>
+      <div class="review-list">${cards}</div>
+      <button type="button" class="btn btn--ghost" id="review-exit">Back to my lesson</button>
+    </section>`;
+}
+
+function renderReviewLesson() {
+  const days = state.plan.days || [];
+  const index = reviewIndex();
+  const day = days[index];
+  if (!day) return renderReviewList();
+  const wide = state.reviewWide ? " is-desk" : "";
+  return `
+    <section class="review-screen" aria-label="Lesson preview">
+      <div class="review-bar">
+        <button type="button" class="btn btn--ghost" id="review-back">Back to list</button>
+        <button type="button" class="btn btn--ghost" id="review-width">${state.reviewWide ? "iPhone width" : "Desktop width"}</button>
+      </div>
+      <div class="review-nav">
+        <button type="button" class="btn btn--ghost" id="review-prev" ${index <= 0 ? "disabled" : ""}>Previous</button>
+        <button type="button" class="btn btn--ghost" id="review-next" ${index >= days.length - 1 ? "disabled" : ""}>Next</button>
+      </div>
+      <div class="review-frame${wide}" id="review-frame">
+        <p class="review-id">${esc(day.id)}</p>
+        ${renderToday(day, "", { preview: true })}
+      </div>
+    </section>`;
+}
+
+function renderLessonReview() {
+  if (state.isAdmin !== true) return "";
+  if (!state.lessonReview || state.lessonReview.mode === "list") return renderReviewList();
+  return renderReviewLesson();
+}
+
+function bindLessonReview() {
+  if (state.isAdmin !== true) return;
+  const exit = $("#review-exit");
+  if (exit) exit.onclick = () => {
+    state.lessonReview = null;
+    state.wantReview = false;
+    const url = new URL(location.href);
+    url.hash = "";
+    url.searchParams.delete("review");
+    history.replaceState(null, "", url.pathname + url.search);
+    render();
+  };
+  document.querySelectorAll(".review-card").forEach((btn) => {
+    btn.onclick = () => {
+      state.lessonReview = { mode: "lesson", id: btn.dataset.id };
+      render();
+    };
+  });
+  const back = $("#review-back");
+  if (back) back.onclick = () => {
+    state.lessonReview = { mode: "list" };
+    render();
+  };
+  const width = $("#review-width");
+  if (width) width.onclick = () => {
+    state.reviewWide = !state.reviewWide;
+    render();
+  };
+  const prev = $("#review-prev");
+  const next = $("#review-next");
+  const days = state.plan.days || [];
+  const step = (delta) => {
+    const index = reviewIndex();
+    const target = days[index + delta];
+    if (!target) return;
+    state.lessonReview = { mode: "lesson", id: target.id };
+    render();
+  };
+  if (prev && !prev.disabled) prev.onclick = () => step(-1);
+  if (next && !next.disabled) next.onclick = () => step(1);
+  bindCopies(document.querySelector("#review-frame") || document);
+  const shot = document.querySelector("#review-frame .shot");
+  if (shot) shot.onclick = () => openShot(shot);
+}
+
 function render() {
   const root = $("#app");
+  if (state.lessonReview && state.isAdmin !== true) state.lessonReview = null;
+  if (state.lessonReview && state.isAdmin === true) {
+    root.innerHTML = renderLessonReview();
+    bindLessonReview();
+    return;
+  }
   if (state.view != null && phase(state.view) === "locked") state.view = null;
   const banner = state.offline
     ? `<p class="warn" role="status">${esc(state.status)} <button type="button" class="linkish" id="retry">Try the server again</button></p>`
@@ -450,9 +607,10 @@ function lessonOnScreen() {
   return state.currentDay;
 }
 
-function renderToday(day, enter) {
-  const done = isDone(day.day);
-  const waiting = !done && paceActive();
+function renderToday(day, enter, options) {
+  const preview = !!(options && options.preview);
+  const done = preview ? false : isDone(day.day);
+  const waiting = preview ? false : !done && paceActive();
   const next = dayByNumber(day.day + 1);
   const started = state.createdAt
     ? `<p class="fine">Your first lesson started when you signed in.</p>`
@@ -484,11 +642,12 @@ function renderToday(day, enter) {
       </div>
       <div class="actions">
         ${done && state.complete ? `<p class="fine">You've finished every lesson that's here.</p>` : ""}
-        ${!done && !waiting ? `<button type="button" class="btn" id="done">${COMPLETE_LABEL}</button>` : ""}
+        ${preview ? `<button type="button" class="btn" id="done" disabled>${COMPLETE_LABEL}</button>` : ""}
+        ${!preview && !done && !waiting ? `<button type="button" class="btn" id="done">${COMPLETE_LABEL}</button>` : ""}
         ${done && next ? `<button type="button" class="btn btn--ghost" id="open-next">The next lesson is open.</button>` : ""}
       </div>
-      ${done && next ? reminderBlock(next.day) : ""}
-      ${shareBox(day)}
+      ${!preview && done && next ? reminderBlock(next.day) : ""}
+      ${preview ? "" : shareBox(day)}
     </article>
   `;
 }
@@ -535,6 +694,7 @@ function bindAdminCode() {
       if (data.adminToken) writeAdminToken(data.adminToken);
       state.isAdmin = true;
       state.needsAdminCode = true;
+      settleReview();
       render();
     } catch (e) {
       if (status) status.textContent = e.code === "admin_lock"
@@ -550,6 +710,7 @@ function renderAdmin() {
   return `
     <section class="card" id="admin" aria-label="Admin">
       <h2 class="lesson-title">Admin</h2>
+      <button type="button" class="btn" id="admin-review">Review lessons</button>
       <button type="button" class="btn" id="admin-csv">Download learner CSV</button>
       <button type="button" class="btn btn--ghost" id="admin-reset">Reset test rows</button>
       <label for="admin-first">Learner first name</label>
@@ -568,6 +729,13 @@ function bindAdmin() {
   if (state.isAdmin !== true) return;
   const status = $("#admin-status");
   const say = (text) => { if (status) status.textContent = text; };
+  const review = $("#admin-review");
+  if (review) review.onclick = () => {
+    state.wantReview = true;
+    state.lessonReview = { mode: "list" };
+    settleReview();
+    render();
+  };
   const csv = $("#admin-csv");
   if (csv) csv.onclick = async () => {
     say("");
@@ -932,7 +1100,7 @@ function bindCopies(root) {
 function bindToday(n) {
   bindCopies(document.querySelector("#today-card") || document);
   const done = $("#done");
-  if (done) {
+  if (done && !done.disabled) {
     done.onclick = async () => {
       done.disabled = true;
       await savePayload(n, { done: true, notes: slot(n).notes || "" }, "Marked done.", true);
@@ -1304,6 +1472,7 @@ function renderLearn() {
 }
 
 async function boot() {
+  state.wantReview = reviewRequested();
   const res = await fetch("/ai-30-days/days.json", { cache: "no-cache" });
   state.plan = await res.json();
   renderLearn();

@@ -466,8 +466,21 @@ ol.steps li { margin: 0 0 8px; }
   gap: 8px;
   margin-top: 14px;
 }
+.remind__when {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 8px;
+}
+.remind__field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .remind label { margin: 0; }
-.remind input[type="time"] { width: 100%; min-height: 48px; background: var(--ivory); }
+.remind input[type="date"],
+.remind input[type="time"] {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 48px;
+  background: var(--ivory);
+}
 .remind .btn { width: 100%; margin-top: 0; text-decoration: none; color: var(--charcoal); }
 @keyframes day-in {
   from { opacity: 0; transform: translateY(12px); }

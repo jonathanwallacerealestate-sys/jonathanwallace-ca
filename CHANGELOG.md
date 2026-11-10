@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: pick the reminder date
+Why: Jonathan asked learners to choose both the date and the time for the next-lesson reminder.
+- A date picker sits beside the time picker. It opens on tomorrow and will not go earlier than today. The calendar file uses that date and time as the learner's local time.
+
 ### AI bootcamp: tomorrow's lesson reminder
 Why: Jonathan asked the calendar file to remind a learner to log in the next morning for the next lesson.
 - After a lesson is finished, the reminder sits under the completion button. It is a one-time event the next morning, at 9:00 or the time they pick. The title is AI Bootcamp plus the next lesson. The note names that lesson, the one-line topic, and the login link.

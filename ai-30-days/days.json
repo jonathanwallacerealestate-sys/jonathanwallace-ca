@@ -147,12 +147,12 @@
         "Upload any marketing materials you have already created.",
         "Add the Faris Team logo.",
         "Have your AI turn it all into one brand guidelines file and save it.",
-        "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
+        "Before you close, ask your AI to save the decisions you made today in this chat. You'll move them into your decision log once you set it up."
       ],
       "assignment": "Done when your brand guidelines are saved and your AI can describe your fonts, colours and look back to you. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
         "I'm going to give you the fonts I like, my colour palette, my headshots, marketing materials I've made, and the Faris Team logo. Ask me anything you need, then create my brand guidelines: fonts, colours, photo style, logo use, and how my posts and materials should look. Save it so every marketing piece follows it.",
-        "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
+        "Before you close, ask your AI to save the decisions you made today in this chat. You'll move them into your decision log once you set it up."
       ]
     },
     {
@@ -169,12 +169,12 @@
         "Build a strategy together for how it will take these on, one at a time, starting with the easiest.",
         "Stay on this list. Do not drift into other topics.",
         "Ask it to save the ranked list and the strategy.",
-        "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
+        "Before you close, ask your AI to save the decisions you made today in this chat. You'll move them into your decision log once you set it up."
       ],
       "assignment": "Done when your full list is ranked easiest to hardest, the strategy is saved, and the first (easiest) task is picked. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
         "I'm going to brain dump every task in my business I hate doing. Don't suggest anything until I say I'm done. Then help me rank them from easiest to hardest for you to take on. Build a strategy for how we'll work through them one at a time, starting with the easiest. Keep us on this list and don't drift into other topics. Save the ranked list and the strategy.",
-        "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
+        "Before you close, ask your AI to save the decisions you made today in this chat. You'll move them into your decision log once you set it up."
       ]
     },
     {
@@ -191,12 +191,12 @@
         "Give it a couple of examples (real or mock).",
         "Create a skill (a saved set of steps your AI can repeat): you give it a person's details, it gives you 5 text options, or 5 email options if that is where they want to be met, to re-engage them into a conversation about buying or selling.",
         "Ask it to save the skill.",
-        "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
+        "Before you close, ask your AI to save the decisions you made today in this chat. You'll move them into your decision log once you set it up."
       ],
       "assignment": "Done when the re-engagement skill is saved and you have run it on one real dead lead and got 5 options back. Before you finish: log every decision you made today in your SOP, or update the SOP it belongs to.",
       "prompts": [
         "Research the best ways to re-engage cold real estate leads by text and by email, and the best practices for each. Then I'll explain my situation and give you a couple of examples. Create a skill: when I give you a person's details, give me 5 text messages, or 5 email options if email is where they'd rather be reached, to restart a conversation about buying or selling. Don't send anything. I approve first.",
-        "Before we close, give me every decision we made in this chat. Tell me which SOP each one belongs in, update that SOP if it already exists, or give me new rows for my decision log."
+        "Before you close, ask your AI to save the decisions you made today in this chat. You'll move them into your decision log once you set it up."
       ]
     },
     {

@@ -413,6 +413,15 @@ function render() {
   state.justAdvanced = false;
 }
 
+function stepLinks(day, stepNumber) {
+  const links = Array.isArray(day.links) ? day.links.filter((link) => link && link.step === stepNumber) : [];
+  if (!links.length) return "";
+  const items = links.filter((link) => /^https:\/\/apps\.apple\.com\//.test(link.href || "")).map((link) =>
+    `<li><a href="${esc(link.href)}" target="_blank" rel="noopener noreferrer">${esc(link.label)}</a></li>`
+  ).join("");
+  return items ? `<ul class="step-links">${items}</ul>` : "";
+}
+
 function lessonDownload(day) {
   if (!day || !/^[a-z0-9-]+$/.test(day.id || "")) return "";
   const href = `/ai-30-days/kit/lessons/${day.id}.zip`;
@@ -446,7 +455,7 @@ function renderToday(day, enter) {
       ${day.optional ? `<p class="optional"><strong>Optional.</strong> ${esc(day.optionalNote || `You can skip this lesson and tap ${COMPLETE_LABEL}`)}</p>` : ""}
       ${day.catchUp ? `<p class="catch">Good spot to catch up.</p>` : ""}
       ${day.day === 1 ? started : ""}
-      <ol class="steps">${day.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+      <ol class="steps">${day.steps.map((s, index) => `<li>${esc(s)}${stepLinks(day, index + 1)}</li>`).join("")}</ol>
       ${day.tip ? `<p class="tip"><strong>Tip.</strong> ${esc(day.tip)}</p>` : ""}
       ${day.assignment ? `<p class="assignment"><strong>Challenge.</strong> ${esc(day.assignment)}</p>` : ""}
       ${day.sample ? `<div class="sample"><p class="kicker">Sample, made up</p><pre class="sample__text">${esc(day.sample)}</pre></div>` : ""}

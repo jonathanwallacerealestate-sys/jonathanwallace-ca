@@ -168,7 +168,15 @@ for (const day of plan.days) {
 assert.equal(plan.days[1].minutes, "30 minutes to start, longer if you go deeper");
 assert.equal(plan.days[2].minutes, "30 minutes to start, longer if you go deeper");
 assert.equal(plan.days[0].title, "Pick Your AI and Tell It About Your Business");
-assert.equal(plan.days[0].steps[0], "Pick one AI and start on the paid plan: Grok Premium or Claude Pro. My pick for real estate agents is Grok.");
+assert.equal(plan.days[0].id, "pick-your-ai");
+assert.equal(plan.days[0].steps[0], "Pick one AI and start on the paid plan: Grok Bot or Claude Pro. My pick for real estate agents is Grok Bot.");
+assert.equal(plan.days[0].steps[1], "Install it on your phone and your computer.");
+assert.deepEqual(plan.days[0].links, [
+  { step: 2, label: "Grok Bot for iPhone", href: "https://apps.apple.com/ca/app/grok-bot/id6794501026" },
+  { step: 2, label: "Claude for iPhone", href: "https://apps.apple.com/ca/app/claude-by-anthropic/id6473753684" },
+]);
+assert.ok(plan.days.slice(1).every((day) => !day.links));
+assert.doesNotMatch(JSON.stringify(plan), /Grok Premium|6670324846/);
 assert.doesNotMatch(JSON.stringify(plan.days[0]), /start free/i);
 assert.doesNotMatch(plan.days[0].steps[0], /\$\d/);
 assert.equal(plan.days[0].prompts[1], "Save everything we set up today, so you remember it next time.");
@@ -340,6 +348,8 @@ assert.match(portalSrc, /Nothing here yet\. Share one thing you learned, a quest
 assert.match(portalSrc, />Stuck</);
 assert.match(portalSrc, /<strong>Challenge\.<\/strong>/);
 assert.match(portalSrc, /The more you teach it, the better it gets\./);
+assert.match(portalSrc, /class="step-links"/);
+assert.match(portalSrc, /target="_blank" rel="noopener noreferrer"/);
 assert.match(portalSrc, /Download this lesson's files/);
 assert.match(portalSrc, /Type a reply first\./);
 assert.match(portalSrc, /That didn't post\. Check your connection and try again\./);
@@ -621,7 +631,10 @@ assert.match(promptsMd, /save them to my decision log\./);
 {
   const lessonZip = execFileSync("python3", ["-c", "import zipfile; z=zipfile.ZipFile('ai-30-days/kit/lessons/pick-your-ai.zip'); print('\\n'.join(z.namelist())); print('---'); print(z.read([n for n in z.namelist() if n.endswith('.txt')][0]).decode())"], { cwd: repoRoot, encoding: "utf8" });
   assert.match(lessonZip, /Pick Your AI and Tell It About Your Business\/Pick Your AI and Tell It About Your Business\.txt/);
-  assert.match(lessonZip, /Grok Premium or Claude Pro/);
+  assert.match(lessonZip, /Grok Bot or Claude Pro/);
+  assert.match(lessonZip, /Grok Bot for iPhone: https:\/\/apps\.apple\.com\/ca\/app\/grok-bot\/id6794501026/);
+  assert.match(lessonZip, /Claude for iPhone: https:\/\/apps\.apple\.com\/ca\/app\/claude-by-anthropic\/id6473753684/);
+  assert.doesNotMatch(lessonZip, /Grok Premium|6670324846/);
   assert.doesNotMatch(lessonZip, /start free/i);
   assert.match(lessonZip, /^Challenge$/m);
   assert.doesNotMatch(lessonZip, /^Assignment$/m);

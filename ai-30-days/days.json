@@ -99,10 +99,22 @@
       "catchUp": false,
       "visual": "about",
       "steps": [
-        "Pick one AI and start on the paid plan: Grok Premium or Claude Pro. My pick for real estate agents is Grok.",
+        "Pick one AI and start on the paid plan: Grok Bot or Claude Pro. My pick for real estate agents is Grok Bot.",
         "Install it on your phone and your computer.",
         "Explain your business: who you are, your experience, and everything it would need to know to help you. Examples: how many houses you have sold, what areas you like to work in, and the roadblocks and challenges where it could help you manage, fix, solve or add leverage.",
         "Ask it to save what you set up today."
+      ],
+      "links": [
+        {
+          "step": 2,
+          "label": "Grok Bot for iPhone",
+          "href": "https://apps.apple.com/ca/app/grok-bot/id6794501026"
+        },
+        {
+          "step": 2,
+          "label": "Claude for iPhone",
+          "href": "https://apps.apple.com/ca/app/claude-by-anthropic/id6473753684"
+        }
       ],
       "assignment": "Done when it can play back a short summary of your business and you are happy it is accurate.",
       "prompts": [

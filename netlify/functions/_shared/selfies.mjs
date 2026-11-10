@@ -61,9 +61,29 @@ function driveAccount() {
   return { account: JSON.parse(raw), folder };
 }
 
+async function postSelfieWebhook(url, bytes, filename) {
+  const boundary = "bootcampselfie";
+  const safeName = String(filename).replace(/["\r\n]/g, "");
+  const body = Buffer.concat([
+    Buffer.from(
+      `--${boundary}\r\nContent-Disposition: form-data; name="filename"\r\n\r\n${safeName}\r\n` +
+      `--${boundary}\r\nContent-Disposition: form-data; name="file"; filename="${safeName}"\r\nContent-Type: image/jpeg\r\n\r\n`,
+    ),
+    bytes,
+    Buffer.from(`\r\n--${boundary}--`),
+  ]);
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": `multipart/form-data; boundary=${boundary}` },
+    body,
+  });
+  if (!res.ok) throw new Error("webhook");
+}
+
 export async function uploadSelfieToDrive(bytes, filename) {
   const ready = driveAccount();
-  const hook = env("AI30_SELFIE_WEBHOOK");
+  const hook = env("AI30_SELFIE_WEBHOOK_URL") || env("AI30_SELFIE_WEBHOOK");
+  let saved = false;
   if (ready) {
     const token = await driveToken(ready.account);
     const boundary = "bootcampselfie";
@@ -82,17 +102,13 @@ export async function uploadSelfieToDrive(bytes, filename) {
       body,
     });
     if (!res.ok) throw new Error("drive");
-    return { ok: true, drive: "saved" };
+    saved = true;
   }
-  if (hook) {
-    const res = await fetch(hook, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ filename, image: Buffer.from(bytes).toString("base64") }),
-    });
-    if (!res.ok) throw new Error("webhook");
-    return { ok: true, drive: "saved" };
+  if (hook && !ready) {
+    await postSelfieWebhook(hook, bytes, filename);
+    saved = true;
   }
+  if (saved) return { ok: true, drive: ready ? "service_account" : "webhook" };
   return { ok: false, drive: "not_connected" };
 }
 

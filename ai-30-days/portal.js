@@ -255,7 +255,7 @@ function render() {
   const banner = state.offline
     ? `<p class="warn" role="status">${esc(state.status)} <button type="button" class="linkish" id="retry">Try the server again</button></p>`
     : "";
-  const locked = state.lockNote ? `<p class="lockline" role="status">${LOCK} ${esc(state.lockNote)}</p>` : "";
+  const locked = state.lockNote ? `<p class="lockline" role="status">${LOCK}<span>${esc(state.lockNote)}</span></p>` : "";
   const peers = state.note ? `<p class="peers" role="status">${esc(state.note)}</p>` : "";
   const enter = state.justAdvanced ? " card--next" : "";
 
@@ -295,7 +295,6 @@ function render() {
 
 function renderToday(day, enter) {
   const done = isDone(day.day);
-  const notes = slot(day.day).notes || "";
   const started = state.createdAt
     ? `<p class="fine">Your first lesson started when you signed in. There is no shared calendar.</p>`
     : `<p class="fine">Your first lesson starts when you sign in. There is no shared calendar.</p>`;
@@ -322,8 +321,6 @@ function renderToday(day, enter) {
           <span class="shot__frame">${exampleMarkup(day.visual)}</span>
         </button>
       </div>
-      <label for="notes">Notes</label>
-      <textarea id="notes" maxlength="2000" ${done && day.day !== state.currentDay && state.complete ? "" : ""}>${esc(notes)}</textarea>
       <div class="actions">
         ${done && state.complete ? `<p class="fine">You've finished every lesson that's here.</p>` : ""}
         ${!done ? `<button type="button" class="btn" id="done">${COMPLETE_LABEL}</button>` : `<p class="fine">Marked done. The next lesson is open.</p>`}
@@ -518,20 +515,11 @@ function bindCopies(root) {
 
 function bindToday(n) {
   bindCopies(document.querySelector("#today-card") || document);
-  const notes = $("#notes");
-  if (notes) {
-    let timer;
-    notes.oninput = () => {
-      clearTimeout(timer);
-      timer = setTimeout(() => saveNotes(n, notes.value), 700);
-    };
-  }
   const done = $("#done");
   if (done) {
     done.onclick = async () => {
       done.disabled = true;
-      const notesValue = $("#notes") ? $("#notes").value : "";
-      await savePayload(n, { done: true, notes: notesValue }, "Marked done.", true);
+      await savePayload(n, { done: true, notes: slot(n).notes || "" }, "Marked done.", true);
     };
   }
   const shot = document.querySelector("#today-card .shot");
@@ -734,19 +722,6 @@ function explain(error) {
     return "Use a first and last name, letters only, up to 40 characters each.";
   }
   return "Could not save on the server. Your place in the plan is unchanged.";
-}
-
-async function saveNotes(n, notes) {
-  const days = payloadFromState(n, { notes });
-  try {
-    applyRecord(await post("save", { days }));
-    state.offline = false;
-    const status = $("#save-status");
-    if (status) status.textContent = "Notes saved.";
-  } catch (e) {
-    const status = $("#save-status");
-    if (status) status.textContent = explain(e);
-  }
 }
 
 async function savePayload(n, change, okMessage, advance) {

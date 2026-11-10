@@ -16,6 +16,15 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### AI bootcamp: buttons centred, and a Make selfie webhook
+Why: Jonathan asked for every button to be easy to tap on a phone, and for selfies to be able to land in Google Drive through Make.com.
+- Gold and outline buttons span the card and centre their label. Tap targets stay at least 44 pixels tall. On a phone the header stacks, the time chip sits under the lesson title, and reply buttons sit under the reply box.
+- If AI30_SELFIE_WEBHOOK_URL is set, each selfie is posted to that webhook as a multipart file plus the filename, after the Blobs backup is saved. A Google service account remains the other way to reach Drive.
+
+### AI bootcamp: private lesson notes removed
+Why: Jonathan asked for the private notes box to come off the bottom of each lesson.
+- The notes field is gone. The completion button and the group share box stay.
+
 ### AI bootcamp: print checklist removed
 Why: Jonathan asked for the print checklist to come off the learning centre entirely.
 - The button, the print view, and the code that built it are gone.

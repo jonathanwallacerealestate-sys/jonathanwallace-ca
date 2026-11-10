@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: brand guidelines interview
+Why: Jonathan rewrote Build Your Brand Guidelines so the lesson starts from examples and ends with a saved file.
+- The steps cover fonts and colours, Instagram posts, what to avoid, headshots and the Faris Team logo, a 10-question interview, then saving the guidelines and the decisions. The lesson id, title, why, time, and example are unchanged.
+
 ### AI bootcamp: writing style samples and pet peeves
 Why: Jonathan rewrote the start of Teach It Your Writing Style so people can paste links and name what they do not want.
 - The first step now asks for samples, including a blog or social link, and why you like it. The next step asks for pet peeves, such as em dashes, long paragraphs, and salesy words. The first prompt asks for what you like about each link, and the second prompt is "Save everything we set up today, so you remember it next time." The lesson id is unchanged.

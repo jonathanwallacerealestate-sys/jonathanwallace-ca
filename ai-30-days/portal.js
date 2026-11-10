@@ -169,33 +169,60 @@ const SELFIE_HELLO = "Got your learning selfie. Good job. Now you know how to st
 const CONTEST_END = Date.parse("2026-12-12T01:00:00.000Z");
 let feedTimer = 0;
 
-function icsHref(day, timeValue) {
-  const value = /^\d{2}:\d{2}$/.test(timeValue || "") ? timeValue : "09:00";
-  const [hh, mm] = value.split(":");
-  const start = new Date();
-  start.setDate(start.getDate() + 1);
+function isoDate(date) {
   const p = (n) => String(n).padStart(2, "0");
-  const date = `${start.getFullYear()}${p(start.getMonth() + 1)}${p(start.getDate())}`;
-  return `/api/ai-30-days/ics?day=${day}&date=${date}&time=${hh}${mm}`;
+  return `${date.getFullYear()}-${p(date.getMonth() + 1)}-${p(date.getDate())}`;
+}
+
+function shiftLocalDate(days) {
+  const date = new Date();
+  date.setDate(date.getDate() + days);
+  return isoDate(date);
+}
+
+function icsHref(day, dateValue, timeValue) {
+  const time = /^\d{2}:\d{2}$/.test(timeValue || "") ? timeValue : "09:00";
+  const [hh, mm] = time.split(":");
+  const today = shiftLocalDate(0);
+  const tomorrow = shiftLocalDate(1);
+  let date = /^\d{4}-\d{2}-\d{2}$/.test(dateValue || "") ? dateValue : tomorrow;
+  if (date < today) date = today;
+  return `/api/ai-30-days/ics?day=${day}&date=${date.replace(/-/g, "")}&time=${hh}${mm}`;
 }
 
 function reminderBlock(day) {
+  const today = shiftLocalDate(0);
+  const tomorrow = shiftLocalDate(1);
   return `
     <div class="remind">
-      <label for="remind-time-${day}">Reminder time</label>
-      <input type="time" id="remind-time-${day}" value="09:00">
-      <a class="btn btn--ghost" id="remind-${day}" href="${icsHref(day, "09:00")}">Add tomorrow's lesson to my calendar</a>
+      <div class="remind__when">
+        <div class="remind__field">
+          <label for="remind-date-${day}">Reminder date</label>
+          <input type="date" id="remind-date-${day}" value="${tomorrow}" min="${today}">
+        </div>
+        <div class="remind__field">
+          <label for="remind-time-${day}">Reminder time</label>
+          <input type="time" id="remind-time-${day}" value="09:00">
+        </div>
+      </div>
+      <a class="btn btn--ghost" id="remind-${day}" href="${icsHref(day, tomorrow, "09:00")}">Add tomorrow's lesson to my calendar</a>
     </div>
   `;
 }
 
 function bindReminder(day) {
-  const input = document.querySelector(`#remind-time-${day}`);
+  const date = document.querySelector(`#remind-date-${day}`);
+  const time = document.querySelector(`#remind-time-${day}`);
   const link = document.querySelector(`#remind-${day}`);
-  if (!input || !link) return;
-  const sync = () => { link.href = icsHref(day, input.value); };
-  input.addEventListener("input", sync);
-  input.addEventListener("change", sync);
+  if (!date || !time || !link) return;
+  const sync = () => {
+    if (!date.value || (date.min && date.value < date.min)) date.value = date.min || shiftLocalDate(1);
+    link.href = icsHref(day, date.value, time.value);
+  };
+  date.addEventListener("input", sync);
+  date.addEventListener("change", sync);
+  time.addEventListener("input", sync);
+  time.addEventListener("change", sync);
 }
 
 function refuseLocked() {

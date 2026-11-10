@@ -203,6 +203,9 @@ assert.match(tomorrow, /SUMMARY:AI Bootcamp: Teach It Your Writing Style/);
 assert.match(tomorrow, /Time for tomorrow's AI lesson: Teach It Your Writing Style\. What you feed it is what it writes like\. Log in here: https:\/\/jonathanwallace\.ca\/ai-30-days/);
 assert.doesNotMatch(buildIcs(plan.days[0], when), /—/);
 assert.match(portalPlaceholder(), /reminderBlock\(next\.day\)/);
+assert.match(portalPlaceholder(), /type="date"/);
+assert.match(portalPlaceholder(), /Reminder date/);
+assert.match(portalPlaceholder(), /min="\$\{today\}"/);
 
 function portalPlaceholder() {
   return readFileSync(new URL("../ai-30-days/portal.js", import.meta.url), "utf8");

@@ -21,6 +21,7 @@ body {
   background: var(--ivory);
   line-height: 1.55;
   font-size: 17px;
+  overflow-x: clip;
 }
 button, input, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
@@ -30,8 +31,8 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.01e
 .bar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 12px 20px;
+  align-items: flex-start;
+  gap: 8px 20px;
   flex-wrap: wrap;
   padding: 14px 16px;
   background: var(--charcoal);
@@ -123,8 +124,8 @@ textarea { min-height: 120px; resize: vertical; }
 .btn:disabled { opacity: 0.55; cursor: default; }
 .btn--ghost {
   background: transparent;
-  width: auto;
-  margin-top: 0;
+  width: 100%;
+  margin-top: 10px;
 }
 .fine { color: var(--muted); font-size: 0.92rem; margin: 10px 0 0; }
 .err { color: #6e2e2e; font-weight: 700; margin: 10px 0 0; }
@@ -154,9 +155,9 @@ textarea { min-height: 120px; resize: vertical; }
   border-color: var(--charcoal);
 }
 
-.dayhead { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.dayhead { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 .lesson-count { font-size: clamp(2rem, 8vw, 2.8rem); margin: 0; }
-.lesson-title { font-size: clamp(1.5rem, 5vw, 2rem); margin-top: 8px; }
+.lesson-title { font-size: clamp(1.45rem, 5vw, 2rem); margin-top: 8px; overflow-wrap: anywhere; }
 .chip {
   flex: 0 0 auto;
   border: 1px solid var(--gold);
@@ -203,6 +204,9 @@ ol.steps li { margin: 0 0 8px; }
   font-size: 0.95rem;
 }
 .copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 44px;
   min-width: 44px;
   border-radius: 999px;
@@ -210,6 +214,7 @@ ol.steps li { margin: 0 0 8px; }
   background: var(--paper);
   padding: 8px 16px;
   font-weight: 700;
+  text-align: center;
 }
 .prompt + .prompt { margin-top: 10px; }
 
@@ -225,11 +230,12 @@ ol.steps li { margin: 0 0 8px; }
   border-radius: 12px;
 }
 .shot__frame {
-  max-height: 260px;
+  max-height: 280px;
   overflow: hidden;
   border-radius: 12px;
   position: relative;
 }
+.shot__frame .ex { padding-bottom: 42px; }
 .shot__frame::after {
   content: "Tap to enlarge";
   position: absolute;
@@ -244,8 +250,8 @@ ol.steps li { margin: 0 0 8px; }
   border-radius: 999px;
 }
 
-.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-.actions .btn { width: auto; flex: 1 1 160px; margin-top: 0; }
+.actions { display: block; margin-top: 14px; }
+.actions .btn { width: 100%; margin-top: 0; }
 .status { min-height: 1.2em; font-size: 0.92rem; color: var(--muted); margin: 8px 0 0; }
 
 .grid {
@@ -288,8 +294,8 @@ ol.steps li { margin: 0 0 8px; }
 .board__head,
 .board__row {
   display: grid;
-  grid-template-columns: 3.2rem 1.4fr auto auto;
-  gap: 10px;
+  grid-template-columns: 2.2rem minmax(0, 1fr) auto auto;
+  gap: 8px;
   align-items: center;
   min-height: 44px;
 }
@@ -310,7 +316,7 @@ ol.steps li { margin: 0 0 8px; }
   margin: 4px 0;
 }
 .board__rank { font-family: var(--serif); font-size: 1.25rem; }
-.board__name { font-weight: 700; }
+.board__name { font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
 .board__done { font-weight: 700; }
 .board__tag {
   margin-left: 6px;
@@ -326,36 +332,39 @@ ol.steps li { margin: 0 0 8px; }
 .selfie__actions { display: flex; gap: 8px; margin-top: 8px; }
 .selfie__actions .btn { flex: 1; }
 .selfie img { width: 100%; max-height: 420px; object-fit: contain; border-radius: 12px; background: var(--charcoal); }
-.tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
-.tag { min-height: 44px; border-radius: 999px; border: 1px solid var(--line); background: transparent; padding: 8px 14px; font-weight: 700; }
+.tags { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 8px 0; }
+.tag { min-height: 44px; border-radius: 999px; border: 1px solid var(--line); background: transparent; padding: 8px 6px; font-weight: 700; text-align: center; }
 .tag[aria-pressed="true"] { background: var(--charcoal); color: var(--ivory); border-color: var(--charcoal); }
 .pill { display: inline-block; border: 1px solid var(--gold); border-radius: 999px; padding: 2px 8px; font-size: 0.78rem; font-weight: 700; margin-right: 6px; }
 .post { border-top: 1px solid var(--line); padding: 12px 0; }
 .post header, .reply header { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
-.reply { margin: 8px 0 8px 16px; }
-.replybox { display: flex; gap: 8px; align-items: center; }
+.reply { margin: 8px 0 8px 12px; }
+.replybox { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
 .replybox textarea { min-height: 64px; }
+.replybox .btn { width: 100%; }
+.remove { min-height: 44px; min-width: 44px; padding: 8px 4px; }
 .sample__text { white-space: pre-wrap; font-family: var(--sans); background: var(--ivory); border-radius: 12px; padding: 12px; }
 
 .lockline {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   margin: 12px 0 0;
   color: var(--charcoal);
   font-weight: 700;
 }
+.lockline span { min-width: 0; }
 .lock { display: block; flex: 0 0 auto; }
 .remind {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: stretch;
   gap: 8px;
-  align-items: center;
   margin-top: 14px;
 }
 .remind label { margin: 0; }
-.remind input[type="time"] { width: auto; min-width: 8.5rem; background: var(--ivory); }
-.remind .btn { width: auto; margin-top: 0; flex: 1 1 220px; text-decoration: none; color: var(--charcoal); }
+.remind input[type="time"] { width: 100%; min-height: 48px; background: var(--ivory); }
+.remind .btn { width: 100%; margin-top: 0; text-decoration: none; color: var(--charcoal); }
 @keyframes day-in {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: none; }
@@ -397,10 +406,17 @@ dialog {
 dialog::backdrop { background: rgba(20, 20, 20, 0.72); }
 .lb-close { margin-bottom: 10px; }
 
+@media (max-width: 719px) {
+  .bar { flex-direction: column; align-items: stretch; }
+  .who { margin-left: 0; text-align: left; }
+}
 @media (min-width: 720px) {
   .grid { grid-template-columns: repeat(10, 1fr); }
   .rule, .shell, .signoff { padding-left: 0; padding-right: 0; }
   .card { padding: 22px 22px 18px; }
+  .dayhead { flex-direction: row; justify-content: space-between; align-items: flex-start; }
+  .bar { align-items: center; }
+  .who { text-align: right; }
 }
 
 /* Example mockups. Fictional Sample Realty, not the portal brand. */

@@ -255,7 +255,7 @@ function render() {
   const banner = state.offline
     ? `<p class="warn" role="status">${esc(state.status)} <button type="button" class="linkish" id="retry">Try the server again</button></p>`
     : "";
-  const locked = state.lockNote ? `<p class="lockline" role="status">${LOCK} ${esc(state.lockNote)}</p>` : "";
+  const locked = state.lockNote ? `<p class="lockline" role="status">${LOCK}<span>${esc(state.lockNote)}</span></p>` : "";
   const peers = state.note ? `<p class="peers" role="status">${esc(state.note)}</p>` : "";
   const enter = state.justAdvanced ? " card--next" : "";
 

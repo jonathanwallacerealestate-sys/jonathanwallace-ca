@@ -171,7 +171,8 @@ assert.match(portalSrc, /Got your learning selfie\. Good job\. Now you know how 
 assert.match(portalSrc, /Leaderboard closes Friday, December 11 at 8 PM\./);
 assert.match(portalSrc, /The winner gets 2 hours of one-on-one AI coaching with Jonathan\./);
 assert.match(portalSrc, /3 more when you answer someone else's question/);
-assert.doesNotMatch(portalSrc, /Your selfie is shared/);
+assert.doesNotMatch(portalSrc, /Your selfie is shared|Print checklist|printChecklist/);
+assert.doesNotMatch(readFileSync(new URL("../ai-30-days/index.html", import.meta.url), "utf8"), /Print checklist|print-root/);
 assert.doesNotMatch(readFileSync(new URL("../ai-30-days/index.html", import.meta.url), "utf8"), /So we can send you updates/);
 assert.doesNotMatch(portalSrc, /role="img" aria-label="Progress"/);
 

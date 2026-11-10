@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### AI bootcamp: print checklist removed
+Why: Jonathan asked for the print checklist to come off the learning centre entirely.
+- The button, the print view, and the code that built it are gone.
+
 ### AI bootcamp: points, live board, selfie unlock, and email
 Why: Jonathan asked for a points contest through Friday, December 11 at 8 PM Eastern, a live group board, a private selfie that unlocks the points explainer, and an email on every sign-in.
 - The All lessons tab and the progress bar stay off. A note says whether you are ahead of, in step with, or behind your peers, using points.

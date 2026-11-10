@@ -192,8 +192,6 @@ function lessonTotal() {
 function show(name) {
   $("#gate").hidden = name !== "gate";
   $("#app").hidden = name !== "app";
-  const print = $("#print");
-  if (print) print.hidden = name === "gate";
   const who = readWho();
   $("#who").hidden = !who;
   if (who) $("#who-name").textContent = `${who.first} ${who.last}`;
@@ -782,20 +780,6 @@ function openShot(shot) {
   else box.setAttribute("open", "");
 }
 
-function printChecklist() {
-  const root = $("#print-root");
-  const days = state.plan.days.map((d) => `
-    <article class="print-day">
-      <h2><span class="box"></span>${esc(d.title)}</h2>
-      <p>${esc(d.section)} · About ${esc(d.minutes)}${d.catchUp ? " · Good spot to catch up" : ""}${isDone(d.day) ? " · Done" : ""}</p>
-      <p>${esc(d.why)}</p>
-      <ol>${d.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
-    </article>
-  `).join("");
-  root.innerHTML = `<h1>${esc(state.plan.title)}</h1><p>${esc(state.plan.rule)}</p>${days}<p>${esc(state.plan.signature)}</p>`;
-  window.print();
-}
-
 function renderLearn() {
   const root = $("#learn");
   if (!root || !state.plan) return;
@@ -850,7 +834,6 @@ $("#gate-form").onsubmit = async (event) => {
 };
 
 $("#not-you").onclick = () => signOut();
-$("#print").onclick = () => { if (state.plan) printChecklist(); };
 $("#lb-close").onclick = () => {
   const box = $("#lightbox");
   if (box.close) box.close();

@@ -2,6 +2,8 @@
   "updated": "2026-11-09",
   "source": "REALTOR.ca Faris Team organization listings",
   "attribution": "Listed by Faris Team Real Estate Brokerage",
+  "batch": 2,
+  "note": "Batches 1-2: first 30 Faris Team listings on /listings/.",
   "listings": [
     {
       "address": "2087 Rumney Road",
@@ -112,8 +114,226 @@
       "mls": "S14132750",
       "url": "https://www.realtor.ca/real-estate/30461809/286-anne-street-n-barrie-letitia-heights",
       "imageUrl": "https://cdn.realtor.ca/listings/TS639289639611730000/reb82/lowres/0/s14132750_1.jpg"
+    },
+    {
+      "address": "11 Churchlea Mews",
+      "town": "Orillia",
+      "price": 637500,
+      "beds": "3",
+      "baths": "3",
+      "type": "Townhouse",
+      "mls": "S14129834",
+      "url": "https://www.realtor.ca/real-estate/30458661/11-churchlea-mews-orillia",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639288884896270000/reb82/lowres/4/s14129834_1.jpg"
+    },
+    {
+      "address": "34 Oakwood Avenue",
+      "town": "Tiny",
+      "price": 999900,
+      "beds": "3",
+      "baths": "3",
+      "type": "House",
+      "mls": "S14127284",
+      "url": "https://www.realtor.ca/real-estate/30456023/34-oakwood-avenue-tiny-rural-tiny",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639288631797930000/reb82/medres/4/s14127284_1.jpg"
+    },
+    {
+      "address": "8485 Highway 93",
+      "town": "Tiny",
+      "price": 2170000,
+      "beds": "",
+      "baths": "",
+      "type": "Agriculture",
+      "mls": "S14121734",
+      "url": "https://www.realtor.ca/real-estate/30449472/8485-highway-93-tiny-rural-tiny",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639287120810370000/reb82/medres/4/s14121734_1.jpg"
+    },
+    {
+      "address": "107 Stillwater Crescent",
+      "town": "Blue Mountains",
+      "price": 1289999,
+      "beds": "2 + 2",
+      "baths": "3",
+      "type": "House",
+      "mls": "X14114262",
+      "url": "https://www.realtor.ca/real-estate/30441165/107-stillwater-crescent-blue-mountains",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639284439780370000/reb82/medres/2/x14114262_1.jpg"
+    },
+    {
+      "address": "45 Marina Village Drive",
+      "town": "Georgian Bay (Baxter)",
+      "price": 425000,
+      "beds": "3",
+      "baths": "2",
+      "type": "House",
+      "mls": "X14112834",
+      "url": "https://www.realtor.ca/real-estate/30439434/45-marina-village-drive-georgian-bay-baxter",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639283718595000000/reb82/medres/4/x14112834_1.jpg"
+    },
+    {
+      "address": "1490 Champlain Road",
+      "town": "Tiny",
+      "price": 974900,
+      "beds": "2",
+      "baths": "2",
+      "type": "House",
+      "mls": "S14108136",
+      "url": "https://www.realtor.ca/real-estate/30434323/1490-champlain-road-tiny-rural-tiny",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639282800745100000/reb82/medres/6/s14108136_1.jpg"
+    },
+    {
+      "address": "301 - 10 Bay Street E",
+      "town": "Blue Mountains",
+      "price": 749900,
+      "beds": "3",
+      "baths": "2",
+      "type": "Condo / apartment",
+      "mls": "X14102150",
+      "url": "https://www.realtor.ca/real-estate/30427612/301-10-bay-street-e-blue-mountains",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639281796177430000/reb82/medres/0/x14102150_1.jpg"
+    },
+    {
+      "address": "7 Couchiching Crescent",
+      "town": "Tiny",
+      "price": 549900,
+      "beds": "2 + 1",
+      "baths": "2",
+      "type": "House",
+      "mls": "S14097172",
+      "url": "https://www.realtor.ca/real-estate/30422170/7-couchiching-crescent-tiny-rural-tiny",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639280892250530000/reb82/medres/2/s14097172_1.jpg"
+    },
+    {
+      "address": "Block C Part 1 Tiny Beaches Road N",
+      "town": "Tiny",
+      "price": 154900,
+      "beds": "",
+      "baths": "",
+      "type": "Vacant land",
+      "mls": "S14095142",
+      "url": "https://www.realtor.ca/real-estate/30420014/block-c-part-1-tiny-beaches-road-n-tiny-rural-tiny",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639280244707070000/reb82/medres/2/s14095142_1.jpg"
+    },
+    {
+      "address": "51 Beck Boulevard",
+      "town": "Penetanguishene",
+      "price": 649900,
+      "beds": "3 + 1",
+      "baths": "2",
+      "type": "House",
+      "mls": "S14095000",
+      "url": "https://www.realtor.ca/real-estate/30419655/51-beck-boulevard-penetanguishene",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639280209376330000/reb82/medres/0/s14095000_1.jpg"
+    },
+    {
+      "address": "1 Hallen Drive",
+      "town": "Penetanguishene",
+      "price": 765000,
+      "beds": "3 + 1",
+      "baths": "4",
+      "type": "House",
+      "mls": "S14085416",
+      "url": "https://www.realtor.ca/real-estate/30409860/1-hallen-drive-penetanguishene",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639277415426330000/reb82/medres/6/s14085416_1.jpg"
+    },
+    {
+      "address": "421 Midland Avenue",
+      "town": "Midland",
+      "price": 639000,
+      "beds": "3",
+      "baths": "3",
+      "type": "House",
+      "mls": "S14031948",
+      "url": "https://www.realtor.ca/real-estate/30400176/421-midland-avenue-midland",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639275780532300000/reb82/medres/8/s14031948_1.jpg"
+    },
+    {
+      "address": "584 Curry Road",
+      "town": "Penetanguishene",
+      "price": 375000,
+      "beds": "",
+      "baths": "",
+      "type": "Vacant land",
+      "mls": "S13884370",
+      "url": "https://www.realtor.ca/real-estate/30389849/584-curry-road-penetanguishene",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639272249786700000/reb82/medres/0/s13884370_1.jpg"
+    },
+    {
+      "address": "1499 Tay Point Road",
+      "town": "Penetanguishene",
+      "price": 244900,
+      "beds": "",
+      "baths": "",
+      "type": "Vacant land",
+      "mls": "S13884384",
+      "url": "https://www.realtor.ca/real-estate/30389850/1499-tay-point-road-penetanguishene",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639272249787200000/reb82/medres/4/s13884384_1.jpg"
+    },
+    {
+      "address": "570 Curry Road",
+      "town": "Penetanguishene",
+      "price": 399900,
+      "beds": "",
+      "baths": "",
+      "type": "Vacant land",
+      "mls": "S13884322",
+      "url": "https://www.realtor.ca/real-estate/30389761/570-curry-road-penetanguishene",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639272230511270000/reb82/medres/2/s13884322_1.jpg"
+    },
+    {
+      "address": "238 Robins Point Road",
+      "town": "Tay (Victoria Harbour)",
+      "price": 1259999,
+      "beds": "4 + 1",
+      "baths": "4",
+      "type": "Multi-family",
+      "mls": "S13863570",
+      "url": "https://www.realtor.ca/real-estate/30366320/238-robins-point-road-tay-victoria-harbour",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639268113220770000/reb82/medres/0/s13863570_1.jpg"
+    },
+    {
+      "address": "24 Laurie Crescent",
+      "town": "Barrie (Wellington)",
+      "price": 638000,
+      "beds": "3 + 1",
+      "baths": "2",
+      "type": "House",
+      "mls": "S13861836",
+      "url": "https://www.realtor.ca/real-estate/30364454/24-laurie-crescent-barrie-wellington",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639267983504930000/reb82/medres/6/s13861836_1.jpg"
+    },
+    {
+      "address": "Lot 9 James Street",
+      "town": "Tiny",
+      "price": 429900,
+      "beds": "",
+      "baths": "",
+      "type": "Vacant land",
+      "mls": "S13858252",
+      "url": "https://www.realtor.ca/real-estate/30360899/lot-9-james-street-tiny-rural-tiny",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639266201891530000/reb82/medres/2/s13858252_1.jpg"
+    },
+    {
+      "address": "7 Reynolds Road",
+      "town": "Tiny (Wyevale)",
+      "price": 1589900,
+      "beds": "3 + 3",
+      "baths": "5",
+      "type": "House",
+      "mls": "S13858180",
+      "url": "https://www.realtor.ca/real-estate/30360824/7-reynolds-road-tiny-wyevale",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639266182252430000/reb82/medres/0/s13858180_1.jpg"
+    },
+    {
+      "address": "39 Rosemary Road",
+      "town": "Tiny",
+      "price": 825000,
+      "beds": "3",
+      "baths": "2",
+      "type": "House",
+      "mls": "S13850030",
+      "url": "https://www.realtor.ca/real-estate/30351098/39-rosemary-road-tiny-rural-tiny",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639264600329870000/reb82/medres/0/s13850030_1.jpg"
     }
-  ],
-  "batch": 1,
-  "note": "Batch 1 of Faris Team listings on /listings/. More batches follow."
+  ]
 }

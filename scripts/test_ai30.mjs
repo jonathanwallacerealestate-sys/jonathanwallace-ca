@@ -416,19 +416,25 @@ assert.match(paperwork.prompts.join("\n"), /Fill my name into every agent name f
 const repoRoot = fileURLToPath(new URL("..", import.meta.url));
 execFileSync("python3", ["scripts/build_ai30_kit.py"], { cwd: repoRoot });
 const zipList = execFileSync("python3", ["-c", "import zipfile; z=zipfile.ZipFile('ai-30-days/kit/ai-bootcamp-resources.zip'); print('\\n'.join(z.namelist()))"], { cwd: repoRoot, encoding: "utf8" });
+const folders = [...new Set(zipList.trim().split("\n").filter((name) => name.includes("/")).map((name) => name.split("/")[0]))].sort((a, b) => a.localeCompare(b, "en"));
+assert.equal(folders.at(-1), "forms");
+assert.equal(folders[0], "00 Prompts by Area");
 for (const day of plan.days) {
   const piece = day.title.replace(/[^\w\s-]/gu, "").replace(/\s+/g, " ").trim();
-  assert.match(zipList, new RegExp(piece.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  const folder = `${String(day.day).padStart(2, "0")} ${piece}`;
+  assert.ok(folders.includes(folder), folder);
+  assert.match(zipList, new RegExp(`${folder.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/${piece.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\.txt`));
 }
+assert.deepEqual(folders, ["00 Prompts by Area", ...plan.days.map((day) => `${String(day.day).padStart(2, "0")} ${day.title.replace(/[^\w\s-]/gu, "").replace(/\s+/g, " ").trim()}`), "forms"]);
 assert.match(zipList, /read-me\.txt/);
-assert.match(zipList, /kits\/Letter-of-Opinion-Kit\.docx/);
-assert.match(zipList, /kits\/Deal-Card-Kit\.docx/);
-assert.match(zipList, /kits\/Prompts-by-Area\.md/);
-assert.match(zipList, /kits\/Letter-of-Opinion-Client-Email-Template\.docx/);
-assert.match(zipList, /kits\/Letter-of-Opinion-123-Sample-Street-SAMPLE\.pdf/);
+assert.match(zipList, /16 Make the Letter of Opinion Yours\/Letter-of-Opinion-Kit\.docx/);
+assert.match(zipList, /20 Deal Card Setup\/Deal-Card-Kit\.docx/);
+assert.match(zipList, /00 Prompts by Area\/Prompts-by-Area\.md/);
+assert.match(zipList, /16 Make the Letter of Opinion Yours\/Letter-of-Opinion-Client-Email-Template\.docx/);
+assert.match(zipList, /16 Make the Letter of Opinion Yours\/Letter-of-Opinion-123-Sample-Street-SAMPLE\.pdf/);
 assert.match(zipList, /forms\/Form_200_Listing_Agreement_master\.pdf/);
 assert.match(zipList, /forms\/RECO_Information_Guide_master\.pdf/);
-assert.doesNotMatch(zipList, /30-Day-Checklist|Bootcamp-Checklist|Lesson \d/);
+assert.doesNotMatch(zipList, /30-Day-Checklist|Bootcamp-Checklist|Lesson \d|Day \d|handouts\/|kits\/|of 31/);
 const zipReadme = execFileSync("python3", ["-c", "import zipfile; print(zipfile.ZipFile('ai-30-days/kit/ai-bootcamp-resources.zip').read('read-me.txt').decode())"], { cwd: repoRoot, encoding: "utf8" });
 assert.match(zipReadme, /Letter-of-Opinion-123-Sample-Street-SAMPLE\.pdf/);
 assert.match(zipReadme, /forms\/Form_200_Listing_Agreement_master\.pdf/);

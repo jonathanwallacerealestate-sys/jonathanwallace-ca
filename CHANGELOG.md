@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: zip folders follow the lessons
+Why: A file manager was sorting the forms folder ahead of the lessons.
+- Each lesson is a folder with a two-digit prefix and its title, so 01 comes first. Forms stay last. The Letter of Opinion kit is in the letter lesson, the Deal Card kit is in the deal card lesson, and Prompts by Area sorts first.
+
 ### AI bootcamp: selfie buttons side by side
 Why: Retake and Upload were different sizes and did not line up on a phone.
 - The two buttons now share one row, with the same height and the same width, on a phone and on a desktop. The preview still stays up while the photo is waiting to upload.

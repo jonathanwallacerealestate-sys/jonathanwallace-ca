@@ -38,6 +38,26 @@ def safe_name(title):
     return cleaned or "skill"
 
 
+def lesson_folder(day):
+    # Two digits only, so a file manager sorts the lessons before forms.
+    return f"{int(day['day']):02d} {safe_name(day['title'])}"
+
+
+# Shared files sit in the lesson that introduces them. Prompts by Area
+# is used across the lessons, so it sorts first and forms stay last.
+KIT_HOME = {
+    "Letter-of-Opinion-Kit.docx": 16,
+    "Letter-of-Opinion-Kit.md": 16,
+    "Letter-of-Opinion-Client-Email-Template.docx": 16,
+    "Letter-of-Opinion-Client-Email-Template.md": 16,
+    "Letter-of-Opinion-123-Sample-Street-SAMPLE.pdf": 16,
+    "Deal-Card-Kit.docx": 20,
+    "Deal-Card-Kit.md": 20,
+    "Prompts-by-Area.docx": 0,
+    "Prompts-by-Area.md": 0,
+}
+
+
 def handout(day):
     lines = [
         day["title"],
@@ -74,26 +94,32 @@ def main():
         "Handouts and the copy-paste prompts for each skill.",
         "Open the handout for the skill you are on. The prompts are the words you paste into your AI.",
         "",
-        "The kits folder has the Letter of Opinion kit, the client email template, the Deal Card kit, and Prompts by Area.",
-        "The sample one-page Letter of Opinion is kits/Letter-of-Opinion-123-Sample-Street-SAMPLE.pdf. The name, phone, email, office address, and brokerage on it are placeholders.",
-        "The handout for Make the Letter of Opinion Yours has the prompt and the steps.",
+        "Each lesson has its own folder, numbered so the folders stay in order. Forms are last.",
+        "The Letter of Opinion kit, the client email template, and the sample letter are in 16 Make the Letter of Opinion Yours.",
+        "The sample one-page Letter of Opinion is 16 Make the Letter of Opinion Yours/Letter-of-Opinion-123-Sample-Street-SAMPLE.pdf. The name, phone, email, office address, and brokerage on it are placeholders.",
+        "The handout in that folder has the prompt and the steps.",
+        "The Deal Card kit is in 20 Deal Card Setup.",
+        "Prompts by Area is in 00 Prompts by Area.",
         "",
-        "The forms folder has the listing masters, in your kit:",
+        "The forms folder is last. It has the listing masters, in your kit:",
         "- forms/Form_200_Listing_Agreement_master.pdf",
         "- forms/RECO_Information_Guide_master.pdf",
         "Faris Team brokerage details are already on them. Add your own name and work address when you fill them.",
         "",
-        "Skills",
+        "Folders",
     ]
     files = {}
     seen = set()
+    folders = {}
     for day in plan["days"]:
         name = safe_name(day["title"])
         if name in seen:
             raise SystemExit("duplicate skill file name: " + name)
         seen.add(name)
-        files[f"handouts/{name}.txt"] = handout(day)
-        readme.append(f"- {day['title']}")
+        folder = lesson_folder(day)
+        folders[int(day["day"])] = folder
+        files[f"{folder}/{name}.txt"] = handout(day)
+        readme.append(f"- {folder}")
     readme_text = "\n".join(readme).strip() + "\n"
     if "\u2014" in readme_text:
         raise SystemExit("em dash in read me")
@@ -109,7 +135,14 @@ def main():
         for needle in FORBIDDEN:
             if needle.encode("utf-8") in blob:
                 raise SystemExit(path.name + " still contains " + needle)
-        files[f"kits/{path.name}"] = blob
+        home = KIT_HOME.get(path.name)
+        if home is None:
+            raise SystemExit("no lesson folder for kit file: " + path.name)
+        if home == 0:
+            folder = "00 Prompts by Area"
+        else:
+            folder = folders[home]
+        files[f"{folder}/{path.name}"] = blob
     if not forms_dir.is_dir():
         raise SystemExit("missing forms folder")
     for name in FORM_FILES:

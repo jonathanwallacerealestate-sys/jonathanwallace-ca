@@ -1,6 +1,7 @@
 // Progress rules for /ai-30-days. Stores only a name, day statuses, notes, and timestamps.
 // The name key is trim + collapsed spaces + lowercase, so "Jane Doe" and "jane  doe" match.
 
+import { isAdminEmail } from "./admin.mjs";
 import plan from "../../../ai-30-days/days.json" with { type: "json" };
 
 export const DAY_COUNT = plan.days.length;
@@ -275,7 +276,7 @@ function asPerson(row) {
 }
 
 function onPublicBoard(person) {
-  return !person.practice && !person.host;
+  return !person.practice && !person.host && !isAdminEmail(person.email);
 }
 
 // Points decide the order. The same points share a rank. Names are only there to keep the list steady.
@@ -512,6 +513,7 @@ export function publicRecord(person, row) {
     complete: doneCount(days) === DAY_COUNT,
     selfie: !!(row && (row.selfieAt || row.selfie_at)),
     needsEmail: !(row && row.email),
+    isAdmin: isAdminEmail(row && row.email),
     unlockAt: paceUnlockAt(days),
   };
 }

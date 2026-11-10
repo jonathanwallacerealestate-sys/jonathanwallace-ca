@@ -5,7 +5,7 @@
 // Stores only the normalised name, day statuses, notes, and timestamps.
 
 import { getDatabase } from "@netlify/database";
-import { adminKeyOk } from "./_shared/admin.mjs";
+import { adminKeyOk, isAdminEmail } from "./_shared/admin.mjs";
 import { applyProgress, cleanPost, currentDay, emailClaim, isSeparateSession, learnersCsv, migrateCurriculum, normalizePerson, peerStanding, publicFeed, publicRecord, recordFromRow, stampCurriculum } from "./_shared/ai30.mjs";
 import { deleteTestBlobs, listDriveSelfies } from "./_shared/selfies.mjs";
 
@@ -161,10 +161,8 @@ export default async (req, context) => {
     return json(400, { ok: false, error: "json" });
   }
 
-  const adminOp = body.op === "export" || body.op === "reset" || body.op === "remove" || body.op === "admin-login";
-  if (adminOp && !adminKeyOk(body.adminKey)) return json(403, { ok: false, error: "admin" });
-
-  const person = adminOp && body.op !== "admin-login" ? { ok: true, key: "", first: "", last: "" } : normalizePerson(body && body.first, body && body.last);
+  const adminOp = body.op === "export" || body.op === "reset" || body.op === "remove" || body.op === "delete-learner" || body.op === "admin-login";
+  const person = body.op === "admin-login" || !adminOp ? normalizePerson(body && body.first, body && body.last) : { ok: true, key: "", first: "", last: "" };
   if (!person.ok) return json(400, { ok: false, error: person.error });
   if ((body.op === "save" || body.op === "talk") && limited(body.op + ":" + person.key, 40)) {
     return json(429, { ok: false, error: "rate" });
@@ -178,6 +176,8 @@ export default async (req, context) => {
   }
 
   try {
+    if (adminOp && !(await adminAllowed(db, body))) return json(403, { ok: false, error: "admin" });
+
     if (body.op === "export") {
       const context = await readContext(db);
       return json(200, { ok: true, csv: learnersCsv(context.people, context.posts) });
@@ -217,6 +217,16 @@ export default async (req, context) => {
       return json(200, { ok: true });
     }
 
+    if (body.op === "delete-learner") {
+      const target = normalizePerson(body.targetFirst, body.targetLast);
+      if (!target.ok) return json(400, { ok: false, error: target.error });
+      const existing = await readRow(db, target.key);
+      await db.sql`DELETE FROM ai30_posts WHERE name_key = ${target.key}`;
+      await db.sql`DELETE FROM ai30_logins WHERE name_key = ${target.key}`;
+      await db.sql`DELETE FROM ai30_progress WHERE name_key = ${target.key}`;
+      return json(200, { ok: true, removed: existing ? `${target.first} ${target.last}` : "" });
+    }
+
     if (body.op === "load" || body.op === "save" || body.op === "feed" || body.op === "talk") {
       return json(200, await learnerOp(db, person, body));
     }
@@ -226,6 +236,18 @@ export default async (req, context) => {
     return json(503, { ok: false, error: "storage_unavailable" });
   }
 };
+
+async function adminAllowed(db, body) {
+  if (body.op === "admin-login") return adminKeyOk(body.adminKey);
+  if (adminKeyOk(body.adminKey)) return true;
+  const who = normalizePerson(body.first, body.last);
+  if (!who.ok) return false;
+  const row = await readRow(db, who.key);
+  if (!row || !row.email) return false;
+  const claim = emailClaim(row.email, body.email);
+  if (!claim.ok) return false;
+  return isAdminEmail(row.email);
+}
 
 async function saveLocked(db, person, body) {
   const client = await db.pool.connect();

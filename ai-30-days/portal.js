@@ -29,6 +29,7 @@ const state = {
   replyTo: null,
   commentKind: "learned",
   reviewDay: null,
+  isAdmin: false,
 };
 
 const $ = (sel) => document.querySelector(sel);
@@ -89,6 +90,7 @@ function applyRecord(record) {
   state.board = Array.isArray(record.board) ? record.board : [];
   state.posts = Array.isArray(record.posts) ? record.posts : state.posts || [];
   state.selfie = !!record.selfie;
+  state.isAdmin = record.isAdmin === true;
   state.closed = !!record.closed;
   state.winner = record.winner || "";
   if (record.unlockAt != null) state.unlockAt = record.unlockAt || "";
@@ -305,6 +307,7 @@ function signOut() {
   state.first = "";
   state.last = "";
   state.email = "";
+  state.isAdmin = false;
   state.drafts = null;
   state.reviewDay = null;
   state.days = {};
@@ -344,9 +347,11 @@ function render() {
       <button type="button" role="tab" id="tab-board" aria-selected="${state.tab === "board"}" aria-label="Message Board">Message Board</button>
     </div>
     ${panel}
+    ${renderAdmin()}
     <p class="status" id="save-status" role="status">${esc(state.status && !state.offline ? state.status : "")}</p>
   `;
 
+  bindAdmin();
   $("#tab-today").onclick = () => { state.tab = "today"; state.view = null; render(); };
   $("#tab-progress").onclick = () => { state.tab = "progress"; render(); };
   $("#tab-board").onclick = () => { state.tab = "board"; render(); };
@@ -429,6 +434,92 @@ function countdownText(now) {
   left -= hours * 3600000;
   const minutes = Math.floor(left / 60000);
   return `${plural(days, "day", "days")}, ${plural(hours, "hour", "hours")}, ${plural(minutes, "minute", "minutes")} left.`;
+}
+
+function renderAdmin() {
+  if (state.isAdmin !== true) return "";
+  return `
+    <section class="card" id="admin" aria-label="Admin">
+      <h2 class="lesson-title">Admin</h2>
+      <button type="button" class="btn" id="admin-csv">Download learner CSV</button>
+      <button type="button" class="btn btn--ghost" id="admin-reset">Reset test rows</button>
+      <label for="admin-first">Learner first name</label>
+      <input id="admin-first" autocomplete="off" maxlength="40">
+      <label for="admin-last">Learner last name</label>
+      <input id="admin-last" autocomplete="off" maxlength="40">
+      <button type="button" class="btn btn--ghost" id="admin-delete">Delete this learner</button>
+      <label for="admin-post">Board post id</label>
+      <input id="admin-post" inputmode="numeric" autocomplete="off">
+      <button type="button" class="btn btn--ghost" id="admin-remove">Remove this post</button>
+      <p class="err" id="admin-status" role="status"></p>
+    </section>`;
+}
+
+function bindAdmin() {
+  if (state.isAdmin !== true) return;
+  const status = $("#admin-status");
+  const say = (text) => { if (status) status.textContent = text; };
+  const csv = $("#admin-csv");
+  if (csv) csv.onclick = async () => {
+    say("");
+    try {
+      const data = await post("export");
+      const blob = new Blob([data.csv || ""], { type: "text/csv" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "ai-bootcamp-learners.csv";
+      link.click();
+      say("CSV downloaded.");
+    } catch (e) {
+      say("That did not work.");
+    }
+  };
+  const reset = $("#admin-reset");
+  if (reset) reset.onclick = async () => {
+    if (!window.confirm("Remove Testy and Zztest learners, their points, logins, posts, and selfie flags?")) return;
+    say("");
+    try {
+      await post("reset");
+      say("Test rows removed.");
+      render();
+    } catch (e) {
+      say("That did not work.");
+    }
+  };
+  const remove = $("#admin-delete");
+  if (remove) remove.onclick = async () => {
+    const targetFirst = ($("#admin-first") && $("#admin-first").value || "").trim();
+    const targetLast = ($("#admin-last") && $("#admin-last").value || "").trim();
+    if (!targetFirst || !targetLast) {
+      say("Enter the learner's first and last name.");
+      return;
+    }
+    if (!window.confirm(`Delete ${targetFirst} ${targetLast}? Their lessons, posts, and logins will be removed.`)) return;
+    say("");
+    try {
+      const data = await post("delete-learner", { targetFirst, targetLast });
+      say(data.removed ? `${data.removed} was deleted.` : "No learner was found with that name.");
+    } catch (e) {
+      say("That did not work.");
+    }
+  };
+  const drop = $("#admin-remove");
+  if (drop) drop.onclick = async () => {
+    const id = Number($("#admin-post") && $("#admin-post").value);
+    if (!id) {
+      say("Enter the post id.");
+      return;
+    }
+    if (!window.confirm("Remove this board post and its replies?")) return;
+    say("");
+    try {
+      await post("remove", { id });
+      say("Post removed.");
+      render();
+    } catch (e) {
+      say("That did not work.");
+    }
+  };
 }
 
 function renderProgress() {

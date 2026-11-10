@@ -89,7 +89,7 @@ assert.match(plan.days[13].title, /top 5/i);
 assert.match(plan.days[16].title, /Coles Notes/i);
 assert.match(plan.days[21].prompts.join("\n"), /RECO/);
 assert.match(plan.days[21].prompts.join("\n"), /GeoWarehouse/);
-assert.equal(plan.title, "AI Bootcamp: Hiring Your First AI Agent");
+assert.equal(plan.title, "AI Bootcamp: Zero to Hero");
 assert.doesNotMatch(plan.rule, /30 days|Getting Started/);
 assert.match(plan.days[22].title, /BrokerBay/);
 assert.doesNotMatch(JSON.stringify(plan), /Follow Up Ace|Sisu|Brain log/);

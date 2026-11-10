@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-09
 
+### AI bootcamp name: Zero to Hero
+Why: Jonathan set the program name to AI Bootcamp: Zero to Hero.
+- Page title, heading, sign-in bar, and the print title use that name. Calendar events stay titled AI Bootcamp: Lesson N.
+
 ### AI bootcamp: lessons, and a copy button on every prompt
 Why: the program has a new name, and agents need to paste each prompt without selecting the text by hand.
 - Visible name is AI Bootcamp: Hiring Your First AI Agent. Cards say Lesson, not Day. The address stays /ai-30-days, and saved progress is still stored by the same numbers.

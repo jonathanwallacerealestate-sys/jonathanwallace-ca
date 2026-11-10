@@ -288,7 +288,7 @@ async function signIn(first, last, email, remember) {
     }
     state.status = e.code === "rate"
       ? "Too many tries. Wait a few minutes and tap Try the server again."
-      : "The server copy is not available yet. Notes on this device are only a backup until it connects.";
+      : "The server copy is not available yet. Your progress on this device is only a backup until it connects.";
   }
   state.tab = "today";
   state.view = null;
@@ -380,8 +380,8 @@ function renderToday(day, enter) {
   const waiting = !done && paceActive();
   const next = dayByNumber(day.day + 1);
   const started = state.createdAt
-    ? `<p class="fine">Your first lesson started when you signed in. There is no shared calendar.</p>`
-    : `<p class="fine">Your first lesson starts when you sign in. There is no shared calendar.</p>`;
+    ? `<p class="fine">Your first lesson started when you signed in.</p>`
+    : `<p class="fine">Your first lesson starts when you sign in.</p>`;
   return `
     <article class="card${enter || ""}" id="today-card">
       <p class="kicker">${esc(day.section)}</p>
@@ -416,6 +416,10 @@ function renderToday(day, enter) {
   `;
 }
 
+function plural(count, one, many) {
+  return `${count} ${count === 1 ? one : many}`;
+}
+
 function countdownText(now) {
   let left = CONTEST_END - now;
   if (left <= 0) return "";
@@ -424,7 +428,7 @@ function countdownText(now) {
   const hours = Math.floor(left / 3600000);
   left -= hours * 3600000;
   const minutes = Math.floor(left / 60000);
-  return `${days} days, ${hours} hours, ${minutes} minutes left.`;
+  return `${plural(days, "day", "days")}, ${plural(hours, "hour", "hours")}, ${plural(minutes, "minute", "minutes")} left.`;
 }
 
 function renderProgress() {
@@ -1036,7 +1040,7 @@ function payloadFromState(changeDay, change) {
 
 function explain(error) {
   if (error.code === "rate") return "Too many tries. Wait a few minutes and try again.";
-  if (error.code === "day_locked") return "Finish the current day before moving on.";
+  if (error.code === "day_locked") return "Finish this lesson before moving on.";
   if (error.code === "pace") return paceLine();
   if (error.code === "email_invalid" || error.code === "email_required") return "Enter a valid email address.";
   if (error.code === "email_mismatch") return "That name is already taken with a different email. Use the email you signed up with.";

@@ -2,7 +2,7 @@
 
 AI Bootcamp: Zero to Hero. From the bootcamp.
 
-Do one lesson at a time. If you don't finish a lesson, don't move on until it's done. If it takes longer, that's okay. The skills below match the bootcamp checklist.
+Do one lesson at a time. If you don't finish a lesson, don't move on until it's done. If it takes longer, that's okay. The skills below follow the lessons.
 
 Paste your house rules at the start of a chat. These prompts are samples. Use Sample names. Do not paste client ID, banking, or mortgage numbers. Drafts only. You review. You send.
 

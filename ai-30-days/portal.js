@@ -384,6 +384,7 @@ function selfieLocked() {
           <button type="button" class="btn btn--ghost" id="selfie-retake">Retake</button>
           <button type="button" class="btn" id="selfie-upload">Upload</button>
         </div>
+        <button type="button" class="linkish" id="selfie-cancel">Cancel</button>
       </div>
       <p class="err" id="selfie-status" role="status"></p>
     </section>`;
@@ -483,7 +484,6 @@ function commentRow(item, reply) {
           ${pill}
           ${lesson}
           ${replyBtn}
-          <button type="button" class="linkish remove" data-id="${esc(item.id)}">Remove</button>
         </p>
       </div>
     </article>`;
@@ -707,22 +707,10 @@ function bindBoard() {
       }
     };
   }
-  document.querySelectorAll(".remove").forEach((btn) => {
-    btn.onclick = async () => {
-      const key = window.prompt("Admin key");
-      if (!key) return;
-      try {
-        await post("remove", { id: Number(btn.dataset.id), adminKey: key });
-        await refreshFeed();
-        render();
-      } catch (e) {
-        window.alert("That key did not work.");
-      }
-    };
-  });
 }
 
 let selfieBlob = null;
+let selfieHold = false;
 
 async function fileToJpeg(file) {
   if (file.size > 15 * 1024 * 1024) throw new Error("That photo is too large. Use one under 15 MB.");
@@ -750,11 +738,23 @@ async function fileToJpeg(file) {
 
 function showPreview(blob) {
   selfieBlob = blob;
+  selfieHold = true;
   const box = $("#selfie-preview");
   const img = $("#selfie-img");
+  if (!box || !img) return;
   if (img.src && img.src.startsWith("blob:")) URL.revokeObjectURL(img.src);
   img.src = URL.createObjectURL(blob);
   box.hidden = false;
+}
+
+function clearSelfiePreview() {
+  selfieHold = false;
+  selfieBlob = null;
+  const img = $("#selfie-img");
+  if (img && img.src && img.src.startsWith("blob:")) URL.revokeObjectURL(img.src);
+  if (img) img.removeAttribute("src");
+  const box = $("#selfie-preview");
+  if (box) box.hidden = true;
 }
 
 function bindSelfie() {
@@ -762,10 +762,12 @@ function bindSelfie() {
   const lib = $("#selfie-lib-file");
   const take = async (file) => {
     const status = $("#selfie-status");
+    selfieHold = true;
     try {
       showPreview(await fileToJpeg(file));
       if (status) status.textContent = "";
     } catch (e) {
+      if (!selfieBlob) selfieHold = false;
       if (status) status.textContent = e.message || "That photo didn't open.";
     }
   };
@@ -774,6 +776,13 @@ function bindSelfie() {
   if (cam) cam.onchange = () => { if (cam.files && cam.files[0]) take(cam.files[0]); };
   if (lib) lib.onchange = () => { if (lib.files && lib.files[0]) take(lib.files[0]); };
   if ($("#selfie-retake")) $("#selfie-retake").onclick = () => { cam.value = ""; cam.click(); };
+  if ($("#selfie-cancel")) {
+    $("#selfie-cancel").onclick = () => {
+      clearSelfiePreview();
+      refreshFeed();
+    };
+  }
+  if (selfieHold && selfieBlob) showPreview(selfieBlob);
   if ($("#selfie-upload")) $("#selfie-upload").onclick = async () => {
     if (!selfieBlob) return;
     const status = $("#selfie-status");
@@ -791,6 +800,8 @@ function bindSelfie() {
       });
       const body = await res.json();
       if (!res.ok || !body.ok) throw new Error("save");
+      selfieHold = false;
+      selfieBlob = null;
       state.selfie = true;
       render();
     } catch (e) {
@@ -818,6 +829,7 @@ async function refreshFeed() {
     state.selfie = !!data.selfie;
     const typing = document.activeElement && /TEXTAREA|INPUT/i.test(document.activeElement.tagName);
     if (typing) return;
+    if (selfieHold && state.tab === "progress") return;
     if (state.tab === "board" || state.tab === "progress") render();
     else {
       const note = document.querySelector(".peers");

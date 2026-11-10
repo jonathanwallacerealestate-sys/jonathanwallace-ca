@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { CONTEST_END_ISO, DAY_COUNT, applyProgress, currentDay, doneCount, loginPoints, migrateCurriculum, normalizePerson, peerStanding, scorePerson, selfieFilename, validEmail } from "../netlify/functions/_shared/ai30.mjs";
+import { CONTEST_END_ISO, DAY_COUNT, applyProgress, currentDay, doneCount, loginPoints, migrateCurriculum, normalizePerson, peerStanding, publicFeed, scorePerson, selfieFilename, validEmail } from "../netlify/functions/_shared/ai30.mjs";
 import { buildIcs, eventDescription, icsFilename, parseWhen } from "../netlify/functions/_shared/ics.mjs";
 
 const jane = normalizePerson("  Jane   ", "  DOE ");
@@ -182,6 +182,10 @@ assert.match(portalSrc, /View \$\{extra\} more/);
 assert.match(portalSrc, /function relativeTime/);
 assert.match(portalSrc, /function initials/);
 assert.doesNotMatch(portalSrc, /❤|aria-label="Like"|like-count/);
+assert.match(portalSrc, /selfieHold/);
+assert.match(portalSrc, /id="selfie-cancel"/);
+assert.doesNotMatch(portalSrc, /linkish remove|window\.prompt\("Admin key"\)/);
+assert.match(readFileSync(new URL("../ai-30-days/export.html", import.meta.url), "utf8"), /Remove a board post/);
 assert.doesNotMatch(readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), "utf8"), /—/);
 assert.match(readFileSync(new URL("../ai-30-days/portal.css", import.meta.url), "utf8"), /\.composer/);
 
@@ -215,9 +219,28 @@ const solo = peerStanding([
   learner("ada north", "Ada", "North", 0),
   learner("zztest x", "Zztest", "X", 9),
 ], [], "ada north");
-assert.equal(solo.note, "You're the first one here learning AI. Keep it going.");
+assert.equal(solo.note, "Welcome in. Finish your first lesson to join the leaderboard.");
 assert.equal(solo.board.length, 1);
 assert.equal(solo.board[0].you, true);
+const host = learner("jonathan wallace", "Jonathan", "Wallace", 6);
+host.email = "jonathan@faristeam.ca";
+const newbie = peerStanding([
+  learner("casey nguyen", "Casey", "Nguyen", 0),
+  host,
+  learner("ada north", "Ada", "North", 4),
+], [], "casey nguyen");
+assert.equal(newbie.note, "Welcome in. Finish your first lesson to join the leaderboard.");
+assert.ok(newbie.board.every((row) => row.name !== "Jonathan W."));
+assert.equal(peerStanding([
+  learner("casey nguyen", "Casey", "Nguyen", 1),
+  host,
+], [], "casey nguyen").note, "You're the first one here learning AI. Keep it going.");
+const cool = publicFeed([
+  { id: 1, key: "jonathan wallace", first: "Jonathan", last: "Wallace", body: "That was a cool lesson.", kind: "learned", lesson: 1, createdAt: "2026-11-10T12:00:00.000Z", parentId: null },
+  { id: 2, key: "ada north", first: "Ada", last: "North", body: "Same here.", kind: "reply", lesson: 1, createdAt: "2026-11-10T12:05:00.000Z", parentId: 1 },
+  { id: 3, key: "ada north", first: "Ada", last: "North", body: "The writing sample finally sounded like me.", kind: "learned", lesson: 2, createdAt: "2026-11-10T12:06:00.000Z", parentId: null },
+], "ada north");
+assert.deepEqual(cool.map((post) => post.body), ["The writing sample finally sounded like me."]);
 const hidden = peerStanding(classRows, [], "zztest notab");
 assert.equal(hidden.board.length, 4);
 assert.ok(hidden.board.every((row) => row.you !== true));
@@ -258,7 +281,19 @@ for (const day of plan.days) {
   assert.match(zipList, new RegExp(piece.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 }
 assert.match(zipList, /read-me\.txt/);
-assert.doesNotMatch(zipList, /Lesson \d/);
+assert.match(zipList, /kits\/Letter-of-Opinion-Kit\.docx/);
+assert.match(zipList, /kits\/Deal-Card-Kit\.docx/);
+assert.match(zipList, /kits\/Prompts-by-Area\.md/);
+assert.match(zipList, /kits\/Letter-of-Opinion-Client-Email-Template\.docx/);
+assert.match(zipList, /kits\/Letter-of-Opinion-123-Sample-Street-SAMPLE\.pdf/);
+assert.doesNotMatch(zipList, /30-Day-Checklist|Bootcamp-Checklist|Lesson \d/);
+const zipReadme = execFileSync("python3", ["-c", "import zipfile; print(zipfile.ZipFile('ai-30-days/kit/ai-bootcamp-resources.zip').read('read-me.txt').decode())"], { cwd: repoRoot, encoding: "utf8" });
+assert.match(zipReadme, /Letter-of-Opinion-123-Sample-Street-SAMPLE\.pdf/);
+assert.doesNotMatch(zipReadme, /not in this folder yet/);
+const zipBytes = readFileSync(new URL("../ai-30-days/kit/ai-bootcamp-resources.zip", import.meta.url));
+for (const needle of ["Jonathan Wallace", "jonathan@faristeam.ca", "705-433-2525", "531 King Street", "Faris Team", "FarisTeam", "1gVOahhpWV00QdTg44BbqIaCOhjplNq1t"]) {
+  assert.equal(zipBytes.includes(Buffer.from(needle)), false, needle);
+}
 assert.match(readFileSync(new URL("../ai-30-days/index.html", import.meta.url), "utf8"), /Download all the resources/);
 
 console.log("test_ai30: ok");

@@ -16,6 +16,9 @@
     <input id="key" type="password" autocomplete="current-password">
     <button type="button" class="btn" id="csv">Download learner CSV</button>
     <button type="button" class="btn btn--ghost" id="reset">Reset test leaderboard</button>
+    <label for="post-id">Board post id</label>
+    <input id="post-id" inputmode="numeric" autocomplete="off">
+    <button type="button" class="btn btn--ghost" id="remove-post">Remove a board post</button>
     <p class="err" id="status" role="status"></p>
     <pre id="result" class="sample__text" hidden></pre>
   </section>
@@ -23,11 +26,11 @@
 <script>
 const status = document.querySelector("#status");
 const result = document.querySelector("#result");
-async function call(op) {
+async function call(op, extra) {
   const res = await fetch("/api/ai-30-days", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ op, adminKey: document.querySelector("#key").value }),
+    body: JSON.stringify({ op, adminKey: document.querySelector("#key").value, ...extra }),
   });
   const data = await res.json().catch(() => ({ ok: false }));
   if (!res.ok || !data.ok) throw new Error(data.error || "request");
@@ -43,6 +46,21 @@ document.querySelector("#csv").onclick = async () => {
     link.download = "ai-bootcamp-learners.csv";
     link.click();
     status.textContent = "CSV downloaded.";
+  } catch (e) {
+    status.textContent = "That key did not work.";
+  }
+};
+document.querySelector("#remove-post").onclick = async () => {
+  const id = Number(document.querySelector("#post-id").value);
+  if (!id) {
+    status.textContent = "Enter the post id.";
+    return;
+  }
+  if (!window.confirm("Remove this board post and its replies?")) return;
+  status.textContent = "";
+  try {
+    await call("remove", { id });
+    status.textContent = "Post removed.";
   } catch (e) {
     status.textContent = "That key did not work.";
   }

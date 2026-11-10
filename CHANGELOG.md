@@ -14,6 +14,12 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 - Listing descriptions stay word for word as they appear on REALTOR.ca, including words the voice rules otherwise ban (stunning, cozy and similar). Do not rewrite them (Jonathan Wallace, Nov 3, DEC-20261103-listing-copy-matches-realtor-ca).
 - Interview and town pages use the shared site header, footer and styles.css, not one-off templates.
 
+## 2026-11-10
+
+### AI bootcamp: lesson titles in Title Case
+Why: Jonathan asked for every lesson title to use Title Case, including the kit handouts and calendar names.
+- Major words are capitalized. Short words such as and, to, in, on, of, with, and then stay lowercase unless they are the first or last word. AI, BrokerBay, SOP, Coles Notes, and Top 5 stay as they are. The day numbers that save progress are unchanged.
+
 ## 2026-11-09
 
 ### AI bootcamp: download all the resources

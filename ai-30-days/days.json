@@ -92,7 +92,7 @@
     {
       "day": 1,
       "section": "Foundations",
-      "title": "Pick your AI and tell it about your business",
+      "title": "Pick Your AI and Tell It About Your Business",
       "why": "It can only help with a business it understands.",
       "minutes": "15 to 20 min",
       "catchUp": false,
@@ -112,7 +112,7 @@
     {
       "day": 2,
       "section": "Foundations",
-      "title": "Teach it your writing style",
+      "title": "Teach It Your Writing Style",
       "why": "What you feed it is what it writes like.",
       "minutes": "15 to 20 min",
       "catchUp": false,
@@ -135,7 +135,7 @@
     {
       "day": 3,
       "section": "Foundations",
-      "title": "Build your brand guidelines",
+      "title": "Build Your Brand Guidelines",
       "why": "Every post and flyer should look like you without starting over each time.",
       "minutes": "15 to 20 min",
       "catchUp": false,
@@ -158,7 +158,7 @@
     {
       "day": 4,
       "section": "Foundations",
-      "title": "Brain dump the tasks you hate",
+      "title": "Brain Dump the Tasks You Hate",
       "why": "Now that it knows your business and your style, it can help you decide what to hand off first. Everyone's list will be different.",
       "minutes": "15 to 20 min",
       "catchUp": false,
@@ -180,7 +180,7 @@
     {
       "day": 5,
       "section": "Foundations",
-      "title": "Re-engage your dead leads",
+      "title": "Re-Engage Your Dead Leads",
       "why": "Your database already has people who went quiet. The right message can restart the conversation.",
       "minutes": "15 to 20 min",
       "catchUp": false,
@@ -202,7 +202,7 @@
     {
       "day": 6,
       "section": "Foundations",
-      "title": "Set up your decision log",
+      "title": "Set Up Your Decision Log",
       "why": "A decision log gives your AI a memory, so you do not have to retrain it every time.",
       "minutes": "15 to 20 min",
       "catchUp": false,
@@ -223,7 +223,7 @@
     {
       "day": 7,
       "section": "Foundations",
-      "title": "Teach it to clean up your inbox",
+      "title": "Teach It to Clean Up Your Inbox",
       "why": "A tidy inbox means you do not miss the emails that matter.",
       "minutes": "15 to 20 min",
       "catchUp": true,
@@ -247,7 +247,7 @@
     {
       "day": 8,
       "section": "Clients and social",
-      "title": "Ask for reviews",
+      "title": "Ask for Reviews",
       "why": "Happy clients will leave a review if you make it easy and personal.",
       "minutes": "15 to 20 min",
       "catchUp": false,
@@ -268,7 +268,7 @@
     {
       "day": 9,
       "section": "Clients and social",
-      "title": "Share 10 posts you like",
+      "title": "Share 10 Posts You Like",
       "why": "Showing real posts is clearer than trying to describe a style.",
       "minutes": "15 to 20 min",
       "catchUp": false,
@@ -288,7 +288,7 @@
     {
       "day": 10,
       "section": "Clients and social",
-      "title": "Plan your social media strategy",
+      "title": "Plan Your Social Media Strategy",
       "why": "A simple plan you'll actually follow beats random posting.",
       "minutes": "30 min",
       "catchUp": false,
@@ -309,7 +309,7 @@
     {
       "day": 11,
       "section": "Clients and social",
-      "title": "Create your first three posts",
+      "title": "Create Your First Three Posts",
       "why": "Turn your best ideas into posts that look like you.",
       "minutes": "30 min",
       "catchUp": false,
@@ -331,7 +331,7 @@
     {
       "day": 12,
       "section": "Calendar, notes and listings",
-      "title": "Book appointments into your calendar",
+      "title": "Book Appointments Into Your Calendar",
       "why": "Say it once out loud and it is booked, with travel time built in.",
       "minutes": "30 min",
       "catchUp": false,
@@ -353,7 +353,7 @@
     {
       "day": 13,
       "section": "Calendar, notes and listings",
-      "title": "Teach it how you keep notes",
+      "title": "Teach It How You Keep Notes",
       "why": "Once it knows how you take notes, every call, meeting, or pop-by gets logged without you typing.",
       "minutes": "30 min",
       "catchUp": false,
@@ -377,7 +377,7 @@
     {
       "day": 14,
       "section": "Calendar, notes and listings",
-      "title": "Stay in touch with past clients",
+      "title": "Stay in Touch with Past Clients",
       "why": "Past clients are your best source of repeat and referral business, and your AI can remember the details you cannot.",
       "minutes": "30 min",
       "catchUp": false,
@@ -398,7 +398,7 @@
     {
       "day": 15,
       "section": "Calendar, notes and listings",
-      "title": "Write listing descriptions in your top 5",
+      "title": "Write Listing Descriptions in Your Top 5",
       "why": "Your listing description is a top 5, the 5 best reasons to buy this home.",
       "minutes": "30 min",
       "catchUp": false,
@@ -420,7 +420,7 @@
     {
       "day": 16,
       "section": "Letters and offers",
-      "title": "Make the Letter of Opinion yours",
+      "title": "Make the Letter of Opinion Yours",
       "why": "Turn the ready-made Letter of Opinion template into your own, with your details and your real signature.",
       "minutes": "30 min",
       "catchUp": false,
@@ -442,7 +442,7 @@
     {
       "day": 17,
       "section": "Letters and offers",
-      "title": "Practise, then time a real letter",
+      "title": "Practise, then Time a Real Letter",
       "why": "A past address is a safe rehearsal. The timed letter shows you what a real one costs in minutes.",
       "minutes": "30 min",
       "catchUp": true,
@@ -462,7 +462,7 @@
     {
       "day": 18,
       "section": "Letters and offers",
-      "title": "Read an offer: the Coles Notes",
+      "title": "Read an Offer: the Coles Notes",
       "why": "Offers are long. Your client needs the key points, fast and clearly.",
       "minutes": "30 min",
       "catchUp": false,
@@ -484,7 +484,7 @@
     {
       "day": 19,
       "section": "Letters and offers",
-      "title": "Deal deadline tracker",
+      "title": "Deal Deadline Tracker",
       "why": "Missing a condition date or a title search date is costly. Let your AI put every date in your calendar.",
       "minutes": "30 min",
       "catchUp": false,
@@ -504,7 +504,7 @@
     {
       "day": 20,
       "section": "Deal card",
-      "title": "Deal card setup",
+      "title": "Deal Card Setup",
       "why": "One card per person keeps the next step where you can see it.",
       "minutes": "30 min",
       "catchUp": false,
@@ -524,7 +524,7 @@
     {
       "day": 21,
       "section": "Deal card",
-      "title": "Ten leads, then make the calls",
+      "title": "Ten Leads, then Make the Calls",
       "why": "The card only matters if you pick up the phone.",
       "minutes": "30 to 45 min",
       "catchUp": false,
@@ -544,7 +544,7 @@
     {
       "day": 22,
       "section": "Deal card",
-      "title": "Paste the notes, then the next 10",
+      "title": "Paste the Notes, then the Next 10",
       "why": "The notes you bring back are what make the next list sharper.",
       "minutes": "30 to 45 min",
       "catchUp": false,
@@ -564,7 +564,7 @@
     {
       "day": 23,
       "section": "Advanced",
-      "title": "Prep your listing appointment paperwork",
+      "title": "Prep Your Listing Appointment Paperwork",
       "why": "The forms you print for every listing appointment can be ready in a minute.",
       "minutes": "30 to 45 min",
       "catchUp": false,
@@ -585,7 +585,7 @@
     {
       "day": 24,
       "section": "Advanced",
-      "title": "Book showings in BrokerBay",
+      "title": "Book Showings in BrokerBay",
       "why": "Showings are repetitive and easy to hand off once it knows your rules.",
       "minutes": "30 to 45 min",
       "catchUp": false,
@@ -607,7 +607,7 @@
     {
       "day": 25,
       "section": "Your list",
-      "title": "Your list: hand off your first task",
+      "title": "Your List: Hand Off Your First Task",
       "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "30 to 45 min",
       "catchUp": true,
@@ -628,7 +628,7 @@
     {
       "day": 26,
       "section": "Your list",
-      "title": "Your list: hand off another task",
+      "title": "Your List: Hand Off Another Task",
       "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "30 to 45 min",
       "catchUp": false,
@@ -649,7 +649,7 @@
     {
       "day": 27,
       "section": "Your list",
-      "title": "Your list: hand off the next task",
+      "title": "Your List: Hand Off the Next Task",
       "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "30 to 45 min",
       "catchUp": false,
@@ -670,7 +670,7 @@
     {
       "day": 28,
       "section": "Your list",
-      "title": "Your list: hand off one more task",
+      "title": "Your List: Hand Off One More Task",
       "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "30 to 45 min",
       "catchUp": false,
@@ -691,7 +691,7 @@
     {
       "day": 29,
       "section": "Your list",
-      "title": "Your list: keep handing tasks off",
+      "title": "Your List: Keep Handing Tasks Off",
       "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "30 to 45 min",
       "catchUp": false,
@@ -712,7 +712,7 @@
     {
       "day": 30,
       "section": "Your list",
-      "title": "Your list: hand off the next one on your list",
+      "title": "Your List: Hand Off the Next One on Your List",
       "why": "Hand off the jobs you hate most, one at a time.",
       "minutes": "30 to 45 min",
       "catchUp": false,
@@ -733,7 +733,7 @@
     {
       "day": 31,
       "section": "Review",
-      "title": "Final review",
+      "title": "Final Review",
       "why": "Look back at every lesson, leave one clean decision log, and write down your next step.",
       "minutes": "30 to 45 min",
       "catchUp": false,

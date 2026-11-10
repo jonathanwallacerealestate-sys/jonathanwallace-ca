@@ -413,13 +413,29 @@ function render() {
   state.justAdvanced = false;
 }
 
+function safeLessonLink(href) {
+  return /^https:\/\/(apps\.apple\.com\/|www\.youtube\.com\/watch\?)/.test(href || "");
+}
+
 function stepLinks(day, stepNumber) {
   const links = Array.isArray(day.links) ? day.links.filter((link) => link && link.step === stepNumber) : [];
   if (!links.length) return "";
-  const items = links.filter((link) => /^https:\/\/apps\.apple\.com\//.test(link.href || "")).map((link) =>
+  const items = links.filter((link) => safeLessonLink(link.href)).map((link) =>
     `<li><a href="${esc(link.href)}" target="_blank" rel="noopener noreferrer">${esc(link.label)}</a></li>`
   ).join("");
   return items ? `<ul class="step-links">${items}</ul>` : "";
+}
+
+function setupHelp(day, stepNumber) {
+  const help = day && day.setup;
+  if (!help || help.step !== stepNumber || !Array.isArray(help.links)) return "";
+  const items = help.links.filter((link) => link && safeLessonLink(link.href)).map((link) => {
+    const detail = link.detail ? `<p class="setup-help__detail">${esc(link.detail)}</p>` : "";
+    const note = link.note ? `<p class="setup-help__note">${esc(link.note)}</p>` : "";
+    return `<li><a href="${esc(link.href)}" target="_blank" rel="noopener noreferrer">${esc(link.label)}</a>${detail}${note}</li>`;
+  }).join("");
+  if (!items) return "";
+  return `<div class="setup-help"><p>${esc(help.text || "")}</p><ul class="step-links">${items}</ul></div>`;
 }
 
 function lessonDownload(day) {
@@ -455,7 +471,7 @@ function renderToday(day, enter) {
       ${day.optional ? `<p class="optional"><strong>Optional.</strong> ${esc(day.optionalNote || `You can skip this lesson and tap ${COMPLETE_LABEL}`)}</p>` : ""}
       ${day.catchUp ? `<p class="catch">Good spot to catch up.</p>` : ""}
       ${day.day === 1 ? started : ""}
-      <ol class="steps">${day.steps.map((s, index) => `<li>${esc(s)}${stepLinks(day, index + 1)}</li>`).join("")}</ol>
+      <ol class="steps">${day.steps.map((s, index) => `<li>${esc(s)}${stepLinks(day, index + 1)}${setupHelp(day, index + 1)}</li>`).join("")}</ol>
       ${day.tip ? `<p class="tip"><strong>Tip.</strong> ${esc(day.tip)}</p>` : ""}
       ${day.assignment ? `<p class="assignment"><strong>Challenge.</strong> ${esc(day.assignment)}</p>` : ""}
       ${day.sample ? `<div class="sample"><p class="kicker">Sample, made up</p><pre class="sample__text">${esc(day.sample)}</pre></div>` : ""}

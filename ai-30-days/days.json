@@ -116,6 +116,23 @@
           "href": "https://apps.apple.com/ca/app/claude-by-anthropic/id6473753684"
         }
       ],
+      "setup": {
+        "step": 2,
+        "text": "Stuck on setup? Watch a step-by-step tutorial:",
+        "links": [
+          {
+            "label": "Grok Bot setup",
+            "href": "https://www.youtube.com/watch?v=q1IwR88mhaA",
+            "detail": "Signing in, the bot's computer, teaching a task."
+          },
+          {
+            "label": "Claude setup",
+            "href": "https://www.youtube.com/watch?v=9oJySubZRSA",
+            "detail": "Account, Projects, desktop and letting Claude work on your computer.",
+            "note": "It's a long video, so jump to the chapters: Projects at 20:20, phone and desktop at 25:29."
+          }
+        ]
+      },
       "assignment": "Done when it can play back a short summary of your business and you are happy it is accurate.",
       "prompts": [
         "I'm a REALTOR® and I want you to understand my business. Ask me questions one at a time: how many houses I've sold, what areas I like to work in, how long I've been in real estate, and the roadblocks and challenges where you could help me manage, fix, solve or add leverage. When we're done, give me a short summary of my business and save it.",

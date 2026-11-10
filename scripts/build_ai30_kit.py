@@ -39,12 +39,16 @@ def safe_name(title):
 
 
 def lesson_folder(day):
-    # Two digits only, so a file manager sorts the lessons before forms.
-    return f"{int(day['day']):02d} {safe_name(day['title'])}"
+    # The folder name is the lesson title, with no number in front.
+    title = str(day["title"]).strip()
+    if not title or re.search(r"[\\/\x00]", title):
+        raise SystemExit("title cannot be a folder name: " + title)
+    return title
 
 
 # Shared files sit in the lesson that introduces them. Prompts by Area
-# is used across the lessons, so it sorts first and forms stay last.
+# is used across the lessons, so those two files stay beside the read-me
+# and do not add an extra folder.
 KIT_HOME = {
     "Letter-of-Opinion-Kit.docx": 16,
     "Letter-of-Opinion-Kit.md": 16,
@@ -94,14 +98,14 @@ def main():
         "Handouts and the copy-paste prompts for each skill.",
         "Open the handout for the skill you are on. The prompts are the words you paste into your AI.",
         "",
-        "Each lesson has its own folder, numbered so the folders stay in order. Forms are last.",
-        "The Letter of Opinion kit, the client email template, and the sample letter are in 16 Make the Letter of Opinion Yours.",
-        "The sample one-page Letter of Opinion is 16 Make the Letter of Opinion Yours/Letter-of-Opinion-123-Sample-Street-SAMPLE.pdf. The name, phone, email, office address, and brokerage on it are placeholders.",
+        "Each lesson has its own folder, named the same as the lesson. The forms folder is still there.",
+        "The Letter of Opinion kit, the client email template, and the sample letter are in Make the Letter of Opinion Yours.",
+        "The sample one-page Letter of Opinion is Make the Letter of Opinion Yours/Letter-of-Opinion-123-Sample-Street-SAMPLE.pdf. The name, phone, email, office address, and brokerage on it are placeholders.",
         "The handout in that folder has the prompt and the steps.",
-        "The Deal Card kit is in 20 Deal Card Setup.",
-        "Prompts by Area is in 00 Prompts by Area.",
+        "The Deal Card kit is in Deal Card Setup.",
+        "Prompts by Area sits next to this read-me.",
         "",
-        "The forms folder is last. It has the listing masters, in your kit:",
+        "The forms folder has the listing masters, in your kit:",
         "- forms/Form_200_Listing_Agreement_master.pdf",
         "- forms/RECO_Information_Guide_master.pdf",
         "Faris Team brokerage details are already on them. Add your own name and work address when you fill them.",
@@ -118,7 +122,7 @@ def main():
         seen.add(name)
         folder = lesson_folder(day)
         folders[int(day["day"])] = folder
-        files[f"{folder}/{name}.txt"] = handout(day)
+        files[f"{folder}/{folder}.txt"] = handout(day)
         readme.append(f"- {folder}")
     readme_text = "\n".join(readme).strip() + "\n"
     if "\u2014" in readme_text:
@@ -139,10 +143,9 @@ def main():
         if home is None:
             raise SystemExit("no lesson folder for kit file: " + path.name)
         if home == 0:
-            folder = "00 Prompts by Area"
+            files[path.name] = blob
         else:
-            folder = folders[home]
-        files[f"{folder}/{path.name}"] = blob
+            files[f"{folders[home]}/{path.name}"] = blob
     if not forms_dir.is_dir():
         raise SystemExit("missing forms folder")
     for name in FORM_FILES:

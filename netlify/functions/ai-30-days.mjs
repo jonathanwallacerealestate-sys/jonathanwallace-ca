@@ -162,8 +162,7 @@ export default async (req, context) => {
   }
 
   const adminOp = body.op === "export" || body.op === "reset" || body.op === "remove" || body.op === "admin-login";
-  const resetOnly = body.op === "reset" && body.adminKey === "c4e8b2a1-reset-only";
-  if (adminOp && !resetOnly && !adminKeyOk(body.adminKey)) return json(403, { ok: false, error: "admin" });
+  if (adminOp && !adminKeyOk(body.adminKey)) return json(403, { ok: false, error: "admin" });
 
   const person = adminOp && body.op !== "admin-login" ? { ok: true, key: "", first: "", last: "" } : normalizePerson(body && body.first, body && body.last);
   if (!person.ok) return json(400, { ok: false, error: person.error });

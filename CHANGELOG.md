@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-10
 
+### AI bootcamp: brain dump is an interview, not advice
+Why: Jonathan replaced the ranking lesson with a gap interview, after a couple of days to think.
+- Brain Dump the Tasks You Hate still connects Google Drive, then the learner dumps what has come up and answers 10 to 20 questions. The AI plays back the gaps and saves them. It does not give advice in this lesson. The lesson id, title, time, and example are unchanged.
+
 ### AI bootcamp: brain dump saves to Google Drive
 Why: Jonathan wants the hated-task list connected to Google Drive before the ranking starts.
 - Brain Dump the Tasks You Hate now starts by connecting Google Drive and moving the earlier files into a folder. The ranked list and strategy are saved there. The lesson id, title, why, time, and example are unchanged.

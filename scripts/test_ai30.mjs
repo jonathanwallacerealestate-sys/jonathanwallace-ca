@@ -159,11 +159,12 @@ for (const day of plan.days) {
     assert.equal(prompts[0].startsWith("I'm building my brand guidelines."), true);
   } else if (day.day === 4) {
     assert.equal(day.id, "brain-dump");
-    assert.equal(last, "Ask it to list and save every decision you made today.");
+    assert.equal(day.why, "You have had a couple of days to think since you first told it about your business. Now it learns where the gaps are, so it can start thinking ahead for you. Everyone's business is different.");
+    assert.equal(last, "Ask it to save what it learned to your Google Drive, and to list and save every decision you made today.");
     assert.equal(lastPrompt, "Before we close, list every decision we made in this chat and save them.");
-    assert.equal(day.assignment, "Done when your Google Drive is connected, your full list is ranked easiest to hardest, the strategy is saved in your Drive, and the first (easiest) task is picked.");
-    assert.match(prompts[1], /Save the ranked list and the strategy to my Google Drive\.$/);
-    assert.equal(day.steps[0].startsWith("Connect your Google Drive."), true);
+    assert.equal(day.assignment, "Done when your Google Drive is connected, it has asked you at least 10 questions, and it can play back how your business runs and where the gaps are, saved in your Drive.");
+    assert.match(prompts[1], /Don't give me advice yet\./);
+    assert.equal(day.steps[3], "No advice yet. This lesson is for it to understand your business, not to fix it.");
   } else if (day.day < 6) {
     assert.equal(last, earlyClose);
     assert.equal(lastPrompt, earlyClose);

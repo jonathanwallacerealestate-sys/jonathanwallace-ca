@@ -588,7 +588,7 @@ export function applyProgress(existing, incoming, nowIso, options) {
   return { ok: true, days };
 }
 
-export function publicRecord(person, row) {
+export function publicRecord(person, row, nowIso) {
   const days = lessonMap(row && row.days);
   const createdAt = row && row.createdAt ? row.createdAt : new Date().toISOString();
   const updatedAt = row && row.updatedAt ? row.updatedAt : createdAt;
@@ -606,7 +606,7 @@ export function publicRecord(person, row) {
     needsEmail: !(row && row.email),
     needsAdminCode: isAdminEmail(row && row.email),
     isAdmin: false,
-    unlockAt: paceUnlockAt(days),
+    unlockAt: paceUnlockAt(days, nowIso),
   };
 }
 

@@ -16,6 +16,10 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-11
 
+### AI bootcamp: pace lock test uses a fixed clock
+Why: the pre-deploy test asked for a lock that ended at 20:00 UTC on November 10, then compared it with the real clock. After that time the check failed, and the Netlify build stopped, so the Faris Team listing removal did not publish.
+- publicRecord can take the same timestamp the rest of the pace checks use. The test now checks the unlock time at 12:20 UTC on November 10, which is 20:00 UTC. A live request with no timestamp still uses the current time.
+
 ### Faris Team listings: removed 301 Concession 4 Road E, Tiny
 Why: delisted on REALTOR.ca, confirmed by MLS and address searches.
 - Removed MLS S13641494 (REALTOR.ca ID 30118393) and MLS S13641492 (REALTOR.ca ID 30118392). Both were 301 Concession 4 Road E, Tiny. Faris Team cards on /listings/ go from 62 to 60. Jonathan Wallace's own featured listings are unchanged.

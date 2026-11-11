@@ -20,6 +20,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-11
 
+### Private evaluation for 2 Oneida Crescent, Tiny
+Why: Free ad-lead report for Savannah Finnessey. Jonathan has not visited the property.
+- New page at /eval/2-oneida-crescent, same section order as 188 Old Mill Road. Heading is "Your Personalized Home Value Report". Opinion $500,000 to $555,000 as of November 11, 2026. The unvisited disclosure sits only under the downloads. Not in the nav, sitemap.xml, or llms.txt.
+- Sold and for-sale comparables from the November 11 REALM pull. No waterfront field. Sold-comparables PDF is the portrait summary. The letter PDF is waiting on the approved Word file.
+
 ### Blog: weekly market update, November 2 to 8, 2026
 Why: Jeff Barr's weekly Simcoe County stats.
 - New post `blog-market-update-nov-2-8-2026.html`, built on last week's post template (byline "Jonathan Wallace, REALTOR®", photo in the body, not as a header). Photo supplied by Jonathan Wallace: `assets/img/market-nov-2-8-2026.jpg`.

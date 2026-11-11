@@ -3,6 +3,10 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-11: Fix date-dependent AI 30 build test
+
+- `scripts/test_ai30.mjs`: the pace-lock check used fixed Nov 10 timestamps, so from Nov 11 the lock had expired, the test failed and every Netlify deploy failed (PR #237 deploy preview and its production deploy). The check now uses timestamps relative to the build time. No site behaviour changed. Reason: unblock deploys so the Faris Team listings removal from PR #237 goes live.
+
 ## Standing rules for anyone editing the site
 - Brand: Midnight Estate. Charcoal #1B1B1B, champagne gold #C9A96A (accent only), ivory #F7F3EC. No pure white (#fff); ivory is the lightest tone. Headlines in Playfair Display only (DEC-20261022-01), body and labels in Nunito Sans. No Source Serif or Inter.
 - Blog card thumbnails are never a header at the top of an article (DEC-20261012-01). The article opens on kicker, title, byline and intro; the card can sit lower in the body.

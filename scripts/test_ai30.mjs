@@ -584,8 +584,10 @@ assert.equal(peerStanding([coach], [], "pat coach").note, "Welcome in. Finish yo
 const rushed = { email: "coach@example.com", days: { 1: { done: true, doneAt: "2026-11-10T12:00:00.000Z" }, 2: { done: true, doneAt: "2026-11-10T12:10:00.000Z" } } };
 assert.equal(applyProgress(rushed, { days: { 3: { done: true } } }, "2026-11-10T12:20:00.000Z", { skipPace: true }).ok, true);
 assert.equal(applyProgress(rushed, { days: { 3: { done: true } } }, "2026-11-10T12:20:00.000Z").error, "pace");
-assert.notEqual(publicRecord({ first: "Pat", last: "Coach" }, rushed).unlockAt, "");
-assert.equal(applyAdminSession(publicRecord({ first: "Pat", last: "Coach" }, rushed), "coach@example.com", token).unlockAt, "");
+// Use timestamps relative to now so the pace lock is still active whenever the build runs.
+const rushedNow = { email: "coach@example.com", days: { 1: { done: true, doneAt: new Date(Date.now() - 20 * 60000).toISOString() }, 2: { done: true, doneAt: new Date(Date.now() - 10 * 60000).toISOString() } } };
+assert.notEqual(publicRecord({ first: "Pat", last: "Coach" }, rushedNow).unlockAt, "");
+assert.equal(applyAdminSession(publicRecord({ first: "Pat", last: "Coach" }, rushedNow), "coach@example.com", token).unlockAt, "");
 for (let n = 0; n < 5; n += 1) noteAdminCodeFailure("locked@example.com", "203.0.113.8");
 assert.equal(adminCodeLocked("locked@example.com", "203.0.113.9"), true);
 assert.equal(adminCodeLocked("other@example.com", "203.0.113.8"), true);

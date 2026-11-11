@@ -14,6 +14,12 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 - Listing descriptions stay word for word as they appear on REALTOR.ca, including words the voice rules otherwise ban (stunning, cozy and similar). Do not rewrite them (Jonathan Wallace, Nov 3, DEC-20261103-listing-copy-matches-realtor-ca).
 - Interview and town pages use the shared site header, footer and styles.css, not one-off templates.
 
+## 2026-11-11
+
+### Faris Team listings: removed 301 Concession 4 Road E, Tiny
+Why: delisted on REALTOR.ca, confirmed by MLS and address searches.
+- Removed MLS S13641494 (REALTOR.ca ID 30118393) and MLS S13641492 (REALTOR.ca ID 30118392). Both were 301 Concession 4 Road E, Tiny. Faris Team cards on /listings/ go from 62 to 60. Jonathan Wallace's own featured listings are unchanged.
+
 ## 2026-11-10
 
 ### AI bootcamp: admin lesson review

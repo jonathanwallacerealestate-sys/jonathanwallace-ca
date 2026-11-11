@@ -6,7 +6,8 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 ## 2026-11-11: 73 Maple Street hero shows only the opinion of value
 
 Why: Jonathan Wallace said the header should match 188 Old Mill. The suggested list price, completion tiers, and materials note move to the email.
-- Removed those lines from the hero. The opinion of value stays $600,000 to $650,000 as of November 11, 2026. Recommended next steps, the comparables, and the PDFs are unchanged.
+- Removed those lines from the hero. The opinion of value stays $600,000 to $650,000 as of November 11, 2026. Recommended next steps and the comparables are unchanged.
+- Replaced letter-of-opinion.pdf with Jonathan's revised Word file, unchanged. It states the as-is value only, $600,000 to $650,000. Rebuilt the combined PDF from that letter plus the existing sold summary. sold-comparables.pdf was not regenerated.
 
 ## 2026-11-11: Private evaluation for 73 Maple Street, Victoria Harbour
 

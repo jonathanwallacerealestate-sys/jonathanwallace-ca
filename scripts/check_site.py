@@ -11,6 +11,7 @@ Checks (each maps to a logged rule):
 - No self-serving aggregateRating on Jonathan Wallace's own entity (DEC-252).
 - No em dashes in visible copy, titles or meta descriptions (DEC-20261021-13).
 - No wrong phone number (DEC-TBD-e: 705-733-2525 is wrong everywhere).
+- Seller-update and eval pages do not name the listing agent or brokerage on sold comps.
 
 Run locally: python3 scripts/check_site.py
 """
@@ -68,6 +69,11 @@ for path in pages:
 
     if "705-733-2525" in text or "7057332525" in text:
         problems.append(f"{path}: wrong phone number 705-733-2525")
+
+    # Sold comps on private seller-update and eval pages must not name the
+    # listing agent or brokerage. Keep Jonathan's own byline and footer.
+    if path.startswith(("seller-update/", "eval/")) and re.search(r"Listed by\s+", text, re.I):
+        problems.append(f"{path}: sold comps must not name the listing agent or brokerage")
 
     if not noindex:
         visible = re.sub(r"<script\b.*?</script>|<style\b.*?</style>|<!--.*?-->", "", text, flags=re.S | re.I)

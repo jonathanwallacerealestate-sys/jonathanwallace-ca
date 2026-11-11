@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-11: 73 Maple Street drops the next-steps section
+
+Why: Jonathan Wallace said that advice moves to the email. The page should match 188 Old Mill.
+- Removed the Recommended next steps section. The page is now hero, the three buttons, Sold, For sale, and Your Copies. The opinion of value stays $600,000 to $650,000. The PDFs are unchanged.
+
 ## 2026-11-11: 73 Maple Street hero shows only the opinion of value
 
 Why: Jonathan Wallace said the header should match 188 Old Mill. The suggested list price, completion tiers, and materials note move to the email.

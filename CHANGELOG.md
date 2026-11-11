@@ -20,6 +20,11 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-11
 
+### 2 Oneida Crescent: town reads Tiny, Ontario
+Why: Jonathan Wallace said the town line must say Tiny, Ontario, never Tiny, ON. Postal code L9M 0B2 stays.
+- Replaced letter-of-opinion.pdf with the corrected Word file, unchanged. Rebuilt the combined PDF from that letter plus the sold summary.
+- Hero, meta, share text, and the sold-comparables header spell Ontario.
+
 ### Private evaluation for 2 Oneida Crescent, Tiny
 Why: Free ad-lead report for Savannah Finnessey. Jonathan has not visited the property.
 - New page at /eval/2-oneida-crescent, same section order as 188 Old Mill Road. Heading is "Your Personalized Home Value Report". Opinion $500,000 to $555,000 as of November 11, 2026. The unvisited disclosure sits only under the downloads. Not in the nav, sitemap.xml, or llms.txt.

@@ -1,9 +1,9 @@
 {
-  "updated": "2026-11-09",
+  "updated": "2026-11-11",
   "source": "REALTOR.ca Faris Team organization listings",
   "attribution": "Listed by Faris Team Real Estate Brokerage",
   "batch": 3,
-  "note": "Full Faris Team set on /listings/ (62 after skipping Jonathan's own).",
+  "note": "Full Faris Team set on /listings/ (60 after skipping Jonathan's own).",
   "listings": [
     {
       "address": "2087 Rumney Road",
@@ -631,28 +631,6 @@
       "mls": "S13663050",
       "url": "https://www.realtor.ca/real-estate/30142026/pt-lt-19-line-8n-oro-medonte-rural-oro-medonte",
       "imageUrl": "https://cdn.realtor.ca/listings/TS639220556715130000/reb82/highres/0/s13663050_1.jpg"
-    },
-    {
-      "address": "301 Concession 4 Road E",
-      "town": "Tiny",
-      "price": 2599900,
-      "beds": "",
-      "baths": "",
-      "type": "Commercial mix",
-      "mls": "S13641494",
-      "url": "https://www.realtor.ca/real-estate/30118393/301-concession-4-road-e-tiny-rural-tiny",
-      "imageUrl": "https://cdn.realtor.ca/listings/TS639215423525270000/reb82/highres/4/s13641494_1.jpg"
-    },
-    {
-      "address": "301 Concession 4 Road E",
-      "town": "Tiny",
-      "price": 2599900,
-      "beds": "",
-      "baths": "",
-      "type": "Agriculture",
-      "mls": "S13641492",
-      "url": "https://www.realtor.ca/real-estate/30118392/301-concession-4-road-e-tiny-rural-tiny",
-      "imageUrl": "https://cdn.realtor.ca/listings/TS639215423524000000/reb82/highres/2/s13641492_1.jpg"
     },
     {
       "address": "3870 Darling Island Road",

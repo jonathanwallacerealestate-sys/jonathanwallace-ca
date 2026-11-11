@@ -3,6 +3,12 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-11: Private evaluation for 73 Maple Street, Victoria Harbour
+
+Why: Visited evaluation for Michael Cory Denholm and Vanessa West. Jonathan viewed the home on November 10, 2026.
+- New page at /eval/73-maple-street, same section order as 188 Old Mill Road, plus the recommended next steps Jonathan asked for. Opinion of value $600,000 to $650,000 as of November 11, 2026, with a suggested list price not higher than $650,000, and the three completion tiers. Not in the nav, sitemap.xml, or llms.txt. No unvisited disclosure.
+- Nine sold and seven for-sale comparables from the November 11 REALM pull. No waterfront field. The letter PDF is the approved Word file, published unchanged. The sold-comparables PDF is the portrait summary of the nine solds. The combined PDF is that letter followed by the sold summary.
+
 ## 2026-11-11: Private seller update for 4 Charles Street, Penetanguishene
 
 - New page at /seller-update/4-charles-street for Monica and Sterling (Kevin Smith is the family contact). Same look as the private eval pages: navy header "Prepared for Monica and Sterling", a "Just sold on your street" card for 13 Charles Street (sold firm November 11, 2026 at $580,000, conditional November 6, 76 days on market, listed August 27 at $685,000, reduced to $650,000 and $625,000) with a 25-photo 16:9 lightbox, a 13 Charles vs 4 Charles table, the recommendation to improve the price from $589,900 to $569,900, and call / email buttons.

@@ -3,6 +3,12 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-11: Private seller update for 4 Charles Street, Penetanguishene
+
+- New page at /seller-update/4-charles-street for Monica and Sterling (Kevin Smith is the family contact). Same look as the private eval pages: navy header "Prepared for Monica and Sterling", a "Just sold on your street" card for 13 Charles Street (sold firm November 11, 2026 at $580,000, conditional November 6, 76 days on market, listed August 27 at $685,000, reduced to $650,000 and $625,000) with a 25-photo 16:9 lightbox, a 13 Charles vs 4 Charles table, the recommendation to improve the price from $589,900 to $569,900, and call / email buttons.
+- Photos: first 25 REALM photos of 13 Charles, resized to 1280 px, in `seller-update/4-charles-street/photos/13-charles/`. The Broker Full PDFs are not published.
+- Private: robots meta noindex, `_headers` X-Robots-Tag noindex, not in the nav, sitemap.xml, llms.txt or the listings index. GTM container (Google and Meta tags) kept as on the eval pages.
+
 ## 2026-11-11: About page audit fixes
 
 - `about.html`: fixed the stray `p>` after the Rotary sentence, and changed "recognised" to "recognized" to match the rest of the page (the site uses the z spelling).

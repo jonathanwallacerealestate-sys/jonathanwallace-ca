@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-11: 73 Maple Street hero shows only the opinion of value
+
+Why: Jonathan Wallace said the header should match 188 Old Mill. The suggested list price, completion tiers, and materials note move to the email.
+- Removed those lines from the hero. The opinion of value stays $600,000 to $650,000 as of November 11, 2026. Recommended next steps, the comparables, and the PDFs are unchanged.
+
 ## 2026-11-11: Private evaluation for 73 Maple Street, Victoria Harbour
 
 Why: Visited evaluation for Michael Cory Denholm and Vanessa West. Jonathan viewed the home on November 10, 2026.

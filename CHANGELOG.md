@@ -20,6 +20,12 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ## 2026-11-11
 
+### Blog: weekly market update, November 2 to 8, 2026
+Why: Jeff Barr's weekly Simcoe County stats.
+- New post `blog-market-update-nov-2-8-2026.html`, built on last week's post template (byline "Jonathan Wallace, REALTOR®", photo in the body, not as a header). Photo supplied by Jonathan Wallace: `assets/img/market-nov-2-8-2026.jpg`.
+- `blog.html`: new card in the LATEST MARKET UPDATE slot; the October 2026 monthly recap moved to the top of the archive. ItemList JSON-LD updated (77 items). `sitemap.xml` updated.
+- Note: the bundled weekly-market script no longer finds the LATEST MARKET UPDATE marker (the marker comment now carries extra text) and its page template predates DEC-20261012-01 and DEC-20261022-02. This week was placed and built by hand.
+
 ### Faris Team listings: removed 301 Concession 4 Road E, Tiny
 Why: delisted on REALTOR.ca, confirmed by MLS and address searches.
 - Removed MLS S13641494 (REALTOR.ca ID 30118393) and MLS S13641492 (REALTOR.ca ID 30118392). Both were 301 Concession 4 Road E, Tiny. Faris Team cards on /listings/ go from 62 to 60. Jonathan Wallace's own featured listings are unchanged.

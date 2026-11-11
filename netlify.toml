@@ -1,4 +1,5 @@
 # redeploy 2605
+# build probe only
 # Netlify configuration — jonathanwallace.ca
 # Static site: no build step, publish the repo root.
 

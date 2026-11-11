@@ -3,6 +3,17 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-11: About page audit fixes
+
+- `about.html`: fixed the stray `p>` after the Rotary sentence, and changed "recognised" to "recognized" to match the rest of the page (the site uses the z spelling).
+- Removed "one of the leading agents" and "sells for more". The story now uses verifiable proof already on the site: 4.96 stars from 16 verified RateMyAgent reviews, number one rated in Midland and Penetanguishene, and families served since December 2018.
+- "Best Realtor" is now "Best REALTOR®" in the story, emblem caption, alt, and schema. Brokerage name is "Faris Team Real Estate, Brokerage" throughout the page, matching the footer.
+- Residence line now matches other live pages: lives in Tiny Township, works from Midland, and Wasaga Beach is in the communities list. Town names in the hero link to the area guides.
+- Proof section links to RateMyAgent, Google reviews, the eight-year / 500-families post, and the RateMyAgent explainer. "How I work" links to the FAQ and the "what makes my approach different" post.
+- Schema: removed the self founder/employee contradiction, removed the dead REW `sameAs` URL, added email and an AggregateRating of 4.96 from 16 reviews on the Person and RealEstateAgent nodes. Meta description updated. Legal footer now includes 531 King St, Midland, ON L4R 3N6. Added a call/text line under the story CTAs.
+- `sitemap.xml`: about.html lastmod set to 2026-11-11.
+- No mention of his parents was added.
+
 ## 2026-11-11: Seller valuation asks when they would sell
 
 - `/seller-valuation/` step 2 now asks "Are you planning to sell in the next year if the price makes sense?" (Yes or No, required). Yes reveals "Ideally, when would you sell?" with a date picker. The date is required only when Yes is chosen, and it hides again if they switch to No. Step 1 is unchanged.

@@ -315,6 +315,32 @@ h1:focus{outline:2px solid var(--gold);outline-offset:4px;}
   border-color:var(--charcoal);
   color:var(--paper);
 }
+.timing{margin-top:4px;}
+.timing .chip-block{margin-bottom:0;}
+.timing .chip-block h3{
+  font-size:1.02rem;
+  line-height:1.35;
+  font-weight:700;
+}
+.timing .chips .chip{
+  flex:1 1 calc(50% - 8px);
+  text-align:center;
+  font-size:.95rem;
+}
+.timing .field{margin-top:16px;margin-bottom:0;}
+.timing .helper{text-align:left;margin:8px 4px 0;}
+.chip-block.is-invalid .field__err{display:block;}
+.field--date input[type="date"]{
+  appearance:auto;
+  -webkit-appearance:auto;
+  border-radius:16px;
+  color-scheme:light;
+  line-height:1.2;
+}
+.field--date input[type="date"]::-webkit-calendar-picker-indicator{
+  cursor:pointer;
+  opacity:.75;
+}
 .guide{
   background:var(--ivory);
   border:1px solid var(--line);
@@ -468,10 +494,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h1 id="h1b" tabindex="-1">You're all set</h1>
       <p class="subhead">You'll hear from me within 24 hours with a true value of your home. No obligation.</p>
 
-      <div class="optional is-open" id="optionalBlock">
-        <h2 class="optional__title">Want a sharper number? Add details</h2>
-        <p class="optional__hint">Optional. A few taps and photos help me refine your evaluation.</p>
-        <form id="detailsForm" data-beacon="off" novalidate>
+      <form id="detailsForm" data-beacon="off" novalidate>
+        <div class="timing" id="sellTiming">
+          <div class="chip-block" id="sellNextYearField">
+            <h3 id="sellNextYearLabel">Are you planning to sell in the next year if the price makes sense?</h3>
+            <div class="chips" role="group" aria-labelledby="sellNextYearLabel">
+              <button type="button" class="chip" id="sellYes" aria-pressed="false">Yes</button>
+              <button type="button" class="chip" id="sellNo" aria-pressed="false">No</button>
+            </div>
+            <p class="field__err" id="sellNextYearErr">Please choose Yes or No.</p>
+          </div>
+          <div class="field field--date" id="idealDateField" hidden>
+            <label for="idealSellDate">Ideally, when would you sell?</label>
+            <input id="idealSellDate" name="ideal_sell_date" type="date" autocomplete="off" aria-describedby="idealDateHelp idealDateErr">
+            <p class="helper" id="idealDateHelp">Any day in the month is fine.</p>
+            <p class="field__err" id="idealDateErr">Please choose a date.</p>
+          </div>
+        </div>
+
+        <div class="optional is-open" id="optionalBlock">
+          <h2 class="optional__title">Want a sharper number? Add details</h2>
+          <p class="optional__hint">Optional. A few taps and photos help me refine your evaluation.</p>
           <div id="chipMount"></div>
 
           <div class="guide">
@@ -504,8 +547,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <button class="btn" type="submit" id="detailsSubmit" style="margin-top:18px;">Send extra details</button>
           <div class="bar" id="bar" aria-hidden="true"><i id="barFill"></i></div>
           <p class="status status--error" id="detailsStatus" role="alert"></p>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -815,6 +858,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
   addChips($('chipMount'));
 
+  var sellNextYear = '';
+  (function setDateMin() {
+    var now = new Date();
+    var month = String(now.getMonth() + 1);
+    var day = String(now.getDate());
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    $('idealSellDate').min = now.getFullYear() + '-' + month + '-' + day;
+  })();
+  function syncSellDate() {
+    var dateField = $('idealDateField');
+    var dateInput = $('idealSellDate');
+    var open = sellNextYear === 'Yes';
+    dateField.hidden = !open;
+    if (!open) {
+      dateInput.value = '';
+      setInvalid(dateInput, false);
+    }
+  }
+  function chooseSell(value) {
+    sellNextYear = value;
+    $('sellYes').setAttribute('aria-pressed', value === 'Yes' ? 'true' : 'false');
+    $('sellNo').setAttribute('aria-pressed', value === 'No' ? 'true' : 'false');
+    $('sellNextYearField').classList.remove('is-invalid');
+    syncSellDate();
+  }
+  $('sellYes').addEventListener('click', function () { chooseSell('Yes'); });
+  $('sellNo').addEventListener('click', function () { chooseSell('No'); });
+  $('idealSellDate').addEventListener('change', function () {
+    if (/^\d{4}-\d{2}-\d{2}$/.test(this.value)) setInvalid(this, false);
+  });
+  function timingOk() {
+    var dateInput = $('idealSellDate');
+    var block = $('sellNextYearField');
+    if (sellNextYear !== 'Yes' && sellNextYear !== 'No') {
+      block.classList.add('is-invalid');
+      block.scrollIntoView({ block: 'center' });
+      $('sellYes').focus();
+      return false;
+    }
+    block.classList.remove('is-invalid');
+    if (sellNextYear === 'Yes' && !/^\d{4}-\d{2}-\d{2}$/.test(dateInput.value)) {
+      setInvalid(dateInput, true);
+      dateInput.scrollIntoView({ block: 'center' });
+      dateInput.focus();
+      return false;
+    }
+    setInvalid(dateInput, false);
+    return true;
+  }
+
   function renderPhotos() {
     var list = $('thumbs');
     list.textContent = '';
@@ -1023,6 +1117,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     var button = $('detailsSubmit');
     if (button.disabled) return;
+    if (!timingOk()) return;
     button.disabled = true;
     uploadAll(leadId, button).then(function (stored) {
       var failed = photos.length - stored;
@@ -1042,6 +1137,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       CHIP_KEYS.forEach(function (key) {
         body[key] = key === 'basement_finish' && selected.full_basement !== 'Yes' ? '' : (selected[key] || '');
       });
+      body.sell_next_year = sellNextYear;
+      body.ideal_sell_date = sellNextYear === 'Yes' ? ($('idealSellDate').value || '') : '';
       firePhoto('photo-' + leadId, stored);
       button.textContent = 'Saving\u2026';
       return withRetry(function () { return postStep('details', body); }).then(function () {

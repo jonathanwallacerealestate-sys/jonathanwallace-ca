@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-11: 73 Maple Street uses Michael Denholm
+
+Why: Jonathan Wallace said the owner name is Michael Denholm and Vanessa West.
+- The prepared-for line, meta description, and share tags now say Michael Denholm. Replaced letter-of-opinion.pdf with the revised Word file, unchanged. Rebuilt the combined PDF. The sold summary subject line now says Prepared for Michael Denholm and Vanessa West. Nothing else on the page changed.
+
 ## 2026-11-11: 73 Maple Street drops the next-steps section
 
 Why: Jonathan Wallace said that advice moves to the email. The page should match 188 Old Mill.

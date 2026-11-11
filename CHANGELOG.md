@@ -10,7 +10,7 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 - "Best Realtor" is now "Best REALTOR®" in the story, emblem caption, alt, and schema. Brokerage name is "Faris Team Real Estate, Brokerage" throughout the page, matching the footer.
 - Residence line now matches other live pages: lives in Tiny Township, works from Midland, and Wasaga Beach is in the communities list. Town names in the hero link to the area guides.
 - Proof section links to RateMyAgent, Google reviews, the eight-year / 500-families post, and the RateMyAgent explainer. "How I work" links to the FAQ and the "what makes my approach different" post.
-- Schema: removed the self founder/employee contradiction, removed the dead REW `sameAs` URL, added email and an AggregateRating of 4.96 from 16 reviews on the Person and RealEstateAgent nodes. Meta description updated. Legal footer now includes 531 King St, Midland, ON L4R 3N6. Added a call/text line under the story CTAs.
+- Schema: removed the self founder/employee contradiction, removed the dead REW `sameAs` URL, and added email on the Person node. AggregateRating was not added on his own entity, because DEC-252 and `scripts/check_site.py` forbid a self-serving aggregateRating. The 4.96 / 16-review figures stay visible on the page and link to RateMyAgent. Meta description updated. Legal footer now includes 531 King St, Midland, ON L4R 3N6. Added a call/text line under the story CTAs.
 - `sitemap.xml`: about.html lastmod set to 2026-11-11.
 - No mention of his parents was added.
 

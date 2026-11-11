@@ -23,7 +23,8 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 ### Blog: weekly market update, November 2 to 8, 2026
 Why: Jeff Barr's weekly Simcoe County stats.
 - New post `blog-market-update-nov-2-8-2026.html`, built on last week's post template (byline "Jonathan Wallace, REALTOR®", photo in the body, not as a header). Photo supplied by Jonathan Wallace: `assets/img/market-nov-2-8-2026.jpg`.
-- `blog.html`: new card in the LATEST MARKET UPDATE slot; the October 2026 monthly recap moved to the top of the archive. ItemList JSON-LD updated (77 items). `sitemap.xml` updated.
+- `blog.html`: new card in the LATEST MARKET UPDATE slot; the October 2026 monthly recap moved to the top of the archive. Blog ItemList JSON-LD rebuilt to match the visible card order (77 items). `sitemap.xml` and `llms.txt` updated. `/market-update-latest` redirect in `netlify.toml` now points to this post.
+- First commit was stopped by `scripts/check_site.py` (missing llms.txt entry, ItemList order, stale `/market-update-latest` redirect); fixed in a follow-up commit.
 - Note: the bundled weekly-market script no longer finds the LATEST MARKET UPDATE marker (the marker comment now carries extra text) and its page template predates DEC-20261012-01 and DEC-20261022-02. This week was placed and built by hand.
 
 ### Faris Team listings: removed 301 Concession 4 Road E, Tiny

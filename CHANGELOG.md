@@ -7,6 +7,7 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 - `/seller-valuation/` step 2 now asks "Are you planning to sell in the next year if the price makes sense?" (Yes or No, required). Yes reveals "Ideally, when would you sell?" with a date picker. The date is required only when Yes is chosen, and it hides again if they switch to No. Step 1 is unchanged.
 - The step 2 details webhook payload adds `sell_next_year` (`Yes` or `No`) and `ideal_sell_date` (`YYYY-MM-DD`, or blank when the answer is No). Existing fields, hidden UTM fields, the Meta Lead event and the Google Ads conversion are unchanged.
+- The Yes/No choice uses the same selected chip as the other answers: charcoal fill, ivory text. The colour changes at once, so the selected label stays readable.
 
 ## 2026-11-11: 2087 Rumney Road price and MLS® update
 

@@ -326,6 +326,12 @@ h1:focus{outline:2px solid var(--gold);outline-offset:4px;}
   flex:1 1 calc(50% - 8px);
   text-align:center;
   font-size:.95rem;
+  transition:border-color .15s;
+}
+.timing .chips .chip[aria-pressed="true"]{
+  background:var(--charcoal);
+  border-color:var(--charcoal);
+  color:var(--paper);
 }
 .timing .field{margin-top:16px;margin-bottom:0;}
 .timing .helper{text-align:left;margin:8px 4px 0;}

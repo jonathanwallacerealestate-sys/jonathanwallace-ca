@@ -22,7 +22,7 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 
 ### 2 Oneida Crescent: town reads Tiny, Ontario
 Why: Jonathan Wallace said the town line must say Tiny, Ontario, never Tiny, ON. Postal code L9M 0B2 stays.
-- Replaced letter-of-opinion.pdf with the corrected Word file, unchanged. Rebuilt the combined PDF from that letter plus the sold summary.
+- Replaced letter-of-opinion.pdf with the corrected Word file, unchanged. Its address line reads "2 Oneida Crescent, Tiny, Ontario L9M 0B2". Rebuilt the combined PDF from that letter plus the sold summary.
 - Hero, meta, share text, and the sold-comparables header spell Ontario.
 
 ### Private evaluation for 2 Oneida Crescent, Tiny

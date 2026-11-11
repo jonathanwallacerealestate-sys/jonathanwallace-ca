@@ -24,6 +24,7 @@ Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this befor
 Why: Jonathan Wallace said the town line must say Tiny, Ontario, never Tiny, ON. Postal code L9M 0B2 stays.
 - Replaced letter-of-opinion.pdf with the corrected Word file, unchanged. Its address line reads "2 Oneida Crescent, Tiny, Ontario L9M 0B2". Rebuilt the combined PDF from that letter plus the sold summary.
 - Hero, meta, share text, and the sold-comparables header spell Ontario.
+- Netlify rejected the first Chrome print of the sold summary, so that PDF and the combined file were rewritten with the same Ontario header. The letter file was not regenerated.
 
 ### Private evaluation for 2 Oneida Crescent, Tiny
 Why: Free ad-lead report for Savannah Finnessey. Jonathan has not visited the property.

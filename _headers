@@ -130,6 +130,16 @@
 /eval/2-oneida-crescent*
   X-Robots-Tag: noindex, nofollow
 
+# Private seller update. Not in the nav, sitemap.xml, or llms.txt.
+/seller-update/4-charles-street
+  X-Robots-Tag: noindex, nofollow
+/seller-update/4-charles-street/
+  X-Robots-Tag: noindex, nofollow
+/seller-update/4-charles-street/*
+  X-Robots-Tag: noindex, nofollow
+/seller-update/4-charles-street*
+  X-Robots-Tag: noindex, nofollow
+
 # Private agent training portal. Not in the nav, sitemap.xml, or llms.txt.
 /ai-30-days
   X-Robots-Tag: noindex, nofollow, noarchive

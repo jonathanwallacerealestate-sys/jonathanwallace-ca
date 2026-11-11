@@ -3,6 +3,10 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-11: 2087 Rumney Road price and MLS® update
+
+- `listings/2087-rumney-road-tay.html`: MLS® S13872218 to S14164054 and price $1,299,900 to $1,249,999 everywhere on the page (title, meta/og/twitter, visible price and MLS, data attributes, form, text-link bodies). Reason: REALTOR.ca shows the relisted S14164054 at $1,249,999 (scheduled listing check, pre-authorized fix).
+
 ## 2026-11-11: Fix date-dependent AI 30 build test
 
 - `scripts/test_ai30.mjs`: the pace-lock check used fixed Nov 10 timestamps, so from Nov 11 the lock had expired, the test failed and every Netlify deploy failed (PR #237 deploy preview and its production deploy). The check now uses timestamps relative to the build time. No site behaviour changed. Reason: unblock deploys so the Faris Team listings removal from PR #237 goes live.

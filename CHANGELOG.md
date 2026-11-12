@@ -11,6 +11,12 @@ Why: two new REALTOR.ca listings belong on the Faris Team grid, and one listing 
 - Removed Pt Lt 19 Line 8n, Oro-Medonte, MLS S13663050 (REALTOR.ca ID 30142026). The listing page returns 404 and no longer exists.
 - Faris Team cards on /listings/ go from 60 to 61. The file updated date is 2026-11-12. Jonathan Wallace's own featured listings are unchanged.
 
+## 2026-11-12
+
+### Social: weekly market update, November 2 to 8, 2026
+- Added the 8-slide Instagram carousel images and the 9:16 Instagram card to `assets/img/social/market-update-nov-2-8-2026/` for Buffer. Image files only, no page changes.
+- Added `scripts/weekly_market_reel.py`: builds the approved weekly 9:16 Instagram card (the layout of `market-sep-21-27-2026-reel.jpg`: handle, gold kicker, GEORGIAN BAY MARKET UPDATE, rule, week and summary lines, dashed 2x4 stat grid, house at the bottom; no shadow). `scripts/weekly_market_card.py` is not the approved weekly layout.
+
 ## 2026-11-11: 73 Maple Street uses Michael Denholm
 
 Why: Jonathan Wallace said the owner name is Michael Denholm and Vanessa West.

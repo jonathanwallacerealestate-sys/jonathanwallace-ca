@@ -3,6 +3,14 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-12: Faris Team listings add two and drop one
+
+Why: two new REALTOR.ca listings belong on the Faris Team grid, and one listing page no longer exists.
+- Added 267 Robins Point Road, Tay (Victoria Harbour). Price $469,000, 3 bedrooms, 2 bathrooms, House, MLS S14171996, REALTOR.ca ID 30503987. Town uses the same Tay (Victoria Harbour) label as the other Victoria Harbour cards.
+- Added 301 Concession 4 Road E, Tiny. Price $2,599,900, 4 bedrooms, 3 bathrooms, type Agriculture, MLS S14170994, REALTOR.ca ID 30503133. This is a new REALTOR.ca listing. It is not the pair removed in PR #237 (MLS S13641494 and S13641492). The type matches the agriculture card that pair used for this address.
+- Removed Pt Lt 19 Line 8n, Oro-Medonte, MLS S13663050 (REALTOR.ca ID 30142026). The listing page returns 404 and no longer exists.
+- Faris Team cards on /listings/ go from 60 to 61. The file updated date is 2026-11-12. Jonathan Wallace's own featured listings are unchanged.
+
 ## 2026-11-11: 73 Maple Street uses Michael Denholm
 
 Why: Jonathan Wallace said the owner name is Michael Denholm and Vanessa West.

@@ -1,10 +1,32 @@
 {
-  "updated": "2026-11-11",
+  "updated": "2026-11-12",
   "source": "REALTOR.ca Faris Team organization listings",
   "attribution": "Listed by Faris Team Real Estate Brokerage",
   "batch": 3,
-  "note": "Full Faris Team set on /listings/ (60 after skipping Jonathan's own).",
+  "note": "Full Faris Team set on /listings/ (61 after skipping Jonathan's own).",
   "listings": [
+    {
+      "address": "267 Robins Point Road",
+      "town": "Tay (Victoria Harbour)",
+      "price": 469000,
+      "beds": "3",
+      "baths": "2",
+      "type": "House",
+      "mls": "S14171996",
+      "url": "https://www.realtor.ca/real-estate/30503987/267-robins-point-road-tay-victoria-harbour",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639300097322800000/reb82/highres/6/s14171996_1.jpg"
+    },
+    {
+      "address": "301 Concession 4 Road E",
+      "town": "Tiny",
+      "price": 2599900,
+      "beds": "4",
+      "baths": "3",
+      "type": "Agriculture",
+      "mls": "S14170994",
+      "url": "https://www.realtor.ca/real-estate/30503133/301-concession-4-road-e-tiny-rural-tiny",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639299990263530000/reb82/highres/4/s14170994_1.jpg"
+    },
     {
       "address": "2087 Rumney Road",
       "town": "Tay",
@@ -620,17 +642,6 @@
       "mls": "S13673582",
       "url": "https://www.realtor.ca/real-estate/30153822/6-midves-court-springwater-midhurst",
       "imageUrl": "https://cdn.realtor.ca/listings/TS639222410347200000/reb82/highres/2/s13673582_1.jpg"
-    },
-    {
-      "address": "Pt Lt 19 Line 8n",
-      "town": "Oro-Medonte",
-      "price": 249900,
-      "beds": "",
-      "baths": "",
-      "type": "Vacant land",
-      "mls": "S13663050",
-      "url": "https://www.realtor.ca/real-estate/30142026/pt-lt-19-line-8n-oro-medonte-rural-oro-medonte",
-      "imageUrl": "https://cdn.realtor.ca/listings/TS639220556715130000/reb82/highres/0/s13663050_1.jpg"
     },
     {
       "address": "3870 Darling Island Road",

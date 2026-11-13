@@ -3,6 +3,13 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-13: Faris Team listings add one and drop one
+
+Why: a second live REALTOR.ca listing at 301 Concession 4 Road E belongs on the Faris Team grid, and one listing page no longer exists.
+- Added 301 Concession 4 Road E, Tiny. Price $2,599,900, bedrooms blank, 1 bathroom, type Retail, MLS S14175336, REALTOR.ca ID 30507623. The existing MLS S14170994 card at the same address stays. Both listings are live.
+- Removed 7 Couchiching Crescent, Tiny, MLS S14097172 (REALTOR.ca ID 30422170). The REALTOR.ca page says the listing no longer exists, and MLS and address searches find nothing.
+- Faris Team cards on /listings/ stay at 61. The file updated date is 2026-11-13. Jonathan Wallace's own featured listings are unchanged.
+
 ## 2026-11-12: Faris Team listings add two and drop one
 
 Why: two new REALTOR.ca listings belong on the Faris Team grid, and one listing page no longer exists.

@@ -1,10 +1,21 @@
 {
-  "updated": "2026-11-12",
+  "updated": "2026-11-13",
   "source": "REALTOR.ca Faris Team organization listings",
   "attribution": "Listed by Faris Team Real Estate Brokerage",
   "batch": 3,
   "note": "Full Faris Team set on /listings/ (61 after skipping Jonathan's own).",
   "listings": [
+    {
+      "address": "301 Concession 4 Road E",
+      "town": "Tiny",
+      "price": 2599900,
+      "beds": "",
+      "baths": "1",
+      "type": "Retail",
+      "mls": "S14175336",
+      "url": "https://www.realtor.ca/real-estate/30507623/301-concession-4-road-e-tiny-rural-tiny",
+      "imageUrl": "https://cdn.realtor.ca/listings/TS639300908184930000/reb82/highres/6/s14175336_1.jpg"
+    },
     {
       "address": "267 Robins Point Road",
       "town": "Tay (Victoria Harbour)",
@@ -213,17 +224,6 @@
       "mls": "X14102150",
       "url": "https://www.realtor.ca/real-estate/30427612/301-10-bay-street-e-blue-mountains",
       "imageUrl": "https://cdn.realtor.ca/listings/TS639281796177430000/reb82/highres/0/x14102150_1.jpg"
-    },
-    {
-      "address": "7 Couchiching Crescent",
-      "town": "Tiny",
-      "price": 549900,
-      "beds": "2 + 1",
-      "baths": "2",
-      "type": "House",
-      "mls": "S14097172",
-      "url": "https://www.realtor.ca/real-estate/30422170/7-couchiching-crescent-tiny-rural-tiny",
-      "imageUrl": "https://cdn.realtor.ca/listings/TS639280892250530000/reb82/highres/2/s14097172_1.jpg"
     },
     {
       "address": "Block C Part 1 Tiny Beaches Road N",

@@ -3,6 +3,13 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-14: Straight Answers video, what happens after the sold sign goes up
+
+Why: Jonathan Wallace sent a new selfie video for the /ask library.
+- New entry in `content/ask-videos.json` (slug `sold-sign-is-up-what-happens-before-closing`, Selling, 1:06): lawyer and photo ID, the first two pages of the offer, septic pump-out before the snow, utilities and insurance, the 10 a.m. to 5 p.m. closing window, keys and garage remotes. Transcript from the audio, lightly cleaned. Related link: How your home actually gets sold.
+- Media: `assets/video/ask/<slug>.mp4` (H.264 720x1280, 30fps, faststart) and the poster `assets/img/ask/<slug>.jpg`, the opening smile frame.
+- Rebuilt with `scripts/build_ask.py`: new /ask page, hub, homepage strip, related cards on the other /ask pages, sitemap.xml and llms.txt. `scripts/check_site.py` passes.
+
 ## 2026-11-13: Faris Team listings add one and drop one
 
 Why: a second live REALTOR.ca listing at 301 Concession 4 Road E belongs on the Faris Team grid, and one listing page no longer exists.

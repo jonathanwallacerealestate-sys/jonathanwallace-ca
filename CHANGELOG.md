@@ -3,6 +3,12 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-14: Sold-sign video page gets the offer-to-keys checklist
+
+Why: Jonathan Wallace asked for his Instagram caption checklist on the video page.
+- `/ask/sold-sign-is-up-what-happens-before-closing` now has "Your checklist from offer to keys" between the answer and the transcript: deposit, lawyer, what's included, septic, buyer visits, upkeep, services, insurance, closing time, keys, plus his lawyer note. His wording, without emojis, hashtags or the contact block. The phone number stays only in the footer.
+- `scripts/build_ask.py` renders an optional `checklist` field (title, items, note) on any video entry. Styles are in `assets/css/ask.css`. Other /ask pages are unchanged.
+
 ## 2026-11-14: Straight Answers video, what happens after the sold sign goes up
 
 Why: Jonathan Wallace sent a new selfie video for the /ask library.

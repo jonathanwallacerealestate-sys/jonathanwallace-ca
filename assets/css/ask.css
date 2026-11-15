@@ -64,3 +64,9 @@
   .ask-q__video{max-width:420px;margin:0 auto;width:100%;}
   .ask-cta__row .btn{width:100%;justify-content:center;}
 }
+.ask-checklist{max-width:760px;margin-top:clamp(40px,6vw,72px);border-top:1px solid var(--line);padding-top:clamp(28px,4vw,44px);}
+.ask-checklist h2{font-size:clamp(1.5rem,3vw,2rem);}
+.ask-checklist ol{padding-left:1.4em;margin:0 0 20px;}
+.ask-checklist li{font-size:1.05rem;line-height:1.7;margin:0 0 12px;}
+.ask-checklist li::marker{color:var(--copper-dark);font-weight:700;}
+.ask-checklist__note{font-size:.95rem;color:var(--charcoal);opacity:.8;font-style:italic;}

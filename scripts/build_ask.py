@@ -168,6 +168,19 @@ def build_question(v, others):
     related = [o for o in others if o["category"] == v["category"]][:3]
     related += [o for o in others if o not in related][: 3 - len(related)]
     rel_cards = "\n".join(card(o) for o in related)
+    checklist = ""
+    if v.get("checklist"):
+        c = v["checklist"]
+        items = "\n".join(f"        <li><strong>{esc(k)}:</strong> {esc(t)}</li>" for k, t in c["items"])
+        note = f'\n      <p class="ask-checklist__note">{esc(c["note"])}</p>' if c.get("note") else ""
+        checklist = f"""
+    <section class="ask-checklist">
+      <h2>{esc(c['title'])}</h2>
+      <ol>
+{items}
+      </ol>{note}
+    </section>
+"""
     page = head(
         f"{v['question']} | Jonathan Wallace",
         v["short"][:155].rsplit(" ", 1)[0] + "...",
@@ -198,7 +211,7 @@ def build_question(v, others):
         <p class="ask-related-read">Read more: <a href="{v['related']['href']}">{esc(v['related']['label'])}</a></p>
       </div>
     </div>
-
+{checklist}
     <section class="ask-transcript">
       <h2>What Jonathan Wallace said</h2>
 {paras}

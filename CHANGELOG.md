@@ -3,6 +3,13 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-16: Straight Answers video, why 1,100 new homes are planned for Penetanguishene
+
+Why: Jonathan Wallace asked for his Penetang new homes reel to go on the site.
+- New entry in `content/ask-videos.json` (slug `why-are-1100-new-homes-planned-for-penetanguishene`, Market, 0:58): more than 1,100 homes planned, a mix of apartments, townhouses and detached homes, downsizers freeing up family homes, and why builders choose Penetang (clear vision, simple process, a council and staff who work with you, builder fees cut 60% for three years). Transcript from the audio, lightly cleaned. Related link: What it costs to build in Penetanguishene.
+- Media: `assets/video/ask/<slug>.mp4` (H.264 720x1280, 30fps, faststart, from the final edited reel) and the poster `assets/img/ask/<slug>.jpg`, the opening frame.
+- Rebuilt with `scripts/build_ask.py`: new /ask page, hub, homepage strip, related cards on the other /ask pages, sitemap.xml and llms.txt. `scripts/check_site.py` passes.
+
 ## 2026-11-14: Sold-sign video page gets the offer-to-keys checklist
 
 Why: Jonathan Wallace asked for his Instagram caption checklist on the video page.

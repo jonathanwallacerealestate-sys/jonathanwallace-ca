@@ -3,6 +3,13 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-17: Weekly market update, November 9 to 15, and blog evaluation links
+
+Why: Jonathan Wallace approved this week's post and asked for every blog evaluation link to use the two-step home value page.
+- New post `/blog-market-update-nov-9-15-2026.html` built from last week's file: Jeff Barr's numbers including his week-over-week changes (DEC-20261117-01), Jonathan's "What I'm seeing on the ground" section, CREA October link, and a 7-question Q&A (HTML and FAQPage schema) written for search, with town names in the questions. Card `assets/img/market-nov-9-15-2026-card.jpg` (Artlist render, in-body).
+- `blog.html`: new card in LATEST MARKET UPDATE, Nov 2 to 8 moved to the top of the archive, Blog ItemList rebuilt from visible card order. `sitemap.xml`, `llms.txt` and both `/market-update-latest` redirects updated.
+- Every in-body `/home-value` and `home-value.html` link on blog pages now points to `/seller-valuation/` (the two-step page). Calendly in-home evaluation links, nav and footer are unchanged.
+
 ## 2026-11-14: Sold-sign video page gets the offer-to-keys checklist
 
 Why: Jonathan Wallace asked for his Instagram caption checklist on the video page.

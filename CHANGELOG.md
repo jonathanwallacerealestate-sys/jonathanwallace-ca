@@ -3,6 +3,13 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-17: Weekly social images and 9:16 card readability
+
+Why: Jonathan Wallace asked for more contrast on the 9:16 card arrows; the Facebook card needed a repeatable build.
+- `scripts/weekly_market_reel.py`: up and down arrows are larger and brighter (gold up, light warm grey down), and the charcoal sky grade now runs to just above the treeline so the bottom grid row reads on dark sky. Constants set to the Nov 9 to 15 week.
+- New `scripts/weekly_market_facebook.py`: 4:5 Facebook card from the 9:16 plate, matching `market-sep-21-27-2026-facebook.jpg`.
+- Added `assets/img/social/market-update-nov-9-15-2026/ig-reel-9x16.jpg` and `facebook-4x5.jpg`.
+
 ## 2026-11-17: Weekly market update, November 9 to 15, and blog evaluation links
 
 Why: Jonathan Wallace approved this week's post and asked for every blog evaluation link to use the two-step home value page.

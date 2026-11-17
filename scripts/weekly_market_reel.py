@@ -9,27 +9,28 @@ from PIL import Image, ImageDraw, ImageFont, ImageEnhance
 
 PLATE, OUT = sys.argv[1], sys.argv[2]
 F = "/home/claude/fonts/"
-WEEK = "Week of November 2 to 8, 2026"
-SUMMARY = "Fewer homes sold. Prices still rose."
-KICKER = "BUYER’S MARKET · 8.6 MONTHS OF INVENTORY"
+WEEK = "Week of November 9 to 15, 2026"
+SUMMARY = "Sales slowed. Inventory eased to 8.5."
+KICKER = "BUYER’S MARKET · 8.5 MONTHS OF INVENTORY"
 STATS = [  # label, value, change, direction (True up, False down, None no change)
-    ("SALES", "126", "15.4%", False), ("AVERAGE PRICE", "$764,017", "4.7%", True),
-    ("NEW LISTINGS", "389", "0.8%", True), ("ACTIVE LISTINGS", "4,785", "75", False),
-    ("SALES TO NEW LISTINGS", "32%", "7 pts", False), ("MONTHS OF INVENTORY", "8.6", "0.2", True),
-    ("DAYS ON MARKET", "51", "1 day", True), ("LIST TO SALE", "95%", "no change", None),
+    ("SALES", "99", "25.0%", False), ("AVERAGE PRICE", "$693,942", "9.9%", False),
+    ("NEW LISTINGS", "332", "14.7%", False), ("ACTIVE LISTINGS", "4,684", "113", False),
+    ("SALES TO NEW LISTINGS", "30%", "4 pts", False), ("MONTHS OF INVENTORY", "8.5", "0.1", False),
+    ("DAYS ON MARKET", "59", "1 day", True), ("LIST TO SALE", "95%", "1 pt", False),
 ]
 IVORY, GOLD, GREY, RULE = (247, 236, 228), (201, 169, 106), (150, 142, 134), (176, 150, 112)
+UPC, DNC = (236, 200, 128), (214, 206, 198)  # arrows: brighter gold up, light warm grey down (contrast fix 2026-11-17)
 
 def font(name, size, var):
     f = ImageFont.truetype(F + name, size); f.set_variation_by_name(var); return f
 
 im = Image.open(PLATE).convert("RGB").resize((1080, 1920), Image.LANCZOS)
 # Grade the sky toward charcoal (photo grade, not an overlay): desaturate and darken above the treeline.
-top = im.crop((0, 0, 1080, 1380))
+top = im.crop((0, 0, 1080, 1440))
 top = ImageEnhance.Color(top).enhance(0.35); top = ImageEnhance.Brightness(top).enhance(0.62)
-mask = Image.new("L", (1080, 1380))
-for y in range(1380):
-    a = 255 if y < 1080 else int(255 * (1380 - y) / 300)
+mask = Image.new("L", (1080, 1440))
+for y in range(1440):
+    a = 255 if y < 1300 else int(255 * (1440 - y) / 140)
     mask.paste(a, (0, y, 1080, y + 1))
 im.paste(top, (0, 0), mask)
 d = ImageDraw.Draw(im)
@@ -71,9 +72,9 @@ for i, (lab, val, chg, up) in enumerate(STATS):
     if up is None:
         d.text((xc, yb), chg, font=cf, fill=IVORY, anchor="ms")
     else:
-        ax = xc - (tw + 34) / 2; col = GOLD if up else GREY
-        tri = [(ax, yb - 2), (ax + 24, yb - 2), (ax + 12, yb - 22)] if up else [(ax, yb - 22), (ax + 24, yb - 22), (ax + 12, yb - 2)]
+        ax = xc - (tw + 38) / 2; col = UPC if up else DNC
+        tri = [(ax, yb - 1), (ax + 28, yb - 1), (ax + 14, yb - 25)] if up else [(ax, yb - 25), (ax + 28, yb - 25), (ax + 14, yb - 1)]
         d.polygon(tri, fill=col)
-        d.text((ax + 34, yb), chg, font=cf, fill=IVORY, anchor="ls")
+        d.text((ax + 38, yb), chg, font=cf, fill=IVORY, anchor="ls")
 im.save(OUT, "JPEG", quality=88, progressive=True, optimize=True)
 print("ok")

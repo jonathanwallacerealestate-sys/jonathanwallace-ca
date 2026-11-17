@@ -75,8 +75,13 @@ export default async (req, context) => {
 
   if (step === "lead") {
     const ms = Number(data.ms_on_page);
-    if (data.company || !Number.isFinite(ms) || ms < 3000) return json(200, { ok: true });
+    // Bots get a normal-looking 200 so they don't retry, but forwarded:false tells
+    // the page not to fire the Meta Lead / Google Ads conversion for this post.
+    if (data.jw_hp_note || data.company || !Number.isFinite(ms) || ms < 3000) {
+      return json(200, { ok: true, forwarded: false });
+    }
   }
+  delete data.jw_hp_note;
   delete data.company;
 
   data.client_ip_address = ip;
@@ -99,7 +104,7 @@ export default async (req, context) => {
         return json(200, { ok: true });
       }
     }
-    return json(200, { ok: true });
+    return json(200, { ok: true, forwarded: true });
   } catch (e) {
     return json(504, { ok: false });
   }

@@ -394,6 +394,23 @@ h1:focus{outline:2px solid var(--gold);outline-offset:4px;}
 .bar i{display:block;height:100%;width:0;background:var(--gold-dark);transition:width .2s;}
 #photoError{color:var(--error);font-size:.86rem;margin:8px 0 0;display:none;text-align:center;}
 .hp{position:absolute;left:-9999px;}
+.brand{display:flex;align-items:center;gap:12px;margin:-8px 0 16px;max-width:var(--max);width:100%;justify-content:center;}
+.brand__photo{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);flex:none;}
+.brand__name{display:block;font-weight:700;font-size:1.02rem;line-height:1.2;}
+.brand__firm{display:block;font-size:.8rem;color:var(--muted);line-height:1.3;}
+.proof{text-align:center;font-size:.8rem;line-height:1.45;color:var(--charcoal);margin:-14px 0 22px;}
+.proof__stars{color:var(--gold-dark);letter-spacing:.1em;}
+.quote{max-width:var(--max);width:100%;margin:24px 0 0;padding:18px 20px;background:var(--paper);border:1px solid var(--line);border-radius:14px;}
+.quote blockquote{margin:0;font-size:.95rem;line-height:1.5;}
+.quote figcaption{margin-top:8px;font-size:.8rem;color:var(--muted);font-weight:600;}
+.record{margin:14px 0 0;font-size:.82rem;color:var(--muted);text-align:center;}
+.jw-consent{margin:0 12px 12px;background:var(--charcoal);color:var(--paper);border-radius:14px;padding:14px 16px;font-size:.82rem;line-height:1.45;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);}
+.jw-consent p{margin:0 0 10px;}
+.jw-consent a{color:var(--gold);}
+.jw-consent__actions{display:flex;gap:10px;justify-content:flex-end;}
+.jw-consent button{font:inherit;font-weight:700;border-radius:999px;padding:8px 18px;cursor:pointer;border:1px solid var(--gold);}
+.jw-consent__no{background:transparent;color:var(--paper);}
+.jw-consent__yes{background:var(--gold);color:var(--charcoal);}
 .footer-line{
   margin-top:28px;
   text-align:center;
@@ -431,37 +448,28 @@ h1:focus{outline:2px solid var(--gold);outline-offset:4px;}
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <main class="shell">
-  <div class="logo">
-    <span class="logo__name">Jonathan Wallace</span>
-    <span class="logo__tag">Your Georgian Bay Specialist</span>
-  </div>
+  <header class="brand">
+    <img class="brand__photo" src="/assets/img/jonathan-wallace-headshot-160.webp" width="56" height="56" alt="Jonathan Wallace">
+    <div class="brand__text">
+      <span class="brand__name">Jonathan Wallace, REALTOR®</span>
+      <span class="brand__firm">Faris Team Real Estate Brokerage</span>
+    </div>
+  </header>
 
   <section class="page is-active" id="page1" aria-labelledby="h1a">
     <div class="card">
-      <h1 id="h1a" tabindex="-1">What's your home really worth?</h1>
-      <p class="subhead">A true value from me personally, within 24 hours. Not AI, not an online tool.</p>
+      <h1 id="h1a" tabindex="-1">Your free home valuation, from me, within 24 hours</h1>
+      <p class="subhead">I look at what's actually selling near you and send you a real number. Not AI, not an online estimate. No obligation.</p>
+      <p class="proof"><span class="proof__stars" aria-hidden="true">★★★★★</span> 4.96 on RateMyAgent, 16 verified reviews<br>Voted Midland's Best Realtor, Readers' Choice 2025</p>
       <form id="leadForm" data-beacon="off" novalidate>
         <input type="hidden" name="campaign_tag" value="Ads:2026-11">
-        <p class="hp" aria-hidden="true"><label>Leave blank <input name="company" tabindex="-1" autocomplete="off"></label></p>
+        <p class="hp" aria-hidden="true"><label>Leave blank <input name="jw_hp_note" tabindex="-1" autocomplete="off"></label></p>
 
         <div class="field field--address" id="addressField">
-          <label for="address">Property address</label>
-          <input id="address" name="address" type="text" placeholder="Enter your home address" autocomplete="street-address" aria-describedby="addrHelp addrErr">
+          <label for="address">Home address</label>
+          <input id="address" name="address" type="text" placeholder="Street, town" autocomplete="street-address" aria-describedby="addrHelp addrErr">
           <p class="field__err" id="addrErr">Please enter the property address.</p>
           <p class="helper" id="addrHelp">Live in a condo? Include your unit number. Example: 12 Bay St #203, Midland, ON</p>
-        </div>
-        <div class="field" id="townField">
-          <label for="town">Town</label>
-          <select id="town" name="town" aria-describedby="townErr">
-            <option value="">Choose your town</option>
-            <option>Midland</option>
-            <option>Penetanguishene</option>
-            <option>Tiny</option>
-            <option>Tay</option>
-            <option>Wasaga Beach</option>
-            <option>Other</option>
-          </select>
-          <p class="field__err" id="townErr">Please choose a town.</p>
         </div>
         <div class="field" id="nameField">
           <label for="name">Full name</label>
@@ -482,7 +490,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input type="checkbox" name="updates_consent" id="consent" value="yes" required>
           <span id="consentText">Yes, Jonathan Wallace, REALTOR®, Faris Team Real Estate Brokerage may send me my home value and future real estate updates, market news and offers by email or text. I can unsubscribe at any time. <a href="/privacy.html">Privacy Policy</a>.</span>
         </label>
-        <button class="btn" type="submit" id="leadSubmit">Get my free evaluation</button>
+        <button class="btn" type="submit" id="leadSubmit">Get my free valuation</button>
         <p class="status status--error" id="leadStatus" role="alert"></p>
       </form>
     </div>
@@ -492,6 +500,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <li>Within 24 hours</li>
       <li>No obligation</li>
     </ul>
+    <figure class="quote">
+      <blockquote>"Jonathan was extremely helpful and responsive during the sale of our property. He planned and executed a successful strategy for a sale above our expected price and in our required timeframe."</blockquote>
+      <figcaption>Daniel Landry, Seller, verified on RateMyAgent</figcaption>
+    </figure>
+    <p class="record">500+ families served since December 2018</p>
   </section>
 
   <section class="page" id="page2" aria-labelledby="h1b">
@@ -710,10 +723,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     input.setAttribute('aria-invalid', bad ? 'true' : 'false');
     if (field) field.classList.toggle('is-invalid', !!bad);
   }
+  /* Town is no longer asked. Read it from the address; anything else is "Other",
+     which was already one of the dropdown choices, so Make sees no new value. */
+  function townFrom(address) {
+    var a = String(address || '').toLowerCase();
+    if (/penetang/.test(a)) return 'Penetanguishene';
+    if (/wasaga/.test(a)) return 'Wasaga Beach';
+    if (/midland/.test(a)) return 'Midland';
+    if (/\btiny\b|lafontaine|perkinsfield|wyebridge|wyevale|balm beach|cawaja/.test(a)) return 'Tiny';
+    if (/\btay\b|victoria harbou?r|port mcnicoll|waubaushene|waverley|vasey/.test(a)) return 'Tay';
+    return 'Other';
+  }
+  /* Our own test runs (name or email containing "zztest", or ?jwtest=1) still go to
+     Make, but never count as a Meta, Google or GA4 conversion. */
+  function isTest(body) {
+    if (q.get('jwtest') === '1') return true;
+    return /zztest/i.test(String(body.name || '') + ' ' + String(body.email || ''));
+  }
   function validateLead(form) {
     var checks = [
       [form.address, function (v) { return v.trim().length > 0; }],
-      [form.town, function (v) { return TOWNS.indexOf(v) !== -1; }],
       [form.name, function (v) { return v.trim().length > 0; }],
       [form.mobile, phoneOk],
       [form.email, emailOk]
@@ -1078,7 +1107,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       lead_id: leadId,
       event_id: 'lead-' + leadId,
       address: form.address.value.trim(),
-      town: form.town.value,
+      town: townFrom(form.address.value),
       name: form.name.value.trim(),
       mobile: form.mobile.value.trim(),
       email: form.email.value.trim(),
@@ -1086,7 +1115,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       consent_text: consentOn ? $('consentText').textContent.trim() : '',
       consent_at: consentOn ? new Date().toISOString() : '',
       campaign_tag: 'Ads:2026-11',
-      company: form.company.value,
+      jw_hp_note: form.jw_hp_note.value,
       ms_on_page: Date.now() - started,
       fbp: cookie('_fbp'),
       fbc: fbc(),
@@ -1095,15 +1124,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     Object.keys(fields).forEach(function (key) { body[key] = fields[key]; });
     button.disabled = true;
     button.textContent = 'Sending\u2026';
-    withRetry(function () { return postStep('lead', body); }).then(function () {
+    withRetry(function () { return postStep('lead', body); }).then(function (data) {
       lead = { email: body.email, name: body.name, address: body.address };
       storeSet('lead_id', leadId);
       storeSet('lead', lead);
-      fireLead(body.event_id, fields);
+      /* Count a Lead only when Make actually received it, once per lead. The server
+         answers forwarded:false for honeypot or too-fast posts. */
+      if (data && data.forwarded === true && !isTest(body) && !storeGet('lead_fired_' + leadId)) {
+        storeSet('lead_fired_' + leadId, true);
+        fireLead(body.event_id, fields);
+      }
       showPage('page2');
     }).catch(function () {
       button.disabled = false;
-      button.textContent = 'Get my free evaluation';
+      button.textContent = 'Get my free valuation';
       failLine(status, "That didn't go through. Please try again, or text your address to ");
     });
   });

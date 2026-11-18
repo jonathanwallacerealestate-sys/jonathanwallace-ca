@@ -140,6 +140,16 @@
 /eval/73-maple-street*
   X-Robots-Tag: noindex, nofollow
 
+# Private client evaluation. Not in the nav, sitemap.xml, or llms.txt.
+/eval/688-victoria-street
+  X-Robots-Tag: noindex, nofollow
+/eval/688-victoria-street/
+  X-Robots-Tag: noindex, nofollow
+/eval/688-victoria-street/*
+  X-Robots-Tag: noindex, nofollow
+/eval/688-victoria-street*
+  X-Robots-Tag: noindex, nofollow
+
 # Private seller update. Not in the nav, sitemap.xml, or llms.txt.
 /seller-update/4-charles-street
   X-Robots-Tag: noindex, nofollow

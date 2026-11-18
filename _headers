@@ -160,6 +160,16 @@
 /eval/25-maria-street*
   X-Robots-Tag: noindex, nofollow
 
+# Private client evaluation. Not in the nav, sitemap.xml, or llms.txt.
+/eval/41-brule-street
+  X-Robots-Tag: noindex, nofollow
+/eval/41-brule-street/
+  X-Robots-Tag: noindex, nofollow
+/eval/41-brule-street/*
+  X-Robots-Tag: noindex, nofollow
+/eval/41-brule-street*
+  X-Robots-Tag: noindex, nofollow
+
 # Private seller update. Not in the nav, sitemap.xml, or llms.txt.
 /seller-update/4-charles-street
   X-Robots-Tag: noindex, nofollow

@@ -3,6 +3,12 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-18: Private evaluation for 41 Brule Street, Penetanguishene
+
+Why: Free ad-lead report for Susanne and Mark Walten. Jonathan has not visited the property.
+- New page at /eval/41-brule-street, same section order as 188 Old Mill Road. Heading is "Your Personalized Home Value Report". Opinion $585,000 to $635,000 as of November 18, 2026, with a suggested list price not higher than $649,900. The unvisited disclosure sits only under the downloads. Not in the nav, sitemap.xml, or llms.txt.
+- Six sold and one for-sale comparable from the November 18 REALM pull. No waterfront field. The letter PDF is the approved Word file, published unchanged. The sold-comparables PDF is the portrait summary. The combined PDF is that letter followed by the sold summary. The unvisited disclosure is not in either PDF.
+
 ## 2026-11-18: Private evaluation for 25 Maria Street, Penetanguishene
 
 Why: Free ad-lead report for Clara Duguay. Jonathan has not visited the property.

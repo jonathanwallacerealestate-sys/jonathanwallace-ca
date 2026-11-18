@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-18: 41 Brule Street opinion range starts at $595,000
+
+Why: Jonathan Wallace raised the low end of the opinion from $585,000 to $595,000. The suggested list price stays $649,900.
+- The hero and the meta, Open Graph, and Twitter descriptions now read $595,000 to $635,000. The 12 Richelieu Street history line is unchanged. Replaced letter-of-opinion.pdf with the revised Word file, unchanged.
+
 ## 2026-11-18: Private evaluation for 41 Brule Street, Penetanguishene
 
 Why: Free ad-lead report for Susanne and Mark Walten. Jonathan has not visited the property.

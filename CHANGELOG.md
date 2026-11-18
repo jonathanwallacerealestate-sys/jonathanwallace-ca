@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-18: 41 Brule Street combined PDF uses the new letter
+
+Why: The combined download still opened on the previous letter, which said $585,000 to $635,000.
+- Rebuilt letter-and-sold-comparables.pdf as the current letter-of-opinion.pdf followed by the existing sold-comparables.pdf. Those two files were not changed.
+
 ## 2026-11-18: 41 Brule Street opinion range starts at $595,000
 
 Why: Jonathan Wallace raised the low end of the opinion from $585,000 to $595,000. The suggested list price stays $649,900.

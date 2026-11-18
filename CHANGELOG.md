@@ -3,6 +3,15 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-18: Lead pages follow the Hormozi landing page checklist (draft PR, not merged)
+
+Why: Jonathan Wallace asked for the site to follow Alex Hormozi's landing page framework (headline, sub-headline, proof, literal CTA, minimum fields, three objections below the fold, social proof below, no distractions, short, fast, legal).
+- `/seller-valuation/` (live Meta ad page): the four "Not AI / Researched personally / Within 24 hours / No obligation" chips are now three objection bullets below the form (pressure to list, online estimate, cost and timing). The footer now carries the brokerage address, phone, email, Privacy Policy link and the CREA trademark and non-solicitation lines. Headline, form, field names, honeypot, webhook payload, Meta Lead, Google Ads conversion and step 2 are unchanged.
+- `/home-value.html`: full nav replaced with a brand bar and phone number; heavy footer replaced with the legal footer. New headline and sub-headline. Proof stats and Daniel Landry's review moved below the form. Optional last name removed from step 1 (the step 2 hidden `last_name` input stays, blank). Button reads "Get my free home value". Consent now names Faris Team Real Estate Brokerage and links the Privacy Policy (field name `casl_consent` unchanged). The three "better than an algorithm" cards became three objection bullets. Hero image served as WebP.
+- `/join.html`: outcome headline, three objection bullets and the proof line moved below the form.
+- `/newsletter`: hero image served as WebP, "Not ready to subscribe?" exit links removed.
+- Homepage hero: outcome headline, sub-headline, primary button "Get my free home value" plus "Text me"; Current listings is a text link under the buttons and the Contact button is gone (Contact stays in the nav). Community tiles use 900 px WebP copies (about 1.3 MB lighter). Fixed the mobile hero text touching the screen edge (`.hero--fold .hero__inner` side padding).
+
 ## 2026-11-17: Weekly social images and 9:16 card readability
 
 Why: Jonathan Wallace asked for more contrast on the 9:16 card arrows; the Facebook card needed a repeatable build.

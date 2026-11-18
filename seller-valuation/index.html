@@ -197,33 +197,6 @@ h1:focus{outline:2px solid var(--gold);outline-offset:4px;}
 }
 .btn--ghost:hover{background:var(--charcoal);color:var(--paper);}
 .btn:disabled{opacity:.55;cursor:not-allowed;}
-.trust{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:8px 14px;
-  margin:22px 0 0;
-  padding:0;
-  list-style:none;
-  max-width:var(--max);
-  width:100%;
-}
-.trust li{
-  font-size:.72rem;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  color:var(--muted);
-  font-weight:600;
-}
-.trust li::before{
-  content:"";
-  display:inline-block;
-  width:5px;height:5px;
-  border-radius:50%;
-  background:var(--gold);
-  margin-right:8px;
-  vertical-align:middle;
-}
 .page{display:none;width:100%;flex-direction:column;align-items:center;}
 .page.is-active{display:flex;}
 .thanks-check{
@@ -421,6 +394,12 @@ h1:focus{outline:2px solid var(--gold);outline-offset:4px;}
   width:100%;
 }
 .footer-line strong{color:var(--charcoal);font-weight:700;}
+.objections{max-width:var(--max);width:100%;margin:22px 0 0;padding:0;list-style:none;display:grid;gap:10px;}
+.objections li{position:relative;padding:0 0 0 22px;font-size:.9rem;line-height:1.45;color:var(--charcoal);}
+.objections li::before{content:"";position:absolute;left:4px;top:.55em;width:7px;height:7px;border-radius:50%;background:var(--gold);}
+.objections strong{display:block;font-weight:700;}
+.footer-line a{color:var(--muted);text-decoration:underline;}
+.footer-line .fine{display:block;margin-top:8px;font-size:.7rem;}
 .status{
   display:none;
   margin-top:14px;
@@ -494,11 +473,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="status status--error" id="leadStatus" role="alert"></p>
       </form>
     </div>
-    <ul class="trust" aria-label="What you get">
-      <li>Not AI</li>
-      <li>Researched personally</li>
-      <li>Within 24 hours</li>
-      <li>No obligation</li>
+    <ul class="objections" aria-label="Common questions">
+      <li><strong>Will I get pressured to list?</strong> No. It's a number, not a sales pitch. What you do with it is up to you.</li>
+      <li><strong>Is this an online estimate?</strong> No. I look at what's actually selling near you and price your home myself. Not AI.</li>
+      <li><strong>What does it cost, and how long does it take?</strong> Nothing. You'll hear from me within 24 hours.</li>
     </ul>
     <figure class="quote">
       <blockquote>"Jonathan was extremely helpful and responsive during the sale of our property. He planned and executed a successful strategy for a sale above our expected price and in our required timeframe."</blockquote>
@@ -571,7 +549,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <p class="footer-line"><strong>Jonathan Wallace, REALTOR®</strong>, Faris Team Real Estate Brokerage</p>
+  <footer class="footer-line">
+    <strong>Jonathan Wallace, REALTOR®</strong>, Faris Team Real Estate Brokerage, 531 King St, Midland, ON L4R 3N6<br>
+    <a href="tel:+17054332525">705-433-2525</a> · <a href="mailto:jonathan@faristeam.ca">jonathan@faristeam.ca</a> · <a href="/privacy.html">Privacy Policy</a>
+    <span class="fine">REALTOR®, MLS® and the associated logos are trademarks owned by The Canadian Real Estate Association (CREA). Not intended to solicit properties already listed for sale or buyers or sellers under contract.</span>
+  </footer>
 </main>
 
 <!--

@@ -190,6 +190,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
   ]
 }
 </script>
+<style>
+  .hv-bar{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .hv-bar__call{font-weight:700;color:inherit;text-decoration:none;}
+  .hv-hero{padding:clamp(28px,5vw,64px) 0 clamp(24px,4vw,48px);}
+  .hv-hero h1{font-size:clamp(1.85rem,5.5vw,3rem);line-height:1.15;margin:0 0 10px;}
+  .hv-hero p{font-size:1.05rem;}
+  #valuation{padding-top:28px;}
+  .hv-objections{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:14px;}
+  .hv-objections li{position:relative;padding-left:22px;line-height:1.5;}
+  .hv-objections li::before{content:"";position:absolute;left:4px;top:.6em;width:8px;height:8px;border-radius:50%;background:#C9A96A;}
+  .hv-objections strong{display:block;}
+  .hv-foot .footer__legal{border-top:0;}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -197,37 +210,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.crossOrigin='an
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <header class="site-header">
-  <div class="wrap nav">
-    <div class="brand"><a href="index.html"><span class="brand__name">Jonathan Wallace</span><span class="brand__tag">Your Georgian Bay Specialist</span></a></div>
-    <nav><ul class="nav__links" id="navLinks">
-      <li><a href="sell.html">Sell</a></li><li><a href="buy.html">Buy</a></li><li><a href="home-tours.html">Home Tours</a></li><li><a href="communities.html">Communities</a></li><li><a href="blog.html">Blog</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li>
-      <li class="nav__cta"><a class="btn btn--primary" href="home-value.html" data-ga4="cta_price_my_home">Price My Home</a></li>
-    </ul></nav>
-    <button class="nav__toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="wrap hv-bar">
+    <div class="brand"><a href="/"><span class="brand__name">Jonathan Wallace</span><span class="brand__tag">REALTOR®, Georgian Bay</span></a></div>
+    <a class="hv-bar__call" href="tel:+17054332525" data-ga4="cta_call">705-433-2525</a>
   </div>
 </header>
 
-<section class="page-hero" style="background:linear-gradient(120deg,rgba(20,18,13,.82),rgba(20,18,13,.55)),url('assets/img/hero-home-value.jpg') center/cover no-repeat;">
+<section class="page-hero hv-hero" style="background:linear-gradient(120deg,rgba(20,18,13,.82),rgba(20,18,13,.55)),url('assets/img/hero-home-value.webp') center/cover no-repeat;">
   <div class="wrap">
     <p class="eyebrow" style="color:#C9A96A;">Free home valuation</p>
-    <h1>What's your Georgian Bay home worth today?</h1>
-    <p>Not an automated guess, a real analysis from a local agent who knows what's actually selling in your neighbourhood, and for how much.</p>
+    <h1>Get a real value for your Georgian Bay home within 24 hours</h1>
+    <p>Jonathan Wallace, REALTOR®, prices it himself from what's actually selling near you. Not an automated estimate. Free, with no obligation.</p>
   </div>
 </section>
-<!-- SELLER PROOF (council batch 2): proof band + seller review above the form -->
-<section class="proof section" style="padding-top:32px;padding-bottom:10px;">
-  <div class="wrap">
-    <div class="proof__grid">
-      <div><div class="stat__num">$300M+</div><div class="stat__label">In career sales volume</div></div>
-      <div><div class="stat__num">500+</div><div class="stat__label">Families served</div></div>
-      <div><div class="stat__num">4.96&#9733;</div><div class="stat__label">Rated on RateMyAgent</div></div>
-      <div><div class="stat__num">#1</div><div class="stat__label">Agent in Midland &amp; Penetanguishene, as rated on RateMyAgent</div></div>
-    </div>
-    <blockquote style="max-width:720px;margin:28px auto 0;background:#F7F3EC;border:1px solid #EAE4D8;border-radius:14px;padding:22px;"><div style="color:#C9A96A;letter-spacing:3px;font-size:.95rem;text-align:center;">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p style="font-family:'Playfair Display',Georgia,serif;font-size:1.02rem;line-height:1.55;color:#1B1B1B;margin:10px 0 14px;">&ldquo;Jonathan was extremely helpful and responsive during the sale of our property. He was able to provide us with additional reliable resources to assist with the preparation and sale of the home. He planned and executed a successful strategy for a sale above our expected price and in our required timeframe.&rdquo;</p><cite style="font-style:normal;font-size:.88rem;color:#8A8378;">Daniel Landry &middot; Seller &middot; verified on RateMyAgent</cite></blockquote>
-  </div>
-</section>
-
-
 <section class="section" id="valuation">
   <div class="wrap" style="max-width:780px;">
     <!-- Two-step valuation (council batch 4), modelled on /seller-valuation/. Step 1 is the lead and posts to
@@ -241,11 +236,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
         <div class="field"><label for="hvAddress">Property address</label><input id="hvAddress" name="address" placeholder="123 Bayshore Dr" autocomplete="street-address" required></div>
         <div class="field"><label for="hvTown">Town</label><select id="hvTown" name="town" required><option value="">Choose your town</option><option>Midland</option><option>Penetanguishene</option><option>Tiny Township</option><option>Tay Township</option><option>Wasaga Beach</option><option>Other</option></select></div>
-        <div class="form__row"><div class="field"><label for="hvFirst">First name</label><input id="hvFirst" name="first_name" autocomplete="given-name" required></div><div class="field"><label for="hvLast">Last name (optional)</label><input id="hvLast" name="last_name" autocomplete="family-name"></div></div>
+        <div class="field"><label for="hvFirst">First name</label><input id="hvFirst" name="first_name" autocomplete="given-name" required></div>
         <div class="form__row"><div class="field"><label for="hvEmail">Email</label><input id="hvEmail" type="email" name="email" autocomplete="email" required></div><div class="field"><label for="hvPhone">Mobile</label><input id="hvPhone" type="tel" name="phone" autocomplete="tel" inputmode="tel" required></div></div>
-        <label class="consent"><input type="checkbox" name="casl_consent" required> I agree to be contacted by Jonathan Wallace about my home's value and understand I can unsubscribe anytime. (CASL)</label>
-        <button class="btn btn--primary btn--block btn--lg" type="submit" data-ga4="home_value_step1">Get my home valuation</button>
-        <p class="form__note">Free and no-obligation. Your details are private and never shared. Prefer to text? <a href="sms:+17054332525" data-ga4="cta_text">705-433-2525</a></p>
+        <label class="consent"><input type="checkbox" name="casl_consent" required> <span>Yes, Jonathan Wallace, REALTOR®, Faris Team Real Estate Brokerage may contact me by email, phone or text about my home's value. I can unsubscribe at any time. <a href="privacy.html">Privacy Policy</a>.</span></label>
+        <button class="btn btn--primary btn--block btn--lg" type="submit" data-ga4="home_value_step1">Get my free home value</button>
+        <p class="form__note">Your details stay with me and are never sold or shared. Prefer to text? <a href="sms:+17054332525" data-ga4="cta_text">705-433-2525</a></p>
       </form>
     </div>
 
@@ -284,8 +279,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var btn = f1.querySelector('button[type="submit"]'); btn.disabled = true;
     post(f1).then(function (r) {
       if (!r.ok) throw new Error('post failed');
-      ['Email', 'First', 'Last', 'Address'].forEach(function (k) {
-        var src = { Email: 'hvEmail', First: 'hvFirst', Last: 'hvLast', Address: 'hvAddress' }[k];
+      ['Email', 'First', 'Address'].forEach(function (k) {
+        var src = { Email: 'hvEmail', First: 'hvFirst', Address: 'hvAddress' }[k];
         document.getElementById('hv2' + k).value = document.getElementById(src).value;
       });
       document.getElementById('hvStep1').hidden = true;
@@ -301,28 +296,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 
-<section class="section section--sand">
-  <div class="wrap center"><p class="eyebrow">Why it's better than an algorithm</p><h2>A local read, not a robot's guess</h2></div>
-  <div class="wrap grid grid--3" style="margin-top:40px;">
-    <div class="card"><div class="card__icon">📊</div><h3>Real comparables</h3><p>I use what's actually sold near you, not a national averaging tool that's never seen your street.</p></div>
-    <div class="card"><div class="card__icon">🌊</div><h3>Local factors</h3><p>Waterfront, views, lot, and neighbourhood nuances that automated estimates routinely miss.</p></div>
-    <div class="card"><div class="card__icon">💬</div><h3>A real conversation</h3><p>You'll get context and next steps, and zero pressure to list before you're ready.</p></div>
+<section class="section section--sand hv-faq">
+  <div class="wrap" style="max-width:780px;">
+    <h2>Before you send it</h2>
+    <ul class="hv-objections">
+      <li><strong>Will I get pressured to list?</strong> No. You get a number with context. What you do next is up to you.</li>
+      <li><strong>Is this just an online estimate?</strong> No. I use what's actually sold near you, plus waterfront, lot and neighbourhood details that automated tools miss.</li>
+      <li><strong>What does it cost, and how long does it take?</strong> Nothing. You'll hear from me personally within 24 hours.</li>
+    </ul>
+  </div>
+</section>
+<!-- SELLER PROOF: below the form (landing page framework, social proof below the fold) -->
+<section class="proof section" style="padding-top:32px;padding-bottom:10px;">
+  <div class="wrap">
+    <div class="proof__grid">
+      <div><div class="stat__num">$300M+</div><div class="stat__label">In career sales volume</div></div>
+      <div><div class="stat__num">500+</div><div class="stat__label">Families served</div></div>
+      <div><div class="stat__num">4.96&#9733;</div><div class="stat__label">Rated on RateMyAgent</div></div>
+      <div><div class="stat__num">#1</div><div class="stat__label">Agent in Midland &amp; Penetanguishene, as rated on RateMyAgent</div></div>
+    </div>
+    <blockquote style="max-width:720px;margin:28px auto 0;background:#F7F3EC;border:1px solid #EAE4D8;border-radius:14px;padding:22px;"><div style="color:#C9A96A;letter-spacing:3px;font-size:.95rem;text-align:center;">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p style="font-family:'Playfair Display',Georgia,serif;font-size:1.02rem;line-height:1.55;color:#1B1B1B;margin:10px 0 14px;">&ldquo;Jonathan was extremely helpful and responsive during the sale of our property. He was able to provide us with additional reliable resources to assist with the preparation and sale of the home. He planned and executed a successful strategy for a sale above our expected price and in our required timeframe.&rdquo;</p><cite style="font-style:normal;font-size:.88rem;color:#8A8378;">Daniel Landry &middot; Seller &middot; verified on RateMyAgent</cite></blockquote>
   </div>
 </section>
 
-<footer class="footer">
-  <div class="wrap footer__grid">
-    <div class="footer__brand"><span class="brand__name">Jonathan Wallace</span><p style="margin-top:12px;">Georgian Bay real estate, Midland, Penetanguishene, Tiny, Tay &amp; Wasaga Beach.</p>
-      <div class="footer__social"><a href="https://youtube.com/@jonathanwallaceRE" target="_blank" rel="noopener">YT</a><a href="https://instagram.com/jonathanwallacerealestate" target="_blank" rel="noopener">IG</a><a href="https://www.linkedin.com/in/jonathanwallacerealestate" target="_blank" rel="noopener">in</a></div>
-    </div>
-    <div><p class="footer__h">Explore</p><ul><li><a href="sell.html">Sell your home</a></li><li><a href="buy.html">Buy a home</a></li><li><a href="home-tours.html">Home tours</a></li><li><a href="communities.html">Communities</a></li><li><a href="home-value.html">Home value</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="faq.html">FAQ</a></li><li><a href="blog.html">Blog</a></li><li><a href="/weekly">Weekly market hub</a></li><li><a href="/resources">Free guides</a></li><li><a href="/vendors">Verified Vendors</a></li></ul></div>
-    <div><p class="footer__h">Get in touch</p><ul><li><a href="tel:+17054332525">705-433-2525</a></li><li><a href="mailto:jonathan@faristeam.ca">Email Jonathan Wallace</a></li><li>Midland, Ontario</li></ul></div>
-    <div><p class="footer__h">Prefer to talk?</p><p style="font-size:.9rem;">Call or text anytime.</p><a class="btn btn--primary" href="tel:+17054332525" data-ga4="cta_call">705-433-2525</a></div>
-  </div>
+
+<footer class="footer hv-foot">
   <div class="wrap footer__legal">
-    <p><strong>Jonathan Wallace, REALTOR®</strong> · Faris Team Real Estate, Brokerage</p>
+    <p><strong>Jonathan Wallace, REALTOR®</strong> · Faris Team Real Estate, Brokerage · 531 King St, Midland, ON L4R 3N6</p>
+    <p><a href="tel:+17054332525">705-433-2525</a> · <a href="mailto:jonathan@faristeam.ca">jonathan@faristeam.ca</a> · <a href="privacy.html">Privacy Policy</a></p>
     <p>REALTOR®, MLS® and the associated logos are trademarks owned by The Canadian Real Estate Association (CREA) and identify real estate professionals who are members of CREA. Not intended to solicit properties already listed for sale or buyers/sellers under contract.</p>
-    <p>© <span id="year">2026</span> Jonathan Wallace. All rights reserved. · <a href="privacy.html">Privacy Policy</a></p>
+    <p>© <span id="year">2026</span> Jonathan Wallace. All rights reserved.</p>
   </div>
 </footer>
 <script src="assets/js/main.js"></script>

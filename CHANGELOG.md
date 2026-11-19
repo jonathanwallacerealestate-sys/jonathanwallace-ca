@@ -3,6 +3,12 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-19: Readers' Choice award linked to its source
+
+Why: SEO/AEO audit. The 2025 Readers' Choice award was stated with no source, which weakens AI citation confidence.
+- Linked the award mention to the official Best Real Estate Agent winners page (https://best-businesses.thereaderschoice.ca/o/midland/readers-choice-2025-winners/services/best-real-estate-agent) on index, about, faq, the RateMyAgent blog post, and the Midland agent-interview page. Added the URL to the proof line in llms.txt.
+- scripts/check_site.py passes.
+
 ## 2026-11-19: Full address and REALTOR.ca profile in schema
 
 Why: SEO/AEO audit. Jonathan Wallace's RealEstateAgent schema had no street address or postal code, and his REALTOR.ca profile was not in sameAs.

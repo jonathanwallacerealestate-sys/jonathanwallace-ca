@@ -3,6 +3,13 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-19: Town market snapshot on the five community pages
+
+Why: SEO/AEO audit. AI answer engines get town-level questions ("Midland home prices") and every market post on the site was county-level. Jeff Barr's monthly Simcoe County report breaks the numbers out by municipality.
+- Added an October 2026 snapshot box directly under "What do homes in [town] cost right now?" on communities/midland, penetanguishene, tay-township, tiny-township and wasaga-beach: average price, sales, new and active listings, days on market, sale-to-list ratio, months of inventory, a one-line read, source line, and a link to the October monthly post. Midland and Penetanguishene share the board's combined figures, as do Tay and Tiny, and the box says so.
+- Refresh monthly when Jeff's next Simcoe County monthly report arrives (November figures expected early December).
+- sitemap.xml lastmod set to 2026-11-19 for the five pages. scripts/check_site.py passes.
+
 ## 2026-11-19: Career sales volume updated to $350M+
 
 Why: Jonathan Wallace confirmed he is now at $350 million in career sales; 500+ families served is unchanged.

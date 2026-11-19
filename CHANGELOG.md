@@ -3,6 +3,12 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-19: 19 Rugman Crescent letter and Sanford note
+
+Why: Jonathan Wallace sent a revised letter and asked for a power-of-sale note on 58 Sanford Circ only.
+- Replaced letter-of-opinion.pdf with the revised Word file, unchanged. Rebuilt the combined PDF from that letter plus the existing sold summary. sold-comparables.pdf was not changed.
+- 58 Sanford Circ now has the line "Power of sale" in the same history style as the other card text.
+
 ## 2026-11-18: Private evaluation for 19 Rugman Crescent, Springwater
 
 Why: Free ad-lead report for Carah Brown and Mackenzie Cughan. Jonathan has not visited the property. He asked for sold comparables only.

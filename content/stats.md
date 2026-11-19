@@ -4,7 +4,7 @@ These numbers are the truth source for the whole site. The live values live in
 assets/data/stats.json and are injected into any element with a data-stat attribute.
 Change them in one place and every page updates.
 
-- volume: $300M+ in career sales volume
+- volume: $350M+ in career sales volume
 - families: 500+ families served
 - rating: 4.96 stars on RateMyAgent (16 verified reviews)
 - rank: number one rated agent in Midland and Penetanguishene on RateMyAgent

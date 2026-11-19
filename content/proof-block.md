@@ -3,7 +3,7 @@
 Use the same four-card band on every page. The numbers come from assets/data/stats.json
 via data-stat, so they can never drift out of sync again.
 
-Card 1: $300M+  |  In career sales volume
+Card 1: $350M+  |  In career sales volume
 Card 2: 500+    |  Families served
 Card 3: 4.96 stars  |  Rated on RateMyAgent
 Card 4: #1      |  Agent in Midland and Penetanguishene, as rated on RateMyAgent

@@ -3,6 +3,13 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-19: Career sales volume updated to $350M+
+
+Why: Jonathan Wallace confirmed he is now at $350 million in career sales; 500+ families served is unchanged.
+- Replaced $300M+ with $350M+ sitewide (proof blocks, stat tiles, community and town pages, llms.txt, assets/data/stats.json).
+- Homepage volume stat label now reads "In career sales volume, as of November 2026" so the figure is dated.
+- scripts/check_site.py passes.
+
 ## 2026-11-19: Readers' Choice award linked to its source
 
 Why: SEO/AEO audit. The 2025 Readers' Choice award was stated with no source, which weakens AI citation confidence.

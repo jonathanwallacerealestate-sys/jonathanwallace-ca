@@ -3,6 +3,12 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-18: Private evaluation for 19 Rugman Crescent, Springwater
+
+Why: Free ad-lead report for Carah Brown and Mackenzie Cughan. Jonathan has not visited the property. He asked for sold comparables only.
+- New page at /eval/19-rugman-crescent, same section order as 188 Old Mill Road except there is no For sale section. Heading is "Your Personalized Home Value Report". Opinion $1,050,000 to $1,075,000 as of November 18, 2026. No suggested list price. The unvisited disclosure sits only under the downloads. Not in the nav, sitemap.xml, or llms.txt.
+- Five sold comparables from the November 18 REALM pull, in the order Jonathan set. No waterfront field. The letter PDF is the approved Word file, published unchanged. The sold-comparables PDF is the portrait summary. The combined PDF is that letter followed by the sold summary. The unvisited disclosure is not in either PDF.
+
 ## 2026-11-18: 41 Brule Street combined PDF uses the new letter
 
 Why: The combined download still opened on the previous letter, which said $585,000 to $635,000.

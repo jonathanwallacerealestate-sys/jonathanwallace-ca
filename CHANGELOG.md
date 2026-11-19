@@ -3,6 +3,14 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-19: Town snapshot YTD corrected, five-year table added
+
+Why: The workbook's YTD row for past years is the full calendar year, so the earlier YTD line compared January to October 2026 with all of 2025. Now both years are summed from the monthly rows (January to October), with a sales-weighted average price.
+- Corrected the year-to-date line on all five community pages.
+- Added a January to October, 2021 to 2026 table (sales, average sale price) and a one-line read to each snapshot box.
+- Faris Team market share data is never published on the site (Jonathan Wallace, 2026-11-19).
+- scripts/check_site.py passes.
+
 ## 2026-11-19: Town snapshot adds year-over-year and year-to-date
 
 Why: Jonathan Wallace supplied Jeff Barr's Market Update Stats workbook (monthly data by municipality back to 2021). Figures match the October email exactly.

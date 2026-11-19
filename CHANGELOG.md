@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-19: Private test review page for 38 Rue Eric, Tiny
+
+Why: Jonathan Wallace asked for an unlisted review page at /eval/review-38re-9f0afacd. The page files were supplied already built.
+- Copied the supplied folder in unchanged. Added the noindex header and the pretty-URL redirects. Not in the nav, sitemap.xml, or llms.txt.
+
 ## 2026-11-19: Private land page, 185 Park Street, Tay
 
 Why: Jonathan Wallace asked for a breakdown page on 185 Park St, Tay (Victoria Harbour), MLS S12147670, to text to one buyer client. Not his listing.

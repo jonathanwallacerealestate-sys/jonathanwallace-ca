@@ -55,6 +55,12 @@ def iso_duration(sec):
     return f"PT{sec // 60}M{sec % 60}S"
 
 
+def long_date(iso):
+    import datetime
+    d = datetime.date.fromisoformat(iso[:10])
+    return f"{d.strftime('%B')} {d.day}, {d.year}"
+
+
 def mmss(sec):
     return f"{sec // 60}:{sec % 60:02d}"
 
@@ -202,7 +208,7 @@ def build_question(v, others):
       <div class="ask-q__body">
         <p class="eyebrow">Straight Answers · {v['category']}</p>
         <h1>{esc(v['question'])}</h1>
-        <p class="ask-byline">Jonathan Wallace, REALTOR® · {mmss(v['duration'])} video</p>
+        <p class="ask-byline">Jonathan Wallace, REALTOR® · {mmss(v['duration'])} video · <time datetime="{v['date']}">{long_date(v['date'])}</time></p>
         <div class="ask-short">
           <p class="ask-short__label">The short answer</p>
           <p>{esc(v['short'])}</p>

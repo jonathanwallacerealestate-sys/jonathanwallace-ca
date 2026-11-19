@@ -3,6 +3,13 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-19: Private land page, 185 Park Street, Tay
+
+Why: Jonathan Wallace asked for a breakdown page on 185 Park St, Tay (Victoria Harbour), MLS S12147670, to text to one buyer client. Not his listing.
+- New listings/185-park-street-tay.html, modelled on the 2104 Newton Street page: noindex, follow; canonical /listings/185-park-street-tay; quick facts, price history, location, "What to check before an offer" (zoning and Official Plan read from Tay's public schedules, Victoria Harbour sewage plant capacity, EP, easements, survey) with source links. Listing brokerage shown; listing agent not named.
+- Photos as WebP in assets/img/listings/185-park-street-tay/ plus an og JPG.
+- netlify.toml redirects and _headers X-Robots-Tag added the same way as other listing pages. Not added to the listings index, sitemap.xml or llms.txt (private page).
+
 ## 2026-11-19: Internal links point at final URLs
 
 Why: SEO audit. 403 internal links went through a 301 before landing (for example /weekly to /weekly.html, /join to /join.html, /listings to /listings/), costing a hop on every click and crawl.

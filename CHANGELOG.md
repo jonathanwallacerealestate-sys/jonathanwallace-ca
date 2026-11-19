@@ -3,6 +3,12 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-19: Town snapshot adds year-over-year and year-to-date
+
+Why: Jonathan Wallace supplied Jeff Barr's Market Update Stats workbook (monthly data by municipality back to 2021). Figures match the October email exactly.
+- Each town snapshot box now adds an October 2025 comparison (sales, average price, months of inventory) and a January to October year-to-date line against the same months of 2025, with a note that YTD is the steadier read.
+- Source line now reads "Faris Team Simcoe County market statistics, October 2026". scripts/check_site.py passes.
+
 ## 2026-11-19: Town market snapshot on the five community pages
 
 Why: SEO/AEO audit. AI answer engines get town-level questions ("Midland home prices") and every market post on the site was county-level. Jeff Barr's monthly Simcoe County report breaks the numbers out by municipality.

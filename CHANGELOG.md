@@ -3,6 +3,13 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-19: Internal links point at final URLs
+
+Why: SEO audit. 403 internal links went through a 301 before landing (for example /weekly to /weekly.html, /join to /join.html, /listings to /listings/), costing a hop on every click and crawl.
+- Every internal href that redirected on the live site now points straight at its final URL, across 258 files. /market-update-latest was left alone on purpose (it is a moving redirect). Same replacement applied to the page builders in scripts/ so new pages keep it.
+- Page titles and meta descriptions over Google's display length were reviewed and left as written: they are Jonathan Wallace's headlines, Google shows the site name separately, and truncation does not affect ranking.
+- scripts/check_site.py passes.
+
 ## 2026-11-19: Visible dates on Straight Answers pages
 
 Why: SEO/AEO audit. The /ask pages carried an uploadDate in schema but showed no date, and AI engines weigh visible freshness.

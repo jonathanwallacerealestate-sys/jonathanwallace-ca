@@ -448,6 +448,23 @@
   force = true
 
 [[redirects]]
+  from = "/listings/185-park-street-tay"
+  to = "/listings/185-park-street-tay.html"
+  status = 200
+
+[[redirects]]
+  from = "/listings/185-park-street-tay/"
+  to = "/listings/185-park-street-tay"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/listings/185-park-street-tay.html"
+  to = "/listings/185-park-street-tay"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/listings/2087-rumney-road-tay"
   to = "/listings/2087-rumney-road-tay.html"
   status = 200

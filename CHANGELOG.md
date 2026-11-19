@@ -3,6 +3,15 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-19: Full address and REALTOR.ca profile in schema
+
+Why: SEO/AEO audit. Jonathan Wallace's RealEstateAgent schema had no street address or postal code, and his REALTOR.ca profile was not in sameAs.
+- Agent schema on 74 pages now carries streetAddress 531 King St and postalCode L4R 3N6.
+- Added his REALTOR.ca profile (https://www.realtor.ca/agent/2069266/jonathan-wallace-531-king-st-midland-ontario-l4r3n6) to sameAs on 81 pages.
+- Removed the dead REW sameAs URL and the self founder/employee pointers sitewide, matching the 2026-11-11 about page fix.
+- contact.html: the location line now shows the full office address.
+- scripts/check_site.py passes.
+
 ## 2026-11-19: 19 Rugman Crescent letter and Sanford note
 
 Why: Jonathan Wallace sent a revised letter and asked for a power-of-sale note on 58 Sanford Circ only.

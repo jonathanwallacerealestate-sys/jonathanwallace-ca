@@ -3,6 +3,10 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-20: 8 Pinecone Avenue REALTOR.ca link updated
+
+Why: the relisting (S14196672) left the "View on REALTOR.ca" link pointing at the dead old listing. It now points to https://www.realtor.ca/real-estate/30530466/8-pinecone-avenue-tiny-rural-tiny (page, data file, _built.json).
+
 ## 2026-11-20: 8 Pinecone Avenue relisted on REALTOR.ca
 
 Why: the Monday, Wednesday and Friday listing check found REALTOR.ca relisted 8 Pinecone Avenue, Tiny under a new MLS number at a lower price.

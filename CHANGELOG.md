@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-20: Final private page for 38 Rue Eric, Tiny
+
+Why: Jonathan Wallace approved the final page at the client slug and retired the review URL.
+- Added /eval/38-rue-eric from the supplied folder, unchanged. Opinion is $825,000 to $875,000. Removed /eval/review-38re-9f0afacd and its noindex and redirect rules. Not in the nav, sitemap.xml, or llms.txt.
+
 ## 2026-11-19: Private test review page for 38 Rue Eric, Tiny
 
 Why: Jonathan Wallace asked for an unlisted review page at /eval/review-38re-9f0afacd. The page files were supplied already built.

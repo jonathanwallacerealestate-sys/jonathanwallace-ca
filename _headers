@@ -223,11 +223,11 @@
   Cache-Control: public, max-age=604800
 
 # Private client evaluation. Not in the nav, sitemap.xml, or llms.txt.
-/eval/review-38re-9f0afacd
+/eval/38-rue-eric
   X-Robots-Tag: noindex, nofollow
-/eval/review-38re-9f0afacd/
+/eval/38-rue-eric/
   X-Robots-Tag: noindex, nofollow
-/eval/review-38re-9f0afacd/*
+/eval/38-rue-eric/*
   X-Robots-Tag: noindex, nofollow
-/eval/review-38re-9f0afacd*
+/eval/38-rue-eric*
   X-Robots-Tag: noindex, nofollow

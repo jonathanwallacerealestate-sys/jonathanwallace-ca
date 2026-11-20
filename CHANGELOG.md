@@ -9,6 +9,7 @@ Why: Jonathan Wallace asked for the full version of this week's newsletter Penet
 - Card assets/img/blog-penetanguishene-1100-new-homes-card.jpg (Artlist render of townhomes under construction, styled after a construction photo Jonathan supplied, not identical, no watermark). Sits lower in the body, not as a header (DEC-20261012-01). No shadow or gradient.
 - Added the sites the town's Active Developments page lists as approved (123 Robert Street East, Murray Road Maxson Subdivision, 2 Hope Street), plus under-construction and in-review files, and a matching FAQ, at Jonathan Wallace's request.
 - Wording is "dwellings", not "homes", for the 1,100 count (Jonathan Wallace): the town's figure is dwelling units and many are apartments. Card headline re-rendered to 1,100 NEW DWELLINGS. URL slug kept.
+- SEO and AEO pass: search title "Penetanguishene New Developments: 1,100+ Dwellings Planned", new FAQ "Is Penetanguishene growing?", link added to the Penetanguishene community hub's reading list and a cross-link from the cost-to-build post.
 - $680,000 build vs $650,000 sale is labelled as an example. The arena on the slate is from Jonathan Wallace.
 - blog.html card first after the latest market update, ItemList rebuilt with the post at position 2; sitemap.xml, llms.txt and the .html redirect in netlify.toml added.
 

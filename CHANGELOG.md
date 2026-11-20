@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-20: 8 Pinecone Avenue relisted on REALTOR.ca
+
+Why: the Monday, Wednesday and Friday listing check found REALTOR.ca relisted 8 Pinecone Avenue, Tiny under a new MLS number at a lower price.
+- MLS number S13870402 to S14196672 and price $699,000 to $674,900 on the listing page, its data file, _built.json, listings/index.html and llms.txt. Everything else unchanged. The page's REALTOR.ca link still points at the old listing URL (https://www.realtor.ca/real-estate/30530466/8-pinecone-avenue-tiny-rural-tiny is the new one); left for a decision.
+
 ## 2026-11-20: 38 Rue Eric comparable swap
 
 Why: Jonathan Wallace approved a new set of comparables for the private page at /eval/38-rue-eric.

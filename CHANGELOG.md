@@ -3,11 +3,12 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
-## 2026-11-20: New post, Penetanguishene's 1,100 new homes
+## 2026-11-20: New post, Penetanguishene's 1,100 new dwellings
 Why: Jonathan Wallace asked for the full version of this week's newsletter Penetang section as a blog post, built from his answers to ten questions on the MidlandToday pipeline story (Nov 12, 2026) and his 128 Burke Street video.
 - New post /blog-penetanguishene-1100-new-homes in the current non-market format (economy post template): answer-first summary, key takeaways, steps, FAQPage, Article (speakable, citation to MidlandToday) and Breadcrumb schema.
 - Card assets/img/blog-penetanguishene-1100-new-homes-card.jpg (Artlist render of townhomes under construction, styled after a construction photo Jonathan supplied, not identical, no watermark). Sits lower in the body, not as a header (DEC-20261012-01). No shadow or gradient.
 - Added the sites the town's Active Developments page lists as approved (123 Robert Street East, Murray Road Maxson Subdivision, 2 Hope Street), plus under-construction and in-review files, and a matching FAQ, at Jonathan Wallace's request.
+- Wording is "dwellings", not "homes", for the 1,100 count (Jonathan Wallace): the town's figure is dwelling units and many are apartments. Card headline re-rendered to 1,100 NEW DWELLINGS. URL slug kept.
 - $680,000 build vs $650,000 sale is labelled as an example. The arena on the slate is from Jonathan Wallace.
 - blog.html card first after the latest market update, ItemList rebuilt with the post at position 2; sitemap.xml, llms.txt and the .html redirect in netlify.toml added.
 

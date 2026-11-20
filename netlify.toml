@@ -1616,23 +1616,23 @@
   status = 301
   force = true
 
-# Private client evaluation (TEST review page for Jonathan Wallace only, 38 Rue Eric, Tiny).
+# Private client evaluation (38 Rue Eric, Tiny).
 # Do not add this URL to the nav, sitemap.xml, or llms.txt. The page is noindex.
-# force is on because eval/review-38re-9f0afacd/ is a real directory (the PDFs live there).
+# force is on because eval/38-rue-eric/ is a real directory (the PDFs live there).
 [[redirects]]
-  from = "/eval/review-38re-9f0afacd"
-  to = "/eval/review-38re-9f0afacd/index.html"
+  from = "/eval/38-rue-eric"
+  to = "/eval/38-rue-eric/index.html"
   status = 200
   force = true
 
 [[redirects]]
-  from = "/eval/review-38re-9f0afacd/"
-  to = "/eval/review-38re-9f0afacd"
+  from = "/eval/38-rue-eric/"
+  to = "/eval/38-rue-eric"
   status = 301
   force = true
 
 [[redirects]]
-  from = "/eval/review-38re-9f0afacd/index.html"
-  to = "/eval/review-38re-9f0afacd"
+  from = "/eval/38-rue-eric/index.html"
+  to = "/eval/38-rue-eric"
   status = 301
   force = true

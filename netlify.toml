@@ -1359,6 +1359,12 @@
   force = true
 
 [[redirects]]
+  from = "/blog-penetanguishene-1100-new-homes.html"
+  to = "/blog-penetanguishene-1100-new-homes"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog-canada-economy-losing-steam-november-2026.html"
   to = "/blog-canada-economy-losing-steam-november-2026"
   status = 301

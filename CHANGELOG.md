@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-20: 38 Rue Eric comparable swap
+
+Why: Jonathan Wallace approved a new set of comparables for the private page at /eval/38-rue-eric.
+- Replaced the folder with the supplied files, unchanged. Sold and for-sale cards are now 23 Rue Helene, 110 Rue Jules Leger, 436 Puddicombe, 153 Rue Eric, 41 Tall Pines, 30 Bellehumeur, 157 Desroches, 58 Wolfe, and 20 Rue Eric. The letter of opinion is the same file. Noindex headers and redirects are unchanged. Not in the nav, sitemap.xml, or llms.txt.
+
 ## 2026-11-20: Final private page for 38 Rue Eric, Tiny
 
 Why: Jonathan Wallace approved the final page at the client slug and retired the review URL.

@@ -23,6 +23,11 @@ Why: the relisting (S14196672) left the "View on REALTOR.ca" link pointing at th
 Why: the Monday, Wednesday and Friday listing check found REALTOR.ca relisted 8 Pinecone Avenue, Tiny under a new MLS number at a lower price.
 - MLS number S13870402 to S14196672 and price $699,000 to $674,900 on the listing page, its data file, _built.json, listings/index.html and llms.txt. Everything else unchanged. The page's REALTOR.ca link still points at the old listing URL (https://www.realtor.ca/real-estate/30530466/8-pinecone-avenue-tiny-rural-tiny is the new one); left for a decision.
 
+## 2026-11-21: Private page for 899 Tiny Beaches Rd S, Tiny
+
+Why: Jonathan Wallace approved the final page at the client slug.
+- Added /eval/899-tiny-beaches-road-south from the supplied folder, unchanged. Opinion is $950,000 to $1,025,000. Suggested list price is not higher than $1,100,000. Added the noindex header and the pretty-URL redirects. Not in the nav, sitemap.xml, or llms.txt.
+
 ## 2026-11-20: 38 Rue Eric comparable swap
 
 Why: Jonathan Wallace approved a new set of comparables for the private page at /eval/38-rue-eric.

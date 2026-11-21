@@ -231,3 +231,13 @@
   X-Robots-Tag: noindex, nofollow
 /eval/38-rue-eric*
   X-Robots-Tag: noindex, nofollow
+
+# Private client evaluation. Not in the nav, sitemap.xml, or llms.txt.
+/eval/899-tiny-beaches-road-south
+  X-Robots-Tag: noindex, nofollow
+/eval/899-tiny-beaches-road-south/
+  X-Robots-Tag: noindex, nofollow
+/eval/899-tiny-beaches-road-south/*
+  X-Robots-Tag: noindex, nofollow
+/eval/899-tiny-beaches-road-south*
+  X-Robots-Tag: noindex, nofollow

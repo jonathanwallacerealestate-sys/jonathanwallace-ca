@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-21: Private page for 899 Tiny Beaches Rd S, Tiny
+
+Why: Jonathan Wallace approved the corrected final page at the client slug.
+- Added /eval/899-tiny-beaches-road-south from the supplied folder, unchanged. Opinion is $950,000 to $1,025,000. Suggested list price is not higher than $1,100,000. Added the noindex header and the pretty-URL redirects. Not in the nav, sitemap.xml, or llms.txt.
+
 ## 2026-11-20: New post, Penetanguishene's 1,100 new dwellings
 Why: Jonathan Wallace asked for the full version of this week's newsletter Penetang section as a blog post, built from his answers to ten questions on the MidlandToday pipeline story (Nov 12, 2026) and his 128 Burke Street video.
 - New post /blog-penetanguishene-1100-new-homes in the current non-market format (economy post template): answer-first summary, key takeaways, steps, FAQPage, Article (speakable, citation to MidlandToday) and Breadcrumb schema.

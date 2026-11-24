@@ -935,6 +935,12 @@
   force = true
 
 [[redirects]]
+  from = "/blog-market-update-september-2026"
+  to = "/blog-market-update-september-2026.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog-market-update-sep-7-13-2026"
   to = "/blog-market-update-sep-7-13-2026.html"
   status = 301

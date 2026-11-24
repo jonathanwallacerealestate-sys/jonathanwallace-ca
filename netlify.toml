@@ -953,6 +953,12 @@
   force = true
 
 [[redirects]]
+  from = "/blog-market-update-2025-year-in-review"
+  to = "/blog-market-update-2025-year-in-review.html"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog-market-update-sep-7-13-2026"
   to = "/blog-market-update-sep-7-13-2026.html"
   status = 301

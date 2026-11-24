@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-23: Private page for 493 Margaret Street, Port McNicoll
+
+Why: Jonathan Wallace approved the final page at the client slug.
+- Added /eval/493-margaret-street from the supplied folder, unchanged. Added the noindex header and the pretty-URL redirects. Not in the nav, sitemap.xml, or llms.txt.
+
 ## 2026-11-21: Private page for 899 Tiny Beaches Rd S, Tiny
 
 Why: Jonathan Wallace approved the corrected final page at the client slug.

@@ -241,3 +241,13 @@
   X-Robots-Tag: noindex, nofollow
 /eval/899-tiny-beaches-road-south*
   X-Robots-Tag: noindex, nofollow
+
+# Private client evaluation. Not in the nav, sitemap.xml, or llms.txt.
+/eval/493-margaret-street
+  X-Robots-Tag: noindex, nofollow
+/eval/493-margaret-street/
+  X-Robots-Tag: noindex, nofollow
+/eval/493-margaret-street/*
+  X-Robots-Tag: noindex, nofollow
+/eval/493-margaret-street*
+  X-Robots-Tag: noindex, nofollow

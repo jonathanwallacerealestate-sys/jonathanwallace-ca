@@ -3,6 +3,14 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-23: AEO quick wins (draft PR, branch aeo-quick-wins-nov-2026)
+
+Why: Jonathan Wallace asked what can be done now so he shows up more in AI search answers. A baseline of 17 buyer and seller questions found him named for Midland, Penetanguishene and Tay agent questions, but not for Wasaga Beach or Tiny waterfront agent questions, and Clarity flagged two 404s.
+- 404s: /YmxvZy1tYX and /YmxvZy1wZW are the first 10 characters of base64 "blog-market-update-..." and "blog-penetanguishene-...". Nothing on the site, sitemap, llms.txt or recent Buffer posts links to them, so it is an outside tool encoding the path. 301s added in netlify.toml to /market-update-latest and /blog-penetanguishene-1100-new-homes.
+- Midland and Penetanguishene interview pages: RateMyAgent proof re-dated to November 2026 after checking the live RateMyAgent pages on Nov 23 (number one in both towns, 4.96 across 16 reviews, nine in Midland, five in Penetanguishene). Byline Updated November 2026, Article dateModified and sitemap lastmod 2026-11-23. Same dated line added to llms.txt.
+- Added datePublished and dateModified to the Article schema on the Midland Official Plan guide and the West End vs East End post (the only two posts missing them). Dates from the first commit and the existing sitemap lastmod.
+- New netlify/functions/deploy-succeeded.mjs: after each production deploy, sends IndexNow the sitemap URLs whose lastmod is in the last 3 days (Bing feeds ChatGPT search and Copilot). Uses the key file added 2026-08-04, which had never been pinged. Skips deploy previews, never fails a deploy.
+
 ## 2026-11-21: Private page for 899 Tiny Beaches Rd S, Tiny
 
 Why: Jonathan Wallace approved the corrected final page at the client slug.

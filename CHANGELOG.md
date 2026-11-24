@@ -3,6 +3,14 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-23: Monthly review period labels and wording audit
+
+Why: Final review against the approved backfill requirements called for the full month and year in each title.
+
+- September and August review titles now explicitly include 2026 in the H1, Article headline, social meta, blog cards, ItemList and llms.txt.
+- September price paragraph no longer asserts a sales-composition cause that the aggregate workbook cannot prove. Replaced an unverified seasonal generalisation with the observed listing and sales changes.
+- No data values, homepage slots, weekly latest redirect or July review changed.
+
 ## 2026-11-23: Market history pages for five markets
 
 Why: Jonathan approved one page per market with five years of yearly numbers, so the site answers "how has the X market changed" questions directly.

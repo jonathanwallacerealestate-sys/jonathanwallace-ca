@@ -3,6 +3,14 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-23: August 2026 monthly review (back-filled)
+
+Why: Jonathan approved back-filling the August 2026 monthly review from Jeff Barr's revised board workbook.
+
+- Added `blog-market-update-august-2026.html` (Article, FAQPage, BreadcrumbList; jw:backfill marker; hero reuses `assets/img/blog-market-update.jpg`). Angle: April to August 2026 each outsold the same month of 2025; September broke the run.
+- Archive card placed with the August weeklies (before Aug 31 to Sep 6); Blog ItemList rebuilt. sitemap, llms.txt and extensionless 301 added.
+- County compared to August 2025 only (July 2026 county sales count is still being confirmed). No market share figures.
+
 ## 2026-11-23: September 2026 monthly review (back-filled) + backfill marker
 
 Why: Jonathan approved publishing the September 2026 monthly review from Jeff Barr's revised board workbook so the monthly series has no gap.

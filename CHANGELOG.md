@@ -3,6 +3,15 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-23: Market history pages for five markets
+
+Why: Jonathan approved one page per market with five years of yearly numbers, so the site answers "how has the X market changed" questions directly.
+
+- Added `market-history-midland-penetanguishene.html`, `market-history-tay-tiny.html`, `market-history-wasaga-beach.html`, `market-history-severn.html`, `market-history-simcoe-county.html`. Answer-first lede, yearly table 2021 to 2025 plus 2026 January to October, October 2026 vs October 2025 snapshot, Article (about Place), FAQPage and BreadcrumbList schema.
+- Data is Jeff Barr's board workbook year-end rows only. Midland and Penetanguishene 2021 to 2024 average price, days on market and list to sale ratio are not reported by the board and show as "Not reported" (not estimated). Combined-market notes on each page.
+- Linked from the Midland, Penetanguishene and Tiny "Read before you sell or buy" lists; Tay and Wasaga Beach community pages get a new "Read before you sell or buy" section in the same format. New sections on communities.html and weekly.html (before the guides). No Severn community page exists, so Severn links from the hub and communities.html.
+- sitemap.xml and a new llms.txt section added. No market share figures.
+
 ## 2026-11-23: 2025 year in review (back-filled)
 
 Why: Jonathan approved a 2025 year in review from Jeff Barr's board workbook (full-year rows).

@@ -3,6 +3,15 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-23: January to May 2026 market review (back-filled) + August review streak fix
+
+Why: Jonathan approved back-filling January to May 2026 from Jeff Barr's revised board workbook. Building it showed March 2026 (547) also beat March 2025 (531), so the August review's streak was six months, not five.
+
+- Added `blog-market-update-january-may-2026.html` (Article, FAQPage, BreadcrumbList; jw:backfill marker; hero reuses `assets/img/blog-market-update.jpg`). One combined post; five-month sales are sums of Jeff's monthly counts, no computed averages.
+- Card at the end of the market updates archive (oldest period); Blog ItemList rebuilt. sitemap, llms.txt and extensionless 301 added.
+- August review: title and copy corrected to "sixth straight month" (March to August); blog.html card, ItemList and llms.txt updated to match.
+- No market share figures.
+
 ## 2026-11-23: August 2026 monthly review (back-filled)
 
 Why: Jonathan approved back-filling the August 2026 monthly review from Jeff Barr's revised board workbook.

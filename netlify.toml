@@ -66,6 +66,22 @@
   force = true
 
 
+# 2026-11-23: Clarity logged 404s on /YmxvZy1tYX and /YmxvZy1wZW. These are the first
+# 10 characters of base64("blog-market-update-...") and base64("blog-penetanguishene-...").
+# No link on the site, sitemap, llms.txt or Buffer posts produces them; most likely an outside
+# tool or scanner that base64-encodes paths. Send the visitor to the post they were after.
+[[redirects]]
+  from = "/YmxvZy1tYX"
+  to = "/market-update-latest"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/YmxvZy1wZW"
+  to = "/blog-penetanguishene-1100-new-homes"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/blog-market-update-october-2026"
   to = "/blog-market-update-nov-2-8-2026.html"

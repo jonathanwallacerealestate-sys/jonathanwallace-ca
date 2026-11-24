@@ -3,6 +3,16 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-23: September 2026 monthly review (back-filled) + backfill marker
+
+Why: Jonathan approved publishing the September 2026 monthly review from Jeff Barr's revised board workbook so the monthly series has no gap.
+
+- Added `blog-market-update-september-2026.html` (Article, FAQPage, BreadcrumbList schema; datePublished 2026-11-23; period label September 2026 in title, byline and meta). Hero reuses `assets/img/blog-market-update.jpg` (no new Artlist spend).
+- Archive card on blog.html placed with the September weeklies (between Oct 5 to 11 and Sep 28 to Oct 4); Blog ItemList rebuilt to match. Newest weekly card and homepage slot 1 untouched.
+- sitemap.xml, llms.txt and an extensionless 301 added.
+- `scripts/check_site.py`: pages carrying `<meta name="jw:backfill" content="period-review">` are skipped when finding the newest market update, so a back-filled review dated today never repoints or fails `/market-update-latest`.
+- No market share figures. Numbers are Jeff's reported cells only.
+
 ## 2026-11-23: AEO quick wins (PR #287)
 
 Why: Jonathan Wallace asked what can be done now so he shows up more in AI search answers. A baseline of 17 buyer and seller questions found him named for Midland, Penetanguishene and Tay agent questions, but not for Wasaga Beach or Tiny waterfront agent questions, and Clarity flagged two 404s.

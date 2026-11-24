@@ -115,6 +115,8 @@ targets = re.findall(r'from = "/market-update-latest/?"\s*\n\s*to = "([^"]+)"', 
 newest, newest_date = None, ""
 for path in glob.glob("blog-market-update-*.html", root_dir=ROOT):
     page = read(path)
+    if 'name="jw:backfill"' in page:  # back-filled period reviews never become /market-update-latest
+        continue
     published = re.search(r'"datePublished"\s*:\s*"([^"]+)"', page) or re.search(r'article:published_time" content="([^"]+)"', page)
     if published and published.group(1) > newest_date:
         newest, newest_date = path, published.group(1)

@@ -3,6 +3,14 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-23: 2025 year in review (back-filled)
+
+Why: Jonathan approved a 2025 year in review from Jeff Barr's board workbook (full-year rows).
+
+- Added `blog-market-update-2025-year-in-review.html` (Article, FAQPage, BreadcrumbList; jw:backfill marker; hero reuses `assets/img/blog-market-update.jpg`). Angle: new listings held level with 2024 while sales fell 1,555.
+- Midland and Penetanguishene 2024 average price, days on market and list to sale ratio are not in the board's year-end row, so no 2024 comparison is shown for those (not computed).
+- Card at the end of the market updates archive; Blog ItemList rebuilt. sitemap, llms.txt and extensionless 301 added. No market share figures.
+
 ## 2026-11-23: January to May 2026 market review (back-filled) + August review streak fix
 
 Why: Jonathan approved back-filling January to May 2026 from Jeff Barr's revised board workbook. Building it showed March 2026 (547) also beat March 2025 (531), so the August review's streak was six months, not five.

@@ -3,6 +3,14 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-25: Weekly carousel locked as a script
+
+Why: Jonathan approved the Nov 16 to 22 carousel layout and asked for it to be locked.
+
+- `scripts/weekly_market_carousel.py`: builds the 8 slides, renders them and fails if any text overlaps or runs past 1290 px. No slide numbers; Instagram-style verified badge drawn fresh.
+- `assets/img/social/carousel-header.png`: profile header with the old badge removed.
+- Approved slides saved as the reference in `assets/img/social/market-update-nov-16-22-2026/`.
+
 ## 2026-11-25: Disabled 4 Charles Street, Penetanguishene (no longer on REALTOR.ca)
 
 Why: The Monday/Wednesday/Friday listing check found MLS S13853812 gone from REALTOR.ca (MLS search lands on a "listing no longer exists" page, address search returns nothing).

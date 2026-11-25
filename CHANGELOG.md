@@ -3,6 +3,13 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-25: Disabled 4 Charles Street, Penetanguishene (no longer on REALTOR.ca)
+
+Why: The Monday/Wednesday/Friday listing check found MLS S13853812 gone from REALTOR.ca (MLS search lands on a "listing no longer exists" page, address search returns nothing).
+
+- listings/4-charles-street-penetanguishene.html kept. /listings/4-charles-street-penetanguishene (and trailing slash, .html) now 302 to / in netlify.toml. Undo by restoring the 200 rewrite and 301s.
+- Removed its card and ItemList entry from listings/index.html, and its lines from sitemap.xml and llms.txt.
+
 ## 2026-11-25: Weekly market update, November 16 to 22, 2026
 
 Why: Jeff Barr's weekly Simcoe County stats for November 16 to 22.

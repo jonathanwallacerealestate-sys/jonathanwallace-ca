@@ -3,6 +3,14 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-25: Weekly market update, November 16 to 22, 2026
+
+Why: Jeff Barr's weekly Simcoe County stats for November 16 to 22.
+
+- New post `blog-market-update-nov-16-22-2026.html` ("New Listings Jumped 12.8%. What That Means for Midland Sellers"), card `assets/img/market-nov-16-22-2026-card.jpg` (Artlist render styled after Jonathan's photo).
+- blog.html: new card in LATEST MARKET UPDATE; Nov 9 to 15 moved to the top of the archive; ItemList rebuilt from card order.
+- Homepage cards synced by `scripts/sync_home_slots.py`. sitemap.xml, llms.txt and the `/market-update-latest` redirects updated.
+
 ## 2026-11-24: Homepage market update cards now sync from the blog automatically
 
 Why: The homepage "Market updates and guides" cards were hand-typed and no publish step updated them, so the homepage still showed Oct 26 to Nov 1 (and the Farlain Lake notice) after newer posts went live.

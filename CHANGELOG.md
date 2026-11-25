@@ -10,6 +10,7 @@ Why: Jeff Barr's weekly Simcoe County stats for November 16 to 22.
 - New post `blog-market-update-nov-16-22-2026.html` ("New Listings Jumped 12.8%. What That Means for Midland Sellers"), card `assets/img/market-nov-16-22-2026-card.jpg` (Artlist render styled after Jonathan's photo).
 - blog.html: new card in LATEST MARKET UPDATE; Nov 9 to 15 moved to the top of the archive; ItemList rebuilt from card order.
 - Homepage cards synced by `scripts/sync_home_slots.py`. sitemap.xml, llms.txt and the `/market-update-latest` redirects updated.
+- AEO pass: Q&A now leads with two local questions (sellers accepting less than asking, the November 30 expiry drop); Article schema gained description, spatialCoverage, about and temporalCoverage.
 
 ## 2026-11-24: Homepage market update cards now sync from the blog automatically
 

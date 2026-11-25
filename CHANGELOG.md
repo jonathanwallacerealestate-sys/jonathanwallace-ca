@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-25: Value added to 684 Concession Road 18 West
+
+Why: Jonathan Wallace approved the opinion after the page was already live.
+- Replaced /eval/684-concession-road-18-west with the supplied folder, unchanged. Opinion is $390,000 to $450,000. Suggested list price is not more than $469,900. The three PDFs are included. Noindex headers and redirects are unchanged. Not in the nav, sitemap.xml, or llms.txt.
+
 ## 2026-11-25: Private page for 684 Concession Road 18 West, Tiny
 
 Why: Jonathan Wallace approved the page going live before the site visit.

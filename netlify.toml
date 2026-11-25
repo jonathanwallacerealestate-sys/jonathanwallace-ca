@@ -1727,3 +1727,24 @@
   status = 302
   force = true
 
+# Private client evaluation (684 Concession Road 18 West, Tiny).
+# Do not add this URL to the nav, sitemap.xml, or llms.txt. The page is noindex.
+# force is on because eval/684-concession-road-18-west/ is a real directory (the photos live there).
+[[redirects]]
+  from = "/eval/684-concession-road-18-west"
+  to = "/eval/684-concession-road-18-west/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/eval/684-concession-road-18-west/"
+  to = "/eval/684-concession-road-18-west"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/eval/684-concession-road-18-west/index.html"
+  to = "/eval/684-concession-road-18-west"
+  status = 301
+  force = true
+

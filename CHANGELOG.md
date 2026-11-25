@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-25: Private page for 684 Concession Road 18 West, Tiny
+
+Why: Jonathan Wallace approved the page going live before the site visit.
+- Added /eval/684-concession-road-18-west from the supplied folder, unchanged. The value line reads "To be determined after the site visit." No letter or sold-comparables PDFs and no download buttons. Added the noindex header and the pretty-URL redirects. Not in the nav, sitemap.xml, or llms.txt.
+
 ## 2026-11-25: Weekly carousel locked as a script
 
 Why: Jonathan approved the Nov 16 to 22 carousel layout and asked for it to be locked.

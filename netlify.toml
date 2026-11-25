@@ -4,8 +4,8 @@
 
 [build]
   publish = "."
-  # Pre-deploy check: stops the deploy if a publish step was skipped (see scripts/check_site.py)
-  command = "python3 scripts/check_site.py && node scripts/test_ai30.mjs"
+  # Homepage cards sync from blog.html, then the pre-deploy check stops the deploy if a publish step was skipped (see scripts/check_site.py)
+  command = "python3 scripts/sync_home_slots.py && python3 scripts/check_site.py && node scripts/test_ai30.mjs"
   functions = "netlify/functions"
 
 # Pretty URLs / basic hardening headers

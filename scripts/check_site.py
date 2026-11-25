@@ -7,6 +7,8 @@ Checks (each maps to a logged rule):
 - Every indexable blog post is in sitemap.xml, llms.txt and has a card on blog.html,
   and blog.html's ItemList matches its visible cards (DEC-256, DEC-20260923-06).
 - /market-update-latest points at the newest market update (DEC-20261001-21).
+- Homepage cards match blog.html: slot 1 = latest market update, slot 2 = newest piece
+  (scripts/sync_home_slots.py keeps them in step; it runs first in the Netlify build).
 - No sitemap URL is noindex (DEC-260).
 - No self-serving aggregateRating on Jonathan Wallace's own entity (DEC-252).
 - No em dashes in visible copy, titles or meta descriptions (DEC-20261021-13).
@@ -123,6 +125,19 @@ for path in glob.glob("blog-market-update-*.html", root_dir=ROOT):
 for target in targets:
     if newest and norm(target) != norm("/" + newest):
         problems.append(f"netlify.toml: /market-update-latest points to {target}, newest market update is /{newest}")
+
+# Homepage "Market updates and guides" cards must match blog.html (2026-11-24)
+home = read("index.html")
+home_block = re.search(r"<!-- HOME SLOTS.*?-->(.*?)<!-- /HOME SLOTS -->", home, re.S)
+if not home_block:
+    problems.append("index.html: HOME SLOTS markers missing (homepage cards must sync from blog.html)")
+else:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from sync_home_slots import home_slots
+    want = [norm(re.search(r"href='([^']+)'", c).group(1)) for c in home_slots()]
+    have = [norm(h) for h in re.findall(r"<a class='listing' href='([^']+)'", home_block.group(1))]
+    if have != want:
+        problems.append(f"index.html: homepage cards {have} do not match blog.html {want}; run python3 scripts/sync_home_slots.py")
 
 if problems:
     print(f"check_site: {len(problems)} problem(s), deploy stopped:")

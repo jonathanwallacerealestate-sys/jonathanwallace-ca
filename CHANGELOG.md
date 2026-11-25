@@ -3,6 +3,15 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-24: Homepage market update cards now sync from the blog automatically
+
+Why: The homepage "Market updates and guides" cards were hand-typed and no publish step updated them, so the homepage still showed Oct 26 to Nov 1 (and the Farlain Lake notice) after newer posts went live.
+
+- index.html cards now sit between HOME SLOTS markers and are copied from blog.html by `scripts/sync_home_slots.py`: slot 1 = the LATEST MARKET UPDATE card, slot 2 = the first card after it (newest published piece). Do not edit them by hand.
+- Netlify build runs the sync before `check_site.py`, so a publish that only updates blog.html still ships a current homepage.
+- `check_site.py` fails if the homepage cards do not match blog.html.
+- Homepage now shows Nov 9 to 15 and the Penetanguishene 1,100 new dwellings post.
+
 ## 2026-11-23: Monthly review period labels and wording audit
 
 Why: Final review against the approved backfill requirements called for the full month and year in each title.

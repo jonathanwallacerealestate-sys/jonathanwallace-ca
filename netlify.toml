@@ -256,23 +256,6 @@
   force = true
 
 [[redirects]]
-  from = "/listings/4-charles-street-penetanguishene"
-  to = "/listings/4-charles-street-penetanguishene.html"
-  status = 200
-
-[[redirects]]
-  from = "/listings/4-charles-street-penetanguishene/"
-  to = "/listings/4-charles-street-penetanguishene"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/listings/4-charles-street-penetanguishene.html"
-  to = "/listings/4-charles-street-penetanguishene"
-  status = 301
-  force = true
-
-[[redirects]]
   from = "/listings/lot-9-james-street-tiny"
   to = "/listings/lot-9-james-street-tiny.html"
   status = 200
@@ -1724,3 +1707,23 @@
   to = "/eval/493-margaret-street"
   status = 301
   force = true
+
+# 4 Charles Street disabled 2026-11-25 (no longer on REALTOR.ca). Reversible: remove these and restore the 200 rewrite plus 301s for this slug.
+[[redirects]]
+  from = "/listings/4-charles-street-penetanguishene"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/listings/4-charles-street-penetanguishene/"
+  to = "/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/listings/4-charles-street-penetanguishene.html"
+  to = "/"
+  status = 302
+  force = true
+

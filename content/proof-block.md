@@ -6,7 +6,8 @@ via data-stat, so they can never drift out of sync again.
 Card 1: $350M+  |  In career sales volume
 Card 2: 500+    |  Families served
 Card 3: 4.97 stars  |  Rated on RateMyAgent, 15 reviews, as of November 2026
-Card 4: #1*     |  Agent in Midland and Penetanguishene, as rated on RateMyAgent
+Card 4: #1*     |  Was the top-rated agent in Midland and Penetanguishene on RateMyAgent
+(Past tense only. Nothing may say or imply he is #1 now.)
 
 Footnote under the band (required whenever the #1 card shows):
 *RateMyAgent Midland and Penetanguishene agent rankings, October 1 to November 7, 2026.

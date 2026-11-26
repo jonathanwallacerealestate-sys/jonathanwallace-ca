@@ -13,7 +13,8 @@ Why: Brian Huma (KW Experience) now ranks first on RateMyAgent for Midland and P
 - Rating updated to the live profile, checked Nov 26, 2026 at 8:27 AM ET: 4.97 out of 5 from 15 reviews, shown with "as of November 2026". Penetanguishene review count is now four (live profile).
 - Standard proof line: "$350M+ in career sales volume, 500+ families served, and the 2025 Midland Readers' Choice Award for Best Realtor." Schema award values match.
 - stats.json: rank "#1*" with rankScope, rankPeriodStart 2026-10-01, rankPeriodEnd 2026-11-07 and rankFootnote; ratingAsOf and ratingSource added.
-- Homepage RateMyAgent badge kept, with an asterisk and the same footnote.
+- Homepage RateMyAgent badge kept, with an asterisk, a past-tense caption ("Was rated #1 in Midland and Penetanguishene on RateMyAgent*") and the same footnote. Its alt text is past tense with the dates.
+- Past tense only: visible copy says "was rated #1" or "Was the top-rated agent" (stat cards) and "Was rated in Midland and Penetanguishene on RateMyAgent" (post proof cards). FAQ answers for "Who is the top rated realtor in Midland/Penetanguishene?" are past tense with the dates. Nothing says or implies he is #1 now. Check with /workspace/rma-cleanup-notes/check_tense.py on the bot box.
 - Rule going forward: no undated #1 claim. Extend the period only after a new capture shows #1 again. Refresh the rating and as-of date from the live profile.
 
 ## 2026-11-25: 688 Victoria Street range raised to $465,000

@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-25: 688 Victoria Street range raised to $465,000
+
+Why: Jonathan Wallace raised the upper end of the opinion for Laurie and Joaquin DeLeon.
+- On /eval/688-victoria-street only, the hero and the three description meta tags now read $425,000 to $465,000. The letter and the combined PDF were replaced with the supplied files. The sold-comparables PDF and the photos are unchanged.
+
 ## 2026-11-25: Value added to 684 Concession Road 18 West
 
 Why: Jonathan Wallace approved the opinion after the page was already live.

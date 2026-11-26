@@ -3,18 +3,18 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
-## 2026-11-26: Stale RateMyAgent claims removed, proof points standardized
+## 2026-11-26: RateMyAgent #1 claim dated with a footnote, live rating, standard proof line
 
-Why: Jonathan approved the cleanup (Nov 26). RateMyAgent no longer shows him first in Midland or Penetanguishene (the live profile shows #2 in both), so every "#1" or "number one rated" claim was inaccurate, and the 4.96 from 16 reviews figure was stale.
+Why: Brian Huma (KW Experience) now ranks first on RateMyAgent for Midland and Penetanguishene. Jonathan chose to keep the #1 claim, dated by an asterisk, while he gathers new reviews.
 
-- Removed every RateMyAgent rank claim ("#1", "number one rated", "ranked first", "ranks Jonathan Wallace first"). No new rank was substituted.
-- Rating updated to the live profile, checked Nov 26, 2026 at 8:27 AM ET (https://www.rate-my-agent.com/jonathan-wallace-ratings-midland-121710): 4.97 out of 5 from 15 reviews. Shown only with "as of November 2026" (or "Nov 2026" on short cards). Dropped from meta descriptions where a date does not fit.
-- Standard proof wording everywhere: "$350M+ in career sales volume, 500+ families served, and the 2025 Midland Readers' Choice Award for Best Realtor." Schema "award" values use "2025 Midland Readers' Choice Award for Best Realtor".
-- The "#1" stat card (post proof blocks, homepage, About, Sell, town Sell pages, Home Value) is now "2025 / Midland Readers' Choice Award for Best Realtor".
-- FAQ questions "Who is the top rated realtor in Midland/Penetanguishene?" are now "How do I find a top rated realtor in ...?" with neutral answers, in both the visible FAQ and the FAQPage schema.
-- assets/data/stats.json: rating 4.97, reviews 15, ratingAsOf, ratingSource, awardYear added; rank removed. content/stats.md, proof-block.md, brand-voice.md, about-bio.md, homepage-bio.md and llms.txt updated to match.
-- Kept RateMyAgent's own "Top Rated Midland Real Estate Agent" badge image on the homepage (it is issued by RateMyAgent), but our alt and aria text no longer say "top rated".
-- Rule going forward: never state a RateMyAgent rank. Refresh the rating and as-of date from the live profile when it is shown; if it cannot be checked, drop the number.
+- Every #1 RateMyAgent claim now carries "*" and a visible footnote near it: "*RateMyAgent Midland and Penetanguishene agent rankings, October 1 to November 7, 2026." (Midland-only or Penetanguishene-only wording where the claim names one town). JSON-LD, FAQ schema and llms.txt carry the period inline ("rated #1 ... from October 1 to November 7, 2026"), no asterisks.
+- Period evidence (saved RateMyAgent captures from the Signal Monitor runs in the bot workspace): the Midland and Penetanguishene ranking pages list Jonathan first from the "Last Updated October 1, 2026" pages (captured Oct 2) through Midland "Last Updated November 5, 2026" and Penetanguishene "November 1, 2026" (captured Nov 5), and the profile shows "#1 Midland, #1 Penetanguishene". The Nov 9 capture (pages "Last Updated November 8, 2026") lists Brian Huma first and the profile shows #2 in both. No capture before Oct 2 exists, so the period starts Oct 1. The Wayback Machine returned no snapshots.
+- The Nov 23 note in PR #287 ("number one in both towns") was wrong: the saved captures show #2 from Nov 8.
+- Rating updated to the live profile, checked Nov 26, 2026 at 8:27 AM ET: 4.97 out of 5 from 15 reviews, shown with "as of November 2026". Penetanguishene review count is now four (live profile).
+- Standard proof line: "$350M+ in career sales volume, 500+ families served, and the 2025 Midland Readers' Choice Award for Best Realtor." Schema award values match.
+- stats.json: rank "#1*" with rankScope, rankPeriodStart 2026-10-01, rankPeriodEnd 2026-11-07 and rankFootnote; ratingAsOf and ratingSource added.
+- Homepage RateMyAgent badge kept, with an asterisk and the same footnote.
+- Rule going forward: no undated #1 claim. Extend the period only after a new capture shows #1 again. Refresh the rating and as-of date from the live profile.
 
 ## 2026-11-25: 688 Victoria Street range raised to $465,000
 

@@ -6,9 +6,11 @@ via data-stat, so they can never drift out of sync again.
 Card 1: $350M+  |  In career sales volume
 Card 2: 500+    |  Families served
 Card 3: 4.97 stars  |  Rated on RateMyAgent, 15 reviews, as of November 2026
-Card 4: 2025    |  Midland Readers' Choice Award for Best Realtor
+Card 4: #1*     |  Agent in Midland and Penetanguishene, as rated on RateMyAgent
 
-No RateMyAgent rank claims (no "#1"). Refresh the rating, review count and as-of date from the live profile whenever they are shown.
+Footnote under the band (required whenever the #1 card shows):
+*RateMyAgent Midland and Penetanguishene agent rankings, October 1 to November 7, 2026.
+In JSON-LD, meta text and llms.txt, write the period inline instead of an asterisk.
 
 Intro line (Sell): Real numbers from a real track record on Georgian Bay.
 Intro line (About): A track record you can verify.

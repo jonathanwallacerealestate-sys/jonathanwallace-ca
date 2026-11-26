@@ -7,14 +7,15 @@ Change them in one place and every page updates.
 - volume: $350M+ in career sales volume
 - families: 500+ families served
 - rating: 4.97 out of 5 on RateMyAgent from 15 reviews, as of November 2026 (ratingAsOf)
+- rank: #1* on RateMyAgent in Midland and Penetanguishene, always with the dated footnote:
+  *RateMyAgent Midland and Penetanguishene agent rankings, October 1 to November 7, 2026.
+  (rankPeriodStart 2026-10-01, rankPeriodEnd 2026-11-07). In JSON-LD and llms.txt write the
+  period inline, no asterisk. Verified from saved RateMyAgent captures (Signal Monitor):
+  #1 on the Oct 1 through Nov 5 ranking updates; #2 behind Brian Huma from the Nov 8 update.
+  Extend the period only after a new capture shows #1 again.
 - award: 2025 Midland Readers' Choice Award for Best Realtor (awardYear: 2025)
 
 Standard proof sentence: $350M+ in career sales volume, 500+ families served, and the
 2025 Midland Readers' Choice Award for Best Realtor.
-
-No RateMyAgent rank claims (no "#1", "number one" or "ranked first"). The rank changes and
-is not ours to state. Only show the rating with its as-of date, refreshed from
-https://www.rate-my-agent.com/jonathan-wallace-ratings-midland-121710; if it cannot be
-checked, drop the number.
 
 CONFIRM: whether any figure should be labelled team versus personal.

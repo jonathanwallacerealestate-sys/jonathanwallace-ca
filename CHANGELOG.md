@@ -3,6 +3,19 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-26: Stale RateMyAgent claims removed, proof points standardized
+
+Why: Jonathan approved the cleanup (Nov 26). RateMyAgent no longer shows him first in Midland or Penetanguishene (the live profile shows #2 in both), so every "#1" or "number one rated" claim was inaccurate, and the 4.96 from 16 reviews figure was stale.
+
+- Removed every RateMyAgent rank claim ("#1", "number one rated", "ranked first", "ranks Jonathan Wallace first"). No new rank was substituted.
+- Rating updated to the live profile, checked Nov 26, 2026 at 8:27 AM ET (https://www.rate-my-agent.com/jonathan-wallace-ratings-midland-121710): 4.97 out of 5 from 15 reviews. Shown only with "as of November 2026" (or "Nov 2026" on short cards). Dropped from meta descriptions where a date does not fit.
+- Standard proof wording everywhere: "$350M+ in career sales volume, 500+ families served, and the 2025 Midland Readers' Choice Award for Best Realtor." Schema "award" values use "2025 Midland Readers' Choice Award for Best Realtor".
+- The "#1" stat card (post proof blocks, homepage, About, Sell, town Sell pages, Home Value) is now "2025 / Midland Readers' Choice Award for Best Realtor".
+- FAQ questions "Who is the top rated realtor in Midland/Penetanguishene?" are now "How do I find a top rated realtor in ...?" with neutral answers, in both the visible FAQ and the FAQPage schema.
+- assets/data/stats.json: rating 4.97, reviews 15, ratingAsOf, ratingSource, awardYear added; rank removed. content/stats.md, proof-block.md, brand-voice.md, about-bio.md, homepage-bio.md and llms.txt updated to match.
+- Kept RateMyAgent's own "Top Rated Midland Real Estate Agent" badge image on the homepage (it is issued by RateMyAgent), but our alt and aria text no longer say "top rated".
+- Rule going forward: never state a RateMyAgent rank. Refresh the rating and as-of date from the live profile when it is shown; if it cannot be checked, drop the number.
+
 ## 2026-11-25: 688 Victoria Street range raised to $465,000
 
 Why: Jonathan Wallace raised the upper end of the opinion for Laurie and Joaquin DeLeon.

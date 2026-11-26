@@ -11,9 +11,9 @@ Georgian Bay listings on camera and show what a place is actually like to live i
 straight, do-the-work approach is the same one I bring to every sale, whether it is a
 first home in Penetanguishene or a waterfront property in Tay.
 
-The work has been recognized. I was named Best Realtor in the 2025 Midland Readers' Choice
-Awards, and I am the number one rated agent in Midland on RateMyAgent with a 4.96 star
-average. Outside of real estate you will find me out on Georgian Bay at one of my two
+The work has been recognized. I won the 2025 Midland Readers' Choice Award for Best
+Realtor, and as of November 2026 I am rated 4.97 out of 5 on RateMyAgent from 15 reviews.
+Outside of real estate you will find me out on Georgian Bay at one of my two
 favourite spots, Beckwith or Giant's Tomb Island, or down on the dock at Wye Heritage,
 spending time with my partner Courtney and our two dogs. Some nights it is the local
 Midland billiard league instead. I also give back through Bowl for Kids' Sake with Big

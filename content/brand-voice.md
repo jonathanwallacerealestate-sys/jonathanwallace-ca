@@ -16,6 +16,6 @@ Honest, local, direct. Show, do not boast. Reach for specific Georgian Bay detai
 (the water, the towns, the schools, the shoreline) over generic real estate language.
 
 ## Proof points to weave in (live values in assets/data/stats.json)
-$350M+ in career sales volume. 500+ families served. 4.96 stars on RateMyAgent from 16
-verified reviews. Number one rated agent in Midland and Penetanguishene on RateMyAgent.
-2025 Midland Readers' Choice Award, Best Realtor.
+$350M+ in career sales volume, 500+ families served, and the 2025 Midland Readers' Choice
+Award for Best Realtor. RateMyAgent rating only with its as-of date (4.97 out of 5 from 15
+reviews, as of November 2026). Never claim a RateMyAgent rank.

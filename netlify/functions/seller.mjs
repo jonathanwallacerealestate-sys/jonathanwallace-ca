@@ -34,6 +34,39 @@ function originAllowed(origin) {
   return PRODUCTION_ORIGINS.indexOf(origin) !== -1 || PREVIEW_ORIGIN.test(origin);
 }
 
+// Some in-app browsers (Facebook, Instagram) and privacy settings send no Origin or
+// "null" on a same-origin fetch. Accept those when the browser itself marks the call
+// same-origin, or the Referer is our own page, instead of refusing a real lead.
+function requestAllowed(req) {
+  const origin = req.headers.get("origin") || "";
+  if (origin && origin !== "null") return originAllowed(origin);
+  if ((req.headers.get("sec-fetch-site") || "") === "same-origin") return true;
+  try {
+    const ref = new URL(req.headers.get("referer") || "");
+    return originAllowed(ref.origin);
+  } catch (e) {
+    return false;
+  }
+}
+
+// One line per refused or held-back post, so Netlify function logs show why.
+// No names, emails or phone numbers are logged.
+function logReject(reason, req, step, extra) {
+  try {
+    console.log(
+      JSON.stringify({
+        seller_reject: reason,
+        step: step || "",
+        origin: req.headers.get("origin") || "",
+        referer: (req.headers.get("referer") || "").split("?")[0],
+        sec_fetch_site: req.headers.get("sec-fetch-site") || "",
+        ua: (req.headers.get("user-agent") || "").slice(0, 200),
+        ...(extra || {}),
+      })
+    );
+  } catch (e) {}
+}
+
 function rateLimited(ip, step) {
   const limit = step === "photo" ? 40 : 6;
   const key = step + ":" + (ip || "unknown");
@@ -47,27 +80,42 @@ function rateLimited(ip, step) {
 export default async (req, context) => {
   if (req.method !== "POST") return json(405, { ok: false });
 
-  const origin = req.headers.get("origin") || "";
-  if (!originAllowed(origin)) return json(403, { ok: false });
-
   const step = new URL(req.url).searchParams.get("step");
+  if (!requestAllowed(req)) {
+    logReject("origin", req, step);
+    return json(403, { ok: false });
+  }
+
   const hookName = HOOKS[step];
-  if (!hookName) return json(400, { ok: false });
+  if (!hookName) {
+    logReject("bad_step", req, step);
+    return json(400, { ok: false });
+  }
 
   const hook = env(hookName);
   const secret = env("MAKE_SHARED_SECRET");
-  if (!hook || !secret) return json(503, { ok: false, error: "not_configured" });
+  if (!hook || !secret) {
+    logReject("not_configured", req, step);
+    return json(503, { ok: false, error: "not_configured" });
+  }
 
   const ip = (context && context.ip) || req.headers.get("x-nf-client-connection-ip") || "";
-  if (rateLimited(ip, step)) return json(429, { ok: false });
+  if (rateLimited(ip, step)) {
+    logReject("rate_limited", req, step);
+    return json(429, { ok: false });
+  }
 
   let data;
   try {
     data = await req.json();
   } catch (e) {
+    logReject("bad_json", req, step);
     return json(400, { ok: false });
   }
-  if (!data || !/^[\w-]{8,64}$/.test(data.lead_id || "")) return json(400, { ok: false });
+  if (!data || !/^[\w-]{8,64}$/.test(data.lead_id || "")) {
+    logReject("bad_lead_id", req, step);
+    return json(400, { ok: false });
+  }
   if (step === "photo") {
     if (!data.photo_base64 || typeof data.photo_base64 !== "string") return json(400, { ok: false });
     if (data.photo_base64.length > 9000000) return json(413, { ok: false });
@@ -77,7 +125,9 @@ export default async (req, context) => {
     const ms = Number(data.ms_on_page);
     // Bots get a normal-looking 200 so they don't retry, but forwarded:false tells
     // the page not to fire the Meta Lead / Google Ads conversion for this post.
-    if (data.jw_hp_note || data.company || !Number.isFinite(ms) || ms < 3000) {
+    const hp = String(data.jw_hp_note || data.company || "");
+    if (hp || !Number.isFinite(ms) || ms < 3000) {
+      logReject(hp ? "honeypot" : "too_fast", req, step, { ms_on_page: ms, hp_len: hp.length });
       return json(200, { ok: true, forwarded: false });
     }
   }
@@ -95,7 +145,10 @@ export default async (req, context) => {
       body: JSON.stringify(data),
       signal: AbortSignal.timeout(step === "photo" ? 45000 : 12000),
     });
-    if (!r.ok) return json(502, { ok: false });
+    if (!r.ok) {
+      logReject("make_" + r.status, req, step);
+      return json(502, { ok: false });
+    }
     if (step === "photo") {
       try {
         const body = await r.json();
@@ -106,6 +159,7 @@ export default async (req, context) => {
     }
     return json(200, { ok: true, forwarded: true });
   } catch (e) {
+    logReject("make_timeout", req, step);
     return json(504, { ok: false });
   }
 };

@@ -3,6 +3,13 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-26: Seller valuation form logs refusals and accepts in-app browsers with no Origin
+
+Why: Meta Ad A sent 214 landing page views from Nov 20 to 26 with zero leads reaching Make, and the function refused or held back posts without leaving any record.
+- /.netlify/functions/seller now writes one log line (no names, emails or phones) for every refused or held-back post: origin, rate limit, bad body, honeypot, too fast, Make error or timeout.
+- A post with no Origin, or Origin "null", is accepted when Sec-Fetch-Site is same-origin or the Referer is jonathanwallace.ca, so Facebook/Instagram in-app browsers and strict privacy settings are not refused. Other origins are still refused.
+- The page-1 honeypot input is marked to be skipped by browser autofill and password managers (autocomplete new-password, LastPass, 1Password, Bitwarden ignore attributes).
+
 ## 2026-11-25: 688 Victoria Street range raised to $465,000
 
 Why: Jonathan Wallace raised the upper end of the opinion for Laurie and Joaquin DeLeon.

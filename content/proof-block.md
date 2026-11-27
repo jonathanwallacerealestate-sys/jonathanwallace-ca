@@ -10,7 +10,7 @@ Card 4: #1*     |  Was the top-rated agent in Midland and Penetanguishene on Rat
 (Past tense only. Nothing may say or imply he is #1 now.)
 
 Footnote under the band (required whenever the #1 card shows):
-*RateMyAgent Midland and Penetanguishene agent rankings, October 1 to November 7, 2026.
+*RateMyAgent Midland and Penetanguishene agent rankings, through November 7, 2026.
 In JSON-LD, meta text and llms.txt, write the period inline instead of an asterisk.
 
 Intro line (Sell): Real numbers from a real track record on Georgian Bay.

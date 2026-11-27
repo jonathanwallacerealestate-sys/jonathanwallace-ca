@@ -6,4 +6,4 @@ am not on a listing I am usually out on the Bay with a fishing rod. $350M+ in ca
 500+ families served, and the 2025 Midland Readers' Choice Award for Best Realtor. I was rated
 #1 REALTOR® in Midland on RateMyAgent*.
 
-*RateMyAgent Midland agent ranking, October 1 to November 7, 2026.
+*RateMyAgent Midland agent ranking, through November 7, 2026.

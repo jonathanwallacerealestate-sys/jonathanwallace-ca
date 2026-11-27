@@ -13,8 +13,7 @@ first home in Penetanguishene or a waterfront property in Tay.
 
 The work has been recognized. I won the 2025 Midland Readers' Choice Award for Best
 Realtor, and I was rated #1 REALTOR® in Midland on RateMyAgent*. As of November 2026 I am
-rated 4.97 out of 5 from 15 reviews. (*RateMyAgent Midland agent ranking, October 1 to
-November 7, 2026.) Outside of real estate you will find me out on Georgian Bay at one of my two
+rated 4.97 out of 5 from 15 reviews. (*RateMyAgent Midland agent ranking, through November 7, 2026.) Outside of real estate you will find me out on Georgian Bay at one of my two
 favourite spots, Beckwith or Giant's Tomb Island, or down on the dock at Wye Heritage,
 spending time with my partner Courtney and our two dogs. Some nights it is the local
 Midland billiard league instead. I also give back through Bowl for Kids' Sake with Big

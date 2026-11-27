@@ -20,4 +20,4 @@ $350M+ in career sales volume, 500+ families served, and the 2025 Midland Reader
 Award for Best Realtor. 4.97 out of 5 on RateMyAgent from 15 reviews, as of November 2026.
 "Was rated #1 REALTOR® in Midland and Penetanguishene on RateMyAgent*" in past tense only,
 never "is #1", and always with the footnote
-*RateMyAgent Midland and Penetanguishene agent rankings, October 1 to November 7, 2026.
+*RateMyAgent Midland and Penetanguishene agent rankings, through November 7, 2026.

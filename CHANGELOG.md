@@ -3,6 +3,18 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-27: FAQ hub for Google AI Mode fan-out, 2026 tax, short-term rental and servicing tables
+
+Why: Google Search now runs more query fan-out and shows more comparison tables. The Chief Of Staff audit (/workspace/chief-of-staff/ai-fanout/audit.md on the bot box, every figure from a municipal, provincial or federal source) found the site had no citeable answers for tax rates, short-term rental rules, Tiny septic re-inspection, well testing, winter roads and similar sub-questions.
+
+- /faq.html is now the hub: 13 new sourced questions (tax rates, short-term rentals, Tiny septic re-inspection, well-water testing, Tiny winter roads, Georgian Bay water levels, commission in Ontario, schools, internet, shore road allowance, Tiny interim control by-law, commute, land transfer tax), each with a Sources line and an anchor id. FAQPage JSON-LD carries the same question and answer text; the contact question stays last.
+- Three HTML tables on the hub (not marked up as FAQ answers): 2026 residential tax rates for Midland, Penetanguishene, Tay, Wasaga Beach and Tiny; short-term rental rules by municipality; shoreline and servicing checks by municipality.
+- Short versions syndicated onto the five area guides (communities/*.html), each linking back to the matching hub answer, plus the 2026 tax table on every guide. Added to each guide's FAQPage schema too. No new "buying in X" pages.
+- Penetanguishene tax claim corrected everywhere it appeared (area guide, Midland vs Penetanguishene blog, sell-penetanguishene, Penetanguishene interview page): official 2026 total residential rates are Penetanguishene 1.68599% and Midland 1.770017%, so Penetanguishene is lower on the same assessed value.
+- Tiny municipal water wording: "the Balm Beach area" replaced with Woodland Beach, one of the Township's 16 official system names (Tiny area guide and selling-waterfront blog).
+- Left out on purpose (audit lists them as unverified): waterfront vs inland price tables, town-split days on market and sale-to-list, street-level school catchments, measured drive times, internet speeds by address, Tay short-term rental rules, septic re-inspection outside Tiny, conservation authority jurisdiction.
+- Refresh dates: the Georgian Bay water level figure is for the week ending November 23, 2026, and the Tiny interim control and winter road closure answers reflect Township pages checked November 27, 2026. Re-check them when this page is next edited.
+
 ## 2026-11-26: RateMyAgent #1 claim dated with a footnote, live rating, standard proof line
 
 Why: Brian Huma (KW Experience) now ranks first on RateMyAgent for Midland and Penetanguishene. Jonathan chose to keep the #1 claim, dated by an asterisk, while he gathers new reviews.

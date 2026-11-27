@@ -3,6 +3,12 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-27 Listing price sync with REALTOR.ca
+
+- 20 Rue Eric (S13851424): list price $937,500 to $895,000 (title, og/twitter titles, JSON-LD, visible price, listings index card, llms.txt, listing data files).
+- 4 Charles Street Penetanguishene (S13853812): list price $589,900 to $599,900 (title, og/twitter titles, JSON-LD, visible price, listing data files).
+- Why: scheduled Monday/Wednesday/Friday check of listing pages against live REALTOR.ca. MLS numbers unchanged.
+
 ## 2026-11-26: Seller valuation form logs refusals and accepts in-app browsers with no Origin
 
 Why: Meta Ad A sent 214 landing page views from Nov 20 to 26 with zero leads reaching Make, and the function refused or held back posts without leaving any record.

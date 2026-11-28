@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-28 Huronia Transition Homes wishlist on the giving guide
+
+Why: Jonathan Wallace asked to add the Huronia Transition Homes (Rosewood) Amazon wishlist.
+- `blog-give-back-north-simcoe-december-2026.html`: new section with the Rosewood Amazon wishlist link, the admin email and phone for item drop-offs, and the donate page. No street address (the shelter does not publish one).
+
 ## 2026-11-28 Hospice Huronia wish list on the giving guide
 
 Why: Jonathan Wallace asked to add the Tomkins House Christmas wish list, since Hospice Huronia is looking for donations.

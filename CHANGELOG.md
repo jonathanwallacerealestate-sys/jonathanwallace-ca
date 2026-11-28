@@ -3,6 +3,11 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-28 Hospice Huronia wish list on the giving guide
+
+Why: Jonathan Wallace asked to add the Tomkins House Christmas wish list, since Hospice Huronia is looking for donations.
+- `blog-give-back-north-simcoe-december-2026.html`: new section "Fill a Bag for the Hospice Huronia Wish List" (drop-off at 948 Fuller Ave., office hours, call first, items grouped from the hospice's posted list). Hospice line in "A Few More Ways to Help" points to it. New FAQ entry mirrored in FAQPage schema. dateModified and "current as of" moved to November 28.
+
 ## 2026-11-27 December giving guide
 
 Why: Jonathan Wallace's newsletter for November 27 is themed on low-cost ways to give back, with full details kept on the site and short lines in the email.

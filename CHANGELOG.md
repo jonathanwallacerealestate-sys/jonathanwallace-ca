@@ -3,6 +3,13 @@
 What changed on the site, when, and why. Newest first. Times are America/Toronto.
 Any assistant (Claude, Cursor agents, Grok Bot teammates) should read this before editing the site, and add an entry after every change.
 
+## 2026-11-27 December giving guide
+
+Why: Jonathan Wallace's newsletter for November 27 is themed on low-cost ways to give back, with full details kept on the site and short lines in the email.
+- New post `blog-give-back-north-simcoe-december-2026.html`: volunteer roles, toy and food drop-offs, Midland Toys for Tickets, FAQ (FAQPage schema matches the visible Q&A). Every listing from Jonathan's verified 2026 list; items he marked not confirmed are left out. No sales asks on the page.
+- Card `assets/img/blog-give-back-north-simcoe-december-2026-card.jpg` (Artlist render styled after Jonathan's food drive photo, no faces, branding or readable signs; lettering in code per the new project SOP `SOPs/blog-thumbnail-sop.md`). Sits after the volunteer section, not as a header (DEC-20261012-01). No shadow or gradient.
+- blog.html: card added after LATEST MARKET UPDATE; ItemList rebuilt from card order. Homepage slot 2 synced by `scripts/sync_home_slots.py`. sitemap.xml, llms.txt and the .html redirect added.
+
 ## 2026-11-27 Listing price sync with REALTOR.ca
 
 - 20 Rue Eric (S13851424): list price $937,500 to $895,000 (title, og/twitter titles, JSON-LD, visible price, listings index card, llms.txt, listing data files).
